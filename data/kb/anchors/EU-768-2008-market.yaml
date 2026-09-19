@@ -1,0 +1,27 @@
+id: KB-market-EU-EU-768-2008
+regulation_id: EU-768-2008
+doc_name: Decision No 768/2008/EC (common framework for the marketing of products)
+official_citation: Decision No 768/2008/EC (common framework for the marketing of products)
+short_name: 合格评定程序参考条款 (768/2008/EC)
+source: market
+primary_source: market
+domain: 市场监督
+applies_if:
+  category: []
+  features_any: []
+  markets:
+  - EU
+key_articles:
+- art-1
+- art-2
+key_points:
+- 合格评定程序参考条款 (768/2008/EC)：市场监督领域法规，适用于 EU 市场相关经营行为（库自动接入，按市场匹配）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://eur-lex.europa.eu/eli/dec/2008/768/oj
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

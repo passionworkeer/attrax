@@ -9,8 +9,842 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'IEC 62368-1
+
+    Edition 1.0 2010-01
+
+    INTERNATIONAL
+
+    STANDARD
+
+    Audio'
+  text: 'IEC 62368-1
+
+    Edition 1.0 2010-01
+
+    INTERNATIONAL
+
+    STANDARD
+
+    Audio/video, information and communication technology equipment –
+
+    Part 1: Safety requirements
+
+    )E(0102:1-86326
+
+    CEI
+
+    ®
+
+    colour
+
+    inside
+
+    http://www.china-gauges.com/
+
+    THIS PUBLICATION IS COPYRIGHT PROTECTED
+
+    Copyright © 2010 IEC, Geneva, Switzerland
+
+    All rights reserved. Unless otherwise specified, no part of this publication may be reproduced or utilized in any form
+
+    or by any means, electronic or mechanical, including photocopying and microfilm, without permission in writing from
+
+    either IEC or IEC''s member National Committee in the country of the requester.
+
+    If you have any questions about IEC copyright or have an enquiry about obtaining additional rights to this publication,
+
+    please contact the address below or your local IEC member National Committee for further information.
+
+    IEC Central Office
+
+    3, rue de Varembé
+
+    CH-1211 Geneva 20
+
+    Switzerland
+
+    Email: inmail@iec.ch
+
+    Web: www.iec.ch
+
+    About the IEC
+
+    The International Electrotechnical Commission (IEC) is the leading global organization that prepares and publishes
+
+    International Standards for all electrical, electronic and related technologies.
+
+    About IEC publications
+
+    The technical content of IEC publications is kept under constant review by the IEC. Please make sure that you have the
+
+    latest edition, a corrigenda or an amendment might have been published.
+
+    (cid:131) Catalogue of IEC publications: www.iec.ch/searchpub
+
+    The IEC on-line Catalogue enables you to search by a variety of criteria (reference number, text, technical committee,…).
+
+    It also gives information on projects, withdrawn and replaced publications.
+
+    (cid:131) IEC Just Published: www.iec.ch/online_news/justpub
+
+    Stay up to date on all new IEC publications. Just Published details twice a month all new publications released. Available
+
+    on-line and also by email.
+
+    (cid:131) Electropedia: www.electropedia.org
+
+    The world''s leading online dictionary of electronic and electrical terms containing more than 20 000 terms and definitions
+
+    in English and French, with equivalent terms in additional languages. Also known as the International Electrotechnical
+
+    Vocabulary online.
+
+    (cid:131) Customer Service Centre: www.iec.ch/webstore/custserv
+
+    If you wish to give us your feedback on this publication or need further assistance, please visit the Customer Service
+
+    Centre FAQ or contact us:
+
+    Email: csc@iec.ch
+
+    Tel.: +41 22 919 02 11
+
+    Fax: +41 22 919 03 00
+
+    http://www.china-gauges.com/
+
+    IEC 62368-1
+
+    ®
+
+    Edition 1.0 2010-01
+
+    INTERNATIONAL
+
+    STANDARD
+
+    colour
+
+    inside
+
+    Audio/video, information and communication technology equipment –
+
+    Part 1: Safety requirements
+
+    INTERNATIONAL
+
+    ELECTROTECHNICAL
+
+    COMMISSION XM
+
+    PRICE CODE
+
+    ICS 33.160.01; 35.020 ISBN 2-8318-1073-8
+
+    ® Registered trademark of the International Electrotechnical Commission http://www.china-gauges.com/
+
+    – 2 – 62368-1 © IEC:2010(E)
+
+    CONTENTS
+
+    FOREWORD.........................................................................................................................13
+
+    INTRODUCTION...................................................................................................................15
+
+    0 Principles of this product safety standard.......................................................................15
+
+    0.1 Objective...............................................................................................................15
+
+    0.2 Persons.................................................................................................................15
+
+    0.2.1 General.....................................................................................................15
+
+    0.2.2 Ordinary person.........................................................................................15
+
+    0.2.3 Instructed person.......................................................................................15
+
+    0.2.4 Skilled person............................................................................................15
+
+    0.3 Model for pain and injury.......................................................................................15
+
+    0.4 Energy sources.....................................................................................................16
+
+    0.5 Safeguards............................................................................................................17
+
+    0.5.1 General.....................................................................................................17
+
+    0.5.2 Equipment safeguard.................................................................................18
+
+    0.5.3 Installation safeguard................................................................................18
+
+    0.5.4 Instructional safeguard..............................................................................18
+
+    0.5.5 Personal safeguard ...................................................................................19
+
+    0.5.6 Safeguards during ordinary or instructed person service conditions...........19
+
+    0.5.7 Equipment safeguards during skilled person service conditions.................19
+
+    0.5.8 Precautionary safeguard............................................................................19
+
+    0.5.9 Skill safeguard...........................................................................................19
+
+    0.5.10 Examples of safeguard characteristics.......................................................20
+
+    0.6 Electrically-caused pain or injury (electric shock) ..................................................21
+
+    0.6.1 General.....................................................................................................21
+
+    0.6.2 Models for electrically-caused pain or injury..............................................21
+
+    0.6.3 Models for protection against electrically-caused pain or injury..................21
+
+    0.7 Electrically-caused fire..........................................................................................22
+
+    0.7.1 General.....................................................................................................22
+
+    0.7.2 Models for electrically-caused fire .............................................................22
+
+    0.7.3 Models for protection against electrically-caused fire.................................23
+
+    0.8 Chemically-caused injury.......................................................................................23
+
+    0.9 Mechanically-caused injury....................................................................................24
+
+    0.10 Thermally-caused injury (skin burn).......................................................................25
+
+    0.10.1 General.....................................................................................................25
+
+    0.10.2 Models for thermally-caused injury............................................................25
+
+    0.10.3 Models for protection against thermally-caused pain or injury....................26
+
+    0.11 Radiation-caused injury.........................................................................................27
+
+    1 Scope.............................................................................................................................29
+
+    2 Normative references.....................................................................................................30
+
+    3 Terms, definitions and abbreviations ..............................................................................35
+
+    3.1 General.................................................................................................................35
+
+    3.2 Terms and abbreviations.......................................................................................35
+
+    3.2.1 Terms in alphabetical order.......................................................................35
+
+    3.2.2 Abbreviations in alphabetical order............................................................36
+
+    3.3 Terms and definitions............................................................................................36
+
+    3.3.1 Circuit terms..............................................................................................38
+
+    http://www.china-gauges.com/
+
+    62368-1 © IEC:2010(E) – 3 –
+
+    3.3.2 Enclosure terms ........................................................................................38
+
+    3.3.3 Equipment terms .......................................................................................39
+
+    3.3.4 Flammability terms....................................................................................40
+
+    3.3.5 Insulation...................................................................................................41
+
+    3.3.6 Miscellaneous............................................................................................42
+
+    3.3.7 Operating and fault conditions...................................................................43
+
+    3.3.8 Persons.....................................................................................................44
+
+    3.3.9 Potential ignition sources...........................................................................44
+
+    3.3.10 Ratings......................................................................................................45
+
+    3.3.11 Safeguards................................................................................................45
+
+    3.3.12 Spacings...................................................................................................47
+
+    3.3.13 Temperatures and controls........................................................................47
+
+    3.3.14 Voltages and currents................................................................................48
+
+    3.3.15 Classes of equipment with respect to protection from electric shock..........49
+
+    3.3.16 Chemical terms .........................................................................................49
+
+    4 General requirements.....................................................................................................50
+
+    4.1 General.................................................................................................................50
+
+    4.1.1 Application of requirements and acceptance of materials,
+
+    components and subassemblies................................................................50
+
+    4.1.2 Use of components....................................................................................50
+
+    4.1.3 Equipment design and construction...........................................................51
+
+    4.1.4 Equipment installation...............................................................................51
+
+    4.1.5 Constructions not specifically covered.......................................................51
+
+    4.1.6 Orientation during transport and use..........................................................51
+
+    4.1.7 Choice of criteria.......................................................................................51
+
+    4.1.8 Conductive liquids.....................................................................................51
+
+    4.1.9 Electrical measuring instruments...............................................................52
+
+    4.1.10 Temperature measurements......................................................................52
+
+    4.1.11 Steady state conditions .............................................................................52
+
+    4.1.12 Hierarchy of safeguards.............................................................................52
+
+    4.1.13 Examples mentioned in the standard.........................................................52
+
+    4.1.14 Tests on parts or samples separate from the end-product..........................52
+
+    4.1.15 Markings and instructions..........................................................................52
+
+    4.2 Energy source classifications................................................................................53
+
+    4.2.1 Class 1 energy source...............................................................................53
+
+    4.2.2 Class 2 energy source...............................................................'
+- id: art-2
+  title: Annex C (normative) UV radiation......................................................................................184
+  text: 'Annex C (normative) UV radiation......................................................................................184
+
+    Annex D (normative) Test generators.................................................................................186
+
+    Annex E (normative) Test conditions for equipment containing audio amplifiers.................189
+
+    Annex F (normative) Equipment markings, instructions, and instructional safeguards........191
+
+    Annex G (normative) Components.....................................................................................200
+
+    Annex H (normative) Criteria for telephone ringing signals.................................................238'
+- id: art-3
+  title: Annex I (informative) Overvoltage categories (see IEC 60364-4-44)..................................243
+  text: 'Annex I (informative) Overvoltage categories (see IEC 60364-4-44)..................................243
+
+    Annex J (normative) Insulated winding wires for use without interleaved insulation............244
+
+    Annex K (normative) Safety interlocks ...............................................................................247'
+- id: art-4
+  title: Annex L (normative) Disconnect devices............................................................................251
+  text: 'Annex L (normative) Disconnect devices............................................................................251
+
+    Annex M (normative) Batteries and fuel cells.....................................................................253
+
+    http://www.china-gauges.com/
+
+    – 8 – 62368-1 © IEC:2010(E)
+
+    Annex N (normative) Electrochemical potentials ................................................................263
+
+    Annex O (normative) Measurement of creepage distances and clearances........................264
+
+    Annex P (normative) Safeguards against entry of foreign objects, foreign liquids, and
+
+    spillage of internal liquids ...................................................................................................272
+
+    Annex Q (normative) Interconnection with building wiring ..................................................277
+
+    Annex R (normative) Limited short-circuit test....................................................................279
+
+    Annex S (normative) Tests for resistance to heat and fire..................................................281
+
+    Annex T (normative) Mechanical strength tests..................................................................286
+
+    Annex U (normative) Mechanical strength of CRTs and protection against the effects
+
+    of implosion........................................................................................................................291'
+- id: art-5
+  title: Annex V (normative) Determination of accessible parts .....................................................293
+  text: 'Annex V (normative) Determination of accessible parts .....................................................293
+
+    Annex W (informative) Comparison of terms introduced in this standard............................299
+
+    Bibliography........................................................................................................................310
+
+    Figure 1 – Three block model for pain and injury...................................................................16
+
+    Figure 2 – Three block model for safety................................................................................17
+
+    Figure 3 – Schematic and model for electrically-caused pain or injury...................................21
+
+    Figure 4 – Model for protection against electrically-caused pain or injury..............................22
+
+    Figure 5 – Model for electrically-caused fire..........................................................................23
+
+    Figure 6 – Models for protection against fire.........................................................................23
+
+    Figure 7 – Schematic and model for thermally-caused injury.................................................26
+
+    Figure 8 – Model for protection against thermally-caused injury............................................26
+
+    Figure 9 – Model for protection of an ordinary person against a class 1 energy source.........54
+
+    Figure 10 – Model for protection of an ordinary person against a class 2 energy source.......54
+
+    Figure 11 – Model for protection of an ordinary person against a class 2 energy
+
+    source during ordinary person servicing conditions...............................................................55
+
+    Figure 12 – Model for protection of an ordinary person against a class 3 energy source.......55
+
+    Figure 13 – Model for protection of an instructed person against a class 1 energy
+
+    source ..................................................................................................................................55
+
+    Figure 14 – Model for protection of an instructed person against a class 2 energy
+
+    source ..................................................................................................................................55
+
+    Figure 15 – Model for protection of an instructed person against a class 3 energy
+
+    source ..................................................................................................................................56
+
+    Figure 16 – Model for protection of a skilled person against a class 1 energy source............56
+
+    Figure 17 – Model for protection of a skilled person against a class 2 energy source............56
+
+    Figure 18 – Model for protection of a skilled person against a class 3 energy source............56
+
+    Figure 19 – Model for protection of a skilled person against class 3 energy sources
+
+    during equipment servicing conditions ..................................................................................57
+
+    Figure 20 – Illustration of accessible and inaccessible parts of a basic safeguard.................58
+
+    Figure 21 – Illustration of accessible and inaccessible parts of a supplementary
+
+    safeguard .............................................................................................................................58
+
+    Figure 22 – Illustration of accessible and inaccessible parts of a reinforced safeguard .........58
+
+    Figure 23 – Illustration that shows that ES limits depend on both voltage and current...........61
+
+    Figure 24 – Maximum values for combined a.c. current and d.c. current...............................62
+
+    Figure 25 – Maximum values for combined a.c. voltage and d.c. voltage...............................63
+
+    Figure 26 – Model for protection of ES1 against ES2............................................................68
+
+    --`,```````````,,,`,,``,,``,,,,,-`-`,,`,,`,`,,`---
+
+    http://www.china-gauges.com/
+
+    62368-1 © IEC:2010(E) – 9 –
+
+    Figure 27 – Model for protection of ES1 against ES3............................................................68
+
+    Figure 28 – Model for protection of ES1 against ES3............................................................68
+
+    Figure 29 – Model for protection of ES2 against ES3............................................................68
+
+    Figure 30 – Model for protection of ES2 against ES3............................................................68
+
+    Figure 31 – Contact requirements to bare internal conductive parts......................................69
+
+    Figure 32 – Mandrel..............................................................................................................96
+
+    Figure 33 – Initial position of mandrel...................................................................................97
+
+    Figure 34 – Final position of mandrel....................................................................................97
+
+    Figure 35 – Position of metal foil on insulating material.........................................................97
+
+    Figure 36 – Example of electric strength test instrument for solid insulation........................106
+
+    Figure 37 – Test for separation between a telecommunication network and earth...............109
+
+    Figure 38 – Power measurement for worst-case load fault..................................................127
+
+    Figure 39 – Power measurement for worst-case power source fault....................................128
+
+    Figure 40 – Illustration of power source classification.........................................................129
+
+    Figure 41 – Minimum separation requirements from an arcing PIS......................................135
+
+    Figure 42 – Extended separation requirements from a PIS..................................................136
+
+    Figure 43 – Rotated separation requirements due to forced air flow....................................136
+
+    Figure 44 – Deflected separation requirements from a PIS when a fire barrier is used........137
+
+    Figure 45 – Top openings...................................................................................................139
+
+    Figure 46 – Bottom openings..............................................................................................140
+
+    Figure 47 – Illustration showing MS limits for moving fan blades.........................................146
+
+    Figure 48 – Example for determining opening ‘X’ without a deflector...................................153
+
+    Figure 49 – Example for determining opening ‘X’ with a deflector........................................153
+
+    Figure D.1 – 1,2/50 μs and 10/700 μs voltage surge generator...........................................187
+
+    Figure D.2 – Antenna interface test generator circuit ..........................................................187
+
+    Figure D.3 – Example of an electronic pulse generator.......................................................188
+
+    Figure E.1 – Band-pass filter for wide-band noise measurement.........................................190
+
+    Figure F.1 – Example of an instructional safeguard.............................................................199
+
+    Figure G.1 – Determination of arithmetic average temperature ...........................................207
+
+    Figure G.2 – Thermal ageing time.......................................................................................233
+
+    Figure G.3 – Abrasion resistance test for coating layers .....................................................234
+
+    Figure H.1 – Definition of ringing period and cadence cycle................................................239
+
+    Figure H.2 – ITS1 limit curve for cadenced ringing signal ...................................................240
+
+    Figure H.3 – Peak and peak-to-peak currents.....................................................................240
+
+    Figure H.4 – Ringing voltage trip criteria.............................................................................242
+
+    Figure M.1 – Distance d as a function of the rated capacity for various charge currents
+
+    I (mA/Ah)............................................................................................................................261
+
+    Figure O.1 – Narrow groove................................................................................................264
+
+    Figure O.2 – Wide groove...................................................................................................264
+
+    Figure O.3 – V-shaped groove............................................................................................265
+
+    Figure O.4 – Intervening unconnected conductive part........................................................265
+
+    Figure O.5 – Rib.................................................................................................................265
+
+    Figure O.6 – Uncemented joint with narrow groove.............................................................265
+
+    http://www.china-gauges.com/
+
+    – 10 – 62368-1 © IEC:2010(E)
+
+    Figure O.7 – Uncemented joint with wide groove ................................................................266
+
+    Figure O.8 – Uncemented joint with narrow and wide grooves ............................................266
+
+    Figure O.9 – Narrow recess................................................................................................266
+
+    Figure O.10 – Wide recess .................................................................................................267
+
+    Figure O.11 – Coating around terminals..............................................................................267
+
+    Figure O.12 – Coating over printed wiring...........................................................................268
+
+    Figure O.13 – Example of measurements in an enclosure of insulating material..................268
+
+    Figure O.14 – Cemented joints in multi-layer printed boards...............................................269
+
+    Figure O.15 – Device filled with insulating compound .........................................................269
+
+    Figure O.16 – Partitioned bobbin ........................................................................................269
+
+    Figure O.17 – Materials with different CTI values................................................................270
+
+    Figure O.18 – Materials with different CTI values having an air gap of less than X mm.......270
+
+    Figure O.19 – Materials with different CTI values having an air groove of
+
+    less than X mm...................................................................................................................271
+
+    Figure O.20 – Materials with different CTI values having an air groove not smaller
+
+    than X mm..........................................................................................................................271
+
+    Figure P.1 – Examples of cross-sections of designs of openings preventing vertical
+
+    access................................................................................................................................273
+
+    Figure P.2 – Examples of louvre design..............................................................................273
+
+    Figure P.3 – Enclosure openings ........................................................................................274
+
+    Figure T.1 – Impact test using sphere.................................................................................287
+
+    Figure V.1 – Jointed test probe for equipment likely to be accessible to children.................294
+
+    Figure V.2 – Jointed test probe for equipment not likely to be accessible to children...........295
+
+    Figure V.3 – Blunt probe.....................................................................................................296
+
+    Figure V.4 – Wedge probe..................................................................................................297
+
+    Figure V.5 – Terminal probe ...............................................................................................298
+
+    Table 1 – Response to energy class.....................................................................................16
+
+    Table 2 – Examples of body response or property damage related to energy sour'
+- id: art-6
+  title: Annex V.
+  text: 'Annex V.
+
+    4.3.2 Safeguards for protection of an ordinary person
+
+    4.3.2.1 Safeguards between a class 1 energy source and an ordinary person
+
+    No safeguards need be interposed between a class 1 energy source and an ordinary person
+
+    (see Figure 9). Consequently, a class 1 energy source may be accessible to an ordinary
+
+    person.
+
+    Class 1
+
+    Ordinary
+
+    energy
+
+    person
+
+    source
+
+    Figure 9 – Model for protection of an ordinary person against a class 1 energy source
+
+    4.3.2.2 Safeguards between a class 2 energy source and an ordinary person
+
+    During normal operating conditions at least one basic safeguard shall be interposed
+
+    between a class 2 energy source and an ordinary person (see Figure 10).
+
+    Class 2 Basic Ordinary
+
+    energy safeguard
+
+    person
+
+    source
+
+    Figure 10 – Model for protection of an ordinary person against a class 2 energy source
+
+    4.3.2.3 Safeguards between a class 2 energy source and an ordinary person during
+
+    ordinary person servicing conditions
+
+    If ordinary person servicing conditions require a basic safeguard to be removed or
+
+    defeated, an instructional safeguard as described in Clause F.5 shall be provided and
+
+    located in such a way that an ordinary person will see the instruction prior to removing or
+
+    defeating the equipment basic safeguard (see Figure 11).
+
+    The instructional safeguard (see Clause F.5) shall include all of the following:
+
+    – identify parts and locations of the class 2 energy source;
+
+    – specify actions that will protect persons from that energy source; and
+
+    – specify actions to reinstate or restore the basic safeguard.
+
+    If ordinary person servicing conditions require a basic safeguard to be removed or
+
+    defeated, and where the equipment is intended for use in the home, an instructional
+
+    safeguard (see Clause F.5), directed towards adults, shall warn against removing or
+
+    defeating the basic safeguard by children.
+
+    http://www.china-gauges.com/
+
+    62368-1 © IEC:2010(E) – 55 –
+
+    Removed or
+
+    defeated
+
+    Class 2 Instructional Ordinary
+
+    energy
+
+    equipment
+
+    safeguard person
+
+    basic
+
+    source
+
+    safeguard
+
+    Figure 11 – Model for protection of an ordinary person against a class 2 energy
+
+    source during ordinary person servicing conditions
+
+    4.3.2.4 Safeguards between a class 3 energy source and an ordinary person
+
+    An equipment basic safeguard and an equipment supplementary safeguard (double
+
+    safeguard) or an equipment reinforced safeguard shall be interposed between a class 3
+
+    energy source and an ordinary person (see Figure 12).
+
+    Class 3 Equipment Equipment
+
+    Ordinary
+
+    energy basic supplementary
+
+    person
+
+    source safeguard safeguard
+
+    Figure 12 – Model for protection of an ordinary person against a class 3 energy source
+
+    4.3.3 Protection of an instructed person
+
+    4.3.3.1 Safeguards between a class 1 energy source and an instructed person
+
+    No safeguards need be interposed between a class 1 energy source and an instructed
+
+    person. Consequently, a class 1 energy source may be accessible to an instructed person
+
+    (see Figure 13).
+
+    Class 1
+
+    Instructed
+
+    energy
+
+    person
+
+    source
+
+    Figure 13 – Model for protection of an instructed person
+
+    against a class 1 energy source
+
+    4.3.3.2 Safeguards between a class 2 energy source and an instructed person
+
+    During instructed person servicing, the equipment safeguards against a class 2 energy
+
+    source may be removed or defeated. In this case, an instructed person is presumed to use
+
+    precaution as a safeguard against a class 2 energy source (see Figure 14).
+
+    Class 2
+
+    Precautionary Instructed
+
+    energy
+
+    safeguard person
+
+    source
+
+    Figure 14 – Model for protection of an instructed person
+
+    against a class 2 energy source
+
+    4.3.3.3 Safeguards between a class 3 energy source and an instructed person
+
+    An equipment basic safeguard and an equipment supplementary safeguard (double
+
+    safeguard) or a reinforced safeguard shall be interposed between a class 3 energy source
+
+    and an instructed person (see Figure 15).
+
+    http://www.china-gauges.com/
+
+    – 56 – 62368-1 © IEC:2010(E)
+
+    Class 3 Equipment Equipment Instructed
+
+    energy basic supplementary person
+
+    source safeguard safeguard
+
+    Figure 15 – Model for protection of an instructed person
+
+    against a class 3 energy source
+
+    4.3.4 Protection of a skilled person
+
+    4.3.4.1 Safeguards between a class 1 energy source and a skilled person
+
+    No safeguard need be interposed between a class 1 energy source and a skilled person
+
+    (see Figure 16).
+
+    Class 1
+
+    Skilled
+
+    energy
+
+    person
+
+    source
+
+    Figure 16 – Model for protection of a skilled person against a class 1 energy source
+
+    4.3.4.2 Safeguards between a class 2 energy source and a skilled person
+
+    During skilled person servicing, the equipment safeguards against a class 2 energy source
+
+    may be removed or defeated. In this case, a skilled person is presumed to use skill as a
+
+    safeguard against a class 2 energy source (see Figure 17).
+
+    Class 2
+
+    Skill Skilled
+
+    energy
+
+    safeguard person
+
+    source
+
+    Figure 17 – Model for protection of a skilled person against a class 2 energy source
+
+    4.3.4.3 Safeguards between a class 3 energy source and a skilled person
+
+    During skilled person servicing, the equipment safeguards against a class 3 energy source
+
+    may be removed or defeated. In this case, a skilled person is presumed to use skill as a
+
+    safeguard against a class 3 energy source (see Figure 18).
+
+    Class 3
+
+    Skill Skilled
+
+    energy
+
+    safeguard person
+
+    source
+
+    Figure 18 – Model for protection of a skilled person against a class 3 energy source
+
+    4.3.4.4 Safeguards between class 3 energy sources and a skilled person during
+
+    equipment servicing conditions
+
+    During equipment servicing conditions on a class 3 energy source, an equipment safeguard
+
+    intended to reduce the likelihood of injury due to an involuntary reaction shall be interposed
+
+    between:
+
+    – another class 3 energy source, not undergoing s'
 doc_files:
 - global/raw/2 power-sonic.com-Low Voltage Directive LVD  IEC - Complete Guide-fpscreenshot.pdf
 - global/raw/3 micomlabs.com-IEC - Standard Compliance Guide - MiCOM Labs-fpscreenshot.pdf
@@ -22,5 +856,11 @@ doc_files:
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。 IEC / LVD / REACH 技术参考件合集（含 SGS、UL、MiCOM、Advanced
-  Energy 的公开解读页截图）；原文按钮指向 IEC 官方站。原件在 attrax-docs 里有「8 5710ecb863a33.pdf」与「10 5710ecb863a33.pdf」两份同内容副本（sha256 相同），只登记一份。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。 IEC / LVD / REACH 技术参考件合集（含 SGS、UL、MiCOM、Advanced Energy 的公开解读页截图）；原文按钮指向 IEC 官方站。原件在 attrax-docs 里有「8 5710ecb863a33.pdf」与「10
+  5710ecb863a33.pdf」两份同内容副本（sha256 相同），只登记一份。
+
+  2026-09-19 机器解析原件入库：global/raw/8 5710ecb863a33.pdf (pdf, 495087 chars)，生成 6 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/8 5710ecb863a33.pdf (pdf, 495087 chars)，生成 6 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/8 5710ecb863a33.pdf (pdf, 495087 chars)，生成 6 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

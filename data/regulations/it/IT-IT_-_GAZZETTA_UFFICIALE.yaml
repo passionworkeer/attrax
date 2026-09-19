@@ -9,11 +9,51 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: Gazzetta Ufficiale
+  text: "Gazzetta Ufficiale\nHome\nla gazzetta ufficiale\nguida all'uso\nf.a.q.\ninserzioni\nabbonamenti\nvendita\n\t\tsabato 19 settembre 2026\n☰\n×\nla gazzetta ufficiale\nguida all'uso\nf.a.q.\ninserzioni\n\
+    abbonamenti\nvendita\n\t\t\t\t\t\t\tL'archivio della \nGazzetta Ufficiale\n, fonte ufficiale di conoscenza delle norme in vigore in Italia e strumento di diffusione, informazione e ufficializzazione\
+    \ di testi legislativi, atti pubblici e\nprivati, ...\n... consente di \nricercare e consultare\n le varie serie della Gazzetta Ufficiale, sia in formato \"testuale\" che in formato grafico \"PDF\"\
+    , ...\n... nonché il testo dei \nsingoli atti\n, così come  pubblicati originariamente nelle varie serie della \nGazzetta Ufficiale\n; ...\n... consente, inoltre, di ricercare e consultare il testo\
+    \ di tutti gli \natti normativi\n statali pubblicati dal \n1861\n, costantemente aggiornati con le modifiche apportate quotidianamente da atti normativi  e non normativi.\n<\n>\nUltime Gazzette Pubblicate\n\
+    Serie Generale\n\t\t\t217 del\n\t\t\t18-09-2026\n\t\t\t217 del\n\t\t\t18-09-2026\n\t\t\t\t\t\t\t\t        \t\t\t(SO 36)\nCorte Costituzionale\n\t        \t  37 del\n\t        \t16-09-2026\nUnione Europea\n\
+    \        \t  73 del\n        \t17-09-2026\nRegioni\n        \t  35 del\n        \t12-09-2026\nConcorsi ed Esami\n        \t  72 del\n        \t18-09-2026\nContratti pubblici\n        \t105 del\n   \
+    \     \t16-09-2026\nParte II\n        \t107 del\n        \t17-09-2026\n      Gazzetta Ufficiale\nElenco delle Gazzette Ufficiali pubblicate negli \nultimi 30 giorni\n:\nSerie Generale\n1ª Serie Speciale\
+    \ - Corte Costituzionale\n2ª Serie Speciale - Unione Europea\n3ª Serie Speciale - Regioni\n4ª Serie Speciale - Concorsi ed Esami\n5ª Serie Speciale - Contratti Pubblici\nParte II - Foglio delle inserzioni\n\
+    Archivio completo\n delle Gazzette Ufficiali in \nformato \"testuale\"\n  ed in \nformato \"PDF\"\n (con le Gazzette Ufficiali \nin formato \"PDF\"\n dal 1861):\nricerca di intere pubblicazioni o di\
+    \ singoli atti (anche per parole chiave)\nAccedi all'archivio\nelenco delle Gazzette Ufficiali (solo formato testuale) per anno di pubblicazione\nAccedi all'elenco\n    Normattiva\n  Archivio  degli\
+    \ atti normativi numerati in versione \"vigente\" e \"multivigente\"\nAccedi a Normattiva\n   \tAree Tematiche\n   Archivi tematici originati da informazioni pubblicate in Gazzetta Ufficiale\nAccedi\
+    \ alle Aree Tematiche\n\tNewsletter\n\t\tArchivio delle Newsletter con l'elenco dei provvedimenti di maggior interesse pubblicati nelle varie serie della Gazzetta Ufficiale\nAdesione al Servizio\nArchivio\n\
+    \tNotizie\n\t\t\t\t\t\t17/09/2026\nPREZZI DEI CARBURANTI, BOLLO AUTO E FISCO  - DISPOSIZIONI URGENTI \n\t\t\t    \t\t\t(\nD.L. 17 settembre 2026, n. 162\n)\nLeggi la notizia\n\t\t\t\t\t\t16/09/2026\n\
+    SORVEGLIANZA E CONTROLLI SULLE APPARECCHIATURE RADIO - MODIFICHE \n\t\t\t    \t\t\t(\nDecreto 21 luglio 2026, n. 161\n)\nLeggi la notizia\n\t\t\t\t\t\t15/09/2026\nINTELLIGENZA ARTIFICIALE - ATTIVITA'\
+    \ DI POLIZIA E RESPONSABILITA' CIVILE E PENALE \n\t\t\t    \t\t\t(\nD.Lgs. 9 settembre 2026, n. 160\n)\nLeggi la notizia\n\t\t\t\t\t\t11/09/2026\n«ISOLA DI CAPRI» - ISTITUZIONE DELL'AREA MARINA PROTETTA\
+    \ \n\t\t\t    \t\t\t(\nL. 1° settembre 2026, n. 158\n)\nLeggi la notizia\n\t\t\t\t\t\t11/09/2026\nCENTRO SPORTIVO PARALIMPICO DELLA DIFESA - 5 ATLETI \n\t\t\t    \t\t\t(\nConcorso\n)\nLeggi la notizia\n\
+    \t\t\t\t\t\t11/09/2026\nPROFESSIONE FORENSE - ESAME DI STATO 2026 \n\t\t\t    \t\t\t(\nConcorso\n)\nLeggi la notizia\n\t\t\t\t\t\t10/09/2026\nPREZZI DEI CARBURANTI - DISPOSIZIONI URGENTI  \n\t\t\t \
+    \   \t\t\t(\nD.L. 10 settembre 2026, n. 157\n)\nLeggi la notizia\n\t\t\t\t\t\t03/09/2026\nSISTEMA NAZIONALE DI ALLERTA RAPIDA PER LE DROGHE - REGOLAMENTO \n\t\t\t    \t\t\t(\nD.P.C.M. 7 luglio 2026,\
+    \ n. 156\n)\nLeggi la notizia\n\t\t\t\t\t\t01/09/2026\nMINISTERO DELLA DIFESA - 6 POSTI DI MAGISTRATO MILITARE \n\t\t\t    \t\t\t(\nConcorso\n)\nLeggi la notizia\n\t\t\t\t\t\t31/08/2026\nAUTORITA' DI\
+    \ SISTEMA PORTUALE DEL MARE DI SICILIA ORIENTALE -  REGOLAMENTO DI MODIFICA  \n\t\t\t    \t\t\t(\nD.P.R. 19 giugno 2026, n. 155\n)\nLeggi la notizia\n\t\t\t\t\t\t28/08/2026\nIMPIANTI DI INTERESSE STRATEGICO\
+    \ NAZIONALE - MISURE URGENTI \n\t\t\t    \t\t\t(\nD.L.  28 agosto 2026, n. 154\n)\nLeggi la notizia\n\t\t\t\t\t\t26/08/2026"
+- id: art-2
+  title: 'PREZZI DEI CARBURANTI - DISPOSIZIONI URGENTI '
+  text: "PREZZI DEI CARBURANTI - DISPOSIZIONI URGENTI \n\t\t\t    \t\t\t(\nD.L. 26 agosto 2026, n. 153\n)\nLeggi la notizia\n\t\t\t\t\t\t25/08/2026\nASST LECCO - 102 POSTI VARI PROFILI PROFESSIONALI \n\t\
+    \t\t    \t\t\t(\nG.U. 4ª s.s. n. 65 del 25 agosto 2026\n)\nLeggi la notizia\n\t\t\t\t\t\t25/08/2026\nASST SANTI PAOLO E CARLO DI MILANO - 65 POSTI VARI PROFILI PROFESSIONALI \n\t\t\t    \t\t\t(\nG.U.\
+    \ 4ª s.s. n. 65 del 25 agosto 2026\n)\nLeggi la notizia\n\t\t\t\t\t\t20/08/2026\nINTERVENTI INFRASTRUTTURALI E ATTUAZIONE PNRR - CONVERSIONE D.L. 107/2026 \n\t\t\t    \t\t\t(\nL. 7 agosto 2026, n. 152\n\
+    )\nLeggi la notizia\n\t\t\t\t\t\t12/08/2026\nSETTORE FLOROVIVAISTICO - VALORIZZAZIONE E SVILUPPO DELLA FILIERA \n\t\t\t    \t\t\t(\nD.Lgs. 30 luglio 2026, n. 151\n)\nLeggi la notizia\nArchivio »\n\t\
+    \tL'Istituto Poligrafico e Zecca dello Stato S.p.A. promuove la più ampia fruibilità della Gazzetta Ufficiale della Repubblica Italiana in formato digitale.\nSi segnala che l'unico testo definitivo\
+    \ è quello pubblicato sulla Gazzetta Ufficiale a mezzo stampa, che prevale in caso di discordanza.\n La riproduzione dei testi forniti nel formato elettronico è consentita purché venga menzionata la\
+    \ fonte, il carattere non autentico e gratuito.\ninformazioni\nGazzetta Ufficiale Certificata\nPrivacy\nFormato Grafico PDF\nconcessionari\nInserzioni\nLibrerie\nDichiarazione di accessibilità\ncontatti\n\
+    Supporto Contenuti Gazzetta Ufficiale\nInformazioni Commerciali\n800 864035\nRealizzazione Istituto Poligrafico e Zecca dello Stato S.p.A."
 doc_files:
 - it/raw/IT_官方公报_Gazzetta_Ufficiale.html
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：it/raw/IT_官方公报_Gazzetta_Ufficiale.html (html, 5381 chars)，生成 2 条共 5381 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：it/raw/IT_官方公报_Gazzetta_Ufficiale.html (html, 5381 chars)，生成 2 条共 5381 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：it/raw/IT_官方公报_Gazzetta_Ufficiale.html (html, 5381 chars)，生成 2 条共 5381 字符；解析文本未人工复核，引用以官方原件为准。'

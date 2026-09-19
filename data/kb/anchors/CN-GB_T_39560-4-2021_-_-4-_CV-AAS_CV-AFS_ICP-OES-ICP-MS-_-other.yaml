@@ -1,0 +1,26 @@
+id: KB-other-CN-CN-GB_T_39560-4-2021_-_-4-_CV-AAS_CV-AFS_ICP-OES-ICP-MS-_
+regulation_id: CN-GB_T_39560-4-2021_-_-4-_CV-AAS_CV-AFS_ICP-OES-ICP-MS-_
+doc_name: CN-GB GB/T 39560.4-2021 电子电气产品中某些物质的测定  第4部分：CV-AAS、CV-AFS、ICP-OES和ICP-MS测定聚合物、金属和电子件中的汞
+official_citation: CN-GB GB/T 39560.4-2021 电子电气产品中某些物质的测定  第4部分：CV-AAS、CV-AFS、ICP-OES和ICP-MS测定聚合物、金属和电子件中的汞
+short_name: CN-GB GB/T 39560.4-2021 电子电气产品中某些物质的测定  第4部分：CV-AAS、CV-AFS、ICP-OES和ICP-MS测定聚合物、金属和电子件中的汞
+source: category
+primary_source: other
+domain: other
+applies_if:
+  category:
+  - other
+  features_any: []
+  markets:
+  - CN
+key_articles: []
+key_points:
+- CN-GB GB/T 39560.4-2021 电子电气产品中某些物质的测定  第4部分：CV-AAS、CV-AFS、ICP-OES和ICP-MS测定聚合物、金属和电子件中的汞：其他品类领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=EF30718306A8C2758DEC74B7BFF9AD64
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

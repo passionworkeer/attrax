@@ -9,8 +9,49 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: zh
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: Chinese Catalogue of Technologies Prohibited or Restricted f
+  text: "Chinese Catalogue of Technologies Prohibited or Restricted from Export [July 2025] | Center for Security and Emerging Technology\nSkip to main content\nSearch\nSearch\nClose\nCenter for Security\
+    \ and Emerging Technology\nSearch\n      Translation    \nChinese Catalogue of Technologies Prohibited or Restricted from Export [July 2025]\n中国禁止出口限制出口技术目录\nAugust 18, 2025\nRead our translation of\
+    \ China’s catalog of prohibited and restricted exports, as updated in July 2025.\nDownload Full Translation\nThis is a translation of China’s catalog of prohibited and restricted exports, as updated\
+    \ in July 2025. This catalog, along with China’s two dual-use export control lists, is one of three major documents that list China’s export-controlled items and technologies. The catalog of prohibited\
+    \ and restricted exports has two parts: technologies that may not be exported from China under any circumstances, and a much longer list of technologies whose export is subject to unspecified “restrictions.”\
+    \ The catalog does not mention how the export eligibility review process works for this latter category; this process is the subject of other Chinese laws and regulations. The July 2025 revision adds\
+    \ several technologies related to lithium-ion battery manufacturing to the catalog, demonstrating China’s confidence that it is the world leader in these technologies.\nThis translation incorporates\
+    \ China’s July 2025 list of modifications to the \nCatalogue\n into the full text of the \nCatalogue\n as published by China in December 2023.\nArchived versions of the Chinese text of the July 2025\
+    \ modifications and the December 2023 full text are available online at \nhttps://perma.cc/KT3B-XQY3\n and \nhttps://perma.cc/B5Z7-JH2T\n respectively.\nChinese Catalogue of Technologies Prohibited\
+    \ or Restricted from Export [July 2025]\n1\nMinistry of Commerce (MOFCOM)\nMinistry of Science and Technology (MOST)\nReference Principles for Chinese Technologies Prohibited or Restricted from Export\n\
+    I. Reference Principles for Technologies Prohibited from Export\n(i) Where export is prohibited to safeguard national security, the public interest, or public morality;\n(ii) Where it is necessary to\
+    \ prohibit export to protect human health or safety, protect animal or plant life or health, or protect the environment;\n(iii) Other cases where it is necessary to prohibit export in accordance with\
+    \ laws and administrative regulations;\n(iv) Other cases where it is necessary to prohibit export pursuant to the provisions of international treaties and agreements concluded by China or to which it\
+    \ is a party.\nII. Reference Principles for Technologies Restricted from Export\n(i) Where it is necessary to restrict export to safeguard national security, the public interest, or public morality;\n\
+    (ii) Where it is necessary to restrict export to protect human health or safety, protect animal or plant life or health, or protect the environment;\n(iii) Other cases where it is necessary to restrict\
+    \ export in accordance with laws and administrative regulations;\n(iv) Other cases where it is necessary to restrict export pursuant to the provisions of international treaties and agreements concluded\
+    \ by China or to which it is a party.\nTo view the rest of this translation, download the pdf below.\nDownload Full Translation\nChinese Catalogue of Technologies Prohibited or Restricted from Export\
+    \ [July 2025]\nTranslator’s note: The July 2025 changes to the \nChinese Catalogue of Technologies Prohibited or Restricted from Export "
+- id: art-2
+  title: 'are as follows: In the “Prohibited from Export” portion: (1)'
+  text: "are as follows: In the “Prohibited from Export” portion: (1) item 085001J “Chinese traditional building technology” is deleted. In the “Restricted from Export” portion: (2) items 085001X “Chinese\
+    \ traditional building technology” and 085001X “Building environmental control technology” are deleted. (3) Item 252604X “Technology for battery positive electrode materials and preparations” (pp. 21-22)\
+    \ is added. (4) In item 083201X “Non-ferrous metals metallurgy technology,” control point 2 is changed from “’Dissolution method’ (“溶解法”) process of recovering gallium in the original liquid using the\
+    \ precipitation mother liquor (种分母液) in alumina production” to “Technology and techniques for extracting metallic gallium from alumina mother liquor (母液) using methods such as ion exchange and ion exchange\
+    \ resin” (p. 27). (5) In item 083201X, control points 9-13, all related to lithium extraction, are added (pp. 28-29). CSET’s English translation of the previous (December 2023) version of the \nChinese\
+    \ Catalogue of Technologies Prohibited or Restricted from Export\n is available online at: \nhttps://cset.georgetown.edu/publication/china-export-control-catalog-2023/.\nAuthor\nChinese Ministry of\
+    \ Commerce (MOFCOM; 商务部) and Ministry of Science and Technology (MOST; 科学技术部; 科技部)\nSource\nMOST website\nOriginally Published\nJuly 15, 2025\nTranslated\nAugust 18, 2025\nRelated Content\nPrevious\n\
+    Next\nTranslation\nChinese Catalogue of Technologies Prohibited or Restricted from Export [2023]\nFebruary 2025\nRead our translation of China’s catalog of prohibited and restricted exports, as revised\
+    \ in December 2023. \nRead More\n        The Center for Security and Emerging Technology within Georgetown University's Walsh School of Foreign Service provides decision-makers with data-driven analysis\
+    \ on the security implications of emerging technologies.\nAbout\nResearch Topics\nPublications\nNews & Events\nCareers\nDonate\n\t\t\t\t\t\t\tSign up to receive our newsletter, research updates, and\
+    \ events.\n\t\t\t\t\tSubscribe\nGeneral Inquiries\ncset@georgetown.edu\nMedia Inquiries\ndanny.hague@georgetown.edu\nLinkedin\nTwitter\nYoutube\nGithub\n  ©2025 Center for Security and Emerging Technology.\
+    \ All Rights Reserved.\nContact Us\nPolicies\nThis website uses cookies.\nTo learn more, please review \nthis policy\n. By continuing to browse the site, you agree to these terms.\nOkay\nDisable Cookies\n\
+    Privacy & Cookies Policy\nClose\nPrivacy Overview\nThis website uses cookies to improve your experience while you navigate through the website. Out of these cookies, the cookies that are categorized\
+    \ as necessary are stored on your browser as they are essential for the working of basic functionalities of the website. We also use third-party cookies that help us analyze and understand how you use\
+    \ this website. These cookies will be stored in your browser only with your consent. You also have the option to opt-out of these cookies. But opting out of some of these cookies may have an effect\
+    \ on your browsing experience.\n\t\t\t\t\t\t\t\tNecessary\t\t\t\t\t\t\t\nNecessary\nAlways Enabled\n\t\t\t\t\t\t\t\t\tNecessary cookies are absolutely essential for the website to function properly.\
+    \ This category only includes cookies that ensures basic functionalities and security features of the website. These cookies do not store any personal information.\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\
+    Non-necessary\t\t\t\t\t\t\t\nNon-necessary\n\t\t\t\t\t\t\t\t\tAny cookies that may not be particularly necessary for the website to function and is used specifically to collect user personal data via\
+    \ analytics, ads, other embedded contents are termed as non-necessary cookies. It is mandatory to procure user consent prior to running these cookies on your website.\t\t\t\t\t\t\t\t\nSAVE & ACCEPT"
 doc_files:
 - cn/raw/中国《禁止出口限制出口技术目录》（2025修订，商务部科技部公告第28号）.html
 - cn/raw/中国《禁止出口限制出口技术目录》（2025修订 科技部官网公告）.html
@@ -18,4 +59,10 @@ doc_files:
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：cn/raw/中国《禁止出口限制出口技术目录》（2025修订 CSET英文分析）.html (html, 7116 chars)，生成 2 条共 7116 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：cn/raw/中国《禁止出口限制出口技术目录》（2025修订 CSET英文分析）.html (html, 7116 chars)，生成 2 条共 7116 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：cn/raw/中国《禁止出口限制出口技术目录》（2025修订 CSET英文分析）.html (html, 7116 chars)，生成 2 条共 7116 字符；解析文本未人工复核，引用以官方原件为准。'

@@ -1,0 +1,26 @@
+id: KB-other-CN-CN-GB_T_39560-302-2024_-_-3-2-_-_C-IC_-_
+regulation_id: CN-GB_T_39560-302-2024_-_-3-2-_-_C-IC_-_
+doc_name: CN-GB GB/T 39560.302-2024 电子电气产品中某些物质的测定  第3-2部分：燃烧-离子色谱法（C-IC）筛选聚合物和电子件中的氟、氯和溴
+official_citation: CN-GB GB/T 39560.302-2024 电子电气产品中某些物质的测定  第3-2部分：燃烧-离子色谱法（C-IC）筛选聚合物和电子件中的氟、氯和溴
+short_name: CN-GB GB/T 39560.302-2024 电子电气产品中某些物质的测定  第3-2部分：燃烧-离子色谱法（C-IC）筛选聚合物和电子件中的氟、氯和溴
+source: category
+primary_source: other
+domain: other
+applies_if:
+  category:
+  - other
+  features_any: []
+  markets:
+  - CN
+key_articles: []
+key_points:
+- CN-GB GB/T 39560.302-2024 电子电气产品中某些物质的测定  第3-2部分：燃烧-离子色谱法（C-IC）筛选聚合物和电子件中的氟、氯和溴：其他品类领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=770EA5F67145C87DD6D15CBFEF4421D4
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

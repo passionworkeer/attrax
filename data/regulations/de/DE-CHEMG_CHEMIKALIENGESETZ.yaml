@@ -9,11 +9,365 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: Ein Service des Bundesministerium der Justiz und für Verbrau
+  text: 'Ein Service des Bundesministerium der Justiz und für Verbraucherschutz
+
+    sowie des Bundesamts für Justiz ‒ www.gesetze-im-internet.de
+
+    1
+
+    Gesetz zum Schutz vor gefährlichen Stoffen (Chemikaliengesetz -
+
+    ChemG)
+
+    ChemG
+
+    Ausfertigungsdatum: 16.09.1980
+
+    Vollzitat:
+
+    "Chemikaliengesetz in der Fassung der Bekanntmachung vom 28. August 2013 (BGBl. I S. 3498, 3991), das
+
+    zuletzt durch Artikel 1 des Gesetzes vom 29. März 2026 (BGBl. 2026 I Nr. 86) geändert worden ist"
+
+    Stand: Neugefasst durch Bek. v. 28.8.2013 I 3498, 3991;
+
+    zuletzt geändert durch Art. 1 G v. 29.3.2026 I Nr. 86
+
+    1 Das Gesetz dient der Umsetzung folgender Richtlinien:
+
+    – Richtlinie 67/548/EWG des Rates vom 27. Juni 1967 zur Angleichung der Rechts- und
+
+    Verwaltungsvorschriften für die Einstufung, Verpackung und Kennzeichnung gefährlicher Stoffe
+
+    (ABl. EG Nr. 196 S. 1), die zuletzt durch die Richtlinie 2013/21/EU (ABl. L 158 vom 10.6.2013, S.
+
+    240) geändert worden ist,
+
+    – Richtlinie 98/24/EG des Rates vom 7. April 1998 zum Schutz von Gesundheit und Sicherheit
+
+    der Arbeitnehmer vor der Gefährdung durch chemische Arbeitsstoffe bei der Arbeit (vierzehnte
+
+    Einzelrichtlinie im Sinne des Artikels 16 Absatz 1 der Richtlinie 89/391/EWG) (ABl. EG Nr. L 131
+
+    S. 11), die zuletzt durch die Richtlinie 2009/148/EG (ABl. L 330 vom 16.12.2009, S. 28) geändert
+
+    worden ist,
+
+    – Richtlinie 1999/45/EG des Europäischen Parlaments und des Rates vom 31. Mai 1999 zur
+
+    Angleichung der Rechts- und Verwaltungsvorschriften der Mitgliedstaaten für die Einstufung,
+
+    Verpackung und Kennzeichnung gefährlicher Zubereitungen (ABl. EG Nr. L 200 S. 1, 2002 Nr. L 6
+
+    S. 71), die zuletzt durch die Richtlinie 2013/21/EU (ABl. L 158 vom 10.6.2013, S. 240) geändert
+
+    worden ist,
+
+    – Richtlinie 2004/9/EG des Europäischen Parlaments und des Rates vom 11. Februar 2004 über
+
+    die Inspektion und Überprüfung der Guten Laborpraxis (GLP) (kodifizierte Fassung) (ABl. EU Nr. L
+
+    50 S. 28), die zuletzt durch die Verordnung (EG) Nr. 219/2009 (ABl. L 87 vom 31.3.2009, S. 109)
+
+    geändert worden ist, und
+
+    – Richtlinie 2004/10/EG des Europäischen Parlaments und des Rates vom 11. Februar 2004 zur
+
+    Angleichung der Rechts- und Verwaltungsvorschriften für die Anwendung der Grundsätze der
+
+    Guten Laborpraxis und zur Kontrolle ihrer Anwendung bei Versuchen mit chemischen Stoffen
+
+    (kodifizierte Fassung) (ABl. EU Nr. L 50 S. 44), die zuletzt durch die Verordnung (EG) Nr. 219/2009
+
+    (ABl. L 87 vom 31.3.2009, S. 109) geändert worden ist.
+
+    Fußnote
+
+    (+++ Textnachweis ab: 26.9.1980 +++)
+
+    (+++ Amtlicher Hinweis des Normgebers auf EG-Recht:
+
+    Umsetzung der
+
+    EWGRL 548/67 (CELEX Nr: 31967L0548)
+
+    EGRL 24/98 (CELEX Nr: 31998L0024)
+
+    EGRL 45/99 (CELEX Nr: 31999L0045)
+
+    EGRL 9/2004 (CELEX Nr: 32004L0009)
+
+    EGRL 10/2004 (CELEX Nr: 32004L0010) vgl. Bek v. 28.8.2013 I 3498
+
+    Notifizierung der
+
+    EURL 2015/1535 (CELEX Nr: 32015L1535) vgl. G v. 3.6.2021 I 1479 +++)
+
+    (+++ EU-Vollzitate: vgl. Liste EU-Rechtsakte G v. 29.3.2026 I Nr. 86 +++)
+
+    (+++ Maßgaben aufgrund des EinigVtr vgl. ChemG Anhang EV;
+
+    Maßgaben nicht mehr anzuwenden gem. Art. 1 Nr. 9
+
+    G v. 21.1.2013 I 91 mWv 29.1.2013 +++)
+
+    - Seite 1 von 55 -
+
+    Ein Service des Bundesministerium der Justiz und für Verbraucherschutz
+
+    sowie des Bundesamts für Justiz ‒ www.gesetze-im-internet.de
+
+    Inhaltsübersicht
+
+    Erster Abschnitt
+
+    Zweck, Anwendungsbereich und Begriffsbestimmungen'
+- id: art-2
+  title: § 1 Zweck des Gesetzes
+  text: § 1 Zweck des Gesetzes
+- id: art-3
+  title: § 2 Anwendungsbereich
+  text: § 2 Anwendungsbereich
+- id: art-4
+  title: § 3 Begriffsbestimmungen
+  text: § 3 Begriffsbestimmungen
+- id: art-5
+  title: § 3a Gefährliche Stoffe und gefährliche Gemische
+  text: § 3a Gefährliche Stoffe und gefährliche Gemische
+- id: art-6
+  title: § 3b (weggefallen)
+  text: '§ 3b (weggefallen)
+
+    Zweiter Abschnitt
+
+    Durchführung der Verordnung (EG) Nr. 1907/2006 und der Verordnung (EG) Nr. 1272/2008'
+- id: art-7
+  title: § 4 Beteiligte Bundesbehörden
+  text: § 4 Beteiligte Bundesbehörden
+- id: art-8
+  title: § 5 Aufgaben der Bundesstelle für Chemikalien
+  text: § 5 Aufgaben der Bundesstelle für Chemikalien
+- id: art-9
+  title: § 6 Aufgaben der Bewertungsstellen
+  text: § 6 Aufgaben der Bewertungsstellen
+- id: art-10
+  title: § 7 Zusammenarbeit der Bundesstelle für Chemikalien und der anderen beteiligten Bundesoberbehörden
+  text: § 7 Zusammenarbeit der Bundesstelle für Chemikalien und der anderen beteiligten Bundesoberbehörden
+- id: art-11
+  title: § 8 Gebührenfreiheit der nationalen Auskunftsstelle
+  text: § 8 Gebührenfreiheit der nationalen Auskunftsstelle
+- id: art-12
+  title: § 9 Informationsaustausch zwischen Bundes- und Landesbehörden
+  text: § 9 Informationsaustausch zwischen Bundes- und Landesbehörden
+- id: art-13
+  title: § 10 Vorläufige Maßnahmen
+  text: § 10 Vorläufige Maßnahmen
+- id: art-14
+  title: § 11 (weggefallen)
+  text: § 11 (weggefallen)
+- id: art-15
+  title: § 12 (weggefallen)
+  text: '§ 12 (weggefallen)
+
+    Abschnitt 2a
+
+    Durchführung der Verordnung (EU) Nr. 528/2012'
+- id: art-16
+  title: § 12a Beteiligte Bundesbehörden
+  text: § 12a Beteiligte Bundesbehörden
+- id: art-17
+  title: § 12b Aufgaben der Bundesstelle für Chemikalien
+  text: § 12b Aufgaben der Bundesstelle für Chemikalien
+- id: art-18
+  title: § 12c Aufgaben der Bewertungsstellen
+  text: § 12c Aufgaben der Bewertungsstellen
+- id: art-19
+  title: § 12d Zusammenarbeit der Bundesstelle für Chemikalien und der anderen beteiligten Bundesoberbehörden
+  text: § 12d Zusammenarbeit der Bundesstelle für Chemikalien und der anderen beteiligten Bundesoberbehörden
+- id: art-20
+  title: § 12e Auskunftsstelle, Unterrichtung der Öffentlichkeit
+  text: § 12e Auskunftsstelle, Unterrichtung der Öffentlichkeit
+- id: art-21
+  title: § 12f Informationsaustausch zwischen Bundes- und Landesbehörden
+  text: § 12f Informationsaustausch zwischen Bundes- und Landesbehörden
+- id: art-22
+  title: § 12g Anordnungsbefugnisse der Bundesstelle für Chemikalien, vorläufige Maßnahmen
+  text: § 12g Anordnungsbefugnisse der Bundesstelle für Chemikalien, vorläufige Maßnahmen
+- id: art-23
+  title: § 12h Verordnungsermächtigungen
+  text: '§ 12h Verordnungsermächtigungen
+
+    Abschnitt 2b
+
+    Durchführung der Verordnung (EU) 2024/573'
+- id: art-24
+  title: § 12i Ergänzende Pflichten zu Kapitel III der Verordnung (EU) 2024/573
+  text: § 12i Ergänzende Pflichten zu Kapitel III der Verordnung (EU) 2024/573
+- id: art-25
+  title: § 12j Ergänzende Pflichten zu Kapitel IV der Verordnung (EU) 2024/573
+  text: § 12j Ergänzende Pflichten zu Kapitel IV der Verordnung (EU) 2024/573
+- id: art-26
+  title: § 12k Ergänzende Pflichten für vorbefüllte Einrichtungen und Erzeugnisse
+  text: § 12k Ergänzende Pflichten für vorbefüllte Einrichtungen und Erzeugnisse
+- id: art-27
+  title: § 12l Verordnungsermächtigungen
+  text: '§ 12l Verordnungsermächtigungen
+
+    Dritter Abschnitt
+
+    Einstufung, Kennzeichnung und Verpackung'
+- id: art-28
+  title: § 13 Einstufungs-, Kennzeichnungs- und Verpackungspflichten
+  text: § 13 Einstufungs-, Kennzeichnungs- und Verpackungspflichten
+- id: art-29
+  title: § 14 Ermächtigung zu Einstufungs-, Kennzeichnungs- und Verpackungsvorschriften
+  text: § 14 Ermächtigung zu Einstufungs-, Kennzeichnungs- und Verpackungsvorschriften
+- id: art-30
+  title: § 15 (weggefallen)
+  text: '§ 15 (weggefallen)
+
+    - Seite 2 von 55 -
+
+    Ein Service des Bundesministerium der Justiz und für Verbraucherschutz
+
+    sowie des Bundesamts für Justiz ‒ www.gesetze-im-internet.de'
+- id: art-31
+  title: § 15a (weggefallen)
+  text: '§ 15a (weggefallen)
+
+    Vierter Abschnitt
+
+    Mitteilungspflichten
+
+    §§ 16 bis (weggefallen)
+
+    16c'
+- id: art-32
+  title: § 16d Mitteilungspflichten bei Gemischen
+  text: § 16d Mitteilungspflichten bei Gemischen
+- id: art-33
+  title: § 16e Mitteilungen für die gesundheitliche Notversorgung und für vorbeugende Maßnahmen
+  text: § 16e Mitteilungen für die gesundheitliche Notversorgung und für vorbeugende Maßnahmen
+- id: art-34
+  title: § 16f Informationspflicht der Lieferanten
+  text: '§ 16f Informationspflicht der Lieferanten
+
+    Abschnitt 4a
+
+    Vergiftungsregister'
+- id: art-35
+  title: § 16g Einrichtung und Führung eines Vergiftungsregisters
+  text: § 16g Einrichtung und Führung eines Vergiftungsregisters
+- id: art-36
+  title: § 16h Beirat
+  text: § 16h Beirat
+- id: art-37
+  title: § 16i Datenerhebung, Datenspeicherung, Datenverwendung und Datenübermittlung durch die
+  text: '§ 16i Datenerhebung, Datenspeicherung, Datenverwendung und Datenübermittlung durch die
+
+    Informationszentren für Vergiftungen'
+- id: art-38
+  title: § 16j Datenerhebung, Datenspeicherung, Datenverwendung und Datenübermittlung durch das
+  text: '§ 16j Datenerhebung, Datenspeicherung, Datenverwendung und Datenübermittlung durch das
+
+    Bundesinstitut für Risikobewertung'
+- id: art-39
+  title: § 16k Überregionale chemische Bedrohungslage
+  text: § 16k Überregionale chemische Bedrohungslage
+- id: art-40
+  title: § 16l Verordnungsermächtigungen
+  text: '§ 16l Verordnungsermächtigungen
+
+    Fünfter Abschnitt
+
+    Ermächtigung zu Verboten und Beschränkungen sowie zu Maßnahmen zum Schutz von Beschäftigten'
+- id: art-41
+  title: § 17 Verbote und Beschränkungen; Verordnungsermächtigung
+  text: § 17 Verbote und Beschränkungen; Verordnungsermächtigung
+- id: art-42
+  title: § 18 Giftige Tiere und Pflanzen
+  text: § 18 Giftige Tiere und Pflanzen
+- id: art-43
+  title: § 19 Maßnahmen zum Schutz von Beschäftigten
+  text: '§ 19 Maßnahmen zum Schutz von Beschäftigten
+
+    Sechster Abschnitt
+
+    Gute Laborpraxis'
+- id: art-44
+  title: § 19a Gute Laborpraxis (GLP)
+  text: § 19a Gute Laborpraxis (GLP)
+- id: art-45
+  title: § 19b GLP-Bescheinigung
+  text: § 19b GLP-Bescheinigung
+- id: art-46
+  title: § 19c Berichterstattung
+  text: § 19c Berichterstattung
+- id: art-47
+  title: § 19d Ergänzende Vorschriften
+  text: '§ 19d Ergänzende Vorschriften
+
+    Siebter Abschnitt
+
+    Allgemeine Vorschriften'
+- id: art-48
+  title: § 20 Antrags- und Mitteilungsunterlagen, Verordnungsermächtigungen
+  text: § 20 Antrags- und Mitteilungsunterlagen, Verordnungsermächtigungen
+- id: art-49
+  title: § 20a (weggefallen)
+  text: § 20a (weggefallen)
+- id: art-50
+  title: § 20b Ausschüsse
+  text: § 20b Ausschüsse
+- id: art-51
+  title: § 21 Überwachung
+  text: § 21 Überwachung
+- id: art-52
+  title: § 21a Mitwirkung von Zollstellen
+  text: § 21a Mitwirkung von Zollstellen
+- id: art-53
+  title: § 22 Informationspflichten
+  text: § 22 Informationspflichten
+- id: art-54
+  title: § 23 Behördliche Anordnungen
+  text: § 23 Behördliche Anordnungen
+- id: art-55
+  title: § 23a Vorübergehende Verbote
+  text: § 23a Vorübergehende Verbote
+- id: art-56
+  title: § 24 Vollzug im Bereich der Landesverteidigung
+  text: § 24 Vollzug im Bereich der Landesverteidigung
+- id: art-57
+  title: § 25 Angleichung an Gemeinschaftsrecht oder Unionsrecht
+  text: § 25 Angleichung an Gemeinschaftsrecht oder Unionsrecht
+- id: art-58
+  title: § 25a Aufwendungen des Auskunftspflichtigen
+  text: '§ 25a Aufwendungen des Auskunftspflichtigen
+
+    - Seite 3 von 55 -
+
+    Ein Service des Bundesministerium der Justiz und für Verbraucherschutz
+
+    sowie des Bundesamts für Justiz ‒ www.gesetze-im-internet.de'
+- id: art-59
+  title: § 26 Bußgeldvorschriften, Verordnungsermächtigung
+  text: § 26 Bußgeldvorschriften, Verordnungsermächtigung
+- id: art-60
+  title: § 27 Strafvorschriften, Verordnungsermächtigung
+  text: § 27 Strafvorschriften, Verordnungsermächtigung
 doc_files:
 - de/raw/DE-ChemG_Chemikaliengesetz.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：de/raw/DE-ChemG_Chemikaliengesetz.pdf (pdf, 198485 chars)，生成 29 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：de/raw/DE-ChemG_Chemikaliengesetz.pdf (pdf, 198485 chars)，生成 29 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：de/raw/DE-ChemG_Chemikaliengesetz.pdf (pdf, 198421 chars)，生成 60 条共 6776 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

@@ -1,6 +1,6 @@
 id: US-CFR-TITLE21-PART186
 official_citation: US 21 CFR Part 186
-short_name: US 21 CFR Part 186
+short_name: US 21 CFR Part 186 — INDIRECT FOOD SUBSTANCES AFFIRMED AS GENERALLY RECOGNIZED AS SAFE
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,558 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '21
+
+    Food and Drugs
+
+    3
+
+    2024-04-01
+
+    2024-04-01
+
+    false
+
+    INDIRECT FOO'
+  text: '21
+
+    Food and Drugs
+
+    3
+
+    2024-04-01
+
+    2024-04-01
+
+    false
+
+    INDIRECT FOOD SUBSTANCES AFFIRMED AS GENERALLY RECOGNIZED AS SAFE
+
+    186
+
+    PART 186
+
+    Food and Drugs
+
+    FOOD AND DRUG ADMINISTRATION, DEPARTMENT OF HEALTH AND HUMAN SERVICES (CONTINUED)
+
+    FOOD FOR HUMAN CONSUMPTION (CONTINUED)
+
+    Pt. 186
+
+    PART 186—INDIRECT FOOD SUBSTANCES AFFIRMED AS GENERALLY RECOGNIZED AS SAFE
+
+    Subpart A—General Provisions
+
+    Sec.
+
+    186.1
+
+    Substances added indirectly to human food affirmed as generally recognized as safe (GRAS).
+
+    Subpart B—Listing of Specific Substances Affirmed as GRAS
+
+    186.1093
+
+    Sulfamic acid.
+
+    186.1256
+
+    Clay (kaolin).
+
+    186.1275
+
+    Dextrans.
+
+    186.1300
+
+    Ferric oxide.
+
+    186.1316
+
+    Formic acid.
+
+    186.1374
+
+    Iron oxides.
+
+    186.1555
+
+    Japan wax.
+
+    186.1557
+
+    Tall oil.
+
+    186.1673
+
+    Pulp.
+
+    186.1750
+
+    Sodium chlorite.
+
+    186.1756
+
+    Sodium formate.
+
+    186.1770
+
+    Sodium oleate.
+
+    186.1771
+
+    Sodium palmitate.
+
+    186.1797
+
+    Sodium sulfate.
+
+    186.1839
+
+    Sorbose.
+
+    Authority:
+
+    21 U.S.C. 321, 342, 348, 371.
+
+    Source:
+
+    42 FR 14658, Mar. 15, 1977, unless otherwise noted.
+
+    Subpart A—General Provisions'
+- id: art-2
+  title: § 186.1
+  text: '§ 186.1
+
+    Substances added indirectly to human food affirmed as generally recognized as safe (GRAS).
+
+    (a) The indirect human food ingredients listed in this part have been reviewed by the Food and Drug Administration and affirmed to be generally recognized as safe (GRAS) for the purposes and under the
+    conditions prescribed, providing they comply with the purity specifications listed in this part or, in the absence of purity specifications, are of a purity suitable for their intended use in accordance
+    with § 170.30(h)(1) of this chapter. Certain ingredients in this part may also be used in food-contact surfaces in accordance with parts 174, 175, 176, 177, 178 or § 179.45 of this chapter. Ingredients
+    affirmed as GRAS for direct use in part 184 of this chapter are also GRAS as indirect human food ingredients in accordance with § 184.1(a) of this chapter.
+
+    (b) The regulations in this part do not authorize direct addition of any food ingredient to a food. They authorize only the use of these ingredients as indirect ingredients of food, through migration
+    from their immediate wrapper, container, or other food-contact surface. Any ingredient affirmed as GRAS in this part shall be used in accordance with current good manufacturing practice. For the purpose
+    of this part, current good manufacturing practice includes the requirements that an indirect human food ingredient be of a purity suitable for its intended use, and that it be used at a level no higher
+    than reasonably required to achieve its intended technical effect in the food-contact article.
+
+    (1) If the ingredient is affirmed as GRAS with no limitations on its conditions of use other than current good manufacturing practice, it shall be regarded as GRAS if its conditions of use are consistent
+    with the requirements of
+
+    paragraphs (b), (c), and (d) of this section.When the Food and Drug Administration (FDA) determines that it is appropriate, the agency will describe one or more current good manufacturing practice conditions
+    of use in the regulation that affirms the GRAS status of the indirect ingredient.For example, when the safety of an ingredient has been evaluated on the basis of limited conditions of use, the agency
+    will describe in the regulation that affirms the GRAS status of the indirect ingredient, one or more of these limited conditions of use, which may include the category of food-contact surface(s), technical
+    effect(s) or functional use(s) of the indirect ingredient, and the level(s) of use.If the ingredient is used under conditions that are significantly different from those described in the regulation,
+    such use of a substance may not be GRAS. In such a case, a manufacturer may not rely on the regulation as authorizing that use but shall have a basis to conclude that the use is GRAS or shall use the
+    ingredient in accordance with a food additive regulation.
+
+    (2) If the ingredient is affirmed as GRAS with specific limitation(s), it shall be used in food-contact surfaces only within such limitation(s), including the category of food-contact surface(s), the
+    functional use(s) of the ingredient, and the level(s) of use. Any use of such an ingredient not in full compliance with each such established limitation shall require a food additive regulation.
+
+    (3) If the ingredient is affirmed as GRAS for a specific use, prior to general evaluation of use of the ingredient, other uses may also be GRAS.
+
+    (c) The listing of a food ingredient in this part does not authorize the use of such substance for the purpose of adding the ingredient to the food through extraction from the food-contact surface.
+
+    (d) The listing of a food ingredient in this part does not authorize the use of such substance in a manner that may lead to deception to the consumer or to any other violation of the Federal Food, Drug,
+    and Cosmetic Act (the Act).
+
+    (e) If the Commissioner of Food and Drugs is aware of any prior sanction for use of an ingredient under conditions different from those proposed to be affirmed as GRAS, he will concurrently propose
+    a separate regulation covering such use of the ingredient under part 181 of this chapter. If the Commissioner is unaware of any such applicable prior sanction, the proposed regulation will so state
+    and will require any person who intends to assert or rely on such sanction to submit proof of its existence. Any regulation promulgated pursuant to this section constitutes a determination that excluded
+    uses would result in adulteration of the food in violation of section 402 of the Act, and the failure of any person to come forward with proof of such an applicable prior sanction in response to the
+    proposal will constitute a waiver of the right to assert or rely on such sanction at any later time. The notice will also constitute a proposal to establish a regulation under part 181 of this chapter,
+    incorporating the same provisions, in the event that such a regulation is determined to be appropriate as a result of submission of proof of such an applicable prior sanction in response to the proposal.
+
+    [42 FR 14658, Mar. 15, 1977, as amended at 48 FR 48457, 48459, Oct. 19, 1983; 81 FR 55051, Aug. 17, 2016]
+
+    Subpart B—Listing of Specific Substances Affirmed as GRAS'
+- id: art-3
+  title: § 186.1093
+  text: '§ 186.1093
+
+    Sulfamic acid.
+
+    (a) Sulfamic acid (H
+
+    3
+
+    NO
+
+    3
+
+    S, CAS Reg. No. 5329-14-6) is a white crystalline solid manufactured from urea, sulfur trioxide, and sulfuric acid. It is soluble and highly ionized in water.
+
+    (b) In accordance with § 186.1(b)(1), the ingredient is used as an indirect food ingredient with no limitations other than current good manufacturing practice. The affirmation of this ingredient as
+    generally recognized as safe (GRAS) as an indirect human food ingredient is based upon the current good manufacturing practice of using this ingredient in the manufacture of paper and paperboard that
+    contact food.
+
+    (c) Prior sanctions for this ingredient different from the uses established in
+
+    this section do not exist or have been waived.
+
+    [47 FR 29954, July 9, 1982]'
+- id: art-4
+  title: § 186.1256
+  text: '§ 186.1256
+
+    Clay (kaolin).
+
+    (a) Clay (kaolin) Al
+
+    2
+
+    O
+
+    3.2SiO2.nH2
+
+    O, Cas Reg. No. 1332-58-7) consists of hydrated aluminum silicate. The commercial products of clay (kaolin) contain varying quantities of alkalies and alkaline earths. Clay (kaolin) is a white to yellowish
+    or grayish fine powder. There are at least three different minerals, kaolinite, dickite, and nacrite, classified as kaolin. Kaolinite or china clay is whiter, less contaminated with extraneous minerals,
+    and less plastic in water.
+
+    (b) In accordance with § 186.1(b)(1), the ingredient is used as an indirect human food ingredient with no limitation other than current good manufacturing practice. The affirmation of this ingredient
+    as generally recognized as safe (GRAS) as an indirect human food ingredient is based upon the following current good manufacturing practice conditions of use:
+
+    (1) The ingredient is used in the manufacture of paper and paperboard that contact food.
+
+    (2) The ingredient is used at levels not to exceed current good manufacturing practice.
+
+    (c) Prior sanctions for this ingredient different from the uses established in this regulation do not exist or have been waived.
+
+    [47 FR 43367, Oct. 1, 1982]'
+- id: art-5
+  title: § 186.1275
+  text: '§ 186.1275
+
+    Dextrans.
+
+    (a) Dextrans (CAS Reg. No. 9004-54-0) are high molecular weight polysaccharides produced by bacterial fermentation of sucrose. Commercially available dextrans are synthesized from sucrose by
+
+    Leuconostoc mesenteroides
+
+    strain NRRL B-512(F). Partial depolymerization and purification of the fermented mixture shall produce a product that is free of viable microorganisms.
+
+    (b) The ingredient is used or intended for use as a constituent of food-contact surfaces.
+
+    (c) The ingredient is used at levels not to exceed good manufacturing practice.
+
+    (d) Prior sanctions for this ingredient different from the uses established in this section do not exist or have been waived.
+
+    [43 FR 29288, July 7, 1978, as amended at 48 FR 48457, Oct. 19, 1983]'
+- id: art-6
+  title: § 186.1300
+  text: '§ 186.1300
+
+    Ferric oxide.
+
+    (a) Ferric oxide (iron (III) oxide, Fe
+
+    2
+
+    O
+
+    3
+
+    , CAS Reg. No. 1309-37-1) occurs naturally as the mineral hematite. It may be prepared synthetically by heating brown iron hydroxide oxide. The product is red-brown to black trigonal crystals.
+
+    (b) In accordance with § 186.1(b)(1), the ingredient is used as an indirect human food ingredient with no limitation other than current good manufacturing practice. The affirmation of this ingredient
+    as generally recognized as safe (GRAS) as an indirect human food ingredient is based upon the following current good manufacturing practice conditions of use:
+
+    (1) The ingredient is used as a constituent of paper and paperboard used for food packaging.
+
+    (2) The ingredient is used at levels not to exceed current good manufacturing practice.
+
+    (c) Prior sanctions for this ingredient different from the uses established in this section do not exist or have been waived.
+
+    [53 FR 16867, May 12, 1988; 53 FR 20939, June 7, 1988]'
+- id: art-7
+  title: § 186.1316
+  text: '§ 186.1316
+
+    Formic acid.
+
+    (a) Formic acid (CH
+
+    2
+
+    O
+
+    2
+
+    , CAS Reg. No. 64-18-6) is also referred to as methanoic acid or hydrogen carboxylic acid. It occurs naturally in some insects and is contained in the free acid state in a number of plants. Formic acid
+    is prepared by the reaction of sodium formate with sulfuric acid and is isolated by distillation.
+
+    (b) Formic acid is used as a constituent of paper and paperboard used for food packaging.
+
+    (c) The ingredient is used at levels not to exceed good manufacturing practice in accordance with § 186.1(b)(1).
+
+    (d) Prior sanctions for formic acid different from the uses established in
+
+    this section do not exist or have been waived.
+
+    [45 FR 22915, Apr. 4, 1980]'
+- id: art-8
+  title: § 186.1374
+  text: '§ 186.1374
+
+    Iron oxides.
+
+    (a) Iron oxides (oxides of iron, CAS Reg. No. 1332-37-2) are undefined mixtures of iron (II) oxide (CAS Reg. No. 1345-25-1, black cubic crystals) and iron (III) oxide (CAS Reg. No. 1309-37-1, red-brown
+    to black trigonal crystals).
+
+    (b) In accordance with § 186.1(b)(1), the ingredient is used as an indirect human food ingredient with no limitation other than current good manufacturing practice. The affirmation of this ingredient
+    as generally recognized as safe (GRAS) as an indirect human food ingredient is based upon the following current good manufacturing practice conditions of use:
+
+    (1) The ingredient is used as a constituent of paper and paperboard used for food packaging.
+
+    (2) The ingredient is used at levels not to exceed current good manufacturing practice.
+
+    (c) Prior sanctions for this ingredient different from the uses established in this section do not exist or have been waived.
+
+    [53 FR 16867, May 12, 1988; 53 FR 20939, June 7, 1988, as amended at 69 FR 24512, May 4, 2004]'
+- id: art-9
+  title: § 186.1555
+  text: '§ 186.1555
+
+    Japan wax.
+
+    (a) Japan wax (CAS Reg. No. 8001-39-6), also known as Japan tallow or sumac wax, is a pale yellow vegetable tallow, containing glycerides of the C
+
+    19
+
+    -C
+
+    23
+
+    dibasic acids and a high content of tripalmitin. It is prepared from the mesocarp by hot pressing of immature fruits of the oriental sumac,
+
+    Rhus succedanea
+
+    (Japan, Taiwan, and Indo-China),
+
+    R. vernicifera
+
+    (Japan), and
+
+    R. trichocarpa
+
+    (China, Indo-China, India, and Japan). Japan wax is soluble in hot alcohol, benzene, and naphtha, and insoluble in water and in cold alcohol.
+
+    (b) In accordance with paragraph (b)(1) of this section, the ingredient is used as an indirect human food ingredient with no limitation other than current good manufacturing practice. The affirmation
+    of this ingredient as generally recognized as safe (GRAS) as an indirect human food ingredient is based on the following current good manufacturing practice conditions of use:
+
+    (1) The ingredient is used as a constituent of cotton and cotton fabrics used for dry food packaging.
+
+    (2) The ingredient is used at levels not to exceed current good manufacturing practice.
+
+    (c) Prior sanctions for this ingredient different from the uses established in this section do not exist or have been waived.
+
+    [60 FR 62208, Dec. 5, 1995]'
+- id: art-10
+  title: § 186.1557
+  text: '§ 186.1557
+
+    Tall oil.
+
+    (a) Tall oil (CAS Reg. No. 8002-26-4) is essentially the sap of the pine tree. It is obtained commercially from the waste liquors of pinewood pulp mills and consists mainly of tall oil resin acids and
+    tall oil fatty acids.
+
+    (b) In accordance with § 186.1(b)(1), the ingredient is used as an indirect human food ingredient with no limitation other than current good manufacturing practice. The affirmation of this ingredient
+    as generally recognized as safe (GRAS) as an indirect human food ingredient is based on the following current good manufacturing practice conditions of use:
+
+    (1) The ingredient is used as a constituent of cotton and cotton fabrics used for dry food packaging.
+
+    (2) The ingredient is used at levels not to exceed current good manufacturing practice.
+
+    (c) Prior sanctions for this ingredient different from the uses established in this section, or from those listed in part 181 of this chapter, do not exist or have been waived.
+
+    [51 FR 16830, May 7, 1986]'
+- id: art-11
+  title: § 186.1673
+  text: '§ 186.1673
+
+    Pulp.
+
+    (a) Pulp is the soft, spongy pith inside the stem of a plant such as wood, straw, sugarcane, or other natural plant sources.
+
+    (b) The ingredient is used or intended for use as a constituent of food packaging containers.
+
+    (c) The ingredient is used in paper and paperboard made by conventional paper-making processes at levels not to exceed good manufacturing practice.
+
+    (d) Prior sanctions for this ingredient different from the uses established in this section do not exist or have been waived.'
+- id: art-12
+  title: § 186.1750
+  text: '§ 186.1750
+
+    Sodium chlorite.
+
+    (a) Sodium chlorite (NaCLO
+
+    2
+
+    , CAS Reg. No. 7758-19-2) exists as slightly hygroscopic white crystals or flakes. It is manufactured by passing chlorine dioxide into a solution of sodium hydroxide and hydrogen peroxide.
+
+    (b) the ingredient is used at levels from 125 to 250 parts per million as a slimicide in the manufacture of paper and paperboard that contact food.
+
+    [45 FR 16470, Mar. 14, 1980]'
+- id: art-13
+  title: § 186.1756
+  text: '§ 186.1756
+
+    Sodium formate.
+
+    (a) Sodium formate (CHNaO
+
+    2
+
+    , CAS Reg. No. 141-53-7) is the sodium salt of formic acid. It is produced by the reaction of carbon monoxide with sodium hydroxide.
+
+    (b) The ingredient is used as a constituent of paper and paperboard used for food packaging.
+
+    (c) The ingredient is used at levels not to exceed good manufacturing practice in accordance with § 186.1(b)(1).
+
+    (d) Prior sanctions for sodium formate different from the uses established in this section do not exist or have been waived.
+
+    [45 FR 22915, Apr. 4, 1980]'
+- id: art-14
+  title: § 186.1770
+  text: '§ 186.1770
+
+    Sodium oleate.
+
+    (a) Sodium oleate (C
+
+    18
+
+    H
+
+    33
+
+    O
+
+    2
+
+    Na, CAS Reg. No. 143-19-1) is the sodium salt of oleic acid (
+
+    cis
+
+    -9-octadecenoic acid). It exists as a white to yellowish powder with a slight tallow-like odor. Commercially, sodium oleate is made by mixing and heating flaked sodium hydroxide and oleic acid.
+
+    (b) In accordance with § 186.1(b)(1), the ingredient is used as a constituent of paper and paperboard for food packaging and as a component of lubricants with incidental food contact in accordance with
+    § 178.3570 of this chapter, with no limitation other than current good manufacturing practice.
+
+    (c) Prior sanctions for this ingredient different from the uses established in this section do not exist or have been waived.
+
+    [51 FR 39372, Oct. 28, 1986]'
+- id: art-15
+  title: § 186.1771
+  text: '§ 186.1771
+
+    Sodium palmitate.
+
+    (a) Sodium palmitate (C
+
+    16
+
+    H
+
+    31
+
+    O
+
+    2
+
+    Na, CAS Reg. No. 408-35-5) is the sodium salt of palmitic acid (hexadecanoic acid). It exists as a white to yellow powder. Commercially, sodium palmitate is made by mixing and heating flaked sodium
+    hydroxide and palmitic acid.
+
+    (b) In accordance with § 186.1(b)(1), the ingredient is used as a constituent of paper and paperboard for food packaging with no limitation other than current good manufacturing practice.
+
+    (c) Prior sanctions for this ingredient different from the uses established in this section do not exist or have been waived.
+
+    [51 FR 39372, Oct. 28, 1986]'
+- id: art-16
+  title: § 186.1797
+  text: '§ 186.1797
+
+    Sodium sulfate.
+
+    (a) Sodium sulfate (Na
+
+    2
+
+    SO
+
+    4
+
+    , CAS Reg. No. 7757-82-6), also known as Glauber''s salt, occurs naturally and exists as colorless crystals or as a fine, white crystalline powder. It is prepared by the neutralization of sulfuric acid
+    with sodium hydroxide.
+
+    (b) The ingredient is used as a constituent of paper and paperboard used for food packaging, and cotton and cotton fabric used for dry food packaging.
+
+    (c) The ingredient is used at levels not to exceed good manufacturing practice in accordance with § 186.1(b)(1).
+
+    (d) Prior sanctions for this ingredient different from the uses established in this section do not exist or have been waived.
+
+    [45 FR 6086, Jan. 25, 1980]'
+- id: art-17
+  title: § 186.1839
+  text: '§ 186.1839
+
+    Sorbose.
+
+    (a) Sorbose (L-sorbose, sorbinose) (C
+
+    6
+
+    H
+
+    12
+
+    O
+
+    6
+
+    , CAS Reg. No. 87-79-6) is an orthorhombic, bisphenoidal crystalline ketohexose. It was originally identifed in the juice of mature berries from the mountain ash (
+
+    Sorbus aucuparia
+
+    ) where it occurs as the result of microbial oxidation of sorbitol. It also occurs naturally in other plants. Sorbose can be synthesized by the catalytic hydrogenation of glucose to D-sorbitol. The
+    resulting sorbitol can be oxidized by
+
+    Acetobacter xylinum
+
+    or by
+
+    Acetobacter suboxydans.
+
+    (b) The ingredient is used or intended for indirect food use as a constituent of
+
+    cotton, cotton fabrics, paper, and paperboard in contact with dry food.
+
+    (c) The ingredient migrates to food at levels not to exceed good manufacturing practice.
+
+    (d) Prior sanctions for this ingredient different from the uses established in this section do not exist or have been waived.
+
+    [43 FR 11698, Mar. 21, 1978, as amended at 48 FR 48457, Oct. 19, 1983]'
 doc_files:
 - us/raw/US-CFR-title21-part186.xml
+- us/raw/US-CFR-title21-part186.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part186.xml (xml, 18436 chars)，生成 17 条共 18436 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part186.xml (xml, 18436 chars)，生成 17 条共 18436 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part186.xml (xml, 18436 chars)，生成 17 条共 18436 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART186-4（US 21 CFR Part 186）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART186-3（US 21 CFR Part 186）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART186-2（US 21 CFR Part 186）。'

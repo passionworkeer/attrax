@@ -9,11 +9,190 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: Công báo điện tử Nước CHXHCN Việt Nam
+  text: "Công báo điện tử Nước CHXHCN Việt Nam\n                        CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM\n                        Độc lập - Tự do - Hạnh phúc\nCông báo\n                    Thứ --, --/--/----\n\
+    \                            --° - --°\n                                Hà Nội\n                        trang chủ\n                        Công báo\n                        Văn bản đăng công báo\n \
+    \                       Văn bản chỉ đạo điều hành\n                    Thứ --, --/--/----\nHà Nội\n26°-33°\nTất cả loại thông tin\nCông báo\nVăn bản\n                    Tìm kiếm nâng cao\nTìm kiếm\n\
+    \                            Cơ quan ban hành\n-- Tất cả các cơ quan --\nTRANH TRA CHÍNH PHỦ\nVĂN PHÒNG CHÍNH PHỦ\nTHANH TRA CHÍNH PHỦ\nNGÂN HÀNG NHÀ NƯỚC VIỆT NAM\nBỘ DÂN TỘC VÀ TÔN GIÁO\nBỘ Y TẾ\n\
+    BỘ GIÁO DỤC VÀ ĐÀO TẠO\nVĂN PHÒNG QUỐC HỘI\nBỘ KHOA HỌC VÀ CÔNG NGHỆ\nBỘ VĂN HÓA, THỂ THAO VÀ DU LỊCH\nKIỂM TOÁN NHÀ NƯỚC\nBỘ XÂY DỰNG\nVIỆN KIỂM SÁT NHÂN DÂN TỐI CAO\nBỘ NÔNG NGHIỆP VÀ MÔI TRƯỜNG\n\
+    BỘ CÔNG THƯƠNG\nTÒA ÁN NHÂN DÂN TỐI CAO\nHỘI ĐỒNG THẨM PHÁN TÒA ÁN NHÂN DÂN TỐI CAO\nBỘ TÀI CHÍNH\nTHỦ TƯỚNG CHÍNH PHỦ\nBỘ TƯ PHÁP\nBỘ NỘI VỤ\nCHÍNH PHỦ\nỦY BAN THƯỜNG VỤ QUỐC HỘI\nBỘ NGOẠI GIAO\nQUỐC\
+    \ HỘI\nBỘ CÔNG AN\nBAN CHỈ ĐẠO QUỐC GIA VỀ TÌM KIẾM, QUY TẬP VÀ XÁC MINH DANH TÍNH HÀI CỐT LIỆT SỸ\nBAN CHỈ ĐẠO QUỐC GIA VỀ CHỐNG KHAI THÁC HẢI SẢN BẤT HỢP PHÁP, KHÔNG BÁO CÁO VÀ KHÔNG THEO QUY ĐỊNH\
+    \ VÀ PHÁT TRIỂN BỀN VỮNG NGÀNH THỦY SẢN\nBAN CHỈ ĐẠO CỦA CHÍNH PHỦ VỀ PHÁT TRIỂN KHOA HỌC, CÔNG NGHỆ, ĐỔI MỚI SÁNG TẠO, CHUYỂN ĐỔI SỐ VÀ ĐỀ ÁN 06\nỦY BAN QUỐC GIA VỀ TRẺ EM\nBAN CHỈ ĐẠO PHÒNG KHÔNG\
+    \ NHÂN DÂN TRUNG ƯƠNG\nHỘI ĐỒNG ĐIỀU HÀNH TRUNG TÂM TÀI CHÍNH QUỐC TẾ TẠI VIỆT NAM\nBAN CHỈ ĐẠO THỰC HIỆN CÁC NGHỊ QUYẾT CỦA QUỐC HỘI VỀ THÍ ĐIỂM MỘT SỐ CƠ CHẾ, CHÍNH SÁCH ĐẶC THÙ PHÁT TRIỂN THÀNH PHỐ\
+    \ HỒ CHÍ MINH\nBAN CHỈ ĐẠO CỦA CHÍNH PHỦ VỀ QUẢN LÝ VÀ ĐIỀU HÀNH KINH TẾ VĨ MÔ\nBan Chỉ đạo Trung ương về chính sách nhà ở và thị trường bất động sản\nBỘ QUỐC PHÒNG\nCHỦ TỊCH NƯỚC\nBAN CHỈ ĐẠO QUỐC\
+    \ GIA HỘI NHẬP QUỐC TẾ VỀ GIÁO DỤC VÀ KHOA HỌC, CÔNG NGHỆ\nBAN CHÌ ĐẠO TRUNG ƯƠNG XÂY DỰNG ĐỀ ÁN THÍ ĐIỂM MÔ HÌNH TỔ CHỨC CHÍNH QUYỀN ĐÔ THỊ\nBAN CHỈ ĐẠO TỔNG KẾT 10 NĂM THỰC HIỆN LUẬT PCTN\nỦY BAN\
+    \ AN NINH HÀNG KHÔNG DÂN DỤNG QUỐC GIA\nBỘ LAO ĐỘNG - THƯƠNG BINH VÀ XÃ HỘI\nTHÔNG TẤN XÃ VIỆT NAM\nỦY BAN QUỐC GIA VỀ BIẾN ĐỔI KHÍ HẬU\nỦY BAN TRUNG ƯƠNG MẶT TRẬN TỔ QUỐC VIỆT NAM\nBAN CHỈ ĐẠO TRUNG\
+    \ ƯƠNG THỰC HIỆN THÍ ĐIỂM KHÔNG TỔ CHỨC HỘI ĐỒNG NHÂN DÂN HUYỆN, QUẬN, PHƯỜNG\nBAN CHỈ ĐẠO NHÀ NƯỚC VỀ QUY HOẠCH PHÁT TRIỀN ĐIỆN LỰC QUỐC GIA\nBAN CHỈ ĐẠO CHƯƠNG TRÌNH PHÁT TRIỂN SẢN PHẨM QUỐC GIA ĐẾN\
+    \ NĂM 2020\nBỘ GIAO THÔNG VẬN TẢI\nBAN CHỈ ĐẠO NHÀ NƯỚC CÁC CÔNG TRÌNH, DỰ ÁN TRỌNG ĐIỂM NGÀNH GIAO THÔNG VẬN TẢI\nBAN CHỈ ĐẠO ĐIỀU HÀNH GIÁ\nBAN CHỈ ĐẠO QUỐC GIA VỀ Y TẾ BIỂN ĐẢO\nỦY BAN PHÁP LUẬT\n\
+    BAN CHỈ ĐẠO QUỐC GIA XÂY DỰNG XÃ HỘI HỌC TẬP\nBAN CHỈ ĐẠO QUỐC GIA CHỐNG BUÔN LẬU, GIAN LẬN THƯƠNG MẠI VÀ HÀNG GIẢ\nBAN CHỈ ĐẠO QUỐC GIA VỀ HỘI NHẬP QUỐC TẾ\nBAN CHỈ ĐẠO PHÒNG, CHỐNG TỘI PHẠM CỦA CHÍNH\
+    \ PHỦ\nBAN CHỈ ĐẠO 896\nBAN CHỈ ĐẠO LIÊN NGÀNH TRIỀN KHAI \"CƠ CẤU LẠI HỆ THỐNG CÁC TỔ CHỨC TÍN DỤNG GIAI ĐOẠN 2011 - 2015\"\nBỘ THÔNG TIN VÀ TRUYỀN THÔNG\nBAN CHỈ ĐẠO TRUNG ƯƠNG THỰC HIỆN QUYẾT ĐỊNH\
+    \ SỐ 1956/QĐ-TTG\nHỘI ĐỒNG TƯ VẤN ĐẶC XÁ\nBAN CHỈ ĐẠO TRUNG ƯƠNG VỀ CẢI CÁCH CHÍNH SÁCH TIỀN LƯƠNG, BẢO HIỂM XÃ HỘI VÀ ƯU ĐÃI NGƯỜI CÓ CÔNG\nBAN CHỈ ĐẠO CẢI CÁCH HÀNH CHÍNH CỦA CHÍNH PHỦ\nHỘI ĐỒNG PHÁT\
+    \ TRIỂN, ỨNG DỤNG NĂNG LƯỢNG NGUYÊN TỬ QUỐC GIA\nBAN CHỈ ĐẠO QUỐC GIA THỰC HIỆN QUY HOẠCH PHÁT TRIỂN NHÂN LỰC VÀ ĐÀO TẠO THEO NHU CẦU XÃ HỘI\nBAN CHỈ ĐẠO PPP\nBAN CHỈ ĐẠO CƠ KHÍ TRỌNG ĐIỀM\nBAN CHỈ\
+    \ ĐẠO TRUNG ƯƠNG CHƯƠNG TRÌNH MTQG XÂY DỰNG NÔNG THÔN MỚI\nVĂN BẢN HỢP NHẤT\nBỘ KẾ HOẠCH VÀ ĐẦU TƯ\nỦY BAN DÂN TỘC\nBAN CHỈ ĐẠO QUỐC GIA VỀ TÀI CHÍNH TOÀN DIỆN\nBAN CHỈ ĐẠO PHÒNG THỦ DÂN SỰ QUỐC GIA\n\
+    ỦY BAN THƯỜNG VỤ QUỐC HỘI - CHÍNH PHỦ - ĐOÀN CHỦ TỊCH ỦY BAN TRUNG ƯƠNG MẶT TRẬN TỔ QUỐC VIỆT NAM\nBAN CHỈ ĐẠO THỰC HIỆN NGHỊ QUYẾT SỐ 136/2024/QH15 CỦA QUỐC HỘI\nBAN CHỈ ĐẠO XÂY DỰNG NHÀ MÁY ĐIỆN HẠT\
+    \ NHÂN\nTC\nBAN CHỈ ĐẠO QUỐC GIA VỀ PHÁT TRIỂN NGÀNH CÔNG NGHIỆP BÁN DẪN"
+- id: art-2
+  title: 'BAN CHỈ ĐẠO RÀ SOÁT, XỬ LÝ VƯỚNG MẮC TRONG HỆ THỐNG VĂN BẢN '
+  text: "BAN CHỈ ĐẠO RÀ SOÁT, XỬ LÝ VƯỚNG MẮC TRONG HỆ THỐNG VĂN BẢN QUY PHẠM PHÁP LUẬT\nBAN CHỈ ĐẠO NHÀ NƯỚC CÁC CÔNG TRÌNH, DỰ ÁN QUAN TRỌNG QUỐC GIA, TRỌNG ĐIỂM NGÀNH GIAO THÔNG VẬN TẢI\nBAN CHỈ ĐẠO\
+    \ TỔNG KẾT 20 NĂM THỰC HIỆN MÔ HÌNH TỔ CHỨC BỘ MÁY CỦA CHÍNH PHỦ\nCHÍNH PHỦ - ĐOÀN CHỦ TỊCH ỦY BAN TRUNG ƯƠNG MẶT TRẬN TỔ QUỐC VIỆT NAM\nBAN CHỈ ĐẠO XÂY DỰNG THỰC HIỆN ĐỀ ÁN CHỦ TRƯƠNG ĐẦU TƯ ĐƯỜNG\
+    \ SẮT TỐC ĐỘ CAO TRÊN TRỤC BẮC-NAM VÀ CÁC\nBAN CHỈ ĐẠO TỔNG KẾT NGHỊ QUYẾT 22-NQ/TW CỦA BỘ CHÍNH TRỊ VỀ HỘI NHẬP QUỐC TẾ\nHỘI ĐỒNG ĐIỀU PHỐI VÙNG ĐỒNG BẰNG SÔNG CỬU LONG\nBAN CHỈ ĐẠO TRIỂN KHAI NGHỊ\
+    \ QUYẾT SỐ 98/2023/QH15 CỦA QUỐC HỘI\nHỘI ĐỒNG ĐIỀU PHỐI VÙNG TÂY NGUYÊN\nHỘI ĐỒNG ĐIỀU PHỐI VÙNG ĐÔNG NAM BỘ\nHỘI ĐỒNG ĐIỀU PHỐI VÙNG ĐỒNG BẰNG SÔNG HỒNG\nHỘI ĐỒNG ĐIỀU PHỐI VÙNG  BẮC TRUNG BỘ VÀ DUYÊN\
+    \ HẢI TRUNG BỘ\nHỘI ĐỒNG ĐIỀU PHỐI VÙNG TRUNG DU VÀ MIỀN NÚI PHÍA BẮC\nBAN CHỈ ĐẠO QUỐC GIA DÂN SỐ VÀ PHÁT TRIỂN\nBAN CHỈ ĐẠO TRUNG ƯƠNG TỔNG KẾT 20 NĂM THỰC HIỆN NGHỊ QUYẾT TRUNG ƯƠNG 5  KHÓA IX VỀ\
+    \ TIẾP TỤC ĐỔI MỚ\nBAN CHỈ ĐẠO NHÀ NƯỚC CÁC DỰ ÁN TRỌNG ĐIỂM VỀ DẦU KHÍ\nBAN CHỈ ĐẠO CHƯƠNG TRÌNH QUỐC GIA VỀ SỬ DỤNG NĂNG LƯỢNG TIẾT KIỆM VÀ HIỆU QUẢ\nBAN CHỈ ĐẠO QUỸ VÌ BIỂN, ĐẢO VIỆT NAM\nTỔ CÔNG\
+    \ TÁC ĐẶC BIỆT CỦA THỦ TƯỚNG CHÍNH PHỦ\nTCT\nBAN CHỈ ĐẠO TỔNG KẾT THI HÀNH LUẬT ĐẤT ĐAI VÀ XÂY DỰNG DỰ ÁN LUẬT ĐẤT ĐAI SỬA ĐỔI\nBAN CHỈ ĐẠO QUỐC GIA TÀI CHÍNH TOÀN DIỆN\nBỘ TÀI NGUYÊN VÀ MÔI TRƯỜNG\n\
+    BAN CHỈ ĐẠO BIÊN SOẠN VÀ XUẤT BẢN LỊCH SỬ CHÍNH PHỦ VIỆT NAM 1945 - 2015\nBAN CHỈ ĐẠO QUỐC GIA VỀ CHỐNG KHAI THÁC HẢI SẢN BẤT HỢP PHÁP, KHÔNG BÁO CÁO VÀ KHÔNG THEO QUY ĐỊNH\nBCĐ THỰC HIỆN ĐỀ ÁN TIẾP\
+    \ TỤC ĐỔI MỚI VÀ NÂNG CAO HIỆU QUẢ HĐ GIÁM ĐỊNH TƯ PHÁP Ở CẤP TRUNG ƯƠNG\nBAN CHỈ ĐẠO CHIẾN LƯỢC CÔNG NGHIỆP HÓA CỦA VIỆT NAM TRONG KHUÔN KHỔ HỢP TÁC VIỆT NAM - NHẬT BẢN\nBAN CHỈ ĐẠO CHIẾN LƯỢC CÔNG\
+    \ NGHIỆP HÓA  CỦA VIỆT NAM TRONG KHUÔN KHỔ HỢP TÁC VIỆT NAM - NHẬT BẢN HƯỚ\nBAN CHỈ ĐẠO CHIẾN LƯỢC CÔNG NGHIỆP HÓA CỦA VIỆT NAM TRONG KHUÔN KHỔ HỢP TÁC VIỆT NAM - NHẬT BẢN HƯỚN\nỦY BAN QUỐC GIA ASEAN\
+    \ 2020\nBAN CHỈ ĐẠO QUỐC GIA CHƯƠNG TRÌNH KHÔNG CÒN NẠN ĐÓI Ở VIỆT NAM ĐẾN NĂM 2025\nBAN CHỈ ĐẠO QUÓC GIA VỀ CƠ CẤU LẠI NỀN KINH TẾ, ĐỔI MỚI MÔ HÌNH TĂNG TRƯỞNG\nHỘI ĐỒNG QUỐC GIA VỀ AN TOÀN, VỆ SINH\
+    \ LAO ĐỘNG\nỦy ban Quốc gia APEC 2017\nHỘI ĐỒNG GIÁO DỤC QUỐC PHÒNG VÀ AN NINH TRUNG ƯƠNG\nBan Chỉ đạo về đầu tư theo hình thức đối tác công - tư (PPP)\nBan Chỉ đạo trung ương xây dựng đề án thí điểm\
+    \ mô hình tổ chức chính quyền đô thị\nBan Chỉ đạo quốc gia thực hiện phát triên nhân lực và đào tạo theo nhu cầu xã hội\nBan Chỉ đạo Nhà nước về Quy hoạch phát triển điện lực quốc gia\nBan Chỉ đạo liên\
+    \ ngành triển khai Cơ cấu lại hệ thống các tổ chức tín dụng giai đoạn 2011 - 2015\nBan Chỉ đạo cơ khí trọng điểm\nLIÊN BỘ\nBAN CHỈ ĐẠO XỬ LÝ CÁC TỒN TẠI, YẾU KÉM CỦA MỘT SỐ DỰ ÁN VÀ DOANH NGHIỆP CHẬM\
+    \ TIẾN ĐỘ, KÉM HIỆU QUẢ T\nBAN CHỈ ĐẠO QUỐC GIA VỀ PHÁT TRIỂN ĐIỆN LỰC\nBAN CHỈ ĐẠO TRUNG ƯƠNG CÁC CHƯƠNG TRÌNH MỤC TIÊU QUỐC GIA\nBỘ NÔNG NGHIỆP VÀ PHÁT TRIỂN NÔNG THÔN\nBỘ LAO ĐỘNG\nHỘI ĐỒNG BẦU CỬ\
+    \ QUỐC GIA\nQUỐC HỘI KHÓA XIII ỦY BAN PHÁP LUẬT\nBAN CHỈ ĐẠO VỀ ĐẦU TƯ THEO HÌNH THỨC ĐỐI TÁC CÔNG TƯ\nBCH TRUNG ƯƠNG ĐOÀN TNCS HỒ CHÍ MINH\n                            Ngày ban hành\n             \
+    \               Loại văn bản\n-- Tất cả các loại văn bản --\nKế hoạch thẩm định\nĐiều hành\nChưa được phân loại\nCông văn điều hành\nThông tư liên bộ\nSắt luật\nSắc lệnh\nSao y\nKết luận\nThư công\n\
+    Phiếu báo\nPhiếu chuyển\nPhiếu gửi\nGiấy nghỉ phép\nGiấy giới thiệu\nGiấy mời\nGiấy ủy quyền\nBản thỏa thuận\nBản ghi nhớ\nHợp đồng\nTờ trình\nBiên bản\nDự án\nĐề án\nPhương án\nChương trình\nThông\
+    \ cáo\nQuy định\nQuy chế\nBáo cáo\nNghị quyết liên tịch\nHiến pháp\nHướng dẫn\nCông điện\nĐính chính\nKế hoạch\nPháp lệnh\nLuật\nLệnh\nSao lục\nCông văn\nThông báo\nVăn bản hợp nhất\nNghị quyết\nThông\
+    \ tư liên tịch\nChỉ thị\nThông tư\nQuyết định\nNghị định\n                            Người ký\n-- Tất cả người ký văn bản --\nNGUYỄN TẤN DŨNG\nTRẦN TUẤN ANH\nNGUYỄN VINH HIỂN\nVĂN TẤT THU\nNGUYỄN BẮC\
+    \ SON\nNGUYỄN ĐỒNG TIẾN\nĐINH LA THĂNG\nPHẠM VŨ LUẬN\nBÙI VĂN GA\nNGUYỄN TRỌNG ĐÀM\nNGUYỄN HỮU CHÍ\nLÊ DƯƠNG QUANG\nBÙI BÁ BỔNG\nNGUYỄN CÔNG NGHIỆP\nTRƯƠNG TẤN SANG"
+- id: art-3
+  title: CHU NGỌC ANH
+  text: "CHU NGỌC ANH\nNGUYỄN LINH NGỌC\nHÀ HÙNG CƯỜNG\nTRẦN VĂN TUẤN\nNGUYỄN THÀNH BIÊN\nĐINH TRUNG TỤNG\nNGUYỄN THIỆN NHÂN\nĐỖ HOÀNG ANH TUẤN\nLÊ MẠNH HÙNG\nDIỆP KỈNH TẦN\nTRẦN VĂN SƠN\nĐẠI TƯỚNG PHÙNG\
+    \ QUANG THANH\nHỨA ĐỨC NHỊ\nTRẦN XUÂN HÀ\nNGUYỄN QUÂN\nĐÀM HỮU ĐẮC\nNGUYỄN SINH HÙNG\nTRẦN QUANG QUÝ\nLÊ ĐÌNH TIẾN\nNGUYỄN VĂN GIÀU\nNGUYỄN MINH TRIẾT\nĐÀO QUANG THU\nTRẦN THANH NAM\nSƠN PHƯỚC HOAN\n\
+    HỒ NGHĨA DŨNG\nVÕ HỒNG PHÚC\nNGUYỄN THỊ MINH NGUYỆT\nTRẦN ANH TUẤN\nVŨ THỊ MAI\nHOÀNG TUẤN ANH\nNGUYỄN ĐỨC CHI\nNGUYỄN NAM HẢI\nNGUYỄN THANH HÒA\nNGUYỄN THỊ MINH\nNGUYỄN THANH SƠN\nBÙI HỒNG LĨNH\nTHƯỢNG\
+    \ TƯỚNG LÊ HỮU ĐỨC\nVŨ ĐỨC ĐAM\nHOÀNG VĂN THẮNG\nTRƯƠNG CHÍ TRUNG\nĐỖ QUÝ DOÃN\nHOÀNG TRUNG HẢI\nNGUYỄN ĐỨC CHÍNH\nTỪ VĂN NHŨ\nNGUYỄN THÁI LAI\nNGUYỄN THỊ XUYÊN\nPHẠM QUÝ TIÊU\nTRẦN VIỆT THANH\nTRỊNH\
+    \ ĐÌNH DŨNG\nNGUYỄN TOÀN THẮNG\nLÊ MINH HƯNG\nNGUYỄN VĂN ĐỨC\nNGUYỄN CẨM TÚ\nPHẠM MINH HUÂN\nBÙI CÁCH TUYẾN\nNGUYỄN MINH QUANG\nĐINH TIẾN DŨNG\nNGUYỄN THANH LONG\nHOÀNG NGHĨA MAI\nTHƯỢNG TƯỚNG NGUYỄN\
+    \ KHÁNH TOÀN\nPHẠM SỸ DANH\nTHƯỢNG TƯỚNG NGUYỄN THÀNH CUNG\nVŨ HUY HOÀNG\nNGUYỄN HẠNH PHÚC\nTHƯỢNG TƯỚNG NGUYỄN VĂN ĐƯỢC\nLÊ THỊ TUYẾT MAI\nĐÀO VIỆT TRUNG\nĐOÀN XUÂN HƯNG\nNGUYỄN NGỌC PHI\nNGUYỄN ĐĂNG\
+    \ KHOA\nNGUYỄN TIẾN DĨNH\nTRẦN ĐỨC LAI\nNGUYỄN THỊ XUÂN THU\nĐÔ ĐỐC NGUYỄN VĂN HIẾN\nTRẦN VĂN HIẾU\nNGUYỄN VĂN LẠNG\nNGUYỄN THÚY HIỀN\nĐẠI TƯỚNG LÊ HỒNG ANH\nNGUYỄN MẠNH HIỂN\nCAO ĐỨC PHÁT\nBÙI QUANG\
+    \ VINH\nNGUYỄN HỒNG TRƯỜNG\nNGUYỄN THANH NGHỊ\nNGUYỄN ĐÌNH TOÀN\nHÀ CÔNG TUẤN\nHOÀNG XUÂN LƯƠNG\nHỒ ANH TUẤN\nNGUYỄN THỊ NGHĨA\nNGUYỄN VĂN CÔNG\nNGUYỄN THẾ PHƯƠNG\nNGUYỄN THỊ KIM TIẾN\nCAO MINH QUANG\n\
+    VŨ VĂN TÁM\nTRẦN HỒNG HÀ\nĐẠI TƯỚNG TRẦN ĐẠI QUANG\nCHU PHẠM NGỌC HIỂN\nTHƯỢNG TƯỚNG PHAN TRUNG KIÊN\nCAO VIẾT SINH\nTRƯƠNG VĨNH TRỌNG\nNGUYỄN DUY THĂNG\nLÊ HỒNG SƠN\nNGUYỄN THỊ THANH HÀ\nĐỖ HỮU HÀO\n\
+    TRẦN VĂN TRUYỀN\nNGUYỄN THÀNH HƯNG\nĐẶNG THANH BÌNH\nVŨ VĂN NINH\nKIỀU ĐÌNH THỤ\nTHƯỢNG TƯỚNG ĐỖ BÁ TỴ\nPHẠM QUÝ TỴ\nNGUYỄN XUÂN PHÚC\nNGHIÊM VŨ KHẢI\nCAO QUỐC HƯNG\nNGUYỄN VĂN NGỰ\nTRỊNH QUÂN HUẤN\n\
+    NGUYỄN HỒNG QUÂN\nTRẦN CÔNG PHÀN\nNGUYỄN SƠN\nTHƯỢNG TƯỚNG LÊ QUÝ VƯƠNG\nHOÀNG THẾ LIÊN\nLÊ DOÃN HỢP\nTRUNG TƯỚNG ĐẶNG VĂN HIẾU\nSON PHƯỚC HOAN\nTRẦN QUỐC KHÁNH\nNGUYỄN VĂN TRUNG\nBÙI PHẠM KHÁNH\nNGUYỄN\
+    \ TRẦN NAM\nNGUYỄN PHÚ TRỌNG\nĐẶNG QUANG PHƯƠNG\nTHƯỢNG TƯỚNG LÊ THẾ TIỆM\nTHƯỢNG TƯỚNG ĐẶNG VĂN HIẾU\nDOÃN MẬU DIỆP\nTRUNG TƯỚNG LÊ QUÝ VƯƠNG\nPHẠM LÊ TUẤN\nTRUNG TƯỚNG TÔ LÂM\nNGUYỄN VIẾT TIẾN\nTRUNG\
+    \ TƯỚNG BÙI QUANG BỀN\nLÊ NAM THẮNG\nCAO LẠI QUANG\nĐÀO MINH TÚ\nLÊ QUỐC DOANH\nNGUYỄN VĂN BÌNH\nNGUYỄN QUỐC TRIỆU\nVŨ ĐỨC ĐÀM\nPHÓ THỦ TƯỚNG HOÀNG TRUNG HẢI\nGIÀNG SEO PHỬ\nĐẶNG HUY ĐÔNG\nTRẦN VĂN\
+    \ TÙNG\nNGUYỄN KHẮC ĐỊNH\nPHÓ THỦ TƯỚNG \nHOÀNG TRUNG HẢI\nPHÓ THỦ TƯỚNG\n NGUYỄN THIỆN NHÂN\nĐÀO XUÂN HỌC\nHOÀNG VĂN PHONG\nNGUYỄN VĂN THANH\nHUỲNH PHONG TRANH\nNGUYỄN THỊ HỒNG\nTHƯỢNG TƯỚNG\n NGUYỄN\
+    \ VĂN ĐƯỢC\nNGUYỄN PHƯỚC THANH\nLÊ DANH VĨNH\nNGUYỄN MINH HỒNG\nTRƯƠNG HÒA BÌNH\nTHƯỢNG TƯỚNG TRƯƠNG QUANG KHÁNH\nPHẠM DŨNG\nTRUNG TƯỚNG ĐỖ ĐÌNH NGHỊ\nHỒ THỊ KIM THOA\nLÊ THÀNH LONG\nNGUYỄN KHÁNH NGỌC\n\
+    TỐNG ANH HÀO\nNGUYỄN THỊ THỦY KHIÊM\nHÀ QUANG HÒA\nHỒ XUÂN HÙNG\nPHẠM QUÝ NGỌ\nHỒ XUÂN SƠN\nPHẠM MẠNH LÂM\nPHẠM VĂN PHƯỢNG\nCAO QUỐC HÙNG\nBÙI MẠNH CƯỜNG\nNGUYỄN THỊ XUYẾN\nPHẠM KHÔI NGUYÊN\nLÊ QUANG\
+    \ HÙNG\nĐỖ THẮNG HẢI\nLÊ QUANG CƯỜNG\nPHẠM MẠNH HÙNG\nPHÙNG VĂN NGHỆ\nTHƯỢNG TƯỚNG PHẠM QUÝ NGỌ\nPHAN VĂN HÙNG\nHUỲNH VĨNH ÁI\nNGUYỄN HẢI PHONG\nĐẶNG ANH TUẤN\nVƯƠNG ĐÌNH HUỆ\nPHÓ THỦ TƯỚNG NGUYỄN THIỆN\
+    \ NHÂN\nPHẠM BÌNH MINH\nPHÓ THỦ TƯỚNG \nNGUYỄN XUÂN PHÚC\nHOÀNG QUỐC VƯỢNG\nPHẠM THỊ HẢI CHUYỀN\nTRUNG TƯỚNG PHẠM QUÝ NGỌ\nLÊ QUÝ VƯƠNG\nNGUYỄN THÀNH CUNG\nBÙI THANH SƠN\nNGUYỄN VĂN HIẾU\nTRƯƠNG TẤN\
+    \ VIÊN\nPHẠM GIA KHIÊM\nNGUYỄN THÁI BÌNH\nĐẶNG VĂN CHIẾN\nPHÓ THỦ TƯỚNG\n NGUYỄN XUÂN PHÚC\nVŨ HỒNG NAM\nPHẠM QUANG HƯỞNG\nNGUYỄN SỸ HIỆP\nPHẠM VIỆT DŨNG\nNGUYỄN HÒA BÌNH\nNGUYỄN BÁ THỦY\nNGUYỄN VĂN\
+    \ TOÀN\nTRẦN QUỐC TUẤN\nTHƯỢNG TÁ NGUYỄN VĂN ĐẠI\nTRẦN ĐỨC LƯỢNG\nTRẦN THỊ HÀ\nNGUYỄN THỊ PHƯƠNG HOA\nTRẦN MINH TUẤN\nPHẠM CÔNG TẠC\nNGUYỄN HỮU VŨ\nNGUYỄN HỮU VẠN\nNGUYỄN VĂN NÊN\nPHÓ THỦ TƯỚNG NGUYỄN\
+    \ XUÂN PHÚC\nNGUYỄN MINH NHẠN\nPHÓ THỦ TƯỚNG \nVŨ VĂN NINH\nPHÙNG QUANG THANH\nTHƯỢNG TƯỚNG BÙI VĂN NAM\nTRẦN XUÂN  HÀ\nPHÓ THỦ TƯỚNG TRƯƠNG VĨNH TRỌNG\nTRUNG TƯỚNG \nLÊ HƯU ĐỨC\nTRUNG TƯỚNG \nĐẶNG\
+    \ VĂN HIẾU\nPHẠM TRÍ THỨC\nTHIẾU TƯỚNG VŨ VĂN HIỂN"
+- id: art-4
+  title: TRUNG TƯỚNG TRẦN ĐẠI QUANG
+  text: "TRUNG TƯỚNG TRẦN ĐẠI QUANG\nTRUNG TƯỚNG LÊ HỮU ĐỨC\nTRẦN VĂN TÚ\nĐẶNG VĂN HIẾU\nTHƯỢNG TƯỚNG \nNGUYỄN THÀNH CUNG\nTRUNG TƯỚNG \nBÙI QUANG BỀN\nNGUYỄN THỊ HOÀNG ANH\nTRUNG TƯỚNG ĐỖ BÁ TỴ\nPHAN THỊ\
+    \ MỸ LINH\nLÊ TIẾN HÀO\nPHÓ THỦ TƯỚNG VŨ VĂN NINH\nTRUNG TƯỚNG NGUYỄN THÀNH CUNG\nTRUNG TƯỚNG \nNGUYỄN THÀNH CUNG\nLÊ KHÁNH HẢI\nNGUYỄN PHƯƠNG NGA\nHUỲNH VĂN TÍ\nTHƯỢNG TƯỚNG TRẦN ĐẠI QUANG\nSƠN MINH\
+    \ THẮNG\nTHƯỢNG TƯỚNG NGUYỄN THÀNH CHUNG\nLÊ MINH KHÁI\nLÊ HỮU THỂ\nPHÓ THỦ TƯỚNG\nNGUYỄN XUÂN PHÚC\nTHƯỢNG TƯỚNG LÊ THÀNH CUNG\nNÔNG QUỐC TUẤN\nTHƯỢNG TƯỚNG\nNGUYỄN THÀNH CUNG\nLÊ HỮU THẾ\nNGUYỄN ĐỨC\
+    \ LỢI\nTRẦN ĐẠI QUANG\nLÊ ĐỨC HẠNH\nTHƯỢNG TƯỚNG\n NGUYỄN THÀNH CUNG\nTRUNG TƯỚNG \nPHẠM QUÝ NGỌ\nNGUYỄN THANH HÀ\nTẠ ĐÌNH THI\nTRUNG TƯỚNG BÙI QUANG BEN\nHUỲNH QUANG HẢI\nTRUNG TƯỚNG BÙI QUANG BÊN\n\
+    THƯỢNG TỨONG NGUYỄN THÀNH CUNG\nNGUYỄN VĂN THỂ\nPHAN CHÍ HIẾU\nPHẠM THANH BÌNH\nNGUYỄN ĐẮC VINH\nPHẠM HỒNG HÀ\nLÊ ĐÌNH THỌ\nNGUYỄN KIM ANH\nNGUYỄN LINH NGOC\nTHƯỢNG TƯỚNG BÙI QUANG BEN\nĐỖ ĐỨC DUY\n\
+    NGÔ TRUNG THÀNH\nĐẠI TƯỚNG ĐỖ BÁ TỴ\nNGUYỄN TRỌNG THỪA\nĐẶNG THỊ BÍCH LIÊN\nNGUYỄN MINH VŨ\nĐỖ VĂN CHIẾN\nPHẠM HỒNG HẢI\nNGUYỄN XUÂN THÀNH\nĐÀO HỒNG LAN\nTRƯƠNG MINH TUẤN\nNGUYỄN THỊ KIM NGÂN\nNGUYỄN\
+    \ NGỌC THIỆN\nNGUYỄN NHẬT\nBÙI QUANG BỀN\nTRUNG TƯỚNG LÊ CHIÊM\nLÊ VĨNH TÂN\nNGUYỄN VINH HIẾN\nTRƯƠNG QUANG NGHĨA\nVÕ TUẤN NHÂN\nNGUYỄN NGỌC ĐÔNG\nNGUYỄN CHÍ DŨNG\nBÙI VĂN NAM\nTRUNG TƯỚNG PHAN VĂN\
+    \ GIANG\nPHAN VĂN SÁU\nTHƯỢNG TƯỚNG TÔ LÂM\nPHÓ THỦ TƯỚNG \nVŨ ĐỨC ĐAM\nTRUNG TƯỚNG TRẦN ĐƠN\nBÙI NGỌC HÒA\nPHAN TÂM\nHỒ ĐỨC PHỚC\nCHU PHẠM NGỌC HIỀN\nĐẠI TƯỚNG NGÔ XUÂN LỊCH\nTÔ LÂM\nTHƯỢNG TƯỚNG BẾ\
+    \ XUÂN TRƯỜNG\nPHÓ THỦ TƯỚNG\n VƯƠNG ĐÌNH HUỆ\nTRẦN TIẾN DŨNG\nPHÙNG XUÂN NHẠ\nNGUYỄN QUỐC DŨNG\nTHƯỢNG TƯỚNG NGUYỄN VĂN THÀNH\nĐÀO NGỌC DUNG\nPHÓ THỦ TƯỚNG TRỊNH ĐÌNH DŨNG\nLÊ HẢI TRIỀU\nPHÙNG QUỐC\
+    \ HIỂN\nTHƯỢNG TƯỚNG LÊ CHIÊM\nLÊ SƠN HẢI\nTHƯỢNG TƯỚNG TRẦN ĐƠN\nMAI TIẾN DŨNG\nTRẦN QUÂN\nTRƯƠNG QUỐC CƯỜNG\nPHẠM ĐẠI DƯƠNG\nTHIẾU TƯỚNG HOÀNG VĂN SÂM\nTHƯỢNG TƯỚNG PHAN VĂN GIANG\nLÊ QUÂN\nNGUYỄN\
+    \ HỮU ĐỘ\nNGUYỄN VĂN PHÚC\nTRẦN QUÝ KIÊN\nNGUYỄN XUÂN CƯỜNG\nNGUYỄN TRÍ TUỆ\nCHU TUẤN ĐỨC\nTRUNG TƯỚNG NGUYỄN VĂN SƠN\nTRỊNH THỊ THỦY\nVŨ VIỆT ANH\nLÊ TẤN DŨNG\nLÊ HOÀI TRUNG\nNGUYỄN DUY HƯNG\nNGUYỄN\
+    \ VĂN SINH\nNGUYỄN THỊ HÀ\nĐOÀN THÁI SƠN\nĐẶNG THỊ NGỌC THỊNH\nNGUYỄN MẠNH HÙNG\nLÊ CÔNG THÀNH\nNGUYỄN TRƯỜNG SƠN\nLÊ HẢI AN\nNGUYỄN VĂN QUẢNG\nĐẶNG HOÀNG OANH\nBÙI THẾ DUY\nPHÙNG ĐỨC TIẾN\nVŨ ĐẠI THẮNG\n\
+    ĐẠI TƯỚNG TÔ LÂM\nNGUYỄN HOÀNG HIỆP\nTÒNG THỊ PHÓNG\nNGUYỄN THẾ MẠNH\nMAI THỊ THU VÂN\nLÊ ANH TUẤN\nPHẠM ANH TUẤN\nCAO ANH TUẤN\nPHẠM NGỌC THƯỞNG\nNGUYỄN HỒNG MINH\nĐỖ XUÂN TUYÊN\nNGUYỄN VĂN DU\nPHẠM\
+    \ ĐÌNH THI\nTHIẾU TƯỚNG LÊ QUỐC HÙNG\nTHIẾU TƯỚNG LÊ QUỐC HÙNG\nTẠ ANH TUẤN\nLÊ XUÂN ĐỊNH\nĐẶNG HOÀNG AN\nNGUYỄN BÁ HOAN\nLÊ VĂN THANH\nNGUYỄN HUY TIẾN\nĐẠI TÁ NGUYỄN VĂN CHÍNH\nĐẶNG MINH KHÔI\nNGUYỄN\
+    \ QUANG DŨNG\nMAI LƯƠNG KHÔI\nNGÔ THỊ MINH\nTrần Duy Đông\nPhạm Minh Chính\nHoàng Minh Sơn\nLê Văn Thành\nTrần Văn Thuấn\nNguyễn Hải Trâm\nNguyễn Văn Hùng\nLê Minh Ngân\nĐào Viên\nVŨ HẢI SẢN\nTRUNG\
+    \ TƯỚNG VŨ HẢI SẢN\nNguyễn Hồng Diên\nNguyễn Kim Sơn\nPHÓ THỦ TƯỚNG Trương Hòa Bình\nPhạm Thị Thanh Trà\nThượng tướng Võ Minh Lương\nNguyễn Văn Hồi\nNguyễn Quốc Hưng\nTHƯỢNG TƯỚNG LÊ HUY VỊNH\nNguyễn\
+    \ Ngọc Toản\nBùi Hồng Minh\nĐại tướng Phan Văn Giang\nTrần Sỹ Thanh\nVõ Thành Hưng\nThượng tướng Nguyễn Tân Cương\nNguyễn Xuân Sang\nĐoàn Hồng Phong\nPhạm Đức Long\nCao Bằng\nHà Tĩnh\nHồ Chí\nHồ Thác\
+    \ Bà\nHầu A Lềnh\nNguyễn Sinh Nhật Tân\nPhạm Thanh Hà\nTrung tướng Nguyễn Duy Ngọc\nPhạm Tiến Dũng\nNguyễn Duy Lâm\nĐoàn Luật\nThượng tướng Vũ Hải Sản\nHồ Xuân Hương\nNguyễn Đình\nNguyễn Du\nNguyễn\
+    \ Huy\nNguyễn Khuyến\nNguyễn Trãi\nNguyễn Tuân\nNguyễn Duy Giảng\nMai Xuân Thành\nNguyễn Lương Ngọc\nTrần Ngọc Liêm\nNguyễn Hoàng Giang\nPhạm Huyền Anh\nBùi Văn Cường\nTrần Quốc Phương\nHuỳnh Thành\
+    \ Đạt\nĐinh Bộ Lĩnh\nLê Thánh Tông\nTrần Thủ Độ\nNguyễn Văn Tiến\nTrần Thanh Mẫn\nNguyễn Hồng Sâm\nNgô Văn Tuấn\nHoàng Sa\nLý Sơn\nLê Tuấn Anh\nNguyễn Danh Huy\nNguyễn Quốc Trị\nKhuất Duy Lê Minh\n\
+    Phan Rí\nHà Lan\nNguyễn Văn Thắng\nNgô Quyền\nThượng tướng Vũ Minh Lương\nTrần Lưu Quang\nVõ Thị Ánh Xuân\nVõ Văn Thưởng\nThượng tướng Lương Tam Quang\nNguyễn Trường Giang\nTriệu Thọ Hân\nĐặng Thế Vinh\n\
+    Lê Minh Hoan\nLê Đức Luận\nHoàng Trung\nNguyễn Tường Văn\nVũ Đăng Minh\nLê Sỹ Bảy"
+- id: art-5
+  title: Thượng tướng Phạm Hoài Nam
+  text: "Thượng tướng Phạm Hoài Nam\nNguyễn Thị Liên Hương\nPhan Thị Thắng\nDương Quốc Huy\nTrung tướng Lê Quốc Hùng\nBùi Văn Khắng\nNguyễn Thanh Tịnh\nLê Tấn Cận\nY Thông\nLê Minh Trí\nCao Huy\nNguyễn\
+    \ Thu Thủy\nTrần Hồng Thái\nNguyễn Thị Tường Vân\nPhạm Quang Dũng\nHoàng Đạo Cương\nNguyễn Huy Dũng\nNguyễn Đức Long\nBùi Xuân Dũng\nTrương Thanh Hoài\nNguyễn Hoàng Long\nLại Hữu Phước\nNguyễn Tuấn\
+    \ Anh\nBùi Hoàng Phương\nNguyễn Thị Thanh\nNguyễn Thị Kim Chi\nÂu Anh Tuấn\nMai Sơn\nĐại tướng Nguyễn Tân Cương\nTrần Lê Phương\nĐại tướng Lương Tam Quang\nCao Lộc\nNguyễn Đình Chiểu\nNguyễn Hữu Phú\n\
+    Lương\nLương Cường\nPhạm Thị Thanh Tâm\nPhạm Minh Hà\nHoàng Minh\nHồ Đức Anh\nTrần Minh Khương\nTrung tướng Nguyễn Văn Long\nTrần Hồng Minh\nNguyễn Văn Long\nVõ Minh Lương\nNguyễn Quốc Đoàn\nLê Quang\
+    \ Tùng\nVõ Văn Hưng\nMai Văn Chính\nĐỗ Thành Trung\nĐào Thị Hồng Lan\nNguyễn Hải Ninh\nNguyễn Tri Thức\nLê Thị Thu Hằng\nNguyễn Thanh Tú\nNguyễn Thanh Ngọc\nLê Tiến Đạt\nNguyễn Đức Tâm\nTrịnh Mạnh Linh\n\
+    Nguyễn Thị Bích Ngọc\nThượng tướng Nguyễn Văn Long\nPhạm Mạnh Cường\nHồ Quốc Dũng\nPhạm Chí Quang\nThượng tướng Lê Quốc Hùng\nThượng tướng Lê Đức Thái\nNguyễn Hải Trung\nNguyễn Ngọc Cảnh\nLê Quang Mạnh\n\
+    Hoàng Việt Dũng\nThượng tướng Nguyễn Trường Thắng\nThượng tướng Nguyễn Văn Gấu\nNgô Lê Văn\nLê Thị Việt Nga\nNguyễn Đức Thái\nThượng tướng Nguyễn Quang Ngọc\nThượng tướng Lê Văn Tuyến\nĐặng Ngọc Diệp\n\
+    Đỗ Ngọc Huỳnh\nTrần Đức Thắng\nVũ Hải Quân\nPhạm Gia Túc\nLê Tiến Châu\nNguyễn Hữu Nghĩa\nNguyễn Hữu Nghĩa\nHoàng Thanh Tùng\nNguyễn Mạnh Khương\nVũ Chiến Thắng\nPhan Văn Giang\nĐặng Hoàng Giang\nLâm\
+    \ Thị Phương Thanh\nTrần Hải Quân\nNguyễn Thị Quyên Thanh\nNguyễn Văn Cường\nNguyễn Văn Gấu\nĐoàn Trung Kiên\nThượng tướng Nguyễn Văn Hiền\nTrịnh Việt Hùng\nĐặng Ngọc Điệp\n                    Đóng\n\
+    \                    Tìm kiếm\n                                        Công báo số 516 ngày 18/09/2026\n                                    Trong số Công báo này gồm:  Nghị định số 347/2026/NĐ-CP sửa\
+    \ đổi, bổ sung một số điều của Nghị định số 169/2025/NĐ-CP ngày 30 tháng 6 năm 2025 của Chính phủ quy định hoạt động khoa học, công nghệ, đổi mới sáng tạo và sản phẩm, dịch vụ về dữ liệu; Nghị định\
+    \ số 105/2025/NĐ-CP ngày 15 tháng 5 năm 2025 của Chính phủ quy định chi tiết một số điều và biện pháp thi hành Luật Phòng cháy, chữa cháy và cứu nạn, cứu hộ; Nghị định số 106/2025/NĐ-CP ngày 15 tháng\
+    \ 5 năm 2025 của Chính phủ quy định xử phạt vi phạm hành chính trong lĩnh vực phòng cháy, chữa cháy và cứu nạn, cứu hộ; Nghị định số 282/2025/NĐ-CP ngày 30 tháng 10 năm 2025 của Chính phủ quy định xử\
+    \ phạt vi phạm hành chính trong lĩnh vực an ninh, trật tự, an toàn xã hội; phòng, chống tệ nạn xã hội; phòng, chống bạo lực gia đình; Nghị định số 348/2026/NĐ-CP quy định về điều kiện cơ sở đào tạo,\
+    \ huấn luyện và tổ chức tuyển dụng, cung ứng thuyền viên hàng hải; Thông tư liên tịch số 13/2026/TTLT-VKSNDTC-TANDTC-BCA-BQP-BTP quy định phối hợp giữ các cơ quan thực hiện thống kê giám định tư pháp\
+    \ trong tố tụng hình sự; Thông tư số 35/2026/TT-BNNMT ban hành định mức kinh tế - kỹ thuật giám sát mực nước lưu vực sông bằng công nghệ viễn thám\nMỤC LỤC\nVăn bản quy phạm pháp luật\nTrang\nCHÍNH\
+    \ PHỦ\n                                                Nghị định số 347/2026/NĐ-CP sửa đổi, bổ sung một số điều của Nghị định số 169/2025/NĐ-CP ngày 30 tháng 6 năm 2025 của Chính phủ quy định hoạt động\
+    \ khoa học, công nghệ, đổi mới sáng tạo và sản phẩm, dịch vụ về dữ liệu; Nghị định số 105/2025/NĐ-CP ngày 15 tháng 5 năm 2025 của Chính phủ quy định chi tiết một số điều và biện pháp thi hành Luật Phòng\
+    \ cháy, chữa cháy và cứu nạn, cứu hộ; Nghị định số 106/2025/NĐ-CP ngày 15 tháng 5 năm 2025 của Chính phủ quy định xử phạt vi phạm hành chính trong lĩnh vực phòng cháy, chữa cháy và cứu nạn, cứu hộ;\
+    \ Nghị định số 282/2025/NĐ-CP ngày 30 tháng 10 năm 2025 của Chính phủ quy định xử phạt vi phạm hành chính trong lĩnh vực an ninh, trật tự, an toàn xã hội; phòng, chống tệ nạn xã hội; phòng, chống bạo\
+    \ lực gia đình\n                                                08-09-2026\n3\nVăn bản quy phạm pháp luật\nCHÍNH PHỦ"
+- id: art-6
+  title: '                                                Nghị định số'
+  text: "                                                Nghị định số 348/2026/NĐ-CP quy định về điều kiện cơ sở đào tạo, huấn luyện và tổ chức tuyển dụng, cung ứng thuyền viên hàng hải\n              \
+    \                                  08-09-2026\n38\nVăn bản quy phạm pháp luật\nVIỆN KIỂM SÁT NHÂN DÂN TỐI CAO - TÒA ÁN NHÂN DÂN TỐI CAO - BỘ CÔNG AN - BỘ QUỐC PHÒNG - BỘ TƯ PHÁP\n                  \
+    \                              Thông tư liên tịch số 13/2026/TTLT-VKSNDTC-TANDTC-BCA-BQP-BTP quy định phối hợp giữ các cơ quan thực hiện thống kê giám định tư pháp trong tố tụng hình sự\n          \
+    \                                      26-08-2026\n55\nVăn bản quy phạm pháp luật\nBỘ NÔNG NGHIỆP VÀ MÔI TRƯỜNG\n                                                Thông tư số 35/2026/TT-BNNMT ban hành\
+    \ định mức kinh tế - kỹ thuật giám sát mực nước lưu vực sông bằng công nghệ viễn thám\n                                                28-08-2026\n101\n                                             \
+    \                   Văn phòng chính phủ xuất bản\n                                                            Địa chỉ: Số 1, Hoàng Hoa Thám - Ba Đình - Hà Nội.\n                                    \
+    \                        Điện thoại: 080.44417\n                                                            Email: congbao@chinhphu.vn.\n                                                            Website:\
+    \ http://congbao.chinhphu.vn\n                                                    Công báo tháng 9 năm 2026\n                                                        Chia sẻ\n                       \
+    \     Các văn bản đáng chú ý mới đăng công báo\n                                BỘ XÂY DỰNG\n                        73/2026/VBHN-TT-BXD\n                        Ngày ban hành: 14/09/2026\n        \
+    \                    Văn bản hợp nhất số 73/2026/VBHN-TT-BXD hợp nhất Thông tư Quy định về quản lý, khai thác vận tải đường sắt\n                        Ngày hết hiệu lực: \n                       \
+    \         BỘ XÂY DỰNG\n                        72/2026/VBHN-TT-BXD\n                        Ngày ban hành: 14/09/2026\n                            Văn bản hợp nhất số 72/2026/VBHN-TT-BXD hợp nhất Thông\
+    \ tư Quy định về quản lý, khai thác kết cấu hạ tầng đường sắt\n                        Ngày hết hiệu lực: \n                                BỘ CÔNG THƯƠNG\n                        77/2026/VBHN-TT-BCT\n\
+    \                        Ngày ban hành: 14/09/2026\n                            Văn bản hợp nhất số 77/2026/VBHN-TT-BCT hợp nhất Thông tư Sửa đổi, bổ sung một số quy định về phân cấp, cắt giảm, đơn\
+    \ giản hóa thủ tục hành chính trong các lĩnh vực thuộc phạm vi quản lý của Bộ Công Thương\n                        Ngày hết hiệu lực: \n                                BỘ CÔNG THƯƠNG\n             \
+    \           76/2026/VBHN-TT-BCT\n                        Ngày ban hành: 14/09/2026\n                            Văn bản hợp nhất số 76/2026/VBHN-TT-BCT hợp nhất Thông tư Sửa đổi, bổ sung một số quy\
+    \ định về phân cấp thực hiện thủ tục hành chính trong các lĩnh vực thuộc phạm vi quản lý của Bộ Công Thương\n                        Ngày hết hiệu lực: \n                                BỘ CÔNG THƯƠNG\n\
+    \                        75/2026/VBHN-TT-BCT\n                        Ngày ban hành: 14/09/2026\n                            Văn bản hợp nhất số 75/2026/VBHN-TT-BCT hợp nhất Thông tư Sửa đổi, bổ sung\
+    \ một số quy định về chế độ báo cáo định kỳ tại các Thông tư do Bộ trưởng Bộ Công Thương ban hành hoặc liên tịch ban hành\n                        Ngày hết hiệu lực: \n                            Xem\
+    \ thêm\nSơ đồ văn bản\n                                Cơ quan ban hành\n                                Hệ thống văn bản\n                                Văn bản mới\n                Tất cả\n     \
+    \                   Tất cả\nChủ tịch nước\nChủ tịch nước\nQuốc hội\nQuốc hội\nỦy ban thường vụ quốc hội\nỦy ban thường vụ quốc hội\nChính phủ\nChính phủ\nThủ tướng chính phủ\nThủ tướng chính phủ\nBộ\
+    \ trưởng, Thủ trưởng cơ quan ngang Bộ\n                        BỘ CÔNG AN\n                        BỘ CÔNG THƯƠNG"
+- id: art-7
+  title: '                        BỘ DÂN TỘC VÀ TÔN GIÁO'
+  text: "                        BỘ DÂN TỘC VÀ TÔN GIÁO\n                        BỘ GIÁO DỤC VÀ ĐÀO TẠO\n                        BỘ KHOA HỌC VÀ CÔNG NGHỆ\n                        BỘ NGOẠI GIAO\n       \
+    \                 BỘ NÔNG NGHIỆP VÀ MÔI TRƯỜNG\n                        BỘ NỘI VỤ\n                        BỘ QUỐC PHÒNG\n                        BỘ TÀI CHÍNH\n                        BỘ TƯ PHÁP\n \
+    \                       BỘ VĂN HÓA, THỂ THAO VÀ DU LỊCH\n                        BỘ XÂY DỰNG\n                        BỘ Y TẾ\n                        NGÂN HÀNG NHÀ NƯỚC VIỆT NAM\n                 \
+    \       THANH TRA CHÍNH PHỦ\n                        VĂN PHÒNG CHÍNH PHỦ\nHội đồng thẩm phán Tòa án nhân dân tối cao\nHội đồng thẩm phán Tòa án nhân dân tối cao\nChánh án Tòa án nhân dân tối cao\nChánh\
+    \ án Tòa án nhân dân tối cao\nViện trưởng Viện Kiểm sát nhân dân tối cao\nViện trưởng Viện Kiểm sát nhân dân tối cao\nTổng Kiểm toán nhà nước\nTổng Kiểm toán nhà nước\nVăn phòng Quốc hội\nVăn phòng\
+    \ Quốc hội\nCác cơ quan khác (Ban chỉ đạo,  Hội đồng….)\nCác cơ quan khác (Ban chỉ đạo,  Hội đồng….)\nĐiều ước quốc tế (do Bộ Ngoại giao gửi bản sao)\nĐiều ước quốc tế (do Bộ Ngoại giao gửi bản sao)\n\
+    Tất cả cơ quan ban hành\nChủ tịch nước\nQuốc hội\nỦy ban thường vụ quốc hội\nChính phủ\nThủ tướng chính phủ\nHội đồng thẩm phán Tòa án nhân dân tối cao\nBỘ CÔNG AN\nBỘ CÔNG THƯƠNG\nBỘ DÂN TỘC VÀ TÔN\
+    \ GIÁO\nBỘ GIÁO DỤC VÀ ĐÀO TẠO\nBỘ KHOA HỌC VÀ CÔNG NGHỆ\nBỘ NGOẠI GIAO\nBỘ NÔNG NGHIỆP VÀ MÔI TRƯỜNG\nBỘ NỘI VỤ\nBỘ QUỐC PHÒNG\nBỘ TÀI CHÍNH\nBỘ TƯ PHÁP\nBỘ VĂN HÓA, THỂ THAO VÀ DU LỊCH\nBỘ XÂY DỰNG\n\
+    BỘ Y TẾ\nNGÂN HÀNG NHÀ NƯỚC VIỆT NAM\nTHANH TRA CHÍNH PHỦ\nVĂN PHÒNG CHÍNH PHỦ\nChánh án Tòa án nhân dân tối cao\nViện trưởng Viện Kiểm sát nhân dân tối cao\nTổng Kiểm toán nhà nước\nVăn phòng Quốc\
+    \ hội\nCác cơ quan khác (Ban chỉ đạo, Hội đồng….)\nĐiều ước quốc tế (do Bộ Ngoại giao gửi bản sao)\n                                        Văn bản ban hành được đăng công báo\n                    \
+    \                            Xem thêm\n                                                            Tất cả\n                        Nghị định\n                        Quyết định\n                   \
+    \     Thông tư\n                        Chỉ thị\n                        Thông tư liên tịch\n                        Nghị quyết\n                        Văn bản hợp nhất\n                        Thông\
+    \ báo\n                        Công văn\n                        Sao lục\n                        Lệnh\n                        Luật\n                        Pháp lệnh\n                        Kế hoạch\n\
+    \                        Đính chính\n                        Công điện\n                        Hướng dẫn\n                        Hiến pháp\n                        Nghị quyết liên tịch\n         \
+    \               Báo cáo\n                        Quy chế\n                        Quy định\n                        Thông cáo\n                        Chương trình\n                        Phương án\n\
+    \                        Đề án\n                        Dự án\n                        Biên bản\n                        Tờ trình\n                        Hợp đồng\n                        Bản ghi nhớ\n\
+    \                        Bản thỏa thuận\n                        Giấy ủy quyền\n                        Giấy mời\n                        Giấy giới thiệu\n                        Giấy nghỉ phép\n \
+    \                       Phiếu gửi\n                        Phiếu chuyển\n                        Phiếu báo\n                        Thư công\n                        Kết luận\n                     \
+    \   Sao y\n                        Sắc lệnh\n                        Sắt luật\n                        Thông tư liên bộ\n                        Công văn điều hành\n                        Chưa được\
+    \ phân loại\n                        Điều hành\n                        Kế hoạch thẩm định\nTất cả\nNghị định\nQuyết định\nThông tư\nChỉ thị\nThông tư liên tịch\nNghị quyết\nVăn bản hợp nhất\nThông\
+    \ báo\nCông văn\nSao lục\nLệnh\nLuật\nPháp lệnh\nKế hoạch\nĐính chính\nCông điện\nHướng dẫn\nHiến pháp\nNghị quyết liên tịch\nBáo cáo\nQuy chế\nQuy định\nThông cáo\nChương trình\nPhương án"
+- id: art-8
+  title: Đề án
+  text: "Đề án\nDự án\nBiên bản\nTờ trình\nHợp đồng\nBản ghi nhớ\nBản thỏa thuận\nGiấy ủy quyền\nGiấy mời\nGiấy giới thiệu\nGiấy nghỉ phép\nPhiếu gửi\nPhiếu chuyển\nPhiếu báo\nThư công\nKết luận\nSao y\n\
+    Sắc lệnh\nSắt luật\nThông tư liên bộ\nCông văn điều hành\nChưa được phân loại\nĐiều hành\nKế hoạch thẩm định\n                                        Văn bản ban hành được đăng công báo\n          \
+    \                                      Xem thêm\n                                        Văn bản ban hành được đăng công báo\n                                                Xem thêm\nVăn phòng chính\
+    \ phủ xuất bản\n                            Cục Thông tin và Truyền thông Chính phủ\n                            Cục trưởng: \nNguyễn Hồng Sâm\n                    Địa chỉ: Số 1, Hoàng Hoa Thám - Ba\
+    \ Đình - Hà Nội.\n                    Điện thoại: 080.44417\n                    Email: congbao@chinhphu.vn.\n                            Giới thiệu \n                            Công báo điện tử\n\
+    \                            Thư điện tử \n                            công vụ Chính phủ\n                            Sơ đồ \n                            Công báo điện tử\n            Ghi rõ nguồn \n\
+    'congbao.chinhphu.vn'\n khi phát hành lại thông tin từ các nguồn này.\n Trang chủ \n Công báo \nVăn bản\n Menu \n                    Menu\n                    Đóng\n                        Trang chủ\n\
+    \                        Công báo\n                        văn bản đăng công báo\n                        Văn bản chỉ đạo điều hành"
 doc_files:
 - vn/raw/VN_政府公报.html
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：vn/raw/VN_政府公报.html (html, 29320 chars)，生成 8 条共 29320 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：vn/raw/VN_政府公报.html (html, 29320 chars)，生成 8 条共 29320 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：vn/raw/VN_政府公报.html (html, 29320 chars)，生成 8 条共 29320 字符；解析文本未人工复核，引用以官方原件为准。'

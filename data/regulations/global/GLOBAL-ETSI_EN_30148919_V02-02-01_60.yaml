@@ -9,11 +9,618 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'ETSI EN 301 489-19
+
+    V2.2.1
+
+    (2022-09)
+
+    HARMONISED EUROPEAN STAN'
+  text: 'ETSI EN 301 489-19
+
+    V2.2.1
+
+    (2022-09)
+
+    HARMONISED EUROPEAN STANDARD
+
+    ElectroMagnetic Compatibility (EMC)
+
+    standard for radio equipment and services;
+
+    Part 19: Specific conditions for Receive Only Mobile
+
+    Earth Stations (ROMES) operating in the 1,5 GHz band
+
+    providing data communications and GNSS receivers operating
+
+    in the RNSS band providing positioning, navigation,
+
+    and timing data;
+
+    Harmonised Standard for ElectroMagnetic Compatibility
+
+    2 ETSI EN 301 489-19 V2.2.1 (2022-09)
+
+    Reference
+
+    REN/ERM-EMC-406
+
+    Keywords
+
+    data, earth station, EMC, GNSS,
+
+    harmonised standard, mobile, MSS, radio,
+
+    receiver, regulation, satellite, testing
+
+    ETSI
+
+    650 Route des Lucioles
+
+    F-06921 Sophia Antipolis Cedex - FRANCE
+
+    Tel.: +33 4 92 94 42 00 Fax: +33 4 93 65 47 16
+
+    Siret N° 348 623 562 00017 - APE 7112B
+
+    Association à but non lucratif enregistrée à la
+
+    Sous-Préfecture de Grasse (06) N° w061004871
+
+    Important notice
+
+    The present document can be downloaded from:
+
+    http://www.etsi.org/standards-search
+
+    The present document may be made available in electronic versions and/or in print. The content of any electronic and/or
+
+    print versions of the present document shall not be modified without the prior written authorization of ETSI. In case of any
+
+    existing or perceived difference in contents between such versions and/or in print, the prevailing version of an ETSI
+
+    deliverable is the one made publicly available in PDF format at www.etsi.org/deliver.
+
+    Users of the present document should be aware that the document may be subject to revision or change of status.
+
+    Information on the current status of this and other ETSI documents is available at
+
+    https://portal.etsi.org/TB/ETSIDeliverableStatus.aspx
+
+    If you find errors in the present document, please send your comment to one of the following services:
+
+    https://portal.etsi.org/People/CommiteeSupportStaff.aspx
+
+    If you find a security vulnerability in the present document, please report it through our
+
+    Coordinated Vulnerability Disclosure Program:
+
+    https://www.etsi.org/standards/coordinated-vulnerability-disclosure
+
+    Notice of disclaimer & limitation of liability
+
+    The information provided in the present deliverable is directed solely to professionals who have the appropriate degree of
+
+    experience to understand and interpret its content in accordance with generally accepted engineering or
+
+    other professional standard and applicable regulations.
+
+    No recommendation as to products and services or vendors is made or should be implied.
+
+    In no event shall ETSI be held liable for loss of profits or any other incidental or consequential damages.
+
+    Any software contained in this deliverable is provided "AS IS" with no warranties, express or implied, including but not
+
+    limited to, the warranties of merchantability, fitness for a particular purpose and non-infringement of intellectual property
+
+    rights and ETSI shall not be held liable in any event for any damages whatsoever (including, without limitation, damages
+
+    for loss of profits, business interruption, loss of information, or any other pecuniary loss) arising out of or related to the use
+
+    of or inability to use the software.
+
+    Copyright Notification
+
+    No part may be reproduced or utilized in any form or by any means, electronic or mechanical, including photocopying and
+
+    microfilm except as authorized by written permission of ETSI.
+
+    The content of the PDF version shall not be modified without the written authorization of ETSI.
+
+    The copyright and the foregoing restriction extend to reproduction in all media.
+
+    © ETSI 2022.
+
+    All rights reserved.
+
+    ETSI
+
+    3 ETSI EN 301 489-19 V2.2.1 (2022-09)
+
+    Contents
+
+    Intellectual Property Rights ................................................................................................................................ 4
+
+    Foreword ............................................................................................................................................................. 4
+
+    Modal verbs terminology .................................................................................................................................... 5
+
+    1 Scope ........................................................................................................................................................ 6
+
+    2 References ................................................................................................................................................ 7
+
+    2.1 Normative references ......................................................................................................................................... 7
+
+    2.2 Informative references ........................................................................................................................................ 7
+
+    3 Definition of terms, symbols and abbreviations ....................................................................................... 8
+
+    3.1 Terms .................................................................................................................................................................. 8
+
+    3.2 Symbols .............................................................................................................................................................. 8
+
+    3.3 Abbreviations ..................................................................................................................................................... 8
+
+    4 Test conditions ......................................................................................................................................... 9
+
+    4.1 General ............................................................................................................................................................... 9
+
+    4.2 Arrangements for test signals ............................................................................................................................. 9
+
+    4.2.0 General .......................................................................................................................................................... 9
+
+    4.2.1 Arrangements for test signals at the input of ROMES and GNSS receivers ................................................. 9
+
+    4.2.2 Arrangements for test signals at the output of ROMES and GNSS receivers............................................... 9
+
+    4.3 Exclusion bands ................................................................................................................................................ 10
+
+    4.3.0 General ........................................................................................................................................................ 10
+
+    4.3.1 Receiver exclusion bands ............................................................................................................................ 10
+
+    4.3.1.1 General .................................................................................................................................................. 10
+
+    4.3.1.2 GNSS exclusion bands .......................................................................................................................... 10
+
+    4.3.1.3 ROMES Exclusion Bands ..................................................................................................................... 10
+
+    4.3.1.4 Combined Equipment GNSS & ROMES .............................................................................................. 11
+
+    4.3.1.5 Exclusion Bands Summary ................................................................................................................... 11
+
+    4.4 Narrow band responses of receivers ................................................................................................................. 11
+
+    4.5 Normal test modulation .................................................................................................................................... 11
+
+    5 Performance assessment ......................................................................................................................... 12
+
+    5.1 General ............................................................................................................................................................. 12
+
+    5.2 Ancillary equipment ......................................................................................................................................... 12
+
+    6 Performance criteria ............................................................................................................................... 12
+
+    6.0 Introduction ...................................................................................................................................................... 12
+
+    6.1 Performance criteria for Continuous phenomena ............................................................................................. 12
+
+    6.2 Performance criteria for Transient phenomena ................................................................................................ 12
+
+    7 Applicability overview ........................................................................................................................... 13
+
+    7.1 Emission ........................................................................................................................................................... 13
+
+    7.1.1 General ........................................................................................................................................................ 13
+
+    7.1.2 Special conditions ....................................................................................................................................... 13
+
+    7.2 Immunity .......................................................................................................................................................... 13
+
+    Annex A (informative): Relationship between the present document and the essential
+
+    requirements of Directive 2014/53/EU ......................................................... 15
+
+    Annex B (informative): Void ................................................................................................................. 17'
+- id: art-2
+  title: 'Annex C (informative): Change history ............................................................................................... 18'
+  text: 'Annex C (informative): Change history ............................................................................................... 18
+
+    History .............................................................................................................................................................. 19
+
+    ETSI
+
+    4 ETSI EN 301 489-19 V2.2.1 (2022-09)
+
+    Intellectual Property Rights
+
+    Essential patents
+
+    IPRs essential or potentially essential to normative deliverables may have been declared to ETSI. The declarations
+
+    pertaining to these essential IPRs, if any, are publicly available for ETSI members and non-members, and can be
+
+    found in ETSI SR 000 314: "Intellectual Property Rights (IPRs); Essential, or potentially Essential, IPRs notified to
+
+    ETSI in respect of ETSI standards", which is available from the ETSI Secretariat. Latest updates are available on the
+
+    ETSI Web server (https://ipr.etsi.org/).
+
+    Pursuant to the ETSI Directives including the ETSI IPR Policy, no investigation regarding the essentiality of IPRs,
+
+    including IPR searches, has been carried out by ETSI. No guarantee can be given as to the existence of other IPRs not
+
+    referenced in ETSI SR 000 314 (or the updates on the ETSI Web server) which are, or may be, or may become,
+
+    essential to the present document.
+
+    Trademarks
+
+    The present document may include trademarks and/or tradenames which are asserted and/or registered by their owners.
+
+    ETSI claims no ownership of these except for any which are indicated as being the property of ETSI, and conveys no
+
+    right to use or reproduce any trademark and/or tradename. Mention of those trademarks in the present document does
+
+    not constitute an endorsement by ETSI of products, services or organizations associated with those trademarks.
+
+    DECT™, PLUGTESTS™, UMTS™ and the ETSI logo are trademarks of ETSI registered for the benefit of its
+
+    Members. 3GPP™ and LTE™ are trademarks of ETSI registered for the benefit of its Members and of the 3GPP
+
+    Organizational Partners. oneM2M™ logo is a trademark of ETSI registered for the benefit of its Members and of the
+
+    oneM2M Partners. GSM® and the GSM logo are trademarks registered and owned by the GSM Association.
+
+    Foreword
+
+    This Harmonised European Standard (EN) has been produced by ETSI Technical Committee Electromagnetic
+
+    compatibility and Radio spectrum Matters (ERM).
+
+    The present document has been prepared under the Commission''s standardisation request C(2015) 5376 final [i.2] to
+
+    provide one voluntary means of conforming to the essential requirements of Directive 2014/53/EU on the harmonisation
+
+    of the laws of the Member States relating to the making available on the market of radio equipment and repealing
+
+    Directive 1999/5/EC [i.1].
+
+    Once the present document is cited in the Official Journal of the European Union under that Directive, compliance with
+
+    the normative clauses of the present document given in table A.1 confers, within the limits of the scope of the present
+
+    document, a presumption of conformity with the corresponding essential requirements of that Directive and associated
+
+    EFTA regulations.
+
+    The present document is part 19 of a multi-part deliverable. Full details of the entire series can be found in part 1 [1].
+
+    National transposition dates
+
+    Date of adoption of this EN: 30 August 2022
+
+    Date of latest announcement of this EN (doa): 30 November 2022
+
+    Date of latest publication of new National Standard
+
+    or endorsement of this EN (dop/e): 31 May 2023
+
+    Date of withdrawal of any conflicting National Standard (dow): 31 May 2024
+
+    ETSI
+
+    5 ETSI EN 301 489-19 V2.2.1 (2022-09)
+
+    Modal verbs terminology
+
+    In the present document "shall", "shall not", "should", "should not", "may", "need not", "will", "will not", "can" and
+
+    "cannot" are to be interpreted as described in clause 3.2 of the ETSI Drafting Rules (Verbal forms for the expression of
+
+    provisions).
+
+    "must" and "must not" are NOT allowed in ETSI deliverables except when used in direct citation.
+
+    ETSI
+
+    6 ETSI EN 301 489-19 V2.2.1 (2022-09)
+
+    1 Scope
+
+    The present document covers the assessment of Receive Only Mobile Earth Stations (ROMES) and Global Navigation
+
+    Satellite System (GNSS) receivers in respect of electromagnetic compatibility.
+
+    ROMES operate in the Land Mobile Satellite Service (LMSS) space to earth bands, 1 518 MHz to 1 559 MHz,
+
+    allocated by the ITU Radio Regulations [i.3]. ROMES operate as part of a satellite system providing one way data
+
+    communications.
+
+    Global Navigation Satellite System (GNSS) receivers operate in either or both of the space to earth RNSS frequency
+
+    bands of 1 164 MHz to 1 300 MHz and 1 559 MHz to 1 610 MHz defined as "A radiodetermination-satellite service
+
+    used for the purpose of radionavigation" (article 1.43 of ITU Radio Regulations [i.3]) with the ability to receive any
+
+    GNSS (e.g. Galileo, Global Positioning System (GPS), BeiDou (BDS), GLObal NAvigation Satellite System
+
+    (GLONASS), Space Based Augmentation Systems (SBAS)).
+
+    Technical specifications related to the antenna port and emissions from the enclosure port of ROMES and GNSS are not
+
+    included in the present document. Such technical specifications are found in the relevant product standards for the
+
+    effective use of the radio spectrum in table 1.
+
+    Table 1: Radio Technologies in Scope of the present document
+
+    Technology ETSI Standard
+
+    ROMES ETSI EN 300 487 [i.4]: "Satellite Earth Stations and Systems (SES); Harmonised Standard for
+
+    Receive-Only Mobile Earth Stations (ROMES) providing data communications operating in the 1,5 GHz
+
+    frequency band; Radio Frequency (RF) specifications covering the essential requirements of article 3.2
+
+    of the Directive 2014/53/EU".
+
+    GNSS ETSI EN 303 413 [i.5]: "Satellite Earth Stations and Systems (SES);Global Navigation Satellite System
+
+    (GNSS) receivers; Radio equipment operating in the 1 164 MHz to 1 300 MHz and 1 559 MHz to
+
+    1 610 MHz frequency bands; Harmonised Standard covering the essential requirements of article 3.2
+
+    of Directive 2014/53/EU".
+
+    Emissions requirements in the present document are specified for frequencies above 9 kHz.
+
+    The present document specifies the applicable test conditions, performance assessment and performance criteria for
+
+    ROMES, GNSS and associated ancillary equipment.
+
+    ROMESs and GNSS can have several configurations, including:
+
+    • vehicular equipment;
+
+    • portable equipment;
+
+    • fixed equipment;
+
+    • a number of modules including a display/control interface to the user.
+
+    The performance criteria used in the present document require that the satellite communications system of which the
+
+    ROMES and GNSS is a part provides reliable delivery of data or messages.
+
+    The environmental classification and the emission and immunity requirements used in the present document are as
+
+    stated in ETSI EN 301 489-1 [1], except for any special conditions included in the present document.
+
+    NOTE: The relationship between the present document and essential requirements of article 3.1(b) of Directive
+
+    2014/53/EU [i.1] is given in annex A.
+
+    ETSI
+
+    7 ETSI EN 301 489-19 V2.2.1 (2022-09)
+
+    2 References
+
+    2.1 Normative references
+
+    References are either specific (identified by date of publication and/or edition number or version number) or
+
+    non-specific. For specific references, only the cited version applies. For non-specific references, the latest version of the
+
+    referenced document (including any amendments) applies.
+
+    Referenced documents which are not found to be publicly available in the expected location might be found at
+
+    https://docbox.etsi.org/Reference/.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    The following referenced documents are necessary for the application of the present document.
+
+    [1] ETSI EN 301 489-1 (V2.2.3) (11-2019): "ElectroMagnetic Compatibility (EMC) standard for
+
+    radio equipment and services; Part 1: Common technical requirements; Harmonised Standard for
+
+    ElectroMagnetic Compatibility".
+
+    2.2 Informative references
+
+    References are either specific (identified by date of publication and/or edition number or version number) or
+
+    non-specific. For specific references, only the cited version applies. For non-specific references, the latest version of the
+
+    referenced document (including any amendments) applies.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    The following referenced documents are not necessary for the application of the present document but they assist the
+
+    user with regard to a particular subject area.
+
+    [i.1] Directive 2014/53/EU of the European Parliament and of the Council of 16 April 2014 on the
+
+    harmonisation of the laws of the Member States relating to the making available on the market of
+
+    radio equipment and repealing Directive 1999/5/EC.
+
+    [i.2] Commission Implementing Decision C(2015) 5376 final of 4.8.2015 on a standardisation request
+
+    to the European Committee for Electrotechnical Standardisation and to the European
+
+    Telecommunications Standards Institute as regards radio equipment in support of Directive
+
+    2014/53/EU of the European Parliament and of the Council.
+
+    [i.3] ITU Radio Regulations (2016).
+
+    [i.4] ETSI EN 300 487 (V2.1.2) (11-2016): "Satellite Earth Stations and Systems (SES); Harmonised
+
+    Standard for Receive-Only Mobile Earth Stations (ROMES) providing data communications
+
+    operating in the 1,5 GHz frequency band; Radio Frequency (RF) specifications covering the
+
+    essential requirements of article 3.2 of the Directive 2014/53/EU".
+
+    [i.5] ETSI EN 303 413 (V1.2.1) (04-2021): "Satellite Earth Stations and Systems (SES); Global
+
+    Navigation Satellite System (GNSS) receivers; Radio equipment operating in the 1 164 MHz to
+
+    1 300 MHz and 1 559 MHz to 1 610 MHz frequency bands; Harmonised Standard for access to
+
+    radio spectrum".
+
+    ETSI
+
+    8 ETSI EN 301 489-19 V2.2.1 (2022-09)
+
+    3 Definition of terms, symbols and abbreviations
+
+    3.1 Terms
+
+    For the purposes of the present document, the terms given in ETSI EN 301 489-1 [1] and the following apply:
+
+    ancillary equipment: electrical or electronic equipment that is intended to be used with a receiver
+
+    NOTE: It is considered as an ancillary equipment if:
+
+    
+
+    the equipment is intended for use with a receiver to provide additional operational and/or control
+
+    features to the radio equipment (e.g. to extend control to another position or location);
+
+    
+
+    the ancillary equipment cannot be used without being connected to radio equipment to provide user
+
+    functions independently of a receiver; and
+
+    
+
+    the receiver to which it is connected, is capable of providing some intended operation such as
+
+    receiving without the ancillary equipment (i.e. it is not a sub-unit of the main equipment essential
+
+    to the main equipment basic functions).
+
+    critical stored data: data that is essential for an EUT to perform a primary function in accordance with that EUT''s
+
+    specification
+
+    NOTE: This may include data previously stored by the user.
+
+    Equipment Under Test (EUT): equipment subject to the performance requirements of the present document
+
+    fixed equipment: equipment intended for use in a fixed location and fitted with one or more antennas
+
+    live sky signal: signal received from actual existing satellites
+
+    portable equipment: radio equipment intended for portable use and powered by integral batteries or battery
+
+    NOTE: Devices will typically be handheld.
+
+    stand-alone radio equipment: equipment that is intended primarily as communications equipment and that is normally
+
+    used on a stand-alone basis
+
+    vehicular equipment: radio equipment intended for installation and use in a vehicle, and powered by the main battery
+
+    of the vehicle
+
+    3.2 Symbols
+
+    Void.
+
+    3.3 Abbreviations
+
+    For the purposes of the present document, the following abbreviations apply:
+
+    AC Alternating Current
+
+    BDS BeiDou - Chinese satellite navigation system
+
+    dB decibel
+
+    DC Direct Current
+
+    EMC ElectroMagnetic Compatibility
+
+    EUT Equipment Under Test
+
+    GHz Gigahertz
+
+    GNSS Global Navigation Satellite System
+
+    GPS Global Positioning System
+
+    kHz Kilohertz
+
+    LMSS Land Mobile Satellite Service
+
+    MFCN Mobile Fixed Communications Network'
+- id: art-3
+  title: 'Annex C (informative):'
+  text: 'Annex C (informative):
+
+    Change history
+
+    Version Information about changes
+
+    2.1.0 Addition of GNSS receivers
+
+    2.1.1 Bringing into line with latest ETSI EN 301 489-1
+
+    2.1.2 Changes and simplification following EMC#57
+
+    2.1.3 Changes following EMC#58
+
+    2.1.4 Changes following Remote Consensus
+
+    ETSI
+
+    19 ETSI EN 301 489-19 V2.2.1 (2022-09)
+
+    History
+
+    Document history
+
+    V1.1.1 December 2000 Publication
+
+    V1.2.1 November 2002 Publication
+
+    V2.1.1 April 2019 Publication
+
+    V2.2.0 September 2020 EN Approval Procedure AP 20201217: 2020-09-18 to 2020-12-17
+
+    V2.2.1 July 2022 Vote V 20220830: 2022-07-01 to 2022-08-30
+
+    V2.2.1 September 2022 Publication
+
+    ETSI'
 doc_files:
 - global/raw/ETSI_EN_30148919_v02.02.01_60.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30148919_v02.02.01_60.pdf (pdf, 39679 chars)，生成 3 条共 22743 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30148919_v02.02.01_60.pdf (pdf, 39679 chars)，生成 3 条共 22743 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30148919_v02.02.01_60.pdf (pdf, 39679 chars)，生成 3 条共 22743 字符；解析文本未人工复核，引用以官方原件为准。'

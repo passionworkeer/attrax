@@ -191,7 +191,7 @@ attrax/
 │   └── tests/                    # pytest 单元测试
 │
 ├── data/                         # 数据文件
-│   ├── regulations/              # 法规库：61 篇锚点法规 YAML（36 篇带条款正文）+ 63 篇目录条目（attrax-docs 导入，仅元数据）→ regulations_index.json 共 124 条
+│   ├── regulations/              # 法规库：724 条 YAML（618 篇带条款正文，36 人工 + 582 机器解析）→ regulations_index.json；全库均有 KB 锚点（61 curated + 650 auto），扫描经 anchor_selection 封顶选取
 │   │   └── _imports/             # 目录导入清单（2026-09-19 attrax-docs）+ README；导入脚本 scripts/import_regulation_docs.py
 │   ├── kb/                       # KB 锚点 YAML
 │   ├── inspection_profiles/      # 视觉检查 profile（11 个 yaml）
@@ -338,6 +338,16 @@ const SessionIdSchema = z
 ---
 
 ## 最近修复
+
+### 2026-09-19 — 法规库全量接入扫描管线（724 条去重 / 650 自动锚点 / 582 条原件解析进引用）
+
+- **背景**：9-19 三批导入（regulation-raw 920 + attrax-docs 增量 + watchdog 4）后法规库 1048 条只进 `/regulations` 展示、不进扫描引用；且存在大量跨批次重复登记（GDPR 三条、CFR 每 part 四条等）。本批次让全库进入扫描检索并清理重复。完整记录：`docs/evidence/2026-09-19-library-scan-integration/README.md`
+- **三轮去重 1048 → 724**（`scripts/dedup_regulations.py`）：①文书号分组 60 组（CN GB 标准号含分部号整段比较、region 进 key、含完整日期的 Federal Register 每日刊不分组——首轮 dry-run 抓出并修掉部号碰撞/跨区域碰撞两类假分组）；②引用号分组 82 组（CFR `-2/-3/-4` URL 变体家族）；③人工合并表 4 组（UK watchdog vs attrax-docs 同源：EPR/REACH/SVHC/WEEE，保留 watchdog id）
+- **原件解析 582 条进 articles**（`scripts/extract_regulation_articles.py`）：xhtml > xml > pdf > html 格式优先（修掉 EU FDI 两条登记错配的研究报告正文）；条款标题正则分段（第X条/Article N/§N.N/…）；无条款标题且 <6000 字符视为门户残渣拒绝；单法规 32k 字符截断；`source_kind: official_verbatim` + notes 记录解析来源；`--redo` 幂等重跑（人工整理的 36 条永不动）
+- **650 个自动锚点**（`scripts/generate_kb_anchors.py`，`curation: auto` 标记）：domain→品类/特征/市场级锚点；GCC→[SA,AE]；GLOBAL/UN→ALWAYS_INCLUDE；VN/ID/IN/MY/TH/NZ 建锚点但产品未开放这些市场选不到；每日刊/数据集 13 条排除。US CFR 81 条 short_name 从 raw XML FDSYS 标题补全（`scripts/enrich_us_cfr_names.py`）
+- **扫描侧**：`kb_loader` 增 `get_anchors_by_market` + ALWAYS_INCLUDE 加 GLOBAL；`build_anchor_list` 过滤改完整 markets 列表；**新增 `rag_service/retrieval/anchor_selection.py`**——curated 61 条全过，生成锚点按池封顶（品类 12/每市场横切 3/GLOBAL+UN 3），排序信号 = 标题产品词 > 品类关键词（英文桥接）> 横切领域优先级，生成锚点正文预算 40k 字符；`_build_mandatory_section` 对自动接入条目标注并放宽为适用性判断
+- **验证**：pytest 745 + watchdog/脚本 183（含新增 30 用例：假分组防御/分段门槛/锚点映射）+ vitest 1012 + tsc + eslint 0 error；本地真实端到端扫描（electronics EU/US，DeepSeek 降级）65s ready，20 引用 16 matched，**新库法规被真实引用**（UCPD/CRD/47 CFR Part 15 §15.1 逐字引用/47 CFR Part 2/16 CFR 1505）
+- **残留**：321 条门户残渣保持元数据行（需 headless browser 才能抓真实正文）；生成锚点 key_points 是程序化描述需人工精修；VN/ID/MY/TH/NZ/IN/GCC 法规待产品开放市场
 
 ### 2026-09-19 — 管理员运营 BI 看板 /admin（分支 `codex/admin-bi-dashboard`，已合并进 main 并部署上线）
 

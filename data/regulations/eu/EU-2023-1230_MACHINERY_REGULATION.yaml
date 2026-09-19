@@ -9,11 +9,1025 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'L_2023165EN.01000101.xml
+
+
+    29.6.2023
+
+
+    EN
+
+
+    Official Journal of'
+  text: 'L_2023165EN.01000101.xml
+
+
+    29.6.2023
+
+
+    EN
+
+
+    Official Journal of the European Union
+
+
+    L 165/1
+
+
+    REGULATION (EU) 2023/1230 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL
+
+
+
+    of 14 June 2023
+
+
+
+    on machinery and repealing Directive 2006/42/EC of the European Parliament and of the Council and Council Directive 73/361/EEC
+
+
+    (Text with EEA relevance)
+
+
+    THE EUROPEAN PARLIAMENT AND THE COUNCIL OF THE EUROPEAN UNION,
+
+
+    Having regard to the Treaty on the Functioning of the European Union, and in particular Article 114 thereof,
+
+
+    Having regard to the proposal from the European Commission,
+
+
+    After transmission of the draft legislative act to the national parliaments,
+
+
+    Having regard to the opinion of the European Economic and Social Committee
+
+    (
+
+    1
+
+    )
+
+    ,
+
+
+    Acting in accordance with the ordinary legislative procedure
+
+    (
+
+    2
+
+    )
+
+    ,
+
+
+    Whereas:
+
+
+    (1)
+
+
+    Directive 2006/42/EC of the European Parliament and of the Council
+
+    (
+
+    3
+
+    )
+
+    was adopted in the context of establishing the internal market, in order to harmonise health and safety requirements for machinery in all Member States and to remove obstacles to trade in machinery
+    between Member States.
+
+
+    (2)
+
+
+    The machinery sector is an important part of the engineering industry and is one of the industrial mainstays of the Union economy. The social cost of the large number of accidents caused directly by
+    the use of machinery can be reduced by inherently safe design and construction of machinery and by proper installation and maintenance.
+
+
+    (3)
+
+
+    Experience with the application of Directive 2006/42/EC has shown inadequacies and inconsistencies in the product coverage and conformity assessment procedures. It is therefore necessary to improve,
+    simplify and adapt the provisions set out in that Directive to the needs of the market and provide clear rules in relation to the framework within which products within the scope of this Regulation
+    may be made available on the market.
+
+
+    (4)
+
+
+    Since the rules setting out the requirements for products within the scope of this Regulation, in particular the essential health and safety requirements and the conformity assessment procedures, need
+    to be of uniform application for all operators across the Union, and not give room for divergent implementation by Member States, Directive 2006/42/EC should be replaced by a regulation.
+
+
+    (5)
+
+
+    Member States are responsible for protecting, on their territory, the health and safety of persons, in particular workers and consumers, and, where appropriate, domestic animals and property, and, where
+    applicable, for protecting the environment, notably in relation to the risks arising out of the intended use or any reasonably foreseeable misuse of machinery or related products. For the avoidance
+    of doubt, domestic animals should be considered to include farm animals.
+
+
+    (6)
+
+
+    Regulation (EC) No 765/2008 of the European Parliament and of the Council
+
+    (
+
+    4
+
+    )
+
+    lays down rules on the accreditation of conformity assessment bodies, and the general principles of the CE marking. That Regulation should be applicable to products within the scope of this Regulation
+    in order to ensure that those products, which are benefiting from the free movement of goods within the Union, fulfil requirements providing for a high level of protection of public interests such as
+    the protection of the health and safety of persons and, where appropriate, domestic animals and property, and, where applicable, of the environment.
+
+
+    (7)
+
+
+    Regulation (EU) 2019/1020 of the European Parliament and of the Council
+
+    (
+
+    5
+
+    )
+
+    sets out rules on market surveillance and control of products entering the Union market. As Directive 2006/42/EC is listed in Annex I of Regulation (EU) 2019/1020, that Regulation already applies to
+    products within the scope of this Regulation. However, Regulation (EU) 2019/1020 applies to products within the scope of this Regulation insofar as there are no specific provisions with the same objective,
+    which regulate in a more specific manner particular aspects of market surveillance and enforcement.
+
+
+    (8)
+
+
+    Regulation (EU) 2019/1020 lays down the tasks of economic operators regarding products subject to certain Union harmonisation legislation. It also provides that such products are to be placed on the
+    market only if there is an economic operator established in the Union who is responsible for those tasks. That Union harmonisation legislation includes Directive 2006/42/EC. As a result, products within
+    the scope of this Regulation are to be placed on the market only if there is an economic operator established in the Union who is responsible for the tasks set out in Regulation (EU) 2019/1020 in respect
+    of those products.
+
+
+    (9)
+
+
+    Decision No 768/2008/EC of the European Parliament and of the Council
+
+    (
+
+    6
+
+    )
+
+    lays down common principles and reference provisions intended to apply across sectoral legislation. In order to ensure consistency with other sectoral product legislation, it is appropriate to align
+    certain provisions of this Regulation to that Decision, insofar as sectoral specificities do not require a different solution. Therefore, certain definitions, the general obligations of economic operators,
+    the rules on presumption of conformity, the rules on EU declaration of conformity, the rules on CE marking, the requirements for conformity assessment bodies, the rules on notification procedures and
+    conformity assessment procedures and the rules on procedures to deal with machinery or related products, and, where applicable, with partly completed machinery, presenting a risk should be adapted to
+    the reference provisions laid down in that Decision.
+
+
+    (10)
+
+
+    This Regulation should cover products which are new to the Union market when placed on the market, and are either new products made by a manufacturer established in the Union or products, whether new
+    or second-hand, imported from a third country.
+
+
+    (11)
+
+
+    Where there is a possibility that machinery or related products will be used by a consumer, that is to say, a non-professional user, the manufacturer should take account of the fact that the consumer
+    does not have the same knowledge of and experience in handling machinery or related products in the design and construction of the products. The same applies where the machinery or related product is
+    normally used to provide a service to a consumer.
+
+
+    (12)
+
+
+    Recently, more advanced machinery, which is less dependent on human operators, has been introduced on the market. Such machinery is working on defined tasks and in structured environments, yet it can
+    learn to perform new actions in this context and become more autonomous. Further refinements to machinery, already in place or to be expected, include real-time processing of information, problem solving,
+    mobility, sensor systems, learning, adaptability, and capability of operating in unstructured environments (for example construction sites). The Commission Report on the safety and liability implications
+    of Artificial Intelligence, the Internet of Things and Robotics of 19 February 2020, states that the emergence of new digital technologies, like artificial intelligence, the Internet of things and robotics,
+    raises new challenges in terms of product safety. The report concludes that the current product safety legislation, including Directive 2006/42/EC, contains a number of gaps in this respect that need
+    to be addressed. Thus, this Regulation should cover the safety risks stemming from new digital technologies.
+
+
+    (13)
+
+
+    In order to ensure protection of the health and safety of persons, and, where appropriate, domestic animals and property, and, where applicable, of the environment, this Regulation should apply to all
+    forms of supply of products within the scope of this Regulation, including distance selling as referred to in Regulation (EU) 2019/1020.
+
+
+    (14)
+
+
+    In order to ensure legal certainty, the scope of this Regulation should be set out in a clear manner and the concepts relating to its application should be defined as precisely as possible.
+
+
+    (15)
+
+
+    In order to ensure that the scope of this Regulation is sufficiently clear, a distinction should be made between machinery, related products and partly completed machinery. Moreover, related products
+    should be understood as comprising interchangeable equipment, safety components, lifting accessories, chains, ropes and webbing, and removable mechanical transmission devices, which are all products
+    within the scope of this Regulation.
+
+
+    (16)
+
+
+    In order to avoid legislating twice on the same product, it is appropriate to exclude from the scope of this Regulation weapons, including firearms, that are subject to Directive (EU) 2021/555 of the
+    European Parliament and of the Council
+
+    (
+
+    7
+
+    )
+
+    .
+
+
+    (17)
+
+
+    The purpose of this Regulation is to address the risks stemming from machinery function and not from the transport of goods, persons or animals. Consequently, this Regulation should not apply to means
+    of transport by air, on water and on rail networks although it should still apply to the machinery mounted on those means of transport. Means of transport by road that are not yet covered by a specific
+    Union legal act should be regulated by this Regulation except in respect of risks that might arise from circulation on public roads. This means that vehicles, including e-bikes, e-scooters and other
+    personal mobility devices that are not subject to EU type approval under Regulation (EU) No 167/2013 of the European Parliament and of the Council
+
+    (
+
+    8
+
+    )
+
+    or Regulation (EU) No 168/2013 of the European Parliament and of the Council
+
+    (
+
+    9
+
+    )
+
+    or approval under Regulation (EU) 2018/858 of the European Parliament and of the Council
+
+    (
+
+    10
+
+    )
+
+    are covered by this Regulation.
+
+
+    (18)
+
+
+    Household appliances intended for domestic use which are not electrically operated furniture, audio and video equipment, information technology equipment, office machinery, low-voltage switchgear and
+    control gear and electric motors fall within the scope of Directive 2014/35/EU of the European Parliament and of the Council
+
+    (
+
+    11
+
+    )
+
+    and should therefore be excluded from the scope of this Regulation. Some of those products, for example washing machines, are progressively incorporating Wi-Fi functions and are therefore covered by
+    Directive 2014/53/EU of the European Parliament and of the Council
+
+    (
+
+    12
+
+    )
+
+    as radio equipment. Those products should also be excluded from the scope of this Regulation.
+
+
+    (19)
+
+
+    The evolution of the machinery sector has resulted in the growing use of digital means and software plays a more and more important role in machinery design. Consequently, the definition of machinery
+    should be adapted. In this respect, machinery missing only the upload of software intended for the specific application foreseen by the manufacturer, and which is the subject of the conformity assessment
+    procedure of the machinery, should fall under the definition of machinery and not under the definitions of related products or partly completed machinery. Furthermore, the definition of safety components
+    should cover not only physical devices but also digital devices. In order to take into account the increasing use of software as a safety component, software that performs a safety function and which
+    is placed independently on the market should be considered a safety component.
+
+
+    (20)
+
+
+    Considering their critical protective function, certain components included in the indicative list of safety components in Annex II should also be subject to specific conformity assessment procedures
+    and included in Annex I.
+
+
+    (21)
+
+
+    Partly completed machinery is a product within the scope of this Regulation which needs to undergo further construction in order to be able to perform its specific application, namely the well-defined
+    operations for which the product is designed. It is not necessary that all requirements of this Regulation apply to partly completed machinery but, in order to ensure the safety of the product as a
+    whole, it is nevertheless important that the free movement of such partly completed machinery be guaranteed by means of a specific procedure.
+
+
+    '
+- id: art-2
+  title: CHAPTER I
+  text: 'CHAPTER I
+
+
+    GENERAL PROVISIONS'
+- id: art-3
+  title: Article 1
+  text: 'Article 1
+
+
+    Subject matter
+
+
+    This Regulation lays down health and safety requirements for the design and construction of machinery, related products and partly completed machinery to allow them to be made available on the market
+    or put into service while ensuring a high level of protection of the health and safety of persons, in particular consumers and professional users, and, where appropriate, of domestic animals and property,
+    and, where applicable, of the environment. It also establishes rules on the free movement of products within the scope of this Regulation in the Union.'
+- id: art-4
+  title: Article 2
+  text: 'Article 2
+
+
+    Scope
+
+
+    1.   This Regulation applies to machinery and the following related products:
+
+
+    (a)
+
+
+    interchangeable equipment;
+
+
+    (b)
+
+
+    safety components;
+
+
+    (c)
+
+
+    lifting accessories;
+
+
+    (d)
+
+
+    chains, ropes and webbing;
+
+
+    (e)
+
+
+    removable mechanical transmission devices.
+
+
+    This Regulation also applies to partly completed machinery.
+
+
+    For the purposes of this Regulation, machinery, the related products listed in the first subparagraph and partly completed machinery shall together be referred to as ‘products within the scope of this
+    Regulation’.
+
+
+    2.   This Regulation does not apply to:
+
+
+    (a)
+
+
+    safety components that are intended to be used as spare parts to replace identical components and are supplied by the manufacturer of the original machinery, related product or partly completed machinery;
+
+
+    (b)
+
+
+    specific equipment for use in fairgrounds or amusement parks;
+
+
+    (c)
+
+
+    machinery and related products specially designed for use within or used in a nuclear installation and whose conformity with this Regulation may undermine the nuclear safety of that installation;
+
+
+    (d)
+
+
+    weapons, including firearms;
+
+
+    (e)
+
+
+    means of transport by air, on water and on rail networks except for machinery mounted on those means of transport;
+
+
+    (f)
+
+
+    aeronautical products, parts and equipment that fall within the scope of Regulation (EU) 2018/1139 of the European Parliament and of the Council
+
+    (
+
+    21
+
+    )
+
+    and the definition of machinery under this Regulation, insofar as Regulation (EU) 2018/1139 covers the relevant essential health and safety requirements set out in this Regulation;
+
+
+    (g)
+
+
+    motor vehicles and their trailers, as well as systems, components, separate technical units, parts and equipment designed and constructed for such vehicles, which fall within the scope of Regulation
+    (EU) 2018/858, except for machinery mounted on those vehicles;
+
+
+    (h)
+
+
+    two- or three-wheel vehicles and quadricycles, as well as systems, components, separate technical units, parts and equipment designed and constructed for such vehicles, that fall within the scope of
+    Regulation (EU) No 168/2013, except for machinery mounted on those vehicles;
+
+
+    (i)
+
+
+    agricultural and forestry tractors, as well as systems, components, separate technical units, parts and equipment designed and constructed for such tractors, that fall within the scope of Regulation
+    (EU) No 167/2013, except for machinery mounted on those tractors;
+
+
+    (j)
+
+
+    motor vehicles exclusively intended for competition;
+
+
+    (k)
+
+
+    seagoing vessels and mobile offshore units and machinery installed on board such vessels or units;
+
+
+    (l)
+
+
+    machinery or related products specially designed and constructed for military or police purposes;
+
+
+    (m)
+
+
+    machinery or related products specially designed and constructed for research purposes for temporary use in laboratories;
+
+
+    (n)
+
+
+    mine winding gear;
+
+
+    (o)
+
+
+    machinery or related products intended to move performers during artistic performances;
+
+
+    (p)
+
+
+    the following electrical and electronic products, insofar as they fall within the scope of Directive 2014/35/EU or of Directive 2014/53/EU:
+
+
+    (i)
+
+
+    household appliances intended for domestic use which are not electrically operated furniture;
+
+
+    (ii)
+
+
+    audio and video equipment;
+
+
+    (iii)
+
+
+    information technology equipment;
+
+
+    (iv)
+
+
+    ordinary office machinery, except additive printing machinery for producing three-dimensional products;
+
+
+    (v)
+
+
+    low-voltage switchgear and control gear;
+
+
+    (vi)
+
+
+    electric motors;
+
+
+    (q)
+
+
+    the following high-voltage electrical products:
+
+
+    (i)
+
+
+    switchgear and control gear;
+
+
+    (ii)
+
+
+    transformers.'
+- id: art-5
+  title: Article 3
+  text: 'Article 3
+
+
+    Definitions
+
+
+    For the purposes of this Regulation, the following definitions apply:
+
+
+    (1)
+
+
+    ‘machinery’ means:
+
+
+    (a)
+
+
+    an assembly, fitted with or intended to be fitted with a drive system other than directly applied human or animal effort, consisting of linked parts or components, at least one of which moves, and which
+    are joined together for a specific application;
+
+
+    (b)
+
+
+    an assembly referred to in point (a), missing only the components to connect it on site or to sources of energy and motion;
+
+
+    (c)
+
+
+    an assembly referred to points (a) and (b), ready to be installed and able to function as it stands only if mounted on a means of transport, or installed in a building or a structure;
+
+
+    (d)
+
+
+    assemblies of machinery referred to in points (a), (b) and (c), or of partly completed machinery, which, in order to achieve the same end, are arranged and controlled so that they function as an integral
+    whole;
+
+
+    (e)
+
+
+    an assembly of linked parts or components, at least one of which moves, and which are joined together, intended for lifting loads and whose only power source is directly applied human effort;
+
+
+    (f)
+
+
+    an assembly as referred to in points (a) to (e) missing only the uploading of the software intended for the specific application foreseen by the manufacturer;
+
+
+    (2)
+
+
+    ‘interchangeable equipment’ means a device which, after the putting into service of machinery or an agricultural or forestry tractor, is assembled with that machinery or agricultural or forestry tractor
+    by the operator in order to change its function or to attribute a new function to it, provided that the device is not a tool;
+
+
+    (3)
+
+
+    ‘safety component’ means a physical or digital component, including software, of a product within the scope of this Regulation, which is designed or intended to fulfil a safety function and which is
+    independently placed on the market, the failure or malfunction of which endanger the safety of persons, but which is not necessary in order for that product to function or for which normal components
+    may be substituted in order for that product to function;
+
+
+    (4)
+
+
+    ‘safety function’ means a function that serves to fulfil a protective measure designed to eliminate, or, if that is not possible, to reduce, a risk, which, if it fails, could result in an increase of
+    that risk;
+
+
+    (5)
+
+
+    ‘lifting accessory’ means a component or equipment, not attached to the lifting machinery, which enables the load to be held, which is placed between the machinery and the load or on the load itself,
+    or which is intended to constitute an integral part of the load and which is independently placed on the market, including slings and their components;
+
+
+    (6)
+
+
+    ‘chains’ means chains designed and constructed for lifting purposes as part of lifting machinery or lifting accessories;
+
+
+    (7)
+
+
+    ‘ropes’ means ropes designed and constructed for lifting purposes as part of lifting machinery or lifting accessories;
+
+
+    (8)
+
+
+    ‘webbing’ means webbing designed and constructed for lifting purposes as part of lifting machinery or lifting accessories;
+
+
+    (9)
+
+
+    ‘removable mechanical transmission device’ means a removable component for transmitting power between self-propelled machinery or a tractor and other machinery or related products by joining them at
+    the first fixed bearing; when it is placed on the market with a guard, the device and the guard are to be regarded as one item;
+
+
+    (10)
+
+
+    ‘partly completed machinery’ means an assembly which is not yet machinery as it cannot in itself perform a specific application and which is only intended to be incorporated into or assembled with machinery
+    or other partly completed machinery or equipment, thereby forming machinery;
+
+
+    (11)
+
+
+    ‘making available on the market’ means any supply of a product within the scope of this Regulation for distribution or use on the Union market in the course of a commercial activity, whether in return
+    for payment or free of charge;
+
+
+    (12)
+
+
+    ‘placing on the market’ means the first making available of a product within the scope of this Regulation on the Union market;
+
+
+    (13)
+
+
+    ‘putting into service’ means the first use, for its intended purpose, in the Union, of machinery or related products;
+
+
+    (14)
+
+
+    ‘essential health and safety requirements’ means the mandatory provisions, set out in Annex III, relating to the design and construction of products within the scope of this Regulation to ensure a high
+    level of protection of the health and safety of persons, and, where appropriate, domestic animals and property, and, where applicable, of the environment;
+
+
+    (15)
+
+
+    ‘Union harmonisation legislation’ means any Union legislation harmonising the conditions for the marketing of products;
+
+
+    (16)
+
+
+    ‘substantial modification’ means a modification of machinery or a related product, by physical or digital means after that machinery or related product has been placed on the market or put into service,
+    which is not foreseen or planned by the manufacturer, and which affects the safety of that machinery or related product, by creating a new hazard, or by increasing an existing risk, which requires:
+
+
+    (a)
+
+
+    the addition of guards or protective devices to that machinery or related product the processing of which necessitates the modification of the existing safety control system; or
+
+
+    (b)
+
+
+    the adoption of additional protective measures to ensure the stability or mechanical strength of that machinery or related product;
+
+
+    (17)
+
+
+    ‘instructions for use’ means the information, provided by the manufacturer when the machinery or related product is placed on the market or put into service, to inform the user of the machinery or related
+    product, of the intended and proper use of that machinery or related product, as well as information on any precautions to be taken when using or installing the machinery or related product, including
+    information on the safety aspects, and on how to keep that machinery or related product safe, and to ensure that it remains fit for purpose during its entire lifetime;
+
+
+    (18)
+
+
+    ‘manufacturer’ means any natural or legal person who:
+
+
+    (a)
+
+
+    manufactures products within the scope of this Regulation or who has those products designed or manufactured, and markets those products under its name or trademark; or
+
+
+    (b)
+
+
+    manufactures products within the scope of this Regulation, and puts those products into service for its own use;
+
+
+    (19)
+
+
+    ‘authorised representative’ means any natural or legal person established within the Union who has received a written mandate from a manufacturer to act on its behalf in relation to specified tasks;
+
+
+    (20)
+
+
+    ‘importer’ means any natural or legal person established within the Union who places a product within the scope of this Regulation from a third country on the Union market;
+
+
+    (21)
+
+
+    ‘distributor’ means any natural or legal person in the supply chain, other than the manufacturer or the importer, who makes a product within the scope of this Regulation available on the market;
+
+
+    (22)
+
+
+    ‘economic operator’ means the manufacturer, the authorised representative, the importer or the distributor;
+
+
+    (23)
+
+
+    ‘technical specifications’ means a document that prescribes technical requirements to be fulfilled by products within the scope of this Regulation;
+
+
+    (24)
+
+
+    ‘harmonised standard’ means a harmonised standard as defined in Article 2, point 1, point (c), of Regulation (EU) No 1025/2012;
+
+
+    (25)
+
+
+    ‘CE marking’ means a marking by which the manufacturer indicates that machinery or a related product is in conformity with the applicable requirements set out in Union harmonisation legislation providing
+    for its affixing;
+
+
+    (26)
+
+
+    ‘accreditation’ means accreditation as defined in Article 2, point (10), of Regulation (EC) No 765/2008;
+
+
+    (27)
+
+
+    ‘national accreditation body’ means a national accreditation body as defined in Article 2, point (11), of Regulation (EC) No 765/2008;
+
+
+    (28)
+
+
+    ‘conformity assessment’ means the process for demonstrating whether the applicable essential health and safety requirements in this Regulation relating to machinery or related products have been fulfilled;
+
+
+    (29)
+
+
+    ‘conformity assessment body’ means a body that performs conformity assessment activities, including calibration, testing, certification and inspection;
+
+
+    (30)
+
+
+    ‘notified body’ means a conformity assessment body notified in accordance with this Regulation;
+
+
+    (31)
+
+
+    ‘market surveillance authority’ means a ‘market surveillance authority’ as defined in Article 3, point (4), of Regulation (EU) 2019/1020;
+
+
+    (32)
+
+
+    ‘recall’ means any measure aimed at achieving the return of a product within the scope of this Regulation that has already been made available to a user;
+
+
+    (33)
+
+
+    ‘withdrawal’ means, for a product, any measure aimed at preventing a product within the scope of this Regulation that is in the supply chain from being made available on the market;
+
+
+    (34)
+
+
+    ‘lifetime’ means the period from the moment that machinery or a related product is placed on the market or put into service until the moment that it is discarded, including the effective time when the
+    machinery or related product is capable of being used and the phases of transport, assembly, dismantling, disabling, scrapping or other physical or digital modifications foreseen by the manufacturer;
+
+
+    (35)
+
+
+    ‘source code’ means the currently installed version of the software of a product within the scope of this Regulation, written in a programming language so that it is unambiguous and understandable to
+    humans;
+
+
+    (36)
+
+
+    ‘professional user’ means a natural person who uses or operates machinery or a related product in the course of his or her professional activity or work.'
+- id: art-6
+  title: Article 4
+  text: 'Article 4
+
+
+    Free movement
+
+
+    1.   Member States shall not impede, for reasons relating to the aspects covered by this Regulation, the making available on the market of products within the scope of this Regulation or the putting
+    into service of machinery or related products which comply with this Regulation.
+
+
+    2.   At trade fairs, exhibitions and demonstrations or similar events, Member States shall not prevent the display of a product within the scope of this Regulation which does not comply with this Regulation,
+    provided that a visible sign clearly indicates that it does not comply with this Regulation and will not be made available on the market until it has been brought into conformity.
+
+
+    During demonstrations, adequate measures shall be taken to ensure the protection of persons.'
+- id: art-7
+  title: Article 5
+  text: 'Article 5
+
+
+    Protection of persons during installation or use of machinery or related products
+
+
+    Member States may lay down requirements to ensure that persons, including workers, are protected when installing or using machinery or related products, provided that such rules do not allow for the
+    modification of machinery or a related product in a way that is not compatible with this Regulation.'
+- id: art-8
+  title: Article 6
+  text: 'Article 6
+
+
+    Categories of machinery and related products listed in Annex I subject to relevant conformity assessment procedures
+
+
+    1.   Machinery and related products that fall within the categories listed in Annex I, Part A, shall be subject to the specific conformity assessment procedures referred to in Article 25(2), and machinery
+    and related products that fall within the categories listed in Annex I, Part B shall be subject to the specific conformity assessment procedures referred to in Article 25(3).
+
+
+    2.   The Commission is empowered to adopt delegated acts in accordance with Article 47 to amend Annex I, after consulting the stakeholders concerned, in the light of technical progress, advances in
+    knowledge or new scientific evidence by adding to the list of categories of machinery and related products in Annex I a new category of machinery or related products, withdrawing an existing category
+    of machinery or related products from that list or moving a category of machinery or related products from one Part of Annex I to another Part of that Annex, in accordance with the criteria and the
+    procedures laid down in paragraphs 4, 5 and 7 of this Article.
+
+
+    3.   Before adopting a delegated act, the Commission shall seek the views of experts in the relevant expert group in accordance with Article 47(4).
+
+
+    4.   The Commission shall assess the seriousness of the inherent potential risk presented by a category of machinery or related product for the purpose of determining whether to add that category of
+    machinery or related product to Annex I or to withdraw that category of machinery or related product from Annex I. That assessment shall be established based on the combination of the probability of
+    occurrence of harm and the severity of that harm.
+
+
+    In determining the probability and severity of harm, the following criteria shall, where relevant, be taken into account:
+
+
+    (a)
+
+
+    the nature of the hazard inherent to the function of the category of machinery or related product, taking into account the intended use and any reasonably foreseeable misuse;
+
+
+    (b)
+
+
+    the severity of harm which a person would suffer, including the degree of reversibility of that harm;
+
+
+    (c)
+
+
+    the number of persons potentially affected by the harm;
+
+
+    (d)
+
+
+    the frequency and the duration of the exposure to the hazard that a person would be exposed to in the course of the intended use or any reasonably foreseeable misuse of the category of machinery or
+    related product;
+
+
+    (e)
+
+
+    the possibilities of avoiding or limiting harm;
+
+
+    (f)
+
+
+    in the case of safety components, the likelihood of serious consequences for the safety of the persons exposed to harm in the event of their failure.
+
+
+    5.   When conducting the assessment referred in paragraph 4, the Commission shall consider the following elements:
+
+
+    (a)
+
+
+    indications of harm that have been caused in the past by machinery or related products which have been used for their intended use or following any reasonably foreseeable misuse;
+
+
+    (b)
+
+
+    information about safety defects detected in the course of market surveillance, and material possibly available in the information systems administered by the Commission;
+
+
+    (c)
+
+
+    information about known accidents and serious ‘close calls’, including the characteristics of those accidents or ‘close calls’;
+
+
+    (d)
+
+
+    data on accidents or damage to health caused by the machinery or related product for at least the preceding four years. In particular, information obtained, inter alia, from the Information and Communication
+    System on Market Surveillance (ICSMS), safeguard clauses, Safety Gate Rapid Alert System, the European Injury Database (EU-IDB), Eurostat’s European Statistics on Accidents at Work (ESAW) and the Machinery
+    Administrative Cooperation Group (AdCo).
+
+
+    In addition to points (a) to (d) of this paragraph, the Commission shall take into account any other information available that is relevant to the assessment referred to in paragraph 4.
+
+
+    6.   The data and information referred to in paragraph 5, points (a) to (d), shall be provided by Member States in accordance with paragraph 9.
+
+
+    7.   A category of machinery or related product shall be included in Annex I, Part A, if, according to the assessment referred to in paragraph 4, and taking into account the available information, including
+    the data referred to in paragraph 5, it presents a serious inherent potential risk, and one or more of the following conditions is fulfilled:
+
+
+    (a)
+
+
+    there is a lack of harmonised standards or common specifications covering the relevant essential health and safety requirements;
+
+
+    (b)
+
+
+    residual risks exist, including those which, according to the manufacturer, could be reduced by particular training or personal protective equipment, and the data and information referred to in paragraph
+    5, demonstrate the recurrence of similar serious or fatal accidents or damage to health in connection with those residual risks;
+
+
+    (c)
+
+
+    data and information exist which according to the Commission demonstrate recurring wrongful application of the relevant harmonised standards or common specifications and for which the market surveillance
+    activities that were carried out have not led to major'
 doc_files:
 - eu/raw/EU-2023-1230_Machinery_Regulation.pdf
+- eu/raw/EU-2023-1230_Machinery_Regulation.xhtml
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 去重：合并同法规异名条目 EU-2023-1230_MACHINERY_REGULATION-2（EU-2023-1230 Machinery Regulation [xhtml]）。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2023-1230_Machinery_Regulation.pdf (pdf, 4570 chars)，生成 4 条共 4570 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2023-1230_Machinery_Regulation.xhtml (html, 335535 chars)，生成 7 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2023-1230_Machinery_Regulation.xhtml (html, 335436 chars)，生成 8 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

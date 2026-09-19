@@ -9,13 +9,68 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: Statutes of the Republic of Korea
+  text: "Statutes of the Republic of Korea\n대한민국 영문법령\nLaw Search\nSearch All\nBy Legal Field\nBy Ministry\nBy Subject\nMost Viewed\nRecently Translated\nGlossary\nLegal Terms\nAbout Translation Services\n\
+    History\nPromotional Material\nTranslation Network\nPublication\nCustomer Service\nNotice\nContact Us\nCopyright Policy\nLegal Information Websites\nSearch\nAdvanced\nSearch\nclose\nAdvanced Search\n\
+    close\nAdvanced Search table\nCurrent Laws /\nFormer Laws\nCurrent Laws(3,059)\nFormer Laws(20,720)\nType of Laws\nAll\nStatutes\nEnforcement Decrees\nEnforcement Rules\nOthers\nSort by\nABC\nPromulgation\
+    \ Date\nEnforcement Date\nRelevance\nPromulgation No\n~\nex) 0 ~ 99999\nPromulgation Date\n~\n'dragon'\n No Search results\nclose\nSearch word autocomplete text window\nStatutes of the Republic of Korea\
+    \ Advanced Search\nsearch button\nAdvanced\nSearch\nAdvanced Search Setting\nAdvanced Search table\nCurrent Laws /\nFormer Laws\nCurrent Laws(3,059)\nFormer Laws(20,720)\nType of Laws\nTotal\nStatutes\n\
+    Enforcement Decrees\nEnforcement Rules\nOthers\nSort by\nABC\nPromulgation Date\nEnforcement Date\nrelevance\nPromulgation No\n~\nex) 0 ~ 99999\nPromulgation Date\n~\nclose\n'dragon'\n No Search results\n\
+    close\nMost Viewed, Recently Translated\nMost Viewed\nACT ON PROMOTION OF INFORMATION AND COMMUNICATIONS NETWORK UTILIZATION AND INFORMATION PROTECTION\nCONSTITUTION OF THE REPUBLIC OF KOREA\nPERSONAL\
+    \ INFORMATION PROTECTION ACT\nCIVIL ACT\nPERSONAL INFORMATION PROTECTION ACT\nCRIMINAL ACT\nFINANCIAL INVESTMENT SERVICES AND CAPITAL MARKETS ACT\nFRAMEWORK ACT ON THE DEVELOPMENT OF ARTIFICIAL INTELLIGENCE\
+    \ AND THE CREATION OF A FOUNDATION FOR TRUST\nRecently Viewed\nFRAMEWORK ACT ON RAILROAD INDUSTRY DEVELOPMENT\nENFORCEMENT DECREE OF THE HOUSING AND URBAN FUND ACT\nENFORCEMENT DECREE OF THE LANDSCAPING\
+    \ PROMOTION ACT\nSEAFARERS ACT\nENFORCEMENT DECREE OF THE ASSEMBLY AND DEMONSTRATION ACT\nELECTRIC UTILITY ACT\nMEDICAL DEVICES ACT\nACT ON THE RESTRUCTURING OF AND SUPPORT FOR COASTAL AND INSHORE FISHERIES\n\
+    By Legal Field\nBy Ministry\nBy Subject\n\t\t\t\t\t                    \t\tConstitution\n\t\t\t\t\t                    \t\tAdministration\n\t\t\t\t\t                    \t\tCourt\n\t\t\t\t\t       \
+    \             \t\tCivil Affairs\n\t\t\t\t\t                    \t\tCrimes and Criminal Procedure\n\t\t\t\t\t                    \t\tPolice ·Military\n\t\t\t\t\t                    \t\tEducation ·Culture ·Science\n\
+    \t\t\t\t\t                    \t\tFinance and Economy\n\t\t\t\t\t                    \t\tAgriculture ·\nFishery\n\t\t\t\t\t                    \t\tCommerce, Trade and Industry\n\t\t\t\t\t          \
+    \          \t\tHousing, Building and Roads\n\t\t\t\t\t                    \t\tHealth and Welfare\n\t\t\t\t\t                    \t\tEnvironment ·\nLabor\n\t\t\t\t\t                    \t\tTransportation\
+    \ and Tourism\n\t\t\t\t\t                    \t\tInformation and Communications\n\t\t\t\t\t                    \t\tForeign Affairs\n\t\t\t\t                    \t\tConstitution\n\t\t\t\t           \
+    \         \t\tAdministration\n\t\t\t\t                    \t\tCourt\n\t\t\t\t                    \t\tCivil Affairs\n\t\t\t\t                    \t\tCrimes and Criminal Procedure\n\t\t\t\t          \
+    \          \t\tPolice ·Military\n\t\t\t\t                    \t\tEducation ·Culture ·Science\n\t\t\t\t                    \t\tFinance and Economy\n\t\t\t\t                  \tSee All\nSee All\npause\n\
+    prev\nnext\nMinistry\nMinistry of Employment and Labor\nMinistry of Science and ICT\nMinistry of Education\nMinistry of National Defense\nMinistry of Land, Infrastructure and Transport\nMinistry of\
+    \ Finance and Economy\nMinistry of Agriculture, Food and Rural Affairs\nMinistry of Culture, Sports and Tourism\nMinistry of Justice\nMinistry of Health and Welfare\nMinistry of Trade, Industry and\
+    \ Resources\nMinistry of Gender Equality and Family\nMinistry of Foreign Affairs\nMinistry of SMEs and Startups\nMinistry of Unification\nMinistry of Oceans and Fisheries\nMinistry of the Interior and\
+    \ Safety\nMinistry of Climate, Energy and Environment\nMinistry of Government Legislation \nMinistry of Patriots and Veterans Affairs\nPresidential Security Service\nMinistry of Food and Drug Safety\n\
+    Ministry of Personnel Management\nMinistry of Planning and Budget\nAgency / Administration\nProsecutors’ Office"
+- id: art-2
+  title: National Police Agency
+  text: "National Police Agency\nKorea Customs Service\nNational Tax Service\nKorea Meteorological Administration\nRural Development Administration\nKorea Heritage Service\nDefense Acquisition Program Administration\n\
+    Military Manpower Administration\nKorea Forest Service\nSaemangeum Development and Investment Agency\nNational Fire Agency\nPublic Procurement Service\nMinistry of Data and Statistics\nMinistry of Intellectual\
+    \ Property\nKorea Coast Guard\nNational Agency for Administrative City Construction\nKorea AeroSpace Administration\nKorea Disease Control and Prevention Agency\nOverseas Koreans Agency\nCommission\n\
+    Korea Fair Trade Commission\nAnti-Corruption & Civil Rights Commission\nFinancial Services Commission\nKorea Communications Commission\nNational Human Rights Commission of Korea\nNuclear Safety and\
+    \ Security Commission\nPresidential Committee for Inspection of Collaborations for Japanese Imperialism\nPersonal Information Protection Commission\nConstitutional Institution\nNational Assembly\nSupreme\
+    \ Court of Korea\nConstitutional Court of Korea\nNational Election Commission\nBoard of Audit and Inspection of Korea\nNational Unification Advisory Council\netc.\nOffice for Government Policy Coordination\n\
+    National Intelligence Service Korea\nOffice of National Security\nLocal Government\netc\nMinistry\nMinistry of Employment and Labor\nMinistry of Science and ICT\nMinistry of Education\nMinistry of National\
+    \ Defense\nMinistry of Land, Infrastructure and Transport\nMinistry of Finance and Economy\nMinistry of Agriculture, Food and Rural Affairs\nMinistry of Culture, Sports and Tourism\nMinistry of Justice\n\
+    Ministry of Health and Welfare\nMinistry of Trade, Industry and Resources\nSee All\nSee All\npause\nprev\nnext\nFamily Law\nChild and Youth ·\nEducation\nReal Estate\nFinance\nBusiness\nLaunching Business\n\
+    Trade ·\nImmigration\nConsumer\nCulture\nCivil or Criminal Litigation\nTraffic\nEmployment ·\nLabor\nWelfare\nNational Defense\nTechnology\nEnvironment ·\nEnergy\nCrime ·\nSocial Safety\nState and Local\
+    \ Govemment\nFamily Law\nChild and Youth ·\nEducation\nReal Estate\nFinance\nBusiness\nLaunching Business\nTrade ·\nImmigration\nConsumer\nCulture\n\t\t\t                  \tSee All\nSee All\npause\n\
+    prev\nnext\nNotice,Contact Us\nNotice\n[NOTICE]\n2022 NAL-KLRI Joint Academic Seminar \n\t\t\t\t\t\t\t\t2022-07-11\n[NOTICE]\nAGAIN 2021 Seoul International Forum on Translation and Interpreting\n\t\
+    \t\t\t\t\t\t\t2021-07-27\n[NOTICE]\n2021 Seoul International Forum on Translation and Interpreting\n\t\t\t\t\t\t\t\t2021-06-28\n[NOTICE]\n[call for papers] 2021 Seoul International Forum on Translation\
+    \ and Interpreting\n\t\t\t\t\t\t\t\t2021-03-16\nContact Us\nIf you have any \nquestions or comments\n about \nour servies\n, let us know. We will get back to you as soon as possible.\n\t\t\t\t\t\tGo\
+    \ to\nTranslation Statistics\nCurrent Laws\n3,059\nFormer Laws\n20,720\nCurrent\n2\nFormer\n0\nConstitution\nCurrent\n1,592\nFormer\n12,116\nStatutes\nCurrent\n1,379\nFormer\n8,531\nEnforcement Decrees\n\
+    Current\n3\nFormer\n9\nEnforcement Rules\nCurrent\n83\nFormer\n64\nOthers\nAutocomplete table\nPRIVACY POLICY \nCOPYRIGHT POLICY\n\t\t\t15, Gukchaegyeonguwon-ro, Sejong-si (30147) Korea\nTel. +82-44-861-0300\n\
+    Fax. +82-44-868-9913\n\t\t\tCopyright © Korea Legislation Research Institute all rights reserved.\n\t\t\t15, Gukchaegyeonguwon-ro, Sejong-si (30147) Korea\n\t\t\tTel. +82-44-861-0300\nFax. +82-44-868-9913\n\
+    \t\t\tCopyright © Korea Legislation Research Institute all rights reserved.\nTOP\n페이지 맨 위로 이동\nSITEMAP \nLaw Search\nSearch All\nBy Legal Field\nBy Ministry\nBy Subject\nRecently Translated\nMost Viewed\n\
+    Law in News\nGlossary\nLegal Terms\nKorean Law\nLegislation System\nLegislation Procedures\nStatistics\nAbout KLT\nOrganization\nTranslation Process\nAdvisory Committee\nTranslation Network\nPublications\n\
+    Customer Service\nNotice\nContact Us\nCopyright Policy\nLegal Information\nPrivacy Policy\n\t\t\t\t\tKorea Legislation\nResearch Institute\n\t\t\t\t\tGlobal Legislation\nData Platform\n\t\t\t\t\tAsia\
+    \ Legal\nInformation Network"
 doc_files:
 - kr/raw/KR_国家法令信息中心_英文_KLRI.html
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: |
-  目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
-  2026-09-19 验证修复：原两条重复条目 KR-KR_-_-_KLRI / KR-KR_-_KLRI_（各带一份 md5 相同的门户快照，合并后只保留一份）合并为本条。首轮校验曾将该 URL 误判为死链（该站对 HEAD 请求恒返 404，GET 实测 200，165KB 英文门户页 "Statutes of the Republic of Korea"），保留原深链；eng_service 下其余路径（index.do 等）确已随站点重构失效。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 验证修复：原两条重复条目 KR-KR_-_-_KLRI / KR-KR_-_KLRI_（各带一份 md5 相同的门户快照，合并后只保留一份）合并为本条。首轮校验曾将该 URL 误判为死链（该站对 HEAD 请求恒返 404，GET 实测 200，165KB 英文门户页 "Statutes of the Republic of Korea"），保留原深链；eng_service
+  下其余路径（index.do 等）确已随站点重构失效。
+
+
+  2026-09-19 机器解析原件入库：kr/raw/KR_国家法令信息中心_英文_KLRI.html (html, 7808 chars)，生成 2 条共 7808 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：kr/raw/KR_国家法令信息中心_英文_KLRI.html (html, 7808 chars)，生成 2 条共 7808 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：kr/raw/KR_国家法令信息中心_英文_KLRI.html (html, 7808 chars)，生成 2 条共 7808 字符；解析文本未人工复核，引用以官方原件为准。'

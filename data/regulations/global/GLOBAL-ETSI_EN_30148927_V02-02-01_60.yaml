@@ -9,11 +9,710 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'ETSI EN 301 489-27
+
+    V2.2.1
+
+    (2019-04)
+
+    HARMONISED EUROPEAN STAN'
+  text: 'ETSI EN 301 489-27
+
+    V2.2.1
+
+    (2019-04)
+
+    HARMONISED EUROPEAN STANDARD
+
+    ElectroMagnetic Compatibility (EMC)
+
+    standard for radio equipment and services;
+
+    Part 27: Specific conditions for Ultra Low
+
+    Power Active Medical Implants (ULP-AMI) and
+
+    related peripheral devices (ULP-AMI-P) operating
+
+    in the 402 MHz to 405 MHz bands;
+
+    Harmonised Standard covering the essential requirements
+
+    of article 3.1(b) of Directive 2014/53/EU
+
+    2 ETSI EN 301 489-27 V2.2.1 (2019-04)
+
+    Reference
+
+    REN/ERM-EMC-374
+
+    Keywords
+
+    EMC, harmonised standard, radio, regulation,
+
+    short range
+
+    ETSI
+
+    650 Route des Lucioles
+
+    F-06921 Sophia Antipolis Cedex - FRANCE
+
+    Tel.: +33 4 92 94 42 00 Fax: +33 4 93 65 47 16
+
+    Siret N° 348 623 562 00017 - NAF 742 C
+
+    Association à but non lucratif enregistrée à la
+
+    Sous-Préfecture de Grasse (06) N° 7803/88
+
+    Important notice
+
+    The present document can be downloaded from:
+
+    http://www.etsi.org/standards-search
+
+    The present document may be made available in electronic versions and/or in print. The content of any electronic and/or
+
+    print versions of the present document shall not be modified without the prior written authorization of ETSI. In case of any
+
+    existing or perceived difference in contents between such versions and/or in print, the prevailing version of an ETSI
+
+    deliverable is the one made publicly available in PDF format at www.etsi.org/deliver.
+
+    Users of the present document should be aware that the document may be subject to revision or change of status.
+
+    Information on the current status of this and other ETSI documents is available at
+
+    https://portal.etsi.org/TB/ETSIDeliverableStatus.aspx
+
+    If you find errors in the present document, please send your comment to one of the following services:
+
+    https://portal.etsi.org/People/CommiteeSupportStaff.aspx
+
+    Copyright Notification
+
+    No part may be reproduced or utilized in any form or by any means, electronic or mechanical, including photocopying
+
+    and microfilm except as authorized by written permission of ETSI.
+
+    The content of the PDF version shall not be modified without the written authorization of ETSI.
+
+    The copyright and the foregoing restriction extend to reproduction in all media.
+
+    © ETSI 2019.
+
+    All rights reserved.
+
+    DECTTM, PLUGTESTSTM, UMTSTM and the ETSI logo are trademarks of ETSI registered for the benefit of its Members.
+
+    3GPPTM and LTETM are trademarks of ETSI registered for the benefit of its Members and
+
+    of the 3GPP Organizational Partners.
+
+    oneM2M™ logo is a trademark of ETSI registered for the benefit of its Members and
+
+    of the oneM2M Partners.
+
+    GSM® and the GSM logo are trademarks registered and owned by the GSM Association.
+
+    ETSI
+
+    3 ETSI EN 301 489-27 V2.2.1 (2019-04)
+
+    Contents
+
+    Intellectual Property Rights ................................................................................................................................ 5
+
+    Foreword ............................................................................................................................................................. 5
+
+    Modal verbs terminology .................................................................................................................................... 5
+
+    1 Scope ........................................................................................................................................................ 6
+
+    2 References ................................................................................................................................................ 6
+
+    2.1 Normative references ......................................................................................................................................... 6
+
+    2.2 Informative references ........................................................................................................................................ 7
+
+    3 Applicability, definitions and abbreviations ............................................................................................. 7
+
+    3.0 Applicability ....................................................................................................................................................... 7
+
+    3.1 Definitions .......................................................................................................................................................... 7
+
+    3.2 Abbreviations ..................................................................................................................................................... 8
+
+    4 Test conditions ......................................................................................................................................... 8
+
+    4.1 General ............................................................................................................................................................... 8
+
+    4.2 Arrangements for test signals ............................................................................................................................. 9
+
+    4.2.0 General .......................................................................................................................................................... 9
+
+    4.2.1 Arrangements for test signals at the input of transmitters ............................................................................. 9
+
+    4.2.2 Arrangements for test signals at the RF output of transmitters ..................................................................... 9
+
+    4.2.2.1 General .................................................................................................................................................... 9
+
+    4.2.2.2 ULP-AMI transmitters ............................................................................................................................ 9
+
+    4.2.2.3 ULP-AMI-P transmitters ......................................................................................................................... 9
+
+    4.2.3 Arrangements for test signals at the RF input of receivers ........................................................................... 9
+
+    4.2.4 Arrangements for test signals at the output of receivers ............................................................................... 9
+
+    4.2.5 Arrangements for testing transmitter and receiver together (as a system: ULP-AMI together with an
+
+    associated ULP-AMI-P) ............................................................................................................................. 10
+
+    4.3 RF exclusion band of radio equipment ............................................................................................................. 10
+
+    4.3.0 General ........................................................................................................................................................ 10
+
+    4.3.1 Exclusion bands for receivers ..................................................................................................................... 10
+
+    4.3.2 Exclusion band for transmitters .................................................................................................................. 11
+
+    4.4 Narrow band responses of receivers or receivers which are part of transceivers ............................................. 11
+
+    4.5 Normal test modulation .................................................................................................................................... 11
+
+    5 Performance assessment ......................................................................................................................... 11
+
+    5.1 General ............................................................................................................................................................. 11
+
+    5.2 Equipment which can provide a continuous communication link .................................................................... 11
+
+    5.3 Equipment which does not provide a continuous communication link ............................................................ 12
+
+    5.4 Ancillary equipment ......................................................................................................................................... 12
+
+    5.5 Equipment classification .................................................................................................................................. 12
+
+    6 Performance criteria ............................................................................................................................... 12
+
+    6.1 classification of ULP-AMI and ULP-AMI-P devices ...................................................................................... 12
+
+    6.2 General performance criteria ............................................................................................................................ 12
+
+    6.3 Performance criteria and table .......................................................................................................................... 13
+
+    6.4 Performance criteria for continuous phenomena applied to transmitters ......................................................... 14
+
+    6.5 Performance criteria for transient phenomena applied to transmitters ............................................................. 14
+
+    6.6 Performance criteria for continuous phenomena applied to receivers .............................................................. 14
+
+    6.7 Performance criteria for transient phenomena applied to receivers .................................................................. 15
+
+    7 Applicability overview ........................................................................................................................... 15
+
+    7.1 EMC emission .................................................................................................................................................. 15
+
+    7.1.1 General ........................................................................................................................................................ 15
+
+    7.1.2 Special conditions ....................................................................................................................................... 15
+
+    7.2 Immunity .......................................................................................................................................................... 15
+
+    7.2.1 General ........................................................................................................................................................ 15
+
+    7.2.2 Special conditions ....................................................................................................................................... 15
+
+    ETSI
+
+    4 ETSI EN 301 489-27 V2.2.1 (2019-04)
+
+    Annex A (informative): Relationship between the present document and the essential
+
+    requirements of Directive 2014/53/EU ......................................................... 19
+
+    Annex B (normative): Definitions of types of ULP-AMI and ULP-AMI-P devices in the
+
+    scope of the present document ...................................................................... 21
+
+    B.1 ULP-AMI and ULP-AMI-P devices intended for operation in the frequency range 402 MHz to
+
+    405 MHz ................................................................................................................................................. 21'
+- id: art-2
+  title: 'Annex C (normative): Test fixture for ULP-AMI (Simulated man) ............................................... 22'
+  text: 'Annex C (normative): Test fixture for ULP-AMI (Simulated man) ............................................... 22
+
+    Annex D (informative): Change history ............................................................................................... 24
+
+    History .............................................................................................................................................................. 25
+
+    ETSI
+
+    5 ETSI EN 301 489-27 V2.2.1 (2019-04)
+
+    Intellectual Property Rights
+
+    Essential patents
+
+    IPRs essential or potentially essential to normative deliverables may have been declared to ETSI. The information
+
+    pertaining to these essential IPRs, if any, is publicly available for ETSI members and non-members, and can be found
+
+    in ETSI SR 000 314: "Intellectual Property Rights (IPRs); Essential, or potentially Essential, IPRs notified to ETSI in
+
+    respect of ETSI standards", which is available from the ETSI Secretariat. Latest updates are available on the ETSI Web
+
+    server (https://ipr.etsi.org/).
+
+    Pursuant to the ETSI IPR Policy, no investigation, including IPR searches, has been carried out by ETSI. No guarantee
+
+    can be given as to the existence of other IPRs not referenced in ETSI SR 000 314 (or the updates on the ETSI Web
+
+    server) which are, or may be, or may become, essential to the present document.
+
+    Trademarks
+
+    The present document may include trademarks and/or tradenames which are asserted and/or registered by their owners.
+
+    ETSI claims no ownership of these except for any which are indicated as being the property of ETSI, and conveys no
+
+    right to use or reproduce any trademark and/or tradename. Mention of those trademarks in the present document does
+
+    not constitute an endorsement by ETSI of products, services or organizations associated with those trademarks.
+
+    Foreword
+
+    This Harmonised European Standard (EN) has been produced by ETSI Technical Committee Electromagnetic
+
+    compatibility and Radio spectrum Matters (ERM).
+
+    The present document has been prepared under the Commission''s standardisation request C(2015) 5376 final [i.4] to
+
+    provide one voluntary means of conforming to the essential requirements of Directive 2014/53/EU on the harmonisation
+
+    of the laws of the Member States relating to the making available on the market of radio equipment and repealing
+
+    Directive 1999/5/EC [i.1].
+
+    Once the present document is cited in the Official Journal of the European Union under that Directive, compliance with
+
+    the normative clauses of the present document given in table A.1 confers, within the limits of the scope of the present
+
+    document, a presumption of conformity with the corresponding essential requirements of that Directive and associated
+
+    EFTA regulations.
+
+    The present document is part 27 of a multi-part deliverable. Full details of the entire series can be found in part 1 [1].
+
+    National transposition dates
+
+    Date of adoption of this EN: 20 June 2017
+
+    Date of latest announcement of this EN (doa): 31 July 2019
+
+    Date of latest publication of new National Standard
+
+    or endorsement of this EN (dop/e): 31 January 2020
+
+    Date of withdrawal of any conflicting National Standard (dow): 31 January 2021
+
+    Modal verbs terminology
+
+    In the present document "shall", "shall not", "should", "should not", "may", "need not", "will", "will not", "can" and
+
+    "cannot" are to be interpreted as described in clause 3.2 of the ETSI Drafting Rules (Verbal forms for the expression of
+
+    provisions).
+
+    "must" and "must not" are NOT allowed in ETSI deliverables except when used in direct citation.
+
+    ETSI
+
+    6 ETSI EN 301 489-27 V2.2.1 (2019-04)
+
+    1 Scope
+
+    The present document together with ETSI EN 301 489-1 [1], covers the assessment of all radio transceivers associated
+
+    with Ultra Low Power Active Medical Implants (ULP-AMIs) and associated Peripheral ULP-AMI-Ps) in respect of
+
+    ElectroMagnetic Compatibility (EMC).
+
+    The present document covers the EMC requirements for the radio functions of ULP-AMI and ULP-AMI-P devices.
+
+    Technical specifications related to the antenna port and emissions from the enclosure port of the ULP-AMI and
+
+    ULP-AMI-P devices radio system are not included in the present document. Such technical specifications are found in
+
+    the relevant product standards for the effective use of the radio spectrum.
+
+    The present document specifies the applicable test conditions, performance assessment, and performance criteria for
+
+    ULP-AMIs and associated Peripheral devices (ULP-AMI-Ps).
+
+    Definitions of types of ULP-AMIs and ULP-AMI-Ps covered by present document are given in annex B.
+
+    In case of differences (for instance concerning special conditions, definitions, abbreviations) between the present
+
+    document and ETSI EN 301 489-1 [1], the provisions of the present document take precedence.
+
+    The environmental classification and the emission and immunity requirements used in the present document are as
+
+    stated in ETSI EN 301 489-1 [1], except for any special conditions included in the present document.
+
+    The present document, together with ETSI EN 301 489-1 [1], contains requirements to demonstrate an adequate level of
+
+    electromagnetic compatibility as set out in Directive 2014/53/EU [i.1].
+
+    2 References
+
+    2.1 Normative references
+
+    References are specific, identified by date of publication and/or edition number or version number. Only the cited
+
+    version applies.
+
+    Referenced documents which are not found to be publicly available in the expected location might be found at
+
+    https://docbox.etsi.org/Reference/.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    The following referenced documents are necessary for the application of the present document.
+
+    [1] ETSI EN 301 489-1 (V2.2.0) (03-2017): "ElectroMagnetic Compatibility (EMC) standard for
+
+    radio equipment and services; Part 1: Common technical requirements; Harmonised Standard
+
+    covering the essential requirements of article 3.1(b) of Directive 2014/53/EU and the essential
+
+    requirements of article 6 of Directive 2014/30/EU".
+
+    [2] ETSI EN 301 839 (V2.1.1) (04-2016): "Ultra Low Power Active Medical Implants (ULP-AMI)
+
+    and associated Peripherals (ULP-AMI-P) operating in the frequency range 402 MHz to 405 MHz;
+
+    Harmonised Standard covering the essential requirements of article 3.2 of the Directive
+
+    2014/53/EU".
+
+    [3] CENELEC EN 61000-4-5 (2006): "Electromagnetic compatibility (EMC) - Part 4-5: Testing and
+
+    measurement techniques - Surge immunity test".
+
+    ETSI
+
+    7 ETSI EN 301 489-27 V2.2.1 (2019-04)
+
+    2.2 Informative references
+
+    References are either specific (identified by date of publication and/or edition number or version number) or
+
+    non-specific. For specific references, only the cited version applies. For non-specific references, the latest version of the
+
+    referenced document (including any amendments) applies.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    The following referenced documents are not necessary for the application of the present document but they assist the
+
+    user with regard to a particular subject area.
+
+    [i.1] Directive 2014/53/EU of the European Parliament and of the council of 16 April 2014 on the
+
+    harmonisation of the laws of the Member States relating to the making available on the market of
+
+    radio equipment and repealing Directive 1999/5/EC.
+
+    [i.2] CEPT/ERC/REC 70-03: "Relating to the use of Short Range Devices (SRD)".
+
+    [i.3] Camelia Gabriel: "Compilation of the dielectric properties of body tissues at RF and Microwave
+
+    Frequencies", Physics Department, King''s College, London WC2R 2LS, UK. February 1996.
+
+    NOTE: Available at http://www.dtic.mil/dtic/tr/fulltext/u2/a305826.pdf.
+
+    [i.4] Commission Implementing Decision C(2015) 5376 final of 4.8.2015 on a standardisation request
+
+    to the European Committee for Electrotechnical Standardisation and to the European
+
+    Telecommunications Standards Institute as regards radio equipment in support of Directive
+
+    2014/53/EU of the European Parliament and of the Council.
+
+    [i.5] Italian National Research Council, Institute for Applied Physics.
+
+    NOTE: Available at http://niremf.ifac.cnr.it/.
+
+    3 Applicability, definitions and abbreviations
+
+    3.0 Applicability
+
+    For the purposes of the present document, definitions and abbreviations have the meanings ascribed herein in clause 3.
+
+    Where such meanings are not so ascribed the meanings in ETSI EN 301 489-1 [1], clause 3, apply.
+
+    Where such meanings are not so ascribed the meanings in ETSI EN 301 839 [2], clause 3, apply.
+
+    Where such meanings are not so ascribed the meanings in the Directive 2014/53/EU [i.1] apply.
+
+    3.1 Definitions
+
+    For the purposes of the present document, the following terms and definitions apply:
+
+    Active Medical Implant (AMI): diagnostic or therapeutic device designed to be implanted in a human body containing
+
+    a power source and a transceiver using the 402 MHz to 405 MHz frequency band for the purpose of providing a
+
+    two-way digital communications link
+
+    environmental profile: range of environmental conditions under which equipment within the scope of the present
+
+    document is required to comply with the provisions of the present document
+
+    life supporting equipment: equipment whose continued normal operation is required in order to sustain life
+
+    Medical Implant Communications Link (MICL): collections of transmission that may or may not be continuous,
+
+    between co-operating medical implant devices and accessories, including programmer/controllers, transferring patient
+
+    related information in communications service
+
+    ETSI
+
+    8 ETSI EN 301 489-27 V2.2.1 (2019-04)
+
+    Medical Implant Communications System (MICS): specific system providing radiocommunications between an
+
+    ULP-AMI and an associated ULP-AMI-P
+
+    Ultra Low Power Active Medical Implant (ULP-AMI): transmitter or receiver or transceiver forming part of an
+
+    active medical implant, that is used in a medical implant communications system radio link set up by the peripheral
+
+    device (ULP-AMI-P)
+
+    Ultra Low Power Active Medical Implant Peripheral device (ULP-AMI-P): radio part of equipment outside the
+
+    human body, including body worn devices, used to program and/or control an ULP-AMI by means of a Medical
+
+    Implant (radio) Communications Link (MICL), such as an external programmer or control transceiver
+
+    3.2 Abbreviations
+
+    For the purposes of the present document, the following abbreviations apply:
+
+    AC Alternating Current
+
+    AIMD Active Implantable Medical Device
+
+    AMI Active Medical Implant
+
+    DC Direct Current
+
+    EMC ElectroMagnetic Compatibility
+
+    ERP Effective Radiated Power
+
+    EUT Equipment Under Test
+
+    ISM Industrial, Scientific and Medical
+
+    MICL Medical Implant Communications Link
+
+    MICS Medical Implant Communications System
+
+    RF Radio Frequency
+
+    ULP-AMI Ultra Low Power Active Medical Implant
+
+    ULP-AMI-P Ultra Low Power Active Medical Implant Peripheral device
+
+    4 Test conditions
+
+    4.1 General
+
+    For the purposes of the present document, the test conditions of the ETSI EN 301 489-1 [1], clause 4, shall apply as
+
+    appropriate. Further product related test conditions for ULP-AMI and associated ULP-AMI-P are specified in the
+
+    present document.
+
+    For emission and immunity tests the normal test modulation, test arrangements, etc., as specified in the present
+
+    document, clauses 4.1 to 4.5 shall apply.
+
+    Whenever the Equipment Under Test (EUT) is provided with a detachable antenna, the EUT shall be tested with the
+
+    antenna fitted in a manner typical of normal intended use, unless otherwise specified. If the EUT can be used with
+
+    several types of antenna the test shall be repeated for each type of antenna.
+
+    ULP-AMI devices (active medical implants) are designed to be implanted within a human body. These radio systems
+
+    are isolated from disturbances by the surrounding body tissue. In order to adequately assess the EMC characteristics of
+
+    active medical implants devices , the use of a simulated man is necessary. See annex C for additional details. The
+
+    provisions of annex C are intended to provide an operational environment that simulates, to the extent possible, actual
+
+    usage conditions for inte'
+- id: art-3
+  title: 'Annex C (normative):'
+  text: 'Annex C (normative):
+
+    Test fixture for ULP-AMI (Simulated man)
+
+    Equipment intended to be implanted in a human body for purposes of the present document should be tested in a
+
+    simulated man constructed as follows in order to simulate operation of the implant under actual operating conditions as
+
+    shown in figure C.1.
+
+    30 cm
+
+    Plastic Grid
+
+    76 cm
+
+    Implant w/ant
+
+    and leads
+
+    38 cm
+
+    fixed to grid
+
+    Cylinder filled with tissue
+
+    substitute materia l
+
+    Figure C.1: Test fixture
+
+    An appropriate simulator for testing medical implant transmitters consists of a cylindrical Plexiglas container with a
+
+    size of 30 cm ± 0,5 cm by 76 cm ± 0,5 cm with a sidewall thickness of 0,635 cm ± 0,05 cm. It shall be completely filled
+
+    with a material that is sufficiently fluid that it will flow around the implant without any voids. The dielectric and
+
+    conductivity properties of this material shall match the dielectric and conductivity properties of human muscle tissue at
+
+    the centre frequency of operation or, if desired, at the measurement frequency.
+
+    NOTE 1: Saline solutions do not meet the dielectric and conductivity requirements for use as a substitute for human
+
+    tissue.
+
+    All emissions measurements will be made using the above specification with the tissue substitute material at a nominal
+
+    temperature between 22 °C and 38 °C.
+
+    NOTE 2: This temperature will facilitate testing because it is typical of ambient conditions at many test sites.
+
+    A mounting grid for the implant inside the container shall be provided that permits the radiating element or elements of
+
+    the implant to be positioned vertically and horizontally. The grid should also support any additional implant leads
+
+    associated with the therapeutic function of the implant in a fixed repeatable manner such that they do not influence the
+
+    measurement.
+
+    The implant antenna shall be mounted no further than 6 cm ± 0,5 cm from the sidewall and centred vertically within the
+
+    container. When switching from vertical to horizontal positioning, it may be necessary to reposition the implant antenna
+
+    to maintain a separation of 6 cm ± 0,5 cm from the sidewall of the test fixture along its length. Implant leads shall be
+
+    coiled and placed away from the implant antenna while maintaining a nominal 6 cm from the sidewall.
+
+    The above fixture shall be placed on a turntable such that the implant transmitter will be located at a nominal 1,5 m
+
+    height above ground and at a 3 m distance from the measurement antenna. Radiated emissions measurements shall then
+
+    be performed to insure compliance with the applicable technical specifications.
+
+    ETSI
+
+    23 ETSI EN 301 489-27 V2.2.1 (2019-04)
+
+    Tissue parameters for various frequencies may be obtained from the Italian National Research Council, Institute for
+
+    Applied Physics [i.5]. Other sources can be used provided they are based on the 4-Cole-Cole equations developed by
+
+    Gabriel [i.3]. In most instances it may be advisable to make preliminary measurements to identify potential problem
+
+    frequencies and use tissue material corresponding to human tissue characteristics at that frequency. In severe cases,
+
+    tissue substitute material may be used that has conductivity and dielectric parameters that correspond to the human
+
+    tissue at a problem frequency.
+
+    ETSI
+
+    24 ETSI EN 301 489-27 V2.2.1 (2019-04)
+
+    Annex D (informative):
+
+    Change history
+
+    Version Information about changes
+
+    Compared with earlier versions that were cited under previous EU Directives, the
+
+    following changes have been introduced:
+
+    • Radiated immunity testing to a continuous sweep between 80 MHz and
+
+    6 000 MHz at 3V/m and 10 V/m depending on applications:
+
+    − for non-life supporting communications link, the test level shall be 3 V/m
+
+    V2.2.0
+
+    (measured unmodulated);
+
+    − for life supporting communications link, the test level shall be 10 V/m
+
+    (measured unmodulated).
+
+    The scope corrected to cover not therapy verification, but communication link
+
+    verification.
+
+    ETSI
+
+    25 ETSI EN 301 489-27 V2.2.1 (2019-04)
+
+    History
+
+    Document history
+
+    V1.1.1 June 2004 Publication
+
+    V2.1.1 December 2016 Publication
+
+    V2.2.0 March 2017 EN Approval Procedure AP 20170620: 2017-03-22 to 2017-06-20
+
+    V2.2.1 April 2019 Publication
+
+    ETSI'
 doc_files:
 - global/raw/ETSI_EN_30148927_v02.02.01_60.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30148927_v02.02.01_60.pdf (pdf, 59872 chars)，生成 3 条共 27352 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30148927_v02.02.01_60.pdf (pdf, 59872 chars)，生成 3 条共 27352 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30148927_v02.02.01_60.pdf (pdf, 59872 chars)，生成 3 条共 27352 字符；解析文本未人工复核，引用以官方原件为准。'

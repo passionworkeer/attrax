@@ -1,0 +1,26 @@
+id: KB-other-CN-CN-GB_4943-21-2019_-_-_-21-_
+regulation_id: CN-GB_4943-21-2019_-_-_-21-_
+doc_name: CN-GB GB 4943.21-2019 信息技术设备 安全 第21部分：远程馈电
+official_citation: CN-GB GB 4943.21-2019 信息技术设备 安全 第21部分：远程馈电
+short_name: CN-GB GB 4943.21-2019 信息技术设备 安全 第21部分：远程馈电
+source: category
+primary_source: other
+domain: other
+applies_if:
+  category:
+  - other
+  features_any: []
+  markets:
+  - CN
+key_articles: []
+key_points:
+- CN-GB GB 4943.21-2019 信息技术设备 安全 第21部分：远程馈电：其他品类领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=F1F8EAB028AC002A7190E8772096F157
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

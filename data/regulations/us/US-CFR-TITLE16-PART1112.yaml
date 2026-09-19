@@ -1,6 +1,6 @@
 id: US-CFR-TITLE16-PART1112
 official_citation: US 16 CFR Part 1112
-short_name: US 16 CFR Part 1112
+short_name: US 16 CFR Part 1112 — REQUIREMENTS PERTAINING TO THIRD PARTY CONFORMITY ASSESSMENT BODIES
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,677 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '16
+
+    Commercial Practices
+
+    2
+
+    2024-01-01
+
+    2024-01-01
+
+    false
+
+    REQUIR'
+  text: '16
+
+    Commercial Practices
+
+    2
+
+    2024-01-01
+
+    2024-01-01
+
+    false
+
+    REQUIREMENTS PERTAINING TO THIRD PARTY CONFORMITY ASSESSMENT BODIES
+
+    1112
+
+    PART 1112
+
+    Commercial Practices
+
+    CONSUMER PRODUCT SAFETY COMMISSION
+
+    CONSUMER PRODUCT SAFETY ACT REGULATIONS
+
+    Pt. 1112
+
+    PART 1112—REQUIREMENTS PERTAINING TO THIRD PARTY CONFORMITY ASSESSMENT BODIES
+
+    Subpart A—Purpose and Definitions
+
+    Sec.
+
+    1112.1
+
+    Purpose.
+
+    1112.3
+
+    Definitions.
+
+    Subpart B—General Requirements Pertaining to Third Party Conformity Assessment Bodies
+
+    1112.11
+
+    What are the types of third party conformity assessment bodies?
+
+    1112.13
+
+    How does a third party conformity assessment body apply for CPSC acceptance?
+
+    1112.15
+
+    When can a third party conformity assessment body apply for CPSC acceptance for a particular CPSC rule or test method?
+
+    1112.17
+
+    How will the CPSC respond to each application?
+
+    1112.19
+
+    How does the CPSC publish information identifying third party conformity assessment bodies that have been accepted?
+
+    1112.21
+
+    May a third party conformity assessment body use testing methods other
+
+    than those specified in the relevant CPSC rule or test method?
+
+    1112.23
+
+    May a CSPC-accepted third party conformity assessment body subcontract work conducted for purposes of section 14 of the CPSA?
+
+    1112.25
+
+    What are a third party conformity assessment body''s recordkeeping responsibilities?
+
+    1112.27
+
+    Must a third party conformity assessment body allow CPSC inspections related to investigations?
+
+    1112.29
+
+    How does a third party conformity assessment body voluntarily discontinue its participation with the CPSC?
+
+    Subpart C—Audit Requirements for Third Party Conformity Assessment Bodies
+
+    1112.30
+
+    What is the purpose of this subpart?
+
+    1112.31
+
+    Who is subject to these audit requirements?
+
+    1112.33
+
+    What must an audit address or over and who conducts the audit?
+
+    1112.35
+
+    When must an audit be conducted?
+
+    1112.37
+
+    What must a third party conformity assessment body do after an audit?
+
+    1112.39
+
+    What records should a third party conformity assessment body retain regarding an audit?
+
+    Subpart D—Adverse Actions: Types, Grounds, Allegations, Procedural Requirements, and Publication
+
+    1112.41
+
+    What are the possible adverse actions the CPSC may take against a third party conformity assessment body?
+
+    1112.43
+
+    What are the grounds for denial of an application?
+
+    1112.45
+
+    What are the grounds for suspension of CPSC acceptance?
+
+    1112.47
+
+    What are the grounds for withdrawal of CPSC acceptance?
+
+    1112.49
+
+    How may a person submit information alleging grounds for adverse action, and what information should be submitted?
+
+    1112.51
+
+    What are the procedures relevant to adverse actions?
+
+    1112.53
+
+    Can the CPSC immediately withdraw its acceptance of the accreditation of a third party conformity assessment body?
+
+    1112.55
+
+    Will the CPSC publish adverse actions?
+
+    Authority:
+
+    Pub. L. 110-314, section 3, 122 Stat. 3016, 3017 (2008); 15 U.S.C. 2063.
+
+    Source:
+
+    77 FR 31084, May 24, 2012, unless otherwise noted.
+
+    Subpart A—Purpose and Definitions'
+- id: art-2
+  title: § 1112.1
+  text: '§ 1112.1
+
+    Purpose.
+
+    This part defines the term “third party conformity assessment body” and describes the types of third party conformity assessment bodies whose accreditations are accepted by the CPSC to test children''s
+    products under section 14 of the CPSA. It describes the requirements and procedures for becoming a CPSC-accepted third party conformity assessment body; the audit requirement applicable to CPSC-accepted
+    third party conformity assessment bodies; how a third party conformity assessment body may voluntarily discontinue participation as a CPSC-accepted third party conformity assessment body; the grounds
+    and procedures for withdrawal or suspension of CPSC acceptance of the accreditation of a third party conformity assessment body; and how an individual may submit information alleging grounds for adverse
+    action.
+
+    [78 FR 15858, Mar. 12, 2013]'
+- id: art-3
+  title: § 1112.3
+  text: '§ 1112.3
+
+    Definitions.
+
+    Unless otherwise stated, the definitions of section 3 of the CPSA and additional definitions in the Consumer Product Safety Improvement Act of 2008, Public Law 110-314, apply for purposes of this part.
+    The following definitions apply for purposes of this subpart:
+
+    Accept accreditation
+
+    means that the CPSC has positively disposed of an application by a third party conformity assessment body to test children''s products pursuant to a particular children''s product safety rule, for purposes
+    of the testing required in section 14 of the CPSA.
+
+    Accreditation
+
+    means a procedure by which an authoritative body gives formal recognition that a third party conformity assessment body meets competence requirements to perform specific tasks. Accreditation recognizes
+    a third party conformity assessment body''s technical capability and is usually specific for tests of the systems, products, components, or materials for which the third party conformity assessment
+    body claims proficiency.
+
+    Accreditation body
+
+    means an entity that:
+
+    (1) Accredits or has accredited a third party conformity assessment body as meeting, at a minimum, the International Organization for Standardization (ISO)/International Electrotechnical Commission
+    (IEC) Standard ISO/IEC 17025 (see § 1107.21 of this chapter for availability), “General Requirements for the Competence of Testing and Calibration Laboratories,” and any test methods or consumer product
+    safety requirements specified in the relevant notice of requirements issued by the Commission; and
+
+    (2) Is a signatory to the International Laboratory Accreditation Cooperation-Mutual Recognition Arrangement.
+
+    Audit
+
+    means a systematic, independent, documented process for obtaining records, statements of fact, or other relevant information, and assessing them objectively to determine the extent to which specified
+    requirements are fulfilled. An audit, for purposes of this part, consists of two parts:
+
+    (1) An examination by an accreditation body to determine whether the third party conformity assessment body meets or continues to meet the conditions for accreditation (a process known more commonly
+    as a “reassessment”); and
+
+    (2) The resubmission of the “Consumer Product Conformity Assessment Body Acceptance Registration Form” (CPSC Form 223) and accompanying documentation by the third party conformity assessment body and
+    the Consumer Product Safety Commission''s (CPSC''s) examination of the resubmitted CPSC Form 223 and accompanying documentation. Accompanying documentation includes the baseline documents required of
+    all applicants in § 1112.13(a), the documents required of firewalled applicants in § 1112.13(b)(2), and/or the documents required of governmental applicants in § 1112.13(c)(2).
+
+    Commission
+
+    means the body of Commissioners appointed to the Consumer Product Safety Commission.
+
+    CPSA
+
+    means the Consumer Product Safety Act, 15 U.S.C. 2051-2089.
+
+    CPSC
+
+    means the Consumer Product Safety Commission as an agency.
+
+    Notice of requirements
+
+    means a publication that provides the minimum qualifications necessary for a third party conformity assessment body to have its accreditation accepted to test children''s products for conformity with
+    a particular children''s product safety rule.
+
+    Quality manager
+
+    means an individual (however named) who, irrespective of other duties and responsibilities, has defined responsibility and authority for ensuring that the management system related to quality is implemented
+    and followed at all times and has direct access to the highest level of management at which decisions are made on the conformity assessment body''s policy or resources.
+
+    Scope
+
+    means the range of particular CPSC safety rules and/or test methods to which a third party conformity assessment body has been accredited and for which it may apply for CPSC acceptance.
+
+    Suspend
+
+    means the CPSC has removed its acceptance, for purposes of the testing of children''s products required in section 14 of the CPSA, of a third party conformity assessment body''s accreditation for failure
+    to cooperate in an investigation under this part.
+
+    Third party conformity assessment body
+
+    means a laboratory.
+
+    Undue influence
+
+    means that a manufacturer, private labeler, governmental entity, or other interested party affects a third party conformity assessment body, such that commercial, financial, or other pressures compromise
+    the integrity of its testing processes or results.
+
+    Withdraw
+
+    means the CPSC removes its prior acceptance of a third party conformity assessment body''s accreditation pursuant to a particular children''s product safety rule for purposes of the testing of children''s
+    products required in section 14 of the CPSA.
+
+    [77 FR 31084, May 24, 2012, as amended at 78 FR 15858, Mar. 12, 2013; 86 FR 22866, Apr. 30, 2021]
+
+    Subpart B—General Requirements Pertaining to Third Party Conformity Assessment Bodies
+
+    Source:
+
+    78 FR 15859, Mar. 12, 2013, unless otherwise noted.'
+- id: art-4
+  title: § 1112.11
+  text: '§ 1112.11
+
+    What are the types of third party conformity assessment bodies?
+
+    (a)
+
+    Independent.
+
+    Independent third party conformity assessment bodies are third party conformity assessment bodies that are neither owned, managed, or controlled by a manufacturer or private labeler of a children''s
+    product to be tested by the third party conformity assessment body, nor owned or controlled, in whole or in part, by a government;
+
+    (b)
+
+    Firewalled.
+
+    A third party conformity assessment body must apply for firewalled status if:
+
+    (1) It is owned, managed, or controlled by a manufacturer or private labeler of a children''s product;
+
+    (i) For purposes of determining whether a third party conformity assessment body is firewalled, “manufacturer” includes a trade association.
+
+    (ii) A manufacturer or private labeler is considered to own, manage, or control a third party conformity assessment body if any one of the following characteristics applies:
+
+    (A) The manufacturer or private labeler of the children''s product holds a 10 percent or greater ownership interest, whether direct or indirect, in the third party conformity assessment body. Indirect
+    ownership interest is calculated by successive multiplication of the ownership percentages for each link in the ownership chain;
+
+    (B) The third party conformity assessment body and a manufacturer or private labeler of the children''s product are owned by a common “parent” entity; or
+
+    (C) A manufacturer or private labeler of the children''s product has the ability to appoint any of the third party conformity assessment body''s senior internal governing body (such as, but not limited
+    to, a board of directors), the ability to appoint the presiding official (such as, but not limited to, the chair or president) of the third party conformity assessment body''s senior internal governing
+    body, the ability to hire, dismiss, or set the compensation level for third party conformity assessment body personnel, regardless of whether this ability is ever exercised;
+
+    (2) The children''s product is subject to a CPSC children''s product safety rule that the third party conformity assessment body requests CPSC acceptance to test; and
+
+    (3) The third party conformity assessment body intends to test such children''s product made by the owning, managing, or controlling entity for the purpose of supporting a Children''s Product Certificate.
+
+    (c)
+
+    Governmental.
+
+    Governmental third party conformity assessment bodies are owned or controlled, in whole or in part, by a government. For purposes of this part, “government” includes any unit of a national, territorial,
+    provincial, regional, state, tribal, or local government, and a union or association of sovereign states. “Government” also includes domestic, as well as foreign entities. A third party conformity assessment
+    body is “owned or controlled, in whole or in part, by a government” if any one of the following characteristics applies:
+
+    (1) A governmental entity holds a 1 percent or greater ownership interest, whether direct or indirect, in the third party conformity assessment body. Indirect ownership interest is calculated by successive
+    multiplication of the ownership percentages for each link in the ownership chain;
+
+    (2) A governmental entity provides any direct financial investment or funding (other than fee for work);
+
+    (3) A governmental entity has the ability to appoint a majority of the third party conformity assessment body''s senior internal governing body (such as, but not limited to, a board of directors); the
+    ability to appoint the presiding official of the third party conformity assessment body''s senior internal governing body (such as, but not limited to, chair or president); and/or the ability to hire,
+    dismiss, or set the compensation level for third party conformity assessment body personnel;
+
+    (4) Third party conformity assessment body management or technical personnel include any government employees;
+
+    (5) The third party conformity assessment body has a subordinate position to a governmental entity in its external organizational structure (not including its relationship as a regulated entity to a
+    government regulator); or
+
+    (6) Apart from its role as regulator, the government can determine, establish, alter, or otherwise affect:
+
+    (i) The third party conformity assessment body''s testing outcomes;
+
+    (ii) The third party conformity assessment body''s budget or financial decisions;
+
+    (iii) Whether the third party conformity assessment body may accept particular offers of work; or
+
+    (iv) The third party conformity assessment body''s organizational structure or continued existence.'
+- id: art-5
+  title: § 1112.13
+  text: '§ 1112.13
+
+    How does a third party conformity assessment body apply for CPSC acceptance?
+
+    (a)
+
+    Baseline Requirements.
+
+    Each third party conformity assessment body seeking CPSC acceptance must:
+
+    (1) Submit a completed Consumer Product Conformity Assessment Body Registration Form (CPSC Form 223 or Application). In submitting a CPSC Form 223, the third party conformity assessment body must attest
+    to facts and characteristics about its business that will determine whether the third party conformity assessment body is independent, firewalled, or governmental. The third party conformity assessment
+    body also must attest that it has read, understood, and agrees to the regulations in this part. The third party conformity assessment body must update its CPSC Form 223 whenever any information previously
+    supplied on the form changes.
+
+    (2) Submit the following documentation.
+
+    (i)
+
+    Accreditation certificate.
+
+    (A) The third party conformity assessment body must be accredited to the ISO/IEC 17025, “General requirements for the competence of testing and calibration laboratories.”
+
+    (B) The accreditation must be by an accreditation body that is a signatory to the International Laboratory Accreditation Cooperation-Mutual Recognition Arrangement (ILAC-MRA).
+
+    (ii)
+
+    Statement of scope.
+
+    The third party conformity assessment body''s accreditation must include a statement of scope that clearly identifies each CPSC rule and/or test method for which CPSC acceptance is sought. Although
+    a third party conformity assessment body may include more than one CPSC rule and/or test method in its scope in one application, it must submit a new application if the CPSC has already accepted the
+    third party conformity assessment body for a particular scope, and the third party conformity assessment body wishes to expand its acceptance to include additional CPSC rules and/or test methods.
+
+    (b)
+
+    Additional Requirements for Firewalled Third Party Conformity Assessment Bodies.
+
+    (1) A third party conformity assessment body may be accepted as a firewalled third party conformity assessment body if the Commission, by order, makes the findings described in § 1112.17(b).
+
+    (2) For the Commission to evaluate whether an applicant firewalled third party conformity assessment body satisfies the criteria listed in § 1112.17(b), and in addition to the baseline accreditation
+    requirements in paragraph (a) of this section, a firewalled third party conformity assessment body applying for acceptance of its accreditation must submit copies of:
+
+    (i) The third party conformity assessment body''s established policies and procedures that explain:
+
+    (A) How the third party conformity assessment body will protect its test results from undue influence by the manufacturer, private labeler, or other interested party;
+
+    (B) That the CPSC will be notified immediately of any attempt by the manufacturer, private labeler, or other interested party to hide or exert undue influence over the third party conformity assessment
+    body''s test results; and
+
+    (C) That allegations of undue influence may be reported confidentially to the CPSC;
+
+    (ii) Training documents, including a description of the training program content, showing how employees are trained annually on the policies and procedures described in paragraph (b)(2)(i) of this section;
+
+    (iii) Training records, including a list and corresponding signatures, of the staff members who received the training identified in paragraph (b)(2)(ii) of this section. The records must include training
+    dates, location, and the name and title of the individual providing the training;
+
+    (iv) An organizational chart(s) of the third party conformity assessment body that includes the names of all third party conformity assessment body personnel, both temporary and permanent, and their
+    reporting relationship within the third party conformity assessment body;
+
+    (v) An organizational chart(s) of the broader organization that identifies the reporting relationships of the third party conformity assessment body within the broader organization (using both position
+    titles and staff names); and
+
+    (vi) A list of all third party conformity assessment body personnel with reporting relationships outside of the third party conformity assessment body. The list must identify the name and title of the
+    relevant third party conformity assessment body employee(s) and the names, titles, and employer(s) of all individuals outside of the third party conformity assessment body to whom they report;
+
+    (c)
+
+    Additional Requirements for Governmental Third Party Conformity Assessment Bodies.
+
+    (1) The CPSC may accept a governmental third party conformity assessment body if the CPSC determines that:
+
+    (i) To the extent practicable, manufacturers or private labelers located in any nation are permitted to choose third party conformity assessment bodies that are not owned or controlled by the government
+    of that nation;
+
+    (ii) The third party conformity assessment body''s testing results are not subject to undue influence by any other person, including another governmental entity;
+
+    (iii) The third party conformity assessment body is not accorded more favorable treatment than other third party conformity assessment bodies in the same nation who have been accredited;
+
+    (iv) The third party conformity assessment body''s testing results are accorded no greater weight by other governmental authorities than those of other accredited third party conformity assessment bodies;
+    and
+
+    (v) The third party conformity assessment body does not exercise undue influence over other governmental authorities on matters affecting its operations or on decisions by other governmental authorities
+    controlling distribution of products based on outcomes of the third party conformity assessment body''s conformity assessments.
+
+    (2) For the CPSC to evaluate whether a governmental third party conformity assessment body satisfies the criteria listed in paragraph (c)(1) of this section, and in addition to the baseline accreditation
+    requirements in paragraph (a) of this section, a governmental third party conformity assessment body seeking CPSC-accepted status must submit:
+
+    (i)
+
+    Description.
+
+    A description illustrating the relationships with other entities, such as government agencies and joint ventures partners. The description may be in the form of a diagram;
+
+    (ii)
+
+    Responses to questionnaires.
+
+    The CPSC will provide a governmental third party conformity assessment body applicant with a questionnaire and will provide a separate questionnaire to the affiliated governmental entity;
+
+    (iii)
+
+    Executed memorandum.
+
+    A copy of an executed memorandum addressing undue influence;
+
+    (A) The memorandum must be:
+
+    (
+
+    1
+
+    ) Addressed to all staff of the third party conformity assessment body;
+
+    (
+
+    2
+
+    ) On company letterhead;
+
+    (
+
+    3
+
+    ) From senior management of the third party conformity assessment body;
+
+    (
+
+    4
+
+    ) In the primary written language used for business communication in the area where the third party conformity assessment body is located; if that language is different than English, an English translation
+    of the executed memorandum must also be provided to the CPSC;
+
+    (
+
+    5
+
+    ) Displayed prominently for staff reference for as long as the accreditation of the third party conformity assessment body whose accreditation is accepted by the CPSC; and
+
+    (B) The memorandum must state that:
+
+    (
+
+    1
+
+    ) The policy of the laboratory is to reject undue influence by any manufacturer, private labeler, governmental entity, or other interested party, regardless of that person or entity''s affiliation with
+    any organization;
+
+    (
+
+    2
+
+    ) Employees are required to report immediately to their supervisor or any other official designated by the third party conformity assessment body about any attempts to gain undue influence; and
+
+    (
+
+    3
+
+    ) The third party conformity assessment body will not tolerate violations of the undue influence policy.
+
+    (iv)
+
+    Attestation.
+
+    A senior officer of the governmental third party conformity assessment body, who has the authority to make binding statements of policy on behalf of the third party conformity assessment body, must
+    attest to the following:
+
+    (A) The third party conformity assessment body seeks acceptance as a governmental third party conformity assessment body under the CPSC''s program of requirements for the testing of children''s products;
+
+    (B) The official intends the attestation to be considered in support of any and all applications made by this third party conformity assessment body for acceptance of its accreditation by the CPSC,
+    including future applications related to additional CPSC rules and/or test methods;
+
+    (C) The attestation, and any other document submitted in support of the application, is accurate in its representation of current conditions or policies at the third party conformity assessment body,
+    to the best of the official''s knowledge, information, and/or belief. The information in the attestation, and any other document submitted in support of the application, will be understood by the CPSC
+    as continuing in its accuracy in every respect, until and unless notice of its revocation by an authorized officer of the third party conformity assessment body is received by the CPSC. The official
+    understands that acceptance by the CPSC carries with it the obligation to comply with this part, in order to remain on the CPSC''s list of accepted third party conformity assessment bodies. The attestation
+    is submitted as a condition of acceptance of this laboratory as a governmental third party conformity assessment body by the CPSC.
+
+    (D) The word “government” in the attestation refers to any government (central, provincial, municipal, or other) in this third party conformity assessment body''s country or administrative area and
+    includes state-owned entities, even if those entities do not carry out governmental functions.
+
+    (E) With regard to consumer products to be distributed in commerce in the United States and subject to CPSC third party testing requirements, the third party conformity assessment body does not receive,
+    and will not accept from any governmental entity, treatment that is more favorable than that received by other third party conformity assessment bodies in the same country or administrative area, which
+    have been accepted as accredited for third party testing by the CPSC. More favorable treatment for a governmental third party conformity assessment body includes, but is not limited to, authorization
+    to perform essential export-related functions, while competing CPSC-accepted laboratories in the same country or administrative area are not permitted to perform those same functions.
+
+    (F) With regard to consumer products to be sold in the United States and subject to CPSC third party testing requirements, the third party conformity assessment body''s testing results are not accorded
+    greater weight by any governmental entity that may be evaluating such results for export control purposes, compared to other third party conformity assessment bodies in the same country or administrative
+    area, which have been accepted as accredited for third party testing by the CPSC.
+
+    (G) The third party conformity assessment body has an expressed policy, known to its employees, that forbids attempts at undue influence over any government authorities on matters affecting its operations.
+
+    (H) When a governmental third party conformity assessment body is owned or controlled by a governmental entity that also has any ownership or control over consumer product production, the senior officer
+    of the applicant third party conformity assessment body must attest that the third party conformity assessment body will not conduct CPSC tests in support of a Children''s Product Certificate for products
+    for export to the United States that have been produced by an entity in which that governmental entity holds such ownership or control until it has applied for and been accepted by the Commission as,
+    a dual governmental-firewalled third party conformity assessment body.
+
+    (v)
+
+    Governmental entity attestation.
+
+    In the even'
+- id: art-6
+  title: § 1112.15
+  text: '§ 1112.15
+
+    When can a third party conformity assessment body apply for CPSC acceptance for a particular CPSC rule or test method?
+
+    (a) Once the CPSC publishes the requirements for accreditation to a particular CPSC rule or test method, a third party conformity assessment body may apply to the CPSC for acceptance to that scope of
+    accreditation. An application may be made for acceptance of accreditation to more than one CPSC rule or test method. Once accepted by the CPSC, a third party conformity assessment body may apply at
+    any time to expand the scope of its acceptance to include additional CPSC rules or test methods. A third party conformity assessment body may only issue test results for purposes of section 14 of the
+    CPSA that fall within a scope for which the CPSC has accepted the third party conformity assessment body''s accreditation.
+
+    (b) The CPSC has published the requirements for accreditation for third party conformity assessment bodies to assess conformity for the following CPSC rules or test methods:
+
+    (1) 16 CFR part 1203, Safety Standard for Bicycle Helmets;
+
+    (2) 16 CFR part 1215, Safety Standard for Infant Bath Seats;
+
+    (3) 16 CFR part 1216, Safety Standard for Infant Walkers;
+
+    (4) 16 CFR part 1217, Safety Standard for Toddler Beds;
+
+    (5) 16 CFR part 1219, Safety Standard for Full-Size Baby Cribs;
+
+    (6) 16 CFR part 1220, Safety Standard for Non-Full-Size Baby Cribs;
+
+    (7) 16 CFR part 1221, Safety Standard for Play Yards;
+
+    (8) 16 CFR part 1223, Safety Standard for Infant Swings;
+
+    (9) 16 CFR part 1224, Safety Standard for Portable Bed Rails;
+
+    (10) 16 CFR part 1303, Ban of Lead-Containing Paint and Certain Consumer Products Bearing Lead-Containing Paint. For its accreditation to be accepted by the Commission to test to 16 CFR part 1303, a
+    third party conformity assessment body must have one or more of the following test methods referenced in its statement of scope:
+
+    (i) CPSC Standard Operating Procedure for Determining Lead (Pb) in Paint and Other Similar Surface Coatings, CPSC-CH-E1003-09;
+
+    (ii) CPSC Standard Operating Procedure for Determining Lead (Pb) in Paint and Other Similar Surface Coatings, CPSC-CH-E1003-09.1;
+
+    (iii) ASTM F2853-10, “Standard Test Method for Determination of Lead in Paint Layers and Similar Coatings or in Substrates and Homogenous Materials by Energy Dispersive X-Ray Fluorescence Spectrometry
+    Using Multiple Monochromatic Excitation Beams.”
+
+    (11) 16 CFR part 1420, Safety Standard for All-Terrain Vehicles;
+
+    (12) 16 CFR 1500.86(a)(5), Exceptions from Classification as a Banned Toy or Other Banned Article for Use by Children (Clacker Balls);
+
+    (13) 16 CFR 1500.86(a)(7) and (8), Exceptions from Classification as a Banned Toy or Other Banned Article for Use by Children (Dive Sticks and Similar Articles);
+
+    (14) 16 CFR part 1501, Method for Identifying Toys and Other Articles Intended for Use by Children Under 3 Years of Age Which Present Choking, Aspiration, or Ingestion Hazards Because of Small Parts;
+
+    (15) 16 CFR part 1505, Requirements for Electrically Operated Toys or Other Electrically Operated Articles Intended for Use by Children;
+
+    (16) 16 CFR part 1510, Requirements for Rattles;
+
+    (17) 16 CFR part 1511, Requirements for Pacifiers;
+
+    (18) 16 CFR part 1512, Requirements for Bicycles;
+
+    (19) 16 CFR part 1513, Requirements for Bunk Beds;
+
+    (20) 16 CFR part 1610, Standard for the Flammability of Clothing Textiles;
+
+    (21) 16 CFR part 1611, Standard for the Flammability of Vinyl Plastic Film;
+
+    (22) 16 CFR part 1615, Standard for the Flammability of Children''s Sleepwear: Sizes 0 Through 6X (FF 3-71);
+
+    (23) 16 CFR part 1616, Standard for the Flammability of Children''s Sleepwear: Sizes 7 Through 14 (FF 5-74);
+
+    (24) 16 CFR part 1630, Standard for the Surface Flammability of Carpets and Rugs (FF 1-70);
+
+    (25) 16 CFR part 1631, Standard for the Surface Flammability of Small Carpets and Rugs (FF 2-70);
+
+    (26) 16 CFR part 1632, Standard for the Flammability of Mattresses and Mattress Pads (FF 4-72, amended);
+
+    (27) 16 CFR part 1633, Standard for the Flammability (Open Flame) of Mattress Sets;
+
+    (28) Lead Content in Children''s Metal Jewelry. For its accreditation to be accepted by the Commission to test for lead content in children''s metal jewelry, a third party conformity assessment body
+    must have one or more of the following test methods referenced in its statement of scope:
+
+    (i) CPSC Test Method CPSC-CH-E1001-08, “Standard Operating Procedure for Determining Total Lead (Pb) in Children''s Metal Products (Including Children''s Metal Jewelry)”;
+
+    (ii) CPSC Test Method CPSC-CH-E1001-08.1, “Standard Operating Procedure for Determining Total Lead (Pb)
+
+    in Children''s Metal Products (Including Children''s Metal Jewelry)”;
+
+    (iii) CPSC Test Method CPSC-CH-E1001-08.2, “Standard Operating Procedure for Determining Total Lead (Pb) in Children''s Metal Products (Including Children''s Metal Jewelry)”;
+
+    (iv) CPSC Test Method CPSC-CH-E1001-08.3, “Standard Operating Procedure for Determining Total Lead (Pb) in Children''s Metal Products (Including Children''s Metal Jewelry)”;
+
+    (v) Section I, “Screening Test for Total Pb Analysis,” from CPSC “Standard Operating Procedure for Determining Lead (Pb) and its Availability in Children''s Metal Jewelry,” February 3, 2005;
+
+    (29) Limits on Total Lead in Children''s Products: Children''s Metal Products. For its accreditation to be accepted by the Commission to test for total lead content in children''s metal products, a
+    third party conformity assessment body must have one or more of the following test methods referenced in its statement of scope:
+
+    (i) CPSC Test Method CPSC-CH-E1001-08, “Standard Operating Procedure for Determining Total Lead (Pb) in Children''s Metal Products (Including Children''s Metal Jewelry)”;
+
+    (ii) CPSC Test Method CPSC-CH-E1001-08.1, “Standard Operating Procedure for Determining Total Lead (Pb) in Children''s Metal Products (Including Children''s Metal Jewelry)”;
+
+    (iii) CPSC Test Method CPSC-CH-E1001-08.2, “Standard Operating Procedure for Determining Total Lead (Pb) in Children''s Metal Products (Including Children''s Metal Jewelry)”;
+
+    (iv) CPSC Test Method CPSC-CH-E1001-08.3, “Standard Operating Procedure for Determining Total Lead (Pb) in Children''s Metal Products (Including Children''s Metal Jewelry)”;
+
+    (30) Limits on Total Lead in Children''s Products: Nonmetal Children''s Products. For its accreditation to be accepted by the Commission to test for lead content in nonmetal children''s products, a
+    third party conformity assessment body must have one or more of the following test methods referenced in its statement of scope:
+
+    (i) CPSC Test Method CPSC-CH-E1002-08, “Standard Operating Procedure for Determining Total Lead (Pb) in Nonmetal Children''s Products”;
+
+    (ii) CPSC Test Method CPSC-CH-E1002-08.1, “Standard Operating '
 doc_files:
 - us/raw/US-CFR-title16-part1112.xml
+- us/raw/US-CFR-title16-part1112.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1112.xml (xml, 78544 chars)，生成 6 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1112.xml (xml, 78544 chars)，生成 6 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1112.xml (xml, 78544 chars)，生成 6 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1112-4（US 16 CFR Part 1112）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1112-3（US 16 CFR Part 1112）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1112-2（US 16 CFR Part 1112）。'

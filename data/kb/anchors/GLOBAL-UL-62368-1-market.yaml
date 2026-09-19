@@ -1,0 +1,27 @@
+id: KB-market-GLOBAL-GLOBAL-UL-62368-1
+regulation_id: GLOBAL-UL-62368-1
+doc_name: UL 62368-1 (Audio/video, information and communication technology equipment — safety requirements)
+official_citation: UL 62368-1 (Audio/video, information and communication technology equipment — safety requirements)
+short_name: UL 62368-1 安全标准
+source: market
+primary_source: market
+domain: 技术标准
+applies_if:
+  category: []
+  features_any: []
+  markets:
+  - GLOBAL
+key_articles:
+- art-1
+- art-2
+key_points:
+- UL 62368-1 安全标准：技术标准领域法规，适用于 GLOBAL 市场相关经营行为（库自动接入，按市场匹配）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://www.ul.com/
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

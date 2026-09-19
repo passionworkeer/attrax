@@ -1,0 +1,27 @@
+id: KB-market-VN-VN-TCVN-CR
+regulation_id: VN-TCVN-CR
+doc_name: TCVN national standards / CR conformity marking
+official_citation: TCVN national standards / CR conformity marking
+short_name: 越南 TCVN / CR 认证
+source: market
+primary_source: market
+domain: 产品认证
+applies_if:
+  category: []
+  features_any: []
+  markets:
+  - VN
+key_articles:
+- art-1
+- art-2
+key_points:
+- 越南 TCVN / CR 认证：产品认证领域法规，适用于 VN 市场相关经营行为（库自动接入，按市场匹配）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://tcvn.gov.vn/
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

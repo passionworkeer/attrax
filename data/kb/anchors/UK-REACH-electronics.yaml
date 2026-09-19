@@ -1,0 +1,27 @@
+id: KB-electronics-UK-UK-REACH
+regulation_id: UK-REACH
+doc_name: UK How to comply with REACH chemical regulations
+official_citation: UK How to comply with REACH chemical regulations
+short_name: UK REACH 合规指南 (gov.uk)
+source: category
+primary_source: electronics
+domain: electronics
+applies_if:
+  category:
+  - electronics
+  features_any: []
+  markets:
+  - UK
+key_articles:
+- art-1
+key_points:
+- UK REACH 合规指南 (gov.uk)：电子产品领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://www.gov.uk/guidance/how-to-comply-with-reach-chemical-regulations
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

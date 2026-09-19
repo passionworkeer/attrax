@@ -9,11 +9,846 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'L_2023231EN.01000101.xml
+
+
+    20.9.2023
+
+
+    EN
+
+
+    Official Journal of'
+  text: 'L_2023231EN.01000101.xml
+
+
+    20.9.2023
+
+
+    EN
+
+
+    Official Journal of the European Union
+
+
+    L 231/1
+
+
+    DIRECTIVE (EU) 2023/1791 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL
+
+
+
+    of 13 September 2023
+
+
+
+    on energy efficiency and amending Regulation (EU) 2023/955 (recast)
+
+
+    (Text with EEA relevance)
+
+
+    THE EUROPEAN PARLIAMENT AND THE COUNCIL OF THE EUROPEAN UNION,
+
+
+    Having regard to the Treaty on the Functioning of the European Union, and in particular Article 194(2) thereof,
+
+
+    Having regard to the proposal from the European Commission,
+
+
+    After transmission of the draft legislative act to the national Parliaments,
+
+
+    Having regard to the opinion of the European Economic and Social Committee
+
+    (
+
+    1
+
+    )
+
+    ,
+
+
+    Having regard to the opinion of the Committee of the Regions
+
+    (
+
+    2
+
+    )
+
+    ,
+
+
+    Acting in accordance with the ordinary legislative procedure
+
+    (
+
+    3
+
+    )
+
+    ,
+
+
+    Whereas:
+
+
+    (1)
+
+
+    Directive 2012/27/EU of the European Parliament and of the Council
+
+    (
+
+    4
+
+    )
+
+    has been substantially amended several times
+
+    (
+
+    5
+
+    )
+
+    . Since further amendments are to be made, that Directive should be recast in the interests of clarity.
+
+
+    (2)
+
+
+    In its communication of 17 September 2020 on ‘Stepping up Europe’s 2030 climate ambition – Investing in a climate-neutral future for the benefit of our people’ (the ‘Climate Target Plan’), the Commission
+    proposed to raise the Union’s climate ambition by increasing the greenhouse gas (GHG) emissions target to at least 55 % below 1990 levels by 2030. That is a substantial increase compared to the existing
+    40 % reduction target. The proposal delivered on the commitment made in the communication of the Commission of 11 December 2019 on ‘The European Green Deal’ (the ‘European Green Deal’) to put forward
+    a comprehensive plan to increase the Union’s target for 2030 towards 55 % in a responsible way. It is also in accordance with the objectives of the Paris Agreement adopted on 12 December 2015 under
+    the United Nations Framework Convention on Climate Change (the ‘Paris Agreement’) to keep the global temperature increase to well below 2 °C and pursue efforts to keep it to 1,5 °C.
+
+
+    (3)
+
+
+    The conclusions of the European Council of 10-11 December 2020 endorsed the Union’s binding domestic reduction target for net GHG emissions of at least 55 % by 2030 compared to 1990. The European Council
+    concluded that the climate ambition needed to be raised in a manner that would spur sustainable economic growth, create jobs, deliver health and environmental benefits for Union citizens, and contribute
+    to the long-term global competitiveness of the Union’s economy by promoting innovation in green technologies.
+
+
+    (4)
+
+
+    To implement those objectives, the Commission, in its communication of 19 October 2020 on ‘Commission Work Programme 2021 – A Union of vitality in a world of fragility’, announced a legislative package
+    to reduce GHG emissions by at least 55 % by 2030 (the ‘Fit for 55 package’), and to achieve a climate-neutral European Union by 2050. That package covers a range of policy areas including energy efficiency,
+    renewable energy, land use, land change and forestry, energy taxation, effort sharing and emissions trading.
+
+
+    (5)
+
+
+    The purpose of the Fit for 55 package is to safeguard and create jobs in the Union and to enable the Union to become a world leader in the development and uptake of clean technologies in the global
+    energy transition, including energy efficiency solutions.
+
+
+    (6)
+
+
+    Projections indicate that, with the full implementation of current policies, GHG emission reductions by 2030 would be around 45 % compared to 1990 levels, when excluding land use emissions and absorptions,
+    and around 47 %, when including them. The Climate Target Plan therefore provides for a set of required actions across all sectors of the economy and revisions of the key legislative instruments to reach
+    that increased climate ambition.
+
+
+    (7)
+
+
+    In its communication of 28 November 2018 on ‘A Clean Planet for all – A European strategic long-term vision for a prosperous, modern, competitive and climate neutral economy’, the Commission stated
+    that energy efficiency is a key area of action, without which the full decarbonisation of the Union’s economy cannot be achieved. The need to capture the cost-effective energy saving opportunities has
+    led to the Union’s current energy efficiency policy. In December 2018, a new 2030 Union headline energy efficiency target of at least 32,5 %, compared to projected energy use in 2030, was included as
+    part of the Clean Energy for All Europeans package, which aimed at putting energy efficiency first, achieving global leadership in renewable energies and providing a fair deal for consumers.
+
+
+    (8)
+
+
+    The impact assessment accompanying the Climate Target Plan demonstrated that, to achieve the increased climate ambition, energy efficiency improvements will need to be significantly raised from the
+    current level of 32,5 %.
+
+
+    (9)
+
+
+    An increase in the Union’s 2030 energy efficiency target can reduce energy prices and be crucial in reducing GHG emissions, accompanied by an increase and uptake of electrification, hydrogen, e-fuels
+    and other relevant technologies necessary for the green transition, including in the transport sector. Even with the rapid growth of renewable electricity generation, energy efficiency can reduce the
+    need of new power generation capacity and the costs relating to storage, transmission and distribution. Increased energy efficiency is also particularly important for the security of the energy supply
+    of the Union, by lowering the Union’s dependence on the import of fuels from third countries. Energy efficiency is one of the cleanest and most cost-efficient measures by which to address that dependence.
+
+
+    (10)
+
+
+    The sum of national contributions communicated by Member States in their national energy and climate plans falls short of the Union’s target of 32,5 %. The contributions would collectively lead to a
+    reduction of 29,7 % for primary energy consumption and 29,4 % for final energy consumption compared to the projections from the Commission’s 2007 EU Reference Scenario for 2030. That would translate
+    in a collective gap of 2,8 percentage points for primary energy consumption and 3,1 percentage points for final energy consumption for the EU-27.
+
+
+    (11)
+
+
+    A number of Member States presented ambitious national energy and climate plans, which were assessed by the Commission as ‘sufficient’, and which contained measures that allow those Member States to
+    contribute to reaching the collective targets for energy efficiency with a ratio larger than the Union average. In addition, a number of Member States have documented ‘early efforts’ in achieving energy
+    savings, namely energy savings above the Union average trajectories in the last years. Both cases are significant efforts that should be recognised and should be included in the Union’s future modelling
+    projections and that can serve as good examples of how all Member States can work on their energy efficiency potential to deliver significant benefits to their economies and societies.
+
+
+    (12)
+
+
+    In some cases, the assumptions used by the Commission in its 2020 EU Reference Scenario and the assumptions used by some Member States for their reference scenarios underpinning their national energy
+    and climate plans are different. This may lead to divergences as regards the calculation of primary energy consumption but both approaches are valid with regard to primary energy consumption.
+
+
+    (13)
+
+
+    While the energy savings potential remains large in all sectors, there is a particular challenge relating to transport, as it is responsible for more than 30 % of final energy consumption, and to buildings,
+    since 75 % of the Union’s building stock has a poor energy performance. Another increasingly important sector is the information and communications technology (ICT) sector, which is responsible for
+    5 to 9 % of the world’s total electricity use and more than 2 % of global emissions. In 2018, data centres accounted for 2,7 % of the electricity demand in the EU-28. In that context, the Commission,
+    in its communication of 19 February 2020 on ‘Shaping Europe''s digital future’ (the ‘Union’s Digital Strategy’), highlighted the need for highly energy-efficient and sustainable data centres and transparency
+    measures for telecoms operators as regards their environmental footprint. Furthermore, the possible increase in industry’s energy demand that may result from its decarbonisation, particularly for energy
+    intensive processes, should also be taken into account.
+
+
+    (14)
+
+
+    The higher level of ambition requires a stronger promotion of cost-effective energy efficiency measures in all areas of the energy system and in all relevant sectors where activity affects energy demand,
+    such as the transport, water and agriculture sectors. Improving energy efficiency throughout the full energy chain, including energy generation, transmission, distribution and end-use, will benefit
+    the environment, improve air quality and public health, reduce GHG emissions, improve energy security by decreasing the need for energy imports, in particular of fossil fuels, cut energy costs for households
+    and companies, help alleviate energy poverty, and lead to increased competitiveness, more jobs and increased economic activity throughout the economy. Improving energy efficiency would thus improve
+    citizens’ quality of life, while contributing to the transformation of the Union’s energy relations with third-country partners towards achieving climate neutrality. That complies with the Union commitments
+    made in the framework of the Energy Union and global climate agenda established by the Paris Agreement. Improving the energy performance of various sectors has the potential of fostering urban regeneration,
+    including improvement of buildings, and changes in mobility and accessibility patterns, while promoting more efficient, sustainable and affordable options.
+
+
+    (15)
+
+
+    This Directive takes a step forward towards climate neutrality by 2050, under which energy efficiency is to be treated as an energy source in its own right. The energy efficiency first principle is
+    an overarching principle that should be taken into account across all sectors, going beyond the energy system, at all levels, including in the financial sector. Energy efficiency solutions should be
+    considered as the first option in policy, planning and investment decisions when setting new rules for the supply side and other policy areas. While the energy efficiency first principle should be applied
+    without prejudice to other legal obligations, objectives and principles, such obligations, objectives and principles should not hamper its application or lead to exemptions from applying the principle.
+    The Commission should ensure that energy efficiency and demand response can compete on equal terms with generation capacity. Energy efficiency improvements need to be made whenever they are more cost-effective
+    than equivalent supply-side solutions. That should help exploit the multiple benefits of energy efficiency for the Union, in particular for citizens and businesses. Implementing energy efficiency improvement
+    measures should also be a priority in alleviating energy poverty.
+
+
+    (16)
+
+
+    Energy efficiency should be recognised as a crucial element and a priority consideration in future investment decisions on the Union’s energy infrastructure. The energy efficiency first principle should
+    be applied taking into consideration primarily the system efficiency approach and societal and health perspective, and paying attention to security of supply, energy system integration and the transition
+    to climate neutrality. Consequently, the energy efficiency first principle should help increase the efficiency of individual end-use sectors and of the whole energy system. The application of the principle
+    should also support investments in energy-efficient solutions contributing to the environmental objectives of Regulation (EU) 2020/852 of the European Parliament and of the Council
+
+    (
+
+    6
+
+    )
+
+    .
+
+
+    (17)
+
+
+    The energy efficiency first'
+- id: art-2
+  title: CHAPTER I
+  text: 'CHAPTER I
+
+
+    SUBJECT MATTER, SCOPE, DEFINITIONS AND ENERGY EFFICIENCY TARGETS'
+- id: art-3
+  title: Article 1
+  text: 'Article 1
+
+
+    Subject matter and scope
+
+
+    1.   This Directive establishes a common framework of measures to promote energy efficiency within the Union in order to ensure that the Union’s targets on energy efficiency are met and enables further
+    energy efficiency improvements. The aim of that common framework is to contribute to the implementation of Regulation (EU) 2021/1119 of the European Parliament and of the Council
+
+    (
+
+    35
+
+    )
+
+    and to the Union’s security of energy supply by reducing its dependence on energy imports, including fossil fuels.
+
+
+    This Directive lays down rules designed to implement energy efficiency as a priority across all sectors, remove barriers in the energy market and overcome market failures that impede efficiency in the
+    supply, transmission, storage and use of energy. It also provides for the establishment of indicative national energy efficiency contributions for 2030.
+
+
+    This Directive contributes to the implementation of the energy efficiency first principle, thus also contributing to the Union being an inclusive, fair and prosperous society with a modern, resource-efficient
+    and competitive economy.
+
+
+    2.   The requirements laid down in this Directive are minimum requirements and shall not prevent any Member State from maintaining or introducing more stringent measures. Such measures shall comply
+    with Union law. Where national legislation provides for more stringent measures, the Member State shall notify such legislation to the Commission.'
+- id: art-4
+  title: Article 2
+  text: 'Article 2
+
+
+    Definitions
+
+
+    For the purposes of this Directive, the following definitions apply:
+
+
+    (1)
+
+
+    ‘energy’ means energy products as defined in Article 2, point (d), of Regulation (EC) No 1099/2008 of the European Parliament and of the Council
+
+    (
+
+    36
+
+    )
+
+    ;
+
+
+    (2)
+
+
+    ‘energy efficiency first’ means energy efficiency first as defined in Article 2, point (18), of Regulation (EU) 2018/1999;
+
+
+    (3)
+
+
+    ‘energy system’ means a system primarily designed to supply energy-services to satisfy the demand of end-use sectors for energy in the forms of heat, fuels, and electricity;
+
+
+    (4)
+
+
+    ‘system efficiency’ means the selection of energy-efficient solutions where they also enable a cost-effective decarbonisation pathway, additional flexibility and the efficient use of resources;
+
+
+    (5)
+
+
+    ‘primary energy consumption’ or ‘PEC’ means gross available energy, excluding international maritime bunkers, final non-energy consumption and ambient energy;
+
+
+    (6)
+
+
+    ‘final energy consumption’ or ‘FEC’ means all energy supplied to industry, to transport, including energy consumption in international aviation, to households, to public and private services, to agriculture,
+    to forestry, to fishing and to other end-use sectors, excluding energy consumption in international maritime bunkers, ambient energy and deliveries to the transformation sector and to the energy sector,
+    and losses due to transmission and distribution as defined in Annex A to Regulation (EC) No 1099/2008;
+
+
+    (7)
+
+
+    ‘ambient energy’ means ambient energy as defined in Article 2, point (2), of Directive (EU) 2018/2001;
+
+
+    (8)
+
+
+    ‘energy efficiency’ means the ratio of output of performance, service, goods or energy to input of energy;
+
+
+    (9)
+
+
+    ‘energy savings’ means an amount of saved energy determined by measuring or estimating consumption, or both,, before and after the implementation of an energy efficiency improvement measure, whilst
+    ensuring normalisation for external conditions that affect energy consumption;
+
+
+    (10)
+
+
+    ‘energy efficiency improvement’ means an increase in energy efficiency as a result of any technological, behavioural or economic changes;
+
+
+    (11)
+
+
+    ‘energy service’ means the physical benefit, utility or good derived from a combination of energy with energy-efficient technology or with action, which may include the operations, maintenance and control
+    necessary to deliver the service, which is delivered on the basis of a contract and in normal circumstances has proven to result in verifiable and measurable or estimable energy efficiency improvement
+    or primary energy savings;
+
+
+    (12)
+
+
+    ‘public bodies’ means national, regional or local authorities and entities directly financed and administered by those authorities but not having an industrial or commercial character;
+
+
+    (13)
+
+
+    ‘total useful floor area’ means the floor area of a building, or part of a building, where energy is used to condition the indoor climate;
+
+
+    (14)
+
+
+    ‘contracting authorities’ means contracting authorities as defined in Article 6(1) of Directive 2014/23/EU, Article 2(1), point (1), of Directive 2014/24/EU and Article 3(1) of Directive 2014/25/EU;
+
+
+    (15)
+
+
+    ‘contracting entities’ means contracting entities as defined in Article 7(1) of Directive 2014/23/EU and Article 4(1) of Directive 2014/25/EU;
+
+
+    (16)
+
+
+    ‘energy management system’ means a set of interrelated or interacting elements of a strategy which sets an energy efficiency objective and a plan to achieve that objective, including the monitoring
+    of actual energy consumption, actions taken to increase energy efficiency and the measurement of progress;
+
+
+    (17)
+
+
+    ‘European standard’ means a standard adopted by the European Committee for Standardization, the European Committee for Electrotechnical Standardization or the European Telecommunications Standards Institute,
+    which is made available for public use;
+
+
+    (18)
+
+
+    ‘international standard’ means a standard adopted by the International Organization for Standardization, which is made available for public use;
+
+
+    (19)
+
+
+    ‘obligated party’ means an energy distributor, retail energy sales company or transmission system operator, which is bound by the national energy efficiency obligation schemes referred to in Article 9;
+
+
+    (20)
+
+
+    ‘entrusted party’ means a legal entity with delegated power from a government or other public body to develop, manage or operate a financing scheme on behalf of that government or other public body;
+
+
+    (21)
+
+
+    ‘participating party’ means an enterprise or public body that has committed itself to reaching certain objectives under a voluntary agreement, or that is covered by a national regulatory policy instrument;
+
+
+    (22)
+
+
+    ‘implementing public authority’ means a body governed by public law which is responsible for the carrying out or monitoring of energy or carbon taxation, financial schemes and instruments, fiscal incentives,
+    standards and norms, energy labelling schemes, training or education;
+
+
+    (23)
+
+
+    ‘policy measure’ means a regulatory, financial, fiscal, voluntary or information provision instrument formally established and implemented in a Member State to create a supportive framework, requirement
+    or incentive for market actors to provide and purchase energy services and to undertake other energy efficiency improvement measures;
+
+
+    (24)
+
+
+    ‘individual action’ means an action that leads to verifiable and measurable or estimable energy efficiency improvements and that is undertaken as a result of a policy measure;
+
+
+    (25)
+
+
+    ‘energy distributor’ means a natural or legal person, including a distribution system operator, who is responsible for transporting energy with a view to its delivery to final customers or to distribution
+    stations that sell energy to final customers;
+
+
+    (26)
+
+
+    ‘distribution system operator’ means distribution system operator as defined in Article 2, point (29), of Directive (EU) 2019/944 as regards electricity or Article 2, point (6), of Directive 2009/73/EC
+    as regards gas;
+
+
+    (27)
+
+
+    ‘retail energy sales company’ means a natural or legal person who sells energy to final customers;
+
+
+    (28)
+
+
+    ‘final customer’ means a natural or legal person who purchases energy for own end use;
+
+
+    (29)
+
+
+    ‘energy service provider’ means a natural or legal person who delivers energy services or energy efficiency improvement measures in a final customer’s facility or premises;
+
+
+    (30)
+
+
+    ‘small and medium-sized enterprises’ or ‘SMEs’ means enterprises as defined in Article 2(1) of the Annex to Commission Recommendation 2003/361/EC
+
+    (
+
+    37
+
+    )
+
+    ;
+
+
+    (31)
+
+
+    ‘microenterprise’ means an enterprise as defined in Article 2(3) of the Annex to Recommendation 2003/361/EC;
+
+
+    (32)
+
+
+    ‘energy audit’ means a systematic procedure with the purpose of obtaining adequate knowledge of the energy consumption profile of a building or group of buildings, an industrial or commercial operation
+    or installation or a private or public service, identifying and quantifying opportunities for cost-effective energy savings, identifying the potential for cost-effective use or production of renewable
+    energy and reporting the findings;
+
+
+    (33)
+
+
+    ‘energy performance contracting’ means a contractual arrangement between the beneficiary and the provider of an energy efficiency improvement measure, verified and monitored during the whole term of
+    the contract, where the works, supply or service in that measure are paid for in relation to a contractually agreed level of energy efficiency improvement or another agreed energy performance criterion,
+    such as financial savings;
+
+
+    (34)
+
+
+    ‘smart metering system’ means smart metering system as defined in Article 2, point (23), of Directive (EU) 2019/944 or intelligent metering system as referred to in Directive 2009/73/EC;
+
+
+    (35)
+
+
+    ‘transmission system operator’ means transmission system operator as defined in Article 2, point (35), of Directive (EU) 2019/944 as regards electricity or Article 2, point (4), of Directive 2009/73/EC
+    as regards gas;
+
+
+    (36)
+
+
+    ‘cogeneration’ means the simultaneous generation in one process of thermal energy and electrical or mechanical energy;
+
+
+    (37)
+
+
+    ‘economically justifiable demand’ means a demand that does not exceed the needs for heating or cooling and which would otherwise be satisfied at market conditions by energy generation processes other
+    than cogeneration;
+
+
+    (38)
+
+
+    ‘useful heat’ means heat produced in a cogeneration process to satisfy an economically justifiable demand for heating or cooling;
+
+
+    (39)
+
+
+    ‘electricity from cogeneration’ means electricity generated in a process linked to the production of useful heat and calculated in accordance with the general principles set out in Annex II;
+
+
+    (40)
+
+
+    ‘high-efficiency cogeneration’ means cogeneration meeting the criteria laid down in Annex III;
+
+
+    (41)
+
+
+    ‘overall efficiency’ means the annual sum of electricity and mechanical energy production and useful heat output divided by the fuel input used for heat produced in a cogeneration process and gross
+    electricity and mechanical energy production;
+
+
+    (42)
+
+
+    ‘power-to-heat ratio’ means the ratio of electricity from cogeneration to useful heat when operating in full cogeneration mode using operational data of the specific unit;
+
+
+    (43)
+
+
+    ‘cogeneration unit’ means a unit that is able to operate in cogeneration mode;
+
+
+    (44)
+
+
+    ‘small-scale cogeneration unit’ means a cogeneration unit with installed capacity below 1 MW
+
+    e
+
+    ;
+
+
+    (45)
+
+
+    ‘micro-cogeneration unit’ means a cogeneration unit with a maximum capacity below 50 kW
+
+    e
+
+    ;
+
+
+    (46)
+
+
+    ‘efficient district heating and cooling’ means a district heating or cooling system meeting the criteria laid down in Article 26;
+
+
+    (47)
+
+
+    ‘efficient heating and cooling’ means a heating and cooling option that, compared to a baseline scenario reflecting a business-as-usual situation, measurably reduces the input of primary energy needed
+    to supply one unit of delivered energy within a relevant system boundary in a cost-effective way, as assessed in the cost-benefit analysis referred to in this Directive, taking into account the energy
+    required for extraction, conversion, transport and distribution;
+
+
+    (48)
+
+
+    ‘efficient individual heating and cooling’ means an individual heating and cooling supply option that, compared to efficient district heating and cooling, measurably reduces the input of non-renewable
+    primary energy needed to supply one unit of delivered energy within a relevant system boundary or requires the same input of non-renewable primary energy but at a lower cost, taking into account the
+    energy required for extraction, conversion, transport and distribution;
+
+
+    (49)
+
+
+    ‘data centre’ means data centre as defined in Annex A, point 2.6.3.1.16, of Regulation (EC) No 1099/2008;
+
+
+    (50)
+
+
+    ‘substantial refurbishment’ means a refurbishment the cost of which exceeds 50 % of the investment cost for a new comparable unit;
+
+
+    (51)
+
+
+    ‘aggregator’ means independent aggregator as defined in Article 2, point (19), of Directive (EU) 2019/944;
+
+
+    (52)
+
+
+    ‘energy poverty’ means a household’s lack of access to essential energy services, where such services provide basic levels and decent standards of living and health, including adequate heating, hot
+    water, cooling, lighting, and energy to power appliances, in the relevant national context, existing national social policy and other relevant national policies, caused by a combination of factors,
+    including at least non-affordability, insufficient disposable income, high energy expenditure and poor energy efficiency of homes;
+
+
+    (53)
+
+
+    ‘final user’ means a natural or legal person purchasing heating, cooling or domestic hot water for their own end use, or a natural or legal person occupying an individual building or a unit in a multi-apartment
+    or multi-purpose building supplied with heating, cooling or domestic hot water from a central source, where such a person has no direct or individual contract with the energy supplier;
+
+
+    (54)
+
+
+    ‘split incentives’ means the lack of fair and reasonable distribution of financial obligations and rewards relating to energy efficiency investments among the actors concerned, for example the owners
+    and tenants or the different owners of building units, or owne'
+- id: art-5
+  title: Article 3
+  text: 'Article 3
+
+
+    Energy efficiency first principle
+
+
+    1.   In accordance with the energy efficiency first principle, Member States shall ensure that energy efficiency solutions, including demand-side resources and system flexibilities, are assessed in
+    planning, policy and major investment decisions of a value of more than EUR 100 000 000 each or EUR 175 000 000 for transport infrastructure projects, relating to the following sectors:
+
+
+    (a)
+
+
+    energy systems; and
+
+
+    (b)
+
+
+    non-energy sectors, where those sectors have an impact on energy consumption and energy efficiency such as buildings, transport, water, information and communications technology (ICT), agriculture and
+    financial sectors.
+
+
+    2.   By 11 October 2027, the Commission shall carry out an assessment of the thresholds set out in paragraph 1, with the aim of downward revision, taking into account possible developments in the economy
+    and in the energy market. The Commission shall, by 11 October 2028, submit a report to the European Parliament and to the Council, followed, where appropriate, by legislative proposals.
+
+
+    3.   In applying this Article, Member States are encouraged to take into account Commission Recommendation (EU) 2021/1749
+
+    (
+
+    38
+
+    )
+
+    .
+
+
+    4.   Member States shall ensure that the competent authorities monitor the application of the energy efficiency first principle, including, where appropriate, sector integration and cross-sectoral impacts,
+    where policy, planning and investment decisions are subject to approval and monitoring requirements.
+
+
+    5.   In applying the energy efficiency first principle, Member States shall:
+
+
+    (a)
+
+
+    promote and, where cost-benefit analyses are required, ensure the application of, and make publicly available, cost-benefit methodologies that allow proper assessment of the wider benefits of energy
+    efficiency solutions where appropriate, taking into account the entire life cycle and long-term perspective, system and cost efficiency, security of supply and quantification from the societal, health,
+    economic and climate neutrality perspectives, sustainability and circular economy principles in transition to climate neutrality;
+
+
+    (b)
+
+
+    address the impact on energy poverty;
+
+
+    (c)
+
+
+    identify an entity or entities responsible for monitoring the application of the energy efficiency first principle and the impacts of regulatory frameworks, including financial regulations, planning,
+    policy and the major investment decisions referred to in paragraph 1 on energy consumption, energy efficiency and energy systems;
+
+
+    (d)
+
+
+    report to the Commission, as part of their integrated national energy and climate progress reports submitted pursuant to Article 17 of Regulation (EU) 2018/1999, on how the energy efficiency first principle
+    was taken into account in the national and, where applicable, regional and local planning, policy and major investment decisions related to the national and regional energy systems including at least
+    the following:
+
+
+    (i)
+
+
+    an assessment of the application and benefits of the energy efficiency first principle in energy systems, in particular in relation to energy consumption;
+
+
+    (ii)
+
+
+    a list of actions taken to remove any unnecessary regulatory or non-regulatory barriers to the implementation of the energy efficiency first principle and of demand-side solutions, including through
+    the identification of national legislation and measures that are contrary to the energy efficiency first principle.
+
+
+    6.   By 11 April 2024, the Commission shall adopt guidelines providing a common general framework including supervision, the monitoring and reporting procedure, which Member States may use to design
+    the cost-benefit methodologies referred to in paragraph 5, point (a), for the purpose of comparability, while leaving the possibility for Member States to adapt to national and local circumstances.'
+- id: art-6
+  title: Article 4
+  text: 'Article 4
+
+
+    Energy efficiency targets
+
+
+    1.   Member States shall collectively ensure a reduction of energy consumption of at least 11,7 % in 2030 compared to the projections of the 2020 EU Reference Scenario so that the Union’s final energy
+    consumption amounts to no more than 763 Mtoe. Member States shall make efforts to collectively contribute to the indicative Union primary energy consumption target amounting to no more than 992,5 Mtoe
+    in 2030.
+
+
+    2.   Each Member State shall set an indicative national energy efficiency contribution based on final energy consumption to meet, collectively, the Union’s binding final energy consumption target referred
+    to in paragraph 1 of this Article and shall make efforts to contribute collectively to the Union’s indicative primary energy consumption target referred to in that paragraph. Member States shall notify
+    those contributions to the Commission, together with an indicative trajectory for those contributions, as part of the updates of their integrated national energy and climate plans submitted pursuant
+    to Article 14(2) of Regulation (EU) 2018/1999, and of their integrated national energy and climate plans notified pursuant to Article 3 and Articles 7 to 12 of that Regulation. When doing so, Member
+    States shall also express their contributions in terms of an absolute level of primary energy consumption in 2030. When setting their indicative national energy efficiency contributions, Member States
+    shall take into account the requirements set out in paragraph 3 of this Article and explain how, and on the basis of which data, the contributions have been calculated. To that end, they may use the
+    formula set out in Annex I to this Directive.
+
+
+    Member States shall provide the shares of primary energy consumption and final energy consumption of energy end-use sectors, as defined in Regulation (EC) No 1099/2008, including industry, residential,
+    services and transport, in their national energy efficiency contributions. Member States shall also indicate projections for energy consumption in ICT.
+
+
+    3.   In setting their indicative national energy efficiency contributions referred to in paragraph 2, Member States shall take into account:
+
+
+    (a)
+
+
+    the Union’s 2030 final energy consumption target of no more than 763 Mtoe and the primary energy consumption target of no more than 992,5 Mtoe, as provided for in paragraph 1;
+
+
+    (b)
+
+
+    the measures provided for in this Directive;
+
+
+    (c)
+
+
+    other measures to promote energy efficiency within Member States and at Union level;
+
+
+    (d)
+
+
+    any relevant factors affecting efficiency efforts:
+
+
+    (i)
+
+
+    early efforts and actions in energy efficiency;
+
+
+    '
 doc_files:
 - eu/raw/EU-2023-1791_Energy_Efficiency_Directive.pdf
+- eu/raw/EU-2023-1791_Energy_Efficiency_Directive.xhtml
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 去重：合并同法规异名条目 EU-2023-1791_ENERGY_EFFICIENCY_DIRECTIVE-2（EU-2023-1791 Energy Efficiency Directive [xhtml]）。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2023-1791_Energy_Efficiency_Directive.pdf (pdf, 386010 chars)，生成 5 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2023-1791_Energy_Efficiency_Directive.xhtml (html, 381966 chars)，生成 5 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2023-1791_Energy_Efficiency_Directive.xhtml (html, 381513 chars)，生成 6 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

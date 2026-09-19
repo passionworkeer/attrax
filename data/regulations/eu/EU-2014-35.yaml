@@ -6,7 +6,7 @@ license: public
 last_verified: '2026-09-16'
 last_verified_by: EUR-Lex-snapshot-import
 language: en
-source_kind: unverified
+source_kind: official_verbatim
 articles:
 - id: art-3
   title: Making available on the market and safety objectives
@@ -161,7 +161,10 @@ raw_file: data/regulation_sources/lvd-20260530.html
 checksum_sha256: 80d583f258a3119cf2845aae68ff875ada07f346e1424bffd6be9c5c79f890d6
 schema_version: 1
 source_url: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:02014L0035-20260530
-notes: Selected sections from EUR-Lex consolidated text of 2026-05-30. Whitespace normalized. Consolidated text is a documentation
+notes: 'Selected sections from EUR-Lex consolidated text of 2026-05-30. Whitespace normalized. Consolidated text is a documentation
   tool; authentic legal acts are in the Official Journal linked by EUR-Lex. Replaces unverified repeated summaries and incorrect
   section titles.
-source_kind: official_verbatim
+
+  2026-09-19 去重：合并同法规异名条目 EU-2014-35_LOW_VOLTAGE_DIRECTIVE_LVD（EU-2014-35 Low Voltage Directive LVD [xhtml]）。'
+doc_files:
+- eu/raw/EU-2014-35_Low_Voltage_Directive_LVD.xhtml

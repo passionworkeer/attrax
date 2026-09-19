@@ -1,0 +1,26 @@
+id: KB-other-CN-CN-GB_1002-1996_-_-_
+regulation_id: CN-GB_1002-1996_-_-_
+doc_name: CN-GB GB 1002-1996 家用和类似用途单相插头插座  型式、基本参数和尺寸
+official_citation: CN-GB GB 1002-1996 家用和类似用途单相插头插座  型式、基本参数和尺寸
+short_name: CN-GB GB 1002-1996 家用和类似用途单相插头插座  型式、基本参数和尺寸
+source: category
+primary_source: other
+domain: other
+applies_if:
+  category:
+  - other
+  features_any: []
+  markets:
+  - CN
+key_articles: []
+key_points:
+- CN-GB GB 1002-1996 家用和类似用途单相插头插座  型式、基本参数和尺寸：其他品类领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=9CBB4DFA23B94E41E2A12DEA69A58FE1
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

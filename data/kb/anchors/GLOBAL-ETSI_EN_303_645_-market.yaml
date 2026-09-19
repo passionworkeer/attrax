@@ -1,0 +1,27 @@
+id: KB-market-GLOBAL-GLOBAL-ETSI_EN_303_645_
+regulation_id: GLOBAL-ETSI_EN_303_645_
+doc_name: ETSI EN 303 645 消费物联网网络安全
+official_citation: ETSI EN 303 645 消费物联网网络安全
+short_name: ETSI EN 303 645 消费物联网网络安全
+source: market
+primary_source: market
+domain: 网络安全
+applies_if:
+  category: []
+  features_any: []
+  markets:
+  - GLOBAL
+key_articles:
+- art-1
+- art-2
+key_points:
+- ETSI EN 303 645 消费物联网网络安全：网络安全领域法规，适用于 GLOBAL 市场相关经营行为（库自动接入，按市场匹配）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://www.etsi.org/deliver/etsi_en/303600_303699/303645/02.01.01_60/en_303645v020101p.pdf
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

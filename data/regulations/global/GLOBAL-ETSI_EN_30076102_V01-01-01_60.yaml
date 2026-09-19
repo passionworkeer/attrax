@@ -9,11 +9,743 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: ETSI EN 300 761-2
+  text: 'ETSI EN 300 761-2
+
+    V1.1.1
+
+    (2001-06)
+
+    CandidateHarmonizedEuropeanStandard(Telecommunicationsseries)
+
+    Electromagnetic compatibility
+
+    and Radio spectrum Matters (ERM);
+
+    Short Range Devices (SRD);
+
+    Automatic Vehicle Identification (AVI) for railways
+
+    operating in the 2,45 GHz frequency range;
+
+    Part 2: Harmonized standard covering essential requirements
+
+    under article 3.2 of the R&TTE Directive
+
+    2 ETSIEN300761-2V1.1.1(2001-06)
+
+    Reference
+
+    REN/ERM-RP08-0411-2
+
+    Keywords
+
+    radio,regulation,UIC
+
+    ETSI
+
+    650RoutedesLucioles
+
+    F-06921SophiaAntipolisCedex-FRANCE
+
+    Tel.:+33492944200 Fax:+33493654716
+
+    SiretN°34862356200017-NAF742C
+
+    Associationàbutnonlucratifenregistréeàla
+
+    Sous-PréfecturedeGrasse(06)N°7803/88
+
+    Importantnotice
+
+    Individualcopiesofthepresentdocumentcanbedownloadedfrom:
+
+    http://www.etsi.org
+
+    Thepresentdocumentmaybemadeavailableinmorethanoneelectronicversionorinprint.Inanycaseofexistingor
+
+    perceiveddifferenceincontentsbetweensuchversions,thereferenceversionisthePortableDocumentFormat(PDF).
+
+    Incaseofdispute,thereferenceshallbetheprintingonETSIprintersofthePDFversionkeptonaspecificnetworkdrive
+
+    withinETSISecretariat.
+
+    Usersofthepresentdocumentshouldbeawarethatthedocumentmaybesubjecttorevisionorchangeofstatus.
+
+    InformationonthecurrentstatusofthisandotherETSIdocumentsisavailableathttp://www.etsi.org/tb/status/
+
+    Ifyoufinderrorsinthepresentdocument,sendyourcommentto:
+
+    editor@etsi.fr
+
+    CopyrightNotification
+
+    Nopartmaybereproducedexceptasauthorizedbywrittenpermission.
+
+    Thecopyrightandtheforegoingrestrictionextendtoreproductioninallmedia.
+
+    ©EuropeanTelecommunicationsStandardsInstitute2001.
+
+    Allrightsreserved.
+
+    ETSI
+
+    3 ETSIEN300761-2V1.1.1(2001-06)
+
+    Contents
+
+    IntellectualPropertyRights..........................................................................................................................4
+
+    Foreword......................................................................................................................................................4
+
+    Introduction..................................................................................................................................................5
+
+    1 Scope..................................................................................................................................................7
+
+    2 References..........................................................................................................................................8
+
+    3 Definitions,symbolsandabbreviations...............................................................................................8
+
+    3.1 Definitions..................................................................................................................................................8
+
+    3.2 Symbols......................................................................................................................................................8
+
+    3.3 Abbreviations..............................................................................................................................................8
+
+    4 Technicalrequirementsspecifications.................................................................................................9
+
+    4.1 Transmitterrequirements.............................................................................................................................9
+
+    4.1.1 Equivalentisotropicallyradiatedpower..................................................................................................9
+
+    4.1.2 Frequencyerror......................................................................................................................................9
+
+    4.1.3 Transmitterspectrummask....................................................................................................................9
+
+    4.1.4 Spuriousemissions.................................................................................................................................9'
+- id: art-2
+  title: 4.1.5 Dutycycle.............................................
+  text: '4.1.5 Dutycycle.............................................................................................................................................9
+
+    4.2 Receiverrequirements.................................................................................................................................9
+
+    4.2.1 Co-channelrejection..............................................................................................................................9
+
+    4.2.2 Adjacentbandselectivity.......................................................................................................................9
+
+    4.2.3 Spuriousresponserejectionanddesensitization......................................................................................9
+
+    4.2.4 Intermodulationresponserejection.......................................................................................................10
+
+    4.2.5 Spuriousradiations...............................................................................................................................10
+
+    4.2.6 Transponderspuriousradiation.............................................................................................................10
+
+    5 Testingfor compliancewithtechnicalrequirements..........................................................................10
+
+    5.1 Essentialradiotestsuites...........................................................................................................................10
+
+    5.1.1 Environmentalconditionsfortesting....................................................................................................10
+
+    5.1.1.1 Normalandextremetest-conditions................................................................................................10
+
+    5.1.1.2 Testpowersource...........................................................................................................................10
+
+    5.1.2 Choiceofsamplesfortestsuites...........................................................................................................10
+
+    5.1.3 Transmittertestsuites..........................................................................................................................10
+
+    5.1.3.1 Equivalentisotropicallyradiatedpower(e.i.r.p)...............................................................................10
+
+    5.1.3.2 Frequencyerror..............................................................................................................................10
+
+    5.1.3.3 Transmitterspectrummask.............................................................................................................11
+
+    5.1.3.4 Spuriousemissions.........................................................................................................................11
+
+    5.1.4 Receivertestsuites...............................................................................................................................11
+
+    5.1.4.1 Spuriousradiations.........................................................................................................................11
+
+    5.1.4.2 Transponderspuriousradiation.......................................................................................................11
+
+    5.2 Othertestspecifications.............................................................................................................................11
+
+    6 Interpretationof measurementresults................................................................................................11
+
+    History.......................................................................................................................................................13
+
+    ETSI
+
+    4 ETSIEN300761-2V1.1.1(2001-06)
+
+    Intellectual Property Rights
+
+    IPRsessentialorpotentiallyessentialtothepresentdocumentmayhavebeendeclaredtoETSI.Theinformation
+
+    pertainingtotheseessentialIPRs,ifany,ispubliclyavailableforETSImembersandnon-members,andcanbefound'
+- id: art-3
+  title: inETSISR000314:"IntellectualPropertyRights(IPRs);Essential,o
+  text: 'inETSISR000314:"IntellectualPropertyRights(IPRs);Essential,orpotentiallyEssential,IPRsnotifiedtoETSIin
+
+    respectofETSIstandards",whichisavailablefromtheETSISecretariat.LatestupdatesareavailableontheETSIWeb
+
+    server(http://www.etsi.org/ipr).
+
+    PursuanttotheETSIIPRPolicy,noinvestigation,includingIPRsearches,hasbeencarriedoutbyETSI.Noguarantee
+
+    canbegivenastotheexistenceofotherIPRsnotreferencedinETSISR000314(ortheupdatesontheETSIWeb
+
+    server)whichare,ormaybe,ormaybecome,essentialtothepresentdocument.
+
+    Foreword
+
+    ThisCandidateHarmonizedEuropeanStandard(Telecommunicationsseries)hasbeenproducedbyETSITechnical
+
+    CommitteeElectromagneticcompatibilityandRadiospectrumMatters(ERM).
+
+    ThepresentdocumenthasbeenproducedbyETSIinresponsetoamandatefromtheEuropeanCommissionissued
+
+    underCouncilDirective98/34/EC[5]layingdownaprocedurefortheprovisionofinformationinthefieldoftechnical
+
+    standardsandregulations.
+
+    ThepresentdocumentisintendedtobecomeaHarmonizedStandard,thereferenceofwhichwillbepublishedinthe
+
+    OfficialJournaloftheEuropeanCommunitiesreferencingtheDirective1999/5/EC[1]oftheEuropeanParliamentand
+
+    oftheCouncilof9March1999onradioequipmentandtelecommunicationsterminalequipmentandthemutual
+
+    recognitionoftheirconformity("theR&TTEDirective")[1].
+
+    Thepresentdocumentispart2ofamulti-partdeliverablecoveringtheShortRangeDevices(SRD);AutomaticVehicle
+
+    Identification(AVI)forrailwaysoperatinginthe2,45GHzfrequencyrange,asidentifiedbelow:
+
+    Part1: "Technicalcharacteristicsandmethodsofmeasurement";
+
+    Part2: "Harmonizedstandardcoveringessentialrequirementsunderarticle3.2oftheR&TTEDirective".
+
+    Nationaltransposition dates
+
+    DateofadoptionofthisEN: 15June2001
+
+    DateoflatestannouncementofthisEN(doa): 30September2001
+
+    DateoflatestpublicationofnewNationalStandard
+
+    orendorsementofthisEN(dop/e): 31March2002
+
+    DateofwithdrawalofanyconflictingNationalStandard(dow): 31March2003
+
+    ETSI
+
+    5 ETSIEN300761-2V1.1.1(2001-06)
+
+    Introduction
+
+    Thepresentdocumentispartofasetofstandardsdesignedtofitinamodularstructuretocoverallradioand
+
+    telecommunicationsterminalequipmentundertheR&TTEDirective[1].Eachstandardisamoduleinthestructure.
+
+    Themodularstructureisshowninfigure1.
+
+    3.3f Disability*
+
+    3.3e Emergency*
+
+    3.3d Fraud*
+
+    3.3c
+
+    Privacy*
+
+    3.3b No harmtothenetwork*
+
+    *Ifneeded
+
+    Scopedby
+
+    Inter-workingvia thenetwork*
+
+    equipment
+
+    3.3a
+
+    classortype
+
+    Inter-workingwith the network
+
+    Useof spectrum
+
+    3.2
+
+    Scopedbyfrequencyand/orequipmenttype
+
+    Radio product EMC
+
+    Proposed singlestandard
+
+    New standardfor Healthfor radio
+
+    3.1a/b (if needed)
+
+    Standards notifiedunder EMC Directive
+
+    Standardsnotifiedunder LVD Directive
+
+    (inclacoustic safetyif needed)
+
+    Non-radio Radio (RE)
+
+    TTE Non-TTE
+
+    Figure1:ModularstructureforthevariousstandardsusedundertheR&TTEDirective
+
+    ETSI
+
+    6 ETSIEN300761-2V1.1.1(2001-06)
+
+    Thelefthandedgeofthefigureshowsthedifferentclausesofarticle3oftheDirective.
+
+    Theverticalboxesshowthestandardsunderarticle3.2fortheuseoftheradiospectrum.Thescopesofthesestandards
+
+    arespecifiedeitherbyfrequency(normallyinthecasewherefrequencybandsareharmonized)orbyradioequipment
+
+    type.
+
+    Forarticle3.3varioushorizontalboxesareshown.Theirdottedlinesindicatethatessentialrequirementsintheseareas
+
+    havetobeadoptedbytheCommission.Ifsuchessentialrequirementsareadopted,andasfarandaslongastheyare
+
+    applicable,theywilljustifyindividualstandardswhosescopeislikelytobespecifiedbyfunctionorinterfacetype.
+
+    Thebottomofthefigureshowstherelationshipofthestandardstoradioequipmentandtelecommunicationsterminal
+
+    equipment.Aparticularequipmentmayberadioequipment,telecommunicationsterminalequipmentorboth.The
+
+    GeneralStandardwillalwaysapplytoit,andaradiospectrumstandardwillapplyifitisradioequipment.An
+
+    article3.3standardwillapplyaswellonlyiftherelevantessentialrequirementisadoptedbytheCommissionandifthe
+
+    equipmentinquestionlieswithinthescopeofthecorrespondingstandard.Thus,dependingonthenatureofthe
+
+    equipment,theessentialrequirementsundertheDirectivemaybecoveredinjusttheGeneralStandardorinasetof
+
+    standardsthatincludestheGeneralStandard.
+
+    Themodularityprinciplehasbeentakenbecause:'
+- id: art-4
+  title: '- itminimizesthenumberofstandardsneeded.Becauseequipmentmay,'
+  text: '- itminimizesthenumberofstandardsneeded.Becauseequipmentmay,infact,havemultipleinterfacesand
+
+    functionsitisnotpracticabletoproduceasinglestandardforeachpossiblecombinationoffunctionsthatmay
+
+    occurinanequipment;
+
+    - itprovidesscopeforstandardsunderarticles3.2and3.3tobeaddedwhennewfrequencybandsareagreedor
+
+    whentheCommissiontakesdecisionsunderarticle3withoutrequiringalterationofstandardsthatarealready
+
+    published;
+
+    - itclarifies,simplifiesandpromotestheusageofHarmonizedStandardsastherelevantmeansofconformity
+
+    assessment.
+
+    ETSI
+
+    7 ETSIEN300761-2V1.1.1(2001-06)
+
+    1 Scope
+
+    Thepresentdocumentappliestoadedicated2,45GHzShortRangeDevice(SRD)microwavelinkintendedfora
+
+    EuropeanwidedatacommunicationsystemforRailwayapplications,AutomaticVehicleIdentification(AVI)which
+
+    fulfiltheUnionInternationaledesCheminsdefer(UIC)specificationsandareinteroperablewiththecurrentUIC
+
+    systemexceptfortheinterrogator(TrackUnits(TU))bandwidth.
+
+    Thepresentdocumentcontainsthetechnicalcharacteristicsforradioequipmentandisreferencingby
+
+    CEPT/ERCRecommendationT/R70-03[4].
+
+    TheInterrogatorbandwidthislimitedto8MHzsharedwithinfivechannels:
+
+    - withaRadioFrequency(RF)outputconnectionandspecifiedantennaorwithanintegralantenna;
+
+    - fordatatransmissiononly;
+
+    - operatingonradiofrequenciesinthe2,446GHzto2,454GHzIndustrial,ScientificandMedical(ISM)band,
+
+    withpowerlevelsupto500mWe.i.r.p.
+
+    ThepresentdocumentisaproductstandardcoveringvariousRailwayapplicationswherethedatatransmissionofthe
+
+    systemwillbeactiveonlyduringthepresenceofthetrain.
+
+    Thepresentdocumentcoversfixedinstalledinterrogators(TUs)andtransponders(mobilestations).Forcertain
+
+    measurementsthetranspondersaremeasuredtogetherwiththewholeinterrogatingsystem.
+
+    Thein-trackbasestation(interrogator)transmitandreceivemodulationsareacombinationofAmplitudeShiftKeying
+
+    (ASK)andFrequencyShiftKeying(FSK)respectively.
+
+    Thepresentdocumentsupportsthenecessarytransmitterandreceiverdataratesbetween192kbit/sand384kbit/s
+
+    accordingtothetypeoftransaction.
+
+    Itcoverstheminimumcharacteristicsconsiderednecessaryinordertomakethebestuseoftheavailablefrequencies.It
+
+    doesnotnecessarilyincludeallthecharacteristicswhichmayberequiredbyauser,nordoesitnecessarilyrepresentthe
+
+    optimumperformanceachievable.
+
+    Thepresentdocumentincludesspecificationsformethodsofmeasurementforequipmentfittedwithantennasockets
+
+    and/orintegralantenna.
+
+    Thetechnicalrequirementsofthepresentdocumentapplyundertheenvironmentalprofileforoperationofthe
+
+    equipment,whichshallbedeclaredbythemanufacturer.Theequipmentshallcomplywithallthetechnical
+
+    requirementsofthepresentdocumentatalltimeswhenoperatingwithintheboundarylimitsofthedeclaredoperational
+
+    environmentalprofile.
+
+    Thepresentdocumentisintendedtocovertheprovisionsofarticle3.2ofDirective1999/5/EC[1](R&TTEDirective),
+
+    whichstatesthat"…radioequipmentshallbesoconstructedthatiteffectivelyusesthespectrumallocatedto
+
+    terrestrial/spaceradiocommunicationsandorbitalresourcessoastoavoidharmfulinterference.".
+
+    Inadditiontothepresentdocument,otherENsthatspecifytechnicalrequirementsinrespectofessentialrequirements
+
+    underotherpartsofarticle3oftheR&TTEDirective[1]mayapplytoequipmentwithinthescopeofthepresent
+
+    document.
+
+    ETSI
+
+    8 ETSIEN300761-2V1.1.1(2001-06)
+
+    2 References
+
+    Thefollowingdocumentscontainprovisionswhich,throughreferenceinthistext,constituteprovisionsofthepresent
+
+    document.
+
+    • Referencesareeitherspecific(identifiedbydateofpublicationand/oreditionnumberorversionnumber)or
+
+    non-specific.
+
+    • Foraspecificreference,subsequentrevisionsdonotapply.
+
+    • Foranon-specificreference,thelatestversionapplies.
+
+    [1] Directive1999/5/ECoftheEuropeanParliamentandoftheCouncilof9March1999onradio
+
+    equipmentandtelecommunicationsterminalequipmentandthemutualrecognitionoftheir
+
+    conformity(R&TTEDirective).
+
+    [2] ETSIEN300761-1(V1.2.1):"ElectromagneticcompatibilityandRadiospectrumMatters
+
+    (ERM);ShortRangeDevices(SRD);AutomaticVehicleIdentification(AVI)forrailways
+
+    operatinginthe2,45GHzfrequencyrange;Part1:Technicalcharacteristicsandmethodsof
+
+    measurement".'
+- id: art-5
+  title: '[3] ETSIETR028:"RadioEquipmentandSystems(RES);Uncertaintiesi'
+  text: '[3] ETSIETR028:"RadioEquipmentandSystems(RES);Uncertaintiesinthemeasurementof
+
+    mobileradioequipmentcharacteristics".
+
+    [4] CEPT/ERCRecommendationT/R70-03:"RelatingtotheuseofShortRangeDevices(SRD)".
+
+    [5] Directive98/34/ECoftheEuropeanParliamentandoftheCouncilof22June1998layingdowna
+
+    procedurefortheprovisionofinformationinthefieldoftechnicalstandardsandregulations.
+
+    3 Definitions, symbols and abbreviations
+
+    3.1 Definitions
+
+    Forthepurposesofthepresentdocument,thetermsanddefinitionsgivenintheR&TTEDirective[1],and
+
+    EN300761-1[2],apply.
+
+    3.2 Symbols
+
+    Forthepurposesofthepresentdocument,thesymbolsdefinedinEN300761-1[2],apply.
+
+    3.3 Abbreviations
+
+    Forthepurposesofthepresentdocument,theabbreviationsdefinedinEN300761-1[2],apply.
+
+    ETSI
+
+    9 ETSIEN300761-2V1.1.1(2001-06)
+
+    4 Technical requirements specifications
+
+    4.1 Transmitter requirements
+
+    4.1.1 Equivalent isotropically radiated power
+
+    Theequivalentisotropicallyradiatedpower,asdefinedinEN300761-1[2],clause7.1.1,shallnotexceedthelimitsin
+
+    EN300761-1[2],clause7.1.3.
+
+    Thisrequirementappliestotransmitterswithanintegralordedicatedantenna.
+
+    4.1.2 Frequency error
+
+    Thefrequencyerror,asdefinedinEN300761-1[2],clause7.2.1,shallnotexceedthelimitsinEN300761-1[2],
+
+    clause7.2.3.
+
+    4.1.3 Transmitter spectrum mask
+
+    Thetransmitterspectrummask,asdefinedinEN300761-1[2],clause7.3.1,shallnotexceedthelimitsin
+
+    EN300761-1[2],clause7.3.3,table2.
+
+    4.1.4 Spurious emissions
+
+    Thespuriousemissions,asdefinedinEN300761-1[2],clause7.6.1,shallnotexceedthelimitsin
+
+    EN300761-1[2],clause7.6.6,table5.
+
+    Thisrequirementappliestoalltransmitters.
+
+    4.1.5 Duty cycle
+
+    Thedutycycle,asdefinedinEN300761-1[2],clause7.7.1,shallnotexceedthelimitsinEN300761-1[2],
+
+    clause7.7.3,table6.
+
+    Thisrequirementappliestoalltransmitters.
+
+    4.2 Receiver requirements
+
+    4.2.1 Co-channel rejection
+
+    Theco-channelrejection,asdefinedinEN300761-1[2],clause8.3.3.1,shallnotexceedthelimitsin
+
+    EN300761-1[2],clause8.3.3.3.
+
+    4.2.2 Adjacent band selectivity
+
+    Theadjacentbandselectivity,asdefinedinEN300761-1[2],clause8.3.4.1,shallnotexceedthelimitsin
+
+    EN300761-1[2],clause8.3.4.3.
+
+    4.2.3 Spurious response rejection and desensitization
+
+    Theblockingordesensitization,asdefinedinEN300761-1[2],clauses8.3.1and8.3.5.1,shallnotexceedthelimitsin
+
+    EN300761-1[2],clauses8.2.3and8.3.5.3,table7.
+
+    ETSI
+
+    10 ETSIEN300761-2V1.1.1(2001-06)
+
+    4.2.4 Intermodulation response rejection
+
+    Theintermodulationresponserejection,asdefinedinEN300761-1[2],clauses8.3.1and8.3.6.1,shallnotexceedthe
+
+    limitsinEN300761-1[2],clause8.2.3and8.3.6.3.
+
+    4.2.5 Spurious radiations
+
+    Thespuriousradiations,asdefinedinEN300761-1[2],clauses8.4.1,shallnotexceedthelimitsin
+
+    EN300761-1[2],clause8.4.5.
+
+    Thisrequirementappliestoallreceivers.
+
+    4.2.6 Transponder spurious radiation
+
+    Thetransponderspuriousradiation,asdefinedinEN300761-1[2],clause9.4.1,shallnotexceedthelimitsin
+
+    EN300761-1[2],clause9.4.3table11.
+
+    5 Testing for compliance with technical requirements
+
+    5.1 Essential radio test suites
+
+    5.1.1 Environmental conditions for testing
+
+    5.1.1.1 Normal and extreme test-conditions
+
+    Typetestsshallbemadeundernormaltestconditions,andalso,wherestated,underextremetestconditions.
+
+    ThetestconditionsandproceduresshallbeasspecifiedinEN300761-1[2],clauses5.3to5.4.1.1.
+
+    5.1.1.2 Test power source
+
+    ThetestpowersourceshallmeettherequirementsofEN300761-1[2],clause5.2.
+
+    5.1.2 Choice of samples for test suites
+
+    Measurementshallbeperformed,accordingtothepresentdocument,onsamplesofequipmentdefinedin
+
+    EN300761-1[2],clauses4.2.1to4.2.3.2.
+
+    5.1.3 Transmitter test suites
+
+    5.1.3.1 Equivalent isotropically radiated power (e.i.r.p)
+
+    Either:
+
+    - thetestspecifiedinEN300761-1[2],clause7.1.2,shallbecarriedout;or
+
+    - thistestsuiteappliestotransmitterswithanintegralordedicatedantenna.
+
+    5.1.3.2 Frequency error
+
+    ThetestspecifiedinEN300761-1[2],clause7.2.2,shallbecarriedout.
+
+    Thistestsuiteappliestoalltransmitters.
+
+    ETSI
+
+    11 ETSIEN300761-2V1.1.1(2001-06)
+
+    5.1.3.3 Transmitter spectrum mask
+
+    ThetestspecifiedinEN300761-1[2],clause7.3.2,shallbecarriedout.
+
+    5.1.3.4 Spurious emissions
+
+    Either:'
+- id: art-6
+  title: '- thetestsspecifiedinEN300761-1[2],clause7.6.3andEN300761-1['
+  text: '- thetestsspecifiedinEN300761-1[2],clause7.6.3andEN300761-1[2],clause7.6.4,shallbecarriedout;or
+
+    - thetestspecifiedinEN300761-1[2],clause7.6.5,shallbecarriedout.
+
+    5.1.4 Receiver test suites
+
+    5.1.4.1 Spurious radiations
+
+    Either:
+
+    - thetestsspecifiedinEN300761-1[2],clause8.4.2andEN300761-1[2],clause8.4.3,shallbecarriedout;or
+
+    - thetestspecifiedinEN300761-1[2],clause8.4.4,shallbecarriedout.
+
+    5.1.4.2 Transponder spurious radiation
+
+    ThetestspecifiedinEN300761-1[2],clause9.4.2,shallbecarriedout.
+
+    5.2 Other test specifications
+
+    Therequirementsinclause4.2havebeensetontheassumptionthatthetestspecificationsintable1willbeusedto
+
+    verifytheperformanceofequipment.
+
+    Table1:Receivertestspecifications
+
+    Clause Performancerequirement ClauseonEN300761-1[2]
+
+    containingthetestmethod
+
+    4.2.1 Co-channelrejection 8.3.3.2
+
+    4.2.2 Adjacentchannelselectivity 8.3.4.2
+
+    4.2.3 Spuriousresponserejection 8.3.5.2
+
+    anddesensitization
+
+    4.2.4 Intermodulationresponserejection 8.3.6.2
+
+    4.2.5 Spuriousradiations 8.4.2and8.4.3;or
+
+    8.4.4
+
+    6 Interpretation of measurement results
+
+    Theinterpretationoftheresultsrecordedinthetestreportforthemeasurementsdescribedinthepresentdocumentshall
+
+    beasfollows:
+
+    - themeasuredvaluerelatedtothecorrespondinglimitshallbeusedtodecidewhetheranequipmentmeetsthe
+
+    requirementsofthepresentdocument;
+
+    - thevalueofthemeasurementuncertaintyforthemeasurementofeachparametershallbeseparatelyincludedin
+
+    thetestreport;
+
+    - thevalueofthemeasurementuncertaintyshallbe,foreachmeasurement,equaltoorlowerthanthefiguresin
+
+    table2.
+
+    ETSI
+
+    12 ETSIEN300761-2V1.1.1(2001-06)
+
+    Table2:Measurementuncertainty
+
+    RFfrequency ±1×10-7
+
+    RFpower,conducted ±4dB
+
+    Adjacentchannelpower ±3dB
+
+    Conductedemissionoftransmitter,validupto12,75GHz ±4dB
+
+    Conductedemissionofreceivers ±3dB
+
+    Radiatedemissionoftransmitter,validupto12,75GHz ±6dB
+
+    Radiatedemissionofreceiver,validupto12,75GHz ±6dB
+
+    Forthetestmethods,accordingtothepresentdocumenttheuncertaintyfiguresshallbecalculatedaccordingtothe
+
+    methodsdescribedintheETR028[3]andshallcorrespondtoanexpansionfactor(coveragefactor)k=1,96ork=2
+
+    (whichprovideconfidencelevelsofrespectively95%and95,45%incasewherethedistributionscharacterizingthe
+
+    actualmeasurementuncertaintiesarenormal(Gaussian)).
+
+    Table2isbasedonsuchexpansionfactors.
+
+    Theparticularexpansionfactorusedfortheevaluationofthemeasurementuncertaintyshallbestated.
+
+    ETSI
+
+    13 ETSIEN300761-2V1.1.1(2001-06)
+
+    History
+
+    Document history
+
+    V1.1.1 July2000 PublicEnquiry PE20001124: 2000-07-26to2000-11-24
+
+    V1.1.1 April2001 Vote V20010615: 2001-04-16to2001-06-15
+
+    V1.1.1 June2001 Publication
+
+    ETSI'
 doc_files:
 - global/raw/ETSI_EN_30076102_v01.01.01_60.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30076102_v01.01.01_60.pdf (pdf, 22174 chars)，生成 6 条共 22174 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30076102_v01.01.01_60.pdf (pdf, 22174 chars)，生成 6 条共 22174 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30076102_v01.01.01_60.pdf (pdf, 22174 chars)，生成 6 条共 22174 字符；解析文本未人工复核，引用以官方原件为准。'

@@ -258,13 +258,16 @@ def _build_mandatory_section(mandatory_regulations: list[dict] | None) -> str:
     lines = [
         "【必检法规清单】以下法规由品类/产品特征判定适用于本次扫描，",
         "合规报告中每一条都必须出现并给出其适用理由（reason）；",
-        "若检索证据未覆盖某条，仍需列出并标注『依据规则库，待核实原文』：",
+        "若检索证据未覆盖某条，仍需列出并标注『依据规则库，待核实原文』。",
+        "标注（库自动接入）的条目来自全库按品类/市场匹配的自动检索：至少给出适用性判断与",
+        "下一步核实动作，证据不足时标注待核实即可，不必逐条展开完整分析。",
     ]
     for entry in mandatory_regulations:
         region = str(entry.get("region", "")).strip()
         doc = str(entry.get("doc_name", "")).strip()
         reason = str(entry.get("reason", "")).strip()
-        lines.append(f"- [{region or 'GLOBAL'}] {doc} — {reason}")
+        auto = "（库自动接入）" if str(entry.get("curation") or "") == "auto" else ""
+        lines.append(f"- [{region or 'GLOBAL'}] {doc}{auto} — {reason}")
     return "\n" + "\n".join(lines) + "\n"
 
 

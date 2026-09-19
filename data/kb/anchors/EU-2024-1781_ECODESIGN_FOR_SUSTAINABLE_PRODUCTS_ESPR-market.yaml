@@ -1,0 +1,27 @@
+id: KB-market-EU-EU-2024-1781_ECODESIGN_FOR_SUSTAINABLE_PRODUCTS_ESPR
+regulation_id: EU-2024-1781_ECODESIGN_FOR_SUSTAINABLE_PRODUCTS_ESPR
+doc_name: EU-2024-1781 Ecodesign for Sustainable Products ESPR
+official_citation: EU-2024-1781 Ecodesign for Sustainable Products ESPR
+short_name: EU-2024-1781 Ecodesign for Sustainable Products ESPR
+source: market
+primary_source: market
+domain: 能源
+applies_if:
+  category: []
+  features_any: []
+  markets:
+  - EU
+key_articles:
+- art-1
+- art-2
+key_points:
+- EU-2024-1781 Ecodesign for Sustainable Products ESPR：能源领域法规，适用于 EU 市场相关经营行为（库自动接入，按市场匹配）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://publications.europa.eu/resource/celex/32024R1781?language=eng
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

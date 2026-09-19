@@ -32,8 +32,11 @@ raw_file: null
 checksum_sha256: null
 schema_version: 1
 source_url: https://eur-lex.europa.eu/eli/reg/2006/1907/oj
-notes: 'Governance pass 2026-09-14 (plan J08 / §4.4 layer 3): source_kind=unverified — all article texts are
-  KB-condensed summaries marked "full official text pending verification", not verbatim EUR-Lex text. The same
-  SVHC notification summary is currently attached to art-7/8/9/33 and annex-xvii (article-content mismatch to be
-  resolved in the verbatim replacement pass via `parser/legal_parser.py`). Summaries must not enter the
-  exact-quote flow or be labeled 已对照原文.'
+notes: 'Governance pass 2026-09-14 (plan J08 / §4.4 layer 3): source_kind=unverified — all article texts are KB-condensed
+  summaries marked "full official text pending verification", not verbatim EUR-Lex text. The same SVHC notification summary
+  is currently attached to art-7/8/9/33 and annex-xvii (article-content mismatch to be resolved in the verbatim replacement
+  pass via `parser/legal_parser.py`). Summaries must not enter the exact-quote flow or be labeled 已对照原文.
+
+  2026-09-19 去重：合并同法规异名条目 EU-1907-2006_REACH_CHEMICALS（EU-1907-2006 REACH Chemicals）。'
+doc_files:
+- eu/raw/EU-1907-2006_REACH_Chemicals.pdf

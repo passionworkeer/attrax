@@ -9,11 +9,1172 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: An Act to provide for the general regulation of trade and co
+  text: 'An Act to provide for the general regulation of trade and commerce in respect of conspiracies, trade practices and mergers affecting competition
+
+    Competition Act
+
+    Competition
+
+    2026
+
+    4
+
+    1
+
+    C-34
+
+    Short Title
+
+    Short title
+
+    1
+
+    This Act may be cited as the
+
+    Competition Act
+
+    .
+
+    R.S., 1985, c. C-34, s. 1; R.S., 1985, c. 19 (2nd Supp.), s. 19
+
+    PART I
+
+    Purpose and Interpretation
+
+    Purpose
+
+    Purpose of Act
+
+    1.1
+
+    The purpose of this Act is to maintain and encourage competition in Canada in order to promote the efficiency and adaptability of the Canadian economy, in order to expand opportunities for Canadian
+    participation in world markets while at the same time recognizing the role of foreign competition in Canada, in order to ensure that small and medium-sized enterprises have an equitable opportunity
+    to participate in the Canadian economy and in order to provide consumers with competitive prices and product choices.
+
+    R.S., 1985, c. 19 (2nd Supp.), s. 19
+
+    Interpretation
+
+    Definitions
+
+    2
+
+    (1)
+
+    In this Act,
+
+    article
+
+    means real and personal property of every description including
+
+    (a)
+
+    money,
+
+    (b)
+
+    deeds and instruments relating to or evidencing the title or right to property or an interest, immediate, contingent or otherwise, in a corporation or in any assets of a corporation,
+
+    (c)
+
+    deeds and instruments giving a right to recover or receive property,
+
+    (d)
+
+    tickets or like evidence of right to be in attendance at a particular place at a particular time or times or of a right to transportation, and
+
+    (e)
+
+    energy, however generated; (
+
+    article
+
+    )
+
+    business
+
+    includes the business of
+
+    (a)
+
+    manufacturing, producing, transporting, acquiring, supplying, storing and otherwise dealing in articles, and
+
+    (b)
+
+    acquiring, supplying and otherwise dealing in services.
+
+    It also includes the raising of funds for charitable or other non-profit purposes. (
+
+    entreprise
+
+    )
+
+    Commission
+
+    [Repealed, R.S., 1985, c. 19 (2nd Supp.), s. 20]
+
+    Commissioner
+
+    means the Commissioner of Competition appointed under subsection 7(1); (
+
+    commissaire
+
+    )
+
+    computer system
+
+    has the same meaning as in subsection 342.1(2) of the
+
+    Criminal Code
+
+    ; (
+
+    ordinateur
+
+    )
+
+    data
+
+    means representations, including signs, signals or symbols, that are capable of being understood by an individual or processed by a computer system or other device; (
+
+    données
+
+    )
+
+    Director
+
+    [Repealed, 1999, c. 2, s. 1]
+
+    electronic message
+
+    means a message sent by any means of telecommunication, including a text, sound, voice or image message; (
+
+    message électronique
+
+    )
+
+    entity
+
+    means a corporation or a partnership, sole proprietorship, trust or other unincorporated organization capable of conducting business; (
+
+    entité
+
+    )
+
+    information
+
+    includes data; (
+
+    renseignement
+
+    )
+
+    locator
+
+    means a name or information used to identify a source of data on a computer system, and includes a URL; (
+
+    localisateur
+
+    )
+
+    merger
+
+    [Repealed, R.S., 1985, c. 19 (2nd Supp.), s. 20]
+
+    Minister
+
+    means the Minister of Industry; (
+
+    ministre
+
+    )
+
+    monopoly
+
+    [Repealed, R.S., 1985, c. 19 (2nd Supp.), s. 20]
+
+    product
+
+    includes an article and a service; (
+
+    produit
+
+    )
+
+    record
+
+    means a medium on which information is registered or marked; (
+
+    document
+
+    )
+
+    sender information
+
+    means the part of an electronic message — including the data relating to source, routing, addressing or signalling — that identifies or purports to identify the sender or the origin of the message; (
+
+    renseignements sur l’expéditeur
+
+    )
+
+    service
+
+    means a service of any description whether industrial, trade, professional or otherwise; (
+
+    service
+
+    )
+
+    subject matter information
+
+    means the part of an electronic message that purports to summarize the contents of the message or to give an indication of them; (
+
+    objet
+
+    )
+
+    supply
+
+    means,
+
+    (a)
+
+    in relation to an article, sell, rent, lease or otherwise dispose of an article or an interest therein or a right thereto, or offer so to dispose of an article or interest therein or a right thereto,
+    and
+
+    (b)
+
+    in relation to a service, sell, rent or otherwise provide a service or offer so to provide a service; (
+
+    fournir
+
+    ou
+
+    approvisionner
+
+    )
+
+    trade, industry or profession
+
+    includes any class, division or branch of a trade, industry or profession; (
+
+    commerce, industrie ou profession
+
+    )
+
+    Tribunal
+
+    means the Competition Tribunal established by subsection 3(1) of the
+
+    Competition Tribunal Act
+
+    . (
+
+    Tribunal
+
+    )
+
+    Affiliation
+
+    (2)
+
+    For the purposes of this Act,
+
+    (a)
+
+    one entity is affiliated with another entity if one of them is the subsidiary of the other or both are subsidiaries of the same entity or each of them is controlled by the same entity or individual;
+
+    (b)
+
+    if two entities are affiliated with the same entity at the same time, they are deemed to be affiliated with each other; and
+
+    (c)
+
+    an individual is affiliated with an entity if the individual controls the entity.
+
+    Subsidiary entity
+
+    (3)
+
+    For the purposes of this Act, an entity is a subsidiary of another entity if it is controlled by that other entity.
+
+    Control
+
+    (4)
+
+    For the purposes of this Act,
+
+    (a)
+
+    a corporation is controlled by an entity or an individual other than Her Majesty if
+
+    (i)
+
+    securities of the corporation to which are attached more than 50% of the votes that may be cast to elect directors of the corporation are held, directly or indirectly, whether through one or more subsidiaries
+    or otherwise, otherwise than by way of security only, by or for the benefit of that entity or individual, and
+
+    (ii)
+
+    the votes attached to those securities are sufficient, if exercised, to elect a majority of the directors of the corporation;
+
+    (b)
+
+    a corporation is controlled by Her Majesty in right of Canada or a province if
+
+    (i)
+
+    the corporation is controlled by Her Majesty in the manner described in paragraph (a), or
+
+    (ii)
+
+    in the case of a corporation without share capital, a majority of the directors of the corporation, other than
+
+    ex officio
+
+    directors, are appointed by
+
+    (A)
+
+    the Governor in Council or the Lieutenant Governor in Council of the province, as the case may be, or
+
+    (B)
+
+    a Minister of the government of Canada or the province, as the case may be; and
+
+    (c)
+
+    an entity other than a corporation is controlled by an entity or individual if the entity or individual, directly or indirectly, whether through one or more subsidiaries or otherwise, holds an interest
+    in the entity that is not a corporation that entitles them to receive more than 50% of the profits of that entity or more than 50% of its assets on dissolution.
+
+    R.S., 1985, c. C-34, s. 2; R.S., 1985, c. 19 (2nd Supp.), s. 20; 1992, c. 1, s. 145(F); 1995, c. 1, s. 62; 1999, c. 2, s. 1, c. 31, s. 44(F); 2010, c. 23, s. 70; 2014, c. 31, ss. 28, 46; 2018, c. 8,
+    s. 109
+
+    Binding on agents of Her Majesty in certain cases
+
+    2.1
+
+    This Act is binding on and applies to an agent of Her Majesty in right of Canada or a province that is a corporation, in respect of commercial activities engaged in by the corporation in competition,
+    whether actual or potential, with other persons to the extent that it would apply if the agent were not an agent of Her Majesty.
+
+    R.S., 1985, c. 19 (2nd Supp.), s. 21
+
+    Defects of form
+
+    3
+
+    No proceedings under this Act shall be deemed invalid by reason of any defect of form or any technical irregularity.
+
+    R.S., c. C-23, s. 3
+
+    Collective bargaining activities
+
+    4
+
+    (1)
+
+    Nothing in this Act applies in respect of
+
+    (a)
+
+    combinations or activities of workmen or employees for their own reasonable protection as such workmen or employees;
+
+    (b)
+
+    contracts, agreements or arrangements between or among fishermen or associations of fishermen and persons or associations of persons engaged in the buying or processing of fish relating to the prices,
+    remuneration or other like conditions under which fish will be caught and supplied to those persons by fishermen; or
+
+    (c)
+
+    contracts, agreements or arrangements between or among two or more employers in a trade, industry or profession, whether effected directly between or among the employers or through the instrumentality
+    of a corporation or association of which the employers are members, pertaining to collective bargaining with their employees in respect of salary or wages and terms or conditions of employment.
+
+    Limitation
+
+    (2)
+
+    Nothing in this section exempts from the application of any provision of this Act a contract, agreement or arrangement entered into by an employer to withhold any product from any person, or to refrain
+    from acquiring from any person any product other than the services of workmen or employees.
+
+    R.S., c. C-23, s. 4; 1974-75-76, c. 76, s. 2
+
+    4.1
+
+    [Repealed, 2009, c. 2, s. 407]
+
+    Underwriters
+
+    5
+
+    (1)'
+- id: art-2
+  title: Section 45 does not apply in respect of an agreement or arrangement between persons who are members of a class of persons who ordinarily engage in the business of dealing in securities or between
+    such
+  text: 'Section 45 does not apply in respect of an agreement or arrangement between persons who are members of a class of persons who ordinarily engage in the business of dealing in securities or between
+    such persons and the issuer of a specific security, in the case of a primary distribution, or the vendor of a specific security, in the case of a secondary distribution, if the agreement or arrangement
+    has a reasonable relationship to the underwriting of a specific security.
+
+    Definition of
+
+    underwriting
+
+    (2)
+
+    For the purposes of this section,
+
+    underwriting
+
+    of a security means the primary or secondary distribution of the security, in respect of which distribution
+
+    (a)
+
+    a prospectus is required to be filed, accepted or otherwise approved pursuant to a law enacted in Canada or in a jurisdiction outside Canada for the supervision or regulation of trade in securities;
+    or
+
+    (b)
+
+    a prospectus would be required to be filed, accepted or otherwise approved but for an express exemption contained in or given pursuant to a law mentioned in paragraph (a).
+
+    R.S., 1985, c. C-34, s. 5; 1999, c. 2, s. 2; 2009, c. 2, s. 408
+
+    Amateur sport
+
+    6
+
+    (1)
+
+    This Act does not apply in respect of agreements or arrangements between or among teams, clubs and leagues pertaining to participation in amateur sport.
+
+    Definition of
+
+    amateur sport
+
+    (2)
+
+    For the purposes of this section,
+
+    amateur sport
+
+    means sport in which the participants receive no remuneration for their services as participants.
+
+    1974-75-76, c. 76, s. 2
+
+    PART II
+
+    Administration
+
+    Commissioner of Competition
+
+    7
+
+    (1)
+
+    The Governor in Council may appoint an officer to be known as the Commissioner of Competition, who shall be responsible for
+
+    (a)
+
+    the administration and enforcement of this Act; and
+
+    (b)
+
+    the administration and enforcement of the
+
+    Consumer Packaging and Labelling Act
+
+    , the
+
+    Precious Metals Marking Act
+
+    and the
+
+    Textile Labelling Act
+
+    .
+
+    (c)
+
+    [Repealed, 2012, c. 24, s. 79]
+
+    (d)
+
+    [Repealed, 2012, c. 24, s. 79]
+
+    Oath of office
+
+    (2)
+
+    The Commissioner shall, before taking up the duties of the Commissioner, take and subscribe, before the Clerk of the Privy Council, an oath or solemn affirmation, which shall be filed in the office
+    of the Clerk, in the following form:
+
+    I do solemnly swear (or affirm) that I will faithfully, truly and impartially, and to the best of my judgment, skill and ability, execute the powers and trusts reposed in me as Commissioner of Competition.
+    (
+
+    In the case where an oath is taken add
+
+    “So help me God”.)
+
+    Salary
+
+    (3)
+
+    The Commissioner shall be paid such salary as may be from time to time fixed and allowed by the Governor in Council.
+
+    R.S., 1985, c. C-34, s. 7; 1999, c. 2, ss. 4, 37
+
+    2012, c. 24, s. 79
+
+    Deputy Commissioners
+
+    8
+
+    (1)
+
+    One or more persons may be appointed Deputy Commissioners of Competition in the manner authorized by law.
+
+    Powers of Deputy
+
+    (2)
+
+    The Governor in Council may authorize a Deputy Commissioner to exercise the powers and perform the duties of the Commissioner whenever the Commissioner is absent or unable to act or whenever there is
+    a vacancy in the office of Commissioner.
+
+    Powers of other persons
+
+    (3)
+
+    The Governor in Council may authorize any person to exercise the powers and perform the duties of the Commissioner whenever the Commissioner and the Deputy Commissioners are absent or unable to act
+    or, if one or more of those offices are vacant, whenever the holders of the other of those offices are absent or unable to act.
+
+    Inquiry by Deputy
+
+    (4)
+
+    The Commissioner may authorize a Deputy Commissioner to make inquiry regarding any matter into which the Commissioner has power to inquire, and when so authorized a Deputy Commissioner shall perform
+    the duties and may exercise the powers of the Commissioner in respect of that matter.
+
+    Powers of Commissioner unaffected
+
+    (5)
+
+    The exercise, pursuant to this Act, of any of the powers or the performance of any of the duties of the Commissioner by a Deputy Commissioner or other person does not in any way limit, restrict or qualify
+    the powers or duties of the Commissioner, either generally or with respect to any particular matter.
+
+    R.S., 1985, c. C-34, s. 8; 1999, c. 2, s. 5
+
+    Application for inquiry
+
+    9
+
+    (1)
+
+    Any six persons resident in Canada who are not less than eighteen years of age and who are of the opinion that
+
+    (a)
+
+    a person has contravened an order made pursuant to section 32, 33 or 34, or Part VII.1 or VIII,
+
+    (b)
+
+    grounds exist for the making of an order under Part VII.1 or VIII, or
+
+    (c)
+
+    an offence under Part VI or VII has been or is about to be committed,
+
+    may apply to the Commissioner for an inquiry into the matter.
+
+    Material to be submitted
+
+    (2)
+
+    An application made under subsection (1) shall be accompanied by a statement in the form of a solemn or statutory declaration showing
+
+    (a)
+
+    the names and addresses of the applicants, and at their election the name and address of any one of their number, or of any attorney, solicitor or counsel, whom they may, for the purpose of receiving
+    any communication to be made pursuant to this Act, have authorized to represent them;
+
+    (b)
+
+    the nature of
+
+    (i)
+
+    the alleged contravention,
+
+    (ii)
+
+    the grounds alleged to exist for the making of an order, or
+
+    (iii)
+
+    the alleged offence
+
+    and the names of the persons believed to be concerned therein and privy thereto; and
+
+    (c)
+
+    a concise statement of the evidence supporting their opinion.
+
+    R.S., 1985, c. C-34, s. 9; R.S., 1985, c. 19 (2nd Supp.), s. 22; 1999, c. 2, ss. 6, 37
+
+    Inquiry by Commissioner
+
+    10
+
+    (1)
+
+    The Commissioner shall
+
+    (a)
+
+    on application made under section 9,
+
+    (b)
+
+    whenever the Commissioner has reason to believe that
+
+    (i)
+
+    a person has contravened an order made pursuant to section 32, 33 or 34, or Part VII.1 or Part VIII,
+
+    (ii)
+
+    grounds exist for the making of an order under Part VII.1 or Part VIII, or
+
+    (iii)
+
+    an offence under Part VI or VII has been or is about to be committed, or
+
+    (c)
+
+    whenever directed by the Minister to inquire whether any of the circumstances described in subparagraphs (b)(i) to (iii) exists,
+
+    cause an inquiry to be made into all such matters as the Commissioner considers necessary to inquire into with the view of determining the facts.
+
+    Information on inquiry
+
+    (2)
+
+    The Commissioner shall, on the written request of any person whose conduct is being inquired into under this Act or any person who applies for an inquiry under section 9, inform that person or cause
+    that person to be informed as to the progress of the inquiry.
+
+    Inquiries to be in private
+
+    (3)
+
+    All inquiries under this section shall be conducted in private.
+
+    R.S., 1985, c. C-34, s. 10; R.S., 1985, c. 19 (2nd Supp.), s. 23; 1999, c. 2, ss. 7, 37, c. 31, s. 45
+
+    Market or industry inquiry
+
+    10.1
+
+    (1)
+
+    The Commissioner may, after consulting the Minister, conduct an inquiry into the state of competition in a market or industry if the Commissioner is of the opinion that it is in the public interest
+    to do so.
+
+    Direction to conduct inquiry
+
+    (2)
+
+    The Minister may direct the Commissioner to conduct an inquiry into the state of competition in a market or industry if the Minister is of the opinion that it is in the public interest that such an
+    inquiry be conducted. Before making the direction, the Minister must consult the Commissioner to determine whether the inquiry would be feasible, including with regard to its cost.
+
+    Proposed terms of reference
+
+    (3)
+
+    If, after the consultation referred to in subsection (1) or (2), it is decided to proceed with the inquiry, the Commissioner must prepare proposed terms of reference for the inquiry and publish them
+    on a publicly available website and invite the public to provide comments during a period of not less than 15 days.
+
+    Final terms of reference
+
+    (4)
+
+    After having taken into account any comments received from the public, the Commissioner must submit to the Minister for approval the Commissioner’s final terms of reference and, if they are approved,
+    the Commissioner must publish them on a publicly available website.
+
+    Duration of inquiry
+
+    (5)
+
+    The inquiry commences on the day on which the final terms of reference are published and the Commissioner must complete the inquiry and publish a report of the Commissioner’s findings on a publicly
+    available website before the expiry of the period specified by the Minister, which period, subject to subsection (6), is not to exceed 18 months.
+
+    Extension
+
+    (6)
+
+    The Minister may extend the specified period for periods of up to three months.
+
+    Sending draft to certain persons
+
+    (7)
+
+    Before the report is published, the Commissioner must send to every person who was required to do anything under an order made under subsection 11(1) a complete or partial draft of the report and inform
+    the person that they may, within three working days after the day on which it was sent, provide the Commissioner with the person’s concerns regarding factual inaccuracies or confidential information
+    that should not be disclosed in the final report.
+
+    2023, c. 31, s. 3
+
+    Order for oral examination, production or written return
+
+    11
+
+    (1)
+
+    If, on the
+
+    ex parte
+
+    application of the Commissioner or his or her authorized representative, a judge of a superior or county court is satisfied by information on oath or solemn affirmation that an inquiry is being made
+    under section 10 or 10.1 and that a person has or is likely to have information that is relevant to the inquiry, the judge may order the person to
+
+    (a)
+
+    attend as specified in the order and be examined on oath or solemn affirmation by the Commissioner or the authorized representative of the Commissioner on any matter that is relevant to the inquiry
+    before a person, in this section and sections 12 to 14 referred to as a “presiding officer”, designated in the order;
+
+    (b)
+
+    produce to the Commissioner or the authorized representative of the Commissioner within a time and at a place specified in the order, a record, a copy of a record certified by affidavit to be a true
+    copy, or any other thing, specified in the order; or
+
+    (c)
+
+    make and deliver to the Commissioner or the authorized representative of the Commissioner, within a time specified in the order, a written return under oath or solemn affirmation showing in detail such
+    information as is by the order required.
+
+    Records or information in possession of affiliate
+
+    (2)
+
+    If the person against whom an order is sought under paragraph (1)(b) or (c) in relation to an inquiry is a corporation and the judge to whom the application is made under subsection (1) is satisfied
+    by information on oath or solemn affirmation that an affiliate of the corporation, whether the affiliate is located in Canada or outside Canada, has or is likely to have records or information relevant
+    to the inquiry, the judge may order the corporation to
+
+    (a)
+
+    produce the records; or
+
+    (b)
+
+    make and deliver a written return of the information.
+
+    No person excused from complying with order
+
+    (3)
+
+    No person shall be excused from complying with an order under subsection (1) or (2) on the ground that the testimony, record or other thing or return required of the person may tend to criminate the
+    person or subject him to any proceeding or penalty, but no testimony given by an individual pursuant to an order made under paragraph (1)(a), or return made by an individual pursuant to an order made
+    under paragraph (1)(c), shall be used or received against that individual in any criminal proceedings thereafter instituted against him, other than a prosecution under section 132 or 136 of the
+
+    Criminal Code
+
+    .
+
+    Effect of order
+
+    (4)
+
+    An order made under this section has effect anywhere in Canada.
+
+    Person outside Canada
+
+    (5)
+
+    An order may be made under subsection (1) against a person outside Canada who carries on business in Canada or sells products into Canada.
+
+    R.S., 1985, c. C-34, s. 11; R.S., 1985, c. 19 (2nd Supp.), s. 24; 1999, c. 2, s. 37; 2002, c. 8, s. 126, c. 16, s. 1
+
+    2022, c. 10, s. 256
+
+    2023, c. 31, s. 4
+
+    Witness competent and compellable
+
+    12
+
+    (1)
+
+    Any person summoned to attend pursuant to paragraph 11(1)(a) is competent and may be compelled to give evidence.
+
+    Fees
+
+    (2)
+
+    Every person summoned to attend pursuant to paragraph 11(1)(a) is entitled to the like fees and allow'
+- id: art-3
+  title: Section 54 does not apply to a person who prints or publishes or otherwise distributes a representation or an advertisement on behalf of another person in Canada if he or she establishes that he
+    or sh
+  text: 'Section 54 does not apply to a person who prints or publishes or otherwise distributes a representation or an advertisement on behalf of another person in Canada if he or she establishes that he
+    or she obtained and recorded the name and address of that other person and accepted the representation or advertisement in good faith for printing, publishing or other distribution in the ordinary course
+    of his or her business.
+
+    R.S., 1985, c. C-34, s. 60; 1999, c. 2, s. 17.1
+
+    61
+
+    [Repealed, 2009, c. 2, s. 417]
+
+    Civil rights not affected
+
+    62
+
+    Except as otherwise provided in this Part, nothing in this Part shall be construed as depriving any person of any civil right of action.
+
+    R.S., c. C-23, s. 39; 1974-75-76, c. 76, s. 18
+
+    PART VII
+
+    Other Offences
+
+    Offences
+
+    63
+
+    [Repealed, R.S., 1985, c. 19 (2nd Supp.), s. 37]
+
+    Obstruction
+
+    64
+
+    (1)
+
+    No person shall in any manner impede or prevent or attempt to impede or prevent any inquiry or examination under this Act.
+
+    Offence and punishment
+
+    (2)
+
+    Every person who contravenes subsection (1) is guilty of an offence and
+
+    (a)
+
+    liable on conviction on indictment to a fine in the discretion of the court or to imprisonment for a term not exceeding 10 years, or to both; or
+
+    (b)
+
+    liable on summary conviction to a fine not exceeding $100,000 or to imprisonment for a term not exceeding two years, or to both.
+
+    R.S., 1985, c. C-34, s. 64; 2009, c. 2, s. 418
+
+    Contravention of Part II provisions
+
+    65
+
+    (1)
+
+    Every person who, without good and sufficient cause, the proof of which lies on that person, fails to comply with an order made under section 11 and every person who contravenes subsection 15(5) or
+    16(2) is guilty of an offence and
+
+    (a)
+
+    liable on conviction on indictment to a fine in the discretion of the court or to imprisonment for a term not exceeding two years, or to both; or
+
+    (b)
+
+    liable on summary conviction to a fine not exceeding $100,000 or to imprisonment for a term not exceeding two years, or to both.
+
+    Failure to supply information
+
+    (2)
+
+    Every person who, without good and sufficient cause, the proof of which lies on that person, contravenes subsection 114(1) is guilty of an offence and liable on conviction on indictment or on summary
+    conviction to a fine not exceeding $50,000.
+
+    Destruction or alteration of records or things
+
+    (3)
+
+    Every person who destroys or alters, or causes to be destroyed or altered, any record or other thing that is required to be produced under section 11 or in respect of which a warrant is issued under
+    section 15 is guilty of an offence and
+
+    (a)
+
+    liable on conviction on indictment to a fine in the discretion of the court or to imprisonment for a term not exceeding 10 years, or to both; or
+
+    (b)
+
+    liable on summary conviction to a fine not exceeding $100,000 or to imprisonment for a term not exceeding two years, or to both.
+
+    Liability of directors
+
+    (4)
+
+    Where a corporation commits an offence under this section, any officer, director or agent of the corporation who directed, authorized, assented to, acquiesced in or participated in the commission of
+    the offence is a party to and guilty of the offence and is liable to the punishment provided for the offence whether or not the corporation has been prosecuted or convicted.
+
+    R.S., 1985, c. C-34, s. 65; R.S., 1985, c. 19 (2nd Supp.), s. 38; 1999, c. 2, s. 18; 2009, c. 2, s. 419
+
+    Contravention of subsection 30.06(5)
+
+    65.1
+
+    (1)
+
+    Every person who, without good and sufficient cause, the proof of which lies on that person, contravenes subsection 30.06(5) is guilty of an offence and liable on summary conviction or on conviction
+    on indictment to a fine not exceeding $5,000 or to imprisonment for a term not exceeding two years, or to both.
+
+    Destruction or alteration of records or things
+
+    (2)
+
+    Every person who destroys or alters, or causes to be destroyed or altered, any record or thing in respect of which a search warrant is issued under section 30.06 or that is required to be produced pursuant
+    to an order made under subsection 30.11(1) or 30.16(1) is guilty of an offence and liable
+
+    (a)
+
+    on conviction on indictment to a fine not exceeding $50,000 or to imprisonment for a term not exceeding five years, or to both; or
+
+    (b)
+
+    on summary conviction to a fine not exceeding $25,000 or to imprisonment for a term not exceeding two years, or to both.
+
+    2002, c. 16, s. 7
+
+    Refusal after objection overruled
+
+    65.2
+
+    (1)
+
+    Every person who, without good and sufficient cause, the proof of which lies on that person, refuses to answer a question or to produce a record or thing to the person designated under paragraph 30.11(2)(c)
+    after a judge has ruled against the objection under paragraph 30.11(8)(a), is guilty of an offence and liable on conviction on indictment or on summary conviction to a fine not exceeding $5,000 or to
+    imprisonment for a term not exceeding two years, or to both.
+
+    Refusal where no ruling made on objection
+
+    (2)
+
+    Every person is guilty of an offence and liable on summary conviction or on conviction on indictment to a fine not exceeding $5,000 or to imprisonment for a term not exceeding two years, or to both,
+    who, without good and sufficient cause, the proof of which lies on that person, refuses to answer a question or to produce a record or thing to the person designated under paragraph 30.11(2)(c), where
+    no ruling has been made under paragraph 30.11(8)(a),
+
+    (a)
+
+    without giving the detailed statement required by subsection 30.11(9); or
+
+    (b)
+
+    if the person was previously asked the same question or requested to produce the same record or thing and refused to do so and the reasons on which that person based the previous refusal were determined
+    not to be well-founded by
+
+    (i)
+
+    a judge, if the reasons were based on the Canadian law of non-disclosure of information or privilege, or
+
+    (ii)
+
+    a court of the foreign state or by a person designated by the foreign state, if the reasons were based on a law that applies to the foreign state.
+
+    2002, c. 16, s. 7
+
+    Contravention of order under Part VII.1 or VIII
+
+    66
+
+    Every person who contravenes an order made under Part VII.1, except paragraphs 74.1(1)(c) and (d), or under Part VIII, except subsection 79(3.1), is guilty of an offence and liable
+
+    (a)
+
+    on conviction on indictment, to a fine in the discretion of the court or to imprisonment for a term not exceeding five years, or to both; or
+
+    (b)
+
+    on summary conviction, to a fine not exceeding $25,000 or to imprisonment for a term not exceeding one year, or to both.
+
+    R.S., 1985, c. C-34, s. 66; R.S., 1985, c. 19 (2nd Supp.), s. 39; 1999, c. 2, s. 19; 2009, c. 2, s. 420
+
+    Whistleblowing
+
+    66.1
+
+    (1)
+
+    Any person who has reasonable grounds to believe that a person has committed or intends to commit an offence under the Act, may notify the Commissioner of the particulars of the matter and may request
+    that his or her identity be kept confidential with respect to the notification.
+
+    Confidentiality
+
+    (2)
+
+    The Commissioner shall keep confidential the identity of a person who has notified the Commissioner under subsection (1) and to whom an assurance of confidentiality has been provided by any person who
+    performs duties or functions in the administration or enforcement of this Act.
+
+    1999, c. 2, s. 19
+
+    Prohibition
+
+    66.2
+
+    (1)
+
+    No employer shall dismiss, suspend, demote, discipline, harass or otherwise disadvantage an employee, or deny an employee a benefit of employment, by reason that
+
+    (a)
+
+    the employee, acting in good faith and on the basis of reasonable belief, has disclosed to the Commissioner that the employer or any other person has committed or intends to commit an offence under
+    this Act;
+
+    (b)
+
+    the employee, acting in good faith and on the basis of reasonable belief, has refused or stated an intention of refusing to do anything that is an offence under this Act;
+
+    (c)
+
+    the employee, acting in good faith and on the basis of reasonable belief, has done or stated an intention of doing anything that is required to be done in order that an offence not be committed under
+    this Act; or
+
+    (d)
+
+    the employer believes that the employee will do anything referred to in paragraph (a) or (c) or will refuse to do anything referred to in paragraph (b).
+
+    Saving
+
+    (2)
+
+    Nothing in this section impairs any right of an employee either at law or under an employment contract or collective agreement.
+
+    Definitions
+
+    (3)
+
+    In this section,
+
+    employee
+
+    includes an independent contractor and
+
+    employer
+
+    has the corresponding meaning.
+
+    1999, c. 2, s. 19
+
+    Procedure
+
+    Procedure for enforcing punishment
+
+    67
+
+    (1)
+
+    Where an indictment is found against an accused, other than a corporation, for any offence against this Act, the accused may elect to be tried without a jury and where he so elects, he shall be tried
+    by the judge presiding at the court at which the indictment is found, or the judge presiding at any subsequent sittings of that court, or at any court where the indictment comes on for trial.
+
+    Application of
+
+    Criminal Code
+
+    (2)
+
+    Where an election is made under subsection (1), the proceedings subsequent to the election shall be regulated in so far as may be applicable by the provisions of the
+
+    Criminal Code
+
+    relating to the trial of indictable offences by a judge without a jury.
+
+    Jurisdiction of courts
+
+    (3)
+
+    No court other than a superior court of criminal jurisdiction, as defined in the
+
+    Criminal Code
+
+    , has power to try any offence under section 45, 46, 47, 48 or 49.
+
+    Corporations — trials with or without jury
+
+    (4)
+
+    Despite anything in the
+
+    Criminal Code
+
+    or in any other statute or law, the following rules apply to corporations charged with an offence under this Act:
+
+    (a)
+
+    if one or more corporations are charged and no individual is charged in the same indictment, the corporation or corporations are to be tried without a jury;
+
+    (b)
+
+    if one or more corporations and a single individual are charged in the same indictment, then, unless the court is satisfied that the ends of justice require otherwise, the corporation or corporations
+    are to be tried
+
+    (i)
+
+    without a jury if the individual elects or re-elects to be tried without a jury, or
+
+    (ii)
+
+    with a jury if the individual elects or re-elects to be tried with a jury; and
+
+    (c)
+
+    if one or more corporations and two or more individuals are charged in the same indictment, then, unless the court is satisfied that the ends of justice require otherwise, the corporation or corporations
+    are to be tried
+
+    (i)
+
+    without a jury if all the individuals elect or re-elect to be tried without a jury,
+
+    (ii)
+
+    with a jury if all the individuals elect or re-elect to be tried with a jury, or
+
+    (iii)
+
+    either with or without a jury, as determined by the Attorney General of Canada for each corporation, if some but not all of the individuals elect or re-elect to be tried without a jury.
+
+    Option as to procedure under subsection 34(2)
+
+    (5)
+
+    In any case where subsection 34(2) is applicable, the Attorney General of Canada or the attorney general of the province may in his discretion institute proceedings either by way of an information under
+    that subsection or by way of prosecution.
+
+    Limitation period
+
+    (6)
+
+    Proceedings in respect of an offence that is declared by this Act to be punishable on summary conviction may be instituted at any time within but not later than two years after the time when the subject-matter
+    of the proceedings arose.
+
+    R.S., 1985, c. C-34, s. 67
+
+    2024, c. 15, s. 235
+
+    Venue of prosecutions
+
+    68
+
+    Notwithstanding any other Act, a prosecution for an offence under Part VI or section 66 may be brought, in addition to any place in which the prosecution may be brought by virtue of the
+
+    Criminal Code
+
+    ,
+
+    (a)
+
+    where the accused is a corporation, in any territorial division in which the corporation has its head office or a branch office, whether or not the branch office is provided for in'
 doc_files:
 - ca/raw/CA-act-C-34_Competition_Act.xml
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：ca/raw/CA-act-C-34_Competition_Act.xml (xml, 333584 chars)，生成 3 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：ca/raw/CA-act-C-34_Competition_Act.xml (xml, 333584 chars)，生成 3 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：ca/raw/CA-act-C-34_Competition_Act.xml (xml, 333584 chars)，生成 3 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

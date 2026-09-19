@@ -9,11 +9,752 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'ETSI EN 300 220-2
+
+    V3.3.1
+
+    (2025-03)
+
+    HARMONISED EUROPEAN STAND'
+  text: 'ETSI EN 300 220-2
+
+    V3.3.1
+
+    (2025-03)
+
+    HARMONISED EUROPEAN STANDARD
+
+    Short Range Devices (SRD) operating
+
+    in the frequency range 25 MHz to 1 000 MHz with power levels
+
+    ranging up to 500 mW e.r.p.;
+
+    Part 2: Harmonised Standard for access to radio spectrum
+
+    for non specific radio equipment
+
+    2 ETSI EN 300 220-2 V3.3.1 (2025-03)
+
+    Reference
+
+    REN/ERM-TG28-566
+
+    Keywords
+
+    harmonised standard, radio, SRD, testing
+
+    ETSI
+
+    650 Route des Lucioles
+
+    F-06921 Sophia Antipolis Cedex - FRANCE
+
+    Tel.: +33 4 92 94 42 00 Fax: +33 4 93 65 47 16
+
+    Siret N° 348 623 562 00017 - APE 7112B
+
+    Association à but non lucratif enregistrée à la
+
+    Sous-Préfecture de Grasse (06) N° w061004871
+
+    Important notice
+
+    The present document can be downloaded from the
+
+    ETSI Search & Browse Standards application.
+
+    The present document may be made available in electronic versions and/or in print. The content of any electronic and/or
+
+    print versions of the present document shall not be modified without the prior written authorization of ETSI. In case of any
+
+    existing or perceived difference in contents between such versions and/or in print, the prevailing version of an ETSI
+
+    deliverable is the one made publicly available in PDF format on ETSI deliver repository.
+
+    Users should be aware that the present document may be revised or have its status changed,
+
+    this information is available in the Milestones listing.
+
+    If you find errors in the present document, please send your comments to
+
+    the relevant service listed under Committee Support Staff.
+
+    If you find a security vulnerability in the present document, please report it through our
+
+    Coordinated Vulnerability Disclosure (CVD) program.
+
+    Notice of disclaimer & limitation of liability
+
+    The information provided in the present deliverable is directed solely to professionals who have the appropriate degree of
+
+    experience to understand and interpret its content in accordance with generally accepted engineering or
+
+    other professional standard and applicable regulations.
+
+    No recommendation as to products and services or vendors is made or should be implied.
+
+    In no event shall ETSI be held liable for loss of profits or any other incidental or consequential damages.
+
+    Any software contained in this deliverable is provided "AS IS" with no warranties, express or implied, including but not
+
+    limited to, the warranties of merchantability, fitness for a particular purpose and non-infringement of intellectual property
+
+    rights and ETSI shall not be held liable in any event for any damages whatsoever (including, without limitation, damages
+
+    for loss of profits, business interruption, loss of information, or any other pecuniary loss) arising out of or related to the use
+
+    of or inability to use the software.
+
+    Copyright Notification
+
+    No part may be reproduced or utilized in any form or by any means, electronic or mechanical, including photocopying and
+
+    microfilm except as authorized by written permission of ETSI.
+
+    The content of the PDF version shall not be modified without the written authorization of ETSI.
+
+    The copyright and the foregoing restriction extend to reproduction in all media.
+
+    © ETSI 2025.
+
+    All rights reserved.
+
+    ETSI
+
+    3 ETSI EN 300 220-2 V3.3.1 (2025-03)
+
+    Contents
+
+    Intellectual Property Rights .............................................................................................................................. 10
+
+    Foreword ........................................................................................................................................................... 10
+
+    Modal verbs terminology .................................................................................................................................. 11
+
+    Introduction ...................................................................................................................................................... 11
+
+    1 Scope ...................................................................................................................................................... 12
+
+    2 References .............................................................................................................................................. 12
+
+    2.1 Normative references ....................................................................................................................................... 12
+
+    2.2 Informative references ...................................................................................................................................... 12
+
+    3 Definition of terms, symbols and abbreviations ..................................................................................... 13
+
+    3.1 Terms ................................................................................................................................................................ 13
+
+    3.2 Symbols ............................................................................................................................................................ 17
+
+    3.3 Abbreviations ................................................................................................................................................... 17
+
+    4 Technical requirements specifications ................................................................................................... 18
+
+    4.1 Environmental profile ....................................................................................................................................... 18
+
+    4.2 General conditions for operating ...................................................................................................................... 18
+
+    4.2.1 Wanted performance criteria for receivers .................................................................................................. 18
+
+    4.2.2 General conditions for all equipment .......................................................................................................... 19
+
+    4.2.3 Operating conditions for all equipment ...................................................................................................... 19
+
+    4.2.4 Operating frequency bands and limits for all equipment ............................................................................ 20
+
+    4.3 All equipment conformance requirements ....................................................................................................... 22
+
+    4.3.1 Unwanted emissions in the spurious domain .............................................................................................. 22
+
+    4.3.1.1 Applicability.......................................................................................................................................... 22
+
+    4.3.1.2 Description ............................................................................................................................................ 22
+
+    4.3.1.2.1 Unwanted emissions for a Tx mode ................................................................................................ 22
+
+    4.3.1.2.2 Unwanted emissions for all other modes ......................................................................................... 22
+
+    4.3.1.3 Limits .................................................................................................................................................... 22
+
+    4.3.1.4 Conformance ......................................................................................................................................... 23
+
+    4.4 Transmitter conformance requirements ............................................................................................................ 23
+
+    4.4.1 Effective Radiated Power ........................................................................................................................... 23
+
+    4.4.1.1 Applicability.......................................................................................................................................... 23
+
+    4.4.1.2 Description ............................................................................................................................................ 23
+
+    4.4.1.3 Limits .................................................................................................................................................... 23
+
+    4.4.1.4 Conformance ......................................................................................................................................... 23
+
+    4.4.2 Maximum e.r.p. power spectral density ...................................................................................................... 23
+
+    4.4.2.1 Applicability.......................................................................................................................................... 23
+
+    4.4.2.2 Description ............................................................................................................................................ 23
+
+    4.4.2.3 Limits .................................................................................................................................................... 23
+
+    4.4.2.4 Conformance ......................................................................................................................................... 23
+
+    4.4.3 Duty Cycle .................................................................................................................................................. 23
+
+    4.4.3.1 Applicability.......................................................................................................................................... 23
+
+    4.4.3.2 Description ............................................................................................................................................ 24
+
+    4.4.3.3 Limits .................................................................................................................................................... 24
+
+    4.4.3.4 Conformance ......................................................................................................................................... 24
+
+    4.4.4 Maximum occupied bandwidth................................................................................................................... 24
+
+    4.4.4.1 Applicability.......................................................................................................................................... 24
+
+    4.4.4.2 Description ............................................................................................................................................ 24
+
+    4.4.4.3 Limits .................................................................................................................................................... 24
+
+    4.4.4.4 Conformance ......................................................................................................................................... 24
+
+    4.4.5 Transmitter frequency stability ................................................................................................................... 24
+
+    4.4.5.1 Applicability.......................................................................................................................................... 24
+
+    4.4.5.2 Description ............................................................................................................................................ 25
+
+    4.4.5.3 Limits .................................................................................................................................................... 25
+
+    4.4.5.4 Conformance ......................................................................................................................................... 25
+
+    4.4.6 Transmitter out of band emissions .............................................................................................................. 25
+
+    ETSI
+
+    4 ETSI EN 300 220-2 V3.3.1 (2025-03)
+
+    4.4.6.1 Applicability.......................................................................................................................................... 25
+
+    4.4.6.2 Description ....'
+- id: art-2
+  title: 'Annex C (informative): National Radio Interfaces not EU wide harmonised .................................. 81'
+  text: 'Annex C (informative): National Radio Interfaces not EU wide harmonised .................................. 81
+
+    Annex D (normative): Test sites and arrangements for radiated measurement ............................ 84
+
+    D.0 Introduction ............................................................................................................................................ 84
+
+    D.1 Radiation test sites .................................................................................................................................. 84
+
+    D.1.1 Open Area Test Site (OATS) ........................................................................................................................... 84
+
+    D.1.2 Semi Anechoic Room (SAR) ........................................................................................................................... 85
+
+    D.1.3 Fully Anechoic Room (FAR) ........................................................................................................................... 86
+
+    D.1.4 Measurement Distance ..................................................................................................................................... 88
+
+    D.2 Antennas ................................................................................................................................................. 88
+
+    D.2.0 General ............................................................................................................................................................. 88
+
+    D.2.1 Measurement antenna ....................................................................................................................................... 88
+
+    D.2.2 Substitution antenna ......................................................................................................................................... 88
+
+    D.3 Guidance on the use of radiation test sites ............................................................................................. 89
+
+    D.3.0 General ............................................................................................................................................................. 89
+
+    D.3.1 Site preparation ................................................................................................................................................ 89
+
+    D.4 Coupling of signals ................................................................................................................................. 89
+
+    D.4.1 General ............................................................................................................................................................. 89
+
+    D.4.2 Data Signals...................................................................................................................................................... 90
+
+    D.5 Measurement procedures for radiated measurement .............................................................................. 90
+
+    D.5.0 General ............................................................................................................................................................. 90
+
+    D.5.1 Radiated measurements in an OATS or SAR ................................................................................................... 90
+
+    D.5.2 Radiated measurements in a FAR .................................................................................................................... 91
+
+    D.5.3 Substitution measurement ................................................................................................................................ 91
+
+    D.5.4 Radiated measurement for receivers................................................................................................................. 91
+
+    D.6 Guidance for testing technical requirements .......................................................................................... 91
+
+    D.6.0 General ............................................................................................................................................................. 91
+
+    D.6.1 Radio test suites and corresponding test sites ................................................................................................... 92
+
+    Annex E (normative): Test fixture ..................................................................................................... 93
+
+    E.1 General considerations ........................................................................................................................... 93
+
+    E.2 Validation of the test-fixture in the temperature chamber ...................................................................... 94
+
+    E.3 Mode of use ............................................................................................................................................ 95
+
+    Annex F (informative): Guideline for Operating Channel ................................................................. 97
+
+    F.1 Operating Channel illustrations .............................................................................................................. 97
+
+    Annex G (informative): Properties of EUT ........................................................................................ 100
+
+    G.1 Rights to copy ....................................................................................................................................... 100
+
+    G.2 EUT properties ..................................................................................................................................... 100
+
+    Annex H (informative): Maximum measurement uncertainty ......................................................... 101'
+- id: art-3
+  title: 'Annex I (informative): Selection of technical parameters ............................................................... 102'
+  text: 'Annex I (informative): Selection of technical parameters ............................................................... 102
+
+    Annex J (informative): Bibliography ................................................................................................. 105
+
+    Annex K (informative): Change history ............................................................................................. 106
+
+    History ............................................................................................................................................................ 107
+
+    ETSI
+
+    9 ETSI EN 300 220-2 V3.3.1 (2025-03)
+
+    List of figures
+
+    Figure 1: Adjacent and alternate channels definitions .......................................................................................................14
+
+    Figure 2: Illustration for Cumulative On-Time .................................................................................................................14
+
+    Figure 3: Emission occupied bandwidth ...........................................................................................................................16
+
+    Figure 4: Illustration of two different type of transmissions .............................................................................................17
+
+    Figure 5: Illustration of spectrum mask for unwanted emissions in the spurious domain with reference BW .................22
+
+    Figure 6: Illustration of Out Of Band Domain limits with reference BW .........................................................................26
+
+    Figure 7: Illustration of spectrum mask at permitted frequency band edges with reference BW ......................................27
+
+    Figure 8: Illustration of acquisition time for short term behaviour ...................................................................................61
+
+    Figure 9: Radiated test measurement arrangement ............................................................................................................65
+
+    Figure 10: Conducted test measurement arrangement.......................................................................................................65
+
+    Figure 11: Receiver intermodulation rejection radiated measurement arrangement .........................................................69
+
+    Figure 12: Receiver intermodulation rejection conducted measurement arrangement ......................................................70
+
+    Figure 13: Conducted clear channel assessment threshold measurement arrangement .....................................................71
+
+    Figure 14: Radiated clear channel assessment threshold measurement arrangement ........................................................72
+
+    Figure 15: Radiated CCA time measurement arrangement ...............................................................................................74
+
+    Figure 16: Conducted CCA time measurement arrangement ............................................................................................74
+
+    Figure 17: Arbitrary generator Enable signal ....................................................................................................................75
+
+    Figure D.1: A typical Open Area Test Site .......................................................................................................................85
+
+    Figure D.2: A typical Semi Anechoic Room .....................................................................................................................86
+
+    Figure D.3: A typical Fully Anechoic Room ....................................................................................................................87
+
+    Figure D.4: Measurement arrangement No.1 ....................................................................................................................90
+
+    Figure E.1: Test fixture .....................................................................................................................................................93
+
+    Figure E.2: Validation of test set-up without EUT ............................................................................................................94
+
+    Figure E.3: Validation of test set-up with EUT in place ...................................................................................................95
+
+    Figure E.4: Test of EUT ....................................................................................................................................................95
+
+    Figure F.1: Illustration of single nominal operating frequency EUT ................................................................................97
+
+    Figure F.2: Illustration of single nominal operating frequency EUT ................................................................................97
+
+    Figure F.3: Illustration of an incorrect OC for single frequency EUT and single nominal operating frequency EUT.....98
+
+    Figure F.4: Illustration of dual nominal operating frequency EUT ...................................................................................98
+
+    Figure F.5: Illustration of dual nominal operating frequency EUT ...................................................................................98
+
+    Figure F.6: Illustration EUT using multiple permitted frequency bands ...........................................................................99
+
+    Figure F.7: Illustration of multiple nominal operating frequency EUT with overlapping channels ..................................99
+
+    Figure F.8: Illustration of EUT using sub-carrier modulation in an operating channel .....................................................99
+
+    ETSI
+
+    10 ETSI EN 300 220-2 V3.3.1 (2025-03)
+
+    Intellectual Property Rights
+
+    Essential patents
+
+    IPRs essential or potentially essential to normative deliverables may have been declared to ETSI. The declarations
+
+    pertaining to these essential IPRs, if any, are publicly available for ETSI members and non-members, and can be
+
+    found in ETSI SR 000 314: "Intellectual Property Rights (IPRs); Essential, or potentially Essential, IPRs notified to
+
+    ETSI in respect of ETSI standards", which is available from the ETSI Secretariat. Latest updates are available on the
+
+    ETSI IPR online database.
+
+    Pursuant to the ETSI Directives including the ETSI IPR Policy, no investigation regarding the essentiality of IPRs,
+
+    including IPR searches, has been carried out by ETSI. No guarantee can be given as to the existence of other IPRs not
+
+    referenced in ETSI SR 000 314 (or the updates on the ETSI Web server) which are, or may be, or may become,
+
+    essential to the present document.
+
+    Trademarks
+
+    The present document may include trademarks and/or tradenames which are asserted and/or registered by their owners.
+
+    ETSI claims no ownership of these except for any which are indicated as being the property of ETSI, and conveys no
+
+    right to use or reproduce any trademark and/or tradename. Mention of those trademarks in the present document does
+
+    not constitute an endorsement by ETSI of products, services or organizations associated with those trademarks.
+
+    DECT™, PLUGTESTS™, UMTS™ and the ETSI logo are trademarks of ETSI registered for the benefit of its
+
+    Members. 3GPP™, LTE™ and 5G™ logo are trademarks of ETSI registered for the benefit of its Members and of the
+
+    3GPP Organizational Partners. oneM2M™ logo is a trademark of ETSI registered for the benefit of its Members and of
+
+    the oneM2M Partners. GSM® and the GSM logo are trademarks registered and owned by the GSM Association.
+
+    Foreword
+
+    This Harmonised European Standard (EN) has been produced by ETSI Technical Committee Electromagnetic
+
+    compatibility and Radio spectrum Matters (ERM).
+
+    The present document has been prepared under the Commission''s standardisation request C(2015) 5376 final [i.5] to
+
+    provide one voluntary means of conforming to the essential requirements of Directive 2014/53/EU on the harmonisation
+
+    of the laws of the Member States relating to the making available on the market of radio equipment and repealing
+
+    Directive 1999/5/EC [i.2].
+
+    Once the present document is cited in the Official Journal of the European Union under that Directive, compliance with
+
+    the normative clauses of the present document given in Table A.1 confers, within the limits of the scope of the present
+
+    document, a presumption of conformity with the corresponding essential requirements of that Directive and associated
+
+    EFTA regulations.
+
+    For non EU countries the present document may be used for regulatory (Type Approval) purposes.
+
+    National transposition dates
+
+    Date of adoption of this EN: 21 March 2025
+
+    Date of latest announcement of this EN (doa): 30 June 2025
+
+    Date of latest publication of new National Standard
+
+    or endorsement of this EN (dop/e): 31 December 2025
+
+    Date of withdrawal of any conflicting National Standard (dow): 30 June 2028
+
+    ETSI
+
+    11 ETSI EN 300 220-2 V3.3.1 (2025-03)
+
+    Modal verbs terminology
+
+    In the present document "shall", "shall not", "should", "should not", "may", "need not", "will", "will not", "can" and
+
+    "cannot" are to be interpreted as described in clause 3.2 of the ETSI Drafting Rules (Verbal forms for the expression of
+
+    provisions).
+
+    "must" and "must not" are NOT allowed in ETSI deliverables except when used in direct citation.
+
+    Introduction
+
+    The present document is part 2 of a multi-part deliverable covering Short Range Devices (SRD) operating in the
+
+    frequency range 25 MHz to 1 000 MHz.
+
+    Compared to earlier versions, the concept of wanted channel is replaced by Operating Channel for all equipment,
+
+    equipment transmitting analog voice are not anymore excluded from the scope, a clarification has been made regarding
+
+    the maximum occupied bandwidth requirement which is now split into two different requirements: occupied bandwidth
+
+    and transmitter frequency stability in order to clearly separate the impact of Tx frequency drift on the transmitted signal,
+
+    from the spectrum broadening due to modulation. Out of band transmission masks have also been split into two
+
+    different requirements, one spectrum mask applying to the operating channel and a separate spectrum mask applying to
+
+    the permitted frequency band. Adjacent channel power limits have been reviewed as a discrepancy in values was
+
+    corrected. New receiver requirements have been added according to the ETSI EG 203 336 [i.4] on Rx parameters. Some
+
+    of these parameters were previously only applicable to specific life critical application with extremely high receiver
+
+    performances also called Receiver Category 1. Although the requirements are now applied generally, the limits have
+
+    been adapted to non specific SRD category. Tests for timing compliance of equipment using polite spectrum access
+
+    have been added.
+
+    The intended use of radio equipment is provided in equipment documentation according to article 10 of the Radio
+
+    Equipment Directive 2014/53/EU [i.2].
+
+    The present document is structured as follows:
+
+    • Clause 2 provides references.
+
+    • Clause 3 provides definitions of terms, symbols and abbreviations used.
+
+    • Clause 4 provides operating conditions and technical requirements specification.
+
+    • Clause 5 provides testing for compliance with technical requirements.
+
+    • Annex A (informative) provides the relationship between the present document and the essential requirements
+
+    of Directive 2014/53/EU [i.2].
+
+    • Annex B (normative): EU wide harmonised national radio interfaces from 25 MHz to 1 000 MHz.
+
+    • Annex C (normative): National Radio Interfaces not EU wide harmonised.
+
+    • Annex D (normative): Test sites and arrangements for radiated measurement.
+
+    • Annex E (normative): Test fixture.
+
+    • Annex F (informative): Guideline for operating channel.
+
+    • Annex G (informative): Properties of EUT.
+
+    • Annex H (informative): Maximum measurement uncertainty.
+
+    • Annex I (informative): Selection of technical parameters.
+
+    • Annex J (informative): Bibliography.
+
+    • Annex K (informative): Change history.
+
+    ETSI
+
+    12 ETSI EN 300 220-2 V3.3.1 (2025-03)
+
+    1 Scope
+
+    The present document specifies technical requirements, limits and test methods for Short Range Devices in the non-
+
+    specific category op'
+- id: art-4
+  title: 'Annex C (informative):'
+  text: 'Annex C (informative):
+
+    National Radio Interfaces not EU wide harmonised
+
+    In addition to EU wide harmonised radio interfaces listed in Annex B, EU and EFTA member states may implement NRIs with associated technical requirements to ensure
+
+    spectrum compatibility. Usually these requirements come from CEPT/ERC/REC 70-03 [i.1] which sets out the general position on spectrum designations for Short Range
+
+    Devices (SRDs) for countries within the CEPT.
+
+    Table C.1 provides a list of these NRIs which might be available in some EU countries.
+
+    Table C.1: National Radio Interfaces not EU wide harmonised
+
+    Additional
+
+    Channel access Maximum Band number in
+
+    Maximum Effective spectrum Other usage
+
+    Permitted Frequency Band and occupation occupied CEPT/ERC/REC
+
+    Radiated Power access restriction
+
+    rules bandwidth 70-03 [i.1]
+
+    parameters
+
+    Only for Flying
+
+    R 34,995 MHz to 35,225 MHz 100 mW e.r.p. No requirement 10 kHz Annex 8; b
+
+    radio models
+
+    40,66 MHz to 40,67MHz,
+
+    40,67 MHz to 40,68MHz, Only for radio Annex 8,
+
+    S 100 mW e.r.p. No requirement 10 kHz
+
+    40,68 MHz to 40,69MHz, models c1, c2, c3, c4
+
+    40,69 MHz to 40,70MHz
+
+    ≤
+
+    T 138,20 MHz to 138,45 MHz 10 mW e.r.p. 1,0 % duty cycle The whole band Annex 1; e
+
+    Applies only to
+
+    equipment
+
+    using FHSS
+
+    The duty cycle
+
+    technique
+
+    applies to the
+
+    entire
+
+    Sub-bands for
+
+    ≤ transmission (not 100 kHz alarms
+
+    V 863 MHz to 870 MHz 25 mW e.r.p. 0,1 % duty cycle to each hop Annex 1; h1.0
+
+    868,6 MHz to
+
+    channel)
+
+    868,7 MHz,
+
+    869,250 MHz to
+
+    Minimum of
+
+    869,4 MHz,
+
+    47 channels
+
+    869,650 MHz to
+
+    869,700 MHz
+
+    are excluded
+
+    ETSI
+
+    82 ETSI EN 300 220-2 V3.3.1 (2025-03)
+
+    Additional
+
+    Channel access Maximum Band number in
+
+    Maximum Effective spectrum Other usage
+
+    Permitted Frequency Band and occupation occupied CEPT/ERC/REC
+
+    Radiated Power access restriction
+
+    rules bandwidth 70-03 [i.1]
+
+    parameters
+
+    Applies only to
+
+    equipment
+
+    using DSSS
+
+    and any
+
+    techniques
+
+    other than
+
+    25 mW e.r.p. ≤ FHSS
+
+    0,1 % duty cycle
+
+    Power spectral
+
+    W 863 MHz to 870 MHz or polite spectrum The whole band Sub-bands Annex 1; h1.2
+
+    density:
+
+    access 868,6 MHz to
+
+    -4,5 dBm/100 kHz
+
+    868,7 MHz,
+
+    869,250 MHz to
+
+    869,4 MHz,
+
+    869,650 MHz to
+
+    869,700 MHz
+
+    for alarms are
+
+    excluded
+
+    ≤
+
+    1 % duty cycle
+
+    See note
+
+    For ER-GSM
+
+    protection
+
+    Use of
+
+    (873 MHz to
+
+    REC 70-03 [i.1],
+
+    X 870,000 MHz to 874,400 MHz 25 mW e.r.p. 876 MHz, where 600 kHz Annex 1; h2'
+- id: art-5
+  title: Annex 2 set of
+  text: 'Annex 2 set of
+
+    applicable), the
+
+    parameters is
+
+    du≤ty c'
 doc_files:
 - global/raw/ETSI_EN_30022002_v03.03.01_60.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30022002_v03.03.01_60.pdf (pdf, 269734 chars)，生成 5 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30022002_v03.03.01_60.pdf (pdf, 269734 chars)，生成 5 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30022002_v03.03.01_60.pdf (pdf, 269734 chars)，生成 5 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

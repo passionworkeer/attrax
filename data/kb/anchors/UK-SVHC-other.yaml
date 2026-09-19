@@ -1,0 +1,27 @@
+id: KB-other-UK-UK-SVHC
+regulation_id: UK-SVHC
+doc_name: UK Substances of very high concern overview
+official_citation: UK Substances of very high concern overview
+short_name: UK HSE SVHC 高关注物质清单 (hse.gov.uk)
+source: category
+primary_source: other
+domain: other
+applies_if:
+  category:
+  - other
+  features_any: []
+  markets:
+  - UK
+key_articles:
+- art-1
+key_points:
+- UK HSE SVHC 高关注物质清单 (hse.gov.uk)：其他品类领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://www.hse.gov.uk/REACH/svhc-overview.htm
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

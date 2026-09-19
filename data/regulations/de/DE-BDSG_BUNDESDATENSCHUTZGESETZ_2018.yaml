@@ -9,11 +9,389 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: Ein Service des Bundesministerium der Justiz und für Verbrau
+  text: 'Ein Service des Bundesministerium der Justiz und für Verbraucherschutz
+
+    sowie des Bundesamts für Justiz ‒ www.gesetze-im-internet.de
+
+    Bundesdatenschutzgesetz (BDSG)
+
+    BDSG
+
+    Ausfertigungsdatum: 30.06.2017
+
+    Vollzitat:
+
+    "Bundesdatenschutzgesetz vom 30. Juni 2017 (BGBl. I S. 2097), das zuletzt durch Artikel 3 des Gesetzes vom 3.
+
+    Juli 2026 (BGBl. 2026 I Nr. 199) geändert worden ist"
+
+    Stand: Zuletzt geändert durch Art. 3 G v. 12.5.2026 I Nr. 139
+
+    Hinweis: Änderung durch Art. 3 G v. 3.7.2026 I Nr. 199 textlich nachgewiesen, dokumentarisch noch nicht
+
+    abschließend bearbeitet
+
+    Ersetzt G 204-3 v. 20.12.1990 I 2954, 2955 (BDSG 1990)
+
+    Fußnote
+
+    (+++ Textnachweis ab: 25.5.2018 +++)
+
+    (+++ Zur Anwendung vgl. §§ 4 Abs. 4, 12 Abs. 3, 16 Abs. 5, 26 Abs. 3,
+
+    38 Abs. 2, 40 Abs. 3 u. 5, 56 Abs. 4, 65 Abs. 7, 66 Abs. 6, 75 Abs. 3,
+
+    80 Abs. 3, 81 Abs. 3, 84, 85 Abs. 2 u. 3 +++)
+
+    (+++ § 22 Abs. 2: zur Anwendung vgl. § 10 HinSchG +++)
+
+    (+++ EU-Vollzitate: vgl. Liste EU-Rechtsakte G v. 12.5.2026 I Nr. 139 +++)
+
+    Das G wurde als Art. 1 des G v. 30.6.2017 I 2097 vom Bundestag mit Zustimmung des Bundesrates beschlossen.
+
+    Es ist gem. Art. 8 Abs. 1 Satz 1 dieses G am 25.5.2018 in Kraft getreten.
+
+    Inhaltsübersicht
+
+    Teil 1
+
+    Gemeinsame Bestimmungen
+
+    Kapitel 1
+
+    Anwendungsbereich
+
+    und Begriffsbestimmungen'
+- id: art-2
+  title: § 1 Anwendungsbereich des Gesetzes
+  text: § 1 Anwendungsbereich des Gesetzes
+- id: art-3
+  title: § 2 Begriffsbestimmungen
+  text: '§ 2 Begriffsbestimmungen
+
+    Kapitel 2
+
+    Rechtsgrundlagen der
+
+    Verarbeitung personenbezogener Daten'
+- id: art-4
+  title: § 3 Verarbeitung personenbezogener Daten durch öffentliche Stellen
+  text: § 3 Verarbeitung personenbezogener Daten durch öffentliche Stellen
+- id: art-5
+  title: § 4 Videoüberwachung öffentlich zugänglicher Räume
+  text: '§ 4 Videoüberwachung öffentlich zugänglicher Räume
+
+    Kapitel 3
+
+    Datenschutzbeauftragte öffentlicher Stellen'
+- id: art-6
+  title: § 5 Benennung
+  text: § 5 Benennung
+- id: art-7
+  title: § 6 Stellung
+  text: § 6 Stellung
+- id: art-8
+  title: § 7 Aufgaben
+  text: '§ 7 Aufgaben
+
+    - Seite 1 von 45 -
+
+    Ein Service des Bundesministerium der Justiz und für Verbraucherschutz
+
+    sowie des Bundesamts für Justiz ‒ www.gesetze-im-internet.de
+
+    Kapitel 4
+
+    Die oder der
+
+    Bundesbeauftragte für
+
+    den Datenschutz und die Informationsfreiheit'
+- id: art-9
+  title: § 8 Errichtung
+  text: § 8 Errichtung
+- id: art-10
+  title: § 9 Zuständigkeit
+  text: § 9 Zuständigkeit
+- id: art-11
+  title: § 10 Unabhängigkeit
+  text: § 10 Unabhängigkeit
+- id: art-12
+  title: § 11 Ernennung und Amtszeit
+  text: § 11 Ernennung und Amtszeit
+- id: art-13
+  title: § 12 Amtsverhältnis
+  text: § 12 Amtsverhältnis
+- id: art-14
+  title: § 13 Rechte und Pflichten
+  text: § 13 Rechte und Pflichten
+- id: art-15
+  title: § 14 Aufgaben
+  text: § 14 Aufgaben
+- id: art-16
+  title: § 15 Tätigkeitsbericht
+  text: § 15 Tätigkeitsbericht
+- id: art-17
+  title: § 16 Befugnisse
+  text: '§ 16 Befugnisse
+
+    Kapitel 5
+
+    Vertretung im
+
+    Europäischen Datenschutzausschuss,
+
+    zentrale Anlaufstelle, Zusammenarbeit der
+
+    Aufsichtsbehörden des Bundes und der Länder
+
+    in Angelegenheiten der Europäischen Union'
+- id: art-18
+  title: § 17 Vertretung im Europäischen Datenschutzausschuss, zentrale Anlaufstelle
+  text: § 17 Vertretung im Europäischen Datenschutzausschuss, zentrale Anlaufstelle
+- id: art-19
+  title: § 18 Verfahren der Zusammenarbeit der Aufsichtsbehörden des Bundes und der Länder
+  text: § 18 Verfahren der Zusammenarbeit der Aufsichtsbehörden des Bundes und der Länder
+- id: art-20
+  title: § 19 Zuständigkeiten
+  text: '§ 19 Zuständigkeiten
+
+    Kapitel 6
+
+    Rechtsbehelfe'
+- id: art-21
+  title: § 20 Gerichtlicher Rechtsschutz
+  text: § 20 Gerichtlicher Rechtsschutz
+- id: art-22
+  title: § 21 Antrag der Aufsichtsbehörde auf gerichtliche Entscheidung bei angenommener Rechtswidrigkeit
+  text: '§ 21 Antrag der Aufsichtsbehörde auf gerichtliche Entscheidung bei angenommener Rechtswidrigkeit
+
+    eines Beschlusses der Europäischen Kommission
+
+    Teil 2
+
+    Durchführungsbestimmungen
+
+    für Verarbeitungen zu Zwecken
+
+    gemäß Artikel 2 der Verordnung (EU) 2016/679
+
+    Kapitel 1
+
+    Rechtsgrundlagen der
+
+    Verarbeitung personenbezogener Daten
+
+    Abschnitt 1
+
+    Verarbeitung besonderer
+
+    Kategorien personenbezogener
+
+    Daten und Verarbeitung zu anderen Zwecken'
+- id: art-23
+  title: § 22 Verarbeitung besonderer Kategorien personenbezogener Daten
+  text: § 22 Verarbeitung besonderer Kategorien personenbezogener Daten
+- id: art-24
+  title: § 23 Verarbeitung zu anderen Zwecken durch öffentliche Stellen
+  text: § 23 Verarbeitung zu anderen Zwecken durch öffentliche Stellen
+- id: art-25
+  title: § 24 Verarbeitung zu anderen Zwecken durch nichtöffentliche Stellen
+  text: § 24 Verarbeitung zu anderen Zwecken durch nichtöffentliche Stellen
+- id: art-26
+  title: § 25 Datenübermittlungen durch öffentliche Stellen
+  text: '§ 25 Datenübermittlungen durch öffentliche Stellen
+
+    - Seite 2 von 45 -
+
+    Ein Service des Bundesministerium der Justiz und für Verbraucherschutz
+
+    sowie des Bundesamts für Justiz ‒ www.gesetze-im-internet.de
+
+    Abschnitt 2
+
+    Besondere Verarbeitungssituationen'
+- id: art-27
+  title: § 26 Datenverarbeitung für Zwecke des Beschäftigungsverhältnisses
+  text: § 26 Datenverarbeitung für Zwecke des Beschäftigungsverhältnisses
+- id: art-28
+  title: § 27 Datenverarbeitung zu wissenschaftlichen oder historischen Forschungszwecken und zu
+  text: '§ 27 Datenverarbeitung zu wissenschaftlichen oder historischen Forschungszwecken und zu
+
+    statistischen Zwecken'
+- id: art-29
+  title: § 28 Datenverarbeitung zu im öffentlichen Interesse liegenden Archivzwecken
+  text: § 28 Datenverarbeitung zu im öffentlichen Interesse liegenden Archivzwecken
+- id: art-30
+  title: § 29 Rechte der betroffenen Person und aufsichtsbehördliche Befugnisse im Fall von
+  text: '§ 29 Rechte der betroffenen Person und aufsichtsbehördliche Befugnisse im Fall von
+
+    Geheimhaltungspflichten'
+- id: art-31
+  title: § 30 Verbraucherkredite
+  text: § 30 Verbraucherkredite
+- id: art-32
+  title: § 31 Schutz des Wirtschaftsverkehrs bei Scoring und Bonitätsauskünften
+  text: '§ 31 Schutz des Wirtschaftsverkehrs bei Scoring und Bonitätsauskünften
+
+    Kapitel 2
+
+    Rechte der betroffenen Person'
+- id: art-33
+  title: § 32 Informationspflicht bei Erhebung von personenbezogenen Daten bei der betroffenen Person
+  text: § 32 Informationspflicht bei Erhebung von personenbezogenen Daten bei der betroffenen Person
+- id: art-34
+  title: § 33 Informationspflicht, wenn die personenbezogenen Daten nicht bei der betroffenen Person erhoben
+  text: '§ 33 Informationspflicht, wenn die personenbezogenen Daten nicht bei der betroffenen Person erhoben
+
+    wurden'
+- id: art-35
+  title: § 34 Auskunftsrecht der betroffenen Person
+  text: § 34 Auskunftsrecht der betroffenen Person
+- id: art-36
+  title: § 35 Recht auf Löschung
+  text: § 35 Recht auf Löschung
+- id: art-37
+  title: § 36 Widerspruchsrecht
+  text: § 36 Widerspruchsrecht
+- id: art-38
+  title: § 37 Automatisierte Entscheidungen im Einzelfall einschließlich Profiling
+  text: '§ 37 Automatisierte Entscheidungen im Einzelfall einschließlich Profiling
+
+    Kapitel 3
+
+    Pflichten der
+
+    Verantwortlichen und Auftragsverarbeiter'
+- id: art-39
+  title: § 38 Datenschutzbeauftragte nichtöffentlicher Stellen
+  text: § 38 Datenschutzbeauftragte nichtöffentlicher Stellen
+- id: art-40
+  title: § 39 Akkreditierung
+  text: '§ 39 Akkreditierung
+
+    Kapitel 4
+
+    Aufsichtsbehörde
+
+    für die Datenverarbeitung
+
+    durch nichtöffentliche Stellen'
+- id: art-41
+  title: § 40 Aufsichtsbehörden der Länder
+  text: '§ 40 Aufsichtsbehörden der Länder
+
+    Kapitel 5
+
+    Sanktionen'
+- id: art-42
+  title: § 41 Anwendung der Vorschriften über das Bußgeld- und Strafverfahren
+  text: § 41 Anwendung der Vorschriften über das Bußgeld- und Strafverfahren
+- id: art-43
+  title: § 42 Strafvorschriften
+  text: § 42 Strafvorschriften
+- id: art-44
+  title: § 43 Bußgeldvorschriften
+  text: '§ 43 Bußgeldvorschriften
+
+    Kapitel 6
+
+    Rechtsbehelfe'
+- id: art-45
+  title: § 44 Klagen gegen den Verantwortlichen oder Auftragsverarbeiter
+  text: '§ 44 Klagen gegen den Verantwortlichen oder Auftragsverarbeiter
+
+    Teil 3
+
+    Bestimmungen für
+
+    - Seite 3 von 45 -
+
+    Ein Service des Bundesministerium der Justiz und für Verbraucherschutz
+
+    sowie des Bundesamts für Justiz ‒ www.gesetze-im-internet.de
+
+    Verarbeitungen zu Zwecken
+
+    gemäß Artikel 1 Absatz 1 der Richtlinie (EU) 2016/680
+
+    Kapitel 1
+
+    Anwendungsbereich,
+
+    Begriffsbestimmungen
+
+    und allgemeine Grundsätze für die
+
+    Verarbeitung personenbezogener Daten'
+- id: art-46
+  title: § 45 Anwendungsbereich
+  text: § 45 Anwendungsbereich
+- id: art-47
+  title: § 46 Begriffsbestimmungen
+  text: § 46 Begriffsbestimmungen
+- id: art-48
+  title: § 47 Allgemeine Grundsätze für die Verarbeitung personenbezogener Daten
+  text: '§ 47 Allgemeine Grundsätze für die Verarbeitung personenbezogener Daten
+
+    Kapitel 2
+
+    Rechtsgrundlagen der
+
+    Verarbeitung personenbezogener Daten'
+- id: art-49
+  title: § 48 Verarbeitung besonderer Kategorien personenbezogener Daten
+  text: § 48 Verarbeitung besonderer Kategorien personenbezogener Daten
+- id: art-50
+  title: § 49 Verarbeitung zu anderen Zwecken
+  text: § 49 Verarbeitung zu anderen Zwecken
+- id: art-51
+  title: § 50 Verarbeitung zu archivarischen, wissenschaftlichen und statistischen Zwecken
+  text: § 50 Verarbeitung zu archivarischen, wissenschaftlichen und statistischen Zwecken
+- id: art-52
+  title: § 51 Einwilligung
+  text: § 51 Einwilligung
+- id: art-53
+  title: § 52 Verarbeitung auf Weisung des Verantwortlichen
+  text: § 52 Verarbeitung auf Weisung des Verantwortlichen
+- id: art-54
+  title: § 53 Datengeheimnis
+  text: § 53 Datengeheimnis
+- id: art-55
+  title: § 54 Automatisierte Einzelentscheidung
+  text: '§ 54 Automatisierte Einzelentscheidung
+
+    Kapitel 3
+
+    Rechte der betroffenen Person'
+- id: art-56
+  title: § 55 Allgemeine Informationen zu Datenverarbeitungen
+  text: § 55 Allgemeine Informationen zu Datenverarbeitungen
+- id: art-57
+  title: § 56 Benachrichtigung betroffener Personen
+  text: § 56 Benachrichtigung betroffener Personen
+- id: art-58
+  title: § 57 Auskunftsrecht
+  text: § 57 Auskunftsrecht
+- id: art-59
+  title: § 58 Rechte auf Berichtigung und Löschung sowie Einschränkung der Verarbeitung
+  text: § 58 Rechte auf Berichtigung und Löschung sowie Einschränkung der Verarbeitung
+- id: art-60
+  title: § 59 Verfahren für die Ausübung der Rechte der betroffenen Person
+  text: § 59 Verfahren für die Ausübung der Rechte der betroffenen Person
 doc_files:
 - de/raw/DE-BDSG_Bundesdatenschutzgesetz_2018.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：de/raw/DE-BDSG_Bundesdatenschutzgesetz_2018.pdf (pdf, 171305 chars)，生成 42 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：de/raw/DE-BDSG_Bundesdatenschutzgesetz_2018.pdf (pdf, 171305 chars)，生成 42 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：de/raw/DE-BDSG_Bundesdatenschutzgesetz_2018.pdf (pdf, 171247 chars)，生成 60 条共 5774 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

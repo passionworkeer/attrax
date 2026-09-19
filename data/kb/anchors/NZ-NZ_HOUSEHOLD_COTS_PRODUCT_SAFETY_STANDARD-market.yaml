@@ -1,0 +1,25 @@
+id: KB-market-NZ-NZ-NZ_HOUSEHOLD_COTS_PRODUCT_SAFETY_STANDARD
+regulation_id: NZ-NZ_HOUSEHOLD_COTS_PRODUCT_SAFETY_STANDARD
+doc_name: NZ Household Cots Product Safety Standard
+official_citation: NZ Household Cots Product Safety Standard
+short_name: NZ Household Cots Product Safety Standard
+source: market
+primary_source: market
+domain: 产品安全
+applies_if:
+  category: []
+  features_any: []
+  markets:
+  - NZ
+key_articles: []
+key_points:
+- NZ Household Cots Product Safety Standard：产品安全领域法规，适用于 NZ 市场相关经营行为（库自动接入，按市场匹配）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/household-cot-standard
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

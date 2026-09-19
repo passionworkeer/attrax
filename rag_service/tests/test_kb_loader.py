@@ -184,6 +184,7 @@ class TestKbCoverage:
 
     def _must_check_keys(self) -> set[tuple[str, str]]:
         from rag_service.retrieval.must_check import CATEGORY_REGULATIONS, FEATURE_REGULATIONS
+        from rag_service.retrieval.kb_loader import _load_all
         keys: set[tuple[str, str]] = set()
         for entries in CATEGORY_REGULATIONS.values():
             for e in entries:
@@ -195,6 +196,15 @@ class TestKbCoverage:
                 region = str(e.get("region", "")).strip().upper()
                 doc_name = str(e.get("doc_name", "")).strip()
                 keys.add((region, doc_name))
+        # 2026-09-19 起库内还有市场级锚点（category/features 均空的横切领域法规），
+        # 它们不进上面两个矩阵，但同样是 YAML 锚点的事实来源。
+        for payload in _load_all().values():
+            applies = payload.get("applies_if") or {}
+            if applies.get("category") or applies.get("features_any"):
+                continue
+            markets = applies.get("markets") or []
+            region = (markets[0] if markets else "").upper()
+            keys.add((region, str(payload.get("doc_name", "")).strip()))
         return keys
 
     def _yaml_keys(self) -> set[tuple[str, str]]:
@@ -202,7 +212,7 @@ class TestKbCoverage:
         for path in _all_yaml_paths():
             data = yaml.safe_load(path.read_text(encoding="utf-8"))
             markets = data["applies_if"]["markets"]
-            region = markets[0] if markets and markets[0] != "GLOBAL" else ""
+            region = (markets[0] if markets else "").upper()
             keys.add((region, data["doc_name"]))
         return keys
 
@@ -219,8 +229,10 @@ class TestKbCoverage:
 
 
 class TestKbLoaderApi:
-    def test_always_include_regions_is_un_only(self):
-        assert ALWAYS_INCLUDE_REGIONS == {"UN"}
+    def test_always_include_regions_is_un_and_global(self):
+        # 2026-09-19 全库接入：GLOBAL（IEC/ISO/ETSI 等无单一市场的国际标准）随 UN
+        # 一起 ALWAYS_INCLUDE；两者都受 anchor_selection 的生成锚点上限约束。
+        assert ALWAYS_INCLUDE_REGIONS == {"UN", "GLOBAL"}
 
     def test_list_all_regulations_meets_the_baseline(self):
         invalidate_cache()

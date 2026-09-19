@@ -1,0 +1,27 @@
+id: KB-market-CN-CN-ODI-NDRC_-_GOV-CN
+regulation_id: CN-ODI-NDRC_-_GOV-CN
+doc_name: CN-ODI-NDRC 企业境外投资管理办法 (gov.cn)
+official_citation: CN-ODI-NDRC 企业境外投资管理办法 (gov.cn)
+short_name: CN-ODI-NDRC 企业境外投资管理办法 (gov.cn)
+source: market
+primary_source: market
+domain: 投资准入
+applies_if:
+  category: []
+  features_any: []
+  markets:
+  - CN
+key_articles:
+- art-1
+- art-2
+key_points:
+- CN-ODI-NDRC 企业境外投资管理办法 (gov.cn)：投资准入领域法规，适用于 CN 市场相关经营行为（库自动接入，按市场匹配）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://www.gov.cn/zhengce/2021-12/01/content_5713252.htm
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

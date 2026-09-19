@@ -1,0 +1,26 @@
+id: KB-toy-CN-CN-GB_6675-12-2014_-_-12-_
+regulation_id: CN-GB_6675-12-2014_-_-12-_
+doc_name: CN-GB GB 6675.12-2014 玩具安全  第12部分：玩具滑板车
+official_citation: CN-GB GB 6675.12-2014 玩具安全  第12部分：玩具滑板车
+short_name: CN-GB GB 6675.12-2014 玩具安全  第12部分：玩具滑板车
+source: category
+primary_source: toy
+domain: toy
+applies_if:
+  category:
+  - toy
+  features_any: []
+  markets:
+  - CN
+key_articles: []
+key_points:
+- CN-GB GB 6675.12-2014 玩具安全  第12部分：玩具滑板车：玩具领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=EA65CBE59B3226685EA1F80DB1F2AF0E
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

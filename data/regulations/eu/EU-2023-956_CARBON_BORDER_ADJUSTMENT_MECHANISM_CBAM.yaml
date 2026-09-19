@@ -9,11 +9,849 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'L_2023130EN.01005201.xml
+
+
+    16.5.2023
+
+
+    EN
+
+
+    Official Journal of'
+  text: 'L_2023130EN.01005201.xml
+
+
+    16.5.2023
+
+
+    EN
+
+
+    Official Journal of the European Union
+
+
+    L 130/52
+
+
+    REGULATION (EU) 2023/956 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL
+
+
+
+    of 10 May 2023
+
+
+
+    establishing a carbon border adjustment mechanism
+
+
+    (Text with EEA relevance)
+
+
+    THE EUROPEAN PARLIAMENT AND THE COUNCIL OF THE EUROPEAN UNION,
+
+
+    Having regard to the Treaty on the Functioning of the European Union, and in particular Article 192(1) thereof,
+
+
+    Having regard to the proposal from the European Commission,
+
+
+    After transmission of the draft legislative act to the national parliaments,
+
+
+    Having regard to the opinion of the European Economic and Social Committee
+
+    (
+
+    1
+
+    )
+
+    ,
+
+
+    Having regard to the opinion of the Committee of the Regions
+
+    (
+
+    2
+
+    )
+
+    ,
+
+
+    Acting in accordance with the ordinary legislative procedure
+
+    (
+
+    3
+
+    )
+
+    ,
+
+
+    Whereas:
+
+
+    (1)
+
+
+    In its communication of 11 December 2019 entitled ‘The European Green Deal’ (the ‘European Green Deal’), the Commission set out a new growth strategy. That strategy aims to transform the Union into
+    a fair and prosperous society, with a modern, resource-efficient and competitive economy, where there are no net emissions (emissions after deduction of removals) of greenhouse gases (‘greenhouse gas
+    emissions’) at the latest by 2050 and where economic growth is decoupled from the use of resources. The European Green Deal aims to protect, conserve and enhance the Union’s natural capital, and to
+    protect the health and well-being of citizens from environment-related risks and impacts. At the same time, that transformation must be just and inclusive, leaving no one behind. The Commission also
+    announced in its communication of 12 May 2021 entitled ‘Pathway to a Healthy Planet for All, EU Action Plan: Towards Zero Pollution for Air, Water and Soil’ the promotion of relevant instruments and
+    incentives to better implement the ‘polluter pays’ principle set out in Article 191(2) of the Treaty on the Functioning of the European Union (TFEU) and thus complete the phasing out of ‘pollution for
+    free’ with a view to maximising synergies between decarbonisation and the zero-pollution ambition.
+
+
+    (2)
+
+
+    The Paris Agreement
+
+    (
+
+    4
+
+    )
+
+    , adopted on 12 December 2015 under the United Nations Framework Convention on Climate Change (UNFCCC) (the ‘Paris Agreement’), entered into force on 4 November 2016. The Parties to the Paris Agreement
+    have agreed to hold the increase in the global average temperature well below 2 °C above pre-industrial levels and to pursue efforts to limit the temperature increase to 1,5 °C above pre-industrial
+    levels. Under the Glasgow Climate Pact, adopted on 13 November 2021, the Conference of the Parties to the UNFCCC, serving as the meeting of the Parties to the Paris Agreement, also recognised that limiting
+    the increase in the global average temperature to 1,5 °C above pre-industrial levels would significantly reduce the risks and impacts of climate change, and committed to strengthening the 2030 targets
+    by the end of 2022 to close the ambition gap.
+
+
+    (3)
+
+
+    Tackling climate and other environment-related challenges and reaching the objectives of the Paris Agreement are at the core of the European Green Deal. The value of the European Green Deal has only
+    grown in light of the very severe effects of the COVID-19 pandemic on the health and economic well-being of the Union’s citizens.
+
+
+    (4)
+
+
+    The Union committed to reducing the Union’s economy-wide net greenhouse gas emissions by at least 55 % compared to 1990 levels by 2030, as set out in the submission to the UNFCCC on behalf of the European
+    Union and its Member States on the update of the nationally determined contribution of the European Union and its Member States.
+
+
+    (5)
+
+
+    Regulation (EU) 2021/1119 of the European Parliament and of the Council
+
+    (
+
+    5
+
+    )
+
+    has enshrined in legislation the objective of economy-wide climate neutrality at the latest by 2050. That Regulation also establishes a binding Union domestic reduction target for net greenhouse gas
+    emissions (emissions after deduction of removals) of at least 55 % compared to 1990 levels by 2030.
+
+
+    (6)
+
+
+    The Special Report of the Intergovernmental Panel on Climate Change (IPCC) of 2018 on the impacts of global temperature increases of 1,5 °C above pre-industrial levels and related global greenhouse
+    gas emission pathways provides a strong scientific basis for tackling climate change and illustrates the need to step up climate action. That report confirms that, in order to reduce the likelihood
+    of extreme weather events, greenhouse gas emissions need to be urgently reduced, and that climate change needs to be limited to a global temperature increase of 1,5 °C. Moreover, if mitigation pathways,
+    consistent with limiting global warming to 1,5 °C above pre-industrial levels, are not rapidly activated, much more expensive and complex adaptation measures will have to be taken to avoid the impacts
+    of higher levels of global warming. The contribution of Working Group I to the Sixth Assessment Report of the IPCC entitled ‘Climate Change 2021: The Physical Science Basis’ recalls that climate change
+    is already affecting every region on Earth and projects that in the coming decades climate change will increase in all regions. That report stresses that, unless there are immediate, rapid and large-scale
+    reductions in greenhouse gas emissions, limiting warming to close to 1,5 °C or even 2 °C will be beyond reach.
+
+
+    (7)
+
+
+    The Union has been pursuing an ambitious policy on climate action and has put in place a regulatory framework to achieve its 2030 target for greenhouse gas emissions reduction. The legislation implementing
+    that target consists, inter alia, of Directive 2003/87/EC of the European Parliament and of the Council
+
+    (
+
+    6
+
+    )
+
+    , which establishes a system for greenhouse gas emission allowance trading within the Union (‘EU ETS’) and delivers harmonised pricing of greenhouse gas emissions at Union level for energy-intensive
+    sectors and subsectors, of Regulation (EU) 2018/842 of the European Parliament and of the Council
+
+    (
+
+    7
+
+    )
+
+    , which introduces national targets for the reduction of greenhouse gas emissions by 2030, and of Regulation (EU) 2018/841 of the European Parliament and of the Council
+
+    (
+
+    8
+
+    )
+
+    , which requires Member States to compensate greenhouse gas emissions from land use with the removal of greenhouse gases from the atmosphere.
+
+
+    (8)
+
+
+    While the Union has substantially reduced its domestic greenhouse gas emissions, the greenhouse gas emissions embedded in imports to the Union have been increasing, thereby undermining the Union’s efforts
+    to reduce its global greenhouse gas emissions footprint. The Union has a responsibility to continue playing a leading role in global climate action.
+
+
+    (9)
+
+
+    As long as a significant number of the Union’s international partners have policy approaches that do not achieve the same level of climate ambition, there is a risk of carbon leakage. Carbon leakage
+    occurs if, for reasons of costs related to climate policies, businesses in certain industry sectors or subsectors transfer production to other countries or imports from those countries replace equivalent
+    products that are less intensive in terms of greenhouse gas emissions. Such situations could lead to an increase in the total global emissions, thus jeopardising the reduction of greenhouse gas emissions
+    that is urgently needed if the world is to keep the increase in global average temperature to well below 2 °C above pre-industrial levels and to pursue efforts to limit the temperature increase to 1,5 °C
+    above pre-industrial levels. As the Union increases its climate ambition, that risk of carbon leakage could undermine the effectiveness of Union emission reduction policies.
+
+
+    (10)
+
+
+    The initiative for a carbon border adjustment mechanism (the ‘CBAM’) is part of the ‘Fit for 55’ legislative package. The CBAM is to serve as an essential element of the Union’s toolbox for meeting
+    the objective of a climate-neutral Union at the latest by 2050 in line with the Paris Agreement by addressing the risk of carbon leakage that results from the Union’s increased climate ambition. The
+    CBAM is expected to also contribute to promoting decarbonisation in third countries.
+
+
+    (11)
+
+
+    Existing mechanisms for addressing the risk of carbon leakage in sectors or subsectors where such risk exists consist of the transitional free allocation of EU ETS allowances and financial measures
+    to compensate for indirect emission costs incurred from greenhouse gas emission costs passed on in electricity prices. Those mechanisms are set out in Article 10a(6) and Article 10b of Directive 2003/87/EC,
+    respectively. The free allocation of EU ETS allowances at the level of best performers has been a policy instrument for certain industrial sectors to address the risk of carbon leakage. However, compared
+    to full auctioning, such free allocation weakens the price signal that the system provides and thus affects the incentives for investment into further reducing greenhouse gas emissions.
+
+
+    (12)
+
+
+    The CBAM seeks to replace those existing mechanisms by addressing the risk of carbon leakage in a different way, namely by ensuring equivalent carbon pricing for imports and domestic products. To ensure
+    a gradual transition from the current system of free allowances to the CBAM, the CBAM should be progressively phased in while free allowances in sectors covered by the CBAM are phased out. The combined
+    and transitional application of EU ETS allowances allocated free of charge and of the CBAM should in no case result in more favourable treatment for Union goods compared to goods imported into the customs
+    territory of the Union.
+
+
+    (13)
+
+
+    The carbon price is rising, and companies need long-term visibility, predictability and legal certainty to make their decisions on investment in the decarbonisation of industrial processes. Therefore,
+    in order to strengthen the legal framework for fighting carbon leakage, a clear pathway for gradual further extension of the scope of the CBAM to products, sectors and subsectors at risk of carbon leakage
+    should be established.
+
+
+    (14)
+
+
+    While the objective of the CBAM is to prevent the risk of carbon leakage, this Regulation would also encourage producers from third countries to use technologies that are more efficient in reducing
+    greenhouse gases so that fewer emissions are generated. For that reason, the CBAM is expected to effectively support the reduction of greenhouse gas emissions in third countries.
+
+
+    (15)
+
+
+    As an instrument to prevent carbon leakage and reduce greenhouse gas emissions, the CBAM should ensure that imported products are subject to a regulatory system that applies carbon costs equivalent
+    to those borne under the EU ETS, resulting in a carbon price that is equivalent for imports and domestic products. The CBAM is a climate measure which should support the reduction of global greenhouse
+    gas emissions and prevent the risk of carbon leakage, while ensuring compatibility with World Trade Organization law.
+
+
+    (16)
+
+
+    This Regulation should apply to goods imported into the customs territory of the Union from third countries, except where their production has already been subject to the EU ETS through its application
+    to third countries or territories or to a carbon pricing system that is fully linked with the EU ETS.
+
+
+    (17)
+
+
+    With a view to ensuring that the transition to a carbon-neutral economy is continuously accompanied by economic and social cohesion, account should be taken, upon future revision of this Regulation,
+    of the special characteristics and constraints of the outermost regions referred to in Article 349 TFEU as well as of island States which are part of the customs territory of the Union, without undermining
+    the integrity and coherence of the Union legal order, including the internal market and common policies.
+
+
+    (18)
+
+
+    With a view to preventing the risk of carbon leakage in offshore installations, this Regulation should apply to goods, or processed products from those goods resulting from an inward processing procedure,
+    that are brought'
+- id: art-2
+  title: CHAPTER I
+  text: 'CHAPTER I
+
+
+    SUBJECT MATTER, SCOPE AND DEFINITIONS'
+- id: art-3
+  title: Article 1
+  text: 'Article 1
+
+
+    Subject matter
+
+
+    1.   This Regulation establishes a carbon border adjustment mechanism (the ‘CBAM’) to address greenhouse gas emissions embedded in the goods listed in Annex I on their importation into the customs territory
+    of the Union in order to prevent the risk of carbon leakage, thereby reducing global carbon emissions and supporting the goals of the Paris Agreement, also by creating incentives for the reduction of
+    emissions by operators in third countries.
+
+
+    2.   The CBAM complements the system for greenhouse gas emission allowance trading within the Union established under Directive 2003/87/EC (the ‘EU ETS’) by applying an equivalent set of rules to imports
+    into the customs territory of the Union of the goods referred to in Article 2 of this Regulation.
+
+
+    3.   The CBAM is set to replace the mechanisms established under Directive 2003/87/EC to prevent the risk of carbon leakage by reflecting the extent to which EU ETS allowances are allocated free of
+    charge in accordance with Article 10a of that Directive.'
+- id: art-4
+  title: Article 2
+  text: 'Article 2
+
+
+    Scope
+
+
+    1.   This Regulation applies to goods listed in Annex I originating in a third country, where those goods, or processed products from those goods resulting from the inward processing procedure referred
+    to in Article 256 of Regulation (EU) No 952/2013, are imported into the customs territory of the Union.
+
+
+    2.   This Regulation also applies to goods listed in Annex I to this Regulation originating in a third country, where those goods, or processed products from those goods resulting from the inward processing
+    procedure referred to in Article 256 of Regulation (EU) No 952/2013, are brought to an artificial island, a fixed or floating structure, or any other structure on the continental shelf or in the exclusive
+    economic zone of a Member State that is adjacent to the customs territory of the Union.
+
+
+    The Commission shall adopt implementing acts laying down detailed conditions for the application of the CBAM to such goods, in particular as regards the notions equivalent to those of importation into
+    the customs territory of the Union and of release for free circulation, as regards the procedures relating to the submission of the CBAM declaration in respect of such goods and the controls to be carried
+    out by customs authorities. Those implementing acts shall be adopted in accordance with the examination procedure referred to in Article 29(2) of this Regulation.
+
+
+    3.   By way of derogation from paragraphs 1 and 2, this Regulation shall not apply to:
+
+
+    (a)
+
+
+    goods listed in Annex I to this Regulation which are imported into the customs territory of the Union provided that the intrinsic value of such goods does not exceed, per consignment, the value specified
+    for goods of negligible value as referred to in Article 23 of Council Regulation (EC) No 1186/2009
+
+    (
+
+    22
+
+    )
+
+    ;
+
+
+    (b)
+
+
+    goods contained in the personal luggage of travellers coming from a third country provided that the intrinsic value of such goods does not exceed the value specified for goods of negligible value as
+    referred to in Article 23 of Regulation (EC) No 1186/2009;
+
+
+    (c)
+
+
+    goods to be moved or used in the context of military activities pursuant to Article 1, point (49), of Commission Delegated Regulation (EU) 2015/2446
+
+    (
+
+    23
+
+    )
+
+    .
+
+
+    4.   By way of derogation from paragraphs 1 and 2, this Regulation shall not apply to goods originating in the third countries and territories listed in point 1 of Annex III.
+
+
+    5.   Imported goods shall be considered as originating in third countries in accordance with the rules for non-preferential origin as referred to in Article 59 of Regulation (EU) No 952/2013.
+
+
+    6.   Third countries and territories shall be listed in point 1 of Annex III where they fulfil all the following conditions:
+
+
+    (a)
+
+
+    the EU ETS applies to that third country or territory or an agreement has been concluded between that third country or territory and the Union fully linking the EU ETS and the emission trading system
+    of that third country or territory;
+
+
+    (b)
+
+
+    the carbon price paid in the country in which the goods originate is effectively charged on the greenhouse gas emissions embedded in those goods without any rebates beyond those also applied in accordance
+    with the EU ETS.
+
+
+    7.   If a third country or territory has an electricity market which is integrated with the Union internal market for electricity through market coupling, and there is no technical solution for the
+    application of the CBAM to the importation of electricity into the customs territory of the Union from that third country or territory, such importation of electricity from that country or territory
+    shall be exempt from the application of the CBAM, provided that the Commission has assessed that all of the following conditions have been fulfilled in accordance with paragraph 8:
+
+
+    (a)
+
+
+    the third country or territory has concluded an agreement with the Union which sets out an obligation to apply Union law in the field of electricity, including the legislation on the development of
+    renewable energy sources, as well as other rules in the field of energy, environment and competition;
+
+
+    (b)
+
+
+    the domestic legislation in that third country or territory implements the main provisions of Union electricity market legislation, including on the development of renewable energy sources and the market
+    coupling of electricity markets;
+
+
+    (c)
+
+
+    the third country or territory has submitted a roadmap to the Commission which contains a timetable for the adoption of measures to implement the conditions set out in points (d) and (e);
+
+
+    (d)
+
+
+    the third country or territory has committed to climate neutrality by 2050 and, where applicable, has accordingly formally formulated and communicated to the United Nations Framework Convention on Climate
+    Change (UNFCCC) a mid-century, long-term low greenhouse gas emissions development strategy aligned with that objective, and has implemented that commitment in its domestic legislation;
+
+
+    (e)
+
+
+    the third country or territory has, when implementing the roadmap referred to in point (c), demonstrated its fulfilment of the set deadlines and the substantial progress towards the alignment of domestic
+    legislation with Union law in the field of climate action on the basis of that roadmap, including towards carbon pricing at a level equivalent to that in the Union in particular insofar as the generation
+    of electricity is concerned; the implementation of an emissions trading system for electricity, with a price equivalent to the EU ETS, is to be finalised by 1 January 2030;
+
+
+    (f)
+
+
+    the third country or territory has put in place an effective system to prevent indirect import of electricity into the Union from other third countries or territories that do not fulfil the conditions
+    set out in points (a) to (e).
+
+
+    8.   A third country or territory that fulfils all the conditions set out in paragraph 7, shall be listed in point 2 of Annex III, and shall submit two reports on the fulfilment of those conditions,
+    the first report by 1 July 2025 and the second by 31 December 2027. By 31 December 2025 and by 1 July 2028, the Commission shall assess, in particular on the basis of the roadmap referred to in paragraph
+    7, point (c), and the reports received from the third country or territory, if that third country or territory continues to fulfil the conditions set out in paragraph 7.
+
+
+    9.   A third country or territory listed in point 2 of Annex III shall be removed from that list where one or more of the following conditions applies:
+
+
+    (a)
+
+
+    the Commission has reasons to consider that that third country or territory has not shown sufficient progress to comply with one of the conditions set out in paragraph 7, or that third country or territory
+    has taken action that is incompatible with the objectives set out in the Union climate and environmental legislation;
+
+
+    (b)
+
+
+    that third country or territory has taken steps that are contrary to its decarbonisation objectives, such as providing public support for the establishment of new generation capacity that emits more
+    than 550 grammes of carbon dioxide (‘CO
+
+    2
+
+    ’) of fossil fuel origin per kilowatt-hour of electricity;
+
+
+    (c)
+
+
+    the Commission has evidence that, as a result of increased exports of electricity to the Union, the emissions per kilowatt-hour of electricity produced in that third country or territory have increased
+    by at least 5 % compared to 1 January 2026.
+
+
+    10.   The Commission is empowered to adopt delegated acts in accordance with Article 28 in order to supplement this Regulation by laying down requirements and procedures for third countries or territories
+    that have been removed from the list in point 2 of Annex III, to ensure the application of this Regulation to those countries or territories with regard to electricity. If in such cases market coupling
+    remains incompatible with the application of this Regulation, the Commission may decide to exclude those third countries or territories from Union market coupling and require explicit capacity allocation
+    at the border between the Union and those third countries or territories, so that the CBAM can apply.
+
+
+    11.   The Commission is empowered to adopt delegated acts in accordance with Article 28 in order to amend the lists of third countries or territories listed in point 1 or 2 of Annex III by adding or
+    removing a third country or territory, depending on whether the conditions set out in paragraph 6, 7 or 9 of this Article are fulfilled in respect of that third country or territory.
+
+
+    12.   The Union may conclude agreements with third countries or territories with a view to taking into account carbon pricing mechanisms in such countries or territories for the purposes of the application
+    of Article 9.'
+- id: art-5
+  title: Article 3
+  text: 'Article 3
+
+
+    Definitions
+
+
+    For the purposes of this Regulation, the following definitions apply:
+
+
+    (1)
+
+
+    ‘goods’ means goods listed in Annex I;
+
+
+    (2)
+
+
+    ‘greenhouse gases’ means greenhouse gases as specified in Annex I in relation to each of the goods listed in that Annex;
+
+
+    (3)
+
+
+    ‘emissions’ means the release of greenhouse gases into the atmosphere from the production of goods;
+
+
+    (4)
+
+
+    ‘importation’ means release for free circulation as provided for in Article 201 of Regulation (EU) No 952/2013;
+
+
+    (5)
+
+
+    ‘EU ETS’ means the system for greenhouse gas emissions allowance trading within the Union in respect of activities listed in Annex I to Directive 2003/87/EC other than aviation activities;
+
+
+    (6)
+
+
+    ‘customs territory of the Union’ means the territory defined in Article 4 of Regulation (EU) No 952/2013;
+
+
+    (7)
+
+
+    ‘third country’ means a country or territory outside the customs territory of the Union;
+
+
+    (8)
+
+
+    ‘continental shelf’ means a continental shelf as defined in Article 76 of the United Nations Convention on the Law of the Sea;
+
+
+    (9)
+
+
+    ‘exclusive economic zone’ means an exclusive economic zone as defined in Article 55 of the United Nations Convention on the Law of the Sea and which has been declared as an exclusive economic zone by
+    a Member State pursuant to that convention;
+
+
+    (10)
+
+
+    ‘intrinsic value’ means the intrinsic value for commercial goods as defined in Article 1, point (48), of Delegated Regulation (EU) 2015/2446;
+
+
+    (11)
+
+
+    ‘market coupling’ means the allocation of transmission capacity through a Union system which simultaneously matches orders and allocates cross-zonal capacities as set out in Regulation (EU) 2015/1222;
+
+
+    (12)
+
+
+    ‘explicit capacity allocation’ means the allocation of cross-border transmission capacity separate from the trade of electricity;
+
+
+    (13)
+
+
+    ‘competent authority’ means the authority designated by each Member State in accordance with Article 11;
+
+
+    (14)
+
+
+    ‘customs authorities’ means the customs administrations of Member States as defined in Article 5, point (1), of Regulation (EU) No 952/2013;
+
+
+    (15)
+
+
+    ‘importer’ means either the person lodging a customs declaration for release for free circulation of goods in its own name and on its own behalf or, where the customs declaration is lodged by an indirect
+    customs representative in accordance with Article 18 of Regulation (EU) No 952/2013, the person on whose behalf such a declaration is lodged;
+
+
+    (16)
+
+
+    ‘customs declarant’ means a declarant as defined in Article 5, point (15), of Regulation (EU) No 952/2013 lodging a customs declaration for release for free circulation of goods in its own name or the
+    person in whose name such a declaration is lodged;
+
+
+    (17)
+
+
+    ‘authorised CBAM declarant’ means a person authorised by a competent authority in accordance with Article 17;
+
+
+    (18)
+
+
+    ‘person’ means a natural person, a legal person or any association of persons which is not a legal person but which is recognised under Union or national law as having the capacity to perform legal
+    acts;
+
+
+    (19)
+
+
+    ‘established in a Member State’ means:
+
+
+    (a)
+
+
+    in the case of a natural person, any person whose place of residence is in a Member State;
+
+
+    (b)
+
+
+    in the case of a legal person or an association of persons, any person whose registered office, central headquarters or permanent business establishment is in a Member State;
+
+
+    (20)
+
+
+    ‘Economic Operators Registration and Identification number (EORI number)’ means the number assigned by the customs authority when the registration for customs purposes has been carried out in accordance
+    with Article 9 of Regulation (EU) No 952/2013;
+
+
+    (21)
+
+
+    ‘direct emissions’ means emissions from the production processes of goods, including emissions from the production of heating and cooling that is consumed during the production processes, irrespective
+    of the location of the production of the heating or cooling;
+
+
+    (22)
+
+
+    ‘embedded emissions’ means direct emissions released during the production of goods and indirect emissions from the production of electricity that is consumed during the production processes, calculated
+    in accordance with the methods set out in Annex IV and further specified in the implementing acts adopted pursuant to Article 7(7);
+
+
+    (23)
+
+
+    ‘tonne of CO
+
+    2
+
+    e’ means one metric tonne of CO
+
+    2
+
+    , or an amount of any other greenhouse gas listed in Annex I with an equivalent global warming potential;
+
+
+    (24)
+
+
+    ‘CBAM certificate’ means a certificate in electronic format corresponding to one tonne of CO
+
+    2
+
+    e of embedded emissions in goods;
+
+
+    (25)
+
+
+    ‘surrender’ means offsetting of CBAM certificates against the declared embedded emissions in imported goods or against the embedded emissions in imported goods that should have been declared;
+
+
+    (26)
+
+
+    ‘production processes’ means the chemical and physical processes carried out to produce goods in an installation;
+
+
+    (27)
+
+
+    ‘default value’ means a value, which is calculated or drawn from secondary data, which represents the embedded emissions in goods;
+
+
+    (28)
+
+
+    ‘actual emissions’ means the emissions calculated based on primary data from the production processes of goods and from the production of electricity consumed during those processes as determined in
+    accordance with the methods set out in Annex IV;
+
+
+    (29)
+
+
+    ‘carbon price’ means the monetary amount paid in a third country, under a carbon emissions reduction scheme, in the form of a tax, levy or fee or in the form of emission allowances under a greenhouse
+    gas emissions trading system, calculated on greenhouse gases covered by such a measure, and released during the production of goods;
+
+
+    (30)
+
+
+    ‘installation’ means a stationary technical unit where a production process is carried out;
+
+
+    (31)
+
+
+    ‘operator’ means any person who operates or controls an installation in a third country;
+
+
+    (32)
+
+
+    ‘national accreditation body’ means a national accreditation body as appointed by each Member State pursuant to Article 4(1) of Regulation (EC) No 765/2008;
+
+
+    (33)
+
+
+    ‘EU ETS allowance’ means an allowance as defined in Article 3, point (a), of Directive 2003/87/EC in respect of activities listed in Annex I to that Directive other than aviation activities;
+
+
+    (34)
+
+
+    ‘indirect emissions’ means emissions from the production of electricity which is consumed during the production processes of goods, irrespective of the location of the production of the consumed electricity.'
+- id: art-6
+  title: CHAPTER II
+  text: 'CHAPTER II
+
+
+    OBLIGATIONS AND RIGHTS OF AUTHORISED CBAM DECLARANTS'
+- id: art-7
+  title: Article 4
+  text: 'Article 4
+
+
+    Importation of goods
+
+
+    Goods shall be imported into the customs territory of the Union only by an authorised CBAM declarant.'
+- id: art-8
+  title: Article 5
+  text: 'Article 5
+
+
+    Application for authorisation
+
+
+    1.   Any importer established in a Member State shall, prior to importing goods into the customs territory of the Union, apply for the status of authorised CBAM declarant (‘application for an authorisation’).
+    Where such an importer appoints an indirect customs representative in accordance with Article 18 of Regulation (EU) No 952/2013 and the indirect customs representative agrees to act as an authorised
+    CBAM declarant, the indirect customs representative shall submit the application for an authorisation.
+
+
+    2.   Where an importer is not established in a Member State, the indirect customs representative shall submit the application for an authorisation.
+
+
+    3.   The application for an authorisation shall be submitted via the CBAM registry established in accordance with Article 14.
+
+
+    4.   By way of derogation from paragraph 1, where transmission capacity for the import of electricity is allocated through explicit capacity allocation, the person to whom capacity has been allocated
+    for import and who nominates that capacity for import shall, for the purposes of this Regulation, be regarded as an authorised CBAM declarant in the Member State where the person has declared the importation
+    of electricity in the customs declaration. Imports are to be measured per border for time periods no longer than one hour and no deduction of export or transit in the same hour shall be possible.
+
+
+    The competent authority of the Member State in which the customs declaration has been lodged shall register the person in the CBAM registry.
+
+
+    5.   The application for an authorisation shall include the following information about the applicant:
+
+
+    (a)
+
+
+    name, address and contact information;
+
+
+    (b)
+
+
+    EORI number;
+
+
+    (c)
+
+
+    main economic activity carried out in the Union;
+
+
+    (d)
+
+
+    certification by the tax authority in the Member State where the applicant is established that the applicant is not subject to an outstanding recovery order for national tax debts;
+
+
+    (e)
+
+
+    declaration of honour that the applicant was not involved in any serious infringements or repeated infringements of customs legislation, taxation rules or market abuse rules during the five years preceding
+    the year of the application, including that it has no record of serious criminal offences relating to its economic activity;
+
+
+    (f)
+
+
+    information necessary to demonstrate the applicant’s financial and operational capacity to fulfil its obligations under this Regulation and, if decided by the competent authority on the basis of a risk
+    assessment, supporting documents confirming that information, such as the profit and loss account and the balance sheet for up to the last three financial years for which the accounts were closed;
+
+
+    (g)
+
+
+    estimated monetary value and volume of imports of goods into the customs territory of the Union by type of goods, for the calendar year during which the application is submitted, and for the following
+    calendar year;
+
+
+    (h)
+
+
+    names and contact information of the persons on behalf of whom the applicant is acting, if applicable.
+
+
+    6.   The applicant may withdraw its application at any time.
+
+
+    7.   The authorised CBAM declarant shall inform without delay the competent authority, via the CBAM registry, of any changes to the information provided under paragraph 5 of this Article that have occurred
+    after the decision granting the status of the authorised CBAM declarant has been adopted pursuant to Article 17 that may influence that decision or the content of the authorisation granted thereunder.
+
+
+    8.   The Commission is empowered to adopt implementing acts on communications between the applicant, the competent authority and the Commission, on the standard format of the application for an authorisation
+    and the procedures to submit s'
 doc_files:
 - eu/raw/EU-2023-956_Carbon_Border_Adjustment_Mechanism_CBAM.pdf
+- eu/raw/EU-2023-956_Carbon_Border_Adjustment_Mechanism_CBAM.xhtml
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 去重：合并同法规异名条目 EU-2023-956_CARBON_BORDER_ADJUSTMENT_MECHANISM_CBAM-2（EU-2023-956 Carbon Border Adjustment Mechanism CBAM [xhtml]）。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2023-956_Carbon_Border_Adjustment_Mechanism_CBAM.pdf (pdf, 176082 chars)，生成 4 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2023-956_Carbon_Border_Adjustment_Mechanism_CBAM.xhtml (html, 174687 chars)，生成 6 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2023-956_Carbon_Border_Adjustment_Mechanism_CBAM.xhtml (html, 174676 chars)，生成 8 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

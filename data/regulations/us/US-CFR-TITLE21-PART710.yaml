@@ -1,6 +1,6 @@
 id: US-CFR-TITLE21-PART710
 official_citation: US 21 CFR Part 710
-short_name: US 21 CFR Part 710
+short_name: US 21 CFR Part 710 — VOLUNTARY REGISTRATION OF COSMETIC PRODUCT ESTABLISHMENTS
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,196 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '21
+
+    Food and Drugs
+
+    7
+
+    2024-04-01
+
+    2024-04-01
+
+    false
+
+    VOLUNTARY RE'
+  text: '21
+
+    Food and Drugs
+
+    7
+
+    2024-04-01
+
+    2024-04-01
+
+    false
+
+    VOLUNTARY REGISTRATION OF COSMETIC PRODUCT ESTABLISHMENTS
+
+    710
+
+    PART 710
+
+    Food and Drugs
+
+    FOOD AND DRUG ADMINISTRATION, DEPARTMENT OF HEALTH AND HUMAN SERVICES (CONTINUED)
+
+    COSMETICS
+
+    Pt. 710
+
+    PART 710—VOLUNTARY REGISTRATION OF COSMETIC PRODUCT ESTABLISHMENTS
+
+    Sec.
+
+    710.1
+
+    Who should register.
+
+    710.2
+
+    Time for registration.
+
+    710.3
+
+    How and where to register.
+
+    710.4
+
+    Information requested.
+
+    710.5
+
+    Amendments to registration.
+
+    710.6
+
+    Notification of registrant; cosmetic product establishment registration number.
+
+    710.7
+
+    Inspection of registrations.
+
+    710.8
+
+    Misbranding by reference to registration or to registration number.
+
+    710.9
+
+    Exemptions.
+
+    Authority:
+
+    21 U.S.C. 321, 331, 361, 362, 371, 374.
+
+    Source:
+
+    39 FR 10059, Mar. 15, 1974, unless otherwise noted.'
+- id: art-2
+  title: § 710.1
+  text: '§ 710.1
+
+    Who should register.
+
+    The owner or operator of a cosmetic product establishment which is not exempt under § 710.9 and engages in the manufacture or packaging of a cosmetic product is requested to register for each such establishment,
+    whether or not the product enters interstate commerce. This request extends to any foreign cosmetic product establishment whose products are exported for sale in any State as defined in section 201(a)(1)
+    of the act. No registration fee is required.'
+- id: art-3
+  title: § 710.2
+  text: '§ 710.2
+
+    Time for registration.
+
+    The owner or operator of an establishment entering into the manufacture or packaging of a cosmetic product should register his establishment within 30 days after the operation begins.'
+- id: art-4
+  title: § 710.3
+  text: '§ 710.3
+
+    How and where to register.
+
+    Form FD-2511 (“Registration of Cosmetic Product Establishment”) is obtainable on request from the Food and Drug Administration, 5001 Campus Dr., College Park, MD 20740, or at any Food and Drug Administration
+    district office. The completed form should be mailed to Cosmetic Product Establishment Registration, Food and Drug Administration, 5001 Campus Dr., College Park, MD 20740.
+
+    [39 FR 10059, Mar. 15, 1974, as amended at 68 FR 15355, Mar. 31, 2003; 81 FR 49897, July 29, 2016]'
+- id: art-5
+  title: § 710.4
+  text: '§ 710.4
+
+    Information requested.
+
+    Form FD-2511 requests information on the name and address of the cosmetic product establishment, including post office ZIP code; all business trading names used by the establishment; and the type of
+    business (manufacturer and/or packer). The information requested should be given separately for each establishment as defined in § 700.3(j) of this chapter.
+
+    [39 FR 10059, Mar. 15, 1974, as amended at 46 FR 38073, July 24, 1981; 54 FR 39640, Sept. 27, 1989]'
+- id: art-6
+  title: § 710.5
+  text: '§ 710.5
+
+    Amendments to registration.
+
+    Within 30 days after a change in any of the information contained on a submitted Form FD-2511, a new Form FD-2511 should be submitted to amend the registration. This amendment is also necessary when
+    a registration is to be canceled because an establishment has changed its name and no longer conducts business under the original name.'
+- id: art-7
+  title: § 710.6
+  text: '§ 710.6
+
+    Notification of registrant; cosmetic product establishment registration number.
+
+    The Commissioner of Food and Drugs will provide the registrant with a validated copy of Form FD-2511 as evidence of registration. This validated copy will be sent only to the location shown for the
+    registering establishment. A permanent registration number will be assigned to each cosmetic
+
+    product establishment registered in accordance with the regulations in this part.'
+- id: art-8
+  title: § 710.7
+  text: '§ 710.7
+
+    Inspection of registrations.
+
+    A copy of the Form FD-2511 filed by the registrant will be available for inspection at the Food and Drug Administration, 5001 Campus Dr., College Park, MD 20740.
+
+    [39 FR 10059, Mar. 15, 1974, as amended at 68 FR 15355, Mar. 31, 2003; 81 FR 49897, July 29, 2016]'
+- id: art-9
+  title: § 710.8
+  text: '§ 710.8
+
+    Misbranding by reference to registration or to registration number.
+
+    Registration of a cosmetic product establishment or assignment of a registration number does not in any way denote approval of the firm or its products by the Food and Drug Administration. Any representation
+    in labeling or advertising that creates an impression of official approval because of registration or possession of a registration number will be considered misleading.'
+- id: art-10
+  title: § 710.9
+  text: '§ 710.9
+
+    Exemptions.
+
+    The following classes of persons are not requested to register in accordance with this part 710 because the Commissioner has found that such registration is not justified:
+
+    (a) Beauty shops, cosmetologists, retailers, pharmacies, and other persons and organizations that compound cosmetic products at a single location and administer, dispense, or distribute them at retail
+    from that location and who do not otherwise manufacture or package cosmetic products at that location.
+
+    (b) Physicians, hospitals, clinics, and public health agencies.
+
+    (c) Persons who manufacture, prepare, compound, or process cosmetic products solely for use in research, pilot plant production, teaching, or chemical analysis, and who do not sell these products.'
 doc_files:
 - us/raw/US-CFR-title21-part710.xml
+- us/raw/US-CFR-title21-part710.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part710.xml (xml, 4818 chars)，生成 10 条共 4818 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part710.xml (xml, 4818 chars)，生成 10 条共 4818 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part710.xml (xml, 4818 chars)，生成 10 条共 4818 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART710-4（US 21 CFR Part 710）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART710-3（US 21 CFR Part 710）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART710-2（US 21 CFR Part 710）。'

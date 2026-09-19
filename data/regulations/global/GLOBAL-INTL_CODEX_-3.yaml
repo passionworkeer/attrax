@@ -9,11 +9,56 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: Codes of Practice | CODEXALIMENTARIUS FAO-WHO
+  text: "Codes of Practice | CODEXALIMENTARIUS FAO-WHO\nالعربية\n\uFEFF中文\nenglish\nfrançais\nРусский\nEspañol\nAR\n\uFEFFZH\nEN\nFR\nRU\nES\nPage tools\ncodexalimentarius\n > \nCodex Texts\n > Codes of\
+    \ Practice\nCodes of Practice\nReference\nTitle\nCommittee\nLast modified\nEN\nFR\nES\nAR\nZH\nRU\nCXC 20-1979\nCode of Ethics for International Trade in Food including Concessional and Food Aid Transactions.\n\
+    CCGP\n2010\nCXC 19-1979\nCode of Practice for Radiation Processing of Food\nCCFH\n2003\nCXC 1-1969\nGeneral Principles of Food Hygiene\nCCFH\n2022\nCXC 23-1979\nCode of Hygienic Practice for Low and\
+    \ Acidified Low Acid Canned Foods\nCCFH\n1993\nCXC 40-1993\nCode of Hygienic Practice for Aseptically Processed and Packaged Low-Acid Foods\nCCFH\n1993\nCXC 43R-1995\nRegional Code of Hygienic Practice\
+    \ for the Preparation and Sale of Street Foods (Latin America and the Caribbean)\nCCLAC\n2001\nCXC 36-1987\nCode of Practice for the Storage and Transport of Edible Fats and Oils in Bulk\nCCFO\n2026\n\
+    CXC 2-1969\nCode of Hygienic Practice for Canned Fruit and Vegetable Products\nCCPFV\n2011\nCXC 3-1969\nCode of Hygienic Practice for Dried Fruits\nCCPFV\n2011\nCXC 4-1971\nCode of Hygienic Practice\
+    \ for Desiccated Coconut\nCCPFV\n1971\nCXC 5-1971\nCode of Hygienic Practice for Dehydrated Fruits and Vegetables including Edible Fungi\nCCPFV\n1971\nCXC 6-1972\nCode of Hygienic Practice for Tree\
+    \ Nuts\nCCPFV\n1972\nCXC 22-1979\nCode of Hygienic Practice for Groundnuts (Peanuts)\nCCPFV\n1979\nCXC 30-1983\nCode of Hygienic Practice for the Processing of Frog Legs\nCCFH\n1983\nCXC 33-1985\nCode\
+    \ of Hygienic Practice for Collecting, Processing and Marketing of Natural Mineral Waters\nCCFH\n2011\nCXC 8-1976\nCode of Practice for the Processing and Handling of Quick Frozen Foods\nTFPHQFF\n2008\n\
+    CXC 58-2005\nCode of Hygienic Practice for Meat\nCCMPH\n2005\nCXC 53-2003\nCode of Hygienic Practice for Fresh Fruits and Vegetables\nCCFH\n2017\nCXC 61-2005\nCode of Practice to Minimize and Contain\
+    \ Foodborne Antimicrobial Resistance\nTFAMR\n2021\nCXC 60-2005\nCode of Practice for the Prevention and Reduction of Inorganic Tin Contamination in Canned Foods\nCCCF\n2005\nCXC 59-2005\nCode of Practice\
+    \ for the Prevention and Reduction of Aflatoxin Contamination in Tree Nuts\nCCCF\n2010\nCXC 52-2003\nCode of Practice for Fish and Fishery Products\nCCFFP\n2019\nCXC 72-2013\nCode of Practice for the\
+    \ Prevention and Reduction of Ochratoxin A Contamination in Cocoa\nCCCF\n2013\nCXC 45-1997\nCode of Practice for the Reduction of Aflatoxin B1 in Raw Materials and Supplemental Feedingstuffs for Milk-Producing\
+    \ Animals\nCCCF\n1997\nCXC 46-1999\nCode of Hygienic Practice for Refrigerated Packaged Foods with Extended Shelf Life\nCCFH\n1999\nCXC 55-2004\nCode of Practice for the Prevention and Reduction of\
+    \ Aflatoxin Contamination in Peanuts\nCCCF\n2025\nCXC 62-2006\nCode of Practice for the Prevention and Reduction of Dioxin, Dioxins-like PCBs and non-Dioxin-like PCBs in Food and Feed\nCCCF\n2018\n\
+    CXC 15-1976\nCode of Hygienic Practice for Eggs and Egg Products\nCCFH\n2007\nCXC 47-2001\nCode of Hygienic Practice for the Transport of Food in Bulk and Semi-Packed Food\nCCFH\n2001\nCXC 49-2001\n\
+    Code of Practice Concerning Source Directed Measures to Reduce Contamination of Food with Chemicals\nCCCF\n2001\nCXC 48-2001\nCode of Hygienic Practice for Bottled/Packaged Drinking Waters (Other than\
+    \ Natural Mineral Waters)\nCCFH\n2001\nCXC 51-2003\nCode of Practice for the Prevention and Reduction of Mycotoxin Contamination in Cereals\nCCCF\n2017\nCXC 54-2004\nCode of Practice on Good Animal\
+    \ Feeding\nTFAF\n2024\nCXC 57-2004\nCode of Hygienic Practice for Milk and Milk Products\nCCFH\n2009\nCXC 56-2004\nCode of Practice for the Prevention and Reduction of Lead Contamination in Foods\n\
+    CCCF\n2021\nCXC 73-2013\nCode of Practice for the Reduction of Hydrocyanic Acid (HCN) in Cassava and Cassava Products\nCCCF\n2013\nCXC 39-1993\nCode of Hygienic Practice for Precooked and Cooked Foods\
+    \ in Mass Catering\nCCFH\n1993\nCXC 64-2008\nCode of Practice for the Reduction of 3-Monochloropropane-1,2-diol (3-MCPD) during the Production of Acid-HVPs and Products that Contain Acid- HVPs\nCCCF\n\
+    2008"
+- id: art-2
+  title: CXC 71R-2013
+  text: "CXC 71R-2013\nRegional Code of Practice for Street-vended Foods (Near East)\nCCNE\n2013\nCXC 68-2009\nCode of Practice for the Reduction of Contamination of Food with Polycyclic Aromatic Hydrocarbons\
+    \ (PAH) from Smoking and Direct Drying Processes\nCCCF\n2009\nCXC 67-2009\nCode of Practice for the Reduction of Acrylamide in Foods\nCCCF\n2009\nCXC 70-2011\nCode of Practice for the Prevention and\
+    \ Reduction of Ethyl Carbamate Contamination in Stone Fruit Distillates\nCCCF\n2011\nCXC 44-1995\nCode of Practice for Packaging and Transport of Fresh Fruit and Vegetables\nCCFFV\n2004\nCXC 63-2007\n\
+    Code of Practice for the Prevention and Reduction of Ochratoxin A Contamination in Wine\nCCCF\n2007\nCXC 50-2003\nCode of Practice for the Prevention and Reduction of Patulin Contamination in Apple\
+    \ Juice and Apple Juice Ingredients in Other Beverages \nCCCF\n2003\nCXC 65-2008\nCode of Practice for the Prevention and Reduction of Aflatoxin Contamination in Dried Figs\nCCCF\n2008\nCXC 66-2008\n\
+    Code of Hygienic Practice for Powdered Formulae for Infants and Young Children\nCCFH\n2009\nCXC 69-2009\nCode of Practice for the Prevention and Reduction of Ochratoxin A Contamination in Coffee\nCCCF\n\
+    2009\nCXC 74-2014\nCode of Practice for Weed Control to Prevent and Reduce Pyrrolizidine Alkaloid Contamination in Food and Feed\nCCCF\n2014\nCXC 75-2015\nCode of Hygienic Practice for Low-Moisture\
+    \ Foods\nCCFH\n2018\nCXC 76R-2017\nRegional Code of Hygienic Practice for Street-Vended Foods in Asia\nCCASIA\n2017\nCXC 77-2017\nCode of Practice for the Prevention and Reduction of Arsenic Contamination\
+    \ in Rice\nCCCF\n2017\nCXC 78-2017\nCode of Practice for the Prevention and Reduction of Mycotoxins in Spices\nCCCF\n2017\nCXC 79-2019\nCode of Practice for the Reduction of 3-Monochloropropane-1,2-\
+    \ Diol Esters (3-MCPDEs) and Glycidyl Esters (GEs) in Refined Oils \nand Food Products Made With Refined Oils\nCCCF\n2019\nCXC 80-2020\nCode of Practice on Food Allergen Management for Food Business\
+    \ Operators\nCCFH\n2026\nCXC 81-2022\nCode of Practice for the Prevention and Reduction of Cadmium Contamination in Cocoa Beans\nCCCF\n2022\nCXC 82-2023\nCode of Practice for the Prevention and Reduction\
+    \ of Mycotoxins Contamination in Cassava and Cassava-Based Products \nCCCF\n2023\nCXC 83-2024\nCode of practice for the prevention or reduction of ciguatera poisoning\nCCCF\n2024\nAbout us\nContact\
+    \ us\nFAQs\nCircular Letters\nSitemap\nHelp\nData Protection and Privacy Notice\nCopyright / Disclaimer\nLogin\nFollow us on\n© FAO/WHO, 2026"
 doc_files:
 - global/raw/INTL_Codex_操作规范列表.html
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/INTL_Codex_操作规范列表.html (html, 6428 chars)，生成 2 条共 6428 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/INTL_Codex_操作规范列表.html (html, 6428 chars)，生成 2 条共 6428 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/INTL_Codex_操作规范列表.html (html, 6428 chars)，生成 2 条共 6428 字符；解析文本未人工复核，引用以官方原件为准。'

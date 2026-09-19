@@ -49,4 +49,8 @@ checksum_sha256: null
 schema_version: 1
 source_url: https://eur-lex.europa.eu/eli/reg/2009/1223/oj
 notes: 'Initial seed: article text condensed from KB key_points and marked needs_human_review. Top-cited articles (e.g. EU-2023-1542,
-  EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.'
+  EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.
+
+  2026-09-19 去重：合并同法规异名条目 EU-1223-2009_COSMETICS_REGULATION（EU-1223-2009 Cosmetics Regulation [xhtml]）。'
+doc_files:
+- eu/raw/EU-1223-2009_Cosmetics_Regulation.xhtml

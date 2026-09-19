@@ -1,0 +1,27 @@
+id: KB-market-UK-UK-NSI-ACT-2021
+regulation_id: UK-NSI-ACT-2021
+doc_name: National Security and Investment Act 2021
+official_citation: National Security and Investment Act 2021
+short_name: NSI Act (国家安全与投资法)
+source: market
+primary_source: market
+domain: 投资准入
+applies_if:
+  category: []
+  features_any: []
+  markets:
+  - UK
+key_articles:
+- art-1
+- art-2
+key_points:
+- NSI Act (国家安全与投资法)：投资准入领域法规，适用于 UK 市场相关经营行为（库自动接入，按市场匹配）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://www.gov.uk/government/collections/national-security-and-investment-act
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

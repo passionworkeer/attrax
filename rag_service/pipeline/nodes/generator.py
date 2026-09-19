@@ -407,6 +407,14 @@ def generator_node(state: GraphState, on_generation_start=None) -> dict:
         markets=markets,
         features=features,
     )
+    # 2026-09-19 全库接入：库内每条法规都有锚点后，一次扫描可能匹配到数百条
+    # 生成锚点（仅 US electronics 域就有 300+ CFR 条目）。curated 锚点原样通过，
+    # 生成锚点按标题相关度确定性排序后截断，保证 prompt 与报告输出预算可控。
+    from rag_service.retrieval.anchor_selection import bound_anchor_set
+
+    mandatory_regulations, anchor_selection_stats = bound_anchor_set(
+        mandatory_regulations, product=product, category=category
+    )
 
     # Plan 2026-09-13 §10.1 — applicability guardrails. Feature keywords
     # are candidates, not confirmed hardware facts, and regime-level
@@ -517,6 +525,9 @@ def generator_node(state: GraphState, on_generation_start=None) -> dict:
     # supply them, including when retrieval supplies the broader context.
     if getattr(generator, "supports_report_package", False) or os.environ.get("USE_KB_INPUT", "").strip().lower() in {"1", "true", "yes", "on"}:
         article_texts = build_article_texts_for_anchors(mandatory_regulations)
+        from rag_service.retrieval.anchor_selection import bound_generated_article_texts
+
+        article_texts = bound_generated_article_texts(article_texts, mandatory_regulations)
     kb_mode = bool(article_texts)
 
     # Applicability and source preparation are finished before reporting this boundary.
@@ -604,6 +615,7 @@ def generator_node(state: GraphState, on_generation_start=None) -> dict:
         "duration_ms": duration_ms,
         "anchor_features": features,
         "anchor_regulations_count": len(mandatory_regulations),
+        "anchor_selection": anchor_selection_stats,
         # Spec §7.3: KB-mode telemetry, only set inside the
         # supports_report_package branch above. `locals().get` keeps
         # the legacy/no-generator paths working without initializing

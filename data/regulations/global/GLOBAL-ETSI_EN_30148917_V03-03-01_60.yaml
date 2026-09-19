@@ -9,11 +9,870 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: ETSI EN 301 489-17
+  text: 'ETSI EN 301 489-17
+
+    V3.3.1
+
+    (2024-09)
+
+    HARMONISED EUROPEAN STANDARD
+
+    ElectroMagnetic Compatibility (EMC)
+
+    standard for radio equipment and services;
+
+    Part 17: Specific conditions for
+
+    Broadband and Wideband Data Transmission Systems;
+
+    Harmonised Standard for ElectroMagnetic Compatibility
+
+    2 ETSI EN 301 489-17 V3.3.1 (2024-09)
+
+    Reference
+
+    REN/ERM-EMC-409
+
+    Keywords
+
+    EMC, harmonised standard, radio
+
+    ETSI
+
+    650 Route des Lucioles
+
+    F-06921 Sophia Antipolis Cedex - FRANCE
+
+    Tel.: +33 4 92 94 42 00 Fax: +33 4 93 65 47 16
+
+    Siret N° 348 623 562 00017 - APE 7112B
+
+    Association à but non lucratif enregistrée à la
+
+    Sous-Préfecture de Grasse (06) N° w061004871
+
+    Important notice
+
+    The present document can be downloaded from the
+
+    ETSI Search & Browse Standards application.
+
+    The present document may be made available in electronic versions and/or in print. The content of any electronic and/or
+
+    print versions of the present document shall not be modified without the prior written authorization of ETSI. In case of any
+
+    existing or perceived difference in contents between such versions and/or in print, the prevailing version of an ETSI
+
+    deliverable is the one made publicly available in PDF format on ETSI deliver.
+
+    Users should be aware that the present document may be revised or have its status changed,
+
+    this information is available in the Milestones listing.
+
+    If you find errors in the present document, please send your comments to
+
+    the relevant service listed under Committee Support Staff.
+
+    If you find a security vulnerability in the present document, please report it through our
+
+    Coordinated Vulnerability Disclosure (CVD) program.
+
+    Notice of disclaimer & limitation of liability
+
+    The information provided in the present deliverable is directed solely to professionals who have the appropriate degree of
+
+    experience to understand and interpret its content in accordance with generally accepted engineering or
+
+    other professional standard and applicable regulations.
+
+    No recommendation as to products and services or vendors is made or should be implied.
+
+    In no event shall ETSI be held liable for loss of profits or any other incidental or consequential damages.
+
+    Any software contained in this deliverable is provided "AS IS" with no warranties, express or implied, including but not
+
+    limited to, the warranties of merchantability, fitness for a particular purpose and non-infringement of intellectual property
+
+    rights and ETSI shall not be held liable in any event for any damages whatsoever (including, without limitation, damages
+
+    for loss of profits, business interruption, loss of information, or any other pecuniary loss) arising out of or related to the use
+
+    of or inability to use the software.
+
+    Copyright Notification
+
+    No part may be reproduced or utilized in any form or by any means, electronic or mechanical, including photocopying and
+
+    microfilm except as authorized by written permission of ETSI.
+
+    The content of the PDF version shall not be modified without the written authorization of ETSI.
+
+    The copyright and the foregoing restriction extend to reproduction in all media.
+
+    © ETSI 2024.
+
+    All rights reserved.
+
+    ETSI
+
+    3 ETSI EN 301 489-17 V3.3.1 (2024-09)
+
+    Contents
+
+    Intellectual Property Rights ................................................................................................................................ 4
+
+    Foreword ............................................................................................................................................................. 4
+
+    Modal verbs terminology .................................................................................................................................... 5
+
+    1 Scope ........................................................................................................................................................ 6
+
+    2 References ................................................................................................................................................ 6'
+- id: art-2
+  title: 2.1 Normative references ...................................
+  text: '2.1 Normative references ......................................................................................................................................... 6
+
+    2.2 Informative references ........................................................................................................................................ 7
+
+    3 Definition of terms, symbols and abbreviations ....................................................................................... 8
+
+    3.1 Terms .................................................................................................................................................................. 8
+
+    3.2 Symbols .............................................................................................................................................................. 8
+
+    3.3 Abbreviations ..................................................................................................................................................... 8
+
+    4 Test conditions ......................................................................................................................................... 9
+
+    4.1 General ............................................................................................................................................................... 9
+
+    4.2 Arrangements for test signals ............................................................................................................................. 9
+
+    4.2.1 Arrangements for test signals at the input of transmitters ............................................................................. 9
+
+    4.2.2 Arrangements for test signals at the output of transmitters ........................................................................... 9
+
+    4.2.3 Arrangements for test signals at the input of receivers ................................................................................. 9
+
+    4.2.4 Arrangements for test signals at the output of receivers ............................................................................. 10
+
+    4.2.5 Arrangements for testing transmitter and receiver together (as a system) .................................................. 10
+
+    4.2.6 Equipment with an external antenna connector .......................................................................................... 10
+
+    4.2.7 Equipment without an external antenna connector (integral antenna) ........................................................ 10
+
+    4.2.8 Equipment with more than one antenna ...................................................................................................... 10
+
+    4.3 Exclusion bands ................................................................................................................................................ 11
+
+    4.3.1 General ........................................................................................................................................................ 11
+
+    4.3.2 Wideband transmission systems; Data transmission equipment operating in the 2,4 GHz band ................ 11
+
+    4.3.3 5 GHz RLAN .............................................................................................................................................. 11
+
+    4.3.4 Wireless Access Systems (WAS); 5,8 GHz fixed broadband data transmitting systems ............................ 11
+
+    4.3.5 6 GHz WAS/RLAN .................................................................................................................................... 12
+
+    4.4 Void .................................................................................................................................................................. 12
+
+    4.5 Normal test modulation .................................................................................................................................... 12
+
+    5 Performance assessment ......................................................................................................................... 12'
+- id: art-3
+  title: 5.1 General ................................................
+  text: '5.1 General ............................................................................................................................................................. 12
+
+    5.2 Arrangements for the assessment of host dependent equipment and plug-in cards .......................................... 12
+
+    5.3 Assessment procedures ..................................................................................................................................... 12
+
+    6 Performance criteria ............................................................................................................................... 13
+
+    6.1 General performance criteria ............................................................................................................................ 13
+
+    6.2 Performance table ............................................................................................................................................. 13
+
+    6.2.1 Performance criteria overview .................................................................................................................... 13
+
+    6.3 Performance criteria for Continuous phenomena ............................................................................................. 14
+
+    6.4 Performance criteria for Transient phenomena ................................................................................................ 14
+
+    7 Requirements .......................................................................................................................................... 14
+
+    7.1 Emission ........................................................................................................................................................... 14
+
+    7.1.1 General ........................................................................................................................................................ 14
+
+    7.2 Immunity .......................................................................................................................................................... 15
+
+    7.2.1 General ........................................................................................................................................................ 15
+
+    7.2.2 Special Conditions ...................................................................................................................................... 16
+
+    Annex A (informative): Relationship between the present document and the essential
+
+    requirements of Directive 2014/53/EU ......................................................... 18
+
+    Annex B (informative): Change history ............................................................................................... 20
+
+    History .............................................................................................................................................................. 21
+
+    ETSI
+
+    4 ETSI EN 301 489-17 V3.3.1 (2024-09)
+
+    Intellectual Property Rights
+
+    Essential patents
+
+    IPRs essential or potentially essential to normative deliverables may have been declared to ETSI. The declarations
+
+    pertaining to these essential IPRs, if any, are publicly available for ETSI members and non-members, and can be
+
+    found in ETSI SR 000 314: "Intellectual Property Rights (IPRs); Essential, or potentially Essential, IPRs notified to
+
+    ETSI in respect of ETSI standards", which is available from the ETSI Secretariat. Latest updates are available on the
+
+    ETSI Web server (https://ipr.etsi.org/).
+
+    Pursuant to the ETSI Directives including the ETSI IPR Policy, no investigation regarding the essentiality of IPRs,
+
+    including IPR searches, has been carried out by ETSI. No guarantee can be given as to the existence of other IPRs not
+
+    referenced in ETSI SR 000 314 (or the updates on the ETSI Web server) which are, or may be, or may become,
+
+    essential to the present document.
+
+    Trademarks
+
+    The present document may include trademarks and/or tradenames which are asserted and/or registered by their owners.'
+- id: art-4
+  title: ETSI claims no ownership of these except for any which are i
+  text: 'ETSI claims no ownership of these except for any which are indicated as being the property of ETSI, and conveys no
+
+    right to use or reproduce any trademark and/or tradename. Mention of those trademarks in the present document does
+
+    not constitute an endorsement by ETSI of products, services or organizations associated with those trademarks.
+
+    DECT™, PLUGTESTS™, UMTS™ and the ETSI logo are trademarks of ETSI registered for the benefit of its
+
+    Members. 3GPP™ and LTE™ are trademarks of ETSI registered for the benefit of its Members and of the 3GPP
+
+    Organizational Partners. oneM2M™ logo is a trademark of ETSI registered for the benefit of its Members and of the
+
+    oneM2M Partners. GSM® and the GSM logo are trademarks registered and owned by the GSM Association.
+
+    Foreword
+
+    This Harmonised European Standard (EN) has been produced by ETSI Technical Committee Electromagnetic
+
+    compatibility and Radio spectrum Matters (ERM).
+
+    The present document has been prepared under the Commission''s standardisation request C(2015) 5376 final [i.12] to
+
+    provide one voluntary means of conforming to the essential requirements of Directive 2014/53/EU on the harmonisation
+
+    of the laws of the Member States relating to the making available on the market of radio equipment and repealing
+
+    Directive 1999/5/EC [i.1].
+
+    Once the present document is cited in the Official Journal of the European Union under that Directive, compliance with
+
+    the normative clauses of the present document given in table A.1 confers, within the limits of the scope of the present
+
+    document, a presumption of conformity with the corresponding essential requirements of that Directive, and associated
+
+    EFTA regulations.
+
+    The present document is part 17 of a multi-part deliverable. Full details of the entire series can be found in part 1 [1].
+
+    National transposition dates
+
+    Date of adoption of this EN: 23 September 2024
+
+    Date of latest announcement of this EN (doa): 31 December 2024
+
+    Date of latest publication of new National Standard
+
+    or endorsement of this EN (dop/e): 30 June 2025
+
+    Date of withdrawal of any conflicting National Standard (dow): 30 June 2026
+
+    ETSI
+
+    5 ETSI EN 301 489-17 V3.3.1 (2024-09)
+
+    Modal verbs terminology
+
+    In the present document "shall", "shall not", "should", "should not", "may", "need not", "will", "will not", "can" and
+
+    "cannot" are to be interpreted as described in clause 3.2 of the ETSI Drafting Rules (Verbal forms for the expression of
+
+    provisions).
+
+    "must" and "must not" are NOT allowed in ETSI deliverables except when used in direct citation.
+
+    ETSI
+
+    6 ETSI EN 301 489-17 V3.3.1 (2024-09)
+
+    1 Scope
+
+    The present document specifies technical characteristics and methods of measurements for broadband and wideband
+
+    data transmission system equipment including the associated ancillary equipment in respect of electromagnetic
+
+    compatibility, as detailed in table 1.
+
+    Technical specifications related to the antenna port and emissions from the enclosure port of the radio equipment are
+
+    not included in the present document. Such technical specifications are found in the relevant product standards for the
+
+    effective use of the radio spectrum.
+
+    The present document specifies the applicable test conditions, performance assessment and performance criteria for
+
+    broadband and wideband data transmission systems as detailed in table 1.
+
+    NOTE 1: In the context of the present document, broadband and wideband are interchangeable.
+
+    Table 1: Radio Technologies in scope of the present document
+
+    Technology ETSI Standard
+
+    Wideband transmission systems;
+
+    ETSI EN 300 328 [i.8]
+
+    Data transmission equipment operating in the 2,4 GHz band
+
+    5 GHz RLAN ETSI EN 301 893 [i.3]
+
+    6 GHz WAS/RLAN ETSI EN 303 687 [i.2]
+
+    Wireless Access Systems (WAS);
+
+    ETSI EN 302 502 [i.4]
+
+    5,8 GHz fixed broadband data transmitting systems
+
+    Multi-Gigabit Wireless Systems (MGWS) in the 60 GHz band ETSI EN 302 567 [i.6]
+
+    Wideband Data Transmission Systems (WDTS) for Fixed Network Radio
+
+    ETSI EN 303 722 [i.5]
+
+    Equipment operating in the 57 GHz to 71 GHz band'
+- id: art-5
+  title: Technical specifications related to conducted emission EMC r
+  text: 'Technical specifications related to conducted emission EMC requirements below 9 kHz on the AC mains port of radio
+
+    equipment are not included in the present document.
+
+    NOTE 2: Such technical specifications are normally found in the relevant product family standards for AC mains
+
+    powered equipment (e.g. EN IEC 61000-3-2 [i.13] and EN 61000-3-3 [i.14]).
+
+    The environmental classification and the emission and immunity requirements used in the present document are as
+
+    stated in ETSI EN 301 489-1 [1], except for any special conditions included in the present document.
+
+    NOTE 3: The relationship between the present document and essential requirements of article 3.1(b) of
+
+    Directive 2014/53/EU [i.1] is given in annex A.
+
+    2 References
+
+    2.1 Normative references
+
+    References are either specific (identified by date of publication and/or edition number or version number) or non-
+
+    specific. For specific references, only the cited version applies. For non-specific references, the latest version of the
+
+    referenced document (including any amendments) applies.
+
+    Referenced documents which are not found to be publicly available in the expected location might be found at
+
+    https://docbox.etsi.org/Reference/.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    The following referenced documents are necessary for the application of the present document.
+
+    [1] ETSI EN 301 489-1 (V2.2.3) (11-2019): "ElectroMagnetic Compatibility (EMC) standard for
+
+    radio equipment and services; Part 1: Common technical requirements; Harmonised Standard for
+
+    ElectroMagnetic Compatibility".
+
+    ETSI
+
+    7 ETSI EN 301 489-17 V3.3.1 (2024-09)
+
+    [2] Void.
+
+    2.2 Informative references
+
+    References are either specific (identified by date of publication and/or edition number or version number) or
+
+    non-specific. For specific references, only the cited version applies. For non-specific references, the latest version of the
+
+    referenced document (including any amendments) applies.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    The following referenced documents are not necessary for the application of the present document but they assist the
+
+    user with regard to a particular subject area.
+
+    [i.1] Directive 2014/53/EU of the European Parliament and of the council of 16 April 2014 on the
+
+    harmonisation of the laws of the Member States relating to the making available on the market of
+
+    radio equipment and repealing Directive 1999/5/EC.
+
+    [i.2] ETSI EN 303 687: "6 GHz WAS/RLAN; Harmonised Standard for access to radio spectrum".
+
+    [i.3] ETSI EN 301 893: "5 GHz WAS/RLAN; Harmonised Standard for access to radio spectrum".
+
+    [i.4] ETSI EN 302 502 (V2.1.3): "Wireless Access Systems (WAS); 5,8 GHz fixed broadband data
+
+    transmitting systems; Harmonised Standard for access to radio spectrum".
+
+    [i.5] ETSI EN 303 722: "Wideband Data Transmission Systems (WDTS) for Fixed Network Radio
+
+    Equipment operating in the 57 GHz to 71 GHz band; Harmonised Standard for access to radio
+
+    spectrum".
+
+    [i.6] ETSI EN 302 567: " Multiple-Gigabit/s radio equipment operating in the 60 GHz band;
+
+    Harmonised Standard for access to radio spectrum".
+
+    [i.7] Void.
+
+    [i.8] ETSI EN 300 328: "Wideband transmission systems; Data transmission equipment operating in the
+
+    2,4 GHz band; Harmonised Standard for access to radio spectrum".
+
+    [i.9] Void.
+
+    [i.10] Void.
+
+    [i.11] Void.
+
+    [i.12] Commission Implementing Decision C(2015) 5376 final of 4.8.2015 on a standardisation request
+
+    to the European Committee for Electrotechnical Standardisation and to the European
+
+    Telecommunications Standards Institute as regards radio equipment in support of Directive
+
+    2014/53/EU of the European Parliament and of the Council.
+
+    [i.13] EN IEC 61000-3-2 (2019) + A1(2021): "Electromagnetic compatibility (EMC) - Part 3-2: Limits -
+
+    ≤
+
+    Limits for harmonic current emissions (equipment input current 16 A per phase)".'
+- id: art-6
+  title: '[i.14] EN 61000-3-3 (2013) + A2(2021): "Electromagnetic comp'
+  text: '[i.14] EN 61000-3-3 (2013) + A2(2021): "Electromagnetic compatibility (EMC) - Part 3-3: Limits -
+
+    Limitation of voltage changes, voltage fluctuations and flicker in public low-voltage supply
+
+    ≤
+
+    systems, for equipment with rated current 16 A per phase and not subject to conditional
+
+    connection".
+
+    ETSI
+
+    8 ETSI EN 301 489-17 V3.3.1 (2024-09)
+
+    3 Definition of terms, symbols and abbreviations
+
+    3.1 Terms
+
+    For the purposes of the present document, the terms given in ETSI EN 301 489-1 [1] and the following apply:
+
+    ancillary equipment: electrical or electronic equipment, that is intended to be used with a receiver or transmitter
+
+    NOTE 1: It is considered as an ancillary equipment if:
+
+    
+
+    the equipment is intended for use with a receiver or transmitter to provide additional operational
+
+    and/or control features to the radio equipment, (e.g. to extend control to another position or
+
+    location); and
+
+    
+
+    the ancillary equipment cannot be used without being connected to radio equipment to provide user
+
+    functions independently of a receiver or transmitter; and
+
+    
+
+    the receiver or transmitter, to which it is connected, is capable of providing some intended
+
+    operation such as transmitting and/or receiving without the ancillary equipment (i.e. it is not a
+
+    sub-unit of the main equipment essential to the main equipment basic functions).
+
+    NOTE 2: An example of ancillary equipment would be a docking station for radio equipment whose interface is
+
+    dedicated to a particular product or range of products.
+
+    Equipment Under Test (EUT): equipment subject to the performance requirements of the present document
+
+    fixed equipment: equipment intended for use in a fixed location and fitted with one or more antennas
+
+    NOTE: The equipment may be fitted with either antenna socket(s) or integral antenna(s) or both.
+
+    host: any equipment which has complete user functionality when not connected to the radio equipment part and to
+
+    which the radio equipment part provides additional functionality and to which connection is necessary for the radio
+
+    equipment part to offer functionality
+
+    plug-in radio device: equipment, including slide-in radio cards, intended to be used with or within a variety of host
+
+    systems, using their control functions and power supply
+
+    portable equipment: radio equipment intended for portable use and powered by integral batteries or battery
+
+    NOTE: Devices will typically be handheld.
+
+    stand-alone radio equipment: equipment that is intended primarily as communications equipment and that is normally
+
+    used on a stand-alone basis
+
+    vehicular equipment: radio equipment intended for installation and use in a vehicle, and powered by the main battery
+
+    of the vehicle
+
+    3.2 Symbols
+
+    For the purposes of the present document, the following symbols apply:
+
+    P minimum power required to establish a communication link
+
+    min
+
+    3.3 Abbreviations
+
+    For the purposes of the present document, the following abbreviations apply:
+
+    AC Alternating Current
+
+    ACK ACKnowledgement
+
+    ARQ Automatic Retransmission reQuest
+
+    DC Direct Current
+
+    ETSI
+
+    9 ETSI EN 301 489-17 V3.3.1 (2024-09)
+
+    EMC ElectroMagnetic Compatibility
+
+    ERM EMC and Radio spectrum Matters
+
+    EUT Equipment Under Test
+
+    FER Frame Error Rate
+
+    MGWS Multi-Gigabit Wireless Systems
+
+    NACK Not ACKnowledgement
+
+    PER Packet Error Rate
+
+    RF Radio Frequency
+
+    RLAN Radio Local Area Network
+
+    WAS Wireless Access Systems
+
+    WDTS Wideband Data Transmission Systems
+
+    WLAN Wireless Local Area Network
+
+    4 Test conditions
+
+    4.1 General
+
+    For the purposes of the present document, the test conditions of ETSI EN 301 489-1 [1], clause 4, shall apply except
+
+    where modified in clauses 4.2 to 4.5.
+
+    The radio equipment may take forms which may require special software and/or test fixtures. Equipment which requires
+
+    connection to a host equipment to function shall use a test configuration representative of the EUT''s intended use and
+
+    shall be recorded in the test report.
+
+    4.2 Arrangements for test signals
+
+    4.2.1 Arrangements for test signals at the input of transmitters'
+- id: art-7
+  title: 'The provisions of ETSI EN 301 489-1 [1], clause 4.2.1 shall '
+  text: 'The provisions of ETSI EN 301 489-1 [1], clause 4.2.1 shall apply with the following modifications.
+
+    The wanted signals and/or controls required to establish a communication link and shall be representative of the EUTs
+
+    intended use.
+
+    The transmitter shall be operated at typical output power.
+
+    4.2.2 Arrangements for test signals at the output of transmitters
+
+    The provisions of ETSI EN 301 489-1 [1], clause 4.2.2 shall apply with the following modifications.
+
+    A suitable companion receiver shall be used to receive messages or to set up a communication link.
+
+    4.2.3 Arrangements for test signals at the input of receivers
+
+    The provisions of this clause also apply to the receive part of a transceiver.
+
+    The provisions of ETSI EN 301 489-1 [1], clause 4.2.3 shall apply with the following modifications.
+
+    For radiated immunity tests, the level of the wanted signal at the input of the receiver or the enclosure port of the EUT,
+
+    shall be 30 dB (±3 dB) above the P for the EUT. For all other tests the level of the wanted signal, required to establish
+
+    min
+
+    a communication link, shall be representative of the EUT intended use.
+
+    NOTE: Simple method to establish the required communication link is establish link, reduce the wanted signal
+
+    power at the EUT to a point of link failure, then increase the wanted signal level by 30 dB (±3 dB).
+
+    ETSI
+
+    10 ETSI EN 301 489-17 V3.3.1 (2024-09)
+
+    4.2.4 Arrangements for test signals at the output of receivers
+
+    The measuring equipment for the output signal from the receiver under test shall be located outside the test
+
+    environment.
+
+    It shall be possible to assess the performance of the equipment by appropriately monitoring the receiver output.
+
+    If the receiver has an output connector or port providing the wanted output signal, then this port shall be used via a
+
+    cable, consistent with the standard cable used in normal operation, connected to the external measuring equipment
+
+    outside the test environment.
+
+    A suitable companion transmitter shall be used to transmit messages or to set up a communication link.
+
+    4.2.5 Arrangements for testing transmitter and receiver together
+
+    (as a system)
+
+    Standalone receivers and transmitters shall be tested separately. Transceivers shall be tested so that operation in each
+
+    direction is confirmed.
+
+    A suitable companion transceiver or transmitter and receiver shall be used to send and receive messages or to set up a
+
+    communication link.
+
+    Both the EUT and the companion equipment shall transmit the normal test modulation. Further, the output of the radio
+
+    equipment under test shall be monitored by the test system.
+
+    4.2.6 Equipment with an external antenna connector
+
+    If access to the antenna connector involves modification or dismantling of the EUT then this clause does not apply.
+
+    The EUT may be tested with its antenna removed.
+
+    In the case of testing with the antenna removed, the wanted RF input and output signals shall be delivered between the
+
+    EUT antenna connector and the measuring and/or test equipment by a shielded transmission line, such as a coaxial
+
+    cable.
+
+    4.2.7 Equipment without an external antenna connector (integral antenna)
+
+    This clause applies to EUT to which clause 4.2.6 does not apply. Such EUT are generally known as integral antenna or
+
+    dedicated antenna equipment.
+
+    The EUT shall be tested with its antenna fitted in a manner typical of intended use.
+
+    4.2.8 Equipment with more than one antenna
+
+    If the EUT has more than one antenna port, e.g. separate antennas for Tx and Rx or separate antennas for different
+
+    operating frequencies or diversity antennas, then:
+
+    • If clause 4.2.6 applies to all the antenna ports, then the EUT may be tested according to clause 4.2.6, with all
+
+    antenna ports treated the same.
+
+    • Otherwise it shall be tested according to clause 4.2.7.
+
+    NOTE: The reason is that replacing one antenna by a transmission line may affect the operation of any other
+
+    antennas.
+
+    ETSI
+
+    11 ETSI EN 301 489-17 V3.3.1 (2024-09)
+
+    4.3 Exclusion bands
+
+    4.3.1 General'
+- id: art-8
+  title: 'The frequencies on which the transmitter part of the EUT is '
+  text: 'The frequencies on which the transmitter part of the EUT is intended to operate shall be excluded from radiated
+
+    emission measurements when performed in transmit mode of operation.
+
+    There shall be no frequency exclusion band applied to emission measurements of the receiver part of transceivers or the
+
+    standalone receiver under test, and/or associated ancillary equipment.
+
+    For EUT that is only able to operate above 6 GHz there is no exclusion band specified as both emissions and immunity
+
+    requirements only extend as far as 6 GHz.
+
+    NOTE: All of the receiver exclusion band ranges detailed within clauses 4.3.2, 4.3.3, 4.3.4 and 4.3.5 also cover
+
+    the relevant blocking test ranges specified in the relevant product standards for the effective use of the
+
+    radio spectrum (see table 1).
+
+    4.3.2 Wideband transmission systems; Data transmission equipment
+
+    operating in the 2,4 GHz band
+
+    The exclusion band for immunity testing of equipment operating in the 2,4 GHz band shall be:
+
+    • lower limit of exclusion band = lowest allocated band edge frequency -120 MHz, i.e. 2 280 MHz;
+
+    • upper limit of exclusion band = highest allocated band edge frequency +120 MHz, i.e. 2 603,5 MHz.
+
+    NOTE: This is based upon a channel size of 40 MHz and a value of n = 3 from ETSI EN 301 489-1 [1],
+
+    clause 4.3.3. These values also take into account the blocking test frequencies from ETSI
+
+    EN 300 328 [i.8].
+
+    4.3.3 5 GHz RLAN
+
+    The exclusion band for immunity testing of equipment operating in the 5 GHz RLAN band shall be:
+
+    • lower limit of exclusion band = lowest allocated band edge frequency -320 MHz, i.e. 4 830 MHz;
+
+    • as the immunity requirements have an upper frequency range of 6 GHz and any upper edge exclusion band
+
+    would be greater than this for both the 5 470 MHz to 5 725 MHz and 5 725 MHz to 5 850 MHz bands.
+
+    Therefore, the test stops at the lower limit of exclusion band (i.e. 4 830 MHz).
+
+    NOTE: This is based upon a channel size of 80 MHz and a value of n = 4 from ETSI EN 301 489-1 [1],
+
+    clause 4.3.3. These values also take into account the blocking test frequencies from ETSI
+
+    EN 301 893 [i.3].
+
+    4.3.4 Wireless Access Systems (WAS); 5,8 GHz fixed broadband data
+
+    transmitting systems
+
+    The exclusion band for immunity testing of wireless access systems operating in the 5,8 GHz band shall be:
+
+    • lower limit of exclusion band = lowest allocated band edge frequency -440 MHz, i.e. 5 285 MHz;
+
+    • as the immunity requirements have an upper frequency range of 6 GHz and any upper edge exclusion band
+
+    would be greater than this for the 5,8 GHz band. Therefore, the test stops at the lower limit of exclusion band
+
+    (i.e. 5 285 MHz).
+
+    NOTE: This is based upon a channel size of 40 MHz and a value of n = 11 from ETSI EN 301 489-1 [1],
+
+    clause 4.3.3. These values also take into account the blocking test frequencies from ETSI
+
+    EN 302 502 [i.4].
+
+    ETSI
+
+    12 ETSI EN 301 489-17 V3.3.1 (2024-09)
+
+    4.3.5 6 GHz WAS/RLAN
+
+    The exclusion band for immunity testing of equipment operating in 6 GHz WLAN band shall be:
+
+    • lower limit of exclusion band = lowest allocated band edge frequency -480 MHz, i.e. 5 465 MHz;
+
+    • as the immunity requirements have an upper frequency range of 6 GHz and any upper edge exclusion band
+
+    would be greater than this for the 5 945 MHz to 6 425 MHz band. Therefore, the test stops at the lower limit of
+
+    exclusion band (i.e. 5 465 MHz).
+
+    NOTE: This is based upon a channel size of 160 MHz and a value of n = 3 from ETSI EN 301 489-1 [1],
+
+    clause 4.3.3. These values also take into account the blocking test frequencies from ETSI
+
+    EN 303 687 [i.2].
+
+    4.4 Void
+
+    4.5 Normal test modulation
+
+    The modulated test signal shall represent intended use, and may contain data formatting, error detection and correction
+
+    information.
+
+    5 Performance assessment
+
+    5.1 General
+
+    The manufacturer should supply at the time of submission of the equipment for test, the information required in ETSI
+
+    EN 301 489-1 [1], annex C and the following which should be recorded in the test report:'
+- id: art-9
+  title: • the operating frequency range(s) of the equipment and, whe
+  text: '• the operating frequency range(s) of the equipment and, where applicable, band(s) of operation;
+
+    • the type of the equipment, for example: stand-alone or plug-in radio device;
+
+    • the host equipment to be combined with the radio equipment for testing;
+
+    • the minimum performance level under the application of EMC stress (see clause 6.2)'
 doc_files:
 - global/raw/ETSI_EN_30148917_v03.03.01_60.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30148917_v03.03.01_60.pdf (pdf, 46493 chars)，生成 9 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30148917_v03.03.01_60.pdf (pdf, 46493 chars)，生成 9 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30148917_v03.03.01_60.pdf (pdf, 46493 chars)，生成 9 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

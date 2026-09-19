@@ -1,6 +1,6 @@
 id: US-CFR-TITLE47-PART18
 official_citation: US 47 CFR Part 18
-short_name: US 47 CFR Part 18
+short_name: US 47 CFR Part 18 — INDUSTRIAL, SCIENTIFIC, AND MEDICAL EQUIPMENT
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,928 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '47
+
+    Telecommunication
+
+    1
+
+    2024-10-01
+
+    false
+
+    2024-10-01
+
+    INDUSTRIA'
+  text: '47
+
+    Telecommunication
+
+    1
+
+    2024-10-01
+
+    false
+
+    2024-10-01
+
+    INDUSTRIAL, SCIENTIFIC, AND MEDICAL EQUIPMENT
+
+    Telecommunication
+
+    FEDERAL COMMUNICATIONS COMMISSION
+
+    GENERAL
+
+    Pt. 18
+
+    PART 18—INDUSTRIAL, SCIENTIFIC, AND MEDICAL EQUIPMENT
+
+    Subpart A—General Information
+
+    Sec.
+
+    18.101
+
+    Basis and purpose.
+
+    18.107
+
+    Definitions.
+
+    18.109
+
+    General technical requirements.
+
+    18.111
+
+    General operating conditions.
+
+    18.113
+
+    Inspection by Commission representatives.
+
+    18.115
+
+    Elimination and investigation of harmful interference.
+
+    18.117
+
+    Report of interference investigation.
+
+    18.121
+
+    Exemptions.
+
+    Subpart B—Applications and Authorizations
+
+    18.201
+
+    Scope.
+
+    18.203
+
+    Equipment authorization.
+
+    18.207
+
+    Technical report.
+
+    18.209
+
+    Identification of authorized equipment.
+
+    18.211
+
+    Multiple listing of equipment.
+
+    18.212
+
+    Compliance information.
+
+    18.213
+
+    Information to the user.
+
+    Subpart C—Technical Standards
+
+    18.301
+
+    Operating frequencies.
+
+    18.303
+
+    Prohibited frequency bands.
+
+    18.305
+
+    Field strength limits.
+
+    18.307
+
+    Conduction limits.
+
+    18.309
+
+    Frequency range of measurements.
+
+    18.311
+
+    Methods of measurement.
+
+    18.313
+
+    Radio frequency exposure requirements.
+
+    Authority:
+
+    47 U.S.C. 154, 301, 302, 303, 304, 307.
+
+    Source:
+
+    50 FR 36067, Sept. 5, 1985, unless otherwise noted.
+
+    Subpart A—General Information'
+- id: art-2
+  title: § 18.101
+  text: '§ 18.101
+
+    Basis and purpose.
+
+    The rules in this part, in accordance with the applicable treaties and agreements to which the United States is a party, are promulgated pursuant to section 302 of the Communications Act of 1934, as
+    amended, vesting the Federal Communications Commission with authority to regulate industrial, scientific, and medical equipment (ISM) that emits electromagnetic energy on frequencies within the radio
+    frequency spectrum in order to prevent harmful interference to authorized radio communication services. This part sets
+
+    forth the conditions under which the equipment in question may be operated.'
+- id: art-3
+  title: § 18.107
+  text: '§ 18.107
+
+    Definitions.
+
+    (a)
+
+    Radio frequency (RF) energy.
+
+    Electromagnetic energy at any frequency in the radio spectrum from 9 kHz to 3 THz (3,000 GHz).
+
+    (b)
+
+    Harmful interference.
+
+    Interference which endangers the functioning of a radionavigation service or of other safety services or seriously degrades, obstructs or repeatedly interrupts a radiocommunication service operating
+    in accordance with this chapter.
+
+    (c)
+
+    Industrial, scientific, and medical (ISM) equipment.
+
+    Equipment or appliances designed to generate and use locally RF energy for industrial, scientific, medical, domestic or similar purposes, excluding applications in the field of telecommunication. Typical
+    ISM applications are the production of physical, biological, or chemical effects such as heating, ionization of gases, mechanical vibrations, hair removal and acceleration of charged particles.
+
+    (d)
+
+    Industrial heating equipment.
+
+    A category of ISM equipment used for or in connection with industrial heating operations utilized in a manufacturing or production process.
+
+    (e)
+
+    Medical diathermy equipment.
+
+    A category of ISM equipment used for therapeutic purposes, not including surgical diathermy apparatus designed for intermittent operation with low power.
+
+    (f)
+
+    Ultrasonic equipment.
+
+    A category of ISM equipment in which the RF energy is used to excite or drive an electromechanical transducer for the production of sonic or ultrasonic mechanical energy for industrial, scientific,
+    medical or other noncommunication purposes.
+
+    (g)
+
+    Consumer ISM equipment.
+
+    A category of ISM equipment used or intended to be used by the general public in a residential environment, notwithstanding use in other areas. Examples are domestic microwave ovens, jewelry cleaners
+    for home use, ultrasonic humidifiers.
+
+    (h)
+
+    ISM frequency.
+
+    A frequency assigned by this part for the use of ISM equipment. A specified tolerance is associated with each ISM frequency. See § 18.301.
+
+    (i)
+
+    Marketing.
+
+    As used in this part, marketing shall include sale or lease, offer for sale or lease, advertising for sale or lease, the import or shipment or other distribution for the purpose of sale or lease or
+    offer for sale or lease. See subpart I of part 2 of this chapter.
+
+    (j)
+
+    Magnetic resonance equipment.
+
+    A category of ISM equipment in which RF energy is used to create images and data representing spatially resolved density of transient atomic resources within an object.
+
+    Note:
+
+    In the foregoing, sale (or lease) shall mean sale (or lease) to the user or a vendor who in turn sells (or leases) to the user. Sale shall not be construed to apply to devices sold to a second party
+    for manufacture or fabrication into a device which is subsequently sold (or leased) to the user.
+
+    [50 FR 36067, Sept. 5, 1985, as amended at 59 FR 39472, Aug. 3, 1994]'
+- id: art-4
+  title: § 18.109
+  text: '§ 18.109
+
+    General technical requirements.
+
+    ISM equipment shall be designed and constructed in accordance with good engineering practice with sufficient shielding and filtering to provide adequate suppression of emissions on frequencies outside
+    the frequency bands specified in § 18.301.'
+- id: art-5
+  title: § 18.111
+  text: '§ 18.111
+
+    General operating conditions.
+
+    (a) Persons operating ISM equipment shall not be deemed to have any vested or recognizable right to the continued use of any given frequency, by virtue of any prior equipment authorization and/or compliance
+    with the applicable rules.
+
+    (b) Subject to the exceptions in paragraphs (c) and (d) of this section and irrespective of whether the equipment otherwise complies with the rules in this part, the operator of ISM equipment that causes
+    harmful interference to any authorized radio service shall promptly take whatever steps may be necessary to eliminate the interference.
+
+    (c) The provisions of paragraph (b) of this section shall not apply in the case of interference to an authorized radio station or a radiocommunication device operating in an ISM frequency band.
+
+    (d) The provisions of paragraph (b) of this section shall not apply in the case of interference to a receiver arising from direct intermediate frequency pickup by the receiver of the fundamental frequency
+    emissions of ISM equipment operating in an ISM frequency band and otherwise complying with the requirements of this part.'
+- id: art-6
+  title: § 18.113
+  text: '§ 18.113
+
+    Inspection by Commission representatives.
+
+    Upon request by a representative of the Commission the manufacturer, owner, or operator of any ISM equipment shall make the equipment available for inspection and promptly furnish the Commission with
+    such information as may be required to indicate that the equipment complies with this part.'
+- id: art-7
+  title: § 18.115
+  text: '§ 18.115
+
+    Elimination and investigation of harmful interference.
+
+    (a) The operator of ISM equipment that causes harmful interference to radio services shall promptly take appropriate measures to correct the problem.
+
+    (b) If the operator of ISM equipment is notified by the Commission''s Regional Director that operation of such equipment is endangering the functioning of a radionavigation or safety service, the operator
+    shall immediately cease operating the equipment. Operation may be resumed on a temporary basis only for the purpose of eliminating the harmful interference. Operation may be resumed on a regular basis
+    only after the harmful interference has been eliminated and approval from the Regional Director obtained.
+
+    (c) When notified by the Regional Director that a particular installation is causing harmful interference, the operator or manufacturer shall arrange for an engineer skilled in techniques of interference
+    measurement and control to make an investigation to ensure that the harmful interference has been eliminated. The Regional Director may require the engineer making the investigation to furnish proof
+    of his or her qualifications.
+
+    [50 FR 36067, Sept. 5, 1985, as amended at 80 FR 53750, Sept. 8, 2015]'
+- id: art-8
+  title: § 18.117
+  text: '§ 18.117
+
+    Report of interference investigation.
+
+    (a) An interim report on investigations and corrective measures taken pursuant to § 18.115 of this part shall be filed with the Regional Director of the local FCC office within 30 days of notification
+    of harmful interference. The final report shall be filed with the Regional Director within 60 days of notification.
+
+    (b) The date for filing the final report may be extended by the Regional Director when additional time is required to put into effect the corrective measures or to complete the investigation. The request
+    for extension of time shall be accompanied by a progress report showing what has been accomplished to date.
+
+    [80 FR 53750, Sept. 8, 2015]'
+- id: art-9
+  title: § 18.121
+  text: '§ 18.121
+
+    Exemptions.
+
+    Non-consumer ultrasonic equipment, and non-consumer magnetic resonance equipment, that is used for medical diagnostic and monitoring applications is subject only to the provisions of §§ 18.105, 18.109
+    through 18.119, 18.301 and 18.303 of this part.
+
+    [59 FR 39472, Aug. 3, 1994; 60 FR 47302, Sept. 12, 1995]
+
+    Subpart B—Applications and Authorizations'
+- id: art-10
+  title: § 18.201
+  text: '§ 18.201
+
+    Scope.
+
+    This subpart contains the procedures and requirements for authorization to market or operate ISM equipment under this part.'
+- id: art-11
+  title: § 18.203
+  text: '§ 18.203
+
+    Equipment authorization.
+
+    (a) Consumer ISM equipment, unless otherwise specified, must be authorized under either the Supplier''s Declaration of Conformity or the certification procedure prior to use or marketing. An application
+    for certification shall be filed with a Telecommunication Certification Body (TCB), pursuant to the relevant sections in part 2, subpart J of this chapter.
+
+    (b) Consumer ultrasonic equipment generating less than 500 watts and operating below 90 kHz, and non-consumer ISM equipment shall be subject
+
+    to Supplier''s Declaration of Conformity, in accordance with the relevant sections of part 2, subpart J of this chapter.
+
+    (c) Grants of equipment authorization issued, as well as on-site certifications performed, before March 1, 1986, remain in effect and no further action is required.
+
+    [82 FR 50834, Nov. 2, 2017]'
+- id: art-12
+  title: § 18.207
+  text: '§ 18.207
+
+    Technical report.
+
+    When required by the Commission a technical report shall include at least the following information:
+
+    (a) A description of the measurement facilities in accordance with § 2.948. If such a description is already on file with the Commission, it may be included by reference.
+
+    (b) A copy of the installation and operating instructions furnished to the user. A draft copy of such instructions may be submitted with the application, provided a copy of the actual document to be
+    furnished to the user is submitted as soon as it is available, but no later than 60 days after the grant of the application.
+
+    (c) The full name and mailing address of the manufacturer of the device and/or applicant filing for the equipment authorization.
+
+    (d) The FCC Identifier, trade name(s), and/or model number(s) under which the equipment is or will be marketed.
+
+    (e) A statement of the rated technical parameters that includes:
+
+    (1) A block and schematic diagram of the circuitry.
+
+    (2) Nominal operating frequency.
+
+    (3) Maximum RF energy generated.
+
+    (4) Electrical power requirements of equipment.
+
+    (5) Any other pertinent operating characteristics.
+
+    (f) A report of measurements, including a list of the measuring equipment used, and a statement of the date when the measuring equipment was last calibrated and when the measurements were made. The
+    frequency range that was investigated in obtaining the report of measurements shall be indicated. See also §§ 18.309 and 18.311.
+
+    [50 FR 36067, Sept. 5, 1985, as amended at 63 FR 36603, July 7, 1998]'
+- id: art-13
+  title: § 18.209
+  text: '§ 18.209
+
+    Identification of authorized equipment.
+
+    Each device for which a grant of equipment authorization is issued under this part shall be identified pursuant to the applicable provisions of subpart J of part 2 of this chapter.
+
+    [82 FR 50834, Nov. 2, 2017]'
+- id: art-14
+  title: § 18.211
+  text: '§ 18.211
+
+    Multiple listing of equipment.
+
+    (a) When the same or essentially the same equipment will be marketed under more than one FCC Identifier, equipment authorization must be requested on an FCC Form 731 for each FCC Identifier.
+
+    (b) If equipment authorization for additional FCC Identifiers is requested in the initial application, a statement shall be included describing how these additional devices differ from the basic device
+    which was measured and stating that the report of measurements submitted for the basic device applies also to the additional devices.
+
+    (c) If equipment authorization for additional FCC Identifiers is requested after a grant has been issued by the FCC for the basic device, the application may, in lieu of the report of measurements,
+    be accompanied by a statement including:
+
+    (1) FCC Identifier of device for which measurements are on file with the FCC.
+
+    (2) Date when equipment authorization was granted for the device(s) listed under paragraph (c)(1) of this section and the file number of such grant.
+
+    (3) Description of the difference between the device listed under paragraph (c)(1) of this section and the additional device(s).
+
+    (4) A statement that the report of measurements filed for the device listed under paragraph (c)(1) of this section applies also to the additional device(s).
+
+    (5) Photographs pursuant to § 2.1033(c).'
+- id: art-15
+  title: § 18.212
+  text: '§ 18.212
+
+    Compliance information.
+
+    (a) Equipment authorized under Supplier''s Declaration of Conformity shall include a compliance statement that contains the information set forth in § 2.1077 of this chapter and a statement identical
+    or similar to the following:
+
+    “
+
+    This device complies with part 18 of the FCC Rules.”
+
+    (b) The compliance information may be placed in the instruction manual, on a separate sheet, on the packaging, or electronically as permitted under § 2.935 of this chapter. There is no specific format
+    for this information.
+
+    [82 FR 50834, Nov. 2, 2017]'
+- id: art-16
+  title: § 18.213
+  text: '§ 18.213
+
+    Information to the user.
+
+    Information on the following matters shall be provided to the user in the instruction manual or on the packaging if an instruction manual is not provided for any type of ISM equipment:
+
+    (a) The interference potential of the device or system
+
+    (b) Maintenance of the system
+
+    (c) Simple measures that can be taken by the user to correct interference.
+
+    (d) Manufacturers of RF lighting devices must provide an advisory statement, either on the product packaging or with other user documentation, similar to the following: This product may cause interference
+    to radio equipment and should not be installed near maritime safety communications equipment or other critical navigation or communication equipment operating between 0.45-30 MHz. Variations of this
+    language are permitted provided all the points of the statement are addressed and may be presented in any legible font or text style.
+
+    [50 FR 36069, Sept. 5, 1985, as amended at 51 FR 17970, May 16, 1986; 64 FR 37419, July 12, 1999]
+
+    Subpart C—Technical Standards'
+- id: art-17
+  title: § 18.301
+  text: '§ 18.301
+
+    Operating frequencies.
+
+    ISM equipment may be operated on any frequency above 9 kHz except as indicated in § 18.303. The following frequency bands, in accordance with § 2.106 of the rules, are designated for use by ISM equipment:
+
+    Table 1 to § 18.301
+
+    ISM frequency
+
+    Tolerance
+
+    6.78 MHz
+
+    ± 15.0 kHz
+
+    13.56 MHz
+
+    ± 7.0 kHz
+
+    27.12 MHz
+
+    ± 163.0 kHz
+
+    40.68 MHz
+
+    ± 20.0 kHz
+
+    915 MHz
+
+    ± 13.0 MHz
+
+    2450 MHz
+
+    ± 50.0 MHz
+
+    5800 MHz
+
+    ± 75.0 MHz
+
+    24.125 GHz
+
+    ± 125.0 MHz
+
+    61.25 GHz
+
+    ± 250.0 MHz
+
+    122.50 GHz
+
+    ± 500.0 MHz
+
+    245.00 GHz
+
+    ± 1.0 GHz
+
+    [85 FR 38740, June 26, 2020]'
+- id: art-18
+  title: § 18.303
+  text: '§ 18.303
+
+    Prohibited frequency bands.
+
+    Operation of ISM equipment within the following safety, search and rescue frequency bands is prohibited: 490-510 kHz, 2170-2194 kHz, 8354-8374 kHz, 121.4-121.6 MHz, 156.7-156.9 MHz, and 242.8-243.2
+    MHz.'
+- id: art-19
+  title: § 18.305
+  text: '§ 18.305
+
+    Field strength limits.
+
+    (a) ISM equipment operating on a frequency specified in § 18.301 is permitted unlimited radiated energy in the band specified for that frequency.
+
+    (b) The field strength levels of emissions which lie outside the bands specified in § 18.301, unless otherwise indicated, shall not exceed the following:
+
+    Equipment
+
+    Operating frequency
+
+    RF Power generated by equipment (watts)
+
+    Field strength limit (uV/m)
+
+    Distance (meters)
+
+    Any type unless otherwise specified (miscellaneous)
+
+    Any ISM frequency
+
+    Below 500
+
+    500 or more
+
+    25
+
+    25 × SQRT(power/500)
+
+    300
+
+    1
+
+    300
+
+    Any non-ISM frequency
+
+    Below 500
+
+    500 or more
+
+    15
+
+    15 × SQRT(power/500)
+
+    300
+
+    1
+
+    300
+
+    Industrial heaters and RF stabilized arc welders
+
+    On or below 5,725 MHz
+
+    Above 5,725 MHz
+
+    Any
+
+    Any
+
+    10
+
+    (
+
+    2
+
+    )
+
+    1,600
+
+    (
+
+    2
+
+    )
+
+    Medical diathermy
+
+    Any ISM frequency
+
+    Any non-ISM frequency
+
+    Any
+
+    Any
+
+    25
+
+    15
+
+    300
+
+    300
+
+    Ultrasonic
+
+    Below 490 kHz
+
+    Below 500
+
+    500 or more
+
+    2,400/F(kHz)
+
+    2,400/F(kHz) × SQRT(power/500)
+
+    300
+
+    3
+
+    300
+
+    490 to 1,600 kHz
+
+    Above 1,600 kHz
+
+    Any
+
+    Any
+
+    24,000/F(kHz)
+
+    15
+
+    30
+
+    30
+
+    Induction cooking ranges
+
+    Below 90 kHz
+
+    On or above 90 kHz
+
+    Any
+
+    Any
+
+    1,500
+
+    300
+
+    4
+
+    30
+
+    4
+
+    30
+
+    1
+
+    Field strength may not exceed 10 μV/m at 1600 meters. Consumer equipment operating below 1000 MHz is not permitted the increase in field strength otherwise permitted here for power over 500 watts.
+
+    2
+
+    Reduced to the greatest extent possible.
+
+    3
+
+    Field strength may not exceed 10 μV/m at 1600 meters. Consumer equipment is not permitted the increase in field strength otherwise permitted here for over 500 watts.
+
+    4
+
+    Induction cooking ranges manufactured prior to February 1, 1980, shall be subject to the field strength limits for miscellaneous ISM equipment.
+
+    (c) The field strength limits for RF lighting devices shall be the following:
+
+    Frequency (MHz)
+
+    Field strength limit at 30 meters (μV/m)
+
+    Non-consumer equipment:
+
+    30-88
+
+    30
+
+    88-216
+
+    50
+
+    216-1000
+
+    70
+
+    Consumer equipment:
+
+    30-88
+
+    10
+
+    88-216
+
+    15
+
+    216-1000
+
+    20
+
+    Notes
+
+    1. The tighter limit shall apply at the boundary between two frequency ranges.
+
+    2. Testing for compliance with these limits may be made at closer distances, provided a sufficient number of measurements are taken to plot the radiation pattern, to determine the major lobes of radiation,
+    and to determine the expected field strength level at 30, 300, or 1600 meters. Alternatively, if measurements are made at only one closer fixed distance, then the permissible field strength limits shall
+    be adjusted using 1/d as an attenuation factor.
+
+    [50 FR 36070, Sept. 5, 1985, as amended at 51 FR 17970, May 16, 1986; 52 FR 43197, Nov. 10, 1987]'
+- id: art-20
+  title: § 18.307
+  text: '§ 18.307
+
+    Conduction limits.
+
+    For the following equipment, when designed to be connected to the public utility (AC) power line the radio frequency voltage that is conducted back onto the AC power line on any frequency or frequencies
+    shall not exceed the limits in the following tables. Compliance with the provisions of this paragraph shall be based on the measurement of the radio frequency voltage between each power line and ground
+    at the power terminal using a 50 μH/50 ohms line impedance stabilization network (LISN).
+
+    (a) All Induction cooking ranges and ultrasonic equipment:
+
+    Frequency of emission (MHz)
+
+    Conducted limit (dBμV)
+
+    Quasi-peak
+
+    Average
+
+    0.009-0.05
+
+    110
+
+    —
+
+    0.05-0.15
+
+    90-80 *
+
+    —
+
+    0.15-0.5
+
+    66 to 56 *
+
+    56 to 46 *
+
+    0.5-5
+
+    56
+
+    46
+
+    5-30
+
+    60
+
+    50
+
+    * Decreases with the logarithm of the frequency.
+
+    (b) All other part 18 consumer devices:
+
+    Frequency of emission (MHz)
+
+    Conducted limit (dBμV)
+
+    Quasi-peak
+
+    Average
+
+    0.15-0.5
+
+    66 to 56 *
+
+    56 to 46 *
+
+    0.5-5
+
+    56
+
+    46
+
+    5-30
+
+    60
+
+    50
+
+    * Decreases with the logarithm of the frequency.
+
+    (c) RF lighting devices:
+
+    Frequency (MHz)
+
+    Maximum RF line voltage measured with a 50 uH/50 ohm LISN (uV)
+
+    Non-consumer equipment:
+
+    0.45 to 1.6
+
+    1,000
+
+    1.6 to 30
+
+    3,000
+
+    Consumer equipment:
+
+    0.45 to 2.51
+
+    250
+
+    2.51 to 3.0
+
+    3,000
+
+    3.0 to 30
+
+    250
+
+    (d) If testing with a quasi-peak detector demonstrates that the equipment complies with the average limits specified in the appropriate table in this section, additional testing to demonstrate compliance
+    using an average detector is not required.
+
+    (e) These conduction limits shall apply only outside of the frequency bands specified in § 18.301.
+
+    (f) For ultrasonic equipment, compliance with the conducted limits shall preclude the need to show compliance with the field strength limits below 30
+
+    MHz unless requested by the Commission.
+
+    (g) The tighter limits shall apply at the boundary between two frequency ranges.
+
+    [50 FR 36067, Sept. 5, 1985, as amended at 52 FR 43198, Nov. 10, 1987; 64 FR 37419, July 12, 1999; 67 FR 45671, July 10, 2002]'
+- id: art-21
+  title: § 18.309
+  text: '§ 18.309
+
+    Frequency range of measurements.
+
+    (a) For field strength measurements:
+
+    Frequency band in which device operates (MHz)
+
+    Range of frequency measurements
+
+    Lowest frequency
+
+    Highest frequency
+
+    Below 1.705
+
+    Lowest frequency generated in the device, but not lower than 9 kHz
+
+    30 MHz.
+
+    1.705 to 30
+
+    Lowest frequency generated in the device, but not lower than 9 kHz
+
+    400 MHz.
+
+    30 to 500
+
+    Lowest frequency generated in the device or 25 MHz, whichever is lower
+
+    Tenth harmonic or 1,000 MHz, whichever is higher.
+
+    500 to 1,000
+
+    Lowest frequency generated in the device or 100 MHz, whichever is lower
+
+    Tenth harmonic.
+
+    Above 1,000
+
+    ......do
+
+    Tenth harmonic or highest detectable emission.
+
+    (b) For conducted powerline measurements, the frequency range over which the limits are specified will be scanned.
+
+    [50 FR 36070, Sept. 5, 1985, as amended at 51 FR 17971, May 16, 1986]'
+- id: art-22
+  title: § 18.311
+  text: '§ 18.311
+
+    Methods of measurement.
+
+    The measurement techniques used to determine compliance with the technical requirements of this part are set out in FCC MP-5, “FCC Methods of Measurements of Radio Noise Emissions from Industrial, Scientific,
+    and Medical equipment,” or compliance measurements made in accordance with the specific procedures otherwise authorized by the Commission.
+
+    [82 FR 50835, Nov. 2, 2017]'
+- id: art-23
+  title: § 18.313
+  text: '§ 18.313
+
+    Radio frequency exposure requirements.
+
+    Radio frequency devices operating under the provisions of this part are subject to the radio frequency radiation exposure requirements specified in §§ 1.1307(b), 1.1310, 2.1091, and 2.1093 of this chapter,
+    as appropriate.
+
+    [85 FR 18150, Apr. 1, 2020]'
 doc_files:
 - us/raw/US-CFR-title47-part18.xml
+- us/raw/US-CFR-title47-part18.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title47-part18.xml (xml, 21267 chars)，生成 23 条共 21267 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title47-part18.xml (xml, 21267 chars)，生成 23 条共 21267 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title47-part18.xml (xml, 21267 chars)，生成 23 条共 21267 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE47-PART18-4（US 47 CFR Part 18）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE47-PART18-3（US 47 CFR Part 18）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE47-PART18-2（US 47 CFR Part 18）。'

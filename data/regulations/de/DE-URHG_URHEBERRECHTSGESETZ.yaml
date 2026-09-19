@@ -9,11 +9,331 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: Ein Service des Bundesministerium der Justiz und für Verbrau
+  text: 'Ein Service des Bundesministerium der Justiz und für Verbraucherschutz
+
+    sowie des Bundesamts für Justiz ‒ www.gesetze-im-internet.de
+
+    Gesetz über Urheberrecht und verwandte Schutzrechte
+
+    (Urheberrechtsgesetz)
+
+    UrhG
+
+    Ausfertigungsdatum: 09.09.1965
+
+    Vollzitat:
+
+    "Urheberrechtsgesetz vom 9. September 1965 (BGBl. I S. 1273), das zuletzt durch Artikel 2 des Gesetzes vom 26.
+
+    Mai 2026 (BGBl. 2026 I Nr. 157) geändert worden ist"
+
+    Stand: Zuletzt geändert durch Art. 2 G v. 26.5.2026 I Nr. 157
+
+    Fußnote
+
+    (+++ Textnachweis Geltung ab: 10.10.1976 +++)
+
+    (+++ Zur Nichtanwendung d. § 52a vgl. § 137k (F ab 10.9.2003 bis 14.12.2012)
+
+    +++)
+
+    (+++ Amtliche Hinweise des Normgebers auf EG-Recht:
+
+    Umsetzung der
+
+    EGRL 9/96 (CELEX Nr: 396L0009) vgl. G v. 2.7.1997 I 1870
+
+    Umsetzung der
+
+    EWGRL 83/93 (CELEX Nr. 393L0083) vgl. G v. 8.5.1998 I 902
+
+    Umsetzung der
+
+    EGRL 55/97 (CELEX Nr. 397L0055)
+
+    EWGRL 28/92 (CELEX Nr: 392L0028) vgl. G v. 1.9.2000 I 1374
+
+    Umsetzung der
+
+    EGRL 29/2001 (CELEX Nr: 301L0029) vgl. G v. 10.9.2003 I 1774
+
+    iVm § 137j
+
+    Umsetzung der
+
+    EGRL 84/2001 (CELEX Nr: 301L0029) vgl. G v. 10.11.2006 I 2587
+
+    Umsetzung der
+
+    EURL 77/2011 (CELEX Nr: 30211L0077) vgl. G v. 2.7.2013 I 1940
+
+    Umsetzung der
+
+    EURL 28/2012 (CELEX Nr: 32012L0028) vgl. G v. 1.10.2013 I 3728
+
+    Umsetzung der
+
+    EURL 2017/1564 (CELEX Nr: 32017L1564) vgl. G v. 28.11.2018 I 2014 +++)
+
+    (+++ EU-Vollzitate: vgl. Liste EU-Rechtsakte G. v. 26.5.2026 I Nr. 157 +++)
+
+    Inhaltsübersicht
+
+    Teil 1
+
+    Urheberrecht
+
+    Abschnitt 1
+
+    Allgemeines'
+- id: art-2
+  title: § 1 Allgemeines
+  text: '§ 1 Allgemeines
+
+    Abschnitt 2
+
+    Das Werk'
+- id: art-3
+  title: § 2 Geschützte Werke
+  text: § 2 Geschützte Werke
+- id: art-4
+  title: § 3 Bearbeitungen
+  text: '§ 3 Bearbeitungen
+
+    - Seite 1 von 76 -
+
+    Ein Service des Bundesministerium der Justiz und für Verbraucherschutz
+
+    sowie des Bundesamts für Justiz ‒ www.gesetze-im-internet.de'
+- id: art-5
+  title: § 4 Sammelwerke und Datenbankwerke
+  text: § 4 Sammelwerke und Datenbankwerke
+- id: art-6
+  title: § 5 Amtliche Werke
+  text: § 5 Amtliche Werke
+- id: art-7
+  title: § 6 Veröffentlichte und erschienene Werke
+  text: '§ 6 Veröffentlichte und erschienene Werke
+
+    Abschnitt 3
+
+    Der Urheber'
+- id: art-8
+  title: § 7 Urheber
+  text: § 7 Urheber
+- id: art-9
+  title: § 8 Miturheber
+  text: § 8 Miturheber
+- id: art-10
+  title: § 9 Urheber verbundener Werke
+  text: § 9 Urheber verbundener Werke
+- id: art-11
+  title: § 10 Vermutung der Urheber- oder Rechtsinhaberschaft
+  text: '§ 10 Vermutung der Urheber- oder Rechtsinhaberschaft
+
+    Abschnitt 4
+
+    Inhalt des Urheberrechts
+
+    Unterabschnitt 1
+
+    Allgemeines'
+- id: art-12
+  title: § 11 Allgemeines
+  text: '§ 11 Allgemeines
+
+    Unterabschnitt 2
+
+    Urheberpersönlichkeitsrecht'
+- id: art-13
+  title: § 12 Veröffentlichungsrecht
+  text: § 12 Veröffentlichungsrecht
+- id: art-14
+  title: § 13 Anerkennung der Urheberschaft
+  text: § 13 Anerkennung der Urheberschaft
+- id: art-15
+  title: § 14 Entstellung des Werkes
+  text: '§ 14 Entstellung des Werkes
+
+    Unterabschnitt 3
+
+    Verwertungsrechte'
+- id: art-16
+  title: § 15 Allgemeines
+  text: § 15 Allgemeines
+- id: art-17
+  title: § 16 Vervielfältigungsrecht
+  text: § 16 Vervielfältigungsrecht
+- id: art-18
+  title: § 17 Verbreitungsrecht
+  text: § 17 Verbreitungsrecht
+- id: art-19
+  title: § 18 Ausstellungsrecht
+  text: § 18 Ausstellungsrecht
+- id: art-20
+  title: § 19 Vortrags-, Aufführungs- und Vorführungsrecht
+  text: § 19 Vortrags-, Aufführungs- und Vorführungsrecht
+- id: art-21
+  title: § 19a Recht der öffentlichen Zugänglichmachung
+  text: § 19a Recht der öffentlichen Zugänglichmachung
+- id: art-22
+  title: § 20 Senderecht
+  text: § 20 Senderecht
+- id: art-23
+  title: § 20a Europäische Satellitensendung
+  text: § 20a Europäische Satellitensendung
+- id: art-24
+  title: § 20b Weitersendung
+  text: § 20b Weitersendung
+- id: art-25
+  title: § 20c Europäischer ergänzender Online-Dienst
+  text: § 20c Europäischer ergänzender Online-Dienst
+- id: art-26
+  title: § 20d Direkteinspeisung
+  text: § 20d Direkteinspeisung
+- id: art-27
+  title: § 21 Recht der Wiedergabe durch Bild- oder Tonträger
+  text: '§ 21 Recht der Wiedergabe durch Bild- oder Tonträger
+
+    - Seite 2 von 76 -
+
+    Ein Service des Bundesministerium der Justiz und für Verbraucherschutz
+
+    sowie des Bundesamts für Justiz ‒ www.gesetze-im-internet.de'
+- id: art-28
+  title: § 22 Recht der Wiedergabe von Funksendungen und von öffentlicher Zugänglichmachung
+  text: § 22 Recht der Wiedergabe von Funksendungen und von öffentlicher Zugänglichmachung
+- id: art-29
+  title: § 23 Bearbeitungen und Umgestaltungen
+  text: § 23 Bearbeitungen und Umgestaltungen
+- id: art-30
+  title: § 24 (weggefallen)
+  text: '§ 24 (weggefallen)
+
+    Unterabschnitt 4
+
+    Sonstige Rechte des Urhebers'
+- id: art-31
+  title: § 25 Zugang zu Werkstücken
+  text: § 25 Zugang zu Werkstücken
+- id: art-32
+  title: § 26 Folgerecht
+  text: § 26 Folgerecht
+- id: art-33
+  title: § 27 Vergütung für Vermietung und Verleihen
+  text: '§ 27 Vergütung für Vermietung und Verleihen
+
+    Abschnitt 5
+
+    Rechtsverkehr im Urheberrecht
+
+    Unterabschnitt 1
+
+    Rechtsnachfolge in das Urheberrecht'
+- id: art-34
+  title: § 28 Vererbung des Urheberrechts
+  text: § 28 Vererbung des Urheberrechts
+- id: art-35
+  title: § 29 Rechtsgeschäfte über das Urheberrecht
+  text: § 29 Rechtsgeschäfte über das Urheberrecht
+- id: art-36
+  title: § 30 Rechtsnachfolger des Urhebers
+  text: '§ 30 Rechtsnachfolger des Urhebers
+
+    Unterabschnitt 2
+
+    Nutzungsrechte'
+- id: art-37
+  title: § 31 Einräumung von Nutzungsrechten
+  text: § 31 Einräumung von Nutzungsrechten
+- id: art-38
+  title: § 31a Verträge über unbekannte Nutzungsarten
+  text: § 31a Verträge über unbekannte Nutzungsarten
+- id: art-39
+  title: § 32 Angemessene Vergütung
+  text: § 32 Angemessene Vergütung
+- id: art-40
+  title: § 32a Weitere Beteiligung des Urhebers
+  text: § 32a Weitere Beteiligung des Urhebers
+- id: art-41
+  title: § 32b Zwingende Anwendung
+  text: § 32b Zwingende Anwendung
+- id: art-42
+  title: § 32c Vergütung für später bekannte Nutzungsarten
+  text: § 32c Vergütung für später bekannte Nutzungsarten
+- id: art-43
+  title: § 32d Auskunft und Rechenschaft des Vertragspartners
+  text: § 32d Auskunft und Rechenschaft des Vertragspartners
+- id: art-44
+  title: § 32e Auskunft und Rechenschaft Dritter in der Lizenzkette
+  text: § 32e Auskunft und Rechenschaft Dritter in der Lizenzkette
+- id: art-45
+  title: § 32f Mediation und außergerichtliche Konfliktbeilegung
+  text: § 32f Mediation und außergerichtliche Konfliktbeilegung
+- id: art-46
+  title: § 32g Vertretung durch Vereinigungen
+  text: § 32g Vertretung durch Vereinigungen
+- id: art-47
+  title: § 33 Weiterwirkung von Nutzungsrechten
+  text: § 33 Weiterwirkung von Nutzungsrechten
+- id: art-48
+  title: § 34 Übertragung von Nutzungsrechten
+  text: § 34 Übertragung von Nutzungsrechten
+- id: art-49
+  title: § 35 Einräumung weiterer Nutzungsrechte
+  text: § 35 Einräumung weiterer Nutzungsrechte
+- id: art-50
+  title: § 35a Mediation und außergerichtliche Konfliktbeilegung bei Videoabrufdiensten
+  text: § 35a Mediation und außergerichtliche Konfliktbeilegung bei Videoabrufdiensten
+- id: art-51
+  title: § 36 Gemeinsame Vergütungsregeln
+  text: § 36 Gemeinsame Vergütungsregeln
+- id: art-52
+  title: § 36a Schlichtungsstelle
+  text: § 36a Schlichtungsstelle
+- id: art-53
+  title: § 36b Unterlassungsanspruch bei Verstoß gegen gemeinsame Vergütungsregeln
+  text: § 36b Unterlassungsanspruch bei Verstoß gegen gemeinsame Vergütungsregeln
+- id: art-54
+  title: § 36c Individualvertragliche Folgen des Verstoßes gegen gemeinsame Vergütungsregeln
+  text: '§ 36c Individualvertragliche Folgen des Verstoßes gegen gemeinsame Vergütungsregeln
+
+    - Seite 3 von 76 -
+
+    Ein Service des Bundesministerium der Justiz und für Verbraucherschutz
+
+    sowie des Bundesamts für Justiz ‒ www.gesetze-im-internet.de'
+- id: art-55
+  title: § 36d Unterlassungsanspruch bei Nichterteilung von Auskünften
+  text: § 36d Unterlassungsanspruch bei Nichterteilung von Auskünften
+- id: art-56
+  title: § 37 Verträge über die Einräumung von Nutzungsrechten
+  text: § 37 Verträge über die Einräumung von Nutzungsrechten
+- id: art-57
+  title: § 38 Beiträge zu Sammlungen
+  text: § 38 Beiträge zu Sammlungen
+- id: art-58
+  title: § 39 Änderungen des Werkes
+  text: § 39 Änderungen des Werkes
+- id: art-59
+  title: § 40 Verträge über künftige Werke
+  text: § 40 Verträge über künftige Werke
+- id: art-60
+  title: § 40a Recht zur anderweitigen Verwertung nach zehn Jahren bei pauschaler Vergütung
+  text: § 40a Recht zur anderweitigen Verwertung nach zehn Jahren bei pauschaler Vergütung
 doc_files:
 - de/raw/DE-UrhG_Urheberrechtsgesetz.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：de/raw/DE-UrhG_Urheberrechtsgesetz.pdf (pdf, 252714 chars)，生成 60 条共 31378 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：de/raw/DE-UrhG_Urheberrechtsgesetz.pdf (pdf, 252714 chars)，生成 60 条共 31378 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：de/raw/DE-UrhG_Urheberrechtsgesetz.pdf (pdf, 252487 chars)，生成 60 条共 4425 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

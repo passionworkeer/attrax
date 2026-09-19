@@ -9,11 +9,882 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'L_202401760EN.000101.fmx.xml
+
+
+    Official Journal
+
+    of the Europe'
+  text: 'L_202401760EN.000101.fmx.xml
+
+
+    Official Journal
+
+    of the European Union
+
+
+    EN
+
+
+    L series
+
+
+    2024/1760
+
+
+    5.7.2024
+
+
+    DIRECTIVE (EU) 2024/1760 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL
+
+
+
+    of 13 June 2024
+
+
+
+    on corporate sustainability due diligence and amending Directive (EU) 2019/1937 and Regulation (EU) 2023/2859
+
+
+    (Text with EEA relevance)
+
+
+    THE EUROPEAN PARLIAMENT AND THE COUNCIL OF THE EUROPEAN UNION,
+
+
+    Having regard to the Treaty on the Functioning of the European Union, and in particular Article 50(1), Article 50(2), point (g), and Article 114 thereof,
+
+
+    Having regard to the proposal from the European Commission,
+
+
+    After transmission of the draft legislative act to the national parliaments,
+
+
+    Having regard to the opinion of the European Economic and Social Committee
+
+    (
+
+    1
+
+    )
+
+    ,
+
+
+    Acting in accordance with the ordinary legislative procedure
+
+    (
+
+    2
+
+    )
+
+    ,
+
+
+    Whereas:
+
+
+    (1)
+
+
+    As stated in Article 2 of the Treaty on European Union (TEU), the Union is founded on the values of respect for human dignity, freedom, democracy, equality, the rule of law and respect for human rights
+    as enshrined in the Charter of Fundamental Rights of the European Union (the ‘Charter’). Those core values, that have inspired the Union’s own creation, as well as the universality and indivisibility
+    of human rights, and respect for the principles of the Charter of the United Nations (UN) and international law, should guide the Union’s action on the international scene. Such action includes fostering
+    the sustainable economic, social and environmental development of developing countries.
+
+
+    (2)
+
+
+    In line with Article 191 of the Treaty on the Functioning of the European Union (TFEU), a high level of protection and improvement of the quality of the environment and promoting European core values
+    are among the priorities of the Union, as set out in the communication of the Commission of 11 December 2019 on A European Green Deal. These objectives require the involvement not only of public authorities
+    but also of private actors, in particular companies.
+
+
+    (3)
+
+
+    In its Communication of 14 January 2020 on a Strong Social Europe for Just Transition, the Commission committed to upgrading Europe’s social market economy to achieve a just transition to sustainability,
+    ensuring that no-one is left behind. This Directive will also contribute to the European Pillar of Social Rights, which promotes rights ensuring fair working conditions. It forms part of the Union policies
+    and strategies relating to the promotion of decent work worldwide, including in global value chains, as referred to in the communication of the Commission of 23 February 2022 on decent work worldwide.
+
+
+    (4)
+
+
+    The behaviour of companies across all sectors of the economy is key to success with regard to the Union’s sustainability objectives as Union companies, especially large ones, rely on global value chains.
+    It is also in the interest of companies to protect human rights and the environment, in particular given the rising concern of consumers and investors regarding these topics. Several initiatives fostering
+    enterprises which support a value-oriented transformation already exist at Union, as well as national level.
+
+
+    (5)
+
+
+    Existing international standards on responsible business conduct specify that companies should protect human rights and set out how they should address the protection of the environment across their
+    operations and value chains. The UN Guiding Principles on Business and Human Rights (UN Guiding Principles) recognise the responsibility of companies to exercise human rights due diligence by identifying,
+    preventing and mitigating the adverse impacts of their operations on human rights and by accounting for how they address those impacts. The UN Guiding Principles state that businesses should avoid infringing
+    human rights and should address adverse human rights impacts that they have caused, contributed to or are linked with in their own operations, those of their subsidiaries and through their direct and
+    indirect business relationships.
+
+
+    (6)
+
+
+    The concept of human rights due diligence was specified and further developed in the Guidelines for Multinational Enterprises (MNE Guidelines) of the Organisation for Economic Cooperation and Development
+    (OECD) which extended the application of due diligence to environmental and governance topics. The OECD Due Diligence Guidance for Responsible Business Conduct (Guidance for Responsible Business Conduct)
+    and sectoral guidance are internationally recognised frameworks setting out practical due diligence steps to help companies identify, prevent, mitigate and account for how they address actual and potential
+    impacts in their operations, supply chains and other business relationships. The concept of due diligence is also embedded in the recommendations of the International Labour Organization’s (ILO) Tripartite
+    Declaration of Principles concerning Multinational Enterprises and Social Policy.
+
+
+    (7)
+
+
+    All businesses have a responsibility to respect human rights, which are universal, indivisible, interdependent and interrelated.
+
+
+    (8)
+
+
+    The UN Sustainable Development Goals, adopted by all UN Member States in 2015, include the objectives to promote sustained, inclusive and sustainable economic growth. The Union has set itself the objective
+    to deliver on the UN Sustainable Development Goals. The private sector contributes to those aims.
+
+
+    (9)
+
+
+    Global value chains, and in particular critical raw materials value chains, are impacted by detrimental effects of natural or man-made hazards. The frequency and impact of shocks involving risks to
+    critical value chains are likely to increase in the future. The private sector could play an important role in promoting sustained, inclusive and sustainable economic growth, while avoiding the creation
+    of imbalances on the internal market. This underlines the importance of strengthening the resilience of companies in relation to adverse scenarios related to their value chains, taking into account
+    externalities as well as social, environmental and governance risks.
+
+
+    (10)
+
+
+    International agreements under the UN Framework Convention on Climate Change, to which the Union and its Member States are parties, such as the Paris Agreement under the UN Framework Convention on Climate
+    Change adopted on 12 December 2015 (the ‘Paris Agreement’)
+
+    (
+
+    3
+
+    )
+
+    and the recent Glasgow Climate Pact, set out precise avenues to address climate change and keep global warming within 1,5
+
+    o
+
+    C degrees. Besides specific actions being expected from all signatory Parties, the role of the private sector, in particular its investment strategies, is also considered central to achieve these objectives.
+
+
+    (11)
+
+
+    By way of Regulation (EU) 2021/1119 of the European Parliament and of the Council
+
+    (
+
+    4
+
+    )
+
+    , the Union also legally committed to becoming climate-neutral by 2050 and to reducing emissions by at least 55 % by 2030. Both these commitments require changing the way in which companies produce
+    and procure. The Commission Staff Working Document accompanying the communication of the Commission of 17 September 2020 on ‘Stepping up Europe’s 2030 climate ambition Investing in a climate-neutral
+    future for the benefit of our people’ (2030 Climate Target Plan) models various degrees of emission reductions required from different economic sectors, though all need to see considerable reductions
+    under all scenarios for the Union to meet its climate objectives. That plan also underlines that ‘changes in corporate governance rules and practices, including on sustainable finance, will make company
+    owners and managers prioritise sustainability objectives in their actions and strategies’. The communication of the Commission on the European Green Deal sets out that all Union actions and policies
+    should pull together to help the Union achieve a successful and just transition towards a sustainable future. It also sets out that sustainability should be further embedded into the corporate governance
+    framework. The framework for Union action in the field of the environment and climate set out in Decision (EU) 2022/591 of the European Parliament and of the Council
+
+    (
+
+    5
+
+    )
+
+    , aims to accelerate the green transition to a climate-neutral, sustainable, non-toxic, resource-efficient, renewable energy-based, resilient and competitive circular economy in a just, equitable and
+    inclusive way, and to protect, restore and improve the state of the environment by, inter alia, halting and reversing biodiversity loss.
+
+
+    (12)
+
+
+    According to the communication of the Commission of 24 February 2021 on Forging a climate-resilient Europe presenting the Union Strategy on Adaptation to climate change, new investment and policy decisions
+    should be climate-informed and future-proof, including for larger businesses managing value chains. This Directive should be consistent with that strategy. Similarly, there should be consistency with
+    Directive (EU) 2024/1619 of the European Parliament and of the Council
+
+    (
+
+    6
+
+    )
+
+    , which sets out clear requirements for banks’ governance rules including knowledge about environmental, social and governance risks at board of directors level.
+
+
+    (13)
+
+
+    The communication of the Commission of 11 March 2020 on A new Circular Economy Action Plan For a cleaner and more competitive Europe (Action Plan on a Circular Economy), the communication of the Commission
+    of 20 March 2020 on the EU Biodiversity Strategy for 2030: Bringing nature back into our lives (Biodiversity strategy), the communication of the Commission of 20 March 2020 on A Farm to Fork Strategy
+    for a fair, healthy and environmentally-friendly food system (Farm to Fork strategy) and the communication of the Commission of 14 October 2020 on the Chemicals Strategy for Sustainability Towards a Toxic-Free
+    Environment (Chemicals strategy), the communication of the Commission of 12 May 2021 on the EU Action Plan Towards Zero Pollution for Air, Water and Soil, the communication of the Commission of 5 May
+    2021 on Updating the 2020 New Industrial Strategy: Building a stronger Single Market for Europe’s recovery, the Commission approach referred to as Industry 5.0, the communication of the Commission of
+    4 March 2021 on the European Pillar of Social Rights Action Plan and the communication of the Commission of 18 February 2021 on Trade Policy Review: An Open, Sustainable and Assertive Trade Policy list
+    an initiative on sustainable corporate governance among their elements. Due diligence requirements under this Directive should contribute to achieving the objectives of the EU Action Plan Towards Zero
+    Pollution for Air, Water and Soil, of creating a toxic-free environment and of protecting the health and well-being of people, animals and ecosystems from environment-related risks and negative impacts.
+
+
+    (14)
+
+
+    This Directive is consistent with the joint communication of the Commission on the EU Action Plan on Human Rights and Democracy 2020-2024. That action plan defines as a priority strengthening the Union’s
+    engagement to actively promote the global implementation of the UN Guiding Principles and other relevant international guidelines such as the MNE Guidelines, including by advancing relevant due diligence
+    standards.
+
+
+    (15)
+
+
+    The European Parliament, in its resolution of 10 March 2021 with recommendations to the Commission on corporate due diligence and corporate accountability, calls upon the Commission to propose Union-level
+    rules for comprehensive corporate due diligence obligations, with consequences including civil liability for those companies that cause or jointly cause harm by failing to carry out due diligence. The
+    Council Conclusions of 1 December 2020 on Human Rights and Decent Work in Global Supply Chains called upon the Commission to table a proposal for a Union legal framework on sustainable corporate governance,
+    including cross-sector corporate due diligence obligations along global supply chains. The European Parliament also calls for clarifying directors’ duties in its own initiative report of 2 December
+    2020 on sustainable'
+- id: art-2
+  title: Article 1
+  text: 'Article 1
+
+
+    Subject matter
+
+
+    1.   This Directive lays down rules on:
+
+
+    (a)
+
+
+    obligations for companies regarding actual and potential human rights adverse impacts and environmental adverse impacts, with respect to their own operations, the operations of their subsidiaries, and
+    the operations carried out by their business partners in the chains of activities of those companies;
+
+
+    (b)
+
+
+    liability for violations of the obligations as referred to in point (a); and
+
+
+    (c)
+
+
+    the obligation for companies to adopt and put into effect a transition plan for climate change mitigation which aims to ensure, through best efforts, compatibility of the business model and of the strategy
+    of the company with the transition to a sustainable economy and with the limiting of global warming to 1,5
+
+    o
+
+    C in line with the Paris Agreement.
+
+
+    2.   This Directive shall not constitute grounds for reducing the level of protection of human, employment and social rights, or of protection of the environment or of protection of the climate provided
+    for by the national law of the Member States or by the collective agreements applicable at the time of the adoption of this Directive.
+
+
+    3.   This Directive shall be without prejudice to obligations in the areas of human, employment and social rights, and of protection of the environment and climate change under other Union legislative
+    acts. If a provision of this Directive conflicts with a provision of another Union legislative act pursuing the same objectives and providing for more extensive or more specific obligations, the provision
+    of that other Union legislative act shall prevail to the extent of the conflict and shall apply as regards those specific obligations.'
+- id: art-3
+  title: Article 2
+  text: 'Article 2
+
+
+    Scope
+
+
+    1.   This Directive shall apply to companies which are formed in accordance with the legislation of a Member State and which fulfil one of the following conditions:
+
+
+    (a)
+
+
+    the company had more than 1 000 employees on average and had a net worldwide turnover of more than EUR 450 000 000 in the last financial year for which annual financial statements have been or should
+    have been adopted;
+
+
+    (b)
+
+
+    the company did not reach the thresholds as referred to in point (a) but is the ultimate parent company of a group that reached those thresholds in the last financial year for which consolidated annual
+    financial statements have been or should have been adopted;
+
+
+    (c)
+
+
+    the company entered into or is the ultimate parent company of a group that entered into franchising or licensing agreements in the Union in return for royalties with independent third-party companies,
+    where those agreements ensure a common identity, a common business concept and the application of uniform business methods, and where those royalties amounted to more than EUR 22 500 000 in the last
+    financial year for which annual financial statements have been or should have been adopted, and provided that the company had or is the ultimate parent company of a group that had a net worldwide turnover
+    of more than EUR 80 000 000 in the last financial year for which annual financial statements have been or should have been adopted.
+
+
+    2.   This Directive shall also apply to companies which are formed in accordance with the legislation of a third country and fulfil one of the following conditions:
+
+
+    (a)
+
+
+    the company generated a net turnover of more than EUR 450 000 000 in the Union in the financial year preceding the last financial year;
+
+
+    (b)
+
+
+    the company did not reach the threshold as referred to in point (a) but is the ultimate parent company of a group that on a consolidated basis reached that threshold in the financial year preceding
+    the last financial year;
+
+
+    (c)
+
+
+    the company entered into or is the ultimate parent company of a group that entered into franchising or licensing agreements in the Union in return for royalties with independent third-party companies,
+    where those agreements ensure a common identity, a common business concept and the application of uniform business methods, and where those royalties amounted to more than EUR 22 500 000 in the Union
+    in the financial year preceding the last financial year; and provided that the company generated, or is the ultimate parent company of a group that generated, a net turnover of more than EUR 80 000 000
+    in the Union in the financial year preceding the last financial year.
+
+
+    3.   Where the ultimate parent company has as its main activity the holding of shares in operational subsidiaries and does not engage in taking management, operational or financial decisions affecting
+    the group or one or more of its subsidiaries, it may be exempted from carrying out the obligations under this Directive. That exemption is subject to the condition that one of the ultimate parent company’s
+    subsidiaries established in the Union is designated to fulfil the obligations set out in Articles 6 to 16 and Article 22 on behalf of the ultimate parent company, including the obligations of the ultimate
+    parent company with respect to the activities of its subsidiaries. In such a case, the designated subsidiary is given all the necessary means and legal authority to fulfil those obligations in an effective
+    manner, in particular to ensure that the designated subsidiary obtains from the companies of the group the relevant information and documents to fulfil the obligations of the ultimate parent company
+    under this Directive.
+
+
+    The ultimate parent company shall apply for the exemption referred to in the first subparagraph of this paragraph to the competent supervisory authority, in accordance with Article 24, to assess whether
+    the conditions referred to in the first subparagraph of this paragraph are met. Where the conditions are met, the competent supervisory authority shall grant the exemption. Where applicable, such authority
+    shall duly inform the competent supervisory authority of the Member State where the designated subsidiary is established of the application and then of its decision.
+
+
+    The ultimate parent company shall remain jointly liable with the designated subsidiary for a failure of the latter to comply with its obligations in accordance with the first subparagraph of this paragraph.
+
+
+    4.   For the purposes of paragraph 1, the number of part-time employees shall be calculated on a full-time equivalent basis. Temporary agency workers and other workers in non-standard forms of employment,
+    provided that they fulfil the criteria for determining the status of worker as established by the Court of Justice of the European Union, shall be included in the calculation of the number of employees
+    in the same way as if they were workers employed directly for the same period of time by the company.
+
+
+    5.   Where a company meets the conditions laid down in paragraph 1 or 2, this Directive shall only apply if those conditions are met in two consecutive financial years. This Directive shall no longer
+    apply to a company referred to in paragraph 1 or 2 where the conditions laid down in paragraph 1 or 2 cease to be met for each of the last two relevant financial years.
+
+
+    6.   As regards the companies referred to in paragraph 1, the Member State competent to regulate matters covered by this Directive shall be the Member State in which the company has its registered office.
+
+
+    7.   As regards a company as referred to in paragraph 2, the Member State competent to regulate matters covered by this Directive shall be the Member State in which that company has a branch. If a company
+    does not have a branch in any Member State, or has branches located in different Member States, the Member State competent to regulate matters covered by this Directive shall be that in which that company
+    generated the highest net turnover in the Union in the financial year preceding the last financial year.
+
+
+    8.   This Directive shall not apply to AIFs, as defined in Article 4(1), point (a), of Directive 2011/61/EU of the European Parliament and of the Council
+
+    (
+
+    31
+
+    )
+
+    or to undertakings for collective investment in transferable securities (UCITS) within the meaning of Article 1(2) of Directive 2009/65/EC of the European Parliament and of the Council
+
+    (
+
+    32
+
+    )
+
+    .'
+- id: art-4
+  title: Article 3
+  text: 'Article 3
+
+
+    Definitions
+
+
+    1.   For the purpose of this Directive, the following definitions shall apply:
+
+
+    (a)
+
+
+    ‘company’ means any of the following:
+
+
+    (i)
+
+
+    a legal person constituted as one of the legal forms listed in Annexes I and II to Directive 2013/34/EU;
+
+
+    (ii)
+
+
+    a legal person constituted in accordance with the law of a third country in a form comparable to those listed in Annexes I and II to Directive 2013/34/EU;
+
+
+    (iii)
+
+
+    a regulated financial undertaking, regardless of its legal form, which is:
+
+
+    —
+
+
+    a credit institution, as defined in Article 4(1), point (1), of Regulation (EU) No 575/2013 the European Parliament and of the Council
+
+    (
+
+    33
+
+    )
+
+    ;
+
+
+    —
+
+
+    an investment firm, as defined in Article 4(1), point (1), of Directive 2014/65/EU the European Parliament and of the Council
+
+    (
+
+    34
+
+    )
+
+    ;
+
+
+    —
+
+
+    an alternative investment fund manager (AIFM), as defined in Article 4(1), point (b), of Directive 2011/61/EU, including a manager of European venture capital funds (EuVECA), as referred to in Regulation
+    (EU) No 345/2013 of the European Parliament and of the Council
+
+    (
+
+    35
+
+    )
+
+    , a manager of European social entrepreneurship funds (EuSEF), as referred to in Regulation (EU) No 346/2013 of the European Parliament and of the Council
+
+    (
+
+    36
+
+    )
+
+    , and a manager of European long-term investment funds (ELTIF), as referred to in Regulation (EU) 2015/760 of the European Parliament and of the Council
+
+    (
+
+    37
+
+    )
+
+    ;
+
+
+    —
+
+
+    a management company, as defined in Article 2(1), point (b), of Directive 2009/65/EC;
+
+
+    —
+
+
+    an insurance undertaking, as defined in Article 13, point (1), of Directive 2009/138/EC of the European Parliament and of the Council
+
+    (
+
+    38
+
+    )
+
+    ;
+
+
+    —
+
+
+    a reinsurance undertaking, as defined in Article 13, point (4), of Directive 2009/138/EC;
+
+
+    —
+
+
+    an institution for occupational retirement provision within the scope of Directive (EU) 2016/2341 in accordance with Article 2 thereof, unless a Member State has chosen not to apply that Directive in
+    whole or in part to those institutions for occupational retirement provision in accordance with Article 5 of that Directive;
+
+
+    —
+
+
+    a central counterparty, as defined in Article 2, point (1), of Regulation (EU) No 648/2012 of the European Parliament and of the Council
+
+    (
+
+    39
+
+    )
+
+    ;
+
+
+    —
+
+
+    a central securities depository, as defined in Article 2(1), point (1), of Regulation (EU) No 909/2014 of the European Parliament and of the Council
+
+    (
+
+    40
+
+    )
+
+    ;
+
+
+    —
+
+
+    an insurance or reinsurance special purpose vehicle authorised in accordance with Article 211 of Directive 2009/138/EC;
+
+
+    —
+
+
+    a securitisation special purpose entity, as defined in Article 2, point (2), of Regulation (EU) 2017/2402 of the European Parliament and of the Council
+
+    (
+
+    41
+
+    )
+
+    ;
+
+
+    —
+
+
+    a financial holding company, as defined in Article 4(1), point (20), of Regulation (EU) No 575/2013, an insurance holding company, as defined in Article 212(1), point (f), of Directive 2009/138/EC,
+    or a mixed financial holding company, as defined in Article 212(1), point (h), of Directive 2009/138/EC, which is part of an insurance group that is subject to supervision at the level of the group
+    pursuant to Article 213 of that Directive and which is not exempted from group supervision pursuant to Article 214(2) of Directive 2009/138/EC;
+
+
+    —
+
+
+    a payment institution, as referred to in Article 1(1), point (d), of Directive (EU) 2015/2366 of the European Parliament and of the Council
+
+    (
+
+    42
+
+    )
+
+    ;
+
+
+    —
+
+
+    an electronic money institution, as defined in Article 2, point (1), of Directive 2009/110/EC of the European Parliament and of the Council
+
+    (
+
+    43
+
+    )
+
+    ;
+
+
+    —
+
+
+    a crowdfunding service provider, as defined in Article 2(1), point (e), of Regulation (EU) 2020/1503 of the European Parliament and of the Council
+
+    (
+
+    44
+
+    )
+
+    ;
+
+
+    —
+
+
+    a crypto-asset service provider, as defined in Article 3(1), point (15), of Regulation (EU) 2023/1114 of the European Parliament and of the Council
+
+    (
+
+    45
+
+    )
+
+    , where performing one or more crypto-asset services, as defined in Article 3(1), point (16), of that Regulation;
+
+
+    (b)
+
+
+    ‘adverse environmental impact’ means an adverse impact on the environment resulting from the breach of the prohibitions and obligations listed in Part I, Section 1, points 15 and 16, and Part II of
+    the Annex to this Directive, taking into account national legislation linked to the provisions of the instruments listed therein;
+
+
+    (c)
+
+
+    ‘adverse human rights impact’ means an impact on persons resulting from:
+
+
+    (i)
+
+
+    an abuse of one of the human rights listed in Part I, Section 1, of the Annex to this Directive, as those human rights are enshrined in the international instruments listed in Part I, Section 2, of
+    the Annex to this Directive;
+
+
+    (ii)
+
+
+    an abuse of a human right not listed in Part I, Section 1, of the Annex to this Directive, but enshrined in the human rights instruments listed in Part I, Section 2, of the Annex to this Directive,
+    provided that:
+
+
+    —
+
+
+    the human right can be abused by a company or legal entity;
+
+
+    —
+
+
+    the human right abuse directly impairs a legal interest protected in the human rights instruments listed in Part I, Section 2, of the Annex to this Directive; and
+
+
+    —
+
+
+    the company could have reasonably foreseen the risk that such human right may be affected, taking into account the circumstances of the specific case, including the nature and extent of the company’s
+    business operations and its chain of activities, the characteristics of the economic sector and the geographical and operational context;
+
+
+    (d)
+
+
+    ‘adverse impact’ means an adverse environmental impact or adverse human rights impact;
+
+
+    (e)
+
+
+    ‘subsidiary’ means a legal person, as defined in Article 2, point (10), of Directive 2013/34/EU, and a legal person through which the activity of a controlled undertaking, as defined in Article 2(1),
+    point (f), of Directive 2004/109/EC of the European Parliament and of the Council
+
+    (
+
+    46
+
+    )
+
+    , is exercised;
+
+
+    (f)
+
+
+    ‘business partner’ means an entity:
+
+
+    (i)
+
+
+    with which the company has a commercial agreement related to the operations, products or services of the company or to which the company provides services pursuant to point (g) (‘direct business partner’);
+    or
+
+
+    (ii)
+
+
+    which is not a direct business partner but which performs business operations related to the operations, products or services of the company (‘indirect business partner’);
+
+
+    (g)
+
+
+    ‘chain of activities’ means:
+
+
+    (i)
+
+
+    activities of a company’s upstream business partners related to the production of goods or the provision of services by that company, including the design, extraction, sourcing, manufacture, transport,
+    storage and supply of raw materials, products or parts of products and the development of the product or the service; and
+
+
+    (ii)
+
+
+    activities of a company’s downstream business partners related to the distribution, transport and storage of a product of that company, where the business partners carry out those activities for the
+    company or on behalf of the company, and excluding the distribution, transport and storage of a product that is subject to export controls under Regulation (EU) 2021/821 or to the export controls relating
+    to weapons, munitions or war materials, once the export of the product is authorised;
+
+
+    (h)
+
+
+    ‘independent third-party verification’ means verification of the compliance by a company, or parts of its chain of activities, with human rights and environmental requirements resulting from this Directive
+    by an expert that is objective, completely independent from the company, free from any conflicts of interest and from external influence, has experience and competence in environmental or human rights
+    matters, according to the nature of the adverse impact, and is accountable for the quality and reliability of the verification;
+
+
+    (i)
+
+
+    ‘SME’ means a micro, small or a medium-sized undertaking, irrespective of its legal form, that is not part of a large group, as those terms are defined according to Article 3(1), (2), (3) and (7) of
+    Directive 2013/34/EU;
+
+
+    (j)
+
+
+    ‘industry or multi-stakeholder initiative’ means a combination of voluntary due diligence procedures, tools and mechanisms, developed and overseen by governments, industry associations, interested organisations,
+    including civil society organisations, or groupings or combinations thereof, that companies may participate in in order to support the implementation of due diligence obligations;
+
+
+    (k)
+
+
+    ‘authorised representative’ means a natural or legal person resident or established in the Union that has a mandate from a company within the meaning of point (a)(ii) to act on its behalf in relation
+    to compliance with that company’s obligations pursuant to this Directive;
+
+
+    (l)
+
+
+    ‘severe adverse impact’ means an adverse impact that is especially significant on account of its nature, such as an impact that entails harm to human life, health or liberty, or on account of its scale,
+    scope or irremediable character, taking into account its gravity, including the number of individuals that are or may be affected, the extent to which the environment is or may be damaged or otherwise
+    affected, its irreversibility and the limits on the ability to restore affected individuals or the environment to a situation equivalent to their situation prior to the impact within a reasonable period
+    of time;
+
+
+    (m)
+
+
+    ‘net turnover’ means:
+
+
+    (i)
+
+
+    the ‘net turnover’, as defined in Article 2, point (5), of Directive 2013/34/EU; or
+
+
+    (ii)
+
+
+    where the company applies international accounting standards adopted on the basis of Regulation (EC) No 1606/2002 of the European Parliament and of the Council
+
+    (
+
+    47
+
+    )
+
+    or is a company within the meaning of point (a)(ii), the revenue as defined by or within the meaning of the financial reporting framework on the basis of which the financial statements of the company
+    are prepared;
+
+
+    (n)
+
+
+    ‘stakeholders’ means the company’s employees, the employees of its subsidiaries, trade unions and workers’ representatives, consumers and other individuals, groupings, communities or entities whose
+    rights or interests are or could be affected by the products, services and operations of the company, its subsidiaries and its business partners, including the employees of the company’s business partners
+    and their trade unions and workers’ representatives, national human rights and environmental institutions, civil society organisations whose purposes include the protection of the environment, and the
+    legitimate representatives of those individuals, groupings, communities or entities;
+
+
+    (o)
+
+
+    ‘appropriate measures’ means measures that are capable of achieving the objectives of due diligence by effectively addressing adverse impacts in a manner commensurate to the degree of severity and the
+    likelihood of the adverse impact, and reasonably available to the company, taking into account the circumstances of the specific case, including the nature and extent of the adverse impact and relevant
+    risk factors;
+
+
+    (p)
+
+
+    ‘business relationship’ means the relationship of a company with a business partner;
+
+
+    (q)
+
+
+    ‘parent company’ means a company that controls one or more subsidiaries;
+
+
+    (r)
+
+
+    ‘ultimate parent company’ means a parent company that controls, either directly or indirectly in accordance with the criteria set out in Article 22(1) to (5) of Directive 2013/34/EU, one or more subsidiaries
+    and is not controlled by another company;
+
+
+    (s)
+
+
+    ‘group of companies’ or ‘group’ means a parent company and all its subsidiaries;
+
+
+    (t)
+
+
+    ‘remediation’ means restoration of the affected person or persons, communities or environment to a situation equivalent or as close as possible to the situation they would have been in had an actual
+    adverse impact not occurred, in proportion to the company’s implication in the adverse impact, including by financial or non-financial compensation provided by the company to a person or persons affected
+    by the actual adverse impact and, where applicable, reimbursement of the costs incurred by public authorities for any necessary remedial measures;
+
+
+    (u)
+
+
+    ‘risk factors’ means facts, situations or ci'
 doc_files:
 - eu/raw/EU-2024-1760_Corporate_Sustainability_Due_Diligence_CSDDD.pdf
+- eu/raw/EU-2024-1760_Corporate_Sustainability_Due_Diligence_CSDDD.xhtml
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 去重：合并同法规异名条目 EU-2024-1760_CORPORATE_SUSTAINABILITY_DUE_DILIGENCE_CSDDD-2（EU-2024-1760 Corporate Sustainability Due Diligence CSDDD [xhtml]）。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2024-1760_Corporate_Sustainability_Due_Diligence_CSDDD.pdf (pdf, 266645 chars)，生成 4 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2024-1760_Corporate_Sustainability_Due_Diligence_CSDDD.xhtml (html, 264314 chars)，生成 4 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2024-1760_Corporate_Sustainability_Due_Diligence_CSDDD.xhtml (html, 264314 chars)，生成 4 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

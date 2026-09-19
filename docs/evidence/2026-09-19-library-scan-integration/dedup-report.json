@@ -1,0 +1,1396 @@
+{
+  "date": "2026-09-19",
+  "groups": [
+    {
+      "canonical": "AU-C2004A03937_THERAPEUTIC_GOODS_ACT_1989",
+      "variants": [
+        "AU-AU_THERAPEUTIC_GOODS_ACT_1989_LEGISLATION-GOV-AU"
+      ],
+      "changes": [
+        "doc_files += au/raw/AU_Therapeutic_Goods_Act_1989_legislation.gov.au.html",
+        "merge AU-AU_THERAPEUTIC_GOODS_ACT_1989_LEGISLATION-GOV-AU"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1101",
+      "variants": [
+        "US-CFR-TITLE16-PART1101-4",
+        "US-CFR-TITLE16-PART1101-3",
+        "US-CFR-TITLE16-PART1101-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1101.pdf",
+        "merge US-CFR-TITLE16-PART1101-4",
+        "merge US-CFR-TITLE16-PART1101-3",
+        "merge US-CFR-TITLE16-PART1101-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1102",
+      "variants": [
+        "US-CFR-TITLE16-PART1102-4",
+        "US-CFR-TITLE16-PART1102-3",
+        "US-CFR-TITLE16-PART1102-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1102.pdf",
+        "merge US-CFR-TITLE16-PART1102-4",
+        "merge US-CFR-TITLE16-PART1102-3",
+        "merge US-CFR-TITLE16-PART1102-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1112",
+      "variants": [
+        "US-CFR-TITLE16-PART1112-4",
+        "US-CFR-TITLE16-PART1112-3",
+        "US-CFR-TITLE16-PART1112-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1112.pdf",
+        "merge US-CFR-TITLE16-PART1112-4",
+        "merge US-CFR-TITLE16-PART1112-3",
+        "merge US-CFR-TITLE16-PART1112-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1115",
+      "variants": [
+        "US-CFR-TITLE16-PART1115-4",
+        "US-CFR-TITLE16-PART1115-3",
+        "US-CFR-TITLE16-PART1115-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1115.pdf",
+        "merge US-CFR-TITLE16-PART1115-4",
+        "merge US-CFR-TITLE16-PART1115-3",
+        "merge US-CFR-TITLE16-PART1115-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1116",
+      "variants": [
+        "US-CFR-TITLE16-PART1116-4",
+        "US-CFR-TITLE16-PART1116-3",
+        "US-CFR-TITLE16-PART1116-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1116.pdf",
+        "merge US-CFR-TITLE16-PART1116-4",
+        "merge US-CFR-TITLE16-PART1116-3",
+        "merge US-CFR-TITLE16-PART1116-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1118",
+      "variants": [
+        "US-CFR-TITLE16-PART1118-4",
+        "US-CFR-TITLE16-PART1118-3",
+        "US-CFR-TITLE16-PART1118-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1118.pdf",
+        "merge US-CFR-TITLE16-PART1118-4",
+        "merge US-CFR-TITLE16-PART1118-3",
+        "merge US-CFR-TITLE16-PART1118-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1200",
+      "variants": [
+        "US-CFR-TITLE16-PART1200-4",
+        "US-CFR-TITLE16-PART1200-3",
+        "US-CFR-TITLE16-PART1200-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1200.pdf",
+        "merge US-CFR-TITLE16-PART1200-4",
+        "merge US-CFR-TITLE16-PART1200-3",
+        "merge US-CFR-TITLE16-PART1200-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1201",
+      "variants": [
+        "US-CFR-TITLE16-PART1201-4",
+        "US-CFR-TITLE16-PART1201-3",
+        "US-CFR-TITLE16-PART1201-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1201.pdf",
+        "merge US-CFR-TITLE16-PART1201-4",
+        "merge US-CFR-TITLE16-PART1201-3",
+        "merge US-CFR-TITLE16-PART1201-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1203",
+      "variants": [
+        "US-CFR-TITLE16-PART1203-4",
+        "US-CFR-TITLE16-PART1203-3",
+        "US-CFR-TITLE16-PART1203-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1203.pdf",
+        "merge US-CFR-TITLE16-PART1203-4",
+        "merge US-CFR-TITLE16-PART1203-3",
+        "merge US-CFR-TITLE16-PART1203-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1205",
+      "variants": [
+        "US-CFR-TITLE16-PART1205-4",
+        "US-CFR-TITLE16-PART1205-3",
+        "US-CFR-TITLE16-PART1205-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1205.pdf",
+        "merge US-CFR-TITLE16-PART1205-4",
+        "merge US-CFR-TITLE16-PART1205-3",
+        "merge US-CFR-TITLE16-PART1205-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1207",
+      "variants": [
+        "US-CFR-TITLE16-PART1207-4",
+        "US-CFR-TITLE16-PART1207-3",
+        "US-CFR-TITLE16-PART1207-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1207.pdf",
+        "merge US-CFR-TITLE16-PART1207-4",
+        "merge US-CFR-TITLE16-PART1207-3",
+        "merge US-CFR-TITLE16-PART1207-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1209",
+      "variants": [
+        "US-CFR-TITLE16-PART1209-4",
+        "US-CFR-TITLE16-PART1209-3",
+        "US-CFR-TITLE16-PART1209-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1209.pdf",
+        "merge US-CFR-TITLE16-PART1209-4",
+        "merge US-CFR-TITLE16-PART1209-3",
+        "merge US-CFR-TITLE16-PART1209-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1210",
+      "variants": [
+        "US-CFR-TITLE16-PART1210-4",
+        "US-CFR-TITLE16-PART1210-3",
+        "US-CFR-TITLE16-PART1210-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1210.pdf",
+        "merge US-CFR-TITLE16-PART1210-4",
+        "merge US-CFR-TITLE16-PART1210-3",
+        "merge US-CFR-TITLE16-PART1210-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1211",
+      "variants": [
+        "US-CFR-TITLE16-PART1211-4",
+        "US-CFR-TITLE16-PART1211-3",
+        "US-CFR-TITLE16-PART1211-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1211.pdf",
+        "merge US-CFR-TITLE16-PART1211-4",
+        "merge US-CFR-TITLE16-PART1211-3",
+        "merge US-CFR-TITLE16-PART1211-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1213",
+      "variants": [
+        "US-CFR-TITLE16-PART1213-4",
+        "US-CFR-TITLE16-PART1213-3",
+        "US-CFR-TITLE16-PART1213-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1213.pdf",
+        "merge US-CFR-TITLE16-PART1213-4",
+        "merge US-CFR-TITLE16-PART1213-3",
+        "merge US-CFR-TITLE16-PART1213-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1219",
+      "variants": [
+        "US-CFR-TITLE16-PART1219-4",
+        "US-CFR-TITLE16-PART1219-3",
+        "US-CFR-TITLE16-PART1219-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1219.pdf",
+        "merge US-CFR-TITLE16-PART1219-4",
+        "merge US-CFR-TITLE16-PART1219-3",
+        "merge US-CFR-TITLE16-PART1219-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1220",
+      "variants": [
+        "US-CFR-TITLE16-PART1220-4",
+        "US-CFR-TITLE16-PART1220-3",
+        "US-CFR-TITLE16-PART1220-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1220.pdf",
+        "merge US-CFR-TITLE16-PART1220-4",
+        "merge US-CFR-TITLE16-PART1220-3",
+        "merge US-CFR-TITLE16-PART1220-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1221",
+      "variants": [
+        "US-CFR-TITLE16-PART1221-4",
+        "US-CFR-TITLE16-PART1221-3",
+        "US-CFR-TITLE16-PART1221-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1221.pdf",
+        "merge US-CFR-TITLE16-PART1221-4",
+        "merge US-CFR-TITLE16-PART1221-3",
+        "merge US-CFR-TITLE16-PART1221-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1224",
+      "variants": [
+        "US-CFR-TITLE16-PART1224-4",
+        "US-CFR-TITLE16-PART1224-3",
+        "US-CFR-TITLE16-PART1224-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1224.pdf",
+        "merge US-CFR-TITLE16-PART1224-4",
+        "merge US-CFR-TITLE16-PART1224-3",
+        "merge US-CFR-TITLE16-PART1224-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1250",
+      "variants": [
+        "US-CFR-TITLE16-PART1250-4",
+        "US-CFR-TITLE16-PART1250-3",
+        "US-CFR-TITLE16-PART1250-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1250.pdf",
+        "merge US-CFR-TITLE16-PART1250-4",
+        "merge US-CFR-TITLE16-PART1250-3",
+        "merge US-CFR-TITLE16-PART1250-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1263",
+      "variants": [
+        "US-CFR-TITLE16-PART1263-4",
+        "US-CFR-TITLE16-PART1263-3",
+        "US-CFR-TITLE16-PART1263-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1263.pdf",
+        "merge US-CFR-TITLE16-PART1263-4",
+        "merge US-CFR-TITLE16-PART1263-3",
+        "merge US-CFR-TITLE16-PART1263-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1301",
+      "variants": [
+        "US-CFR-TITLE16-PART1301-4",
+        "US-CFR-TITLE16-PART1301-3",
+        "US-CFR-TITLE16-PART1301-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1301.pdf",
+        "merge US-CFR-TITLE16-PART1301-4",
+        "merge US-CFR-TITLE16-PART1301-3",
+        "merge US-CFR-TITLE16-PART1301-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1303",
+      "variants": [
+        "US-CFR-TITLE16-PART1303-4",
+        "US-CFR-TITLE16-PART1303-3",
+        "US-CFR-TITLE16-PART1303-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1303.pdf",
+        "merge US-CFR-TITLE16-PART1303-4",
+        "merge US-CFR-TITLE16-PART1303-3",
+        "merge US-CFR-TITLE16-PART1303-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1304",
+      "variants": [
+        "US-CFR-TITLE16-PART1304-4",
+        "US-CFR-TITLE16-PART1304-3",
+        "US-CFR-TITLE16-PART1304-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1304.pdf",
+        "merge US-CFR-TITLE16-PART1304-4",
+        "merge US-CFR-TITLE16-PART1304-3",
+        "merge US-CFR-TITLE16-PART1304-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1306",
+      "variants": [
+        "US-CFR-TITLE16-PART1306-4",
+        "US-CFR-TITLE16-PART1306-3",
+        "US-CFR-TITLE16-PART1306-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1306.pdf",
+        "merge US-CFR-TITLE16-PART1306-4",
+        "merge US-CFR-TITLE16-PART1306-3",
+        "merge US-CFR-TITLE16-PART1306-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1307",
+      "variants": [
+        "US-CFR-TITLE16-PART1307-4",
+        "US-CFR-TITLE16-PART1307-3",
+        "US-CFR-TITLE16-PART1307-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1307.pdf",
+        "merge US-CFR-TITLE16-PART1307-4",
+        "merge US-CFR-TITLE16-PART1307-3",
+        "merge US-CFR-TITLE16-PART1307-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1401",
+      "variants": [
+        "US-CFR-TITLE16-PART1401-4",
+        "US-CFR-TITLE16-PART1401-3",
+        "US-CFR-TITLE16-PART1401-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1401.pdf",
+        "merge US-CFR-TITLE16-PART1401-4",
+        "merge US-CFR-TITLE16-PART1401-3",
+        "merge US-CFR-TITLE16-PART1401-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1402",
+      "variants": [
+        "US-CFR-TITLE16-PART1402-4",
+        "US-CFR-TITLE16-PART1402-3",
+        "US-CFR-TITLE16-PART1402-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1402.pdf",
+        "merge US-CFR-TITLE16-PART1402-4",
+        "merge US-CFR-TITLE16-PART1402-3",
+        "merge US-CFR-TITLE16-PART1402-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1500",
+      "variants": [
+        "US-CFR-TITLE16-PART1500-4",
+        "US-CFR-TITLE16-PART1500-3",
+        "US-CFR-TITLE16-PART1500-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1500.pdf",
+        "merge US-CFR-TITLE16-PART1500-4",
+        "merge US-CFR-TITLE16-PART1500-3",
+        "merge US-CFR-TITLE16-PART1500-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1501",
+      "variants": [
+        "US-CFR-TITLE16-PART1501-4",
+        "US-CFR-TITLE16-PART1501-3",
+        "US-CFR-TITLE16-PART1501-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1501.pdf",
+        "merge US-CFR-TITLE16-PART1501-4",
+        "merge US-CFR-TITLE16-PART1501-3",
+        "merge US-CFR-TITLE16-PART1501-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1502",
+      "variants": [
+        "US-CFR-TITLE16-PART1502-4",
+        "US-CFR-TITLE16-PART1502-3",
+        "US-CFR-TITLE16-PART1502-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1502.pdf",
+        "merge US-CFR-TITLE16-PART1502-4",
+        "merge US-CFR-TITLE16-PART1502-3",
+        "merge US-CFR-TITLE16-PART1502-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1505",
+      "variants": [
+        "US-CFR-TITLE16-PART1505-4",
+        "US-CFR-TITLE16-PART1505-3",
+        "US-CFR-TITLE16-PART1505-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1505.pdf",
+        "merge US-CFR-TITLE16-PART1505-4",
+        "merge US-CFR-TITLE16-PART1505-3",
+        "merge US-CFR-TITLE16-PART1505-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1511",
+      "variants": [
+        "US-CFR-TITLE16-PART1511-4",
+        "US-CFR-TITLE16-PART1511-3",
+        "US-CFR-TITLE16-PART1511-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1511.pdf",
+        "merge US-CFR-TITLE16-PART1511-4",
+        "merge US-CFR-TITLE16-PART1511-3",
+        "merge US-CFR-TITLE16-PART1511-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1512",
+      "variants": [
+        "US-CFR-TITLE16-PART1512-4",
+        "US-CFR-TITLE16-PART1512-3",
+        "US-CFR-TITLE16-PART1512-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1512.pdf",
+        "merge US-CFR-TITLE16-PART1512-4",
+        "merge US-CFR-TITLE16-PART1512-3",
+        "merge US-CFR-TITLE16-PART1512-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1513",
+      "variants": [
+        "US-CFR-TITLE16-PART1513-4",
+        "US-CFR-TITLE16-PART1513-3",
+        "US-CFR-TITLE16-PART1513-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1513.pdf",
+        "merge US-CFR-TITLE16-PART1513-4",
+        "merge US-CFR-TITLE16-PART1513-3",
+        "merge US-CFR-TITLE16-PART1513-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1610",
+      "variants": [
+        "US-CFR-TITLE16-PART1610-4",
+        "US-CFR-TITLE16-PART1610-3",
+        "US-CFR-TITLE16-PART1610-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1610.pdf",
+        "merge US-CFR-TITLE16-PART1610-4",
+        "merge US-CFR-TITLE16-PART1610-3",
+        "merge US-CFR-TITLE16-PART1610-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1615",
+      "variants": [
+        "US-CFR-TITLE16-PART1615-4",
+        "US-CFR-TITLE16-PART1615-3",
+        "US-CFR-TITLE16-PART1615-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1615.pdf",
+        "merge US-CFR-TITLE16-PART1615-4",
+        "merge US-CFR-TITLE16-PART1615-3",
+        "merge US-CFR-TITLE16-PART1615-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1616",
+      "variants": [
+        "US-CFR-TITLE16-PART1616-4",
+        "US-CFR-TITLE16-PART1616-3",
+        "US-CFR-TITLE16-PART1616-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1616.pdf",
+        "merge US-CFR-TITLE16-PART1616-4",
+        "merge US-CFR-TITLE16-PART1616-3",
+        "merge US-CFR-TITLE16-PART1616-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1630",
+      "variants": [
+        "US-CFR-TITLE16-PART1630-4",
+        "US-CFR-TITLE16-PART1630-3",
+        "US-CFR-TITLE16-PART1630-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1630.pdf",
+        "merge US-CFR-TITLE16-PART1630-4",
+        "merge US-CFR-TITLE16-PART1630-3",
+        "merge US-CFR-TITLE16-PART1630-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1631",
+      "variants": [
+        "US-CFR-TITLE16-PART1631-4",
+        "US-CFR-TITLE16-PART1631-3",
+        "US-CFR-TITLE16-PART1631-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1631.pdf",
+        "merge US-CFR-TITLE16-PART1631-4",
+        "merge US-CFR-TITLE16-PART1631-3",
+        "merge US-CFR-TITLE16-PART1631-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1632",
+      "variants": [
+        "US-CFR-TITLE16-PART1632-4",
+        "US-CFR-TITLE16-PART1632-3",
+        "US-CFR-TITLE16-PART1632-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1632.pdf",
+        "merge US-CFR-TITLE16-PART1632-4",
+        "merge US-CFR-TITLE16-PART1632-3",
+        "merge US-CFR-TITLE16-PART1632-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1633",
+      "variants": [
+        "US-CFR-TITLE16-PART1633-4",
+        "US-CFR-TITLE16-PART1633-3",
+        "US-CFR-TITLE16-PART1633-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1633.pdf",
+        "merge US-CFR-TITLE16-PART1633-4",
+        "merge US-CFR-TITLE16-PART1633-3",
+        "merge US-CFR-TITLE16-PART1633-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE16-PART1700",
+      "variants": [
+        "US-CFR-TITLE16-PART1700-4",
+        "US-CFR-TITLE16-PART1700-3",
+        "US-CFR-TITLE16-PART1700-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title16-part1700.pdf",
+        "merge US-CFR-TITLE16-PART1700-4",
+        "merge US-CFR-TITLE16-PART1700-3",
+        "merge US-CFR-TITLE16-PART1700-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE19-PART102",
+      "variants": [
+        "US-CFR-TITLE19-PART102-4",
+        "US-CFR-TITLE19-PART102-3",
+        "US-CFR-TITLE19-PART102-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title19-part102.pdf",
+        "merge US-CFR-TITLE19-PART102-4",
+        "merge US-CFR-TITLE19-PART102-3",
+        "merge US-CFR-TITLE19-PART102-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE19-PART134",
+      "variants": [
+        "US-CFR-TITLE19-PART134-4",
+        "US-CFR-TITLE19-PART134-3",
+        "US-CFR-TITLE19-PART134-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title19-part134.pdf",
+        "merge US-CFR-TITLE19-PART134-4",
+        "merge US-CFR-TITLE19-PART134-3",
+        "merge US-CFR-TITLE19-PART134-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE19-PART145",
+      "variants": [
+        "US-CFR-TITLE19-PART145-4",
+        "US-CFR-TITLE19-PART145-3",
+        "US-CFR-TITLE19-PART145-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title19-part145.pdf",
+        "merge US-CFR-TITLE19-PART145-4",
+        "merge US-CFR-TITLE19-PART145-3",
+        "merge US-CFR-TITLE19-PART145-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE21-PART1",
+      "variants": [
+        "US-CFR-TITLE21-PART1-4",
+        "US-CFR-TITLE21-PART1-3",
+        "US-CFR-TITLE21-PART1-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title21-part1.pdf",
+        "merge US-CFR-TITLE21-PART1-4",
+        "merge US-CFR-TITLE21-PART1-3",
+        "merge US-CFR-TITLE21-PART1-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE21-PART101",
+      "variants": [
+        "US-CFR-TITLE21-PART101-4",
+        "US-CFR-TITLE21-PART101-3",
+        "US-CFR-TITLE21-PART101-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title21-part101.pdf",
+        "merge US-CFR-TITLE21-PART101-4",
+        "merge US-CFR-TITLE21-PART101-3",
+        "merge US-CFR-TITLE21-PART101-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE21-PART110",
+      "variants": [
+        "US-CFR-TITLE21-PART110-4",
+        "US-CFR-TITLE21-PART110-3",
+        "US-CFR-TITLE21-PART110-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title21-part110.pdf",
+        "merge US-CFR-TITLE21-PART110-4",
+        "merge US-CFR-TITLE21-PART110-3",
+        "merge US-CFR-TITLE21-PART110-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE21-PART111",
+      "variants": [
+        "US-CFR-TITLE21-PART111-4",
+        "US-CFR-TITLE21-PART111-3",
+        "US-CFR-TITLE21-PART111-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title21-part111.pdf",
+        "merge US-CFR-TITLE21-PART111-4",
+        "merge US-CFR-TITLE21-PART111-3",
+        "merge US-CFR-TITLE21-PART111-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE21-PART117",
+      "variants": [
+        "US-CFR-TITLE21-PART117-4",
+        "US-CFR-TITLE21-PART117-3",
+        "US-CFR-TITLE21-PART117-2"
+      ],
+      "changes": [
+        "merge US-CFR-TITLE21-PART117-4",
+        "doc_files += us/raw/US-CFR-title21-part117.xml",
+        "merge US-CFR-TITLE21-PART117-3",
+        "merge US-CFR-TITLE21-PART117-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE21-PART170",
+      "variants": [
+        "US-CFR-TITLE21-PART170-4",
+        "US-CFR-TITLE21-PART170-3",
+        "US-CFR-TITLE21-PART170-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title21-part170.pdf",
+        "merge US-CFR-TITLE21-PART170-4",
+        "merge US-CFR-TITLE21-PART170-3",
+        "merge US-CFR-TITLE21-PART170-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE21-PART171",
+      "variants": [
+        "US-CFR-TITLE21-PART171-4",
+        "US-CFR-TITLE21-PART171-3",
+        "US-CFR-TITLE21-PART171-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title21-part171.pdf",
+        "merge US-CFR-TITLE21-PART171-4",
+        "merge US-CFR-TITLE21-PART171-3",
+        "merge US-CFR-TITLE21-PART171-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE21-PART172",
+      "variants": [
+        "US-CFR-TITLE21-PART172-4",
+        "US-CFR-TITLE21-PART172-3",
+        "US-CFR-TITLE21-PART172-2"
+      ],
+      "changes": [
+        "merge US-CFR-TITLE21-PART172-4",
+        "doc_files += us/raw/US-CFR-title21-part172.xml",
+        "merge US-CFR-TITLE21-PART172-3",
+        "merge US-CFR-TITLE21-PART172-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE21-PART173",
+      "variants": [
+        "US-CFR-TITLE21-PART173-4",
+        "US-CFR-TITLE21-PART173-3",
+        "US-CFR-TITLE21-PART173-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title21-part173.pdf",
+        "merge US-CFR-TITLE21-PART173-4",
+        "merge US-CFR-TITLE21-PART173-3",
+        "merge US-CFR-TITLE21-PART173-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE21-PART174",
+      "variants": [
+        "US-CFR-TITLE21-PART174-4",
+        "US-CFR-TITLE21-PART174-3",
+        "US-CFR-TITLE21-PART174-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title21-part174.pdf",
+        "merge US-CFR-TITLE21-PART174-4",
+        "merge US-CFR-TITLE21-PART174-3",
+        "merge US-CFR-TITLE21-PART174-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE21-PART175",
+      "variants": [
+        "US-CFR-TITLE21-PART175-4",
+        "US-CFR-TITLE21-PART175-3",
+        "US-CFR-TITLE21-PART175-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title21-part175.pdf",
+        "merge US-CFR-TITLE21-PART175-4",
+        "merge US-CFR-TITLE21-PART175-3",
+        "merge US-CFR-TITLE21-PART175-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE21-PART176",
+      "variants": [
+        "US-CFR-TITLE21-PART176-4",
+        "US-CFR-TITLE21-PART176-3",
+        "US-CFR-TITLE21-PART176-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title21-part176.pdf",
+        "merge US-CFR-TITLE21-PART176-4",
+        "merge US-CFR-TITLE21-PART176-3",
+        "merge US-CFR-TITLE21-PART176-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE21-PART177",
+      "variants": [
+        "US-CFR-TITLE21-PART177-4",
+        "US-CFR-TITLE21-PART177-3",
+        "US-CFR-TITLE21-PART177-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title21-part177.pdf",
+        "merge US-CFR-TITLE21-PART177-4",
+        "merge US-CFR-TITLE21-PART177-3",
+        "merge US-CFR-TITLE21-PART177-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE21-PART178",
+      "variants": [
+        "US-CFR-TITLE21-PART178-4",
+        "US-CFR-TITLE21-PART178-3",
+        "US-CFR-TITLE21-PART178-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title21-part178.pdf",
+        "merge US-CFR-TITLE21-PART178-4",
+        "merge US-CFR-TITLE21-PART178-3",
+        "merge US-CFR-TITLE21-PART178-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE21-PART179",
+      "variants": [
+        "US-CFR-TITLE21-PART179-4",
+        "US-CFR-TITLE21-PART179-3",
+        "US-CFR-TITLE21-PART179-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title21-part179.pdf",
+        "merge US-CFR-TITLE21-PART179-4",
+        "merge US-CFR-TITLE21-PART179-3",
+        "merge US-CFR-TITLE21-PART179-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE21-PART180",
+      "variants": [
+        "US-CFR-TITLE21-PART180-4",
+        "US-CFR-TITLE21-PART180-3",
+        "US-CFR-TITLE21-PART180-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title21-part180.pdf",
+        "merge US-CFR-TITLE21-PART180-4",
+        "merge US-CFR-TITLE21-PART180-3",
+        "merge US-CFR-TITLE21-PART180-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE21-PART181",
+      "variants": [
+        "US-CFR-TITLE21-PART181-4",
+        "US-CFR-TITLE21-PART181-3",
+        "US-CFR-TITLE21-PART181-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title21-part181.pdf",
+        "merge US-CFR-TITLE21-PART181-4",
+        "merge US-CFR-TITLE21-PART181-3",
+        "merge US-CFR-TITLE21-PART181-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE21-PART182",
+      "variants": [
+        "US-CFR-TITLE21-PART182-4",
+        "US-CFR-TITLE21-PART182-3",
+        "US-CFR-TITLE21-PART182-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title21-part182.pdf",
+        "merge US-CFR-TITLE21-PART182-4",
+        "merge US-CFR-TITLE21-PART182-3",
+        "merge US-CFR-TITLE21-PART182-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE21-PART184",
+      "variants": [
+        "US-CFR-TITLE21-PART184-4",
+        "US-CFR-TITLE21-PART184-3",
+        "US-CFR-TITLE21-PART184-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title21-part184.pdf",
+        "merge US-CFR-TITLE21-PART184-4",
+        "merge US-CFR-TITLE21-PART184-3",
+        "merge US-CFR-TITLE21-PART184-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE21-PART186",
+      "variants": [
+        "US-CFR-TITLE21-PART186-4",
+        "US-CFR-TITLE21-PART186-3",
+        "US-CFR-TITLE21-PART186-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title21-part186.pdf",
+        "merge US-CFR-TITLE21-PART186-4",
+        "merge US-CFR-TITLE21-PART186-3",
+        "merge US-CFR-TITLE21-PART186-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE21-PART189",
+      "variants": [
+        "US-CFR-TITLE21-PART189-4",
+        "US-CFR-TITLE21-PART189-3",
+        "US-CFR-TITLE21-PART189-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title21-part189.pdf",
+        "merge US-CFR-TITLE21-PART189-4",
+        "merge US-CFR-TITLE21-PART189-3",
+        "merge US-CFR-TITLE21-PART189-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE21-PART190-4",
+      "variants": [
+        "US-CFR-TITLE21-PART190-2",
+        "US-CFR-TITLE21-PART190",
+        "US-CFR-TITLE21-PART190-3"
+      ],
+      "changes": [
+        "merge US-CFR-TITLE21-PART190-2",
+        "doc_files += us/raw/US-CFR-title21-part190.xml",
+        "merge US-CFR-TITLE21-PART190",
+        "merge US-CFR-TITLE21-PART190-3"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE21-PART700",
+      "variants": [
+        "US-CFR-TITLE21-PART700-4",
+        "US-CFR-TITLE21-PART700-3",
+        "US-CFR-TITLE21-PART700-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title21-part700.pdf",
+        "merge US-CFR-TITLE21-PART700-4",
+        "merge US-CFR-TITLE21-PART700-3",
+        "merge US-CFR-TITLE21-PART700-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE21-PART701",
+      "variants": [
+        "US-CFR-TITLE21-PART701-4",
+        "US-CFR-TITLE21-PART701-3",
+        "US-CFR-TITLE21-PART701-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title21-part701.pdf",
+        "merge US-CFR-TITLE21-PART701-4",
+        "merge US-CFR-TITLE21-PART701-3",
+        "merge US-CFR-TITLE21-PART701-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE21-PART710",
+      "variants": [
+        "US-CFR-TITLE21-PART710-4",
+        "US-CFR-TITLE21-PART710-3",
+        "US-CFR-TITLE21-PART710-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title21-part710.pdf",
+        "merge US-CFR-TITLE21-PART710-4",
+        "merge US-CFR-TITLE21-PART710-3",
+        "merge US-CFR-TITLE21-PART710-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE21-PART720",
+      "variants": [
+        "US-CFR-TITLE21-PART720-4",
+        "US-CFR-TITLE21-PART720-3",
+        "US-CFR-TITLE21-PART720-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title21-part720.pdf",
+        "merge US-CFR-TITLE21-PART720-4",
+        "merge US-CFR-TITLE21-PART720-3",
+        "merge US-CFR-TITLE21-PART720-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE21-PART740",
+      "variants": [
+        "US-CFR-TITLE21-PART740-4",
+        "US-CFR-TITLE21-PART740-3",
+        "US-CFR-TITLE21-PART740-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title21-part740.pdf",
+        "merge US-CFR-TITLE21-PART740-4",
+        "merge US-CFR-TITLE21-PART740-3",
+        "merge US-CFR-TITLE21-PART740-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE47-PART15",
+      "variants": [
+        "US-CFR-TITLE47-PART15-4",
+        "US-CFR-TITLE47-PART15-3",
+        "US-CFR-TITLE47-PART15-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title47-part15.pdf",
+        "merge US-CFR-TITLE47-PART15-4",
+        "merge US-CFR-TITLE47-PART15-3",
+        "merge US-CFR-TITLE47-PART15-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE47-PART18",
+      "variants": [
+        "US-CFR-TITLE47-PART18-4",
+        "US-CFR-TITLE47-PART18-3",
+        "US-CFR-TITLE47-PART18-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title47-part18.pdf",
+        "merge US-CFR-TITLE47-PART18-4",
+        "merge US-CFR-TITLE47-PART18-3",
+        "merge US-CFR-TITLE47-PART18-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE47-PART2",
+      "variants": [
+        "US-CFR-TITLE47-PART2-4",
+        "US-CFR-TITLE47-PART2-3",
+        "US-CFR-TITLE47-PART2-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title47-part2.pdf",
+        "merge US-CFR-TITLE47-PART2-4",
+        "merge US-CFR-TITLE47-PART2-3",
+        "merge US-CFR-TITLE47-PART2-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE47-PART68",
+      "variants": [
+        "US-CFR-TITLE47-PART68-4",
+        "US-CFR-TITLE47-PART68-3",
+        "US-CFR-TITLE47-PART68-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title47-part68.pdf",
+        "merge US-CFR-TITLE47-PART68-4",
+        "merge US-CFR-TITLE47-PART68-3",
+        "merge US-CFR-TITLE47-PART68-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE49-PART171",
+      "variants": [
+        "US-CFR-TITLE49-PART171-4",
+        "US-CFR-TITLE49-PART171-3",
+        "US-CFR-TITLE49-PART171-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title49-part171.pdf",
+        "merge US-CFR-TITLE49-PART171-4",
+        "merge US-CFR-TITLE49-PART171-3",
+        "merge US-CFR-TITLE49-PART171-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE49-PART172",
+      "variants": [
+        "US-CFR-TITLE49-PART172-4",
+        "US-CFR-TITLE49-PART172-3",
+        "US-CFR-TITLE49-PART172-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title49-part172.pdf",
+        "merge US-CFR-TITLE49-PART172-4",
+        "merge US-CFR-TITLE49-PART172-3",
+        "merge US-CFR-TITLE49-PART172-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE49-PART173",
+      "variants": [
+        "US-CFR-TITLE49-PART173-4",
+        "US-CFR-TITLE49-PART173-3",
+        "US-CFR-TITLE49-PART173-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title49-part173.pdf",
+        "merge US-CFR-TITLE49-PART173-4",
+        "merge US-CFR-TITLE49-PART173-3",
+        "merge US-CFR-TITLE49-PART173-2"
+      ]
+    },
+    {
+      "canonical": "US-CFR-TITLE49-PART178",
+      "variants": [
+        "US-CFR-TITLE49-PART178-4",
+        "US-CFR-TITLE49-PART178-3",
+        "US-CFR-TITLE49-PART178-2"
+      ],
+      "changes": [
+        "doc_files += us/raw/US-CFR-title49-part178.pdf",
+        "merge US-CFR-TITLE49-PART178-4",
+        "merge US-CFR-TITLE49-PART178-3",
+        "merge US-CFR-TITLE49-PART178-2"
+      ]
+    }
+  ],
+  "removed_yaml_files": [
+    "AU-AU_THERAPEUTIC_GOODS_ACT_1989_LEGISLATION-GOV-AU.yaml",
+    "US-CFR-TITLE16-PART1101-2.yaml",
+    "US-CFR-TITLE16-PART1101-3.yaml",
+    "US-CFR-TITLE16-PART1101-4.yaml",
+    "US-CFR-TITLE16-PART1102-2.yaml",
+    "US-CFR-TITLE16-PART1102-3.yaml",
+    "US-CFR-TITLE16-PART1102-4.yaml",
+    "US-CFR-TITLE16-PART1112-2.yaml",
+    "US-CFR-TITLE16-PART1112-3.yaml",
+    "US-CFR-TITLE16-PART1112-4.yaml",
+    "US-CFR-TITLE16-PART1115-2.yaml",
+    "US-CFR-TITLE16-PART1115-3.yaml",
+    "US-CFR-TITLE16-PART1115-4.yaml",
+    "US-CFR-TITLE16-PART1116-2.yaml",
+    "US-CFR-TITLE16-PART1116-3.yaml",
+    "US-CFR-TITLE16-PART1116-4.yaml",
+    "US-CFR-TITLE16-PART1118-2.yaml",
+    "US-CFR-TITLE16-PART1118-3.yaml",
+    "US-CFR-TITLE16-PART1118-4.yaml",
+    "US-CFR-TITLE16-PART1200-2.yaml",
+    "US-CFR-TITLE16-PART1200-3.yaml",
+    "US-CFR-TITLE16-PART1200-4.yaml",
+    "US-CFR-TITLE16-PART1201-2.yaml",
+    "US-CFR-TITLE16-PART1201-3.yaml",
+    "US-CFR-TITLE16-PART1201-4.yaml",
+    "US-CFR-TITLE16-PART1203-2.yaml",
+    "US-CFR-TITLE16-PART1203-3.yaml",
+    "US-CFR-TITLE16-PART1203-4.yaml",
+    "US-CFR-TITLE16-PART1205-2.yaml",
+    "US-CFR-TITLE16-PART1205-3.yaml",
+    "US-CFR-TITLE16-PART1205-4.yaml",
+    "US-CFR-TITLE16-PART1207-2.yaml",
+    "US-CFR-TITLE16-PART1207-3.yaml",
+    "US-CFR-TITLE16-PART1207-4.yaml",
+    "US-CFR-TITLE16-PART1209-2.yaml",
+    "US-CFR-TITLE16-PART1209-3.yaml",
+    "US-CFR-TITLE16-PART1209-4.yaml",
+    "US-CFR-TITLE16-PART1210-2.yaml",
+    "US-CFR-TITLE16-PART1210-3.yaml",
+    "US-CFR-TITLE16-PART1210-4.yaml",
+    "US-CFR-TITLE16-PART1211-2.yaml",
+    "US-CFR-TITLE16-PART1211-3.yaml",
+    "US-CFR-TITLE16-PART1211-4.yaml",
+    "US-CFR-TITLE16-PART1213-2.yaml",
+    "US-CFR-TITLE16-PART1213-3.yaml",
+    "US-CFR-TITLE16-PART1213-4.yaml",
+    "US-CFR-TITLE16-PART1219-2.yaml",
+    "US-CFR-TITLE16-PART1219-3.yaml",
+    "US-CFR-TITLE16-PART1219-4.yaml",
+    "US-CFR-TITLE16-PART1220-2.yaml",
+    "US-CFR-TITLE16-PART1220-3.yaml",
+    "US-CFR-TITLE16-PART1220-4.yaml",
+    "US-CFR-TITLE16-PART1221-2.yaml",
+    "US-CFR-TITLE16-PART1221-3.yaml",
+    "US-CFR-TITLE16-PART1221-4.yaml",
+    "US-CFR-TITLE16-PART1224-2.yaml",
+    "US-CFR-TITLE16-PART1224-3.yaml",
+    "US-CFR-TITLE16-PART1224-4.yaml",
+    "US-CFR-TITLE16-PART1250-2.yaml",
+    "US-CFR-TITLE16-PART1250-3.yaml",
+    "US-CFR-TITLE16-PART1250-4.yaml",
+    "US-CFR-TITLE16-PART1263-2.yaml",
+    "US-CFR-TITLE16-PART1263-3.yaml",
+    "US-CFR-TITLE16-PART1263-4.yaml",
+    "US-CFR-TITLE16-PART1301-2.yaml",
+    "US-CFR-TITLE16-PART1301-3.yaml",
+    "US-CFR-TITLE16-PART1301-4.yaml",
+    "US-CFR-TITLE16-PART1303-2.yaml",
+    "US-CFR-TITLE16-PART1303-3.yaml",
+    "US-CFR-TITLE16-PART1303-4.yaml",
+    "US-CFR-TITLE16-PART1304-2.yaml",
+    "US-CFR-TITLE16-PART1304-3.yaml",
+    "US-CFR-TITLE16-PART1304-4.yaml",
+    "US-CFR-TITLE16-PART1306-2.yaml",
+    "US-CFR-TITLE16-PART1306-3.yaml",
+    "US-CFR-TITLE16-PART1306-4.yaml",
+    "US-CFR-TITLE16-PART1307-2.yaml",
+    "US-CFR-TITLE16-PART1307-3.yaml",
+    "US-CFR-TITLE16-PART1307-4.yaml",
+    "US-CFR-TITLE16-PART1401-2.yaml",
+    "US-CFR-TITLE16-PART1401-3.yaml",
+    "US-CFR-TITLE16-PART1401-4.yaml",
+    "US-CFR-TITLE16-PART1402-2.yaml",
+    "US-CFR-TITLE16-PART1402-3.yaml",
+    "US-CFR-TITLE16-PART1402-4.yaml",
+    "US-CFR-TITLE16-PART1500-2.yaml",
+    "US-CFR-TITLE16-PART1500-3.yaml",
+    "US-CFR-TITLE16-PART1500-4.yaml",
+    "US-CFR-TITLE16-PART1501-2.yaml",
+    "US-CFR-TITLE16-PART1501-3.yaml",
+    "US-CFR-TITLE16-PART1501-4.yaml",
+    "US-CFR-TITLE16-PART1502-2.yaml",
+    "US-CFR-TITLE16-PART1502-3.yaml",
+    "US-CFR-TITLE16-PART1502-4.yaml",
+    "US-CFR-TITLE16-PART1505-2.yaml",
+    "US-CFR-TITLE16-PART1505-3.yaml",
+    "US-CFR-TITLE16-PART1505-4.yaml",
+    "US-CFR-TITLE16-PART1511-2.yaml",
+    "US-CFR-TITLE16-PART1511-3.yaml",
+    "US-CFR-TITLE16-PART1511-4.yaml",
+    "US-CFR-TITLE16-PART1512-2.yaml",
+    "US-CFR-TITLE16-PART1512-3.yaml",
+    "US-CFR-TITLE16-PART1512-4.yaml",
+    "US-CFR-TITLE16-PART1513-2.yaml",
+    "US-CFR-TITLE16-PART1513-3.yaml",
+    "US-CFR-TITLE16-PART1513-4.yaml",
+    "US-CFR-TITLE16-PART1610-2.yaml",
+    "US-CFR-TITLE16-PART1610-3.yaml",
+    "US-CFR-TITLE16-PART1610-4.yaml",
+    "US-CFR-TITLE16-PART1615-2.yaml",
+    "US-CFR-TITLE16-PART1615-3.yaml",
+    "US-CFR-TITLE16-PART1615-4.yaml",
+    "US-CFR-TITLE16-PART1616-2.yaml",
+    "US-CFR-TITLE16-PART1616-3.yaml",
+    "US-CFR-TITLE16-PART1616-4.yaml",
+    "US-CFR-TITLE16-PART1630-2.yaml",
+    "US-CFR-TITLE16-PART1630-3.yaml",
+    "US-CFR-TITLE16-PART1630-4.yaml",
+    "US-CFR-TITLE16-PART1631-2.yaml",
+    "US-CFR-TITLE16-PART1631-3.yaml",
+    "US-CFR-TITLE16-PART1631-4.yaml",
+    "US-CFR-TITLE16-PART1632-2.yaml",
+    "US-CFR-TITLE16-PART1632-3.yaml",
+    "US-CFR-TITLE16-PART1632-4.yaml",
+    "US-CFR-TITLE16-PART1633-2.yaml",
+    "US-CFR-TITLE16-PART1633-3.yaml",
+    "US-CFR-TITLE16-PART1633-4.yaml",
+    "US-CFR-TITLE16-PART1700-2.yaml",
+    "US-CFR-TITLE16-PART1700-3.yaml",
+    "US-CFR-TITLE16-PART1700-4.yaml",
+    "US-CFR-TITLE19-PART102-2.yaml",
+    "US-CFR-TITLE19-PART102-3.yaml",
+    "US-CFR-TITLE19-PART102-4.yaml",
+    "US-CFR-TITLE19-PART134-2.yaml",
+    "US-CFR-TITLE19-PART134-3.yaml",
+    "US-CFR-TITLE19-PART134-4.yaml",
+    "US-CFR-TITLE19-PART145-2.yaml",
+    "US-CFR-TITLE19-PART145-3.yaml",
+    "US-CFR-TITLE19-PART145-4.yaml",
+    "US-CFR-TITLE21-PART1-2.yaml",
+    "US-CFR-TITLE21-PART1-3.yaml",
+    "US-CFR-TITLE21-PART1-4.yaml",
+    "US-CFR-TITLE21-PART101-2.yaml",
+    "US-CFR-TITLE21-PART101-3.yaml",
+    "US-CFR-TITLE21-PART101-4.yaml",
+    "US-CFR-TITLE21-PART110-2.yaml",
+    "US-CFR-TITLE21-PART110-3.yaml",
+    "US-CFR-TITLE21-PART110-4.yaml",
+    "US-CFR-TITLE21-PART111-2.yaml",
+    "US-CFR-TITLE21-PART111-3.yaml",
+    "US-CFR-TITLE21-PART111-4.yaml",
+    "US-CFR-TITLE21-PART117-2.yaml",
+    "US-CFR-TITLE21-PART117-3.yaml",
+    "US-CFR-TITLE21-PART117-4.yaml",
+    "US-CFR-TITLE21-PART170-2.yaml",
+    "US-CFR-TITLE21-PART170-3.yaml",
+    "US-CFR-TITLE21-PART170-4.yaml",
+    "US-CFR-TITLE21-PART171-2.yaml",
+    "US-CFR-TITLE21-PART171-3.yaml",
+    "US-CFR-TITLE21-PART171-4.yaml",
+    "US-CFR-TITLE21-PART172-2.yaml",
+    "US-CFR-TITLE21-PART172-3.yaml",
+    "US-CFR-TITLE21-PART172-4.yaml",
+    "US-CFR-TITLE21-PART173-2.yaml",
+    "US-CFR-TITLE21-PART173-3.yaml",
+    "US-CFR-TITLE21-PART173-4.yaml",
+    "US-CFR-TITLE21-PART174-2.yaml",
+    "US-CFR-TITLE21-PART174-3.yaml",
+    "US-CFR-TITLE21-PART174-4.yaml",
+    "US-CFR-TITLE21-PART175-2.yaml",
+    "US-CFR-TITLE21-PART175-3.yaml",
+    "US-CFR-TITLE21-PART175-4.yaml",
+    "US-CFR-TITLE21-PART176-2.yaml",
+    "US-CFR-TITLE21-PART176-3.yaml",
+    "US-CFR-TITLE21-PART176-4.yaml",
+    "US-CFR-TITLE21-PART177-2.yaml",
+    "US-CFR-TITLE21-PART177-3.yaml",
+    "US-CFR-TITLE21-PART177-4.yaml",
+    "US-CFR-TITLE21-PART178-2.yaml",
+    "US-CFR-TITLE21-PART178-3.yaml",
+    "US-CFR-TITLE21-PART178-4.yaml",
+    "US-CFR-TITLE21-PART179-2.yaml",
+    "US-CFR-TITLE21-PART179-3.yaml",
+    "US-CFR-TITLE21-PART179-4.yaml",
+    "US-CFR-TITLE21-PART180-2.yaml",
+    "US-CFR-TITLE21-PART180-3.yaml",
+    "US-CFR-TITLE21-PART180-4.yaml",
+    "US-CFR-TITLE21-PART181-2.yaml",
+    "US-CFR-TITLE21-PART181-3.yaml",
+    "US-CFR-TITLE21-PART181-4.yaml",
+    "US-CFR-TITLE21-PART182-2.yaml",
+    "US-CFR-TITLE21-PART182-3.yaml",
+    "US-CFR-TITLE21-PART182-4.yaml",
+    "US-CFR-TITLE21-PART184-2.yaml",
+    "US-CFR-TITLE21-PART184-3.yaml",
+    "US-CFR-TITLE21-PART184-4.yaml",
+    "US-CFR-TITLE21-PART186-2.yaml",
+    "US-CFR-TITLE21-PART186-3.yaml",
+    "US-CFR-TITLE21-PART186-4.yaml",
+    "US-CFR-TITLE21-PART189-2.yaml",
+    "US-CFR-TITLE21-PART189-3.yaml",
+    "US-CFR-TITLE21-PART189-4.yaml",
+    "US-CFR-TITLE21-PART190-2.yaml",
+    "US-CFR-TITLE21-PART190-3.yaml",
+    "US-CFR-TITLE21-PART190.yaml",
+    "US-CFR-TITLE21-PART700-2.yaml",
+    "US-CFR-TITLE21-PART700-3.yaml",
+    "US-CFR-TITLE21-PART700-4.yaml",
+    "US-CFR-TITLE21-PART701-2.yaml",
+    "US-CFR-TITLE21-PART701-3.yaml",
+    "US-CFR-TITLE21-PART701-4.yaml",
+    "US-CFR-TITLE21-PART710-2.yaml",
+    "US-CFR-TITLE21-PART710-3.yaml",
+    "US-CFR-TITLE21-PART710-4.yaml",
+    "US-CFR-TITLE21-PART720-2.yaml",
+    "US-CFR-TITLE21-PART720-3.yaml",
+    "US-CFR-TITLE21-PART720-4.yaml",
+    "US-CFR-TITLE21-PART740-2.yaml",
+    "US-CFR-TITLE21-PART740-3.yaml",
+    "US-CFR-TITLE21-PART740-4.yaml",
+    "US-CFR-TITLE47-PART15-2.yaml",
+    "US-CFR-TITLE47-PART15-3.yaml",
+    "US-CFR-TITLE47-PART15-4.yaml",
+    "US-CFR-TITLE47-PART18-2.yaml",
+    "US-CFR-TITLE47-PART18-3.yaml",
+    "US-CFR-TITLE47-PART18-4.yaml",
+    "US-CFR-TITLE47-PART2-2.yaml",
+    "US-CFR-TITLE47-PART2-3.yaml",
+    "US-CFR-TITLE47-PART2-4.yaml",
+    "US-CFR-TITLE47-PART68-2.yaml",
+    "US-CFR-TITLE47-PART68-3.yaml",
+    "US-CFR-TITLE47-PART68-4.yaml",
+    "US-CFR-TITLE49-PART171-2.yaml",
+    "US-CFR-TITLE49-PART171-3.yaml",
+    "US-CFR-TITLE49-PART171-4.yaml",
+    "US-CFR-TITLE49-PART172-2.yaml",
+    "US-CFR-TITLE49-PART172-3.yaml",
+    "US-CFR-TITLE49-PART172-4.yaml",
+    "US-CFR-TITLE49-PART173-2.yaml",
+    "US-CFR-TITLE49-PART173-3.yaml",
+    "US-CFR-TITLE49-PART173-4.yaml",
+    "US-CFR-TITLE49-PART178-2.yaml",
+    "US-CFR-TITLE49-PART178-3.yaml",
+    "US-CFR-TITLE49-PART178-4.yaml"
+  ],
+  "index_count": 724
+}

@@ -9,11 +9,867 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'ETSI EN 300 220-2
+
+    V3.2.1
+
+    (2018-06)
+
+    HARMONISED EUROPEAN STAND'
+  text: 'ETSI EN 300 220-2
+
+    V3.2.1
+
+    (2018-06)
+
+    HARMONISED EUROPEAN STANDARD
+
+    Short Range Devices (SRD) operating
+
+    in the frequency range 25 MHz to 1 000 MHz;
+
+    Part 2: Harmonised Standard for access to radio spectrum
+
+    for non specific radio equipment
+
+    2 ETSI EN 300 220-2 V3.2.1 (2018-06)
+
+    Reference
+
+    REN/ERM-TG28-535
+
+    Keywords
+
+    harmonised standard, radio, SRD, testing
+
+    ETSI
+
+    650 Route des Lucioles
+
+    F-06921 Sophia Antipolis Cedex - FRANCE
+
+    Tel.: +33 4 92 94 42 00 Fax: +33 4 93 65 47 16
+
+    Siret N° 348 623 562 00017 - NAF 742 C
+
+    Association à but non lucratif enregistrée à la
+
+    Sous-Préfecture de Grasse (06) N° 7803/88
+
+    Important notice
+
+    The present document can be downloaded from:
+
+    http://www.etsi.org/standards-search
+
+    The present document may be made available in electronic versions and/or in print. The content of any electronic and/or
+
+    print versions of the present document shall not be modified without the prior written authorization of ETSI. In case of any
+
+    existing or perceived difference in contents between such versions and/or in print, the only prevailing document is the
+
+    print of the Portable Document Format (PDF) version kept on a specific network drive within ETSI Secretariat.
+
+    Users of the present document should be aware that the document may be subject to revision or change of status.
+
+    Information on the current status of this and other ETSI documents is available at
+
+    https://portal.etsi.org/TB/ETSIDeliverableStatus.aspx
+
+    If you find errors in the present document, please send your comment to one of the following services:
+
+    https://portal.etsi.org/People/CommiteeSupportStaff.aspx
+
+    Copyright Notification
+
+    No part may be reproduced or utilized in any form or by any means, electronic or mechanical, including photocopying
+
+    and microfilm except as authorized by written permission of ETSI.
+
+    The content of the PDF version shall not be modified without the written authorization of ETSI.
+
+    The copyright and the foregoing restriction extend to reproduction in all media.
+
+    © ETSI 2018.
+
+    All rights reserved.
+
+    DECTTM, PLUGTESTSTM, UMTSTM and the ETSI logo are trademarks of ETSI registered for the benefit of its Members.
+
+    3GPPTM and LTETM are trademarks of ETSI registered for the benefit of its Members and
+
+    of the 3GPP Organizational Partners.
+
+    oneM2M logo is protected for the benefit of its Members.
+
+    GSM® and the GSM logo are trademarks registered and owned by the GSM Association.
+
+    ETSI
+
+    3 ETSI EN 300 220-2 V3.2.1 (2018-06)
+
+    Contents
+
+    Intellectual Property Rights ................................................................................................................................ 6
+
+    Foreword ............................................................................................................................................................. 6
+
+    Modal verbs terminology .................................................................................................................................... 7
+
+    Introduction ........................................................................................................................................................ 7
+
+    1 Scope ........................................................................................................................................................ 8
+
+    2 References ................................................................................................................................................ 8
+
+    2.1 Normative references ......................................................................................................................................... 8
+
+    2.2 Informative references ........................................................................................................................................ 9
+
+    3 Definitions, symbols and abbreviations ................................................................................................... 9
+
+    3.1 Definitions .......................................................................................................................................................... 9
+
+    3.2 Symbols ............................................................................................................................................................ 10
+
+    3.3 Abbreviations ................................................................................................................................................... 10
+
+    4 Technical requirements specifications ................................................................................................... 10
+
+    4.1 Environmental profile ....................................................................................................................................... 10
+
+    4.2 All equipment conformance requirements ....................................................................................................... 10
+
+    4.2.0 Compliance ................................................................................................................................................. 10
+
+    4.2.1 Operating frequency ................................................................................................................................... 10
+
+    4.2.1.0 Applicability.......................................................................................................................................... 10
+
+    4.2.1.1 Description ............................................................................................................................................ 11
+
+    4.2.1.2 Limits .................................................................................................................................................... 11
+
+    4.2.1.3 Conformance ......................................................................................................................................... 11
+
+    4.2.2 Unwanted emissions in the spurious domain .............................................................................................. 11
+
+    4.2.2.0 Applicability.......................................................................................................................................... 11
+
+    4.2.2.1 Description ............................................................................................................................................ 11
+
+    4.2.2.2 Limits .................................................................................................................................................... 11
+
+    4.2.2.3 Conformance ......................................................................................................................................... 11
+
+    4.3 Transmitters conformance requirements .......................................................................................................... 11
+
+    4.3.1 Effective Radiated Power ........................................................................................................................... 11
+
+    4.3.1.0 Applicability.......................................................................................................................................... 11
+
+    4.3.1.1 Description ............................................................................................................................................ 11
+
+    4.3.1.2 Limits .................................................................................................................................................... 11
+
+    4.3.1.3 Conformance ......................................................................................................................................... 11
+
+    4.3.2 Maximum e.r.p. power spectral density ...................................................................................................... 12
+
+    4.3.2.0 Applicability.......................................................................................................................................... 12
+
+    4.3.2.1 Description ............................................................................................................................................ 12
+
+    4.3.2.2 Limits .................................................................................................................................................... 12
+
+    4.3.2.3 Conformance ......................................................................................................................................... 12
+
+    4.3.3 Duty Cycle .................................................................................................................................................. 12
+
+    4.3.3.0 Applicability.......................................................................................................................................... 12
+
+    4.3.3.1 Description ............................................................................................................................................ 12
+
+    4.3.3.2 Limits .................................................................................................................................................... 12
+
+    4.3.3.3 Conformance ......................................................................................................................................... 12
+
+    4.3.4 Occupied Bandwidth................................................................................................................................... 12
+
+    4.3.4.0 Applicability.......................................................................................................................................... 12
+
+    4.3.4.1 Description ............................................................................................................................................ 12
+
+    4.3.4.2 Limits .................................................................................................................................................... 13
+
+    4.3.4.3 Conformance ......................................................................................................................................... 13
+
+    4.3.5 Tx Out of Band Emissions .......................................................................................................................... 13
+
+    4.3.5.0 Applicability.......................................................................................................................................... 13
+
+    4.3.5.1 Description ............................................................................................................................................ 13
+
+    4.3.5.2 Limits .................................................................................................................................................... 13
+
+    4.3.5.3 Conformance ......................................................................................................................................... 13
+
+    4.3.6 Transient power .......................................................................................................................................... 13
+
+    4.3.6.0 Applicability.......................................................................................................................................... 13
+
+    ETSI
+
+    4 ETSI EN 300 220-2 V3.2.1 (2018-06)
+
+    4.3.6.1 Description ............................................................................................................................................ 13
+
+    4.3.6.2 Limits .................................................................................................................................................... 13
+
+    4.3.6.3 Conformance ......................................................................................................................................... 13
+
+    4.3.7 Adjacent Channel Power ............................................................................................................................ 13
+
+    4.3.7.0 Applicability.......................................................................................................................'
+- id: art-2
+  title: 'Annex C (informative): National Radio Interfaces not EU wide harmonised .................................. 23'
+  text: 'Annex C (informative): National Radio Interfaces not EU wide harmonised .................................. 23
+
+    Annex D (informative): Application form for testing .......................................................................... 28
+
+    D.1 Introduction ............................................................................................................................................ 28
+
+    D.2 Information to declare according to ETSI EN 300 220-2 ...................................................................... 28
+
+    Annex E (informative): Selection of technical parameters ................................................................. 30
+
+    E.1 Introduction ............................................................................................................................................ 30
+
+    E.2 Receiver parameters ............................................................................................................................... 30
+
+    Annex F (informative): Bibliography ................................................................................................... 31
+
+    Annex G (informative): Change history ............................................................................................... 32
+
+    History .............................................................................................................................................................. 33
+
+    ETSI
+
+    6 ETSI EN 300 220-2 V3.2.1 (2018-06)
+
+    Intellectual Property Rights
+
+    Essential patents
+
+    IPRs essential or potentially essential to normative deliverables may have been declared to ETSI. The information
+
+    pertaining to these essential IPRs, if any, is publicly available for ETSI members and non-members, and can be found
+
+    in ETSI SR 000 314: "Intellectual Property Rights (IPRs); Essential, or potentially Essential, IPRs notified to ETSI in
+
+    respect of ETSI standards", which is available from the ETSI Secretariat. Latest updates are available on the ETSI Web
+
+    server (https://ipr.etsi.org/).
+
+    Pursuant to the ETSI IPR Policy, no investigation, including IPR searches, has been carried out by ETSI. No guarantee
+
+    can be given as to the existence of other IPRs not referenced in ETSI SR 000 314 (or the updates on the ETSI Web
+
+    server) which are, or may be, or may become, essential to the present document.
+
+    Trademarks
+
+    The present document may include trademarks and/or tradenames which are asserted and/or registered by their owners.
+
+    ETSI claims no ownership of these except for any which are indicated as being the property of ETSI, and conveys no
+
+    right to use or reproduce any trademark and/or tradename. Mention of those trademarks in the present document does
+
+    not constitute an endorsement by ETSI of products, services or organizations associated with those trademarks.
+
+    Foreword
+
+    This Harmonised European Standard (EN) has been produced by ETSI Technical Committee Electromagnetic
+
+    compatibility and Radio spectrum Matters (ERM).
+
+    The present document has been prepared under the Commission''s standardisation request C(2015) 5376 final [i.5] to
+
+    provide one voluntary means of conforming to the essential requirements of Directive 2014/53/EU on the harmonisation
+
+    of the laws of the Member States relating to the making available on the market of radio equipment and repealing
+
+    Directive 1999/5/EC [i.2].
+
+    Once the present document is cited in the Official Journal of the European Union under that Directive, compliance with
+
+    the normative clauses of the present document given in table A.1 confers, within the limits of the scope of the present
+
+    document, a presumption of conformity with the corresponding essential requirements of that Directive and associated
+
+    EFTA regulations.
+
+    The present document is part 2 of a multi-part deliverable. Full details of the entire series can be found in part 1 [1].
+
+    For non EU countries the present document may be used for regulatory (Type Approval) purposes.
+
+    National transposition dates
+
+    Date of adoption of this EN: 15 June 2018
+
+    Date of latest announcement of this EN (doa): 30 September 2018
+
+    Date of latest publication of new National Standard
+
+    or endorsement of this EN (dop/e): 31 March 2019
+
+    Date of withdrawal of any conflicting National Standard (dow): 31 March 2020
+
+    ETSI
+
+    7 ETSI EN 300 220-2 V3.2.1 (2018-06)
+
+    Modal verbs terminology
+
+    In the present document "shall", "shall not", "should", "should not", "may", "need not", "will", "will not", "can" and
+
+    "cannot" are to be interpreted as described in clause 3.2 of the ETSI Drafting Rules (Verbal forms for the expression of
+
+    provisions).
+
+    "must" and "must not" are NOT allowed in ETSI deliverables except when used in direct citation.
+
+    Introduction
+
+    The present document is part 2 of a multi-part deliverable covering Short Range Devices (SRD) operating in the
+
+    frequency range 25 MHz to 1 000 MHz.
+
+    The present document is structured as follows:
+
+    Clause 2 provides references.
+
+    Clause 3 provides definitions of terms and abbreviations used.
+
+    Clause 4 provides technical requirements.
+
+    Annex A (informative) provides a relationship between the present document and the essential requirements of
+
+    Directive 2014/53/EU [i.2].
+
+    Annex B (normative): EU wide harmonised national radio interfaces from 25 MHz to 1 000 MHz.'
+- id: art-3
+  title: 'Annex C (informative): National Radio Interfaces not EU wide harmonised.'
+  text: 'Annex C (informative): National Radio Interfaces not EU wide harmonised.
+
+    Annex D (informative): Application form for testing.
+
+    Annex E (informative): Selection of parameters.
+
+    Annex F (informative): Bibliography.
+
+    Annex G (informative): Change history.
+
+    ETSI
+
+    8 ETSI EN 300 220-2 V3.2.1 (2018-06)
+
+    1 Scope
+
+    The present document specifies technical characteristics and methods of measurements for Non-specific Short Range
+
+    Devices category equipment types.
+
+    Non specific SRDs category is defined by the EU Commission Decision 2013/752/EU [i.3] as:
+
+    "The non-specific short-range device category covers all kinds of radio devices, regardless of the application or the
+
+    purpose, which fulfil the technical conditions as specified for a given frequency band. Typical uses include telemetry,
+
+    telecommand, alarms, data transmissions in general and other applications".
+
+    The present document covers equipment intended for fixed, portable, mobile or nomadic use, including:
+
+    •
+
+    stand-alone radio equipment;
+
+    •
+
+    plug-in radio devices intended for use with or within a variety of host systems;
+
+    •
+
+    plug-in radio devices intended for use within combined equipment.
+
+    These radio equipment types are capable of operating in all or any part of the frequency bands given in table 1.
+
+    Table 1: SRDs frequency ranges
+
+    Short Range Devices frequency ranges
+
+    Transmit and receive 26,957 MHz to 27,283 MHz
+
+    Transmit and receive 40,660 MHz to 40,700 MHz
+
+    Transmit and receive 138,2 MHz to 138,45 MHz
+
+    Transmit and receive 169,4 MHz to 169,8125 MHz
+
+    Transmit and receive 433,040 MHz to 434,790 MHz
+
+    Transmit and receive 863 MHz to 876 MHz
+
+    Transmit and receive 915 MHz to 921 MHz
+
+    NOTE: It should be noted that not all frequency bands in table 1 are implemented in all European
+
+    countries. Annex B provides an overview of radio interfaces which are harmonised in the
+
+    European Union. Annex C provides an overview of national radio interfaces not harmonised in
+
+    the European Union.
+
+    It is noted that in the European Commission Decision on Short Range Devices [i.3], some harmonised frequency bands
+
+    may be subject to usage restrictions such as the exclusion of video or audio use.
+
+    Equipment transmitting voice with analog modulation are excluded from the present document.
+
+    NOTE: The relationship between the present document and essential requirements of article 3.2 of Directive
+
+    2014/53/EU [i.2] is given in annex A.
+
+    2 References
+
+    2.1 Normative references
+
+    References are specific, identified by date of publication and/or edition number or version number. Only the cited
+
+    version applies.
+
+    Referenced documents which are not found to be publicly available in the expected location might be found at
+
+    https://docbox.etsi.org/Reference/.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    ETSI
+
+    9 ETSI EN 300 220-2 V3.2.1 (2018-06)
+
+    The following referenced documents are necessary for the application of the present document.
+
+    [1] ETSI EN 300 220-1 (V3.1.1) (02-2017): "Short Range Devices (SRD) operating in the frequency
+
+    range 25 MHz to 1 000 MHz; Part 1: Technical characteristics and methods of measurement".
+
+    [2] Commission Decision 2017/1483/EU Commission Implementing Decision (EU) 2017/1483 of
+
+    8 August 2017 amending Decision 2006/771/EC on harmonisation of the radio spectrum for use
+
+    by short-range devices and repealing Decision 2006/804/EC on harmonisation of the radio
+
+    spectrum for use by short-range devices as amended by subsequent Commission Decisions.
+
+    2.2 Informative references
+
+    References are either specific (identified by date of publication and/or edition number or version number) or
+
+    non-specific. For specific references, only the cited version applies. For non-specific references, the latest version of the
+
+    referenced document (including any amendments) applies.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    The following referenced documents are not necessary for the application of the present document but they assist the
+
+    user with regard to a particular subject area.
+
+    [i.1] CEPT/ERC/REC 70-03: "Relating to the use of Short Range Devices (SRD)".
+
+    NOTE: Available at https://www.ecodocdb.dk/download/25c41779-cd6e/Rec7003e%20May%202018.pdf.
+
+    [i.2] Directive 2014/53/EU of the European Parliament and of the Council of 16 April 2014 on the
+
+    harmonisation of the laws of the Member States relating to the making available on the market of
+
+    radio equipment and repealing Directive 1999/5/EC.
+
+    [i.3] Commission Decision 2013/752/EU on harmonisation of the radio spectrum for use by short-range
+
+    devices as amended by subsequent Commission Decisions.
+
+    [i.4] ETSI EG 203 336: "Electromagnetic compatibility and Radio spectrum Matters (ERM); Guide for
+
+    the selection of technical parameters for the production of Harmonised Standards covering'
+- id: art-4
+  title: article 3.1(b) and article 3.2 of Directive 2014/53/EU".
+  text: 'article 3.1(b) and article 3.2 of Directive 2014/53/EU".
+
+    [i.5] Commission Implementing Decision C(2015) 5376 final of 4.8.2015 on a standardisation request
+
+    to the European Committee for Electrotechnical Standardisation and to the European
+
+    Telecommunications Standards Institute as regards radio equipment in support of Directive
+
+    2014/53/EU of the European Parliament and of the Council.
+
+    [i.6] ECC Report 200: "Co-existence studies for proposed SRD and RFID applications in the frequency
+
+    band 870-876 MHz and 915-921 MHz", September 2013.
+
+    [i.7] Commission Decision 2000/299/EC: "Commission Decision of 6 April 2000 establishing the
+
+    initial classification of radio equipment and telecommunications terminal equipment and
+
+    associated identifiers (notified under document number C(2000) 938) (Text with EEA relevance)".
+
+    3 Definitions, symbols and abbreviations
+
+    3.1 Definitions
+
+    For the purposes of the present document, the terms and definitions given in RE-Directive [i.2], ETSI EN 300 220-1 [1]
+
+    and the following apply:
+
+    dwell time: time period the equipment stays on channel before hopping to the next hop channel
+
+    epoch: value of 4 times the dwell time times the number of hop channels
+
+    nomadic use: the location of the equipment may change but is stationary while in use
+
+    ETSI
+
+    10 ETSI EN 300 220-2 V3.2.1 (2018-06)
+
+    non overlapping channels: hopping positions separated by channel bandwidth of 90 % or more below the maximum
+
+    power as measured with a spectrum analyser
+
+    number of hop channels: number of non-overlapping channels used by an FHSS equipment
+
+    portable use: equipment intended to be carried, attached or implanted while in use
+
+    return time to a hop channel: maximum period of time within which a specific hop channel is reused
+
+    3.2 Symbols
+
+    For the purposes of the present document, the symbols given in ETSI EN 300 220-1 [1] apply.
+
+    3.3 Abbreviations
+
+    For the purposes of the present document, the abbreviations given in ETSI EN 300 220-1 [1] and the following apply:
+
+    DSSS Direct Sequence Spread Spectrum
+
+    NRI National Radio Interface
+
+    4 Technical requirements specifications
+
+    4.1 Environmental profile
+
+    The technical requirements of the present document apply under the environmental profile for operation of the
+
+    equipment, which shall be declared by the manufacturer. The equipment shall comply with all the technical
+
+    requirements of the present document which are identified as applicable in annex A at all times when operating within
+
+    the boundary limits of the declared operational environmental profile. Normal and extreme tests conditions are defined
+
+    in ETSI EN 300 220-1 [1], clauses 4.3.3 and 4.3.4.
+
+    4.2 All equipment conformance requirements
+
+    4.2.0 Compliance
+
+    When an operational frequency band is selected:
+
+    1) from table B.1:
+
+    the equipment shall comply with all parameters, exclusions and notes from the corresponding row in table B.1;
+
+    2) otherwise:
+
+    the present document may be used in conjunction with a National Radio Interface in which case some
+
+    parameters may be modified according to the NRI.
+
+    NOTE: Where NRI has been applied there may be restrictions on the use of equipment in some countries.
+
+    Some examples of NRI parameters are given in annex C but this is not an exhaustive list.
+
+    4.2.1 Operating frequency
+
+    4.2.1.0 Applicability
+
+    Clause 4.2.1 applies to all equipment.
+
+    ETSI
+
+    11 ETSI EN 300 220-2 V3.2.1 (2018-06)
+
+    4.2.1.1 Description
+
+    For the purpose of the present document, the description in ETSI EN 300 220-1 [1], clause 5.1.1 applies.
+
+    4.2.1.2 Limits
+
+    The manufacturer may declare either one or more operating frequencies and operating channels.
+
+    Operating channel(s) shall be entirely within operational frequency bands allowed by annex B or any NRI.
+
+    4.2.1.3 Conformance
+
+    The conformance for this requirement shall be as defined in ETSI EN 300 220-1 [1], clause 5.1.2.
+
+    4.2.2 Unwanted emissions in the spurious domain
+
+    4.2.2.0 Applicability
+
+    Clause 4.2.2 applies to all equipment.
+
+    4.2.2.1 Description
+
+    For the purpose of the present document, the description in ETSI EN 300 220-1 [1], clause 5.9.1 applies.
+
+    4.2.2.2 Limits
+
+    The EUT shall comply with reference limits defined in ETSI EN 300 220-1 [1], clause 5.9.2 under normal test
+
+    conditions.
+
+    4.2.2.3 Conformance
+
+    The conformance tests for this requirement shall be as defined in ETSI EN 300 220-1 [1], clause 5.9.3.
+
+    Conformance shall be established under normal test conditions.
+
+    4.3 Transmitters conformance requirements
+
+    4.3.1 Effective Radiated Power
+
+    4.3.1.0 Applicability
+
+    Effective radiated power applies only to transmitters.
+
+    4.3.1.1 Description
+
+    For the purpose of the present document, the description in ETSI EN 300 220-1 [1], clause 5.2.1 applies.
+
+    4.3.1.2 Limits
+
+    The effective radiated power shall not be greater than the value allowed in annex B or in any NRI for the chosen
+
+    operational frequency band(s).
+
+    4.3.1.3 Conformance
+
+    The conformance tests for this requirement shall be as defined in ETSI EN 300 220-1 [1], clause 5.2.2.
+
+    Conformance shall be established under normal and extreme test conditions.
+
+    ETSI
+
+    12 ETSI EN 300 220-2 V3.2.1 (2018-06)
+
+    4.3.2 Maximum e.r.p. power spectral density
+
+    4.3.2.0 Applicability
+
+    Maximum e.r.p. power spectral density applies to transmitters using annex B bands I.
+
+    Maximum e.r.p. power spectral density applies to transmitters using DSSS or wideband techniques other than FHSS
+
+    modulation, in annex C band W, AA or AC.
+
+    4.3.2.1 Description
+
+    For the purpose of the present document, the description in ETSI EN 300 220-1 [1], clause 5.3.1 applies.
+
+    4.3.2.2 Limits
+
+    The Maximum e.r.p. power spectral density shall not be greater than the value allowed in annex B or any NRI for the
+
+    chosen operational frequency band(s).
+
+    4.3.2.3 Conformance
+
+    The conformance tests for this requirement shall be as defined in ETSI EN 300 220-1 [1], clause 5.3.2.
+
+    Conformance shall be established under normal test conditions.
+
+    4.3.3 Duty Cycle
+
+    4.3.3.0 Applicability
+
+    Duty cycle applies to all transmitters except EUT with polite spectrum access (described in clause 4.5) where permitted
+
+    in annex B, table B.1 or annex C, table C.1 or any NRI.
+
+    4.3.3.1 Description
+
+    For the purpose of the present document, the description in ETSI EN 300 220-1 [1], clause 5.4.1 applies.
+
+    4.3.3.2 Limits
+
+    The Duty Cycle at the operating frequency shall not be greater than values in annex B or any NRI for the chosen
+
+    operational frequency band(s).
+
+    4.3.3.3 Conformance
+
+    The conformance tests for this requirement shall be as defined in ETSI EN 300 220-1 [1], clause 5.4.2.
+
+    4.3.4 Occupied Bandwidth
+
+    4.3.4.0 Applicability
+
+    Maximum occupied bandwidth applies to all transmitters.
+
+    4.3.4.1 Description
+
+    For the purpose of the present document, the description in ETSI EN 300 220-1 [1], clause 5.6.1 applies.
+
+    ETSI
+
+    13 ETSI EN 300 220-2 V3.2.1 (2018-06)
+
+    4.3.4.2 Limits
+
+    The occupied bandwidth of the EUT according to ETSI EN 300 220-1 [1], clause 5.6.2 shall comply with the limits in
+
+    annex B or any NRI for the chosen operational frequency band(s).
+
+    4.3.4.3 Conformance
+
+    The conformance tests for this requirement shall be as defined in ETSI EN 300 220-1 [1], clause 5.6.3.
+
+    Conformance shall be established under normal and extreme test conditions.
+
+    4.3.5 Tx Out of Band Emissions
+
+    4.3.5.0 Applicability
+
+    TX Out of Band Emissions applies to all transmitters with OCW > 25 kHz.
+
+    4.3.5.1 Description
+
+    For the purpose of the present document, the description in ETSI EN 300 220-1 [1], clause 5.8.1 applies.
+
+    4.3.5.2 Limits
+
+    The EUT shall comply with reference limits defined in ETSI EN 300 220-1 [1], clause 5.8.2.
+
+    4.3.5.3 Conformance
+
+    The conformance tests for this requirement shall be as defined in ETSI EN 300 220-1 [1], clause 5.8.3.
+
+    Conformance shall be established under normal and extreme test conditions.
+
+    4.3.6 Transient power
+
+    4.3.6.0 Applicability
+
+    Transient power applies to all transmitters.
+
+    4.3.6.1 Description
+
+    For the purpose of the present document, the description in ETSI EN 300 220-1 [1], clause 5.10.1 applies.
+
+    4.3.6.2 Limits
+
+    The EUT shall comply with reference limits defined in ETSI EN 300 220-1 [1], clause 5.10.2.
+
+    4.3.6.3 Conformance
+
+    The conformance tests for this requirement shall be as defined in ETSI EN 300 220-1 [1], clause 5.10.3.
+
+    Conformance shall be established under normal test conditions.
+
+    4.3.7 Adjacent Channel Power
+
+    4.3.7.0 Applicability
+
+    ≤
+
+    Adjacent channel power applies to all transmitters with OCW 25 kHz.
+
+    ETSI
+
+    14 ETSI EN 300 220-2 V3.2.1 (2018-06)
+
+    4.3.7.1 Description
+
+    For the purpose of the present document, the description in ETSI EN 300 220-1 [1], clause 5.11.1 applies.
+
+    4.3.7.2 Limits
+
+    Where the Operating Channel Width is less than or equal to 25 kHz, the power in the adjacent channels shall not exceed
+
+    the reference limits defined in ETSI EN 300 220-1 [1], clause 5.11.2.
+
+    4.3.7.3 Conformance
+
+    The conformance tests for this requirement shall be as defined in ETSI EN 300 220-1 [1], clause 5.11.3.
+
+    Conformance shall be established under normal test conditions.
+
+    4.3.8 TX behaviour under Low Voltage Conditions
+
+    4.3.8.0 Applicability
+
+    TX behaviour under low voltage condition applies to battery powered EUT.
+
+    4.3.8.1 Description
+
+    For the purpose of the present document, the description in ETSI EN 300 220-1 [1], clause 5.12.1 applies.
+
+    4.3.8.2 Limits
+
+    The EUT shall comply with reference limits defined in ETSI EN 300 220-1 [1], clause 5.12.2.
+
+    4.3.8.3 Conformance
+
+    The conformance tests for this requirement shall be as defined in ETSI EN 300 220-1 [1], clause 5.12.3.
+
+    Conformance shall be established under normal test conditions.
+
+    4.3.9 Adaptive Power Control
+
+    4.3.9.0 Applicability
+
+    Adaptive power control applies to all EUT with adaptive power control using annex C band AF.
+
+    4.3.9.1 Description
+
+    For the purpose of the present document, the description in ETSI EN 300 220-1 [1], clause 5.13.1 applies.
+
+    4.3.9.2 Limits
+
+    The EUT shall comply with reference limits defined in ETSI EN 300 220-1 [1], clause 5.13.2.
+
+    4.3.9.3 Conformance
+
+    The conformance tests for this requirement shall be as defined in ETSI EN 300 220-1 [1], clause 5.13.3.
+
+    Conformance shall be established und'
 doc_files:
 - global/raw/ETSI_EN_300_220_短距离设备.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_300_220_短距离设备.pdf (pdf, 67107 chars)，生成 4 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_300_220_短距离设备.pdf (pdf, 67107 chars)，生成 4 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_300_220_短距离设备.pdf (pdf, 67107 chars)，生成 4 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

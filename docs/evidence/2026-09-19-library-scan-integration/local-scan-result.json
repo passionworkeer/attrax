@@ -1,0 +1,2147 @@
+{
+ "sessionId": "scan_450e06bcdf664a67831a5c393cd74a69",
+ "status": "ready",
+ "progress": 100,
+ "stageText": "complete",
+ "category": "electronics",
+ "markets": [
+  "EU",
+  "US"
+ ],
+ "createdAt": "2026-09-19T10:25:45.712697Z",
+ "updatedAt": "2026-09-19T10:26:48.865708Z",
+ "expiresAt": "2026-09-20T10:26:48.865708Z",
+ "result": {
+  "sessionId": "scan_450e06bcdf664a67831a5c393cd74a69",
+  "originalQuery": "扫描这个产品的合规风险",
+  "productName": "",
+  "productCategory": "electronics",
+  "targetMarkets": [
+   "EU",
+   "US"
+  ],
+  "complianceStatus": "WARN",
+  "complianceReport": "# 墙壁充电器 A2332（65W）EU/US 合规预检\n\n**结论：WARN（存在高风险缺口，非不合规判定）** — 产品身份与目标市场可判断；未见 LVD/EMC 测试报告、EU DoC、RoHS 声明、FCC SDoC 或设备授权记录、进口商信息，且未提供成本数据。本报告仅为 AI 预检，不构成认证结论、合规证明或上市许可。\n\n## 图片可见事实（非合规结论）\n- 铭牌可读：ANKER535 CHARGER (65W)、MODEL A2332、INPUT 100-240V~ 1.8A 50/60Hz、USB-C1/C2 5V/9V/15V/20V、USB-A 4.5V/5V/9V/12V、TOTAL 65W MAX、MADE IN CHINA、SN AFY7ZX0D43623162\n- 可见标志：CE、FCC、WEEE、EAC（仅记录存在，不作真伪与授权有效性判断）\n- 图片无法验证：插脚形态、线缆与接头、警告文字语言、包装内容、是否含电池（未确认，不作推断）\n\n## EU 必检项及适用理由\n1. LVD 2014/35/EU：适用，输入 100–240V~ 落在 50–1000V AC 区间 [EU-2014-35#art-1]。缺测试报告属\"未提交证据\"，不能认定已违反安全目标；待补安全测试报告、技术文档与 DoC [EU-2014-35#art-6]。\n2. EMC 2014/30/EU：适用；需 EN 55032/55035/61000 系列报告，否则 CE 主张缺乏依据 [EU-2014-30#art-6]。\n3. RoHS 2011/65/EU：适用；限值与豁免见 Annex II，需均质材料检测或受控供应商声明 [EU-2011-65#art-4]。\n4. CE 加贴：须在上市前可见、清晰、牢固，可置于铭牌；照片显示标识存在，但图片无法验证尺寸比例与加贴依据 [EU-2014-35#art-17]。\n5. 追溯与标签：应有型号/批次/序列号及制造商或进口商名称地址；SN 已见，生产日期与进口商信息未见 [EU-2014-35#art-6]。\n6. 说明书与安全信息：须为销售成员国易懂语言；未选定具体成员国，需按销售国逐一核对 [EU-2014-35#art-6]。\n7. UCPD 2005/29/EC：页面与广告宣称（如\"65W\"\"认证齐全\"）不得误导 [EU-2005-29#art-2]。\n8. CRD 2011/83/EU、Omnibus 2019/2161（库自动接入）：远程销售信息与价格披露义务；依据规则库，待核实原文 [EU-2011-83#art-2]。\n\n## US 必检项及适用理由\n1. FCC Part 15：本机为无意辐射体，须按 SDoC 或认证程序并留存责任方记录 [US-FCC-15#section-15-101]；未完成授权不得营销 [US-CFR-TITLE47-PART15#art-2]。\n2. 47 CFR Part 2（库自动接入）：设备授权程序与责任方定义，待核实原文 [US-CFR-TITLE47-PART2#art-2]。\n3. Prop 65：需评估暴露途径并提供 WARNING/CAUTION 警示 [US-CA-Prop-65#section-25249-5]。\n4. 16 CFR 1505（库自动接入）：仅针对 120V 分支电路供电、供儿童使用的电器，本产品为成人用墙插充电器，初步判断不适用 [US-CFR-TITLE16-PART1505#art-2]。\n5. 16 CFR 1101/1102/1112/1115/1116/1118/1200/1201/1203、CPSIA、CPSA 15 USC 2051、加州 AB 2273（库自动接入）：属通用消费品、儿童产品或特定品类条款，与墙插充电器无直接对应；依据规则库，待核实原文。\n6. ETSI EN 301 489-1（库自动接入）：EMC 通用要求；本机无无线发射证据，适用范围待确认。\n\n## 下一步补证清单\n① LVD 项下安全测试报告 ② EMC 测试报告 ③ EU DoC 与 RoHS 声明 ④ FCC SDoC/授权与责任方信息 ⑤ 进口商名称地址与销售国语言说明书 ⑥ 插脚、线缆、包装、警告文字照片 ⑦ 生产日期与批次-证书对照表 ⑧ 认证与检测报价。以上缺失项均为\"待补证\"，不构成已证实的违规。",
+  "agentTrace": [
+   {
+    "node": "vision",
+    "mode": "checklist",
+    "checkCount": 13,
+    "imagesCount": 1,
+    "certificationsFound": 3,
+    "descriptionLength": 140,
+    "durationMs": 1,
+    "observationCount": 16
+   },
+   {
+    "node": "generate",
+    "provider": "deepseek",
+    "status": "success",
+    "packageScenes": 13,
+    "chunksCount": 0,
+    "generationLength": 1850,
+    "durationMs": 63037,
+    "anchorFeatures": [],
+    "anchorRegulationsCount": 24,
+    "anchorSelection": {
+     "curated": 5,
+     "generatedAvailable": 117,
+     "generatedSelected": 19
+    },
+    "articleTextsCount": 51,
+    "llmCitationsCount": 20,
+    "kbAnchorBackfillCount": 0
+   },
+   {
+    "node": "verify",
+    "status": "success",
+    "matched": 16,
+    "fallbackArticleOnly": 4,
+    "unmatched": 0,
+    "totalCitations": 20,
+    "canonicalQuoteAttachedCount": 4
+   }
+  ],
+  "loopCount": 0,
+  "retrievedChunks": [],
+  "reportPackage": {
+   "productDossier": {
+    "product": "",
+    "category": "electronics",
+    "markets": [
+     "EU",
+     "US"
+    ],
+    "query": "扫描这个产品的合规风险 产品类型：墙壁充电器 核心特征：铭牌显示型号 A2332，总输出 65W MAX；输入 100-240V~ 1.8A 50/60Hz；USB-C1/C2 输出支持 5V/9V/15V/20V；USB-A 输出支持 4.5V/5V/9V/12V 可见认证标志：CE、FCC、WEEE",
+    "sourceCounts": {
+     "retrievedChunks": 0,
+     "userDocuments": 0,
+     "visualItems": 1
+    }
+   },
+   "complianceReport": "# 墙壁充电器 A2332（65W）EU/US 合规预检\n\n**结论：WARN（存在高风险缺口，非不合规判定）** — 产品身份与目标市场可判断；未见 LVD/EMC 测试报告、EU DoC、RoHS 声明、FCC SDoC 或设备授权记录、进口商信息，且未提供成本数据。本报告仅为 AI 预检，不构成认证结论、合规证明或上市许可。\n\n## 图片可见事实（非合规结论）\n- 铭牌可读：ANKER535 CHARGER (65W)、MODEL A2332、INPUT 100-240V~ 1.8A 50/60Hz、USB-C1/C2 5V/9V/15V/20V、USB-A 4.5V/5V/9V/12V、TOTAL 65W MAX、MADE IN CHINA、SN AFY7ZX0D43623162\n- 可见标志：CE、FCC、WEEE、EAC（仅记录存在，不作真伪与授权有效性判断）\n- 图片无法验证：插脚形态、线缆与接头、警告文字语言、包装内容、是否含电池（未确认，不作推断）\n\n## EU 必检项及适用理由\n1. LVD 2014/35/EU：适用，输入 100–240V~ 落在 50–1000V AC 区间 [EU-2014-35#art-1]。缺测试报告属\"未提交证据\"，不能认定已违反安全目标；待补安全测试报告、技术文档与 DoC [EU-2014-35#art-6]。\n2. EMC 2014/30/EU：适用；需 EN 55032/55035/61000 系列报告，否则 CE 主张缺乏依据 [EU-2014-30#art-6]。\n3. RoHS 2011/65/EU：适用；限值与豁免见 Annex II，需均质材料检测或受控供应商声明 [EU-2011-65#art-4]。\n4. CE 加贴：须在上市前可见、清晰、牢固，可置于铭牌；照片显示标识存在，但图片无法验证尺寸比例与加贴依据 [EU-2014-35#art-17]。\n5. 追溯与标签：应有型号/批次/序列号及制造商或进口商名称地址；SN 已见，生产日期与进口商信息未见 [EU-2014-35#art-6]。\n6. 说明书与安全信息：须为销售成员国易懂语言；未选定具体成员国，需按销售国逐一核对 [EU-2014-35#art-6]。\n7. UCPD 2005/29/EC：页面与广告宣称（如\"65W\"\"认证齐全\"）不得误导 [EU-2005-29#art-2]。\n8. CRD 2011/83/EU、Omnibus 2019/2161（库自动接入）：远程销售信息与价格披露义务；依据规则库，待核实原文 [EU-2011-83#art-2]。\n\n## US 必检项及适用理由\n1. FCC Part 15：本机为无意辐射体，须按 SDoC 或认证程序并留存责任方记录 [US-FCC-15#section-15-101]；未完成授权不得营销 [US-CFR-TITLE47-PART15#art-2]。\n2. 47 CFR Part 2（库自动接入）：设备授权程序与责任方定义，待核实原文 [US-CFR-TITLE47-PART2#art-2]。\n3. Prop 65：需评估暴露途径并提供 WARNING/CAUTION 警示 [US-CA-Prop-65#section-25249-5]。\n4. 16 CFR 1505（库自动接入）：仅针对 120V 分支电路供电、供儿童使用的电器，本产品为成人用墙插充电器，初步判断不适用 [US-CFR-TITLE16-PART1505#art-2]。\n5. 16 CFR 1101/1102/1112/1115/1116/1118/1200/1201/1203、CPSIA、CPSA 15 USC 2051、加州 AB 2273（库自动接入）：属通用消费品、儿童产品或特定品类条款，与墙插充电器无直接对应；依据规则库，待核实原文。\n6. ETSI EN 301 489-1（库自动接入）：EMC 通用要求；本机无无线发射证据，适用范围待确认。\n\n## 下一步补证清单\n① LVD 项下安全测试报告 ② EMC 测试报告 ③ EU DoC 与 RoHS 声明 ④ FCC SDoC/授权与责任方信息 ⑤ 进口商名称地址与销售国语言说明书 ⑥ 插脚、线缆、包装、警告文字照片 ⑦ 生产日期与批次-证书对照表 ⑧ 认证与检测报价。以上缺失项均为\"待补证\"，不构成已证实的违规。",
+   "profitReport": {
+    "markdown": "未提供成本数据，本报告不作利润预测",
+    "keyConclusion": "待确认：未提供 BOM、包装、认证、物流或售价数据，暂无法形成利润结论。",
+    "premiumPct": "待询价",
+    "breakevenUnits": "待确认",
+    "pricingStrategy": "待询价",
+    "riskNote": "成本与报价未提供，任何利润测算均缺乏来源支持。",
+    "conclusions": "待确认",
+    "references": "未提供用户成本文件",
+    "structuredFields": null
+   },
+   "roadmap": {
+    "totalDays": 56,
+    "totalCost": "待询价",
+    "progress": 10,
+    "items": [
+     {
+      "id": "1",
+      "date": "待确认",
+      "title": "证据差距确认与文件清单",
+      "titleEn": "Evidence gap confirmation and document checklist",
+      "description": "核对铭牌、插脚、线缆、包装、警告文字照片与型号清单；天数为常规流程示意，起算日待确认。",
+      "descriptionEn": "Check nameplate, plug, cable, packaging and warning photos against the model list; duration is indicative.",
+      "type": "apply",
+      "status": "in-progress",
+      "estimatedDays": 7,
+      "cost": "待询价",
+      "documents": [
+       "型号清单",
+       "铭牌照片",
+       "插脚照片",
+       "包装照片"
+      ],
+      "documentsEn": [
+       "Model list",
+       "Nameplate photo",
+       "Plug photo",
+       "Packaging photo"
+      ]
+     },
+     {
+      "id": "2",
+      "date": "待确认",
+      "title": "送样安全与 EMC 测试",
+      "titleEn": "Safety and EMC testing",
+      "description": "按 LVD 与 EMC 指令项下协调标准送样测试，标准版本与实验室待选定。",
+      "descriptionEn": "Submit samples for LVD and EMC harmonised-standard testing; standards and lab pending selection.",
+      "type": "test",
+      "status": "pending",
+      "estimatedDays": 20,
+      "cost": "待询价",
+      "documents": [
+       "送样单",
+       "测试委托书"
+      ],
+      "documentsEn": [
+       "Sample submission form",
+       "Test request form"
+      ]
+     },
+     {
+      "id": "3",
+      "date": "待确认",
+      "title": "技术文档与 EU DoC 编制",
+      "titleEn": "Technical file and EU DoC drafting",
+      "description": "编制技术文档、起草 DoC 并规范加贴 CE；型号需与实物一致。",
+      "descriptionEn": "Compile technical documentation, draft the EU DoC and apply CE properly; model must match the unit.",
+      "type": "certify",
+      "status": "pending",
+      "estimatedDays": 14,
+      "cost": "待询价",
+      "documents": [
+       "技术文档",
+       "EU DoC"
+      ],
+      "documentsEn": [
+       "Technical file",
+       "EU DoC"
+      ]
+     },
+     {
+      "id": "4",
+      "date": "待确认",
+      "title": "FCC 合规路径确认与记录",
+      "titleEn": "FCC compliance path and records",
+      "description": "确认 SDoC 或认证路径，建立责任方档案并核对标识与用户信息。",
+      "descriptionEn": "Confirm SDoC or certification path, set up responsible-party records and verify labelling.",
+      "type": "apply",
+      "status": "pending",
+      "estimatedDays": 14,
+      "cost": "待询价",
+      "documents": [
+       "SDoC 或授权记录",
+       "责任方信息"
+      ],
+      "documentsEn": [
+       "SDoC or grant record",
+       "Responsible party info"
+      ]
+     },
+     {
+      "id": "5",
+      "date": "待确认",
+      "title": "RoHS/Prop 65 声明与标签语言核对",
+      "titleEn": "RoHS / Prop 65 declarations and label language review",
+      "description": "收集物质声明，评估 Prop 65 警示必要性，并按销售国语言核对说明书与标签。",
+      "descriptionEn": "Collect substance declarations, assess Prop 65 warning need and verify label language per selling country.",
+      "type": "complete",
+      "status": "pending",
+      "estimatedDays": 7,
+      "cost": "待询价",
+      "documents": [
+       "RoHS 声明",
+       "Prop 65 评估",
+       "多语言说明书"
+      ],
+      "documentsEn": [
+       "RoHS declaration",
+       "Prop 65 assessment",
+       "Multilingual manual"
+      ]
+     }
+    ]
+   },
+   "decisionView": {
+    "summary": "产品身份（A2332 65W 墙插充电器）与目标市场 EU/US 可判断，LVD、EMC、RoHS、FCC Part 15、Prop 65 等适用锚点明确；但未提供任何测试报告、DoC、RoHS 声明或 FCC 授权记录，构成高风险缺口。图片可读铭牌与 CE/FCC/WEEE/EAC 标识，但图片无法验证插脚、线缆、警告语言与包装。本视图为 AI 预检，不替代认证机构、律师或实验室结论。",
+    "keyFindings": [
+     "铭牌可读：型号 A2332、100-240V~ 1.8A、TOTAL 65W MAX、SN AFY7ZX0D43623162",
+     "可见标志 CE、FCC、WEEE、EAC，仅证明标识存在，不证明认证有效",
+     "未提供 LVD/EMC 测试报告、EU DoC、RoHS 声明与 FCC 授权记录",
+     "缺生产日期与证书-批次对应关系，追溯链不完整",
+     "图片无法验证插脚形态、线缆接头、警告文字语言与包装信息",
+     "16 CFR 1505（120V 儿童用电器）初步判断不适用于本产品"
+    ],
+    "recommendedAction": "先补齐安全与 EMC 测试报告、EU DoC、RoHS 声明、FCC 授权或 SDoC 记录、进口商信息与销售国语言说明书，并补拍插脚、线缆、包装与警告文字照片；取得检测与认证报价后再评估排期与成本。",
+    "nodes": [
+     {
+      "id": "vision",
+      "type": "vision",
+      "label": "图片证据识别",
+      "labelEn": "Visual evidence extraction",
+      "severity": "medium",
+      "status": "success",
+      "duration": "1.2s",
+      "confidence": 0.88,
+      "reasoning": "清晰读出铭牌型号、电气参数、SN 与 CE/FCC/WEEE/EAC；插脚、线缆、警告语言、包装未覆盖，写为图片无法验证，不判定缺失。",
+      "reasoningEn": "Nameplate model, ratings, SN and marks read clearly; plug, cable, warning language and packaging not covered, recorded as unverifiable rather than missing."
+     },
+     {
+      "id": "query_planner",
+      "type": "query_planner",
+      "label": "检查项规划",
+      "labelEn": "Check planning",
+      "severity": "info",
+      "status": "success",
+      "duration": "0.6s",
+      "confidence": 0.9,
+      "reasoning": "按墙插充电器 + EU/US 规划 LVD、EMC、RoHS、FCC、Prop 65 等检查项与库自动接入条目。",
+      "reasoningEn": "Planned LVD, EMC, RoHS, FCC and Prop 65 checks plus auto-included library items for an EU/US wall charger."
+     },
+     {
+      "id": "retriever",
+      "type": "retriever",
+      "label": "法规检索",
+      "labelEn": "Regulation retrieval",
+      "severity": "info",
+      "status": "success",
+      "duration": "1.8s",
+      "confidence": 0.82,
+      "reasoning": "召回到 LVD、EMC、RoHS、FCC、Prop 65 相关条款原文；另有按品类自动接入但不适用的条目（如 16 CFR 1505 儿童用电器、1203 自行车头盔），已在报告中标注待核实。",
+      "reasoningEn": "Retrieved LVD, EMC, RoHS, FCC and Prop 65 clauses; some auto-included items are inapplicable and flagged for verification."
+     },
+     {
+      "id": "synthesis",
+      "type": "synthesis",
+      "label": "差距合成",
+      "labelEn": "Gap synthesis",
+      "severity": "high",
+      "status": "pending",
+      "duration": "",
+      "confidence": 0.8,
+      "reasoning": "未提供测试报告、DoC、RoHS 声明与 FCC 授权记录，属高风险缺口；但属未提交证据，不构成已证实违规。",
+      "reasoningEn": "No test reports, DoC, RoHS declaration or FCC authorization record; a high-risk gap, but missing evidence rather than proven non-compliance."
+     },
+     {
+      "id": "verify",
+      "type": "verify",
+      "label": "证据核验",
+      "labelEn": "Evidence verification",
+      "severity": "high",
+      "status": "pending",
+      "duration": "",
+      "confidence": 0.75,
+      "reasoning": "标志存在≠认证有效，且缺生产日期与证书-批次对照，无法完成实物与证书一致性核验。",
+      "reasoningEn": "Mark presence does not prove valid certification; production date and certificate-batch mapping are missing."
+     },
+     {
+      "id": "generate",
+      "type": "generate",
+      "label": "报告生成",
+      "labelEn": "Report generation",
+      "severity": "medium",
+      "status": "success",
+      "duration": "2.1s",
+      "confidence": 0.85,
+      "reasoning": "合规主张均带法规条款来源；因未提供成本数据，利润模块仅声明不作预测。",
+      "reasoningEn": "Compliance claims carry clause-level sources; profit module states no forecast due to missing cost data."
+     }
+    ],
+    "verdict": "WARN",
+    "riskLevel": "HIGH"
+   },
+   "evidenceBundles": {
+    "visual": [
+     {
+      "id": "visual:result",
+      "layer": "visual",
+      "source": "vision_result",
+      "title": "Vision analysis",
+      "content": "{'descriptions': ['产品类型：墙壁充电器\\n核心特征：铭牌显示型号 A2332，总输出 65W MAX；输入 100-240V~ 1.8A 50/60Hz；USB-C1/C2 输出支持 5V/9V/15V/20V；USB-A 输出支持 4.5V/5V/9V/12V\\n可见认证标志：CE、FCC、WEEE'], 'combined_description': '产品类型：墙壁充电器\\n核心特征：铭牌显示型号 A2332，总输出 65W MAX；输入 100-240V~ 1.8A 50/60Hz；USB-C1/C2 输出支持 5V/9V/15V/20V；USB-A 输出支持 4.5V/5V/9V/12V\\n可见认证标志：CE、FCC、WEEE', 'certifications': [{'mark': 'CE', 'region': 'EU', 'confidence': 'high'}, {'mark': 'FCC', 'region': 'US', 'confidence': 'high'}, {'mark': 'WEEE', 'region': 'EU', 'confidence': 'high'}], 'issues': [], 'cache_hits': 1, 'images_analyzed': 1, 'enriched_query': '产品类型：墙壁充电器 核心特征：铭牌显示型号 A2332，总输出 65W MAX；输入 100-240V~ 1.8A 50/60Hz；USB-C1/C2 输出支持 5V/9V/15V/20V；USB-A 输出支持 4",
+      "metadata": {
+       "descriptions": [
+        "产品类型：墙壁充电器\n核心特征：铭牌显示型号 A2332，总输出 65W MAX；输入 100-240V~ 1.8A 50/60Hz；USB-C1/C2 输出支持 5V/9V/15V/20V；USB-A 输出支持 4.5V/5V/9V/12V\n可见认证标志：CE、FCC、WEEE"
+       ],
+       "combinedDescription": "产品类型：墙壁充电器\n核心特征：铭牌显示型号 A2332，总输出 65W MAX；输入 100-240V~ 1.8A 50/60Hz；USB-C1/C2 输出支持 5V/9V/15V/20V；USB-A 输出支持 4.5V/5V/9V/12V\n可见认证标志：CE、FCC、WEEE",
+       "certifications": [
+        {
+         "mark": "CE",
+         "region": "EU",
+         "confidence": "high"
+        },
+        {
+         "mark": "FCC",
+         "region": "US",
+         "confidence": "high"
+        },
+        {
+         "mark": "WEEE",
+         "region": "EU",
+         "confidence": "high"
+        }
+       ],
+       "issues": [],
+       "cacheHits": 1,
+       "imagesAnalyzed": 1,
+       "enrichedQuery": "产品类型：墙壁充电器 核心特征：铭牌显示型号 A2332，总输出 65W MAX；输入 100-240V~ 1.8A 50/60Hz；USB-C1/C2 输出支持 5V/9V/15V/20V；USB-A 输出支持 4.5V/5V/9V/12V 可见认证标志：CE、FCC、WEEE",
+       "certSummary": "CE, FCC, WEEE",
+       "observations": [
+        {
+         "observationId": "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs0",
+         "checkId": "electronics.nameplate.electrical_ratings",
+         "imageIndex": 0,
+         "imageId": "vision-image-0",
+         "visibility": "present_readable",
+         "observedText": "INPUT: 100-240V~ 1.8A 50/60Hz; USB-C1/C2 OUTPUT: 5V=3A/9V=3A/15V=3A/20V=3.25A(65W MAX); USB-A OUTPUT: 4.5V=5A/5V=4.5A/9V=2A/12V=1.5A(22.5W MAX); TOTAL OUTPUT: 65W MAX",
+         "description": "铭牌中部清晰列出了输入、USB-C、USB-A 及总输出的电压、电流、功率和频率参数。",
+         "region": {
+          "kind": "bbox",
+          "coordinateSpace": "normalized_canonical_image",
+          "bbox": {
+           "x": 0.086,
+           "y": 0.267,
+           "w": 0.55,
+           "h": 0.4
+          }
+         }
+        },
+        {
+         "observationId": "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs1",
+         "checkId": "electronics.interface.plug_pins",
+         "imageIndex": 0,
+         "imageId": "vision-image-0",
+         "visibility": "not_in_view",
+         "observedText": null,
+         "description": "图片仅展示铭牌文字区域，未拍摄到充电器的插脚或接口物理形态。",
+         "region": null
+        },
+        {
+         "observationId": "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs2",
+         "checkId": "electronics.cable.connector_condition",
+         "imageIndex": 0,
+         "imageId": "vision-image-0",
+         "visibility": "not_in_view",
+         "observedText": null,
+         "description": "图片中未出现线缆或接头。",
+         "region": null
+        },
+        {
+         "observationId": "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs3",
+         "checkId": "electronics.marks.certification_region",
+         "imageIndex": 0,
+         "imageId": "vision-image-0",
+         "visibility": "present_readable",
+         "observedText": "CE FCC WEEE EAC",
+         "description": "铭牌底部有一行认证标志，清晰可见 CE、FCC、WEEE、EAC 字样。",
+         "region": {
+          "kind": "bbox",
+          "coordinateSpace": "normalized_canonical_image",
+          "bbox": {
+           "x": 0.086,
+           "y": 0.733,
+           "w": 0.13,
+           "h": 0.022
+          }
+         }
+        },
+        {
+         "observationId": "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs4",
+         "checkId": "electronics.adapter.external_power",
+         "imageIndex": 0,
+         "imageId": "vision-image-0",
+         "visibility": "not_in_view",
+         "observedText": null,
+         "description": "图片为铭牌特写，未展示外置适配器实物。",
+         "region": null
+        },
+        {
+         "observationId": "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs5",
+         "checkId": "common.product.overview",
+         "imageIndex": 0,
+         "imageId": "vision-image-0",
+         "visibility": "not_in_view",
+         "observedText": null,
+         "description": "图片仅包含铭牌文字，未展示产品主体外观。",
+         "region": null
+        },
+        {
+         "observationId": "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs6",
+         "checkId": "common.nameplate.readability",
+         "imageIndex": 0,
+         "imageId": "vision-image-0",
+         "visibility": "present_readable",
+         "observedText": "ANKER535 CHARGER (65W) / CHARGER/MODEL: A2332 / INPUT: 100-240V~ 1.8A 50/60Hz / USB-C1/C2 OUTPUT: 5V=3A/9V=3A/15V=3A/20V=3.25A(65W MAX) / USB-A OUTPUT: 4.5V=5A/5V=4.5A/9V=2A/12V=1.5A(22.5W MAX) / TOTAL OUTPUT: 65W MAX / MADE IN CHINA / CE FCC WEEE EAC / SN: AFY7ZX0D43623162",
+         "description": "铭牌文字整体清晰可读，包含品牌、型号、电气参数、产地、认证标志和序列号。",
+         "region": {
+          "kind": "bbox",
+          "coordinateSpace": "normalized_canonical_image",
+          "bbox": {
+           "x": 0.086,
+           "y": 0.133,
+           "w": 0.55,
+           "h": 0.65
+          }
+         }
+        },
+        {
+         "observationId": "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs8",
+         "checkId": "common.brand_model.visible",
+         "imageIndex": 0,
+         "imageId": "vision-image-0",
+         "visibility": "present_readable",
+         "observedText": "ANKER535 CHARGER (65W); CHARGER/MODEL: A2332",
+         "description": "铭牌顶部清晰显示了品牌 ANKER 和型号 A2332。",
+         "region": {
+          "kind": "bbox",
+          "coordinateSpace": "normalized_canonical_image",
+          "bbox": {
+           "x": 0.086,
+           "y": 0.133,
+           "w": 0.3,
+           "h": 0.1
+          }
+         }
+        },
+        {
+         "observationId": "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs9",
+         "checkId": "common.batch_traceability.fields",
+         "imageIndex": 0,
+         "imageId": "vision-image-0",
+         "visibility": "present_readable",
+         "observedText": "SN: AFY7ZX0D43623162",
+         "description": "铭牌底部可见序列号字段。",
+         "region": {
+          "kind": "bbox",
+          "coordinateSpace": "normalized_canonical_image",
+          "bbox": {
+           "x": 0.086,
+           "y": 0.8,
+           "w": 0.2,
+           "h": 0.022
+          }
+         }
+        },
+        {
+         "observationId": "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs10",
+         "checkId": "common.warning_text.language",
+         "imageIndex": 0,
+         "imageId": "vision-image-0",
+         "visibility": "absent_in_visible_scope",
+         "observedText": null,
+         "description": "铭牌区域清晰可见，但未出现任何警告文字。",
+         "region": null
+        },
+        {
+         "observationId": "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs11",
+         "checkId": "common.packaging.info",
+         "imageIndex": 0,
+         "imageId": "vision-image-0",
+         "visibility": "not_in_view",
+         "observedText": null,
+         "description": "图片未展示包装信息。",
+         "region": null
+        },
+        {
+         "observationId": "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs12",
+         "checkId": "common.defects.visible",
+         "imageIndex": 0,
+         "imageId": "vision-image-0",
+         "visibility": "absent_in_visible_scope",
+         "observedText": null,
+         "description": "铭牌区域清晰可见，未观察到裂损、变形、污渍或鼓胀等外观异常。",
+         "region": null
+        },
+        {
+         "observationId": "scan_450e06bcdf664a67831a5c393cd74a69-img0-mark0",
+         "checkId": "common.certification_marks.visible",
+         "imageIndex": 0,
+         "imageId": "vision-image-0",
+         "visibility": "present_readable",
+         "observedText": "CE",
+         "description": "位于铭牌底部认证标志行最左侧",
+         "region": {
+          "kind": "bbox",
+          "coordinateSpace": "normalized_canonical_image",
+          "bbox": {
+           "x": 0.086,
+           "y": 0.733,
+           "w": 0.018,
+           "h": 0.022
+          }
+         }
+        },
+        {
+         "observationId": "scan_450e06bcdf664a67831a5c393cd74a69-img0-mark1",
+         "checkId": "common.certification_marks.visible",
+         "imageIndex": 0,
+         "imageId": "vision-image-0",
+         "visibility": "present_readable",
+         "observedText": "FCC",
+         "description": "位于铭牌底部认证标志行，CE 标志右侧",
+         "region": {
+          "kind": "bbox",
+          "coordinateSpace": "normalized_canonical_image",
+          "bbox": {
+           "x": 0.115,
+           "y": 0.733,
+           "w": 0.026,
+           "h": 0.022
+          }
+         }
+        },
+        {
+         "observationId": "scan_450e06bcdf664a67831a5c393cd74a69-img0-mark2",
+         "checkId": "common.certification_marks.visible",
+         "imageIndex": 0,
+         "imageId": "vision-image-0",
+         "visibility": "present_readable",
+         "observedText": "WEEE",
+         "description": "位于铭牌底部认证标志行，FCC 标志右侧",
+         "region": {
+          "kind": "bbox",
+          "coordinateSpace": "normalized_canonical_image",
+          "bbox": {
+           "x": 0.152,
+           "y": 0.733,
+           "w": 0.026,
+           "h": 0.022
+          }
+         }
+        },
+        {
+         "observationId": "scan_450e06bcdf664a67831a5c393cd74a69-img0-mark3",
+         "checkId": "common.certification_marks.visible",
+         "imageIndex": 0,
+         "imageId": "vision-image-0",
+         "visibility": "present_readable",
+         "observedText": "EAC",
+         "description": "位于铭牌底部认证标志行最右侧",
+         "region": {
+          "kind": "bbox",
+          "coordinateSpace": "normalized_canonical_image",
+          "bbox": {
+           "x": 0.189,
+           "y": 0.733,
+           "w": 0.024,
+           "h": 0.022
+          }
+         }
+        }
+       ]
+      }
+     }
+    ],
+    "retrieval": [],
+    "generation": [
+     {
+      "id": "generation:compliance_report",
+      "layer": "generation",
+      "source": "report_generator",
+      "title": "Compliance report draft",
+      "content": "# 墙壁充电器 A2332（65W）EU/US 合规预检\n\n**结论：WARN（存在高风险缺口，非不合规判定）** — 产品身份与目标市场可判断；未见 LVD/EMC 测试报告、EU DoC、RoHS 声明、FCC SDoC 或设备授权记录、进口商信息，且未提供成本数据。本报告仅为 AI 预检，不构成认证结论、合规证明或上市许可。\n\n## 图片可见事实（非合规结论）\n- 铭牌可读：ANKER535 CHARGER (65W)、MODEL A2332、INPUT 100-240V~ 1.8A 50/60Hz、USB-C1/C2 5V/9V/15V/20V、USB-A 4.5V/5V/9V/12V、TOTAL 65W MAX、MADE IN CHINA、SN AFY7ZX0D43623162\n- 可见标志：CE、FCC、WEEE、EAC（仅记录存在，不作真伪与授权有效性判断）\n- 图片无法验证：插脚形态、线缆与接头、警告文字语言、包装内容、是否含电池（未确认，不作推断）\n\n## EU 必检项及适用理由\n1. LVD 2014/35/EU：适用，输入 100–240V~ 落在 50–1000V AC 区间 [EU-2014-35#art-1]。缺测试报告属\"未提交证据\"，不能认定已违反安全目标；待补安全测试报告、技术文档与 DoC [EU-2014-35#art-6]。\n2. EMC 2014/30/EU：适用；需 EN 55032/55035/61000 系列报告，否则 CE 主张缺乏依据 [EU-2014-30#art-6]。\n3. RoHS 2011/65/EU：适用；限值与豁免见 Annex II，需均质材料检测或受控供应商声明 [EU-2011-65#art-4]。\n4. CE 加贴：须在上市前可见、清晰、牢固，可置于铭牌；照片显示标识存在，但图片无法验证尺寸比例与加贴依据 [EU-2014-35#art-17]。\n5. 追溯与标签：应有型号/批次/序列号及制造商或进口商名称地址；SN 已见，生产日期与进口商信息未见 [EU-2014-35#art-6]。\n6. 说明书与安全信息：须为销售成员国易懂语言；未选定具体成员国，需按销售国逐一核对 [EU-2014-35#art-6]。\n7. UCPD 2005/29/EC：页面与广告宣称（如\"65W\"\"认证齐全\"）不得误导 [EU-2005-29#art-2]。\n8. CRD 2011/83/EU、Omnibus 2019/2161（库自动接入）：远程销售信息与价格披露义务；依据规则库，待核实原文 [EU-2011-83#art-2]。\n\n## US 必检项及适用理由\n1. FCC Part 15：本机为无意辐射体，须按 SDoC 或认证程序并留存责任方记录 [US-FCC-15#section-15-101",
+      "metadata": {
+       "characterCount": 1850
+      }
+     },
+     {
+      "id": "generation:package_keys",
+      "layer": "generation",
+      "source": "report_package",
+      "title": "Generated package keys",
+      "content": "auditMetadata, citations, complianceReport, decisionView, profitReport, reviewClaims, roadmap",
+      "metadata": {
+       "sceneCount": 7
+      }
+     }
+    ]
+   },
+   "auditMetadata": {
+    "schemaVersion": "report-package/v1",
+    "generatedAt": "2026-09-19T10:26:48+00:00",
+    "validationStatus": "normalized",
+    "validationErrors": [],
+    "provider": "deepseek",
+    "traceNodeCount": 2,
+    "finance": {
+     "validationStatus": "valid",
+     "errors": []
+    },
+    "decisionView": {
+     "validationStatus": "valid",
+     "errors": []
+    },
+    "roadmap": {
+     "validationStatus": "valid",
+     "errors": []
+    },
+    "evidenceBundles": {
+     "validationStatus": "valid",
+     "errors": []
+    },
+    "verificationMode": "kb_exact_quote",
+    "canonicalQuoteAttachedCount": 4,
+    "reviewClaimInputCount": 30,
+    "reviewClaimLinkedCount": 30
+   },
+   "citations": [
+    {
+     "quote": "This Directive shall apply to electrical equipment designed for use with a voltage rating of between 50 and 1 000 V for alternating current and between 75 and 1 500 V for direct current",
+     "doc_id": "EU-2014-35",
+     "article_id": "art-1",
+     "official_citation": "Directive 2014/35/EU Art. 1",
+     "quote_span": [
+      314,
+      499
+     ],
+     "match_status": "matched"
+    },
+    {
+     "quote": "Electrical equipment may be made available on the Union market only if, having been constructed in accordance with good engineering practice in safety matters in force in the Union",
+     "doc_id": "EU-2014-35",
+     "article_id": "art-3",
+     "official_citation": "Directive 2014/35/EU Art. 3",
+     "quote_span": [
+      63,
+      243
+     ],
+     "match_status": "matched"
+    },
+    {
+     "quote": "Manufacturers shall draw up the technical documentation referred to in Annex III and carry out the conformity assessment procedure referred to in Annex III or have it carried out.",
+     "doc_id": "EU-2014-35",
+     "article_id": "art-6",
+     "official_citation": "Directive 2014/35/EU Art. 6(2)",
+     "quote_span": [
+      260,
+      439
+     ],
+     "match_status": "matched"
+    },
+    {
+     "quote": "Manufacturers shall keep the technical documentation referred to in Annex III and the EU declaration of conformity for 10 years after the electrical equipment has been placed on the market.",
+     "doc_id": "EU-2014-35",
+     "article_id": "art-6",
+     "official_citation": "Directive 2014/35/EU Art. 6(3)",
+     "quote_span": [
+      745,
+      934
+     ],
+     "match_status": "matched"
+    },
+    {
+     "quote": "Manufacturers shall ensure that electrical equipment which they have placed on the market bears a type, batch or serial number or other element allowing its identification",
+     "doc_id": "EU-2014-35",
+     "article_id": "art-6",
+     "official_citation": "Directive 2014/35/EU Art. 6(5)",
+     "quote_span": [
+      1825,
+      1996
+     ],
+     "match_status": "matched"
+    },
+    {
+     "quote": "Manufacturers shall ensure that the electrical equipment is accompanied by instructions and safety information in a language which can be easily understood by consumers and other end-users",
+     "doc_id": "EU-2014-35",
+     "article_id": "art-6",
+     "official_citation": "Directive 2014/35/EU Art. 6(7)",
+     "quote_span": [
+      2667,
+      2855
+     ],
+     "match_status": "matched"
+    },
+    {
+     "quote": "keep the EU declaration of conformity and the technical documentation at the disposal of national market surveillance authorities for 10 years after the electrical equipment has been placed on the market",
+     "doc_id": "EU-2014-35",
+     "article_id": "art-7",
+     "official_citation": "Directive 2014/35/EU Art. 7(2)(a)",
+     "quote_span": [
+      509,
+      712
+     ],
+     "match_status": "matched"
+    },
+    {
+     "quote": "Before placing electrical equipment on the market importers shall ensure that the appropriate conformity assessment procedure has been carried out by the manufacturer.",
+     "doc_id": "EU-2014-35",
+     "article_id": "art-8",
+     "official_citation": "Directive 2014/35/EU Art. 8(2)",
+     "quote_span": [
+      114,
+      281
+     ],
+     "match_status": "matched"
+    },
+    {
+     "quote": "The EU declaration of conformity shall state that the fulfilment of the safety objectives referred to in Article 3 and set out in Annex I has been demonstrated.",
+     "doc_id": "EU-2014-35",
+     "article_id": "art-15",
+     "official_citation": "Directive 2014/35/EU Art. 15(1)",
+     "quote_span": [
+      43,
+      203
+     ],
+     "match_status": "matched"
+    },
+    {
+     "quote": "The CE marking shall be affixed visibly, legibly and indelibly to the electrical equipment or to its data plate.",
+     "doc_id": "EU-2014-35",
+     "article_id": "art-17",
+     "official_citation": "Directive 2014/35/EU Art. 17(1)",
+     "quote_span": [
+      63,
+      175
+     ],
+     "match_status": "matched"
+    },
+    {
+     "quote": "the essential characteristics, the recognition and observance of which will ensure that electrical equipment will be used safely and in applications for which it was made, shall be marked on the electrical equipment",
+     "doc_id": "EU-2014-35",
+     "article_id": "annex-1",
+     "official_citation": "Directive 2014/35/EU Annex I point 1(a)",
+     "quote_span": [
+      150,
+      365
+     ],
+     "match_status": "matched"
+    },
+    {
+     "quote": "EN 55032 / EN 55035 / EN 61000 系列协调标准是常用合规依据",
+     "doc_id": "EU-2014-30",
+     "article_id": "art-6",
+     "official_citation": "Directive 2014/30/EU Art. 6",
+     "quote_span": null,
+     "match_status": "fallback_article_only",
+     "quote_provenance": "llm_paraphrase_unverified",
+     "canonical_excerpt": "EN 55032 / EN 55035 / EN 61000 系列协调标准是常用合规依据 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)"
+    },
+    {
+     "quote": "Annex II 列具体限值与豁免清单 (e.g. 焊料铅豁免至 2026 阶段收尾)",
+     "doc_id": "EU-2011-65",
+     "article_id": "art-4",
+     "official_citation": "Directive 2011/65/EU Art. 4",
+     "quote_span": null,
+     "match_status": "fallback_article_only",
+     "quote_provenance": "llm_paraphrase_unverified",
+     "canonical_excerpt": "Annex II 列具体限值与豁免清单 (e.g. 焊料铅豁免至 2026 阶段收尾) (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)"
+    },
+    {
+     "quote": "大多数无意/低功率有意辐射体走 SDoC (Supplier's Declaration of Conformity) 程序",
+     "doc_id": "US-FCC-15",
+     "article_id": "section-15-101",
+     "official_citation": "47 CFR 15.101",
+     "quote_span": null,
+     "match_status": "fallback_article_only",
+     "quote_provenance": "llm_paraphrase_unverified",
+     "canonical_excerpt": "大多数无意/低功率有意辐射体走 SDoC (Supplier's Declaration of Conformity) 程序 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)"
+    },
+    {
+     "quote": "This part sets out the regulations under which an intentional, unintentional, or incidental radiator may be operated without an individual license.",
+     "doc_id": "US-CFR-TITLE47-PART15",
+     "article_id": "art-2",
+     "official_citation": "47 CFR 15.1",
+     "quote_span": [
+      31,
+      178
+     ],
+     "match_status": "matched"
+    },
+    {
+     "quote": "Where a term or definition appears in this part of the Commission's Rules, it shall be the definitive term or definition and shall prevail throughout the Commission's Rules.",
+     "doc_id": "US-CFR-TITLE47-PART2",
+     "article_id": "art-2",
+     "official_citation": "47 CFR 2.1",
+     "quote_span": [
+      33,
+      206
+     ],
+     "match_status": "matched"
+    },
+    {
+     "quote": "需对暴露途径 (摄入/接触/吸入) 提供清晰合理的警示标签 ('WARNING' 或 'CAUTION')",
+     "doc_id": "US-CA-Prop-65",
+     "article_id": "section-25249-5",
+     "official_citation": "California Health & Safety Code §25249.5",
+     "quote_span": null,
+     "match_status": "fallback_article_only",
+     "quote_provenance": "llm_paraphrase_unverified",
+     "canonical_excerpt": "需对暴露途径 (摄入/接触/吸入) 提供清晰合理的警示标签 ('WARNING' 或 'CAUTION') (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)"
+    },
+    {
+     "quote": "any toy, game, or other article designed, labeled, advertised, or otherwise intended for use by children which is intended to be powered by electrical current from nominal 120 volt (110-125 v.) branch circuits",
+     "doc_id": "US-CFR-TITLE16-PART1505",
+     "article_id": "art-2",
+     "official_citation": "16 CFR 1505.1(a)(1)",
+     "quote_span": [
+      192,
+      401
+     ],
+     "match_status": "matched"
+    },
+    {
+     "quote": "The laws of the Member States relating to unfair commercial practices show marked differences which can generate appreciable distortions of competition",
+     "doc_id": "EU-2005-29",
+     "article_id": "art-2",
+     "official_citation": "Directive 2005/29/EC recital 3",
+     "quote_span": [
+      578,
+      729
+     ],
+     "match_status": "matched"
+    },
+    {
+     "quote": "The harmonisation of certain aspects of consumer distance and off-premises contracts is necessary for the promotion of a real consumer internal market",
+     "doc_id": "EU-2011-83",
+     "article_id": "art-2",
+     "official_citation": "Directive 2011/83/EU recital 4",
+     "quote_span": [
+      474,
+      624
+     ],
+     "match_status": "matched"
+    }
+   ],
+   "evidencePack": [
+    {
+     "quote": "This Directive shall apply to electrical equipment designed for use with a voltage rating of between 50 and 1 000 V for alternating current and between 75 and 1 500 V for direct current",
+     "doc_id": "EU-2014-35",
+     "article_id": "art-1",
+     "official_citation": "Directive 2014/35/EU Art. 1",
+     "quote_span": [
+      314,
+      499
+     ],
+     "match_status": "matched"
+    },
+    {
+     "quote": "Electrical equipment may be made available on the Union market only if, having been constructed in accordance with good engineering practice in safety matters in force in the Union",
+     "doc_id": "EU-2014-35",
+     "article_id": "art-3",
+     "official_citation": "Directive 2014/35/EU Art. 3",
+     "quote_span": [
+      63,
+      243
+     ],
+     "match_status": "matched"
+    },
+    {
+     "quote": "Manufacturers shall keep the technical documentation referred to in Annex III and the EU declaration of conformity for 10 years after the electrical equipment has been placed on the market.",
+     "doc_id": "EU-2014-35",
+     "article_id": "art-6",
+     "official_citation": "Directive 2014/35/EU Art. 6(3)",
+     "quote_span": [
+      745,
+      934
+     ],
+     "match_status": "matched"
+    },
+    {
+     "quote": "keep the EU declaration of conformity and the technical documentation at the disposal of national market surveillance authorities for 10 years after the electrical equipment has been placed on the market",
+     "doc_id": "EU-2014-35",
+     "article_id": "art-7",
+     "official_citation": "Directive 2014/35/EU Art. 7(2)(a)",
+     "quote_span": [
+      509,
+      712
+     ],
+     "match_status": "matched"
+    },
+    {
+     "quote": "Before placing electrical equipment on the market importers shall ensure that the appropriate conformity assessment procedure has been carried out by the manufacturer.",
+     "doc_id": "EU-2014-35",
+     "article_id": "art-8",
+     "official_citation": "Directive 2014/35/EU Art. 8(2)",
+     "quote_span": [
+      114,
+      281
+     ],
+     "match_status": "matched"
+    },
+    {
+     "quote": "The EU declaration of conformity shall state that the fulfilment of the safety objectives referred to in Article 3 and set out in Annex I has been demonstrated.",
+     "doc_id": "EU-2014-35",
+     "article_id": "art-15",
+     "official_citation": "Directive 2014/35/EU Art. 15(1)",
+     "quote_span": [
+      43,
+      203
+     ],
+     "match_status": "matched"
+    },
+    {
+     "quote": "The CE marking shall be affixed visibly, legibly and indelibly to the electrical equipment or to its data plate.",
+     "doc_id": "EU-2014-35",
+     "article_id": "art-17",
+     "official_citation": "Directive 2014/35/EU Art. 17(1)",
+     "quote_span": [
+      63,
+      175
+     ],
+     "match_status": "matched"
+    },
+    {
+     "quote": "the essential characteristics, the recognition and observance of which will ensure that electrical equipment will be used safely and in applications for which it was made, shall be marked on the electrical equipment",
+     "doc_id": "EU-2014-35",
+     "article_id": "annex-1",
+     "official_citation": "Directive 2014/35/EU Annex I point 1(a)",
+     "quote_span": [
+      150,
+      365
+     ],
+     "match_status": "matched"
+    },
+    {
+     "quote": "EN 55032 / EN 55035 / EN 61000 系列协调标准是常用合规依据",
+     "doc_id": "EU-2014-30",
+     "article_id": "art-6",
+     "official_citation": "Directive 2014/30/EU Art. 6",
+     "quote_span": null,
+     "match_status": "fallback_article_only",
+     "quote_provenance": "llm_paraphrase_unverified",
+     "canonical_excerpt": "EN 55032 / EN 55035 / EN 61000 系列协调标准是常用合规依据 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)"
+    },
+    {
+     "quote": "Annex II 列具体限值与豁免清单 (e.g. 焊料铅豁免至 2026 阶段收尾)",
+     "doc_id": "EU-2011-65",
+     "article_id": "art-4",
+     "official_citation": "Directive 2011/65/EU Art. 4",
+     "quote_span": null,
+     "match_status": "fallback_article_only",
+     "quote_provenance": "llm_paraphrase_unverified",
+     "canonical_excerpt": "Annex II 列具体限值与豁免清单 (e.g. 焊料铅豁免至 2026 阶段收尾) (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)"
+    },
+    {
+     "quote": "大多数无意/低功率有意辐射体走 SDoC (Supplier's Declaration of Conformity) 程序",
+     "doc_id": "US-FCC-15",
+     "article_id": "section-15-101",
+     "official_citation": "47 CFR 15.101",
+     "quote_span": null,
+     "match_status": "fallback_article_only",
+     "quote_provenance": "llm_paraphrase_unverified",
+     "canonical_excerpt": "大多数无意/低功率有意辐射体走 SDoC (Supplier's Declaration of Conformity) 程序 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)"
+    },
+    {
+     "quote": "This part sets out the regulations under which an intentional, unintentional, or incidental radiator may be operated without an individual license.",
+     "doc_id": "US-CFR-TITLE47-PART15",
+     "article_id": "art-2",
+     "official_citation": "47 CFR 15.1",
+     "quote_span": [
+      31,
+      178
+     ],
+     "match_status": "matched"
+    },
+    {
+     "quote": "Where a term or definition appears in this part of the Commission's Rules, it shall be the definitive term or definition and shall prevail throughout the Commission's Rules.",
+     "doc_id": "US-CFR-TITLE47-PART2",
+     "article_id": "art-2",
+     "official_citation": "47 CFR 2.1",
+     "quote_span": [
+      33,
+      206
+     ],
+     "match_status": "matched"
+    },
+    {
+     "quote": "需对暴露途径 (摄入/接触/吸入) 提供清晰合理的警示标签 ('WARNING' 或 'CAUTION')",
+     "doc_id": "US-CA-Prop-65",
+     "article_id": "section-25249-5",
+     "official_citation": "California Health & Safety Code §25249.5",
+     "quote_span": null,
+     "match_status": "fallback_article_only",
+     "quote_provenance": "llm_paraphrase_unverified",
+     "canonical_excerpt": "需对暴露途径 (摄入/接触/吸入) 提供清晰合理的警示标签 ('WARNING' 或 'CAUTION') (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)"
+    },
+    {
+     "quote": "any toy, game, or other article designed, labeled, advertised, or otherwise intended for use by children which is intended to be powered by electrical current from nominal 120 volt (110-125 v.) branch circuits",
+     "doc_id": "US-CFR-TITLE16-PART1505",
+     "article_id": "art-2",
+     "official_citation": "16 CFR 1505.1(a)(1)",
+     "quote_span": [
+      192,
+      401
+     ],
+     "match_status": "matched"
+    },
+    {
+     "quote": "The laws of the Member States relating to unfair commercial practices show marked differences which can generate appreciable distortions of competition",
+     "doc_id": "EU-2005-29",
+     "article_id": "art-2",
+     "official_citation": "Directive 2005/29/EC recital 3",
+     "quote_span": [
+      578,
+      729
+     ],
+     "match_status": "matched"
+    },
+    {
+     "quote": "The harmonisation of certain aspects of consumer distance and off-premises contracts is necessary for the promotion of a real consumer internal market",
+     "doc_id": "EU-2011-83",
+     "article_id": "art-2",
+     "official_citation": "Directive 2011/83/EU recital 4",
+     "quote_span": [
+      474,
+      624
+     ],
+     "match_status": "matched"
+    }
+   ],
+   "observations": [
+    {
+     "observationId": "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs0",
+     "checkId": "electronics.nameplate.electrical_ratings",
+     "imageIndex": 0,
+     "imageId": "vision-image-0",
+     "visibility": "present_readable",
+     "observedText": "INPUT: 100-240V~ 1.8A 50/60Hz; USB-C1/C2 OUTPUT: 5V=3A/9V=3A/15V=3A/20V=3.25A(65W MAX); USB-A OUTPUT: 4.5V=5A/5V=4.5A/9V=2A/12V=1.5A(22.5W MAX); TOTAL OUTPUT: 65W MAX",
+     "description": "铭牌中部清晰列出了输入、USB-C、USB-A 及总输出的电压、电流、功率和频率参数。",
+     "region": {
+      "kind": "bbox",
+      "coordinateSpace": "normalized_canonical_image",
+      "bbox": {
+       "x": 0.086,
+       "y": 0.267,
+       "w": 0.55,
+       "h": 0.4
+      },
+      "verified": true
+     }
+    },
+    {
+     "observationId": "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs1",
+     "checkId": "electronics.interface.plug_pins",
+     "imageIndex": 0,
+     "imageId": "vision-image-0",
+     "visibility": "not_in_view",
+     "observedText": null,
+     "description": "图片仅展示铭牌文字区域，未拍摄到充电器的插脚或接口物理形态。",
+     "region": null
+    },
+    {
+     "observationId": "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs2",
+     "checkId": "electronics.cable.connector_condition",
+     "imageIndex": 0,
+     "imageId": "vision-image-0",
+     "visibility": "not_in_view",
+     "observedText": null,
+     "description": "图片中未出现线缆或接头。",
+     "region": null
+    },
+    {
+     "observationId": "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs3",
+     "checkId": "electronics.marks.certification_region",
+     "imageIndex": 0,
+     "imageId": "vision-image-0",
+     "visibility": "present_readable",
+     "observedText": "CE FCC WEEE EAC",
+     "description": "铭牌底部有一行认证标志，清晰可见 CE、FCC、WEEE、EAC 字样。",
+     "region": {
+      "kind": "bbox",
+      "coordinateSpace": "normalized_canonical_image",
+      "bbox": {
+       "x": 0.086,
+       "y": 0.733,
+       "w": 0.13,
+       "h": 0.022
+      },
+      "verified": true
+     }
+    },
+    {
+     "observationId": "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs4",
+     "checkId": "electronics.adapter.external_power",
+     "imageIndex": 0,
+     "imageId": "vision-image-0",
+     "visibility": "not_in_view",
+     "observedText": null,
+     "description": "图片为铭牌特写，未展示外置适配器实物。",
+     "region": null
+    },
+    {
+     "observationId": "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs5",
+     "checkId": "common.product.overview",
+     "imageIndex": 0,
+     "imageId": "vision-image-0",
+     "visibility": "not_in_view",
+     "observedText": null,
+     "description": "图片仅包含铭牌文字，未展示产品主体外观。",
+     "region": null
+    },
+    {
+     "observationId": "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs6",
+     "checkId": "common.nameplate.readability",
+     "imageIndex": 0,
+     "imageId": "vision-image-0",
+     "visibility": "present_readable",
+     "observedText": "ANKER535 CHARGER (65W) / CHARGER/MODEL: A2332 / INPUT: 100-240V~ 1.8A 50/60Hz / USB-C1/C2 OUTPUT: 5V=3A/9V=3A/15V=3A/20V=3.25A(65W MAX) / USB-A OUTPUT: 4.5V=5A/5V=4.5A/9V=2A/12V=1.5A(22.5W MAX) / TOTAL OUTPUT: 65W MAX / MADE IN CHINA / CE FCC WEEE EAC / SN: AFY7ZX0D43623162",
+     "description": "铭牌文字整体清晰可读，包含品牌、型号、电气参数、产地、认证标志和序列号。",
+     "region": {
+      "kind": "bbox",
+      "coordinateSpace": "normalized_canonical_image",
+      "bbox": {
+       "x": 0.086,
+       "y": 0.133,
+       "w": 0.55,
+       "h": 0.65
+      },
+      "verified": true
+     }
+    },
+    {
+     "observationId": "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs8",
+     "checkId": "common.brand_model.visible",
+     "imageIndex": 0,
+     "imageId": "vision-image-0",
+     "visibility": "present_readable",
+     "observedText": "ANKER535 CHARGER (65W); CHARGER/MODEL: A2332",
+     "description": "铭牌顶部清晰显示了品牌 ANKER 和型号 A2332。",
+     "region": {
+      "kind": "bbox",
+      "coordinateSpace": "normalized_canonical_image",
+      "bbox": {
+       "x": 0.086,
+       "y": 0.133,
+       "w": 0.3,
+       "h": 0.1
+      },
+      "verified": true
+     }
+    },
+    {
+     "observationId": "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs9",
+     "checkId": "common.batch_traceability.fields",
+     "imageIndex": 0,
+     "imageId": "vision-image-0",
+     "visibility": "present_readable",
+     "observedText": "SN: AFY7ZX0D43623162",
+     "description": "铭牌底部可见序列号字段。",
+     "region": {
+      "kind": "bbox",
+      "coordinateSpace": "normalized_canonical_image",
+      "bbox": {
+       "x": 0.086,
+       "y": 0.8,
+       "w": 0.2,
+       "h": 0.022
+      },
+      "verified": true
+     }
+    },
+    {
+     "observationId": "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs10",
+     "checkId": "common.warning_text.language",
+     "imageIndex": 0,
+     "imageId": "vision-image-0",
+     "visibility": "absent_in_visible_scope",
+     "observedText": null,
+     "description": "铭牌区域清晰可见，但未出现任何警告文字。",
+     "region": null
+    },
+    {
+     "observationId": "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs11",
+     "checkId": "common.packaging.info",
+     "imageIndex": 0,
+     "imageId": "vision-image-0",
+     "visibility": "not_in_view",
+     "observedText": null,
+     "description": "图片未展示包装信息。",
+     "region": null
+    },
+    {
+     "observationId": "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs12",
+     "checkId": "common.defects.visible",
+     "imageIndex": 0,
+     "imageId": "vision-image-0",
+     "visibility": "absent_in_visible_scope",
+     "observedText": null,
+     "description": "铭牌区域清晰可见，未观察到裂损、变形、污渍或鼓胀等外观异常。",
+     "region": null
+    },
+    {
+     "observationId": "scan_450e06bcdf664a67831a5c393cd74a69-img0-mark0",
+     "checkId": "common.certification_marks.visible",
+     "imageIndex": 0,
+     "imageId": "vision-image-0",
+     "visibility": "present_readable",
+     "observedText": "CE",
+     "description": "位于铭牌底部认证标志行最左侧",
+     "region": {
+      "kind": "bbox",
+      "coordinateSpace": "normalized_canonical_image",
+      "bbox": {
+       "x": 0.086,
+       "y": 0.733,
+       "w": 0.018,
+       "h": 0.022
+      },
+      "verified": true
+     }
+    },
+    {
+     "observationId": "scan_450e06bcdf664a67831a5c393cd74a69-img0-mark1",
+     "checkId": "common.certification_marks.visible",
+     "imageIndex": 0,
+     "imageId": "vision-image-0",
+     "visibility": "present_readable",
+     "observedText": "FCC",
+     "description": "位于铭牌底部认证标志行，CE 标志右侧",
+     "region": {
+      "kind": "bbox",
+      "coordinateSpace": "normalized_canonical_image",
+      "bbox": {
+       "x": 0.115,
+       "y": 0.733,
+       "w": 0.026,
+       "h": 0.022
+      },
+      "verified": true
+     }
+    },
+    {
+     "observationId": "scan_450e06bcdf664a67831a5c393cd74a69-img0-mark2",
+     "checkId": "common.certification_marks.visible",
+     "imageIndex": 0,
+     "imageId": "vision-image-0",
+     "visibility": "present_readable",
+     "observedText": "WEEE",
+     "description": "位于铭牌底部认证标志行，FCC 标志右侧",
+     "region": {
+      "kind": "bbox",
+      "coordinateSpace": "normalized_canonical_image",
+      "bbox": {
+       "x": 0.152,
+       "y": 0.733,
+       "w": 0.026,
+       "h": 0.022
+      },
+      "verified": true
+     }
+    },
+    {
+     "observationId": "scan_450e06bcdf664a67831a5c393cd74a69-img0-mark3",
+     "checkId": "common.certification_marks.visible",
+     "imageIndex": 0,
+     "imageId": "vision-image-0",
+     "visibility": "present_readable",
+     "observedText": "EAC",
+     "description": "位于铭牌底部认证标志行最右侧",
+     "region": {
+      "kind": "bbox",
+      "coordinateSpace": "normalized_canonical_image",
+      "bbox": {
+       "x": 0.189,
+       "y": 0.733,
+       "w": 0.024,
+       "h": 0.022
+      },
+      "verified": true
+     }
+    }
+   ],
+   "findings": [
+    {
+     "findingId": "scan_450e06bcdf664a67831a5c393cd74a69-finding-1",
+     "checkId": "electronics.interface.plug_pins",
+     "title": "接口与插脚形态",
+     "assessment": "evidence_needed",
+     "applicability": "applicable",
+     "severity": "low",
+     "observationIds": [
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs1"
+     ],
+     "citationIds": [],
+     "suggestedAction": "补拍接口近照、插头近照（本次照片未覆盖该区域）",
+     "requiredEvidence": [
+      "补拍视角：接口近照、插头近照"
+     ]
+    },
+    {
+     "findingId": "scan_450e06bcdf664a67831a5c393cd74a69-finding-2",
+     "checkId": "electronics.cable.connector_condition",
+     "title": "线缆与接头可见状态",
+     "assessment": "evidence_needed",
+     "applicability": "applicable",
+     "severity": "low",
+     "observationIds": [
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs2"
+     ],
+     "citationIds": [],
+     "suggestedAction": "补拍线缆近照（本次照片未覆盖该区域）",
+     "requiredEvidence": [
+      "补拍视角：线缆近照"
+     ]
+    },
+    {
+     "findingId": "scan_450e06bcdf664a67831a5c393cd74a69-finding-3",
+     "checkId": "electronics.adapter.external_power",
+     "title": "外置适配器(如拍摄)",
+     "assessment": "evidence_needed",
+     "applicability": "applicable",
+     "severity": "low",
+     "observationIds": [
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs4"
+     ],
+     "citationIds": [],
+     "suggestedAction": "补拍适配器近照（本次照片未覆盖该区域）",
+     "requiredEvidence": [
+      "补拍视角：适配器近照"
+     ]
+    },
+    {
+     "findingId": "scan_450e06bcdf664a67831a5c393cd74a69-finding-5",
+     "checkId": "common.warning_text.language",
+     "title": "警告文字及其语言",
+     "assessment": "suspected_issue",
+     "applicability": "applicable",
+     "severity": "medium",
+     "observationIds": [
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs10"
+     ],
+     "citationIds": [],
+     "suggestedAction": "标签区域可见但未检出「警告文字及其语言」：核对规则允许的其他标识位置；如确无需补充标注/认证",
+     "requiredEvidence": [
+      "补拍视角：警告标签近照"
+     ]
+    },
+    {
+     "findingId": "scan_450e06bcdf664a67831a5c393cd74a69-finding-6",
+     "checkId": "common.packaging.info",
+     "title": "包装信息(如已拍摄)",
+     "assessment": "evidence_needed",
+     "applicability": "applicable",
+     "severity": "low",
+     "observationIds": [
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs11"
+     ],
+     "citationIds": [],
+     "suggestedAction": "补拍包装照（本次照片未覆盖该区域）",
+     "requiredEvidence": [
+      "补拍视角：包装照"
+     ]
+    },
+    {
+     "findingId": "scan_450e06bcdf664a67831a5c393cd74a69-finding-7",
+     "checkId": "electronics.safety.electrical_test",
+     "title": "电气安全测试报告",
+     "assessment": "evidence_needed",
+     "applicability": "applicable",
+     "severity": "low",
+     "observationIds": [],
+     "citationIds": [
+      "KB-electronics-EU-LVD-2014-35",
+      "US-UL-ETL-mains"
+     ],
+     "suggestedAction": "提供检测报告：电气安全测试报告",
+     "requiredEvidence": [
+      "检测报告：电气安全测试报告"
+     ]
+    },
+    {
+     "findingId": "scan_450e06bcdf664a67831a5c393cd74a69-finding-8",
+     "checkId": "electronics.emc.test_report",
+     "title": "EMC 测试报告",
+     "assessment": "evidence_needed",
+     "applicability": "applicable",
+     "severity": "low",
+     "observationIds": [],
+     "citationIds": [
+      "KB-electronics-EU-EMC-2014-30"
+     ],
+     "suggestedAction": "提供检测报告：EMC 测试报告",
+     "requiredEvidence": [
+      "检测报告：EMC 测试报告"
+     ]
+    }
+   ],
+   "selectedCheckIds": [
+    "electronics.nameplate.electrical_ratings",
+    "electronics.interface.plug_pins",
+    "electronics.cable.connector_condition",
+    "electronics.marks.certification_region",
+    "electronics.adapter.external_power",
+    "common.product.overview",
+    "common.nameplate.readability",
+    "common.certification_marks.visible",
+    "common.brand_model.visible",
+    "common.batch_traceability.fields",
+    "common.warning_text.language",
+    "common.packaging.info",
+    "common.defects.visible"
+   ],
+   "reviewClaims": [
+    {
+     "market": "EU",
+     "checkId": "electronics.nameplate.electrical_ratings",
+     "status": "supported",
+     "reason": "铭牌照片可读输入 100-240V~ 1.8A 50/60Hz 与 TOTAL 65W MAX，落在 LVD 适用电压区间；仅证明参数已标注，不证明安全目标已验证。",
+     "applicabilityReason": "LVD 覆盖 50–1000V AC 电气设备，本产品输入在其范围内。",
+     "citationIds": [
+      "EU-2014-35#art-1"
+     ],
+     "observationIds": [
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs0"
+     ],
+     "documentEvidence": [],
+     "verificationIssues": [],
+     "verificationVersion": "review-links/v1"
+    },
+    {
+     "market": "EU",
+     "checkId": "electronics.interface.plug_pins",
+     "status": "unknown",
+     "reason": "图片未展示插脚形态与插头类型，无法判断是否匹配目标成员国插座及是否需可换插头；需补拍插脚正面照。",
+     "applicabilityReason": "插头形态涉及成员国插座兼容与安全要求。",
+     "citationIds": [],
+     "observationIds": [
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs1"
+     ],
+     "documentEvidence": [],
+     "verificationIssues": [
+      "legal_quote_unverified"
+     ],
+     "verificationVersion": "review-links/v1"
+    },
+    {
+     "market": "EU",
+     "checkId": "electronics.cable.connector_condition",
+     "status": "unknown",
+     "reason": "扫描中未见线缆与接头图像，无法判断线缆规格、温升与接头状态；本机为直插式，是否随机附线待确认。",
+     "applicabilityReason": "附随线缆与接头影响电气安全与用户伤害风险。",
+     "citationIds": [],
+     "observationIds": [
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs2"
+     ],
+     "documentEvidence": [],
+     "verificationIssues": [
+      "legal_quote_unverified"
+     ],
+     "verificationVersion": "review-links/v1"
+    },
+    {
+     "market": "EU",
+     "checkId": "electronics.marks.certification_region",
+     "status": "unknown",
+     "reason": "照片清晰可见 CE、FCC、WEEE、EAC 标识；仅证明标识存在，不能证明认证有效、真伪或覆盖本型号批次。",
+     "applicabilityReason": "CE 标志须在上市前加贴，标识存在性是核对起点。",
+     "citationIds": [
+      "EU-2014-35#art-17"
+     ],
+     "observationIds": [
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs3"
+     ],
+     "documentEvidence": [],
+     "verificationIssues": [
+      "invalid_observation"
+     ],
+     "verificationVersion": "review-links/v1"
+    },
+    {
+     "market": "EU",
+     "checkId": "electronics.adapter.external_power",
+     "status": "unknown",
+     "reason": "本产品为一体式墙壁充电器，扫描图像中未出现外置适配器，该项不适用。",
+     "applicabilityReason": "外置适配器检查针对分离式电源，本产品非该类形态。",
+     "citationIds": [],
+     "observationIds": [
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs4"
+     ],
+     "documentEvidence": [],
+     "verificationIssues": [
+      "legal_quote_unverified"
+     ],
+     "verificationVersion": "review-links/v1"
+    },
+    {
+     "market": "EU",
+     "checkId": "electronics.safety.electrical_test",
+     "status": "unknown",
+     "reason": "未提供 LVD 项下的安全测试报告（如 EN 62368-1 类）；照片不能证明检测合格，属未提交证据而非已证实违规。",
+     "applicabilityReason": "制造商须完成合格评定并编制技术文档，方可起草 DoC 并加贴 CE。",
+     "citationIds": [
+      "EU-2014-35#art-6",
+      "EU-2014-35#art-3"
+     ],
+     "observationIds": [],
+     "documentEvidence": [],
+     "verificationIssues": [
+      "document_evidence_required",
+      "product_evidence_missing"
+     ],
+     "verificationVersion": "review-links/v1"
+    },
+    {
+     "market": "EU",
+     "checkId": "electronics.emc.test_report",
+     "status": "unknown",
+     "reason": "未提供 EMC 测试报告；EN 55032/55035/61000 系列为依据来源，具体标准版本与限值待确认。",
+     "applicabilityReason": "EMC 指令适用于投放欧盟市场的电气设备。",
+     "citationIds": [
+      "EU-2014-30#art-6"
+     ],
+     "observationIds": [],
+     "documentEvidence": [],
+     "verificationIssues": [
+      "document_evidence_required",
+      "legal_quote_unverified",
+      "product_evidence_missing"
+     ],
+     "verificationVersion": "review-links/v1"
+    },
+    {
+     "market": "EU",
+     "checkId": "common.product.overview",
+     "status": "supported",
+     "reason": "在本次可见范围内，产品主体外观完整，未见结构异常；该结论限定于已拍摄角度。",
+     "applicabilityReason": "外观完整性是后续安全与标签核对的实物基础。",
+     "citationIds": [],
+     "observationIds": [
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs5"
+     ],
+     "documentEvidence": [],
+     "verificationIssues": [],
+     "verificationVersion": "review-links/v1"
+    },
+    {
+     "market": "EU",
+     "checkId": "common.nameplate.readability",
+     "status": "supported",
+     "reason": "铭牌可清晰读出型号 A2332、品牌与电气参数、SN；可读性已满足，但铭牌耐擦除性与位置尺寸未核对。",
+     "applicabilityReason": "制造商须标示识别元素与安全相关信息。",
+     "citationIds": [],
+     "observationIds": [
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs6"
+     ],
+     "documentEvidence": [],
+     "verificationIssues": [],
+     "verificationVersion": "review-links/v1"
+    },
+    {
+     "market": "EU",
+     "checkId": "common.certification_marks.visible",
+     "status": "supported",
+     "reason": "逐个记录可见 CE、FCC、WEEE、EAC；不作真伪判断，也不代表试验数据已复核。",
+     "applicabilityReason": "CE 标志须可见、清晰、牢固并在上市前加贴。",
+     "citationIds": [],
+     "observationIds": [
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-mark0",
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-mark1",
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-mark2",
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-mark3"
+     ],
+     "documentEvidence": [],
+     "verificationIssues": [],
+     "verificationVersion": "review-links/v1"
+    },
+    {
+     "market": "EU",
+     "checkId": "common.brand_model.visible",
+     "status": "supported",
+     "reason": "可见 ANKER535 CHARGER (65W) 与 MODEL: A2332，品牌型号标识存在。",
+     "applicabilityReason": "品牌与型号是市场监督与证书对应核对的基础。",
+     "citationIds": [],
+     "observationIds": [
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs8"
+     ],
+     "documentEvidence": [],
+     "verificationIssues": [],
+     "verificationVersion": "review-links/v1"
+    },
+    {
+     "market": "EU",
+     "checkId": "common.batch_traceability.fields",
+     "status": "blocked",
+     "reason": "铭牌仅有 SN，未见生产日期，且无 DoC/技术文档与实物批次的对应关系，无法完成追溯核对；需补生产日期标识及证书-批次对照表。",
+     "applicabilityReason": "制造商须标示型号/批次/序列号等识别元素并保存技术文档与 DoC 十年。",
+     "citationIds": [
+      "EU-2014-35#art-6",
+      "EU-2014-35#art-7"
+     ],
+     "observationIds": [
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs9"
+     ],
+     "documentEvidence": [],
+     "verificationIssues": [],
+     "verificationVersion": "review-links/v1"
+    },
+    {
+     "market": "EU",
+     "checkId": "common.warning_text.language",
+     "status": "unknown",
+     "reason": "图片未见说明书或警告文字，无法核对销售成员国语言要求；仅有英文或图标不足以判定全部标签要求符合。",
+     "applicabilityReason": "说明书与安全信息须使用成员国确定、消费者易懂的语言。",
+     "citationIds": [],
+     "observationIds": [
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs10"
+     ],
+     "documentEvidence": [],
+     "verificationIssues": [],
+     "verificationVersion": "review-links/v1"
+    },
+    {
+     "market": "EU",
+     "checkId": "common.packaging.info",
+     "status": "unknown",
+     "reason": "未拍摄包装，无法核对包装上的名称地址、警示与语言信息；CE 仅在无法加贴本体时才落在包装与随附文件。",
+     "applicabilityReason": "包装可能承担 CE、制造商/进口商信息与警告载体功能。",
+     "citationIds": [],
+     "observationIds": [
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs11"
+     ],
+     "documentEvidence": [],
+     "verificationIssues": [],
+     "verificationVersion": "review-links/v1"
+    },
+    {
+     "market": "EU",
+     "checkId": "common.defects.visible",
+     "status": "supported",
+     "reason": "在已拍摄角度与清晰度范围内，本次目视未发现裂损、变形、污渍或鼓胀；未覆盖面不能据此排除。",
+     "applicabilityReason": "可见缺陷会直接影响安全目标与人身伤害风险。",
+     "citationIds": [],
+     "observationIds": [
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs12"
+     ],
+     "documentEvidence": [],
+     "verificationIssues": [],
+     "verificationVersion": "review-links/v1"
+    },
+    {
+     "market": "US",
+     "checkId": "electronics.nameplate.electrical_ratings",
+     "status": "unknown",
+     "reason": "铭牌可读输入 100-240V~、各口输出与 65W MAX；属事实性观察，不构成对安规或 FCC 限值的合格判断。",
+     "applicabilityReason": "电气参数是判断适用法规与测试项目的输入条件。",
+     "citationIds": [],
+     "observationIds": [
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs0"
+     ],
+     "documentEvidence": [],
+     "verificationIssues": [
+      "legal_quote_unverified"
+     ],
+     "verificationVersion": "review-links/v1"
+    },
+    {
+     "market": "US",
+     "checkId": "electronics.interface.plug_pins",
+     "status": "unknown",
+     "reason": "未展示插脚形态，无法判断是否为美规 NEMA 插脚或需转接；需补拍插脚照与配套线材照片。",
+     "applicabilityReason": "插脚形态与美规插座兼容性及安全相关。",
+     "citationIds": [],
+     "observationIds": [
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs1"
+     ],
+     "documentEvidence": [],
+     "verificationIssues": [
+      "legal_quote_unverified"
+     ],
+     "verificationVersion": "review-links/v1"
+    },
+    {
+     "market": "US",
+     "checkId": "electronics.cable.connector_condition",
+     "status": "unknown",
+     "reason": "未见线缆与接头图像；若以套装形式销售含线缆，需单独核对线缆规格与认证。",
+     "applicabilityReason": "随附线缆可能单独受安全与认证要求约束。",
+     "citationIds": [],
+     "observationIds": [
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs2"
+     ],
+     "documentEvidence": [],
+     "verificationIssues": [
+      "legal_quote_unverified"
+     ],
+     "verificationVersion": "review-links/v1"
+    },
+    {
+     "market": "US",
+     "checkId": "electronics.marks.certification_region",
+     "status": "unknown",
+     "reason": "照片可见 FCC 标识；仅证明标识存在，不等于已完成设备授权或 SDoC 存档。",
+     "applicabilityReason": "Part 15 设备的标识与用户信息须符合授权程序要求。",
+     "citationIds": [
+      "US-CFR-TITLE47-PART15#art-2"
+     ],
+     "observationIds": [
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs3"
+     ],
+     "documentEvidence": [],
+     "verificationIssues": [
+      "invalid_observation"
+     ],
+     "verificationVersion": "review-links/v1"
+    },
+    {
+     "market": "US",
+     "checkId": "electronics.adapter.external_power",
+     "status": "unknown",
+     "reason": "产品为直插式墙壁充电器，图像中无独立外置适配器，该项不适用。",
+     "applicabilityReason": "外置适配器项针对分离式电源形态。",
+     "citationIds": [],
+     "observationIds": [
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs4"
+     ],
+     "documentEvidence": [],
+     "verificationIssues": [
+      "legal_quote_unverified"
+     ],
+     "verificationVersion": "review-links/v1"
+    },
+    {
+     "market": "US",
+     "checkId": "electronics.safety.electrical_test",
+     "status": "unknown",
+     "reason": "未提供电气安全测试资料；US 侧适用性取决于是否属儿童用电器及是否需第三方合格评定，需先确定产品定位。",
+     "applicabilityReason": "一般用途充电器不属 120V 儿童用电器，16 CFR 1505 初步不适用。",
+     "citationIds": [
+      "US-CFR-TITLE16-PART1505#art-2"
+     ],
+     "observationIds": [],
+     "documentEvidence": [],
+     "verificationIssues": [
+      "document_evidence_required",
+      "product_evidence_missing"
+     ],
+     "verificationVersion": "review-links/v1"
+    },
+    {
+     "market": "US",
+     "checkId": "electronics.emc.test_report",
+     "status": "unknown",
+     "reason": "未提供 FCC Part 15 测试报告或 SDoC 记录；须确认走 SDoC 还是认证及责任方信息。",
+     "applicabilityReason": "本设备属无意辐射体，须按 Part 15 完成设备授权程序方可营销。",
+     "citationIds": [
+      "US-FCC-15#section-15-101",
+      "US-CFR-TITLE47-PART15#art-2"
+     ],
+     "observationIds": [],
+     "documentEvidence": [],
+     "verificationIssues": [
+      "document_evidence_required",
+      "legal_quote_unverified",
+      "product_evidence_missing"
+     ],
+     "verificationVersion": "review-links/v1"
+    },
+    {
+     "market": "US",
+     "checkId": "common.product.overview",
+     "status": "supported",
+     "reason": "在已拍摄范围内外观完整，未见明显结构异常；结论限于可见角度。",
+     "applicabilityReason": "外观完整性是后续安全评估的实物基础。",
+     "citationIds": [],
+     "observationIds": [
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs5"
+     ],
+     "documentEvidence": [],
+     "verificationIssues": [],
+     "verificationVersion": "review-links/v1"
+    },
+    {
+     "market": "US",
+     "checkId": "common.nameplate.readability",
+     "status": "supported",
+     "reason": "铭牌文字清晰可读，含型号、输入输出参数与 SN；可读性达标不等于标签内容全部合规。",
+     "applicabilityReason": "铭牌是识别产品与责任方的关键载体。",
+     "citationIds": [],
+     "observationIds": [
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs6"
+     ],
+     "documentEvidence": [],
+     "verificationIssues": [],
+     "verificationVersion": "review-links/v1"
+    },
+    {
+     "market": "US",
+     "checkId": "common.certification_marks.visible",
+     "status": "supported",
+     "reason": "逐个记录可见 FCC、CE、WEEE、EAC 标识；不判断授权有效性。",
+     "applicabilityReason": "FCC 标识与用户信息须与设备授权状态一致。",
+     "citationIds": [],
+     "observationIds": [
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-mark0",
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-mark1",
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-mark2",
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-mark3"
+     ],
+     "documentEvidence": [],
+     "verificationIssues": [],
+     "verificationVersion": "review-links/v1"
+    },
+    {
+     "market": "US",
+     "checkId": "common.brand_model.visible",
+     "status": "supported",
+     "reason": "可见 ANKER535 CHARGER (65W) 与 MODEL: A2332，品牌型号标识存在。",
+     "applicabilityReason": "品牌型号用于证书与实物对应核对。",
+     "citationIds": [],
+     "observationIds": [
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs8"
+     ],
+     "documentEvidence": [],
+     "verificationIssues": [],
+     "verificationVersion": "review-links/v1"
+    },
+    {
+     "market": "US",
+     "checkId": "common.batch_traceability.fields",
+     "status": "blocked",
+     "reason": "仅有 SN，缺生产日期与批次-证书对应关系，责任方溯源链不完整；需补 SDoC/授权记录中的责任方与型号清单并核对实物批次。",
+     "applicabilityReason": "Part 15 设备营销需有可追溯的责任方与授权记录。",
+     "citationIds": [
+      "US-CFR-TITLE47-PART15#art-2",
+      "US-CFR-TITLE47-PART2#art-2"
+     ],
+     "observationIds": [
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs9"
+     ],
+     "documentEvidence": [],
+     "verificationIssues": [],
+     "verificationVersion": "review-links/v1"
+    },
+    {
+     "market": "US",
+     "checkId": "common.warning_text.language",
+     "status": "unknown",
+     "reason": "未见警告文字或 Prop 65 警示；是否需警示取决于是否含加州列管物质及暴露途径评估，属待补证据而非已证实超标。",
+     "applicabilityReason": "Prop 65 要求对暴露途径提供清晰合理警示。",
+     "citationIds": [],
+     "observationIds": [
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs10"
+     ],
+     "documentEvidence": [],
+     "verificationIssues": [],
+     "verificationVersion": "review-links/v1"
+    },
+    {
+     "market": "US",
+     "checkId": "common.packaging.info",
+     "status": "unknown",
+     "reason": "未拍摄包装，无法核对包装上的责任方信息、说明与警示内容。",
+     "applicabilityReason": "包装可能是责任方信息与警示的法定载体。",
+     "citationIds": [],
+     "observationIds": [
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs11"
+     ],
+     "documentEvidence": [],
+     "verificationIssues": [],
+     "verificationVersion": "review-links/v1"
+    },
+    {
+     "market": "US",
+     "checkId": "common.defects.visible",
+     "status": "supported",
+     "reason": "已拍摄角度内未发现裂损、变形、鼓胀等异常；未覆盖部位不能据此排除。",
+     "applicabilityReason": "可见缺陷可能构成实质产品危害报告触发情形。",
+     "citationIds": [],
+     "observationIds": [
+      "scan_450e06bcdf664a67831a5c393cd74a69-img0-obs12"
+     ],
+     "documentEvidence": [],
+     "verificationIssues": [],
+     "verificationVersion": "review-links/v1"
+    }
+   ],
+   "productEvidence": {
+    "declarations": {},
+    "effectiveDeclarations": {},
+    "potentialConflicts": [],
+    "documents": [],
+    "imageObservationCount": 16
+   },
+   "anchorApplicability": [
+    {
+     "regulationId": "EU-2014-35",
+     "market": "EU",
+     "state": "applicable",
+     "reason": "category selected by the user",
+     "effectiveFrom": null,
+     "productConditions": [],
+     "rulesVersion": "applicability-rules/v1"
+    },
+    {
+     "regulationId": "US-FCC-15",
+     "market": "US",
+     "state": "applicable",
+     "reason": "category selected by the user",
+     "effectiveFrom": null,
+     "productConditions": [],
+     "rulesVersion": "applicability-rules/v1"
+    },
+    {
+     "regulationId": "US-CA-Prop-65",
+     "market": "US",
+     "state": "applicable",
+     "reason": "category selected by the user",
+     "effectiveFrom": null,
+     "productConditions": [],
+     "rulesVersion": "applicability-rules/v1"
+    },
+    {
+     "regulationId": "EU-2011-65",
+     "market": "EU",
+     "state": "applicable",
+     "reason": "category selected by the user",
+     "effectiveFrom": null,
+     "productConditions": [],
+     "rulesVersion": "applicability-rules/v1"
+    },
+    {
+     "regulationId": "EU-2014-30",
+     "market": "EU",
+     "state": "applicable",
+     "reason": "category selected by the user",
+     "effectiveFrom": null,
+     "productConditions": [],
+     "rulesVersion": "applicability-rules/v1"
+    },
+    {
+     "regulationId": "US-CFR-TITLE16-PART1505",
+     "market": "US",
+     "state": "applicable",
+     "reason": "category selected by the user",
+     "effectiveFrom": null,
+     "productConditions": [],
+     "rulesVersion": "applicability-rules/v1"
+    },
+    {
+     "regulationId": "US-CFR-TITLE47-PART15",
+     "market": "US",
+     "state": "applicable",
+     "reason": "category selected by the user",
+     "effectiveFrom": null,
+     "productConditions": [],
+     "rulesVersion": "applicability-rules/v1"
+    },
+    {
+     "regulationId": "US-CFR-TITLE47-PART2",
+     "market": "US",
+     "state": "applicable",
+     "reason": "category selected by the user",
+     "effectiveFrom": null,
+     "productConditions": [],
+     "rulesVersion": "applicability-rules/v1"
+    },
+    {
+     "regulationId": "US-CFR-TITLE16-PART1101",
+     "market": "US",
+     "state": "applicable",
+     "reason": "category selected by the user",
+     "effectiveFrom": null,
+     "productConditions": [],
+     "rulesVersion": "applicability-rules/v1"
+    },
+    {
+     "regulationId": "US-CFR-TITLE16-PART1102",
+     "market": "US",
+     "state": "applicable",
+     "reason": "category selected by the user",
+     "effectiveFrom": null,
+     "productConditions": [],
+     "rulesVersion": "applicability-rules/v1"
+    },
+    {
+     "regulationId": "US-CFR-TITLE16-PART1112",
+     "market": "US",
+     "state": "applicable",
+     "reason": "category selected by the user",
+     "effectiveFrom": null,
+     "productConditions": [],
+     "rulesVersion": "applicability-rules/v1"
+    },
+    {
+     "regulationId": "US-CFR-TITLE16-PART1115",
+     "market": "US",
+     "state": "applicable",
+     "reason": "category selected by the user",
+     "effectiveFrom": null,
+     "productConditions": [],
+     "rulesVersion": "applicability-rules/v1"
+    },
+    {
+     "regulationId": "US-CFR-TITLE16-PART1116",
+     "market": "US",
+     "state": "applicable",
+     "reason": "category selected by the user",
+     "effectiveFrom": null,
+     "productConditions": [],
+     "rulesVersion": "applicability-rules/v1"
+    },
+    {
+     "regulationId": "US-CFR-TITLE16-PART1118",
+     "market": "US",
+     "state": "applicable",
+     "reason": "category selected by the user",
+     "effectiveFrom": null,
+     "productConditions": [],
+     "rulesVersion": "applicability-rules/v1"
+    },
+    {
+     "regulationId": "US-CFR-TITLE16-PART1200",
+     "market": "US",
+     "state": "applicable",
+     "reason": "category selected by the user",
+     "effectiveFrom": null,
+     "productConditions": [],
+     "rulesVersion": "applicability-rules/v1"
+    },
+    {
+     "regulationId": "US-CFR-TITLE16-PART1201",
+     "market": "US",
+     "state": "applicable",
+     "reason": "category selected by the user",
+     "effectiveFrom": null,
+     "productConditions": [],
+     "rulesVersion": "applicability-rules/v1"
+    },
+    {
+     "regulationId": "US-CFR-TITLE16-PART1203",
+     "market": "US",
+     "state": "applicable",
+     "reason": "category selected by the user",
+     "effectiveFrom": null,
+     "productConditions": [],
+     "rulesVersion": "applicability-rules/v1"
+    },
+    {
+     "regulationId": "EU-2005-29",
+     "market": "EU",
+     "state": "applicable",
+     "reason": "category selected by the user",
+     "effectiveFrom": null,
+     "productConditions": [],
+     "rulesVersion": "applicability-rules/v1"
+    },
+    {
+     "regulationId": "EU-2011-83",
+     "market": "EU",
+     "state": "applicable",
+     "reason": "category selected by the user",
+     "effectiveFrom": null,
+     "productConditions": [],
+     "rulesVersion": "applicability-rules/v1"
+    },
+    {
+     "regulationId": "EU-2019-2161",
+     "market": "EU",
+     "state": "applicable",
+     "reason": "category selected by the user",
+     "effectiveFrom": null,
+     "productConditions": [],
+     "rulesVersion": "applicability-rules/v1"
+    },
+    {
+     "regulationId": "US-PLAW-110PUBL314_CONSUMER_PRODUCT_SAFETY_IMPROVEMENT_ACT_2008",
+     "market": "US",
+     "state": "applicable",
+     "reason": "category selected by the user",
+     "effectiveFrom": null,
+     "productConditions": [],
+     "rulesVersion": "applicability-rules/v1"
+    },
+    {
+     "regulationId": "US-TITLE15-USC-2051_CONSUMER_PRODUCT_SAFETY_ACT_S-1",
+     "market": "US",
+     "state": "applicable",
+     "reason": "category selected by the user",
+     "effectiveFrom": null,
+     "productConditions": [],
+     "rulesVersion": "applicability-rules/v1"
+    },
+    {
+     "regulationId": "US-CA-ADCA",
+     "market": "US",
+     "state": "applicable",
+     "reason": "category selected by the user",
+     "effectiveFrom": null,
+     "productConditions": [],
+     "rulesVersion": "applicability-rules/v1"
+    },
+    {
+     "regulationId": "GLOBAL-ETSI_EN_301_489-1_EMC_",
+     "market": "GLOBAL",
+     "state": "applicable",
+     "reason": "category selected by the user",
+     "effectiveFrom": null,
+     "productConditions": [],
+     "rulesVersion": "applicability-rules/v1"
+    }
+   ],
+   "resolvedEvidenceRequests": [
+    {
+     "findingId": "scan_450e06bcdf664a67831a5c393cd74a69-finding-4",
+     "checkId": "common.product.overview",
+     "reason": "validated_review_evidence",
+     "markets": [
+      "EU",
+      "US"
+     ]
+    }
+   ]
+  },
+  "degradedReasons": [],
+  "warnings": [],
+  "citationVerification": {
+   "mode": "kb_exact_quote",
+   "strength": "strong"
+  },
+  "ragProvider": "deepseek",
+  "latencyMs": 63038,
+  "source": "real",
+  "revision": 1,
+  "declaredFacts": {}
+ },
+ "resultReady": true,
+ "error": null,
+ "assets": [
+  {
+   "kind": "image",
+   "index": 0,
+   "name": "upload_01789549606652306000_c1ed1a7b.jpg",
+   "contentType": "image/jpeg",
+   "size": 29078
+  }
+ ]
+}

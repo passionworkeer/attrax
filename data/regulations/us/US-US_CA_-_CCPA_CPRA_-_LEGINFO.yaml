@@ -9,11 +9,201 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: Codes Display Text
+  text: "Codes Display Text\nskip to content\nhome\naccessibility\nFAQ\nfeedback\nsitemap\nlogin\nx\n Quick Search:\nBill Number\nBill Keyword\nHome\nBill Information\nCalifornia Law\nPublications\nOther\
+    \ Resources\nMy Subscriptions\nMy Favorites\nCalifornia Law\n                                >>\n                                >>\nCode Section Group\nCode Section Group\nCode:\nSelect Code\nCONS\n\
+    BPC\nCIV\nCCP\nCOM\nCORP\nEDC\nELEC\nEVID\nFAM\nFIN\nFGC\nFAC\nGOV\nHNC\nHSC\nINS\nLAB\nMVC\nPEN\nPROB\nPCC\nPRC\nPUC\nRTC\nSHC\nUIC\nVEH\nWAT\nWIC\nArticle:\nSection:\nCode:\nSelect Code\nAll\nBPC\n\
+    CIV\nCCP\nCOM\nCORP\nEDC\nELEC\nEVID\nFAM\nFIN\nFGC\nFAC\nGOV\nHNC\nHSC\nINS\nLAB\nMVC\nPEN\nPROB\nPCC\nPRC\nPUC\nRTC\nSHC\nUIC\nVEH\nWAT\nWIC\nSection: \nKeyword(s):\nCode Search\nText Search\nUp^\n\
+    Add To My Favorites\nCode Text\nCivil Code - CIV\nDIVISION 3. OBLIGATIONS [1427 - 3273.91]\n( Heading of Division 3 amended by Stats. 1988, Ch. 160, Sec. 14. )\nPART 4. OBLIGATIONS ARISING FROM PARTICULAR\
+    \ TRANSACTIONS [1738 - 3273.91]\n( Part 4 enacted 1872. )\nTITLE 1.81.5. California Consumer Privacy Act of 2018 [1798.100 - 1798.199.100]\n( Title 1.81.5 added by Stats. 2018, Ch. 55, Sec. 3. )\n1798.100.\n\
+    General Duties of Businesses that Collect Personal Information\n(a) A business that controls the collection of a consumer’s personal information shall, at or before the point of collection, inform consumers\
+    \ of the following:\n(1) The categories of personal information to be collected and the purposes for which the categories of personal information are collected or used and whether that information is\
+    \ sold or shared. A business shall not collect additional categories of personal information or use personal information collected for additional purposes that are incompatible with the disclosed purpose\
+    \ for which the personal information was collected without providing the consumer with notice consistent with this section.\n(2) If the business collects sensitive personal information, the categories\
+    \ of sensitive personal information to be collected and the purposes for which the categories of sensitive personal information are collected or used, and whether that information is sold or shared.\
+    \ A business shall not collect additional categories of sensitive personal information or use sensitive personal information collected for additional purposes that are incompatible with the disclosed\
+    \ purpose for which the sensitive personal information was collected without providing the consumer with notice consistent with this section.\n(3) The length of time the business intends to retain each\
+    \ category of personal information, including sensitive personal information, or if that is not possible, the criteria used to determine that period provided that a business shall not retain a consumer’s\
+    \ personal information or\n\t\t\t\tsensitive personal information for each disclosed purpose for which the personal information was collected for longer than is reasonably necessary for that disclosed\
+    \ purpose.\n(b) A business that, acting as a third party, controls the collection of personal information about a consumer may satisfy its obligation under subdivision (a) by providing the required\
+    \ information prominently and conspicuously on the homepage of its internet website. In addition, if a business acting as a third party controls the collection of personal information about a consumer\
+    \ on its premises, including in a vehicle, then the business shall, at or before the point of collection, inform consumers as to the categories of personal information to be collected and the purposes\
+    \ for which the categories of personal information are used, and whether that personal information is sold, in a clear and conspicuous manner at the location."
+- id: art-2
+  title: (c) A business’ collection, use, retention, and sharing of a
+  text: "(c) A business’ collection, use, retention, and sharing of a consumer’s personal information shall be reasonably necessary and proportionate to achieve the purposes for which the personal information\
+    \ was collected or processed, or for another disclosed purpose that is compatible with the context in which the personal information was collected, and not further processed in a manner that is incompatible\
+    \ with those purposes.\n(d) A business that collects a consumer’s personal information and that sells that personal information to, or shares it with, a third party or that discloses it to a service\
+    \ provider or contractor for a business purpose shall enter into an agreement with the third party, service provider, or contractor, that:\n(1) Specifies that the personal information is sold or disclosed\
+    \ by the business only for\n\t\t\t\tlimited and specified purposes.\n(2) Obligates the third party, service provider, or contractor to comply with applicable obligations under this title and obligate\
+    \ those persons to provide the same level of privacy protection as is required by this title.\n(3) Grants the business rights to take reasonable and appropriate steps to help ensure that the third party,\
+    \ service provider, or contractor uses the personal information transferred in a manner consistent with the business’ obligations under this title.\n(4) Requires the third party, service provider, or\
+    \ contractor to notify the business if it makes a determination that it can no longer meet its obligations under this title.\n(5) Grants the business the right, upon notice, including under paragraph\
+    \ (4),\n\t\t\t\tto take reasonable and appropriate steps to stop and remediate unauthorized use of personal information.\n(e) A business that collects a consumer’s personal information shall implement\
+    \ reasonable security procedures and practices appropriate to the nature of the personal information to protect the personal information from unauthorized or illegal access, destruction, use, modification,\
+    \ or disclosure in accordance with Section 1798.81.5.\n(f) Nothing in this section shall require a business to disclose trade secrets, as specified in regulations adopted pursuant to paragraph (3) of\
+    \ subdivision (a) of Section 1798.185.\n(Amended November 3, 2020, by initiative Proposition 24, Sec. 4.   Effective December 16, 2020.   Operative January 1, 2023, pursuant to Sec. 31 of Proposition\
+    \ 24.)\n1798.105.\nConsumers’ Right to Delete Personal Information\n(a) A consumer shall have the right to request that a business delete any personal information about the consumer which the business\
+    \ has collected from the consumer.\n(b) A business that collects personal information about consumers shall disclose, pursuant to Section 1798.130, the consumer’s rights to request the deletion of the\
+    \ consumer’s personal information.\n(c) (1) A business that receives a verifiable consumer request from a consumer to delete the consumer’s personal information pursuant to subdivision (a) of this section\
+    \ shall delete the consumer’s personal information from its records,\n\t\t\t\tnotify any service providers or contractors to delete the consumer’s personal information from their records, and notify\
+    \ all third parties to whom the business has sold or shared the personal information to delete the consumer’s personal information unless this proves impossible or involves disproportionate effort.\n\
+    (2) The business may maintain a confidential record of deletion requests solely for the purpose of preventing the personal information of a consumer who has submitted a deletion request from being sold,\
+    \ for compliance with laws or for other purposes, solely to the extent permissible under this title.\n(3) A service provider or contractor shall cooperate with the business in responding to a verifiable\
+    \ consumer request, and at the direction of the business, shall delete, or enable the business to delete and shall notify any of its own service providers or contractors to"
+- id: art-3
+  title: "\t\t\t\tdelete personal information about the consumer collected"
+  text: "\t\t\t\tdelete personal information about the consumer collected, used, processed, or retained by the service provider or the contractor. The service provider or contractor shall notify any service\
+    \ providers, contractors, or third parties who may have accessed personal information from or through the service provider or contractor, unless the information was accessed at the direction of the\
+    \ business, to delete the consumer’s personal information unless this proves impossible or involves disproportionate effort. A service provider or contractor shall not be required to comply with a deletion\
+    \ request submitted by the consumer directly to the service provider or contractor to the extent that the service provider or contractor has collected, used, processed, or retained the consumer’s personal\
+    \ information in its role as a service provider or contractor to the business.\n(d) A business, or a service provider or contractor acting pursuant to its contract with\n\t\t\t\tthe business, another\
+    \ service provider, or another contractor, shall not be required to comply with a consumer’s request to delete the consumer’s personal information if it is reasonably necessary for the business, service\
+    \ provider, or contractor to maintain the consumer’s personal information in order to:\n(1) Complete the transaction for which the personal information was collected, fulfill the terms of a written\
+    \ warranty or product recall conducted in accordance with federal law, provide a good or service requested by the consumer, or reasonably anticipated by the consumer within the context of a business’\
+    \ ongoing business relationship with the consumer, or otherwise perform a contract between the business and the consumer.\n(2) Help to ensure security and integrity to the extent the use of the consumer’s\
+    \ personal information is reasonably necessary and proportionate for those\n\t\t\t\tpurposes.\n(3) Debug to identify and repair errors that impair existing intended functionality.\n(4) Exercise free\
+    \ speech, ensure the right of another consumer to exercise that consumer’s right of free speech, or exercise another right provided for by law.\n(5) Comply with the California Electronic Communications\
+    \ Privacy Act pursuant to Chapter 3.6 (commencing with Section 1546) of Title 12 of Part 2 of the Penal Code.\n(6) Engage in public or peer-reviewed scientific, historical, or statistical research that\
+    \ conforms or adheres to all other applicable ethics and privacy laws, when the business’ deletion of the information is likely to render impossible or seriously impair the ability to complete such\
+    \ research, if the consumer has provided informed\n\t\t\t\tconsent.\n(7) To enable solely internal uses that are reasonably aligned with the expectations of the consumer based on the consumer’s relationship\
+    \ with the business and compatible with the context in which the consumer provided the information.\n(8) Comply with a legal obligation.\n(Amended November 3, 2020, by initiative Proposition 24, Sec.\
+    \ 5.   Effective December 16, 2020.   Operative January 1, 2023, pursuant to Sec. 31 of Proposition 24.)\n1798.106.\nConsumers’ Right to Correct Inaccurate Personal Information\n(a) A consumer shall\
+    \ have the right to request a business that maintains inaccurate personal information about the consumer to correct that inaccurate personal information, taking into account the nature of the personal\
+    \ information and the purposes of the processing of the personal information.\n(b) A business that collects personal information about consumers shall disclose, pursuant to Section 1798.130, the consumer’s\
+    \ right to request correction of inaccurate personal information.\n(c) A business that receives a\n\t\t\t\t\t\tverifiable consumer request to correct inaccurate personal information shall use commercially\
+    \ reasonable efforts to correct the inaccurate personal information as directed by the consumer, pursuant to Section 1798.130 and regulations adopted pursuant to paragraph (7) of subdivision (a) of\
+    \ Section 1798.185."
+- id: art-4
+  title: (Amended by Stats. 2024, Ch. 121, Sec. 1.   (AB 3286)   Effe
+  text: "(Amended by Stats. 2024, Ch. 121, Sec. 1.   (AB 3286)   Effective January 1, 2025.)\n1798.110.\nConsumers’ Right to Know What Personal Information is Being Collected. Right to Access Personal Information\n\
+    (a) A consumer shall have the right to request that a business that collects personal information about the consumer disclose to the consumer the following:\n(1) The categories of personal information\
+    \ it has collected about that consumer.\n(2) The categories of sources from which the personal information is collected.\n(3) The business or commercial purpose for collecting, selling, or sharing personal\
+    \ information.\n(4) The categories\n\t\t\t\tof third parties to whom the business discloses personal information.\n(5) The specific pieces of personal information it has collected about that consumer.\n\
+    (b) A business that collects personal information about a consumer shall disclose to the consumer, pursuant to subparagraph (B) of paragraph (3) of subdivision (a) of Section 1798.130, the information\
+    \ specified in subdivision (a) upon receipt of a verifiable consumer request from the consumer, provided that a business shall be deemed to be in compliance with paragraphs (1) to (4), inclusive, of\
+    \ subdivision (a) to the extent that the categories of information and the business or commercial purpose for collecting, selling, or sharing personal information it would be required to disclose to\
+    \ the consumer pursuant to paragraphs (1) to (4), inclusive, of subdivision (a) is the same as the information it has disclosed pursuant to\n\t\t\t\tparagraphs (1) to (4), inclusive, of subdivision\
+    \ (c).\n(c) A business that collects personal information about consumers shall disclose, pursuant to subparagraph (B) of paragraph (5) of subdivision (a) of Section 1798.130:\n(1) The categories of\
+    \ personal information it has collected about consumers.\n(2) The categories of sources from which the personal information is collected.\n(3) The business or commercial purpose for collecting, selling,\
+    \ or sharing personal information.\n(4) The categories of third parties to whom the business discloses personal information.\n(5) That a consumer has the right to request the specific pieces of\n\t\t\
+    \t\tpersonal information the business has collected about that consumer.\n(Amended November 3, 2020, by initiative Proposition 24, Sec. 7.   Effective December 16, 2020.   Operative January 1, 2023,\
+    \ pursuant to Sec. 31 of Proposition 24.)\n1798.115.\nConsumers’ Right to Know What Personal Information is Sold or Shared and to Whom\n(a) A consumer shall have the right to request that a business\
+    \ that sells or shares the consumer’s personal information, or that discloses it for a business purpose, disclose to that consumer:\n(1) The categories of personal information that the business collected\
+    \ about the consumer.\n(2) The categories of personal information that the business sold or shared about the consumer and the categories of third parties to whom the personal information was sold or\
+    \ shared, by category or categories of personal information for each category of third parties to whom the personal information was\n\t\t\t\tsold or shared.\n(3) The categories of personal information\
+    \ that the business disclosed about the consumer for a business purpose and the categories of persons to whom it was disclosed for a business purpose.\n(b) A business that sells or shares personal information\
+    \ about a consumer, or that discloses a consumer’s personal information for a business purpose, shall disclose, pursuant to paragraph (4) of subdivision (a) of Section 1798.130, the information specified\
+    \ in subdivision (a) to the consumer upon receipt of a verifiable consumer request from the consumer.\n(c) A business that sells or shares consumers’ personal information, or that discloses consumers’\
+    \ personal information for a business purpose, shall disclose, pursuant to subparagraph (C) of paragraph (5) of subdivision (a) of Section 1798.130:"
+- id: art-5
+  title: (1) The category or categories of consumers’ personal inform
+  text: "(1) The category or categories of consumers’ personal information it has sold or shared, or if the business has not sold or shared consumers’ personal information, it shall disclose that fact.\n\
+    (2) The category or categories of consumers’ personal information it has disclosed for a business purpose, or if the business has not disclosed consumers’ personal information for a business purpose,\
+    \ it shall disclose that fact.\n(d) A third party shall not sell or share personal information about a consumer that has been sold to, or shared with, the third party by a business unless the consumer\
+    \ has received explicit notice and is provided an opportunity to exercise the right to opt-out pursuant to Section 1798.120.\n(Amended November 3, 2020, by initiative Proposition 24, Sec. 8.   Effective\
+    \ December 16, 2020.   Operative January 1, 2023, pursuant to Sec. 31 of Proposition 24.)\n1798.120.\nConsumers’ Right to Opt Out of Sale or Sharing of Personal Information\n(a) (1) A consumer shall\
+    \ have the right, at any time, to direct a business that sells or shares personal information about the consumer to third parties not to sell or share the consumer’s personal information. This right\
+    \ may be referred to as the right to opt out of sale or sharing.\n(2) A business to which another business transfers the personal information of a consumer as an asset that is part of a merger, acquisition,\
+    \ bankruptcy, or other transaction in which the transferee assumes control of all of, or part of, the transferor shall comply with a consumer’s direction to the transferor made pursuant to this subdivision.\n\
+    (b) A business that sells consumers’ personal information to, or shares it with, third parties shall provide notice to consumers, pursuant to subdivision (a) of Section 1798.135, that this information\
+    \ may be sold or shared and that consumers have the “right to opt out” of the sale or sharing of their personal information.\n(c) Notwithstanding subdivision (a), a business shall not sell or share\
+    \ the personal information of consumers if the business has actual knowledge that the consumer is less than 16 years of age, unless the consumer, in the case of consumers at least 13 years of age and\
+    \ less than 16 years of age, or the consumer’s parent or guardian, in the case of consumers who are less than 13 years of age, has affirmatively authorized the sale or sharing of the consumer’s personal\
+    \ information. A business that willfully disregards the consumer’s age shall be deemed to have had\n\t\t\t\t  actual knowledge of the consumer’s age.\n(d) A business that has received direction from\
+    \ a consumer not to sell or share the consumer’s personal information or, in the case of a minor consumer’s personal information has not received consent to sell or share the minor consumer’s personal\
+    \ information, shall be prohibited, pursuant to paragraph (4) of subdivision (c) of Section 1798.135, from selling or sharing the consumer’s personal information after its receipt of the consumer’s\
+    \ direction, unless the consumer subsequently provides consent, for the sale or sharing of the consumer’s personal information.\n(Amended by Stats. 2024, Ch. 940, Sec. 1.   (AB 1824)   Effective January\
+    \ 1, 2025.)\n1798.121.\nConsumers’ Right to Limit Use and Disclosure of Sensitive Personal Information\n(a) A consumer shall have the right, at any time, to direct a business that collects sensitive\
+    \ personal information about the consumer to limit its use of the consumer’s sensitive personal information to that use which is necessary to perform the services or provide the goods reasonably expected\
+    \ by an average consumer who requests those goods or services, to perform the services set forth in paragraphs (2), (4), (5), and (8) of subdivision (e) of Section 1798.140, and as authorized by regulations\
+    \ adopted pursuant to subparagraph (C) of paragraph (18) of subdivision (a) of Section 1798.185. A business that uses or discloses"
+- id: art-6
+  title: "\t\t\t\t\t\ta consumer’s sensitive personal information for purpos"
+  text: "\t\t\t\t\t\ta consumer’s sensitive personal information for purposes other than those specified in this subdivision shall provide notice to consumers, pursuant to subdivision (a) of Section 1798.135,\
+    \ that this information may be used, or disclosed to a service provider or contractor, for additional, specified purposes and that consumers have the right to limit the use or disclosure of their sensitive\
+    \ personal information.\n(b) A business that has received direction from a consumer not to use or disclose the consumer’s sensitive personal information, except as authorized by subdivision (a), shall\
+    \ be prohibited, pursuant to paragraph (4) of subdivision (c) of Section 1798.135, from using or disclosing the consumer’s sensitive personal information for any other purpose after its receipt of the\
+    \ consumer’s direction unless the consumer subsequently\n\t\t\t\t\t\tprovides consent for the use or disclosure of the consumer’s sensitive personal information for additional purposes.\n(c) A service\
+    \ provider or contractor that assists a business in performing the purposes authorized by subdivision (a) may not use the sensitive personal information after it has received instructions from the business\
+    \ and to the extent it has actual knowledge that the personal information is sensitive personal information for any other purpose. A service provider or contractor is only required to limit its use\
+    \ of sensitive personal information received pursuant to a written contract with the business in response to instructions from the business and only with respect to its relationship with that business.\n\
+    (d) Sensitive personal information that is collected or\n\t\t\t\t\t\tprocessed without the purpose of inferring characteristics about a consumer is not subject to this section, as further defined in\
+    \ regulations adopted pursuant to subparagraph (C) of paragraph (18) of subdivision (a) of Section 1798.185, and shall be treated as personal information for purposes of all other sections of this act,\
+    \ including Section 1798.100.\n(Amended by Stats. 2024, Ch. 121, Sec. 2.   (AB 3286)   Effective January 1, 2025.)\n1798.125.\nConsumers’ Right of No Retaliation Following Opt Out or Exercise of Other\
+    \ Rights\n(a) (1) A business shall not discriminate against a consumer because the consumer exercised any of the consumer’s rights under this title, including, but not limited to, by:\n(A) Denying goods\
+    \ or services to the consumer.\n(B) Charging different prices or rates for goods or services, including through the use of discounts or other benefits or imposing penalties.\n(C) Providing a different\
+    \ level or quality of goods or services to the consumer.\n(D) Suggesting that the consumer will receive a different price or rate for goods or services or a different level or quality of goods or services.\n\
+    (E) Retaliating against an employee, applicant for employment, or independent contractor, as defined in subparagraph (A) of paragraph (2) of subdivision (m) of Section 1798.145, for exercising their\
+    \ rights under this title.\n(2) Nothing in this subdivision prohibits a business, pursuant to subdivision (b), from charging a consumer a different price or rate, or from providing a different level\
+    \ or quality of goods or services to the consumer, if that difference is reasonably related to the value provided to the business by the consumer’s data.\n(3) This subdivision does not prohibit a business\
+    \ from offering loyalty, rewards, premium features, discounts, or club\n\t\t\t\tcard programs consistent with this title.\n(b) (1) A business may offer financial incentives, including payments to consumers\
+    \ as compensation, for the collection of personal information, the sale or sharing of personal information, or the retention of personal information. A business may also offer a different price, rate,\
+    \ level, or quality of goods or services to the consumer if that price or difference is reasonably related to the value provided to the business by the consumer’s data."
+- id: art-7
+  title: (2) A business that offers any financial incentives pursuant
+  text: "(2) A business that offers any financial incentives pursuant to this subdivision, shall notify consumers of the financial incentives pursuant to Section 1798.130.\n(3) A business may enter a consumer\
+    \ into a financial incentive program only if the consumer gives the business prior opt-in consent pursuant to Section\n\t\t\t\t1798.130 that clearly describes the material terms of the financial incentive\
+    \ program, and which may be revoked by the consumer at any time. If a consumer refuses to provide opt-in consent, then the business shall wait for at least 12 months before next requesting that the\
+    \ consumer provide opt-in consent, or as prescribed by regulations adopted pursuant to Section 1798.185.\n(4) A business shall not use financial incentive practices that are unjust, unreasonable, coercive,\
+    \ or usurious in nature.\n(Amended November 3, 2020, by initiative Proposition 24, Sec. 11.   Effective December 16, 2020.   Operative January 1, 2023, pursuant to Sec. 31 of Proposition 24.)\n1798.130.\n\
+    Notice, Disclosure, Correction, and Deletion Requirements\n(a) In order to comply with Sections 1798.100, 1798.105, 1798.106, 1798.110, 1798.115, and 1798.125, a business shall, in a form that is reasonably\
+    \ accessible to consumers:\n(1) (A) Make available to consumers two or more designated methods for submitting requests for information required to be disclosed pursuant to Sections 1798.110 and 1798.115,\
+    \ or requests for deletion or correction pursuant to Sections 1798.105 and 1798.106, respectively, including, at a minimum, a toll-free telephone number. A business that operates exclusively online\
+    \ and has a direct relationship with a consumer from whom it collects personal information shall only be\n\t\t\t\t  required to provide an email address for submitting requests for information required\
+    \ to be disclosed pursuant to Sections 1798.110 and 1798.115, or for requests for deletion or correction pursuant to Sections 1798.105 and 1798.106, respectively.\n(B) If the business maintains an internet\
+    \ website, make the internet website available to consumers to submit requests for information required to be disclosed pursuant to Sections 1798.110 and 1798.115, or requests for deletion or correction\
+    \ pursuant to Sections 1798.105 and 1798.106, respectively.\n(2) (A) Disclose and deliver the required information to a consumer free of charge, correct inaccurate personal information, or delete a\
+    \ consumer’s personal information, based on the consumer’s request, within 45 days of receiving a verifiable consumer request from the consumer. The business shall promptly take steps to\n\t\t\t\t \
+    \ determine whether the request is a verifiable consumer request, but this shall not extend the business’ duty to disclose and deliver the information, to correct inaccurate personal information, or\
+    \ to delete personal information within 45 days of receipt of the consumer’s request. The time period to provide the required information, to correct inaccurate personal information, or to delete personal\
+    \ information may be extended once by an additional 45 days when reasonably necessary, provided the consumer is provided notice of the extension within the first 45-day period. The disclosure of the\
+    \ required information shall be made in writing and delivered through the consumer’s account with the business, if the consumer maintains an account with the business, or by mail or electronically at\
+    \ the consumer’s option if the consumer does not maintain an account with the business, in a readily useable format that allows the consumer to transmit this information from one entity to another entity\
+    \ without hindrance. The"
+- id: art-8
+  title: "\t\t\t\t  business may require authentication of the consumer th"
+  text: "\t\t\t\t  business may require authentication of the consumer that is reasonable in light of the nature of the personal information requested, but shall not require the consumer to create an account\
+    \ with the business in order to make a verifiable consumer request provided that if the consumer, has an account with the business, the business may require the consumer to use that account to submit\
+    \ a verifiable consumer request.\n(B) The disclosure of the required information shall cover the 12-month period preceding the business’ receipt of the verifiable consumer request provided that, upon\
+    \ the adoption of a regulation pursuant to paragraph (8) of subdivision (a) of Section 1798.185, a consumer may request that the business disclose the required information beyond the 12-month period,\
+    \ and the business shall be required to provide that information unless doing so proves impossible or would involve a disproportionate effort. A consumer’s right to request\n\t\t\t\t  required information\
+    \ beyond the 12-month period, and a business’ obligation to provide that information, shall only apply to personal information collected on or after January 1, 2022. Nothing in this subparagraph shall\
+    \ require a business to keep personal information for any length of time.\n(3) (A) A business that receives a verifiable consumer request pursuant to Section 1798.110 or 1798.115 shall disclose any\
+    \ personal information it has collected about a consumer, directly or indirectly, including through or by a service provider or contractor, to the consumer. A service provider or contractor shall not\
+    \ be required to comply with a verifiable consumer request received directly from a consumer or a consumer’s authorized agent, pursuant to Section 1798.110 or 1798.115, to the extent that the service\
+    \ provider or contractor has collected personal information about the consumer in its role as a service provider or contractor.\n\t\t\t\t  A service provider or contractor shall provide assistance to\
+    \ a business with which it has a contractual relationship with respect to the business’ response to a verifiable consumer request, including, but not limited to, by providing to the business the consumer’s\
+    \ personal information in the service provider or contractor’s possession, which the service provider or contractor obtained as a result of providing services to the business, and by correcting inaccurate\
+    \ information or by enabling the business to do the same. A service provider or contractor that collects personal information pursuant to a written contract with a business shall be required to assist\
+    \ the business through appropriate technical and organizational measures in complying with the requirements of subdivisions (d) to (f), inclusive, of Section 1798.100, taking into account the nature\
+    \ of the processing.\n(B) For purposes of subdivision (b) of Section 1798.110:\n(i) To identify the consumer, associate the information provided by the consumer in the verifiable consumer request to\
+    \ any personal information previously collected by the business about the consumer.\n(ii) Identify by category or categories the personal information collected about the consumer for the applicable\
+    \ period of time by reference to the enumerated category or categories in subdivision (c) that most closely describes the personal information collected; the categories of sources from which the consumer’s\
+    \ personal information was collected; the business or commercial purpose for collecting, selling, or sharing the consumer’s personal information; and the categories of third parties to whom the business\
+    \ discloses the consumer’s personal information.\n(iii) Provide the specific pieces of personal information"
+- id: art-9
+  title: "\t\t\t\t  obtained from the consumer in a format that is easily "
+  text: "\t\t\t\t  obtained from the consumer in a format that is easily understandable to the average consumer, and to the extent technically feasible, in a structured, commonly used, machine-readable\
+    \ format that may also be transmitted to another entity at the consumer’s request without hindrance. “Specific pieces of information” do not include data generated to help ensure security and integrity\
+    \ or as prescribed by regulation. Personal information is not considered to have been disclosed by a business when a consumer instructs a business to transfer the consumer’s personal information from\
+    \ one business to another in the context of switching services.\n(4) For purposes of subdivision (b) of Section 1798.115:\n(A) Identify the consumer and associate the information provided by the consumer\
+    \ in the verifiable consumer request to any personal information previously collected by the business about the\n\t\t\t\t  consumer.\n(B) Identify by category or categories the personal information\
+    \ of the consumer that the business sold or shared during the applicable period of time by reference to the enumerated category in subdivision (c) that most closely describes the personal information,\
+    \ and provide the categories of third parties to whom the consumer’s personal information was sold or shared during the applicable period of time by reference to the enumerated category or categories\
+    \ in subdivision (c) that most closely describes the personal information sold"
 doc_files:
 - us/raw/US_CA_民法典_CCPA_CPRA_正文_leginfo.html
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US_CA_民法典_CCPA_CPRA_正文_leginfo.html (html, 171677 chars)，生成 9 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US_CA_民法典_CCPA_CPRA_正文_leginfo.html (html, 171677 chars)，生成 9 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US_CA_民法典_CCPA_CPRA_正文_leginfo.html (html, 171677 chars)，生成 9 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

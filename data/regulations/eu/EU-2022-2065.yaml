@@ -9,12 +9,996 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'L_2022277EN.01000101.xml
+
+
+    27.10.2022
+
+
+    EN
+
+
+    Official Journal o'
+  text: 'L_2022277EN.01000101.xml
+
+
+    27.10.2022
+
+
+    EN
+
+
+    Official Journal of the European Union
+
+
+    L 277/1
+
+
+    REGULATION (EU) 2022/2065 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL
+
+
+
+    of 19 October 2022
+
+
+
+    on a Single Market For Digital Services and amending Directive 2000/31/EC (Digital Services Act)
+
+
+    (Text with EEA relevance)
+
+
+    THE EUROPEAN PARLIAMENT AND THE COUNCIL OF THE EUROPEAN UNION,
+
+
+    Having regard to the Treaty on the Functioning of the European Union, and in particular Article 114 thereof,
+
+
+    Having regard to the proposal from the European Commission,
+
+
+    After transmission of the draft legislative act to the national parliaments,
+
+
+    Having regard to the opinion of the European Economic and Social Committee
+
+    (
+
+    1
+
+    )
+
+    ,
+
+
+    Having regard to the opinion of the Committee of the Regions
+
+    (
+
+    2
+
+    )
+
+    ,
+
+
+    Acting in accordance with the ordinary legislative procedure
+
+    (
+
+    3
+
+    )
+
+    ,
+
+
+    Whereas:
+
+
+    (1)
+
+
+    Information society services and especially intermediary services have become an important part of the Union’s economy and the daily life of Union citizens. Twenty years after the adoption of the existing
+    legal framework applicable to such services laid down in Directive 2000/31/EC of the European Parliament and of the Council
+
+    (
+
+    4
+
+    )
+
+    , new and innovative business models and services, such as online social networks and online platforms allowing consumers to conclude distance contracts with traders, have allowed business users and
+    consumers to impart and access information and engage in transactions in novel ways. A majority of Union citizens now uses those services on a daily basis. However, the digital transformation and increased
+    use of those services has also resulted in new risks and challenges for individual recipients of the relevant service, companies and society as a whole.
+
+
+    (2)
+
+
+    Member States are increasingly introducing, or are considering introducing, national laws on the matters covered by this Regulation, imposing, in particular, diligence requirements for providers of
+    intermediary services as regards the way they should tackle illegal content, online disinformation or other societal risks. Those diverging national laws negatively affect the internal market, which,
+    pursuant to Article 26 of the Treaty on the Functioning of the European Union (TFEU), comprises an area without internal frontiers in which the free movement of goods and services and freedom of establishment
+    are ensured, taking into account the inherently cross-border nature of the internet, which is generally used to provide those services. The conditions for the provision of intermediary services across
+    the internal market should be harmonised, so as to provide businesses with access to new markets and opportunities to exploit the benefits of the internal market, while allowing consumers and other
+    recipients of the services to have increased choice. Business users, consumers and other users are considered to be ‘recipients of the service’ for the purpose of this Regulation.
+
+
+    (3)
+
+
+    Responsible and diligent behaviour by providers of intermediary services is essential for a safe, predictable and trustworthy online environment and for allowing Union citizens and other persons to
+    exercise their fundamental rights guaranteed in the Charter of Fundamental Rights of the European Union (the ‘Charter’), in particular the freedom of expression and of information, the freedom to conduct
+    a business, the right to non-discrimination and the attainment of a high level of consumer protection.
+
+
+    (4)
+
+
+    Therefore, in order to safeguard and improve the functioning of the internal market, a targeted set of uniform, effective and proportionate mandatory rules should be established at Union level. This
+    Regulation provides the conditions for innovative digital services to emerge and to scale up in the internal market. The approximation of national regulatory measures at Union level concerning the requirements
+    for providers of intermediary services is necessary to avoid and put an end to fragmentation of the internal market and to ensure legal certainty, thus reducing uncertainty for developers and fostering
+    interoperability. By using requirements that are technology neutral, innovation should not be hampered but instead be stimulated.
+
+
+    (5)
+
+
+    This Regulation should apply to providers of certain information society services as defined in Directive (EU) 2015/1535 of the European Parliament and of the Council
+
+    (
+
+    5
+
+    )
+
+    , that is, any service normally provided for remuneration, at a distance, by electronic means and at the individual request of a recipient. Specifically, this Regulation should apply to providers of
+    intermediary services, and in particular intermediary services consisting of services known as ‘mere conduit’, ‘caching’ and ‘hosting’ services, given that the exponential growth of the use made of
+    those services, mainly for legitimate and socially beneficial purposes of all kinds, has also increased their role in the intermediation and spread of unlawful or otherwise harmful information and activities.
+
+
+    (6)
+
+
+    In practice, certain providers of intermediary services intermediate in relation to services that may or may not be provided by electronic means, such as remote information technology services, transport,
+    accommodation or delivery services. This Regulation should apply only to intermediary services and not affect requirements set out in Union or national law relating to products or services intermediated
+    through intermediary services, including in situations where the intermediary service constitutes an integral part of another service which is not an intermediary service as recognised in the case-law
+    of the Court of Justice of the European Union.
+
+
+    (7)
+
+
+    In order to ensure the effectiveness of the rules laid down in this Regulation and a level playing field within the internal market, those rules should apply to providers of intermediary services irrespective
+    of their place of establishment or their location, in so far as they offer services in the Union, as evidenced by a substantial connection to the Union.
+
+
+    (8)
+
+
+    Such a substantial connection to the Union should be considered to exist where the service provider has an establishment in the Union or, in the absence of such an establishment, where the number of
+    recipients of the service in one or more Member States is significant in relation to the population thereof, or on the basis of the targeting of activities towards one or more Member States. The targeting
+    of activities towards one or more Member States can be determined on the basis of all relevant circumstances, including factors such as the use of a language or a currency generally used in that Member State,
+    or the possibility of ordering products or services, or the use of a relevant top-level domain. The targeting of activities towards a Member State could also be derived from the availability of an application
+    in the relevant national application store, from the provision of local advertising or advertising in a language used in that Member State, or from the handling of customer relations such as by providing
+    customer service in a language generally used in that Member State. A substantial connection should also be assumed where a service provider directs its activities to one or more Member States within
+    the meaning of Article 17(1), point (c), of Regulation (EU) No 1215/2012 of the European Parliament and of the Council
+
+    (
+
+    6
+
+    )
+
+    . In contrast, mere technical accessibility of a website from the Union cannot, on that ground alone, be considered as establishing a substantial connection to the Union.
+
+
+    (9)
+
+
+    This Regulation fully harmonises the rules applicable to intermediary services in the internal market with the objective of ensuring a safe, predictable and trusted online environment, addressing the
+    dissemination of illegal content online and the societal risks that the dissemination of disinformation or other content may generate, and within which fundamental rights enshrined in the Charter are
+    effectively protected and innovation is facilitated. Accordingly, Member States should not adopt or maintain additional national requirements relating to the matters falling within the scope of this
+    Regulation, unless explicitly provided for in this Regulation, since this would affect the direct and uniform application of the fully harmonised rules applicable to providers of intermediary services
+    in accordance with the objectives of this Regulation. This should not preclude the possibility of applying other national legislation applicable to providers of intermediary services, in compliance
+    with Union law, including Directive 2000/31/EC, in particular its Article 3, where the provisions of national law pursue other legitimate public interest objectives than those pursued by this Regulation.
+
+
+    (10)
+
+
+    This Regulation should be without prejudice to other acts of Union law regulating the provision of information society services in general, regulating other aspects of the provision of intermediary
+    services in the internal market or specifying and complementing the harmonised rules set out in this Regulation, such as Directive 2010/13/EU of the European Parliament and of the Council
+
+    (
+
+    7
+
+    )
+
+    including the provisions thereof regarding video-sharing platforms, Regulations (EU) 2019/1148
+
+    (
+
+    8
+
+    )
+
+    , (EU) 2019/1150
+
+    (
+
+    9
+
+    )
+
+    , (EU) 2021/784
+
+    (
+
+    10
+
+    )
+
+    and (EU) 2021/1232
+
+    (
+
+    11
+
+    )
+
+    of the European Parliament and of the Council and Directive 2002/58/EC of the European Parliament and of the Council
+
+    (
+
+    12
+
+    )
+
+    , and provisions of Union law set out in a Regulation on European Production and Preservation Orders for electronic evidence in criminal matters and in a Directive laying down harmonised rules on the
+    appointment of legal representatives for the purpose of gathering evidence in criminal proceedings.
+
+
+    Similarly, for reasons of clarity, this Regulation should be without prejudice to Union law on consumer protection, in particular Regulations (EU) 2017/2394
+
+    (
+
+    13
+
+    )
+
+    and (EU) 2019/1020
+
+    (
+
+    14
+
+    )
+
+    of the European Parliament and of the Council, Directives 2001/95/EC
+
+    (
+
+    15
+
+    )
+
+    , 2005/29/EC
+
+    (
+
+    16
+
+    )
+
+    , 2011/83/EU
+
+    (
+
+    17
+
+    )
+
+    and 2013/11/EU
+
+    (
+
+    18
+
+    )
+
+    of the European Parliament and of the Council, and Council Directive 93/13/EEC
+
+    (
+
+    19
+
+    )
+
+    , and on the protection of personal data, in particular Regulation (EU) 2016/679 of the European Parliament and of the Council
+
+    (
+
+    20
+
+    )
+
+    .
+
+
+    This Regulation should also be without prejudice to Union rules on private international law, in particular rules regarding jurisdiction and the recognition and enforcement of judgments in civil and
+    commercial matters, as Regulation (EU) No 1215/2012, and rules on the law applicable to contractual and non-contractual obligations. The protection of individuals with regard to the processing of personal
+    data is governed solely by the rules of Union law on that subject, in particular Regulation (EU) 2016/679 and Directive 2002/58/EC. This Regulation should also be without prejudice to Union law on working
+    conditions and Union law in the field of judicial cooperation in civil and criminal matters. However, to the extent that those Union legal acts pursue the same objectives as those laid down in this
+    Regulation, the rules of this Regulation should apply in respect of issues that are not addressed or not fully addressed by those other legal acts as well as issues on which those other legal acts leave
+    Member States the possibility of adopting certain measures at national level.
+
+
+    (11)
+
+
+    It should be clarified that this Regulation is without prejudice to Union law on copyright and related rights, including Directives 2001/29/EC
+
+    (
+
+    21
+
+    )
+
+    , 2004/48/EC
+
+    (
+
+    22
+
+    )
+
+    and (EU) 2019/790
+
+    (
+
+    23
+
+    )
+
+    of the European Parliament and of the Council, which establish specific rules and procedures that should remain unaffected.
+
+
+    (12)
+
+
+    In order to achieve the objective of ensuring a safe, predictable and trustworthy online environment, for the purpose of this Regulation the concept of ‘illegal content’ should broadly reflect the existing
+    rules in the offline environment. In particular, the concept of ‘ill'
+- id: art-2
+  title: CHAPTER I
+  text: 'CHAPTER I
+
+
+    GENERAL PROVISIONS'
+- id: art-3
+  title: Article 1
+  text: 'Article 1
+
+
+    Subject matter
+
+
+    1.   The aim of this Regulation is to contribute to the proper functioning of the internal market for intermediary services by setting out harmonised rules for a safe, predictable and trusted online
+    environment that facilitates innovation and in which fundamental rights enshrined in the Charter, including the principle of consumer protection, are effectively protected.
+
+
+    2.   This Regulation lays down harmonised rules on the provision of intermediary services in the internal market. In particular, it establishes:
+
+
+    (a)
+
+
+    a framework for the conditional exemption from liability of providers of intermediary services;
+
+
+    (b)
+
+
+    rules on specific due diligence obligations tailored to certain specific categories of providers of intermediary services;
+
+
+    (c)
+
+
+    rules on the implementation and enforcement of this Regulation, including as regards the cooperation of and coordination between the competent authorities.'
+- id: art-4
+  title: Article 2
+  text: 'Article 2
+
+
+    Scope
+
+
+    1.   This Regulation shall apply to intermediary services offered to recipients of the service that have their place of establishment or are located in the Union, irrespective of where the providers
+    of those intermediary services have their place of establishment.
+
+
+    2.   This Regulation shall not apply to any service that is not an intermediary service or to any requirements imposed in respect of such a service, irrespective of whether the service is provided through
+    the use of an intermediary service.
+
+
+    3.   This Regulation shall not affect the application of Directive 2000/31/EC.
+
+
+    4.   This Regulation is without prejudice to the rules laid down by other Union legal acts regulating other aspects of the provision of intermediary services in the internal market or specifying and
+    complementing this Regulation, in particular, the following:
+
+
+    (a)
+
+
+    Directive 2010/13/EU;
+
+
+    (b)
+
+
+    Union law on copyright and related rights;
+
+
+    (c)
+
+
+    Regulation (EU) 2021/784;
+
+
+    (d)
+
+
+    Regulation (EU) 2019/1148;
+
+
+    (e)
+
+
+    Regulation (EU) 2019/1150;
+
+
+    (f)
+
+
+    Union law on consumer protection and product safety, including Regulations (EU) 2017/2394 and (EU) 2019/1020 and Directives 2001/95/EC and 2013/11/EU;
+
+
+    (g)
+
+
+    Union law on the protection of personal data, in particular Regulation (EU) 2016/679 and Directive 2002/58/EC;
+
+
+    (h)
+
+
+    Union law in the field of judicial cooperation in civil matters, in particular Regulation (EU) No 1215/2012 or any Union legal act laying down the rules on law applicable to contractual and non-contractual
+    obligations;
+
+
+    (i)
+
+
+    Union law in the field of judicial cooperation in criminal matters, in particular a Regulation on European Production and Preservation Orders for electronic evidence in criminal matters;
+
+
+    (j)
+
+
+    a Directive laying down harmonised rules on the appointment of legal representatives for the purpose of gathering evidence in criminal proceedings.'
+- id: art-5
+  title: Article 3
+  text: 'Article 3
+
+
+    Definitions
+
+
+    For the purpose of this Regulation, the following definitions shall apply:
+
+
+    (a)
+
+
+    ‘information society service’ means a ‘service’ as defined in Article 1(1), point (b), of Directive (EU) 2015/1535;
+
+
+    (b)
+
+
+    ‘recipient of the service’ means any natural or legal person who uses an intermediary service, in particular for the purposes of seeking information or making it accessible;
+
+
+    (c)
+
+
+    ‘consumer’ means any natural person who is acting for purposes which are outside his or her trade, business, craft, or profession;
+
+
+    (d)
+
+
+    ‘to offer services in the Union’ means enabling natural or legal persons in one or more Member States to use the services of a provider of intermediary services that has a substantial connection to
+    the Union;
+
+
+    (e)
+
+
+    ‘substantial connection to the Union’ means a connection of a provider of intermediary services with the Union resulting either from its establishment in the Union or from specific factual criteria,
+    such as:
+
+
+    —
+
+
+    a significant number of recipients of the service in one or more Member States in relation to its or their population; or
+
+
+    —
+
+
+    the targeting of activities towards one or more Member States;
+
+
+    (f)
+
+
+    ‘trader’ means any natural person, or any legal person irrespective of whether it is privately or publicly owned, who is acting, including through any person acting in his or her name or on his or her
+    behalf, for purposes relating to his or her trade, business, craft or profession;
+
+
+    (g)
+
+
+    ‘intermediary service’ means one of the following information society services:
+
+
+    (i)
+
+
+    a ‘mere conduit’ service, consisting of the transmission in a communication network of information provided by a recipient of the service, or the provision of access to a communication network;
+
+
+    (ii)
+
+
+    a ‘caching’ service, consisting of the transmission in a communication network of information provided by a recipient of the service, involving the automatic, intermediate and temporary storage of that
+    information, performed for the sole purpose of making more efficient the information''s onward transmission to other recipients upon their request;
+
+
+    (iii)
+
+
+    a ‘hosting’ service, consisting of the storage of information provided by, and at the request of, a recipient of the service;
+
+
+    (h)
+
+
+    ‘illegal content’ means any information that, in itself or in relation to an activity, including the sale of products or the provision of services, is not in compliance with Union law or the law of
+    any Member State which is in compliance with Union law, irrespective of the precise subject matter or nature of that law;
+
+
+    (i)
+
+
+    ‘online platform’ means a hosting service that, at the request of a recipient of the service, stores and disseminates information to the public, unless that activity is a minor and purely ancillary
+    feature of another service or a minor functionality of the principal service and, for objective and technical reasons, cannot be used without that other service, and the integration of the feature or
+    functionality into the other service is not a means to circumvent the applicability of this Regulation;
+
+
+    (j)
+
+
+    ‘online search engine’ means an intermediary service that allows users to input queries in order to perform searches of, in principle, all websites, or all websites in a particular language, on the
+    basis of a query on any subject in the form of a keyword, voice request, phrase or other input, and returns results in any format in which information related to the requested content can be found;
+
+
+    (k)
+
+
+    ‘dissemination to the public’ means making information available, at the request of the recipient of the service who provided the information, to a potentially unlimited number of third parties;
+
+
+    (l)
+
+
+    ‘distance contract’ means ‘distance contract’ as defined in Article 2, point (7), of Directive 2011/83/EU;
+
+
+    (m)
+
+
+    ‘online interface’ means any software, including a website or a part thereof, and applications, including mobile applications;
+
+
+    (n)
+
+
+    ‘Digital Services Coordinator of establishment’ means the Digital Services Coordinator of the Member State where the main establishment of a provider of an intermediary service is located or its legal
+    representative resides or is established;
+
+
+    (o)
+
+
+    ‘Digital Services Coordinator of destination’ means the Digital Services Coordinator of a Member State where the intermediary service is provided;
+
+
+    (p)
+
+
+    ‘active recipient of an online platform’ means a recipient of the service that has engaged with an online platform by either requesting the online platform to host information or being exposed to information
+    hosted by the online platform and disseminated through its online interface;
+
+
+    (q)
+
+
+    ‘active recipient of an online search engine’ means a recipient of the service that has submitted a query to an online search engine and been exposed to information indexed and presented on its online
+    interface;
+
+
+    (r)
+
+
+    ‘advertisement’ means information designed to promote the message of a legal or natural person, irrespective of whether to achieve commercial or non-commercial purposes, and presented by an online platform
+    on its online interface against remuneration specifically for promoting that information;
+
+
+    (s)
+
+
+    ‘recommender system’ means a fully or partially automated system used by an online platform to suggest in its online interface specific information to recipients of the service or prioritise that information,
+    including as a result of a search initiated by the recipient of the service or otherwise determining the relative order or prominence of information displayed;
+
+
+    (t)
+
+
+    ‘content moderation’ means the activities, whether automated or not, undertaken by providers of intermediary services, that are aimed, in particular, at detecting, identifying and addressing illegal
+    content or information incompatible with their terms and conditions, provided by recipients of the service, including measures taken that affect the availability, visibility, and accessibility of that
+    illegal content or that information, such as demotion, demonetisation, disabling of access to, or removal thereof, or that affect the ability of the recipients of the service to provide that information,
+    such as the termination or suspension of a recipient’s account;
+
+
+    (u)
+
+
+    ‘terms and conditions’ means all clauses, irrespective of their name or form, which govern the contractual relationship between the provider of intermediary services and the recipients of the service;
+
+
+    (v)
+
+
+    ‘persons with disabilities’ means ‘persons with disabilities’ as referred to in Article 3, point (1), of Directive (EU) 2019/882 of the European Parliament and of the Council
+
+    (
+
+    38
+
+    )
+
+    ;
+
+
+    (w)
+
+
+    ‘commercial communication’ means ‘commercial communication’ as defined in Article 2, point (f), of Directive 2000/31/EC;
+
+
+    (x)
+
+
+    ‘turnover’ means the amount derived by an undertaking within the meaning of Article 5(1) of Council Regulation (EC) No 139/2004
+
+    (
+
+    39
+
+    )
+
+    .'
+- id: art-6
+  title: CHAPTER II
+  text: 'CHAPTER II
+
+
+    LIABILITY OF PROVIDERS OF INTERMEDIARY SERVICES'
+- id: art-7
+  title: Article 4
+  text: 'Article 4
+
+
+    ‘Mere conduit’
+
+
+    1.   Where an information society service is provided that consists of the transmission in a communication network of information provided by a recipient of the service, or the provision of access to
+    a communication network, the service provider shall not be liable for the information transmitted or accessed, on condition that the provider:
+
+
+    (a)
+
+
+    does not initiate the transmission;
+
+
+    (b)
+
+
+    does not select the receiver of the transmission; and
+
+
+    (c)
+
+
+    does not select or modify the information contained in the transmission.
+
+
+    2.   The acts of transmission and of provision of access referred to in paragraph 1 shall include the automatic, intermediate and transient storage of the information transmitted in so far as this takes
+    place for the sole purpose of carrying out the transmission in the communication network, and provided that the information is not stored for any period longer than is reasonably necessary for the transmission.
+
+
+    3.   This Article shall not affect the possibility for a judicial or administrative authority, in accordance with a Member State’s legal system, to require the service provider to terminate or prevent
+    an infringement.'
+- id: art-8
+  title: Article 5
+  text: 'Article 5
+
+
+    ‘Caching’
+
+
+    1.   Where an information society service is provided that consists of the transmission in a communication network of information provided by a recipient of the service, the service provider shall not
+    be liable for the automatic, intermediate and temporary storage of that information, performed for the sole purpose of making more efficient or more secure the information''s onward transmission to
+    other recipients of the service upon their request, on condition that the provider:
+
+
+    (a)
+
+
+    does not modify the information;
+
+
+    (b)
+
+
+    complies with conditions on access to the information;
+
+
+    (c)
+
+
+    complies with rules regarding the updating of the information, specified in a manner widely recognised and used by industry;
+
+
+    (d)
+
+
+    does not interfere with the lawful use of technology, widely recognised and used by industry, to obtain data on the use of the information; and
+
+
+    (e)
+
+
+    acts expeditiously to remove or to disable access to the information it has stored upon obtaining actual knowledge of the fact that the information at the initial source of the transmission has been
+    removed from the network, or access to it has been disabled, or that a judicial or an administrative authority has ordered such removal or disablement.
+
+
+    2.   This Article shall not affect the possibility for a judicial or administrative authority, in accordance with a Member State’s legal system, to require the service provider to terminate or prevent
+    an infringement.'
+- id: art-9
+  title: Article 6
+  text: 'Article 6
+
+
+    Hosting
+
+
+    1.   Where an information society service is provided that consists of the storage of information provided by a recipient of the service, the service provider shall not be liable for the information
+    stored at the request of a recipient of the service, on condition that the provider:
+
+
+    (a)
+
+
+    does not have actual knowledge of illegal activity or illegal content and, as regards claims for damages, is not aware of facts or circumstances from which the illegal activity or illegal content is
+    apparent; or
+
+
+    (b)
+
+
+    upon obtaining such knowledge or awareness, acts expeditiously to remove or to disable access to the illegal content.
+
+
+    2.   Paragraph 1 shall not apply where the recipient of the service is acting under the authority or the control of the provider.
+
+
+    3.   Paragraph 1 shall not apply with respect to the liability under consumer protection law of online platforms that allow consumers to conclude distance contracts with traders, where such an online
+    platform presents the specific item of information or otherwise enables the specific transaction at issue in a way that would lead an average consumer to believe that the information, or the product
+    or service that is the object of the transaction, is provided either by the online platform itself or by a recipient of the service who is acting under its authority or control.
+
+
+    4.   This Article shall not affect the possibility for a judicial or administrative authority, in accordance with a Member State''s legal system, to require the service provider to terminate or prevent
+    an infringement.'
+- id: art-10
+  title: Article 7
+  text: 'Article 7
+
+
+    Voluntary own-initiative investigations and legal compliance
+
+
+    Providers of intermediary services shall not be deemed ineligible for the exemptions from liability referred to in Articles 4, 5 and 6 solely because they, in good faith and in a diligent manner, carry
+    out voluntary own-initiative investigations into, or take other measures aimed at detecting, identifying and removing, or disabling access to, illegal content, or take the necessary measures to comply
+    with the requirements of Union law and national law in compliance with Union law, including the requirements set out in this Regulation.'
+- id: art-11
+  title: Article 8
+  text: 'Article 8
+
+
+    No general monitoring or active fact-finding obligations
+
+
+    No general obligation to monitor the information which providers of intermediary services transmit or store, nor actively to seek facts or circumstances indicating illegal activity shall be imposed
+    on those providers.'
+- id: art-12
+  title: Article 9
+  text: 'Article 9
+
+
+    Orders to act against illegal content
+
+
+    1.   Upon the receipt of an order to act against one or more specific items of illegal content, issued by the relevant national judicial or administrative authorities, on the basis of the applicable
+    Union law or national law in compliance with Union law, providers of intermediary services shall inform the authority issuing the order, or any other authority specified in the order, of any effect
+    given to the order without undue delay, specifying if and when effect was given to the order.
+
+
+    2.   Member States shall ensure that when an order referred to in paragraph 1 is transmitted to the provider, it meets at least the following conditions:
+
+
+    (a)
+
+
+    that order contains the following elements:
+
+
+    (i)
+
+
+    a reference to the legal basis under Union or national law for the order;
+
+
+    (ii)
+
+
+    a statement of reasons explaining why the information is illegal content, by reference to one or more specific provisions of Union law or national law in compliance with Union law;
+
+
+    (iii)
+
+
+    information identifying the issuing authority;
+
+
+    (iv)
+
+
+    clear information enabling the provider of intermediary services to identify and locate the illegal content concerned, such as one or more exact URL and, where necessary, additional information;
+
+
+    (v)
+
+
+    information about redress mechanisms available to the provider of intermediary services and to the recipient of the service who provided the content;
+
+
+    (vi)
+
+
+    where applicable, information about which authority is to receive the information about the effect given to the orders;
+
+
+    (b)
+
+
+    the territorial scope of that order, on the basis of the applicable rules of Union and national law, including the Charter, and, where relevant, general principles of international law, is limited to
+    what is strictly necessary to achieve its objective;
+
+
+    (c)
+
+
+    that order is transmitted in one of the languages declared by the provider of intermediary services pursuant to Article 11(3) or in another official language of the Member States, agreed between the
+    authority issuing the order and that provider, and is sent to the electronic point of contact designated by that provider, in accordance with Article 11; where the order is not drafted in the language
+    declared by the provider of intermediary services or in another bilaterally agreed language, the order may be transmitted in the language of the authority issuing the order, provided that it is accompanied
+    by a translation into such declared or bilaterally agreed language of at least the elements set out in points (a) and (b) of this paragraph.
+
+
+    3.   The authority issuing the order or, where applicable, the authority specified therein, shall transmit it, along with any information received from the provider of intermediary services concerning
+    the effect given to that order to the Digital Services Coordinator from the Member State of the issuing authority.
+
+
+    4.   After receiving the order from the judicial or administrative authority, the Digital Services Coordinator of the Member State concerned shall, without undue delay, transmit a copy of the order
+    referred to in paragraph 1 of this Article to all other Digital Services Coordinators through the system established in accordance with Article 85.
+
+
+    5.   At the latest when effect is given to the order or, where applicable, at the time provided by the issuing authority in its order, providers of intermediary services shall inform the recipient of
+    the service concerned of the order received and to the effect given to it. Such information provided to the recipient of the service shall include a statement of reasons, the possibilities for redress
+    that exist, and a description of the territorial scope of the order, in accordance with paragraph 2.
+
+
+    6.   The conditions and requirements laid down in this Article shall be without prejudice to national civil and criminal procedural law.'
+- id: art-13
+  title: Article 10
+  text: 'Article 10
+
+
+    Orders to provide information
+
+
+    1.   Upon receipt of an order to provide specific information about one or more specific individual recipients of the service, issued by the relevant national judicial or administrative authorities
+    on the basis of the applicable Union law or national law in compliance with Union law, providers of intermediary services shall, without undue delay inform the authority issuing the order, or any other
+    authority specified in the order, of its receipt and of the effect given to the order, specifying if and when effect was given to the order.
+
+
+    2.   Member States shall ensure that when an order referred to in paragraph 1 is transmitted to the provider, it meets at least the following conditions:
+
+
+    (a)
+
+
+    that order contains the following elements:
+
+
+    (i)
+
+
+    a reference to the legal basis under Union or national law for the order;
+
+
+    (ii)
+
+
+    information identifying the issuing authority;
+
+
+    (iii)
+
+
+    clear information enabling the provider of intermediary services to identify the specific recipient or recipients on whom information is sought, such as one or more account names or unique identifiers;
+
+
+    (iv)
+
+
+    a statement of reasons explaining the objective for which the information is required and why the requirement to provide the inf'
 doc_files:
 - eu/raw/欧盟《数字服务法》（DSA，Regulation EU 2022_2065）.pdf
 - eu/raw/DSA_(EU)_2022-2065_数字服务法.pdf
+- eu/raw/EU-2022-2065_Digital_Services_Act_DSA.pdf
+- eu/raw/EU-2022-2065_Digital_Services_Act_DSA.xhtml
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 去重：合并同法规异名条目 EU-2022-2065_DIGITAL_SERVICES_ACT_DSA（EU-2022-2065 Digital Services Act DSA）。
+
+  2026-09-19 去重：合并同法规异名条目 EU-2022-2065_DIGITAL_SERVICES_ACT_DSA-2（EU-2022-2065 Digital Services Act DSA [xhtml]）。
+
+  2026-09-19 机器解析原件入库：eu/raw/欧盟《数字服务法》（DSA，Regulation EU 2022_2065）.pdf (pdf, 37078 chars)，生成 9 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2022-2065_Digital_Services_Act_DSA.xhtml (html, 417339 chars)，生成 11 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2022-2065_Digital_Services_Act_DSA.xhtml (html, 417327 chars)，生成 13 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

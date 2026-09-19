@@ -1,0 +1,25 @@
+id: KB-market-AU-AU-C2010A00103_COMPETITION_AND_CONSUMER_ACT_2010_INCL-_ACL
+regulation_id: AU-C2010A00103_COMPETITION_AND_CONSUMER_ACT_2010_INCL-_ACL
+doc_name: AU Competition and Consumer Act 2010 (incl. ACL) (legislation.gov.au)
+official_citation: AU Competition and Consumer Act 2010 (incl. ACL) (legislation.gov.au)
+short_name: AU Competition and Consumer Act 2010 (incl. ACL) (legislation.gov.au)
+source: market
+primary_source: market
+domain: 消费者保护
+applies_if:
+  category: []
+  features_any: []
+  markets:
+  - AU
+key_articles: []
+key_points:
+- AU Competition and Consumer Act 2010 (incl. ACL) (legislation.gov.au)：消费者保护领域法规，适用于 AU 市场相关经营行为（库自动接入，按市场匹配）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://www.legislation.gov.au/C2010A00103/latest/text
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

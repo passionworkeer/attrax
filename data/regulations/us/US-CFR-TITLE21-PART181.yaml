@@ -1,6 +1,6 @@
 id: US-CFR-TITLE21-PART181
 official_citation: US 21 CFR Part 181
-short_name: US 21 CFR Part 181
+short_name: US 21 CFR Part 181 — PRIOR-SANCTIONED FOOD INGREDIENTS
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,616 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '21
+
+    Food and Drugs
+
+    3
+
+    2024-04-01
+
+    2024-04-01
+
+    false
+
+    PRIOR-SANCTI'
+  text: '21
+
+    Food and Drugs
+
+    3
+
+    2024-04-01
+
+    2024-04-01
+
+    false
+
+    PRIOR-SANCTIONED FOOD INGREDIENTS
+
+    181
+
+    PART 181
+
+    Food and Drugs
+
+    FOOD AND DRUG ADMINISTRATION, DEPARTMENT OF HEALTH AND HUMAN SERVICES (CONTINUED)
+
+    FOOD FOR HUMAN CONSUMPTION (CONTINUED)
+
+    Pt. 181
+
+    PART 181—PRIOR-SANCTIONED FOOD INGREDIENTS
+
+    Subpart A—General Provisions
+
+    Sec.
+
+    181.1
+
+    General.
+
+    181.5
+
+    Prior sanctions.
+
+    Subpart B—Specific Prior-Sanctioned Food Ingredients
+
+    181.22
+
+    Certain substances employed in the manufacture of food-packaging materials.
+
+    181.23
+
+    Antimycotics.
+
+    181.24
+
+    Antioxidants.
+
+    181.25
+
+    Driers.
+
+    181.26
+
+    Drying oils as components of finished resins.
+
+    181.27
+
+    Plasticizers.
+
+    181.28
+
+    Release agents.
+
+    181.29
+
+    Stabilizers.
+
+    181.30
+
+    Substances used in the manufacture of paper and paperboard products used in food packaging.
+
+    181.32
+
+    Acrylonitrile copolymers and resins.
+
+    181.33
+
+    Sodium nitrate and potassium nitrate.
+
+    181.34
+
+    Sodium nitrite and potassium nitrite.
+
+    Authority:
+
+    21 U.S.C. 321, 342, 348, 371.
+
+    Source:
+
+    42 FR 14638, Mar. 15, 1977, unless otherwise noted.
+
+    Editorial Note:
+
+    Nomenclature changes to part 181 appear at 61 FR 14482, Apr. 2, 1996, and 66 FR 56035, Nov. 6, 2001.
+
+    Subpart A—General Provisions'
+- id: art-2
+  title: § 181.1
+  text: '§ 181.1
+
+    General.
+
+    (a) An ingredient whose use in food or food packaging is subject to a prior sanction or approval within the meaning of section 201(s)(4) of the Act is exempt from classification as a food additive.
+    The Commissioner will publish in this part all known prior sanctions. Any interested person may submit to the Commissioner a request for publication of a prior sanction, supported by evidence to show
+    that it falls within section 201(s)(4) of the Act.
+
+    (b) Based upon scientific data or information that shows that use of a prior-sanctioned food ingredient may be injurious to health, and thus in violation of section 402 of the Act, the Commissioner
+    will establish or amend an applicable prior sanction regulation to impose whatever limitations or conditions are necessary for the safe use of the ingredient, or to prohibit use of the ingredient.
+
+    (c) Where appropriate, an emergency action level may be issued for a prior-sanctioned substance, pending the issuance of a final regulation in accordance with paragraph (b) of this section. Such an
+    action level shall be issued pursuant to section 402(a) of the Act to identify, based upon available data, conditions of use of the substance that may be injurious to health. Such an action level shall
+    be issued in a notice published in the
+
+    Federal Register
+
+    and shall be followed as soon as practicable by a proposed regulation in accordance with paragraph (b) of this section. Where the available data demonstrate that the substance may be injurious at any
+    level, use of the substance may be prohibited. The identification of a prohibited substance may be made in part 189 of this chapter when appropriate.
+
+    [42 FR 14638, Mar. 15, 1977, as amended at 42 FR 52821, Sept. 30, 1977; 54 FR 39635, Sept. 27, 1989]'
+- id: art-3
+  title: § 181.5
+  text: '§ 181.5
+
+    Prior sanctions.
+
+    (a) A prior sanction shall exist only for a specific use(s) of a substance in
+
+    food, i.e., the level(s), condition(s), product(s), etc., for which there was explicit approval by the Food and Drug Administration or the United States Department of Agriculture prior to September
+    6, 1958.
+
+    (b) The existence of a prior sanction exempts the sanctioned use(s) from the food additive provisions of the Act but not from the other adulteration or the misbranding provisions of the Act.
+
+    (c) All known prior sanctions shall be the subject of a regulation published in this part. Any such regulation is subject to amendment to impose whatever limitation(s) or condition(s) may be necessary
+    for the safe use of the ingredient, or revocation to prohibit use of the ingredient, in order to prevent the adulteration of food in violation of section 402 of the Act.
+
+    (d) In proposing, after a general evaluation of use of an ingredient, regulations affirming the GRAS status of substances added directly to human food in part 184 of this chapter or substances in food-contact
+    surfaces in part 186 of this chapter, or establishing a food additive regulation for substances added directly to human food in parts 172 and 173 of this chapter or food additives in food-contact surfaces
+    in parts 174, 175, 176, 177, 178 and § 179.45 of this chapter, the Commissioner shall, if he is aware of any prior sanction for use of the ingredient under conditions different from those proposed in
+    the regulation, concurrently propose a separate regulation covering such use of the ingredient under this part. If the Commissioner is unaware of any such applicable prior sanction, the proposed regulation
+    will so state and will require any person who intends to assert or rely on such sanction to submit proof of its existence. Any food additive or GRAS regulation promulgated after a general evaluation
+    of use of an ingredient constitutes a determination that excluded uses would result in adulteration of the food in violation of section 402 of the Act, and the failure of any person to come forward
+    with proof of such an applicable prior sanction in response to a proposal will constitute a waiver of the right to assert or rely on such sanction at any later time. The notice will also constitute
+    a proposal to establish a regulation under this part, incorporating the same provisions, in the event that such a regulation is determined to be appropriate as a result of submission of proof of such
+    an applicable prior sanction in response to the proposal.
+
+    Subpart B—Specific Prior-Sanctioned Food Ingredients'
+- id: art-4
+  title: § 181.22
+  text: '§ 181.22
+
+    Certain substances employed in the manufacture of food-packaging materials.
+
+    Prior to the enactment of the food additives amendment to the Federal Food, Drug, and Cosmetic Act, sanctions were granted for the usage of the substances listed in §§ 181.23, 181.24, 181.25, 181.26,
+    181.27, 181.28, 181.29, and 181.30 in the manufacture of packaging materials. So used, these substances are not considered “food additives” within the meaning of section 201(s) of the Act, provided
+    that they are of good commercial grade, are suitable for association with food, and are used in accordance with good manufacturing practice. For the purpose of this subpart, good manufacturing practice
+    for food-packaging materials includes the restriction that the quantity of any of these substances which becomes a component of food as a result of use in food-packaging materials shall not be intended
+    to accomplish any physical or technical effect in the food itself, shall be reduced to the least amount reasonably possible, and shall not exceed any limit specified in this subpart.
+
+    [42 FR 56728, Oct. 28, 1977]'
+- id: art-5
+  title: § 181.23
+  text: '§ 181.23
+
+    Antimycotics.
+
+    Substances classified as antimycotics, when migrating from food-packaging material shall include:
+
+    Calcium propionate.
+
+    Methylparaben (methyl
+
+    p
+
+    -hydroxybenzoate).
+
+    Propylparaben (propyl
+
+    p
+
+    -hydroxybenzoate).
+
+    Sodium benzoate.
+
+    Sodium propionate.
+
+    Sorbic acid.
+
+    [42 FR 14638, Mar. 15, 1977; 42 FR 56728, Oct. 28, 1977]'
+- id: art-6
+  title: § 181.24
+  text: '§ 181.24
+
+    Antioxidants.
+
+    Substances classified as antioxidants, when migrating from food-packaging
+
+    material (limit of addition to food, 0.005 percent) shall include:
+
+    Butylated hydroxyanisole.
+
+    Butylated hydroxytoluene.
+
+    Dilauryl thiodipropionate.
+
+    Distearyl thiodipropionate.
+
+    Gum guaiac.
+
+    Nordihydroguairetic acid.
+
+    Propyl gallate.
+
+    Thiodipropionic acid.
+
+    2,4,5-Trihydroxy butyrophenone.
+
+    [42 FR 14638, Mar. 15, 1977; 42 FR 56728, Oct. 28, 1977]'
+- id: art-7
+  title: § 181.25
+  text: '§ 181.25
+
+    Driers.
+
+    Substances classified as driers, when migrating from food-packaging material shall include:
+
+    Cobalt caprylate.
+
+    Cobalt linoleate.
+
+    Cobalt naphthenate.
+
+    Cobalt tallate.
+
+    Iron caprylate.
+
+    Iron linoleate.
+
+    Iron naphthenate.
+
+    Iron tallate.
+
+    Manganese caprylate.
+
+    Manganese linoleate.
+
+    Manganese naphthenate.
+
+    Manganese tallate.
+
+    [42 FR 14638, Mar. 15, 1977; 42 FR 56728, Oct. 28, 1977]'
+- id: art-8
+  title: § 181.26
+  text: '§ 181.26
+
+    Drying oils as components of finished resins.
+
+    Substances classified as drying oils, when migrating from food-packaging material (as components of finished resins) shall include:
+
+    Chinawood oil (tung oil).
+
+    Dehydrated castor oil.
+
+    Linseed oil.
+
+    Tall oil.
+
+    [42 FR 14638, Mar. 15, 1977; 42 FR 56728, Oct. 28, 1977]'
+- id: art-9
+  title: § 181.27
+  text: '§ 181.27
+
+    Plasticizers.
+
+    Substances classified as plasticizers, when migrating from food-packaging material shall include:
+
+    Acetyl tributyl citrate.
+
+    Acetyl triethyl citrate.
+
+    p-tert-
+
+    Butylphenyl salicylate.
+
+    Butyl stearate.
+
+    Butylphthalyl butyl glycolate.
+
+    Dibutyl sebacate.
+
+    Di-(2-ethylhexyl) phthalate (for foods of high water content only).
+
+    Diethyl phthalate.
+
+    Diisobutyl adipate.
+
+    Diisooctyl phthalate (for foods of high water content only).
+
+    Diphenyl-2-ethylhexyl phosphate.
+
+    Epoxidized soybean oil (iodine number maximum 6; and oxirane oxygen, minimum, 6.0 percent).
+
+    Ethylphthalyl ethyl glycolate.
+
+    Glycerol monooleate.
+
+    Monoisopropyl citrate.
+
+    Mono, di-, and tristearyl citrate.
+
+    Triacetin (glycerol triacetate).
+
+    Triethyl citrate.
+
+    3-(2-Xenolyl)-1,2-epoxypropane.
+
+    [42 FR 14638, Mar. 15, 1977; 42 FR 56728, Oct. 28, 1977, as amended at 50 FR 49536, Dec. 3, 1985]'
+- id: art-10
+  title: § 181.28
+  text: '§ 181.28
+
+    Release agents.
+
+    Substances classified as release agents, when migrating from food-packaging material shall include:
+
+    Dimethylpolysiloxane (substantially free from hydrolyzable chloride and alkoxy groups, no more than 18 percent loss in weight after heating 4 hours at 200 °C.; viscosity 300 centisokes, 600 centisokes
+    at 25 °C, specific gravity 0.96 to 0.97 at 25 °C, refractive index 1.400 to 1.404 at 25 °C).
+
+    Linoleamide (linoleic acid amide).
+
+    Oleamide (oleic acid amide).
+
+    Palmitamide (palmitic acid amide).
+
+    Stearamide (stearic acid amide).
+
+    [42 FR 14638, Mar. 15, 1977; 42 FR 56728, Oct. 28, 1977]'
+- id: art-11
+  title: § 181.29
+  text: '§ 181.29
+
+    Stabilizers.
+
+    Substances classified as stabilizers, when migrating from food-packaging material shall include:
+
+    Aluminum mono-, di-, and tristearate.
+
+    Ammonium citrate.
+
+    Ammonium potassium hydrogen phosphate.
+
+    Calcium glycerophosphate.
+
+    Calcium phosphate.
+
+    Calcium hydrogen phosphate.
+
+    Calcium oleate.
+
+    Calcium acetate.
+
+    Calcium carbonate.
+
+    Calcium ricinoleate.
+
+    Calcium stearate.
+
+    Disodium hydrogen phosphate.
+
+    Magnesium glycerophosphate.
+
+    Magnesium stearate.
+
+    Magnesium phosphate.
+
+    Magnesium hydrogen phosphate.
+
+    Mono-, di-, and trisodium citrate.
+
+    Mono-, di-, and tripotassium citrate.
+
+    Potassium oleate.
+
+    Potassium stearate.
+
+    Sodium pyrophosphate.
+
+    Sodium stearate.
+
+    Sodium tetrapyrophosphate.
+
+    Stannous stearate (not to exceed 50 parts per million tin as a migrant in finished food).
+
+    Zinc orthophosphate (not to exceed 50 parts per million zinc as a migrant in finished food).
+
+    Zinc resinate (not to exceed 50 parts per million zinc as a migrant in finished food).
+
+    [42 FR 14638, Mar. 15, 1977; 42 FR 56728, Oct. 28, 1977]'
+- id: art-12
+  title: § 181.30
+  text: '§ 181.30
+
+    Substances used in the manufacture of paper and paperboard products used in food packaging.
+
+    Substances used in the manufacture of paper and paperboard products used in food packaging shall include:
+
+    Aliphatic polyoxyethylene ethers.*
+
+    *Under the conditions of normal use, these substances would not reasonably be expected to migrate to food, based on available scientific information and data.
+
+    1-Alkyl (C
+
+    6
+
+    -C
+
+    18
+
+    )3-amino-3-aminopropane monoacetate.*
+
+    Borax or boric acid for use in adhesives, sizes, and coatings.*
+
+    Butadiene-styrene copolymer.
+
+    Chromium complex of perfluoro-octane sulfonyl glycine for use on paper and paperboard which is waxed.*
+
+    Disodium cyanodithioimidocarbamate with ethylene diamine and potassium
+
+    N
+
+    -methyl dithiocarbamate and/or sodium 2-mercaptobenzothiazole (slimicides).*
+
+    Ethyl acrylate and methyl methacrylate copolymers of itaconic acid or methacrylic acid for use only on paper and paperboard which is waxed.*
+
+    Hexamethylene tetramine as a setting agent for protein, including casein.*
+
+    1-(2-Hydroxyethyl)-1-(4-chlorobutyl)-2-alkyl (C
+
+    6
+
+    -C
+
+    17
+
+    ) imidazolinium chloride.*
+
+    Itaconic acid (polymerized).
+
+    Melamine formaldehyde polymer.
+
+    Methyl acrylate (polymerized).
+
+    Methyl ethers of mono-, di-, and tripropylene glycol.*
+
+    Myristo chromic chloride complex.
+
+    Nitrocellulose.
+
+    Polyethylene glycol 400.
+
+    Polyvinyl acetate.
+
+    Potassium pentachlorophenate as a slime control agent.*
+
+    Potassium trichlorophenate as a slime control agent.*
+
+    Resins from high and low viscosity polyvinyl alcohol for fatty foods only.
+
+    Rubber hydrochloride.
+
+    Sodium pentachlorophenate as a slime control agent.*
+
+    Sodium-trichlorophenate as a slime control agent.*
+
+    Stearato-chromic chloride complex.
+
+    Titanium dioxide.*
+
+    Urea formaldehyde polymer.
+
+    Vinylidine chlorides (polymerized).'
+- id: art-13
+  title: § 181.32
+  text: '§ 181.32
+
+    Acrylonitrile copolymers and resins.
+
+    (a) Acrylonitrile copolymers and resins listed in this section, containing less than 30 percent acrylonitrile and complying with the requirements of paragraph (b) of this section, may be safely used
+    as follows:
+
+    (1)
+
+    Films.
+
+    (i) Acrylonitrile/butadiene/styrene copolymers—no restrictions.
+
+    (ii) Acrylonitrile/butadiene copolymers—no restrictions.
+
+    (iii) Acrylonitrile/butadiene copolymer blended with vinyl chloride-vinyl acetate (optional at level up to 5 percent by weight of the vinyl chloride resin) resin—for use only in contact with oleomargarine.
+
+    (iv) Acrylonitrile/styrene copolymer—no restrictions.
+
+    (2)
+
+    Coatings.
+
+    (i) Acrylonitrile/butadiene copolymer blended with polyvinyl chloride resins—for use only on paper and paperboard in contact with meats and lard.
+
+    (ii) Polyvinyl chloride resin blended with either acrylonitrile/butadiene copolymer or acrylonitrile/butadiene styrene copolymer mixed with neoprene, for use as components of conveyor belts to be used
+    with fresh fruits, vegetables, and fish.
+
+    (iii) Acrylonitrile/butadiene/styrene copolymer—no restrictions.
+
+    (iv) Acrylonitrile/styrene copolymer—no restrictions.
+
+    (3)
+
+    Rigid and semirigid containers.
+
+    (i) Acrylonitrile/butadiene/styrene copolymer—for use only as piping for handling food products and for repeated-use articles intended to contact food.
+
+    (ii) Acrylonitrile/styrene resin—no restrictions.
+
+    (iii) Acrylonitrile/butadiene copolymer blended with polyvinyl chloride resin—for use only as extruded pipe.
+
+    (b) Limitations for acrylonitrile monomer extraction for finished food-contact articles, determined by using the method of analysis titled “Gas-Solid Chromatographic Procedure for Determining Acrylonitrile
+    Monomer in Acrylonitrile-Containing Polymers and Food-Simulating Solvents,” which is incorporated by reference. Copies are available from the Center for Food Safety and Applied Nutrition (HFS-
+
+    200), Food and Drug Administration, 5001 Campus Dr., College Park, MD 20740, or available for inspection at the National Archives and Records Administration (NARA). For information on the availability
+    of this material at NARA, call 202-741-6030, or go to:
+
+    http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html.
+
+    (1) In the case of single-use articles having a volume to surface ratio of 10 milliliters or more per square inch of food-contact surface—0.003 milligram/square inch when extracted to equilibrium at
+    120 °F with food-simulating solvents appropriate to the intended conditions of use.
+
+    (2) In the case of single-use articles having a volume to surface ratio of less than 10 milliliters per square inch of food-contact surface—0.3 part per million calculated on the basis of the volume
+    of the container when extracted to equilibrium at 120 °F with food-simulating solvents appropriate to the intended conditions of use.
+
+    (3) In the case of repeated-use articles—0.003 milligram/square inch when extracted at a time equivalent to initial batch usage utilizing food-simulating solvents and temperatures appropriate to the
+    intended conditions of use.
+
+    The food-simulating solvents shall include, where applicable, distilled water, 8 percent or 50 percent ethanol, 3 percent acetic acid, and either
+
+    n
+
+    -heptane or an appropriate oil or fat.
+
+    (c) Acrylonitrile monomer may present a hazard to health when ingested. Accordingly, any food-contact article containing acrylonitrile copolymers or resins that yield acrylonitrile monomer in excess
+    of that amount provided for in paragraph (b) of this section shall be deemed to be adulterated in violation of section 402 of the Act.
+
+    [42 FR 14638, Mar. 15, 1977, as amended at 47 FR 11850, Mar. 19, 1982; 54 FR 24899, June 12, 1989]'
+- id: art-14
+  title: § 181.33
+  text: '§ 181.33
+
+    Sodium nitrate and potassium nitrate.
+
+    Sodium nitrate and potassium nitrate are subject to prior sanctions issued by the U.S. Department of Agriculture for use as sources of nitrite, with or without sodium or potassium nitrite, in the production
+    of cured red meat products and cured poultry products.
+
+    [48 FR 1705, Jan. 14, 1983]'
+- id: art-15
+  title: § 181.34
+  text: '§ 181.34
+
+    Sodium nitrite and potassium nitrite.
+
+    Sodium nitrite and potassium nitrite are subject to prior sanctions issued by the U.S. Department of Agriculture for use as color fixatives and preservative agents, with or without sodium or potassium
+    nitrate, in the curing of red meat and poultry products.
+
+    [48 FR 1705, Jan. 14, 1983]'
 doc_files:
 - us/raw/US-CFR-title21-part181.xml
+- us/raw/US-CFR-title21-part181.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part181.xml (xml, 16700 chars)，生成 15 条共 16700 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part181.xml (xml, 16700 chars)，生成 15 条共 16700 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part181.xml (xml, 16700 chars)，生成 15 条共 16700 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART181-4（US 21 CFR Part 181）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART181-3（US 21 CFR Part 181）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART181-2（US 21 CFR Part 181）。'

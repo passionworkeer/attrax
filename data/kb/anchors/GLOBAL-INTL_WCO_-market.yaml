@@ -1,0 +1,27 @@
+id: KB-market-GLOBAL-GLOBAL-INTL_WCO_
+regulation_id: GLOBAL-INTL_WCO_
+doc_name: INTL WCO 世界海关组织
+official_citation: INTL WCO 世界海关组织
+short_name: INTL WCO 世界海关组织
+source: market
+primary_source: market
+domain: 海关税务
+applies_if:
+  category: []
+  features_any: []
+  markets:
+  - GLOBAL
+key_articles:
+- art-1
+- art-2
+key_points:
+- INTL WCO 世界海关组织：海关税务领域法规，适用于 GLOBAL 市场相关经营行为（库自动接入，按市场匹配）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: http://www.wcoomd.org/
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

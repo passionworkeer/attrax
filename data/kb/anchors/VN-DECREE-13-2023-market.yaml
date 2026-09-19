@@ -1,0 +1,27 @@
+id: KB-market-VN-VN-DECREE-13-2023
+regulation_id: VN-DECREE-13-2023
+doc_name: Decree No. 13/2023/ND-CP on Personal Data Protection
+official_citation: Decree No. 13/2023/ND-CP on Personal Data Protection
+short_name: 越南第 13 号个人数据保护法令
+source: market
+primary_source: market
+domain: 数据保护
+applies_if:
+  category: []
+  features_any: []
+  markets:
+  - VN
+key_articles:
+- art-1
+- art-2
+key_points:
+- 越南第 13 号个人数据保护法令：数据保护领域法规，适用于 VN 市场相关经营行为（库自动接入，按市场匹配）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://english.luatvietnam.vn/decree-no-13-2023-nd-cp-dated-april-17-2023-of-the-government-on-personal-data-protection-249791-doc1.html
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

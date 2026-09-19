@@ -9,11 +9,177 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: Placing UKCA or CE marked products on the market in Great Br
+  text: "Placing UKCA or CE marked products on the market in Great Britain - GOV.UK\nCookies on GOV.UK\nWe use some essential cookies to make this website work.\nWe’d like to set additional cookies to understand\
+    \ how you use GOV.UK, remember your settings and improve government services.\nWe also use cookies set by other sites to help us deliver content from their services.\nYou have accepted additional cookies.\
+    \ \nYou can \nchange your cookie settings\n at any time.\nYou have rejected additional cookies. \nYou can \nchange your cookie settings\n at any time.\nAccept additional cookies\nReject additional cookies\n\
+    View cookies\n          Hide cookie message\nSkip to main content\n    Guidance\n    Placing UKCA or CE marked products on the market in Great Britain\n    What you need to do to comply with regulations\
+    \ which govern manufactured products placed on the market in Great Britain.\nFrom:\nDepartment for Business, Innovation, Science and Trade\n and \nDepartment for Business and Trade\nPublished:\n31 March\
+    \ 2026\nLast updated:\n          21 August 2026\n            — \n              See all updates\nGet emails about this page\n      Applies to England, Scotland and Wales\nPrint this page\nThis guide\
+    \ provides an overview of the steps businesses need to take when placing a product on the market in Great Britain (England, Scotland and Wales) under the UK Conformity Assessed (\nUKCA\n) or Conformité\
+    \ Européenne (\nCE\n) regimes. This process may differ for specific products as signposted throughout the guide. Product regulations should therefore also be consulted.\nUKCA\n and \nCE\n markings demonstrate that\
+    \ the manufacturer believes that their product meets the relevant product requirements. The \nUKCA\n and \nCE\n regimes span over 20 product types, including goods known in the EU as ‘new approach goods’, and additional sectors\
+    \ such as aerosols and rail. These product types are listed in the \nproduct marking table for Great Britain and Northern Ireland\n.\nMany UK product requirements are derived from EU rules that were\
+    \ developed while the UK was an EU member state. Where the aims and requirements of product regulations meet the needs of the UK, the UK continues to recognise the \nCE\n marking, alongside or in place\
+    \ of the \nUKCA\n marking, for the Great Britain market under \nThe Product Safety and Metrology (Amendment) Regulations 2024\n. This provides businesses with flexibility on which conformity process\
+    \ they wish to use. There is further guidance available on \nrecent product safety and metrology legislative changes\n.\nThere are a range of sectors which have rules and standards outside of the \n\
+    UKCA\n and \nCE\n regimes. You can access product safety sector guidance from the Office of Product Safety and Standards at \nproduct safety for businesses: A to Z of industry guidance\n.\nSolicitors, trade\
+    \ associations, \nlocal authority trading standards\n, and \nresponsible departments\n can provide additional advice on which regulations apply to different products.\n1. Identify the correct market\n\
+    Processes are different for placing:\nCE\n, or \nCE\n and United Kingdom Northern Ireland (\nUKNI\n) marked products on the market in Northern Ireland\nCE\n marked products on the market in the EU\n\
+    products in the Crown Dependencies or British Overseas Territories\nThis guide does not apply to products being placed on the Great Britain market originating from Northern Ireland. For qualifying products,\
+    \ the UK government will guarantee unfettered access, without the need for additional approvals.\nQualifying Northern Ireland products can be placed on the market in Great Britain based on the \nCE\n\
+    , or \nCE\n and \nUKNI\n conformity markings used in Northern Ireland. For these circumstances, the \nplacing \nCE\n, or \nCE\n and \nUKNI\n marked products on the market in Northern Ireland guide\n\
+    \ should be used instead.\nFind out more about:\nwhich products qualify for unfettered access\nthe UK government’s approach to unfettered access\nCrown dependencies and British Overseas Territories\n\
+    The \nUKCA"
+- id: art-2
+  title: ' marking does not apply in the Crown dependencies (Guernsey,'
+  text: " marking does not apply in the Crown dependencies (Guernsey, Jersey and the Isle of Man).\nFind product and consumer safety information for:\nGuernsey\nJersey\nIsle of Man\nThe \nUKCA\n marking\
+    \ does not apply in the British Overseas Territories.\n2. Understand roles and responsibilities\nThere are different roles known as ‘economic operators’ in the supply chain. Responsibilities for different\
+    \ economic operators vary.\nMost of the responsibilities for placing a product on the market lie with the product’s manufacturer. However, other economic operators within the supply chain have duties\
+    \ to fulfil.\nProduct regulations by sector\n should be consulted for specific economic operator requirements for a given product.\nManufacturer\nA manufacturer is an individual or business who manufactures\
+    \ a product, or who has a product designed or manufactured and markets that product on the Great Britain market under their own name or trademark.\nTheir responsibilities include:\ndesigning and manufacturing\
+    \ the product in accordance with relevant requirements\nindicating identification details (name, trade name or trademark, and postal address) and applying the correct marking on the product\ndrawing\
+    \ together and retaining technical documentation (including a Declaration of Conformity (\nDoC\n))\nmonitoring compliance and acting upon any concerns\nco-operating with market surveillance authorities\n\
+    Authorised representative (of the manufacturer)\nAn authorised representative is an individual or company who is established in the UK and is appointed by a manufacturer to carry out agreed tasks on\
+    \ their behalf.\nThere are constraints to what an authorised representative can be asked to do. For instance they cannot usually be held responsible for ensuring that a product is designed and manufactured in\
+    \ accordance with essential requirements. Manufacturers ultimately remain responsible for any task they decide to delegate to an authorised representative. \nThe manufacturer may decide to appoint the\
+    \ company importing or distributing their product to carry out the delegated responsibilities of an authorised representative, in which case that company would adopt all relevant economic operator responsibilities.\n\
+    An authorised representative may be essential or voluntary depending on the regulation(s) applicable to the product.\nTheir responsibilities include:\nfulfilling responsibilities as explicitly requested\
+    \ by the manufacturer in writing, such as:\naffixing the conformity marking\ndrawing up and signing a \nDoC\nkeeping the necessary technical documentation\nco-operating with market surveillance authorities\n\
+    monitoring compliance and acting upon any concerns\nImporter\nAn importer is any individual or business established in the UK who supplies a product from a country outside the UK for distribution, consumption\
+    \ or use in the course of a commercial activity.\nTheir responsibilities include:\nindicating identification details on the product (name, trade name or trademark, and postal address)\nensuring that\
+    \ manufacturers have carried out the correct conformity processes, drawn up the relevant technical documentation, affixed the correct marking, and fulfilled their identification obligations\nretaining\
+    \ technical documentation\nensuring that storage or transport conditions do not jeopardise the product’s compliance\nmonitoring compliance and acting upon any concerns\nco-operating with market surveillance\
+    \ authorities\nmaintaining a line of contact with the product’s manufacturer\nIf an importer places products on the market under their own name or trademark, or modifies the product in a way that affects\
+    \ compliance or conformity, they assume the responsibilities of the manufacturer. This means they must hold sufficient information about the product’s design and production, as they take on the legal\
+    \ obligations associated with affixing the \nUKCA\n or \nCE\n marking.\nDistributor"
+- id: art-3
+  title: A distributor is a person in the supply chain, other than th
+  text: "A distributor is a person in the supply chain, other than the manufacturer or importer, who makes products within the UK available on the Great Britain market.\nTheir responsibilities include:\n\
+    ensuring that importers and manufacturers have fulfilled their identification obligations\nensuring that manufacturers have placed the correct marking on the product\nensuring that storage or transport\
+    \ conditions do not jeopardise the product’s compliance\nmonitoring compliance and acting upon any concerns\nco-operating with market surveillance authorities\nIf a distributor places products on the\
+    \ market under their own name or trademark, or modifies the product in a way that affects compliance or conformity, they assume the responsibilities of the manufacturer. This means they must hold sufficient\
+    \ information about the product’s design and production, as they take on the legal obligations associated with affixing the \nUKCA\n or \nCE\n marking. \nEnd user\nAn end user is a person who uses a\
+    \ product. End users are not usually subject to obligations within \nUKCA\n or \nCE\n product regulations. However, some professional end users who ‘put products into service’ may be subject to additional\
+    \ obligations, for example under product or health and safety at work legislation.\n3. Check which product rules apply\nProducts must be designed and manufactured in line with the rules set out in product\
+    \ regulations. This may require a conformity marking, such as a \nUKCA\n or \nCE\n marking, for the product to be placed on the market in Great Britain.\nA product is placed on the market when it is manufactured\
+    \ and put into use, or supplied in the course of a commercial activity (whether in return for payment or free of charge) for distribution, consumption, or use. Conformity marking is only necessary if\
+    \ required under sector-specific regulations. Not all products must bear a conformity marking.\nYou can read about sector-specific requirements for \nUKCA\n and \nCE\n marking in our guidance on \n\
+    product regulations by sector and current approaches to product marking: \nUKCA\n and \nCE\n regimes\n.\nIt is common for more than one regulation to apply to a product. To place a conformity marking\
+    \ on a product, it must comply with all relevant regulations.\nProduct regulations establish essential requirements that products must meet to safeguard public interests such as:\nhealth and safety\n\
+    product performance\nenvironmental protection\nThese regulations outline the objectives to be achieved or the risks to be addressed, without prescribing specific technical solutions. This approach allows\
+    \ manufacturers flexibility in how they demonstrate compliance with those requirements.\nDesignated standards\nIn Great Britain, designated standards are standards which have been recognised by the\
+    \ UK government to give a statutory presumption of conformity that a product meets the relevant essential requirements. These technical specifications are developed by recognised standardisation bodies\
+    \ such as the British Standards Institution (BSI).\nThey are designed:\nas a practical way for manufacturers to meet essential requirements in legislation\nfor repeated application and to provide a\
+    \ common framework for ensuring product safety and performance\nHowever, their use in most cases is voluntary. You should note that the presumption of conformity is rebuttable. Standards often include\
+    \ guidance on which requirements they aim to cover, but they may not address all the essential requirements in the relevant product regulations. Applying a standard does not replace legal obligations.\n\
+    There is further guidance available on \nUK designated standards\n, and information on proposed updates at \nnew notices for consultation on designated standards"
+- id: art-4
+  title: . Under most UK product regulations, the use of designated s
+  text: ". Under most UK product regulations, the use of designated standards is voluntary. They provide a presumption of conformity with the relevant legal requirements, but manufacturers remain free to\
+    \ use alternative technical solutions to demonstrate compliance with the essential requirements in the regulations for their product. The main exception is the \nConstruction Products Regulations 2013\n\
+    , where designated construction product standards operate on a mandatory basis.\nManufacturers remain fully responsible for assessing all risks associated with their products, identifying relevant requirements,\
+    \ and documenting how these are addressed.\nHarmonised standards and Fast-Track \nUKCA\nThe Product Safety and Metrology (Amendment) Regulations 2024\n also allows businesses to mark their product with\
+    \ a \nUKCA\n marking where recognised EU requirements and conformity assessment processes have been met. This is known as ‘Fast-Track \nUKCA\n’. Under the same regulations, businesses can also meet\
+    \ EU requirements and processes to \nCE\n mark their product for the Great Britain market under continued recognition. \nSimilar to UK designated standards, EU harmonised standards are standards which\
+    \ have been developed to give a statutory presumption of conformity with product regulations. These technical specifications are developed by a recognised European Standards Organisation such as the\
+    \ European Committee for Standardisation (CEN). \nEU harmonised conformity standards\n are published in the Official Journal of the European Union. \nThere is further guidance on \nusing EU harmonised\
+    \ standards\n and \nFast-Track \nUKCA\n. There is also information available on the EU website on the \nEU new legislative framework\n.\n4. Carry out a conformity assessment procedure\nThe available\
+    \ routes to demonstrate compliance with conformity requirements are set out in \nproduct regulations by sector\n.\nSelf Declaration of Conformity\nUnder certain pieces of UK legislation, the manufacturer\
+    \ can self-declare conformity for the product under the \nUKCA\n regime.\nLegislation\nScope of products which can be self-declared\nAerosol Dispensers Regulations 2009\nAll products\nConstruction Products\
+    \ Regulations (Regulation (EU) 305/2011 as retained in UK law and amended)\nProducts within scope of Assessment and Verification of Constancy of Performance System 4\nEcodesign for Energy-Related Products\
+    \ Regulations 2010\nAll products listed in Schedule 1 with the exception of boilers as specified in retained Commission Regulation (EU) 813/2013\nElectrical Equipment (Safety) Regulations 2016\nAll\
+    \ products\nElectromagnetic Compatibility Regulations 2016\nAll products\nEquipment and Protective Systems Intended for Use in Potentially Explosive Atmospheres Regulations 2016\nEquipment-group II,\
+    \ equipment category 3\nMeasuring Container Bottles (EEC Requirements) Regulations 1977\nAll products\nMedical Devices Regulations 2002\nSome Class I devices\nNoise Emission in the Environment by Equipment\
+    \ for use Outdoors Regulations 2001\nProducts subject to noise marking only as listed in Schedule 2\nPersonal Protective Equipment Regulations (Regulation (EU) 2016/425 as brought into UK law and amended)\n\
+    Category I personal protective equipment\nPressure Equipment (Safety) Regulations 2016\nCategory I pressure equipment\nRadio Equipment Regulations 2017\nAll products except where designated standards\
+    \ covering the essential requirements either do not exist or have not been applied (either in full or in part) by the manufacturer.\nRecreational Craft Regulations 2017\nCertain categories of recreational\
+    \ craft as specified in the legislation\nRestriction of the Use of Certain Hazardous Substances in Electrical and Electronic Equipment Regulations 2012\nAll products\nSupply of Machinery (Safety) Regulations\
+    \ 2008"
+- id: art-5
+  title: Any machinery which is not in Schedule 2, Part 4 of the regu
+  text: "Any machinery which is not in Schedule 2, Part 4 of the regulations. Any machinery that is in Schedule 2, Part 4 where the requirements of all relevant designated standards have been applied in\
+    \ full and where those standards cover all the applicable essential requirements.\nToy (Safety) Regulations 2011\nAll products except where designated standards covering the essential requirements either\
+    \ do not exist or have not been applied (either in full or in part) by the manufacturer. Or where one or more of the designated standards has been published with a restriction.\nThird-party conformity\
+    \ assessment\nOther regulations specify circumstances where \nsome or all types of products must be assessed by a conformity assessment body (\nCAB\n)\n.\nThird-party conformity assessments undertake\
+    \ tests or review test reports to ensure that the product complies with the essential requirements of the product regulation.\nIn the UK, \nCABs\n undertaking work for the Great Britain market are known\
+    \ as UK Approved Bodies and are accredited by the UK Accreditation Service (UKAS). They can only be used to certify products for \nUKCA\n marking.\nThe \nUK Market Conformity Assessment Bodies (UKMCAB)\
+    \ database\n lists UK Approved Bodies which can provide third-party conformity assessments for products being placed on the Great Britain market.\nIn the EU, \nCABs\n are called Notified Bodies and\
+    \ are accredited under each country’s accreditation body. They can be located either in the EU or a third-country. They can only be used to certify against EU requirements, which can also be used for\
+    \ the Great Britain market under \nCE\n recognition\n or \nFast-Track \nUKCA\n. EU Notified Bodies can be found on the  \nEU New Approach Notified and Designated Organisations (NANDO) database\n.\n\
+    UK and EU \nCABs\n can be located either in their own market or in a third country under a mutual recognition agreement. You can read more about \nconformity assessment testing under mutual recognition\
+    \ or free trade agreements\n for the UK market.\n5. Prepare documentation\nTechnical file\nUnder \nUKCA\n and \nCE\n regulations, manufacturers must prepare a technical file. In most cases, this can\
+    \ be in digital format and should include:\ntest reports\ndesign documents\nrisk assessments\nany other information as set out in \nproduct regulations by sector\nDeclaration of Conformity\nOnce the\
+    \ manufacturer is assured that the product is compliant, a \nDoC\n, which is a formal statement that the product complies with the applicable legislation, must be created. This can be done either by\
+    \ the manufacturer themselves, or authorised representative as agreed. Download an example template of a \nUK DoC\n  (\nODT\n, \n8.4 KB\n)\n.\nIn some regulations, this is known as a Declaration of\
+    \ Performance (DoP). Other regulations also require Declarations of Incorporation (DoI), for partly completed equipment or machinery, which is a document stating that a product complies with relevant\
+    \ requirements but is not yet fully assembled or operational.\nWhat the manufacturer needs to include in their \nDoC\n will vary, and manufacturers should check the relevant \nproduct regulations by\
+    \ sector\n for their product.\nThe \nDoC\n may include:\nthe name and full business address of the manufacturer, or authorised representative (if applicable)\nthe product’s serial number, model, or\
+    \ type identification\na statement, declaring the manufacturer takes full responsibility for the product’s compliance\nthe details of the approved body which carried out the conformity assessment procedure\
+    \ (if applicable)\nthe relevant legislation with which the product complies - for a UK \nDoC\n, this can reference either UK legislation, or recognised EU product regulations\nreferences to the relevant\
+    \ designated (UK) or harmonised (EU) standards, including the date of the standard or references to other technical specifications\nthe name and signature of the person authorised to sign on behalf\
+    \ of the manufacturer or their authorised representative\nthe date the declaration was issued"
+- id: art-6
+  title: supplementary information (if applicable)
+  text: "supplementary information (if applicable)\n6. Use the appropriate marking\nIt is the responsibility of the manufacturer (or authorised representative as agreed) to mark the product with the appropriate\
+    \ conformity marking.\nDepending on the rules which apply to the product, the manufacturer may need to change the marking they use. The \nproduct regulations by sector\n will clearly set this out. For\
+    \ products falling under the \nUKCA\n and \nCE\n regimes, in most cases this will be the \nUKCA\n marking or \nCE\n marking. However, there are some other markings for certain products. These include,\
+    \ but are not limited to: \nthe \nreversed epsilon ‘3’ (for example, for aerosols)\nthe \nPi (π) marking (for example, some transportable pressure equipment)\nthe \nRed Ensign or Wheelmark (for example,\
+    \ marine equipment)\nA product can have multiple different markings (including for example \nUKCA\n and \nCE\n), as long as it complies with relevant requirements, and the markings can be clearly seen.\n\
+    Manufacturers and importers must also indicate on the product:\ntheir name\nregistered trade name or registered trademark\npostal address\nThere may also be other product specific indications that manufacturers\
+    \ are required to include, such as the product:\ntype identification\nbatch number\nserial number\nmodel\nCAB\n number\nThis information will be set out in \nproduct regulations by sector\n.\nWhere\
+    \ it is not possible to indicate this on the product (for example, because the product is too small), the legislation may allow the manufacturer to affix the information on the packaging or in a document\
+    \ accompanying the product.\nEach individual product will not necessarily need an accompanying document if moving through the supply chain as a batch. For example, when 1,000 units are moving from distributor\
+    \ A to distributor B as a batch, one accompanying document is sufficient.\nManufacturers must ensure that the product is accompanied by instructions. The precise content and nature of the instructions\
+    \ will be product specific, but they must be clear, legible, and in easily understandable English.\nWhen applying \nUKCA\n and \nCE\n markings on a product together or individually, the rules on marking\
+    \ must be met. Markings must be:\nin their standard, recognisable form\nscaled proportionately against the downloadable templates if their size is reduced or enlarged\nat least 5mm in height, unless\
+    \ a different minimum dimension is specified in the relevant legislation\neasily visible, legible, and indelible\nIn some cases, for example, where the product is too small, the \nUKCA\n or \nCE\n marking\
+    \ can be affixed to the data plate, packaging, a label affixed to the product or accompanying documentation. Consult \nproduct regulations by sector\n for more information.\nUKCA\n marking\nLegislation\
+    \ is currently in force which enables the \nUKCA\n marking to be placed on a label affixed to the product, or on a document accompanying the product, until 11pm on 31 December 2027. Businesses can also\
+    \ choose to place the \nUKCA\n marking on the product itself.\nThis applies to most sectors, however there are specific rules for:\ncableways\nconstruction products\nmarine equipment\nmedical devices\n\
+    rail products\ntransportable pressure equipment\nuncrewed aircraft systems on the \nCAA\n website\nThere are also special rules for products imported from an \nEEA\n state, or in some cases Switzerland,\
+    \ before 11pm on 31 December 2027. In these cases, the importer’s details can be set out elsewhere instead of being affixed to the product itself. This will typically be in an accompanying document\
+    \ or on the product’s packaging.\nManufacturers can download a template \nUKCA\n marking to place on their product with a\nfilled text option\n  (\nZIP\n, \n818 KB\n)\n, or with an \noutlined text option\n\
+    \  (\nZIP\n, \n2.03 MB\n)\n.\nCE\n marking\nThe \nCE\n marking must be placed onto the product or to its data plate. If this is not possible or not necessary due to the nature of the product, it must\
+    \ be placed onto the packaging and accompanying documents.\nManufacturers can "
+- id: art-7
+  title: 'download a template '
+  text: "download a template \nCE\n marking and find further information on the European Commission website\n.\n7. Retain records and maintain compliance\nDepending on the regulation, different economic\
+    \ operators must keep technical documentation to demonstrate a product is compliant with the applicable conformity requirements. In most cases this is the manufacturer and importer. This information\
+    \ can be requested at any time, by market surveillance or enforcement authorities.\nThis documentation must be kept for the period specified in the legislation (typically 10 years) after each individual\
+    \ product has been placed on the Great Britain market (rather than the first product of a production run). However, the economic operator should refer to \nproduct regulations by sector\n to check for\
+    \ any differences to this period.\nEconomic operators must also be certain that procedures are in place to ensure that products comply with their relevant regulations when each individual product is\
+    \ placed on the Great Britain market. In doing so, they should note:\nchanges in the product’s design\ncharacteristics\ndesignated standards or technical specifications to which the \nDoC\n was drawn\
+    \ up\nEconomic operators have a duty to act where they have reason to believe that the product they have placed on the Great Britain market is not in conformity with the legal requirements of the relevant\
+    \ regulations. They must immediately take the corrective measures necessary to bring the product into conformity or withdraw or recall it. There is further information available about \nhow to notify\
+    \ an enforcement authority\n.\nIf an enforcement body finds a product does not meet \nUKCA\n or \nCE\n marking requirements, depending on the risk, they will often provide the relevant economic operator\
+    \ with an opportunity to work constructively to bring the product into conformity. If the economic operator fails to co-operate, they will be obliged to withdraw the product from the market or undertake\
+    \ a recall. The economic operator may also be liable for a fine and imprisonment.\nContact\nContact the goods regulation mailbox at \ngoods.regulation@businessandtrade.gov.uk\n if you have any questions\
+    \ related to this guidance.\nUpdates to this page\nPublished 31 March 2026\n      Last updated 21 August 2026\n— \n          Show all updates\n21 August 2026\nUpdate to the 'declaration of conformity'\
+    \ template. References to ‘EEE’ have been changed to ‘product’.\n7 April 2026\nDesignated standards information in Section 3 on use of voluntary or mandatory standards updated. Red Ensign link in Section\
+    \ 6 updated.\n31 March 2026\nFirst published.\n      Sign up for emails or print this page\nGet emails about this page\nPrint this page\n    Contents\n        Related content\nIs this page useful?\n\
+    \              Maybe\n              Yes \nthis page is useful\n              No \nthis page is not useful\n      Thank you for your feedback\n        Report a problem with this page\nHelp us improve\
+    \ GOV.UK\nDo not include personal or financial information like your National Insurance number or credit card details.\nThis field is for robots only. Please leave blank\nWhat were you doing?\nWhat\
+    \ went wrong?\nSend\nCancel\nHelp us improve GOV.UK\n        To help us improve GOV.UK, we’d like to know more about your visit today.\nPlease fill in this survey (opens in a new tab\n)\n.\nCancel\n\
+    Services and information\nBenefits\nBirths, death, marriages and care\nBusiness and self-employed\nChildcare and parenting\nCitizenship and living in the UK\nCrime, justice and the law\nDisabled people\n\
+    Driving and transport\nEducation and learning\nEmploying people\nEnvironment and countryside\nHousing and local services\nMoney and tax\nPassports, travel and living abroad\nVisas and immigration\n\
+    Working, jobs and pensions\nGovernment activity\nDepartments\nNews\nGuidance and regulation\nResearch and statistics\nPolicy papers and consultations\nTransparency\nHow government works\nGet involved\n\
+    Support links\nHelp\nPrivacy\nCookies\nAccessibility statement\nContact\nTerms and conditions"
+- id: art-8
+  title: Rhestr o Wasanaethau Cymraeg
+  text: "Rhestr o Wasanaethau Cymraeg\nGovernment Digital Service\n            All content is available under the \nOpen Government Licence v3.0\n, except where otherwise stated\n© Crown copyright"
 doc_files:
 - uk/raw/UK-UKCA_通用准入要求_gov.uk.html
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：uk/raw/UK-UKCA_通用准入要求_gov.uk.html (html, 27413 chars)，生成 8 条共 27413 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：uk/raw/UK-UKCA_通用准入要求_gov.uk.html (html, 27413 chars)，生成 8 条共 27413 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：uk/raw/UK-UKCA_通用准入要求_gov.uk.html (html, 27413 chars)，生成 8 条共 27413 字符；解析文本未人工复核，引用以官方原件为准。'

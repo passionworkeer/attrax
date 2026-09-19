@@ -9,11 +9,761 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'ETSI EN 301 559
+
+    V2.1.1
+
+    (2016-10)
+
+    HARMONISED EUROPEAN STANDAR'
+  text: 'ETSI EN 301 559
+
+    V2.1.1
+
+    (2016-10)
+
+    HARMONISED EUROPEAN STANDARD
+
+    Short Range Devices (SRD);
+
+    Low Power Active Medical Implants (LP-AMI)
+
+    and associated Peripherals (LP-AMI-P)
+
+    operating in the frequency range 2 483,5 MHz to 2 500 MHz;
+
+    Harmonised Standard covering the essential requirements
+
+    of article 3.2 of the Directive 2014/53/EU
+
+    2 ETSI EN 301 559 V2.1.1 (2016-10)
+
+    Reference
+
+    REN/ERM-TG30-314
+
+    Keywords
+
+    harmonised standard, health, radio, regulation,
+
+    SRD, testing
+
+    ETSI
+
+    650 Route des Lucioles
+
+    F-06921 Sophia Antipolis Cedex - FRANCE
+
+    Tel.: +33 4 92 94 42 00 Fax: +33 4 93 65 47 16
+
+    Siret N° 348 623 562 00017 - NAF 742 C
+
+    Association à but non lucratif enregistrée à la
+
+    Sous-Préfecture de Grasse (06) N° 7803/88
+
+    Important notice
+
+    The present document can be downloaded from:
+
+    http://www.etsi.org/standards-search
+
+    The present document may be made available in electronic versions and/or in print. The content of any electronic and/or
+
+    print versions of the present document shall not be modified without the prior written authorization of ETSI. In case of any
+
+    existing or perceived difference in contents between such versions and/or in print, the only prevailing document is the
+
+    print of the Portable Document Format (PDF) version kept on a specific network drive within ETSI Secretariat.
+
+    Users of the present document should be aware that the document may be subject to revision or change of status.
+
+    Information on the current status of this and other ETSI documents is available at
+
+    https://portal.etsi.org/TB/ETSIDeliverableStatus.aspx
+
+    If you find errors in the present document, please send your comment to one of the following services:
+
+    https://portal.etsi.org/People/CommiteeSupportStaff.aspx
+
+    Copyright Notification
+
+    No part may be reproduced or utilized in any form or by any means, electronic or mechanical, including photocopying
+
+    and microfilm except as authorized by written permission of ETSI.
+
+    The content of the PDF version shall not be modified without the written authorization of ETSI.
+
+    The copyright and the foregoing restriction extend to reproduction in all media.
+
+    © European Telecommunications Standards Institute 2016.
+
+    All rights reserved.
+
+    DECTTM, PLUGTESTSTM, UMTSTM and the ETSI logo are Trade Marks of ETSI registered for the benefit of its Members.
+
+    3GPPTM and LTE™ are Trade Marks of ETSI registered for the benefit of its Members and
+
+    of the 3GPP Organizational Partners.
+
+    GSM® and the GSM logo are Trade Marks registered and owned by the GSM Association.
+
+    ETSI
+
+    3 ETSI EN 301 559 V2.1.1 (2016-10)
+
+    Contents
+
+    Intellectual Property Rights ................................................................................................................................ 7
+
+    Foreword ............................................................................................................................................................. 7
+
+    Modal verbs terminology .................................................................................................................................... 7
+
+    Introduction ........................................................................................................................................................ 8
+
+    1 Scope ........................................................................................................................................................ 9
+
+    2 References .............................................................................................................................................. 10
+
+    2.1 Normative references ....................................................................................................................................... 10
+
+    2.2 Informative references ...................................................................................................................................... 10
+
+    3 Definitions, symbols and abbreviations ................................................................................................. 11
+
+    3.1 Definitions ........................................................................................................................................................ 11
+
+    3.2 Symbols ............................................................................................................................................................ 13
+
+    3.3 Abbreviations ................................................................................................................................................... 14
+
+    4 Technical requirements and specifications ............................................................................................. 14
+
+    4.1 Environmental profile ....................................................................................................................................... 14
+
+    4.2 Conformance requirements .............................................................................................................................. 14
+
+    4.2.1 Transmitter requirements ............................................................................................................................ 14
+
+    4.2.1.1 Frequency Error .................................................................................................................................... 14
+
+    4.2.1.1.1 Definition......................................................................................................................................... 14
+
+    4.2.1.1.2 Limits .............................................................................................................................................. 14
+
+    4.2.1.1.3 Conformance ................................................................................................................................... 15
+
+    4.2.1.2 Emission bandwidth .............................................................................................................................. 15
+
+    4.2.1.2.1 Definition......................................................................................................................................... 15
+
+    4.2.1.2.2 Limits .............................................................................................................................................. 15
+
+    4.2.1.2.3 Conformance ................................................................................................................................... 15
+
+    4.2.1.3 Effective isotropic radiated power of the fundamental emission .......................................................... 15
+
+    4.2.1.3.1 Definition......................................................................................................................................... 15
+
+    4.2.1.3.2 Limits .............................................................................................................................................. 15
+
+    4.2.1.3.3 Conformance ................................................................................................................................... 15
+
+    4.2.1.4 Spurious emissions ................................................................................................................................ 15
+
+    4.2.1.4.1 Definition......................................................................................................................................... 15
+
+    4.2.1.4.2 Limits .............................................................................................................................................. 15
+
+    4.2.1.4.3 Conformance ................................................................................................................................... 16
+
+    4.2.1.5 Out-of-band emissions .......................................................................................................................... 16
+
+    4.2.1.5.1 Definition......................................................................................................................................... 16
+
+    4.2.1.5.2 Limits .............................................................................................................................................. 16
+
+    4.2.1.5.3 Conformance ................................................................................................................................... 16
+
+    4.2.1.6 Frequency stability under low voltage conditions ................................................................................. 16
+
+    4.2.1.6.0 Applicability .................................................................................................................................... 16
+
+    4.2.1.6.1 Definition......................................................................................................................................... 16
+
+    4.2.1.6.2 Limits .............................................................................................................................................. 17
+
+    4.2.1.6.3 Conformance ................................................................................................................................... 17
+
+    4.2.1.7 LP-AMI-P with restricted duty cycle .................................................................................................... 17
+
+    4.2.1.7.0 General remarks............................................................................................................................... 17
+
+    4.2.1.7.1 Definition......................................................................................................................................... 17
+
+    4.2.1.7.2 Limits .............................................................................................................................................. 17
+
+    4.2.1.7.3 Conformance ................................................................................................................................... 17
+
+    4.2.2 Receiver requirements ................................................................................................................................ 17
+
+    4.2.2.1 Spurious radiation ................................................................................................................................. 17
+
+    4.2.2.1.0 General provision ............................................................................................................................ 17
+
+    4.2.2.1.1 Definition......................................................................................................................................... 17
+
+    4.2.2.1.2 Limits .............................................................................................................................................. 18
+
+    4.2.2.1.3 Conformance ................................................................................................................................... 18
+
+    4.2.2.2 Receiver blocking ................................................................................................................................. 18
+
+    4.2.2.2.1 Definition......................................................................................................................................... 18
+
+    ETSI
+
+    4 ETSI EN 301 559 V2.1.1 (2016-10)
+
+    4.2.2.2.2 Limits .............................................................................................................................................. 18
+
+    4.2.2.2.3 Conformance ................................................................................................................................... 18
+
+    4.2.3 Spectrum access .......................................................................................................................................... 18
+
+    4.2.3.0 General requirements ............................................................................................................................ 18
+
+    4.2.3.1 LBT threshold power level .................................................................................................................... 19
+
+    4.2.3.1.1 Definition..............................'
+- id: art-2
+  title: 'Annex C (informative): Bibliography ................................................................................................... 54'
+  text: 'Annex C (informative): Bibliography ................................................................................................... 54
+
+    History .............................................................................................................................................................. 55
+
+    ETSI
+
+    7 ETSI EN 301 559 V2.1.1 (2016-10)
+
+    Intellectual Property Rights
+
+    IPRs essential or potentially essential to the present document may have been declared to ETSI. The information
+
+    pertaining to these essential IPRs, if any, is publicly available for ETSI members and non-members, and can be found
+
+    in ETSI SR 000 314: "Intellectual Property Rights (IPRs); Essential, or potentially Essential, IPRs notified to ETSI in
+
+    respect of ETSI standards", which is available from the ETSI Secretariat. Latest updates are available on the ETSI Web
+
+    server (https://ipr.etsi.org/).
+
+    Pursuant to the ETSI IPR Policy, no investigation, including IPR searches, has been carried out by ETSI. No guarantee
+
+    can be given as to the existence of other IPRs not referenced in ETSI SR 000 314 (or the updates on the ETSI Web
+
+    server) which are, or may be, or may become, essential to the present document.
+
+    Foreword
+
+    This Harmonised European Standard (EN) has been produced by ETSI Technical Committee Electromagnetic
+
+    compatibility and Radio spectrum Matters (ERM).
+
+    The present document has been prepared under the Commission''s standardisation request C(2015) 5376 final [i.12] to
+
+    provide one voluntary means of conforming to the essential requirements of Directive 2014/53/EU on the harmonisation
+
+    of the laws of the Member States relating to the making available on the market of radio equipment and repealing
+
+    Directive 1999/5/EC [i.1].
+
+    Once the present document is cited in the Official Journal of the European Union under that Directive, compliance with
+
+    the normative clauses of the present document given in table A.1 confers, within the limits of the scope of the present
+
+    document, a presumption of conformity with the corresponding essential requirements of that Directive, and associated
+
+    EFTA regulations.
+
+    The present document covers Low Power Active Medical Implants (LP-AMI) and associated Peripherals (LP-AMI-P)
+
+    operating in the frequency range 2 483,5 MHz to 2 500 MHz as described in the systems reference document for the
+
+    equipment, ETSI TR 102 655 [i.2].
+
+    National transposition dates
+
+    Date of adoption of this EN: 12 September 2016
+
+    Date of latest announcement of this EN (doa): 31 December 2016
+
+    Date of latest publication of new National Standard
+
+    or endorsement of this EN (dop/e): 30 June 2017
+
+    Date of withdrawal of any conflicting National Standard (dow): 30 June 2018
+
+    Modal verbs terminology
+
+    In the present document "shall", "shall not", "should", "should not", "may", "need not", "will", "will not", "can" and
+
+    "cannot" are to be interpreted as described in clause 3.2 of the ETSI Drafting Rules (Verbal forms for the expression of
+
+    provisions).
+
+    "must" and "must not" are NOT allowed in ETSI deliverables except when used in direct citation.
+
+    ETSI
+
+    8 ETSI EN 301 559 V2.1.1 (2016-10)
+
+    Introduction
+
+    The present document is part of a set of standards developed by ETSI and is designed to fit in a modular structure to
+
+    cover all radio and telecommunications terminal equipment within the scope of the Radio Equipment Directive
+
+    (RE-D) [i.1]. The modular structure is shown in ETSI EG 201 399 [i.4].
+
+    LP-AMI/LP-AMI-P equipment in the AMICS is a unique technology using the frequency band 2 483,5 MHz to
+
+    2 500 MHz, that will provide for example high speed communications capability between individuals with AIMDs and
+
+    medical practitioners engaged in utilizing these AIMDs for the purposes of diagnosing and delivering therapy to
+
+    individuals with various illnesses. Equipment in the AMICS consists of LP-AMI and/or LP-AMI-P that provide human
+
+    therapeutic and diagnostic data storage and analysis capability.
+
+    The present document includes methods of measurement for Low Power Active Medical Implants (LP-AMI), and
+
+    Peripherals (LP-AMI-P), fitted with antenna connector and/or integral antenna. Equipment designed for use with an
+
+    integral antenna may be supplied with a temporary or permanent internal connector for the purpose of testing, providing
+
+    the characteristics being measured are not expected to be affected.
+
+    The frequency usage conditions for the bands 2 483,5 MHz to 2 500 MHz are European wide harmonised for the SRD
+
+    category "active medical implant devices" according to 2013/752/EU [i.13].
+
+    If equipment, which is available on the market, is required to be checked it should be tested in accordance with the
+
+    methods of measurement specified in the present document.
+
+    The present document is structured as follows:
+
+    •
+
+    Clauses 1 through 3 provide a general description of the types of equipment covered by the present document
+
+    and the definitions of terms and symbols and abbreviations used.
+
+    •
+
+    Clause 4 specifies the requirements and limits relative to transmitter, receiver, and spectrum access. The latter
+
+    are primarily designed to minimize the possibility of disturbance between LP-AMI/LP-AMI-P equipment and
+
+    other users of the 2 483,5 MHz to 2 500 MHz frequency range.
+
+    •
+
+    Clauses 5.1 and 5.2 specify the test and general conditions for testing of the equipment.
+
+    •
+
+    Clause 5.3 specifies the methods of measurement for the parameters specified in clause 4, related to
+
+    transmitter, receiver, and spectrum access.
+
+    •
+
+    Annex A (normative) provides an overview of the relationship between the present document and the essential
+
+    requirements of the RE-D [i.1].
+
+    •
+
+    Annex B (normative) gives the specifications concerning radiated measurements.
+
+    •'
+- id: art-3
+  title: Annex C (informative) provides the bibliography.
+  text: 'Annex C (informative) provides the bibliography.
+
+    ETSI
+
+    9 ETSI EN 301 559 V2.1.1 (2016-10)
+
+    1 Scope
+
+    The present document covers, for Low Power Active Medical Implants (LP-AMI) using the band bands 2 483,5 MHz to
+
+    2 500 MHz, and associated Peripherals (LP-AMI-P) used in an Active Medical Implant Communications System
+
+    (AMICS), the required characteristics considered necessary to efficiently use the available spectrum and serve the
+
+    interests of patients with implanted devices. The specifications contained in the present document were developed to
+
+    ensure that the health and safety of the patients that are using this equipment under the direction of medical practitioners
+
+    is protected. Of particular importance is the inclusion of spectrum monitoring and access requirements designed to
+
+    significantly reduce any interference potential between AMICS operating in the band or between AMICS and other
+
+    primary or secondary users of the band. An AIMD is regulated under the AIMD Directive 90/385/EEC [i.5] radio parts
+
+    contained therein (referred to herein as LP-AMI and LP-AMI-P for associated peripheral devices) are regulated under
+
+    the Directive 2014/53/EU [i.1].
+
+    The frequency usage conditions for the bands 2 483,5 MHz to 2 500 MHz are EU wide harmonised for the SRD
+
+    category "active medical implant devices" according to Commission Implementing Decision 2013/752/EU [i.13] with
+
+    the following usage restrictions:
+
+    •
+
+    "This set of usage conditions is only available to active implantable medical devices. Peripheral master units
+
+    are for indoor use only."
+
+    The present document contains the technical characteristics for LP-AMI and associated peripherals LP-AMI-P radio
+
+    equipment which is also addressed by CEPT/ERC/REC 70-03 [i.3] annex 12 sub-band e) to that document. It does not
+
+    necessarily include all the characteristics, which may be required by a user, nor does it necessarily represent the
+
+    optimum performance achievable.
+
+    The present document applies to LP-AMI and LP-AMI_P operating in the band 2 483,5 MHz to 2 500 MHz:
+
+    •
+
+    for telecommand and telemetry between LP-AMI and LP-AMI-P;
+
+    •
+
+    for telecommand and telemetry between LP-AMI to another LP-AMI;
+
+    •
+
+    with or without an integral antenna; and/or
+
+    •
+
+    with an antenna connection provided only for the purpose of connecting a dedicated antenna.
+
+    The present document contains required characteristics considered necessary for the radio devices used in AMICS to
+
+    meet in order to efficiently use the available spectrum for the purpose of transferring data that is used in diagnosing and
+
+    delivering therapies to individuals with various illnesses. Of particular importance is the inclusion of spectrum
+
+    monitoring and access requirements (listen before talk protocol) designed to significantly reduce any interference
+
+    potential between AMICS operating in the band or between an AMICS and the primary users of the band.
+
+    The present document is a specific product standard applicable to low power transmitters that are part of a system used
+
+    in the AMICS operating in spectrum within the frequency band 2 483,5 MHz to 2 500 MHz.
+
+    The present document contains requirements to demonstrate that Low Power Active Medical Implants (LP-AMI)
+
+    "…shall be so constructed that it both effectively uses and supports the efficient use of radio spectrum in order to avoid
+
+    harmful interference" (article 3.2 of the Directive 2014/53/EU) [i.1]. The present document does not necessarily include
+
+    all the requirements which may be required by a user, nor does it necessarily represent the optimum performance
+
+    achievable.
+
+    ETSI
+
+    10 ETSI EN 301 559 V2.1.1 (2016-10)
+
+    2 References
+
+    2.1 Normative references
+
+    References are either specific (identified by date of publication and/or edition number or version number) or
+
+    non-specific. For specific references, only the cited version applies. For non-specific references, the latest version of the
+
+    referenced document (including any amendments) applies.
+
+    Referenced documents which are not found to be publicly available in the expected location might be found at
+
+    http://docbox.etsi.org/Reference.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    The following referenced documents are necessary for the application of the present document.
+
+    [1] CISPR 16-2-3 (2010) +AMD1:2010+AMD2:2014: "Specification for radio disturbance and
+
+    immunity measuring apparatus and methods - Part 2-3: Methods of measurement of disturbances
+
+    and immunity - Radiated disturbance measurements".
+
+    2.2 Informative references
+
+    References are either specific (identified by date of publication and/or edition number or version number) or
+
+    non-specific. For specific references, only the cited version applies. For non-specific references, the latest version of the
+
+    referenced document (including any amendments) applies.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    The following referenced documents are not necessary for the application of the present document but they assist the
+
+    user with regard to a particular subject area.
+
+    [i.1] Directive 2014/53/EU of the European Parliament and of the Council of 16 April 2014 on the
+
+    harmonisation of the laws of the Member States relating to the making available on the market of
+
+    radio equipment and repealing Directive 1999/5/EC.
+
+    [i.2] ETSI TR 102 655: "Electromagnetic compatibility and Radio spectrum Matters (ERM); System
+
+    reference document; Short Range Devices (SRD); Low Power Active Medical Implants (LP-AMI)
+
+    operating in a 20 MHz band within 2 360 MHz to 3 400 MHz".
+
+    [i.3] CEPT/ERC/REC 70-03: "Relating to the use of Short Range Devices (SRD)".
+
+    [i.4] ETSI EG 201 399 (V3.1.1): "Electromagnetic compatibility and Radio spectrum Matters (ERM);
+
+    A guide to the production of Harmonized Standards for application under the Radio &
+
+    Telecommunication Terminal Equipment Directive 1999/5/EC (R&TTE) and a first guide on the
+
+    impact of the Radio Equipment Directive 2014/53/EU (RED) on Harmonized Standards".
+
+    [i.5] Council Directive 90/385/EEC of 20 June 1990 on the approximation of the laws of the Member
+
+    States relating to active implantable medical devices (AIMD Directive).
+
+    [i.6] CEPT/ERC/REC 74-01: "Unwanted emissions in the spurious domain".
+
+    [i.7] Recommendation ITU-T O.153: "Basic parameters for the measurement of error performance at
+
+    bit rates below the primary rate".
+
+    [i.8] ETSI TR 100 028 (all parts) (V1.4.1) (12-2001): "Electromagnetic compatibility and Radio
+
+    spectrum Matters (ERM); Uncertainties in the measurement of mobile radio equipment
+
+    characteristics".
+
+    [i.9] Hartsgrove G., Kraszewski A. and Surowiec A.: "Simulated Biological Materials for
+
+    Electromagnetic Radiation Absorption Studies", 1987.
+
+    ETSI
+
+    11 ETSI EN 301 559 V2.1.1 (2016-10)
+
+    [i.10] Hartsgrove and Kraszewski: "Composition And Electrical Properties Of A Liquid That Has The
+
+    Electrical Properties Of Tissue", 1984.
+
+    [i.11] Carl H. Durney, Ph.D., Habib Massoudi, Ph.D., Magdy F. lskander, USAFSAM-TR-85-73:
+
+    "Radiofrequency Radiation Dosimetry Handbook (Fourth Edition)".
+
+    NOTE: Available at: http://niremf.ifac.cnr.it/docs/HANDBOOK/home.htm.
+
+    [i.12] Commission Implementing Decision C(2015) 5376 final of 4.8.2015 on a standardisation request
+
+    to the European Committee for Electrotechnical Standardisation and to the European
+
+    Telecommunications Standards Institute as regards radio equipment in support of Directive
+
+    2014/53/EU of the European Parliament and of the Council.
+
+    [i.13] Commission Implementing Decision 2013/752/EU of 11 December 2013 amending Decision
+
+    2006/771/EC on harmonisation of the radio spectrum for use by short-range devices and repealing
+
+    Decision 2005/928/EC.
+
+    3 Definitions, symbols and abbreviations
+
+    3.1 Definitions
+
+    For the purposes of the present document, the following terms and definitions apply:
+
+    access protocol: specification for measuring natural and man-made ambient background levels for the purpose of
+
+    providing a technique for spectrum access that reduces the potential for harmful interference to/from other users of the
+
+    spectrum
+
+    Active Medical Implant Communication Channel (AMICC): any continuous segment of spectrum that is equal to
+
+    the emission bandwidth of the device with the largest bandwidth that is to participate in an AMICL session
+
+    NOTE: The following type of devices for Active Medical Implant Communications Systems is covered by the
+
+    present document: Frequency agile devices (i.e. having implemented LBT&AFA) designed to access a
+
+    minimum one of 16 channels or 8 in the case of two channels dynamically aggregated for greater
+
+    instantaneous bandwidth, that are evenly distributed across the 2 483,5 MHz to 2 500 MHz band and
+
+    having Duty Cycle of less than 10 % for LP-AMI-P.
+
+    Active Medical Implant Communication Link (AMICL): collection of digitally modulated transmissions that may or
+
+    may not be continuous, between LP-AMIs, and LP-AMI-Ps transferring information in a communications system
+
+    Active Medical Implant Communications System (AMICS): system specifically for the purpose of providing
+
+    transmission of human therapeutic digital information between one or several LP-AMI and one or several LP-AMI-P
+
+    Active Medical Implant Communications System (AMICS) session: collection of transmissions that may or may not
+
+    be continuous, between a co-operating LP-AMI and LP-AMI-P
+
+    NOTE: Under normal operational circumstances the AMICS are allowed to be triggered, set-up and maintained
+
+    only by an LP-AMI-P acting as a master device. LP-AMI may attempt initiating the link only in cases of
+
+    emergencies, described as "medical implant event".
+
+    Active Implantable Medical Device (AIMD): any active medical device (AMD) which is intended to be totally or
+
+    partially introduced, surgically or medically, into the human body or by medical intervention into a natural orifice, and
+
+    which is intended to remain there for a long period after the procedure
+
+    Adaptive Frequency Agility (AFA): ability to determine and change to an unoccupied or least interfered sub-band or
+
+    channel of operation in order to maximize spectrum utilization
+
+    artificial antenna: reduced-radiation dummy load equal to the nominal impedance specified by the applicant
+
+    channel aggregation: combining two or more adjacent channels for greater bandwidth up to 2 MHz
+
+    ETSI
+
+    12 ETSI EN 301 559 V2.1.1 (2016-10)
+
+    composite equipment: any combined equipment made of two or more individual products or functions
+
+    NOTE: The individual products or functions in composite equipment might be subject to different technical
+
+    standards.
+
+    conducted measurements: measurements made using a direct connection to the equipment under test
+
+    dedicated antenna: removable antenna supplied and tested with the radio equipment, designed as an indispensable part
+
+    of the equipment
+
+    duty cycle: ratio, expressed as a percentage, of the maximum transmitter "on" time monitored over one hour per
+
+    AMICS session, relative to a one hour period
+
+    NOTE: See clause 4.2.1.7.1.
+
+    effective radiated power: power radiated within the emission bandwidth of the EUT in the direction of the maximum
+
+    level under specified conditions of measurements in the presence of modulation or without modulation as appropriate
+
+    effective isotropically radiated power (e.i.r.p.): product of the power supplied to the antenna and the antenna gain in a
+
+    given direction relative to an isotropic antenna
+
+    NOTE: See clause 4.2.1.3.1.
+
+    emission bandwidth: measured as the width of the signal between the points on either side of centre frequency that are
+
+    20 dB down relative to the maximum level of the modulated signal
+
+    frequency error: difference between the nominal frequency as measured on the devices under test and under normal
+
+    test conditions and the frequency under extreme conditions
+
+    NOTE: See also clause 4.2.1.1.1.
+
+    frequency range: range of operating frequencies over which the equipment can be adjusted
+
+    frequency stability under low voltage condition: ability of the equipment to remain on the nominal operating
+
+    frequency when the bat'
+- id: art-4
+  title: 'Annex C (informative):'
+  text: 'Annex C (informative):
+
+    Bibliography
+
+    •
+
+    ECC Report 149: "Analysis on compatibility of Low Power-Active Medical Implant (LP-AMI) applications
+
+    within the frequency range 2360-3400 MHz, in particular for the band 2483.5-2500 MHz, with incumbent
+
+    services".
+
+    •
+
+    Directive 2004/108/EC of the European Parliament and of the Council of 15 December 2004 on the
+
+    approximation of the laws of the Member States relating to electromagnetic compatibility and repealing
+
+    Directive 89/336/EEC (EMC Directive).
+
+    •
+
+    Directive 2006/95/EC of the European Parliament and of the Council of 12 December 2006 on the
+
+    harmonisation of the laws of Member States relating to electrical equipment designed for use within certain
+
+    voltage limits (LV Directive).
+
+    •
+
+    Directive 93/42/EEC of the Council of 14 June 1993 concerning medical devices.
+
+    ETSI
+
+    55 ETSI EN 301 559 V2.1.1 (2016-10)
+
+    History
+
+    Document history
+
+    V1.1.2 June 2012 Publication as ETSI EN 301 559 parts 1 and 2
+
+    V2.0.1 June 2016 EN Approval Procedure AP 20160911: 2016-06-13 to 2016-09-12
+
+    V2.1.1 October 2016 Publication
+
+    ETSI'
 doc_files:
 - global/raw/ETSI_EN_301559_v02.01.01_60.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_301559_v02.01.01_60.pdf (pdf, 179412 chars)，生成 4 条共 30673 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_301559_v02.01.01_60.pdf (pdf, 179412 chars)，生成 4 条共 30673 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_301559_v02.01.01_60.pdf (pdf, 179412 chars)，生成 4 条共 30673 字符；解析文本未人工复核，引用以官方原件为准。'

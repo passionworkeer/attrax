@@ -1,7 +1,7 @@
 // GET /api/regulations/archive
 //
-// Returns the curated regulation catalog (61 entries as of 2026-09-17)
-// from `data/regulations/regulations_index.json`. Backs the "法规档案" tab
+// Returns the regulation catalog (968 entries as of 2026-09-19 dedup) from
+// `data/regulations/regulations_index.json`. Backs the "法规档案" tab
 // on `/regulations`. Optional `market` and `search` query params narrow
 // the result set; the route applies the filter on top of the in-memory
 // archive so client-side filtering is just a `useDeferredValue` away.

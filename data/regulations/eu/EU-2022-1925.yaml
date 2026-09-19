@@ -9,12 +9,901 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'L_2022265EN.01000101.xml
+
+
+    12.10.2022
+
+
+    EN
+
+
+    Official Journal o'
+  text: 'L_2022265EN.01000101.xml
+
+
+    12.10.2022
+
+
+    EN
+
+
+    Official Journal of the European Union
+
+
+    L 265/1
+
+
+    REGULATION (EU) 2022/1925 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL
+
+
+
+    of 14 September 2022
+
+
+
+    on contestable and fair markets in the digital sector and amending Directives (EU) 2019/1937 and (EU) 2020/1828 (Digital Markets Act)
+
+
+    (Text with EEA relevance)
+
+
+    THE EUROPEAN PARLIAMENT AND THE COUNCIL OF THE EUROPEAN UNION,
+
+
+    Having regard to the Treaty on the Functioning of the European Union, and in particular Article 114 thereof,
+
+
+    Having regard to the proposal from the European Commission,
+
+
+    After transmission of the draft legislative act to the national parliaments,
+
+
+    Having regard to the opinion of the European Economic and Social Committee
+
+    (
+
+    1
+
+    )
+
+    ,
+
+
+    Having regard to the opinion of the Committee of the Regions
+
+    (
+
+    2
+
+    )
+
+    ,
+
+
+    Acting in accordance with the ordinary legislative procedure
+
+    (
+
+    3
+
+    )
+
+    ,
+
+
+    Whereas:
+
+
+    (1)
+
+
+    Digital services in general and online platforms in particular play an increasingly important role in the economy, in particular in the internal market, by enabling businesses to reach users throughout
+    the Union, by facilitating cross-border trade and by opening entirely new business opportunities to a large number of companies in the Union to the benefit of consumers in the Union.
+
+
+    (2)
+
+
+    At the same time, among those digital services, core platform services feature a number of characteristics that can be exploited by the undertakings providing them. An example of such characteristics
+    of core platform services is extreme scale economies, which often result from nearly zero marginal costs to add business users or end users. Other such characteristics of core platform services are
+    very strong network effects, an ability to connect many business users with many end users through the multisidedness of these services, a significant degree of dependence of both business users and
+    end users, lock-in effects, a lack of multi-homing for the same purpose by end users, vertical integration, and data driven-advantages. All these characteristics, combined with unfair practices by undertakings
+    providing the core platform services, can have the effect of substantially undermining the contestability of the core platform services, as well as impacting the fairness of the commercial relationship
+    between undertakings providing such services and their business users and end users. In practice, this leads to rapid and potentially far-reaching decreases in business users’ and end users’ choice,
+    and therefore can confer on the provider of those services the position of a so-called gatekeeper. At the same time, it should be recognised that services which act in a non-commercial purpose capacity
+    such as collaborative projects should not be considered as core platform services for the purpose of this Regulation.
+
+
+    (3)
+
+
+    A small number of large undertakings providing core platform services have emerged with considerable economic power that could qualify them to be designated as gatekeepers pursuant to this Regulation.
+    Typically, they feature an ability to connect many business users with many end users through their services, which, in turn, enables them to leverage their advantages, such as their access to large
+    amounts of data, from one area of activity to another. Some of those undertakings exercise control over whole platform ecosystems in the digital economy and are structurally extremely difficult to challenge
+    or contest by existing or new market operators, irrespective of how innovative and efficient those market operators may be. Contestability is reduced in particular due to the existence of very high
+    barriers to entry or exit, including high investment costs, which cannot, or not easily, be recuperated in case of exit, and the absence of, or reduced access to, some key inputs in the digital economy,
+    such as data. As a result, the likelihood increases that the underlying markets do not function well, or will soon fail to function well.
+
+
+    (4)
+
+
+    The combination of those features of gatekeeper is likely to lead, in many cases, to serious imbalances in bargaining power and, consequently, to unfair practices and conditions for business users,
+    as well as for end users of core platform services provided by gatekeepers, to the detriment of prices, quality, fair competition, choice and innovation in the digital sector.
+
+
+    (5)
+
+
+    It follows that the market processes are often incapable of ensuring fair economic outcomes with regard to core platform services. Although Articles 101 and 102 of the Treaty on the Functioning of the
+    European Union (TFEU) apply to the conduct of gatekeepers, the scope of those provisions is limited to certain instances of market power, for example dominance on specific markets and of anti-competitive
+    behaviour, and enforcement occurs
+
+    ex post
+
+    and requires an extensive investigation of often very complex facts on a case by case basis. Moreover, existing Union law does not address, or does not address effectively, the challenges to the effective
+    functioning of the internal market posed by the conduct of gatekeepers that are not necessarily dominant in competition-law terms.
+
+
+    (6)
+
+
+    Gatekeepers have a significant impact on the internal market, providing gateways for a large number of business users to reach end users everywhere in the Union and on different markets. The adverse
+    impact of unfair practices on the internal market and the particularly weak contestability of core platform services, including the negative societal and economic implications of such unfair practices,
+    have led national legislators and sectoral regulators to act. A number of regulatory solutions have already been adopted at national level or proposed to address unfair practices and the contestability
+    of digital services or at least with regard to some of them. This has created divergent regulatory solutions which results in the fragmentation of the internal market, thus raising the risk of increased
+    compliance costs due to different sets of national regulatory requirements.
+
+
+    (7)
+
+
+    Therefore, the purpose of this Regulation is to contribute to the proper functioning of the internal market by laying down rules to ensure contestability and fairness for the markets in the digital
+    sector in general, and for business users and end users of core platform services provided by gatekeepers in particular. Business users and end users of core platform services provided by gatekeepers
+    should be afforded appropriate regulatory safeguards throughout the Union against the unfair practices of gatekeepers, in order to facilitate cross-border business within the Union and thereby improve
+    the proper functioning of the internal market, and to eliminate existing or likely emerging fragmentation in the specific areas covered by this Regulation. Moreover, while gatekeepers tend to adopt
+    global or at least pan-European business models and algorithmic structures, they can adopt, and in some cases have adopted, different business conditions and practices in different Member States, which
+    is liable to create disparities between the competitive conditions for the users of core platform services provided by gatekeepers, to the detriment of integration of the internal market.
+
+
+    (8)
+
+
+    By approximating diverging national laws, it is possible to eliminate obstacles to the freedom to provide and receive services, including retail services, within the internal market. A targeted set
+    of harmonised legal obligations should therefore be established at Union level to ensure contestable and fair digital markets featuring the presence of gatekeepers within the internal market to the
+    benefit of the Union’s economy as a whole and ultimately of the Union’s consumers.
+
+
+    (9)
+
+
+    Fragmentation of the internal market can only effectively be averted if Member States are prevented from applying national rules which are within the scope of and pursue the same objectives as this
+    Regulation. That does not preclude the possibility of applying to gatekeepers within the meaning of this Regulation other national rules which pursue other legitimate public interest objectives as set
+    out in the TFEU or which pursue overriding reasons of public interest as recognised by the case law of the Court of Justice of the European Union (‘the Court of Justice’).
+
+
+    (10)
+
+
+    At the same time, since this Regulation aims to complement the enforcement of competition law, it should apply without prejudice to Articles 101 and 102 TFEU, to the corresponding national competition
+    rules and to other national competition rules regarding unilateral conduct that are based on an individualised assessment of market positions and behaviour, including its actual or potential effects
+    and the precise scope of the prohibited behaviour, and which provide for the possibility of undertakings to make efficiency and objective justification arguments for the behaviour in question, and to
+    national rules concerning merger control. However, the application of those rules should not affect the obligations imposed on gatekeepers under this Regulation and their uniform and effective application
+    in the internal market.
+
+
+    (11)
+
+
+    Articles 101 and 102 TFEU and the corresponding national competition rules concerning anticompetitive multilateral and unilateral conduct as well as merger control have as their objective the protection
+    of undistorted competition on the market. This Regulation pursues an objective that is complementary to, but different from that of protecting undistorted competition on any given market, as defined
+    in competition-law terms, which is to ensure that markets where gatekeepers are present are and remain contestable and fair, independently from the actual, potential or presumed effects of the conduct
+    of a given gatekeeper covered by this Regulation on competition on a given market. This Regulation therefore aims to protect a different legal interest from that protected by those rules and it should
+    apply without prejudice to their application.
+
+
+    (12)
+
+
+    This Regulation should also apply without prejudice to the rules resulting from other acts of Union law regulating certain aspects of the provision of services covered by this Regulation, in particular
+    Regulations (EU) 2016/679
+
+    (
+
+    4
+
+    )
+
+    and (EU) 2019/1150
+
+    (
+
+    5
+
+    )
+
+    of the European Parliament and of the Council and a Regulation on a single market for digital services, and Directives 2002/58/EC
+
+    (
+
+    6
+
+    )
+
+    , 2005/29/EC
+
+    (
+
+    7
+
+    )
+
+    , 2010/13/EU
+
+    (
+
+    8
+
+    )
+
+    , (EU) 2015/2366
+
+    (
+
+    9
+
+    )
+
+    , (EU) 2019/790
+
+    (
+
+    10
+
+    )
+
+    and (EU) 2019/882
+
+    (
+
+    11
+
+    )
+
+    of the European Parliament and of the Council, and Council Directive 93/13/EEC
+
+    (
+
+    12
+
+    )
+
+    , as well as national rules aimed at enforcing or implementing those Union legal acts.
+
+
+    (13)
+
+
+    Weak contestability and unfair practices in the digital sector are more frequent and pronounced for certain digital services than for others. This is the case in particular for widespread and commonly
+    used digital services that mostly directly intermediate between business users and end users and where features such as extreme scale economies, very strong network effects, an ability to connect many
+    business users with many end users through the multisidedness of these services, lock-in effects, a lack of multi-homing or vertical integration are the most prevalent. Often, there is only one or very
+    few large undertakings providing those digital services. Those undertakings have emerged most frequently as gatekeepers for business users and end users, with far-reaching impacts. In particular, they
+    have gained the ability to easily set commercial conditions and terms in a unilateral and detrimental manner for their business users and end users. Accordingly, it is necessary to focus only on those
+    digital services that are most broadly used by business users and end users and where concerns about weak contestability and unfair practices by gatekeepers are more apparent and pressing from an internal
+    market perspective.
+
+
+    (14)
+
+
+    In particular, online intermediation services, online search engines, operating systems, onli'
+- id: art-2
+  title: CHAPTER I
+  text: 'CHAPTER I
+
+
+    SUBJECT MATTER, SCOPE AND DEFINITIONS'
+- id: art-3
+  title: Article 1
+  text: 'Article 1
+
+
+    Subject matter and scope
+
+
+    1.   The purpose of this Regulation is to contribute to the proper functioning of the internal market by laying down harmonised rules ensuring for all businesses, contestable and fair markets in the
+    digital sector across the Union where gatekeepers are present, to the benefit of business users and end users.
+
+
+    2.   This Regulation shall apply to core platform services provided or offered by gatekeepers to business users established in the Union or end users established or located in the Union, irrespective
+    of the place of establishment or residence of the gatekeepers and irrespective of the law otherwise applicable to the provision of service.
+
+
+    3.   This Regulation shall not apply to markets related to:
+
+
+    (a)
+
+
+    electronic communications networks as defined in Article 2, point (1), of Directive (EU) 2018/1972;
+
+
+    (b)
+
+
+    electronic communications services as defined in Article 2, point (4), of Directive (EU) 2018/1972, other than those related to number-independent interpersonal communications services.
+
+
+    4.   With regard to interpersonal communications services as defined in Article 2, point (5) of Directive (EU) 2018/1972, this Regulation is without prejudice to the powers and responsibilities granted
+    to the national regulatory and other competent authorities by virtue of Article 61 of that Directive.
+
+
+    5.   In order to avoid the fragmentation of the internal market, Member States shall not impose further obligations on gatekeepers by way of laws, regulations or administrative measures for the purpose
+    of ensuring contestable and fair markets. Nothing in this Regulation precludes Member States from imposing obligations on undertakings, including undertakings providing core platform services, for matters
+    falling outside the scope of this Regulation, provided that those obligations are compatible with Union law and do not result from the fact that the relevant undertakings have the status of a gatekeeper
+    within the meaning of this Regulation.
+
+
+    6.   This Regulation is without prejudice to the application of Articles 101 and 102 TFEU. It is also without prejudice to the application of:
+
+
+    (a)
+
+
+    national competition rules prohibiting anti-competitive agreements, decisions by associations of undertakings, concerted practices and abuses of dominant positions;
+
+
+    (b)
+
+
+    national competition rules prohibiting other forms of unilateral conduct insofar as they are applied to undertakings other than gatekeepers or amount to the imposition of further obligations on gatekeepers;
+    and
+
+
+    (c)
+
+
+    Council Regulation (EC) No 139/2004
+
+    (
+
+    23
+
+    )
+
+    and national rules concerning merger control.
+
+
+    7.   National authorities shall not take decisions which run counter to a decision adopted by the Commission under this Regulation. The Commission and Member States shall work in close cooperation and
+    coordinate their enforcement actions on the basis of the principles established in Articles 37 and 38.'
+- id: art-4
+  title: Article 2
+  text: 'Article 2
+
+
+    Definitions
+
+
+    For the purposes of this Regulation, the following definitions apply:
+
+
+    (1)
+
+
+    ‘gatekeeper’ means an undertaking providing core platform services, designated pursuant to Article 3;
+
+
+    (2)
+
+
+    ‘core platform service’ means any of the following:
+
+
+    (a)
+
+
+    online intermediation services;
+
+
+    (b)
+
+
+    online search engines;
+
+
+    (c)
+
+
+    online social networking services;
+
+
+    (d)
+
+
+    video-sharing platform services;
+
+
+    (e)
+
+
+    number-independent interpersonal communications services;
+
+
+    (f)
+
+
+    operating systems;
+
+
+    (g)
+
+
+    web browsers;
+
+
+    (h)
+
+
+    virtual assistants;
+
+
+    (i)
+
+
+    cloud computing services;
+
+
+    (j)
+
+
+    online advertising services, including any advertising networks, advertising exchanges and any other advertising intermediation services, provided by an undertaking that provides any of the core platform
+    services listed in points (a) to (i);
+
+
+    (3)
+
+
+    ‘information society service’ means any service as defined in Article 1(1), point (b), of Directive (EU) 2015/1535;
+
+
+    (4)
+
+
+    ‘digital sector’ means the sector of products and services provided by means of, or through, information society services;
+
+
+    (5)
+
+
+    ‘online intermediation services’ means online intermediation services as defined in Article 2, point (2), of Regulation (EU) 2019/1150;
+
+
+    (6)
+
+
+    ‘online search engine’ means an online search engine as defined in Article 2, point (5), of Regulation (EU) 2019/1150;
+
+
+    (7)
+
+
+    ‘online social networking service’ means a platform that enables end users to connect and communicate with each other, share content and discover other users and content across multiple devices and,
+    in particular, via chats, posts, videos and recommendations;
+
+
+    (8)
+
+
+    ‘video-sharing platform service’ means a video-sharing platform service as defined in Article 1(1), point (aa), of Directive 2010/13/EU;
+
+
+    (9)
+
+
+    ‘number-independent interpersonal communications service’ means a number-independent interpersonal communications service as defined in Article 2, point (7), of Directive (EU) 2018/1972;
+
+
+    (10)
+
+
+    ‘operating system’ means a system software that controls the basic functions of the hardware or software and enables software applications to run on it;
+
+
+    (11)
+
+
+    ‘web browser’ means a software application that enables end users to access and interact with web content hosted on servers that are connected to networks such as the Internet, including standalone
+    web browsers as well as web browsers integrated or embedded in software or similar;
+
+
+    (12)
+
+
+    ‘virtual assistant’ means a software that can process demands, tasks or questions, including those based on audio, visual, written input, gestures or motions, and that, based on those demands, tasks
+    or questions, provides access to other services or controls connected physical devices;
+
+
+    (13)
+
+
+    ‘cloud computing service’ means a cloud computing service as defined in Article 4, point (19), of Directive (EU) 2016/1148 of the European Parliament and of the Council
+
+    (
+
+    24
+
+    )
+
+    ;
+
+
+    (14)
+
+
+    ‘software application stores’ means a type of online intermediation services, which is focused on software applications as the intermediated product or service;
+
+
+    (15)
+
+
+    ‘software application’ means any digital product or service that runs on an operating system;
+
+
+    (16)
+
+
+    ‘payment service’ means a payment service as defined in Article 4, point (3) of Directive (EU) 2015/2366;
+
+
+    (17)
+
+
+    ‘technical service supporting payment service’ means a service within the meaning of Article 3, point (j), of Directive (EU) 2015/2366;
+
+
+    (18)
+
+
+    ‘payment system for in-app purchases’ means a software application, service or user interface which facilitates purchases of digital content or digital services within a software application, including
+    content, subscriptions, features or functionality, and the payments for such purchases;
+
+
+    (19)
+
+
+    ‘identification service’ means a type of service provided together with or in support of core platform services that enables any type of verification of the identity of end users or business users,
+    regardless of the technology used;
+
+
+    (20)
+
+
+    ‘end user’ means any natural or legal person using core platform services other than as a business user;
+
+
+    (21)
+
+
+    ‘business user’ means any natural or legal person acting in a commercial or professional capacity using core platform services for the purpose of or in the course of providing goods or services to end
+    users;
+
+
+    (22)
+
+
+    ‘ranking’ means the relative prominence given to goods or services offered through online intermediation services, online social networking services, video-sharing platform services or virtual assistants,
+    or the relevance given to search results by online search engines, as presented, organised or communicated by the undertakings providing online intermediation services, online social networking services,
+    video-sharing platform services, virtual assistants or online search engines, irrespective of the technological means used for such presentation, organisation or communication and irrespective of whether
+    only one result is presented or communicated;
+
+
+    (23)
+
+
+    ‘search results’ means any information in any format, including textual, graphic, vocal or other outputs, returned in response to, and related to, a search query, irrespective of whether the information
+    returned is a paid or an unpaid result, a direct answer or any product, service or information offered in connection with the organic results, or displayed along with or partly or entirely embedded
+    in them;
+
+
+    (24)
+
+
+    ‘data’ means any digital representation of acts, facts or information and any compilation of such acts, facts or information, including in the form of sound, visual or audiovisual recording;
+
+
+    (25)
+
+
+    ‘personal data’ means personal data as defined in Article 4, point (1), of Regulation (EU) 2016/679;
+
+
+    (26)
+
+
+    ‘non-personal data’ means data other than personal data;
+
+
+    (27)
+
+
+    ‘undertaking’ means an entity engaged in an economic activity, regardless of its legal status and the way in which it is financed, including all linked enterprises or connected undertakings that form
+    a group through the direct or indirect control of an enterprise or undertaking by another;
+
+
+    (28)
+
+
+    ‘control’ means the possibility of exercising decisive influence on an undertaking, within the meaning of Article 3(2) of Regulation (EC) No 139/2004;
+
+
+    (29)
+
+
+    ‘interoperability’ means the ability to exchange information and mutually use the information which has been exchanged through interfaces or other solutions, so that all elements of hardware or software
+    work with other hardware and software and with users in all the ways in which they are intended to function;
+
+
+    (30)
+
+
+    ‘turnover’ means the amount derived by an undertaking within the meaning of Article 5(1) of Regulation (EC) No 139/2004;
+
+
+    (31)
+
+
+    ‘profiling’ means profiling as defined in Article 4, point (4), of Regulation (EU) 2016/679;
+
+
+    (32)
+
+
+    ‘consent’ means consent as defined in Article 4, point (11), of Regulation (EU) 2016/679;
+
+
+    (33)
+
+
+    ‘national court’ means a court or tribunal of a Member State within the meaning of Article 267 TFEU.'
+- id: art-5
+  title: CHAPTER II
+  text: 'CHAPTER II
+
+
+    GATEKEEPERS'
+- id: art-6
+  title: Article 3
+  text: 'Article 3
+
+
+    Designation of gatekeepers
+
+
+    1.   An undertaking shall be designated as a gatekeeper if:
+
+
+    (a)
+
+
+    it has a significant impact on the internal market;
+
+
+    (b)
+
+
+    it provides a core platform service which is an important gateway for business users to reach end users; and
+
+
+    (c)
+
+
+    it enjoys an entrenched and durable position, in its operations, or it is foreseeable that it will enjoy such a position in the near future.
+
+
+    2.   An undertaking shall be presumed to satisfy the respective requirements in paragraph 1:
+
+
+    (a)
+
+
+    as regards paragraph 1, point (a), where it achieves an annual Union turnover equal to or above EUR 7,5 billion in each of the last three financial years, or where its average market capitalisation
+    or its equivalent fair market value amounted to at least EUR 75 billion in the last financial year, and it provides the same core platform service in at least three Member States;
+
+
+    (b)
+
+
+    as regards paragraph 1, point (b), where it provides a core platform service that in the last financial year has at least 45 million monthly active end users established or located in the Union and
+    at least 10 000 yearly active business users established in the Union, identified and calculated in accordance with the methodology and indicators set out in the Annex;
+
+
+    (c)
+
+
+    as regards paragraph 1, point (c), where the thresholds in point (b) of this paragraph were met in each of the last three financial years.
+
+
+    3.   Where an undertaking providing core platform services meets all of the thresholds in paragraph 2, it shall notify the Commission thereof without delay and in any event within 2 months after those
+    thresholds are met and provide it with the relevant information identified in paragraph 2. That notification shall include the relevant information identified in paragraph 2 for each of the core platform
+    services of the undertaking that meets the thresholds in paragraph 2, point (b). Whenever a further core platform service provided by the undertaking that has previously been designated as a gatekeeper
+    meets the thresholds in paragraph 2, points (b) and (c), such undertaking shall notify the Commission thereof within 2 months after those thresholds are satisfied.
+
+
+    Where the undertaking providing the core platform service fails to notify the Commission pursuant to the first subparagraph of this paragraph and fails to provide within the deadline set by the Commission
+    in the request for information pursuant to Article 21 all the relevant information that is required for the Commission to designate the undertaking concerned as gatekeeper pursuant to paragraph 4 of
+    this Article, the Commission shall still be entitled to designate that undertaking as a gatekeeper, based on information available to the Commission.
+
+
+    Where the undertaking providing core platform services complies with the request for information pursuant to the second subparagraph of this paragraph or where the information is provided after the
+    expiration of the deadline referred to in that subparagraph, the Commission shall apply the procedure set out in paragraph 4.
+
+
+    4.   The Commission shall designate as a gatekeeper, without undue delay and at the latest within 45 working days after receiving the complete information referred to in paragraph 3, an undertaking
+    providing core platform services that meets all the thresholds in paragraph 2.
+
+
+    5.   The undertaking providing core platform services may present, with its notification, sufficiently substantiated arguments to demonstrate that, exceptionally, although it meets all the thresholds
+    in paragraph 2, due to the circumstances in which the relevant core platform service operates, it does not satisfy the requirements listed in paragraph 1.
+
+
+    Where the Commission considers that the arguments submitted pursuant to the first subparagraph by the undertaking providing core platform services are not sufficiently substantiated because they do
+    not manifestly call into question the presumptions set out in paragraph 2 of this Article, it may reject those arguments within the time limit referred to in paragraph 4, without applying the procedure
+    laid down in Article 17(3).
+
+
+    Where the undertaking providing core platform services does present such sufficiently substantiated arguments manifestly calling into question the presumptions in paragraph 2 of this Article, the Commission
+    may, notwithstanding the first subparagraph of this paragraph, within the time limit referred to in paragraph 4 of this Article, open the procedure laid down in Article 17(3).
+
+
+    If the Commission concludes that the undertaking providing core platform services was not able to demonstrate that the relevant core platform services that it provides do not satisfy the requirements
+    of paragraph 1 of this Article, it shall designate that undertaking as a gatekeeper in accordance with the procedure laid down in Article 17(3).
+
+
+    6.   The Commission is empowered to adopt delegated acts in accordance with Article 49 to supplement this Regulation by specifying the methodology for determining whether the quantitative thresholds
+    laid down in paragraph 2 of this Article are met, and to regularly adjust that methodology to market and technological developments, where necessary.
+
+
+    7.   The Commission is empowered to adopt delegated acts in accordance with Article 49 to amend this Regulation by updating the methodology and the list of indicators set out in the Annex.
+
+
+    8.   The Commission shall designate as a gatekeeper, in accordance with the procedure laid down in Article 17, any undertaking providing core platform services that meets each of the requirements of
+    paragraph 1 of this Article, but does not satisfy each of the thresholds in paragraph 2 of this Article.
+
+
+    For that purpose, the Commission shall take into account some or all of the following elements, insofar as they are relevant for the undertaking providing core platform services under consideration:
+
+
+    (a)
+
+
+    the size, including turnover and market capitalisation, operations and position of that undertaking;
+
+
+    (b)
+
+
+    the number of business users using the core platform service to reach end users and the number of end users;
+
+
+    (c)
+
+
+    network effects and data driven advantages, in particular in relation to that undertaking’s access to, and collection of, personal data and non-personal data or analytics capabilities;
+
+
+    (d)
+
+
+    any scale and scope effects from which the undertaking benefits, including with regard to data, and, where relevant, to its activities outside the Union;
+
+
+    (e)
+
+
+    business user or end user lock-in, including switching costs and behavioural bias reducing the ability of business users and end users to switch or multi-home;
+
+
+    (f)
+
+
+    a conglomerate corporate structure or vertical integration of that undertaking, for instance enabling that undertaking to cross subsidise, to combine data from different sources or to leverage its position;
+    or
+
+
+    (g)
+
+
+    other structural business or service characteristics.
+
+
+    In carrying out its assessment under this paragraph, the Commission shall take into account foreseeable developments in relation to the elements listed in the second subparagraph, including any planned
+    concentrations involving another undertaking providing core platform services or providing any other services in the digital sector or enabling the collection of data.
+
+
+    Where an undertaking providing a core platform service that does not satisfy the quantitative thresholds of paragraph 2 fails to comply with the investigative measures ordered by the Commission in a
+    significant manner, and that failure persists after that undertaking has been invited to comply within a reasonable time limit and to submit observations, the Commission may designate that undertaking
+    as a gatekeeper on the basis of the facts available to the Commission.
+
+
+    9.   For each undertaking designated as a gatekeeper pursuant to paragraph 4 or 8, the Commission shall list in the designation decision the relevant core platform services that are provided within
+    that undertaking and which individually are an important gateway for business users to reach end users as referred to in paragraph 1, point (b).
+
+
+    10.   The gatekeeper shall comply with the obligations laid down in Articles 5, 6 and 7 within 6 months after a core platform service has been listed in the designation decision pursuant to paragraph 9
+    of this Article.'
+- id: art-7
+  title: Article 4
+  text: 'Article 4
+
+
+    Review of the status of gatekeeper
+
+
+    1.   The Commission may, upon request or on its own initiative, reconsider, amend or repeal at any moment a designation decision adopted pursuant to Article 3 for one of the following reasons:
+
+
+    (a)
+
+
+    there has been a substantial change in any of the facts on which the designation decision was based;
+
+
+    (b)
+
+
+    the designation decision was based on incomplete, incorrect or misleading information.
+
+
+    2.   The Commission shall regularly, and at least every 3 years, review whether the gatekeepers continue to satisfy the requirements laid down in Article 3(1). That review shall also examine whether
+    the list of core platform services of the gatekeeper which are individually an important gateway for business users to reach end users, as referred to in Article 3(1), point (b), needs to be amended.
+    Those reviews shall have no suspending effect on the gatekeeper’s obligations.
+
+
+    The Commission shall also examine at least every year whether new undertakings providing core platform services satisfy those requirements.
+
+
+    Where the Commission, on the basis of the reviews pursuant to the first subparagraph, finds that the facts on which the designation of the undertakings providing core platform services as gatekeepers
+    was based, have changed, it shall adopt a decision confirming, amending or repealing the designation decision.
+
+
+    3.   The Commission shall publish and update a list of gatekeepers and the list of the core platform services for which they need to comply with the obligations laid down in Chapter III on an on-going
+    basis.'
+- id: art-8
+  title: CHAPTER III
+  text: 'CHAPTER III
+
+
+    PRACTICES OF GATEKEEPERS THAT LIMIT CONTESTABILITY OR ARE UNFAIR'
+- id: art-9
+  title: Article 5
+  text: 'Article 5
+
+
+    Obligations for gatekeepers
+
+
+    1.   The gatekeeper shall comply with all obligations '
 doc_files:
 - eu/raw/欧盟《数字市场法》（DMA，Regulation EU 2022_1925）.pdf
 - eu/raw/DMA_(EU)_2022-1925_数字市场法.pdf
+- eu/raw/EU-2022-1925_Digital_Markets_Act_DMA.pdf
+- eu/raw/EU-2022-1925_Digital_Markets_Act_DMA.xhtml
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 去重：合并同法规异名条目 EU-2022-1925_DIGITAL_MARKETS_ACT_DMA（EU-2022-1925 Digital Markets Act DMA）。
+
+  2026-09-19 去重：合并同法规异名条目 EU-2022-1925_DIGITAL_MARKETS_ACT_DMA-2（EU-2022-1925 Digital Markets Act DMA [xhtml]）。
+
+  2026-09-19 机器解析原件入库：eu/raw/欧盟《数字市场法》（DMA，Regulation EU 2022_1925）.pdf (pdf, 14391 chars)，生成 4 条共 14391 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2022-1925_Digital_Markets_Act_DMA.xhtml (html, 258859 chars)，生成 6 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2022-1925_Digital_Markets_Act_DMA.xhtml (html, 258853 chars)，生成 9 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

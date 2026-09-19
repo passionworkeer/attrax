@@ -9,12 +9,539 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: Payment Services Act 2019 - Singapore Statutes Online
+  text: "Payment Services Act 2019 - Singapore Statutes Online\nFAQs\n | \nFeedback\n                                A-\n                                A+\nPayment Services Act 2019\n                 \
+    \           (No. 2 of 2019)\n                                Status:\n                                Published in Acts Supplement\non 20 Feb 2019\nPrint\n            Select the provisions you wish\
+    \ to print using the checkboxes and then click the relevant \"Print\" \nSelect All\nClear All\nPrint - HTML\nPrint - PDF\nPrint - Word\nPayment Services Act 2019\n(No. 2 of 2019)\nTable of Contents\n\
+    Long Title\nEnacting Formula\nPart 1 PRELIMINARY\n1 Short title and commencement\n2 Interpretation\n3 Application of Act\n4 Appointment of assistants\nPart 2 LICENSING OF PAYMENT SERVICE PROVIDERS\n\
+    Division 1 — Licensing of payment service providers\n5 Licensing of payment service providers\n6 Application for licence\n7 Variation or change of licence\n8 Holding out as licensee, etc.\n9 Prohibition\
+    \ against solicitation\n10 Annual fees of licensees\n11 Lapsing, surrender, revocation or suspension of licence\n12 Appeals to Minister\n13 Exempt payment service providers\nDivision 2 — Conduct of\
+    \ business\nSubdivision 1 General\n14 Place of business or registered office of licensee\n15 Obligation of licensee to notify Authority of certain events\n16 Obligation of licensee to provide information\
+    \ to Authority\n17 Obligation of licensee to submit periodic reports\n18 Prohibition against use of unlicensed agent\n19 Prohibition against exchanging e‑money withdrawn from payment account for Singapore\
+    \ currency\n20 Prohibition from carrying on certain businesses\n21 Application of section 14 of Currency Act\nSubdivision 2 Major payment institutions\n22 Security\n23 Safeguarding of money received\
+    \ from customer\n24 Restrictions on personal payment account that contains e‑money\n25 Powers of Authority to ensure interoperability between payment accounts and payment system\n26 Powers of Authority\
+    \ to ensure interoperability between payment systems\nDivision 3 — Control of controllers of licensees\n27 Application and interpretation of this Division\n28 Control of shareholding in licensee\n29\
+    \ Objection to existing control of licensee\n30 Power of Authority to issue directions for this Division\n31 Power of Authority to obtain information relating to this Division\n32 Offences, penalties\
+    \ and defences\n33 Appeals to Minister\nDivision 4 — Control of officers of licensees\n34 Approval of chief executive officer, director or partner of licensee\n35 Removal of chief executive officer,\
+    \ director or partner of licensee\n36 Appeals to Minister\nDivision 5 — Audit of licensees\n37 Auditing\n38 Powers of auditor appointed by Authority\n39 Restriction on auditor’s and employee’s right\
+    \ to communicate certain matters\n40 Offence to destroy, conceal, alter, etc., records\nPart 3 PAYMENT SYSTEMS\nDivision 1 — Information gathering powers over payment systems\n41 Provision of information\
+    \ to Authority\nDivision 2 — Designation of payment systems\n42 Power of Authority to designate payment systems\n43 Prohibition against holding out as designated payment system\n44 Power of Authority\
+    \ to impose conditions or restrictions\n45 Withdrawal of designation of payment system\n46 Exemptions applicable to operator, settlement institution or participant of payment system designated to ensure\
+    \ efficiency or competitiveness\nDivision 3 — Obligations of operators and settlement institutions of designated payment systems\n47 Obligation of operator or settlement institution to have place of\
+    \ business or registered office\n48 Obligation of operator or settlement institution to notify Authority of certain events\n49 Obligation of operator to submit periodic reports\n50 Obligation of operator\
+    \ to notify Authority of businesses and acquisition of corporations\nDivision 4 — Access regime\n51 Power of Authority to impose access regime\n52 Variation of access regime\n53 Cessation and revocation\
+    \ of access regime\n54 Right to apply to High Court in respect of access regime"
+- id: art-2
+  title: Division 5 — Voluntary transfer of business
+  text: "Division 5 — Voluntary transfer of business\n55 Interpretation of this Division\n56 Voluntary transfer of business\n57 Approval of transfer\nDivision 6 — Control of controllers of operators of\
+    \ designated payment systems\n58 Application and interpretation of this Division\n59 Control of shareholding in operator\n60 Objection to existing control of operator\n61 Power of Authority to issue\
+    \ directions for this Division\n62 Power of Authority to obtain information relating to this Division\n63 Offences, penalties and defences\n64 Appeals to Minister\nDivision 7 — Control of officers of\
+    \ operators and settlement institutions of designated payment systems\n65 Approval of chief executive officer or director of operator\n66 Removal of executive officer or director of operator or settlement\
+    \ institution\n67 Appeals to Minister\nDivision 8 — Audit of operators and settlement institutions of designated payment systems\n68 Auditing\n69 Powers of auditor appointed by Authority\n70 Restriction\
+    \ on auditor’s and employee’s right to communicate certain matters\n71 Offence to destroy, conceal, alter, etc., records\nPart 4 INSPECTION AND INVESTIGATIONS\n72 Inspection by Authority\n73 Investigation\
+    \ by Authority\n74 Confidentiality of inspection and investigation reports\n75 Self‑incrimination\n76 Savings for advocates and solicitors\nPart 5 EMERGENCY POWERS\n77 Interpretation of this Part\n\
+    78 Action by Authority if payment entity unable to meet obligations, etc.\n79 Emergency powers of Authority applicable to designated payment systems\n80 Assumption of control\n81 Other provisions concerning\
+    \ control\n82 Responsibilities of directors, officers, etc., of payment entity\n83 Remuneration and expenses of Authority and others in certain cases\nPart 6 ASSISTANCE TO FOREIGN REGULATORY AUTHORITIES\n\
+    84 Interpretation of this Part\n85 Conditions for provision of assistance\n86 Other factors to consider for provision of assistance\n87 Assistance that may be rendered\n88 Offences under this Part\n\
+    89 Immunities\nPart 7 OFFENCES\n90 Offences by corporations\n91 Offences by unincorporated associations or partnerships\n92 Offences by officers\n93 Falsification of records by officers, etc.\n94 General\
+    \ duty to use reasonable care not to provide false information to Authority\n95 General penalty\n96 Composition of offences\nPart 8 MISCELLANEOUS\n97 Jurisdiction of court\n98 Opportunity to be heard\n\
+    99 Power of court to make certain orders\n100 General exemption\n101 Codes, guidelines, etc., by Authority\n102 Power of Authority to issue notice in writing\n103 Power of Authority to make regulations\n\
+    104 Publication of certain information\n105 Service of documents\n106 Electronic service\n107 Amendment of Schedules\n108 Repeal\nPart 9 CONSEQUENTIAL AND RELATED AMENDMENTS TO OTHER ACTS\n109 Amendment\
+    \ of Central Provident Fund Act\n110 Amendment of Companies Act\n111 Amendment of Credit Bureau Act 2016\n112 Amendment of Financial Advisers Act\n113 Amendment of Financial Holding Companies Act 2013\n\
+    114 Amendment of Insolvency, Restructuring and Dissolution Act 2018\n115 Amendment of Insurance Act\n116 Amendment of Limited Liability Partnerships Act\n117 Amendment of Monetary Authority of Singapore\
+    \ Act\n118 Amendment of Remote Gambling Act 2014\n119 Amendment of Securities and Futures Act\n120 Amendment of Small Claims Tribunals Act\nPart 10 SAVING AND TRANSITIONAL PROVISIONS\n121 Interpretation\
+    \ of this Part\n122 Saving and transitional provisions for holders of licences under MCRBA and approved holders of stored value facilities under PSOA\n123 Saving and transitional provisions for persons\
+    \ granted exemptions under MCRBA or PSOA\n124 Pending applications for licences and renewals under MCRBA and pending applications for certain approvals under PSOA\n125 Saving and transitional provisions\
+    \ for designated payment systems\n126 Other saving and transitional provisions\nFIRST SCHEDULE\n                Payment services\nSECOND SCHEDULE\n                Specified provisions\nSelect All\n\
+    Clear All\nPrint \nHTML\nPDF\nWord\nPayment Services Act 2019\n        Status:"
+- id: art-3
+  title: '        Published in Acts Supplement'
+  text: "        Published in Acts Supplement\non 20 Feb 2019\nPrint\nHelp\n                        Table of Contents\nReset\nGet Provisions\nWhole Document\nPayment Services Act 2019\n        Status:\n\
+    \        Published in Acts Supplement on 20 Feb 2019\nLoading...\nSearch within Legislation\nExit Search\nSearch Results\nREPUBLIC OF SINGAPORE\nGOVERNMENT GAZETTE\nACTS SUPPLEMENT\nPublished by Authority\n\
+    NO. 7]\nFriday, February\n22\n[2019\nThe following Act was passed by Parliament on 14 January 2019 and assented to by the President on 11 February 2019:—\nPayment Services Act 2019\n(No. 2 of 2019)\n\
+    I assent.\nHALIMAH YACOB,\nPresident.\n 11 February 2019.\nDate of Commencement: 28 January 2020 Parts 1 to 8, sections 109, 110, 112, 115 to 120, Part 10, the First and Second Schedules  \nDate of\
+    \ Commencement: 30 July 2020 Section 114  \nDate of Commencement: 31 May 2021 Section 111  \nDate of Commencement: 30 June 2022 Section 113 \nAn Act to provide for the licensing and regulation of payment\
+    \ service providers, the oversight of payment systems, and connected matters, to repeal the Money‑changing and Remittance Businesses Act (Chapter 187 of the 2008 Revised Edition) and the Payment Systems\
+    \ (Oversight) Act (Chapter 222A of the 2007 Revised Edition), and to make consequential and related amendments to certain other Acts.\nBe it enacted by the President with the advice and consent of the\
+    \ Parliament of Singapore, as follows:          \nPART 1\nPRELIMINARY\nShort title and commencement\n1.\n  This Act is the Payment Services Act 2019 and comes into operation on a date that the Minister\
+    \ appoints by notification in the \nGazette\n.\nInterpretation\n2.\n—(1)  In this Act, unless the context otherwise requires —\n“5% controller”, in relation to a corporation (being a licensee or an\
+    \ operator of a designated payment system), means a person that alone or together with the person’s associates —\n(\na\n)\nhas an interest in at least 5%, but less than 12%, of the shares in the corporation;\
+    \ or\n(\nb\n)\nis in a position to control at least 5%, but less than 12%, of the votes in the corporation;\n“12% controller”, in relation to a corporation (being a licensee or an operator of a designated\
+    \ payment system), means a person that alone or together with the person’s associates —\n(\na\n)\nhas an interest in at least 12%, but less than 20%, of the shares in the corporation; or\n(\nb\n)\n\
+    is in a position to control at least 12%, but less than 20%, of the votes in the corporation;\n“20% controller”, in relation to a corporation (being a licensee or an operator of a designated payment\
+    \ system), means a person that alone or together with the person’s associates —\n(\na\n)\nhas an interest in at least 20% of the shares in the corporation; or\n(\nb\n)\nis in a position to control at\
+    \ least 20% of the votes in the corporation;\n“access”, in relation to a payment system, means an entitlement or eligibility to be a participant in the payment system;\n“access regime”, in relation\
+    \ to a payment system, means an access regime imposed by the Authority under section 51 and that is in force;\n“account issuance service” has the meaning given by Part 3 of the First Schedule;\n“arrangement”\
+    \ includes any formal or informal scheme, arrangement or understanding, and any trust whether express or implied;\n“Authority” means the Monetary Authority of Singapore established under the Monetary\
+    \ Authority of Singapore Act (Cap. 186);\n“bank”, “bank in Singapore” and “banking business” have the meanings given by section 2(1) of the Banking Act (Cap. 19);\n“book” includes any record, register,\
+    \ document or other record of information and any account or accounting record, however compiled, recorded or stored, whether in written or printed form or on microfilm or by electronic process or otherwise;\n\
+    “calendar year” means a period from 1 January to 31 December (both dates inclusive);\n“chief executive officer”, in relation to a corporation, means a person (however designated) who —\n(\na\n)"
+- id: art-4
+  title: is in the direct employment of, or acting for or by arrangem
+  text: 'is in the direct employment of, or acting for or by arrangement with, the corporation; and
+
+    (
+
+    b
+
+    )
+
+    is principally responsible for the management and conduct of the business of the corporation;
+
+    “company” and “corporation” have the meanings given by section 4(1) of the Companies Act (Cap. 50);
+
+    “consolidated financial statements” has the meaning given by section 209A of the Companies Act;
+
+    “credit card” and “charge card” have the meaning given by section 56 of the Banking Act;
+
+    “cross‑border money transfer service” has the meaning given by Part 3 of the First Schedule;
+
+    “currency” means currency notes and coins that are legal tender in Singapore or a country or territory other than Singapore;
+
+    “deposit” and “deposit‑taking business” have the meanings given by section 4B of the Banking Act;
+
+    “designated payment system” means a payment system that is designated by the Authority under section 42 to be a designated payment system for the purposes of this Act;
+
+    “digital payment token” means any digital representation of value (other than an excluded digital representation of value) that —
+
+    (
+
+    a
+
+    )
+
+    is expressed as a unit;
+
+    (
+
+    b
+
+    )
+
+    is not denominated in any currency, and is not pegged by its issuer to any currency;
+
+    (
+
+    c
+
+    )
+
+    is, or is intended to be, a medium of exchange accepted by the public, or a section of the public, as payment for goods or services or for the discharge of a debt;
+
+    (
+
+    d
+
+    )
+
+    can be transferred, stored or traded electronically; and
+
+    (
+
+    e
+
+    )
+
+    satisfies such other characteristics as the Authority may prescribe;
+
+    “digital payment token service” has the meaning given by Part 3 of the First Schedule;
+
+    “director” has the meaning given by section 4(1) of the Companies Act;
+
+    “domestic money transfer service” has the meaning given by Part 3 of the First Schedule;
+
+    “e‑money” means any electronically stored monetary value that —
+
+    (
+
+    a
+
+    )
+
+    is denominated in any currency, or pegged by its issuer to any currency;
+
+    (
+
+    b
+
+    )
+
+    has been paid for in advance to enable the making of payment transactions through the use of a payment account;
+
+    (
+
+    c
+
+    )
+
+    is accepted by a person other than its issuer; and
+
+    (
+
+    d
+
+    )
+
+    represents a claim on its issuer,
+
+    but does not include any deposit accepted in Singapore, from any person in Singapore;
+
+    “e‑money issuance service” has the meaning given by Part 3 of the First Schedule;
+
+    “employee”, in relation to an employer, includes an individual seconded or temporarily transferred to the employer from another employer;
+
+    “entity” means any body corporate or unincorporate, whether incorporated, formed or established in or outside Singapore;
+
+    “excluded digital representation of value” means a digital representation of value that is prescribed by the Authority as an excluded digital representation of value;
+
+    “executive director” means a director who is concurrently an executive officer;
+
+    “executive officer”, in relation to a corporation, means any individual (however designated) who —
+
+    (
+
+    a
+
+    )
+
+    is in the direct employment of, or acting for or by arrangement with, the corporation; and
+
+    (
+
+    b
+
+    )
+
+    is concerned with or takes part in the management of the corporation on a day‑to‑day basis;
+
+    “exempt payment service provider”, in respect of any payment service, means a person that is exempt under section 13(1) from the requirement under section 5(1) to have in force a licence that entitles
+    the person to carry on a business of providing that payment service;
+
+    “financial regulatory authority”, in relation to a foreign country or territory, means an authority of the foreign country or territory exercising any function that corresponds to a regulatory function
+    of the Authority under this Act, the Monetary Authority of Singapore Act or any of the written laws set out in the Schedule to that Act;
+
+    “financial statements” has the meaning given by section 209A of the Companies Act;
+
+    “financing business” has the meaning given by section 2 of the Finance Companies Act (Cap. 108);'
+- id: art-5
+  title: “Guidelines on Fit and Proper Criteria” means the document (
+  text: '“Guidelines on Fit and Proper Criteria” means the document (as revised from time to time) that is called by that title, issued by the Authority and published on the Authority’s website;
+
+    “indirect controller”, in relation to a corporation (being a licensee or an operator of a designated payment system) —
+
+    (
+
+    a
+
+    )
+
+    means any person, whether acting alone or together with any other person, and whether with or without holding shares or controlling voting power in the corporation —
+
+    (i)
+
+    in accordance with whose directions, instructions or wishes the directors of the corporation are accustomed or under an obligation, whether formal or informal, to act; or
+
+    (ii)
+
+    that is in a position to determine the policy of the corporation; but
+
+    (
+
+    b
+
+    )
+
+    excludes any person —
+
+    (i)
+
+    who is a director or other officer of the corporation and whose appointment has been approved by the Authority; or
+
+    (ii)
+
+    in accordance with whose directions, instructions or wishes the directors of the corporation are accustomed to act by reason only that they act on advice given by the person in the person’s professional
+    capacity;
+
+    “licence” means a licence granted under section 6;
+
+    “licensee” means a payment service provider the licence of which is in force;
+
+    “limited liability partnership” has the meaning given by section 4(1) of the Limited Liability Partnerships Act (Cap. 163A);
+
+    “major payment institution” means a person that has in force a major payment institution licence granted under section 6;
+
+    “merchant” means a person (other than an individual who is not required to be registered under the Business Names Registration Act 2014 (Act 29 of 2014)) who, in the course of the person’s business —
+
+    (
+
+    a
+
+    )
+
+    provides goods or services;
+
+    (
+
+    b
+
+    )
+
+    promotes the use or purchase of goods or services; or
+
+    (
+
+    c
+
+    )
+
+    receives, or is entitled to receive, any money or other consideration for providing goods or services,
+
+    and includes any employee or agent of the person;
+
+    “merchant acquisition service” has the meaning given by Part 3 of the First Schedule;
+
+    “money” includes e‑money but excludes any digital payment token and any excluded digital representation of value;
+
+    “money-changing service” has the meaning given by Part 3 of the First Schedule;
+
+    “operator”, in relation to a payment system, means a person that operates the payment system;
+
+    “participant”, in relation to a payment system, means any person that is recognised in the rules of the payment system, or is otherwise recognised by the operator or settlement institution of the payment
+    system, as being eligible to settle payments through the payment system with other persons that are similarly recognised, or to process payments through the payment system;
+
+    “partner”, in relation to a limited liability partnership, has the meaning given by section 2(1) of the Limited Liability Partnerships Act;
+
+    “payee” means a person that is the intended recipient of money that is the subject of a payment transaction;
+
+    “payer” means a person that initiates, or consents to the initiation of, a payment order for the transfer of money;
+
+    “payment account”  —
+
+    (
+
+    a
+
+    )
+
+    means any account, or any device or facility (whether in physical or electronic form), that —
+
+    (i)
+
+    is held in the name, or associated with the unique identifier, of any person, and is used by that person for the initiation of a payment order or the execution of a payment transaction, or both; or
+
+    (ii)
+
+    is held in the names, or associated with the unique identifiers, of 2 or more persons, and is used by any of those persons for the initiation of a payment order or the execution of a payment transaction,
+    or both; and
+
+    (
+
+    b
+
+    )
+
+    includes a bank account, debit card, credit card or charge card;
+
+    “payment order” means an instruction to a payment service provider requesting for the execution of a payment transaction;
+
+    “payment service” means any service that is specified in Part 1 of the First Schedule, but excludes any service that is specified in Part 2 of that Schedule;'
+- id: art-6
+  title: '“payment service provider” means any person that provides a '
+  text: '“payment service provider” means any person that provides a payment service;
+
+    “payment service user” means any person that uses a payment service in the capacity of a payer or a payee, or of both;
+
+    “payment system” means a funds transfer system or other system that facilitates the circulation of money, and includes any instruments and procedures that relate to the system;
+
+    “payment transaction” means the placing, transfer or withdrawal of money, whether for the purpose of paying for goods or services or for any other purpose, and regardless of whether the intended recipient
+    of the money is entitled to the money;
+
+    “permanent place of business”, in relation to a licensee, or an operator or a settlement institution of a designated payment system, means each fixed location in Singapore used by the licensee, operator
+    or settlement institution for carrying on its business, regardless whether the business is carried on within a single building or at a single business address;
+
+    “place of business”, in relation to a licensee, or an operator or a settlement institution of a designated payment system, means any location (including a kiosk that can be moved from one location to
+    another) in Singapore used by the licensee, operator or settlement institution for carrying on its business;
+
+    “public authority” means —
+
+    (
+
+    a
+
+    )
+
+    the Government, including any ministry, department or agency of the Government, or an Organ of State; or
+
+    (
+
+    b
+
+    )
+
+    any body established or constituted by or under a public Act to perform or discharge any public function;
+
+    “registered office” means a registered office maintained under section 142(1) or 370(1) of the Companies Act;
+
+    “regulated financial institution” means a person that carries on a business, the conduct of which is regulated or authorised by the Authority or, if it is carried on in Singapore, would be regulated
+    or authorised by the Authority;
+
+    “relevant payment system” means any of the following payment systems:
+
+    (
+
+    a
+
+    )
+
+    a payment system operated by a major payment institution;
+
+    (
+
+    b
+
+    )
+
+    a payment system operated by an exempt payment service provider;
+
+    (
+
+    c
+
+    )
+
+    a payment system operated by a person exempt under section 100 from having in force a licence;
+
+    (
+
+    d
+
+    )
+
+    a designated payment system;
+
+    “settlement institution” means a person that provides facilities for —
+
+    (
+
+    a
+
+    )
+
+    the participants of a payment system to hold funds; and
+
+    (
+
+    b
+
+    )
+
+    the settling of transactions between the participants;
+
+    “share” has the meaning given by section 4(1) of the Companies Act and includes an interest in a share;
+
+    “Singapore operator” means an operator that is incorporated in Singapore;
+
+    “Singapore settlement institution” means a settlement institution that is incorporated in Singapore;
+
+    “specified e‑money” means any e‑money that has been issued —
+
+    (
+
+    a
+
+    )
+
+    to any person whom the issuer of the e‑money has determined, according to such criteria as the Authority may specify by notice in writing, to be resident in Singapore; or
+
+    (
+
+    b
+
+    )
+
+    in Singapore to a person whom the issuer of the e‑money has not determined, according to such criteria as the Authority may specify by notice in writing, to be resident outside Singapore;
+
+    “standard payment institution” means a person that has in force a standard payment institution licence granted under section 6;
+
+    “treasury share” has the meaning given by section 4(1) of the Companies Act;
+
+    “unique identifier” means a combination of letters, numbers or symbols used by a payment service user to identify unambiguously either or both of the following for the purposes of a payment transaction:
+
+    (
+
+    a
+
+    )
+
+    any payment service user that is a party to the payment transaction;
+
+    (
+
+    b
+
+    )
+
+    any payment account;
+
+    “voting share” has the meaning given by section 4(1) of the Companies Act.
+
+    (2)  In this Act, unless the context otherwise requires —
+
+    (
+
+    a
+
+    )
+
+    a person has an interest in a share if —
+
+    (i)
+
+    the person has or is treated as having an interest in that share under section 7(1A), (1B), (2), (6) and (7) to (10) of the Companies Act; or
+
+    (ii)'
+- id: art-7
+  title: the person has any legal or equitable interest in that share
+  text: "the person has any legal or equitable interest in that share, except an interest that is to be disregarded under section 7(9) of the Companies Act;\n(\nb\n)\na reference to the control of a percentage\
+    \ of the votes in a corporation (being a licensee or an operator of a designated payment system) is a reference to the control, whether direct or indirect, of that percentage of the total number of\
+    \ votes that might be cast in a general meeting of the corporation;\n(\nc\n)\na person (\nA\n) is an associate of another person (\nB\n) if —\n(i)\nA\n is the spouse, a parent, remoter lineal ancestor\
+    \ or step‑parent, a son, daughter, remoter issue, stepson or stepdaughter, or a brother or sister, of \nB\n;\n(ii)\nA\n is a body corporate that is, or a majority of the directors of which are, accustomed\
+    \ or under an obligation, whether formal or informal, to act in accordance with the directions, instructions or wishes of \nB\n;\n(iii)\nA\n is a person that is accustomed or under an obligation, whether\
+    \ formal or informal, to act in accordance with the directions, instructions or wishes of \nB\n;\n(iv)\nA\n is a subsidiary of \nB\n;\n(v)\nA\n is a body corporate in which \nB\n, whether alone or together\
+    \ with other associates of \nB\n as described in sub‑paragraphs (ii), (iii) and (iv), is in a position to control 20% or more of the votes in \nA\n; or\n(vi)\nA\n is a person with whom \nB\n has an\
+    \ agreement or arrangement (whether oral or in writing and whether express or implied) to act together with respect to the acquisition, holding or disposal of shares or other interests in, or with respect\
+    \ to the exercise of their votes in relation to, the corporation (being a licensee or an operator of a designated payment system) mentioned in the definition of “5% controller”, “12% controller” or\
+    \ “20% controller”;\n(\nd\n)\na person has a substantial shareholding in a corporation if —\n(i)\nthe person has an interest in one or more voting shares (excluding treasury shares) in the corporation;\
+    \ and\n(ii)\nthe total votes attached to that share, or those shares, is at least 5% of the total votes attached to all the voting shares (excluding treasury shares) in the corporation; and\n(\ne\n\
+    )\na person has a substantial shareholding in a corporation, the share capital of which is divided into 2 or more classes of shares, if —\n(i)\nthe person has an interest in one or more voting shares\
+    \ (excluding treasury shares) included in one of those classes; and\n(ii)\nthe total votes attached to that share, or those shares, is at least 5% of the total votes attached to all the voting shares\
+    \ (excluding treasury shares) included in that class.\n(3)  In any case where the functions of the operator or settlement institution of a payment system are assumed by or shared among 2 or more operators\
+    \ or settlement institutions, a reference in this Act to the operator or settlement institution is a reference to each such operator or settlement institution.\n(4)  For the purposes of sections 5(2)\
+    \ and 13(13) and paragraph 2(\ni\n) of the First Schedule, a payment service, or the provision of a payment service, is incidental to any other business carried on by a person, if the payment service —\n\
+    (\na\n)\nis carried on, offered or provided by that person to support that other business; and\n(\nb\n)\nis provided by that person in connection with the carrying on of that other business.\nApplication\
+    \ of Act\n3.\n—(1)  Subject to subsection (2), this Act does not apply to any public authority.\n(2)  The Minister may by order declare that a public authority is one to which this Act applies.\nAppointment\
+    \ of assistants\n4.\n—(1)  Subject to subsection (2), the Authority may appoint any person to exercise any of its powers or perform any of its functions or duties under this Act, either generally or\
+    \ in any particular case, except —\n(\na\n)\nthe power of appointment conferred by this subsection; and\n(\nb\n)\nthe power to make subsidiary legislation.\n(2)  The Authority may, by notification in\
+    \ the \nGazette"
+- id: art-8
+  title: ', appoint one or more of its officers to exercise the power,'
+  text: ", appoint one or more of its officers to exercise the power, under a provision of this Act specified in the Second Schedule, to grant an exemption to a particular person, or to revoke any such\
+    \ exemption.\n(3)  Any person appointed under subsection (1) or officer appointed under subsection (2) is taken to be a public servant for the purposes of the Penal Code (Cap. 224).\n              \
+    \          Singapore Statutes Online\nFAQs\nFeedback\nSitemap\n\t\t\tReport Vulnerability\n\t\t\tPrivacy Statement\n\t\t\tTerms of Use\n                            © 2026 Attorney-General's Chambers\
+    \ of Singapore,\n                          \tLast updated 24 Apr 2026\nSingapore Statutes Online is provided by the Legislation Division of the Attorney-General's Chambers of Singapore."
 doc_files:
 - sg/raw/新加坡《支付服务法》（PSA 2019）.html
 - sg/raw/新加坡《支付服务法》（PSA MAS官方页面）.html
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：sg/raw/新加坡《支付服务法》（PSA 2019）.html (html, 28307 chars)，生成 8 条共 28307 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：sg/raw/新加坡《支付服务法》（PSA 2019）.html (html, 28307 chars)，生成 8 条共 28307 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：sg/raw/新加坡《支付服务法》（PSA 2019）.html (html, 28307 chars)，生成 8 条共 28307 字符；解析文本未人工复核，引用以官方原件为准。'

@@ -9,11 +9,785 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'ETSI EN 301 893
+
+    V2.1.1
+
+    (2017-05)
+
+    HARMONISED EUROPEAN STANDAR'
+  text: 'ETSI EN 301 893
+
+    V2.1.1
+
+    (2017-05)
+
+    HARMONISED EUROPEAN STANDARD
+
+    5 GHz RLAN;
+
+    Harmonised Standard covering the essential requirements
+
+    of article 3.2 of Directive 2014/53/EU
+
+    (cid:2)
+
+    2 ETSI EN 301 893 V2.1.1 (2017-05)
+
+    Reference
+
+    REN/BRAN-0060015
+
+    Keywords
+
+    access, broadband, LAN, layer 1, radio,
+
+    regulation, testing
+
+    ETSI
+
+    650 Route des Lucioles
+
+    F-06921 Sophia Antipolis Cedex - FRANCE
+
+    Tel.: +33 4 92 94 42 00 Fax: +33 4 93 65 47 16
+
+    Siret N° 348 623 562 00017 - NAF 742 C
+
+    Association à but non lucratif enregistrée à la
+
+    Sous-Préfecture de Grasse (06) N° 7803/88
+
+    Important notice
+
+    The present document can be downloaded from:
+
+    http://www.etsi.org/standards-search
+
+    The present document may be made available in electronic versions and/or in print. The content of any electronic and/or
+
+    print versions of the present document shall not be modified without the prior written authorization of ETSI. In case of any
+
+    existing or perceived difference in contents between such versions and/or in print, the only prevailing document is the
+
+    print of the Portable Document Format (PDF) version kept on a specific network drive within ETSI Secretariat.
+
+    Users of the present document should be aware that the document may be subject to revision or change of status.
+
+    Information on the current status of this and other ETSI documents is available at
+
+    https://portal.etsi.org/TB/ETSIDeliverableStatus.aspx
+
+    If you find errors in the present document, please send your comment to one of the following services:
+
+    https://portal.etsi.org/People/CommiteeSupportStaff.aspx
+
+    Copyright Notification
+
+    No part may be reproduced or utilized in any form or by any means, electronic or mechanical, including photocopying
+
+    and microfilm except as authorized by written permission of ETSI.
+
+    The content of the PDF version shall not be modified without the written authorization of ETSI.
+
+    The copyright and the foregoing restriction extend to reproduction in all media.
+
+    © European Telecommunications Standards Institute 2017.
+
+    All rights reserved.
+
+    DECTTM, PLUGTESTSTM, UMTSTM and the ETSI logo are Trade Marks of ETSI registered for the benefit of its Members.
+
+    3GPPTM and LTE™ are Trade Marks of ETSI registered for the benefit of its Members and
+
+    of the 3GPP Organizational Partners.
+
+    oneM2M logo is protected for the benefit of its Members
+
+    GSM® and the GSM logo are Trade Marks registered and owned by the GSM Association.
+
+    ETSI
+
+    3 ETSI EN 301 893 V2.1.1 (2017-05)
+
+    Contents
+
+    Intellectual Property Rights ................................................................................................................................ 8
+
+    Foreword ............................................................................................................................................................. 8
+
+    Modal verbs terminology .................................................................................................................................... 8
+
+    Introduction ........................................................................................................................................................ 8
+
+    1 Scope ...................................................................................................................................................... 10
+
+    2 References .............................................................................................................................................. 10
+
+    2.1 Normative references ....................................................................................................................................... 10
+
+    2.2 Informative references ...................................................................................................................................... 11
+
+    3 Definitions, symbols and abbreviations ................................................................................................. 12
+
+    3.1 Definitions ........................................................................................................................................................ 12
+
+    3.2 Symbols ............................................................................................................................................................ 14
+
+    3.3 Abbreviations ................................................................................................................................................... 15
+
+    4 Technical requirements specifications ................................................................................................... 15
+
+    4.1 Environmental profile ....................................................................................................................................... 15
+
+    4.2 Conformance requirements .............................................................................................................................. 16
+
+    4.2.1 Nominal Centre frequencies ....................................................................................................................... 16
+
+    4.2.1.1 General .................................................................................................................................................. 16
+
+    4.2.1.2 Definition .............................................................................................................................................. 16
+
+    4.2.1.3 Limits .................................................................................................................................................... 16
+
+    4.2.1.4 Conformance ......................................................................................................................................... 16
+
+    4.2.2 Nominal Channel Bandwidth and Occupied Channel Bandwidth .............................................................. 16
+
+    4.2.2.1 Definition .............................................................................................................................................. 16
+
+    4.2.2.2 Limits .................................................................................................................................................... 16
+
+    4.2.2.3 Conformance ......................................................................................................................................... 17
+
+    4.2.3 RF output power, Transmit Power Control (TPC) and Power Density ....................................................... 17
+
+    4.2.3.1 Definitions ............................................................................................................................................. 17
+
+    4.2.3.1.1 RF Output Power ............................................................................................................................. 17
+
+    4.2.3.1.2 Transmit Power Control (TPC) ....................................................................................................... 17
+
+    4.2.3.1.3 Power Density ................................................................................................................................. 17
+
+    4.2.3.2 Limits .................................................................................................................................................... 17
+
+    4.2.3.2.1 General ............................................................................................................................................ 17
+
+    4.2.3.2.2 Limits for RF output power and Power Density at the highest power level .................................... 17
+
+    4.2.3.2.3 Limit for RF output power at the lowest power level (P ) of the TPC range .................................. 18
+
+    L
+
+    4.2.3.3 Conformance ......................................................................................................................................... 18
+
+    4.2.4 Transmitter unwanted emissions ................................................................................................................. 18
+
+    4.2.4.1 Transmitter unwanted emissions outside the 5 GHz RLAN bands ....................................................... 18
+
+    4.2.4.1.1 Definition......................................................................................................................................... 18
+
+    4.2.4.1.2 Limits .............................................................................................................................................. 18
+
+    4.2.4.1.3 Conformance ................................................................................................................................... 19
+
+    4.2.4.2 Transmitter unwanted emissions within the 5 GHz RLAN bands ........................................................ 19
+
+    4.2.4.2.1 Definition......................................................................................................................................... 19
+
+    4.2.4.2.2 Limits .............................................................................................................................................. 19
+
+    4.2.4.2.3 Conformance ................................................................................................................................... 20
+
+    4.2.5 Receiver spurious emissions ....................................................................................................................... 20
+
+    4.2.5.1 Definition .............................................................................................................................................. 20
+
+    4.2.5.2 Limits .................................................................................................................................................... 20
+
+    4.2.5.3 Conformance ......................................................................................................................................... 20
+
+    4.2.6 Dynamic Frequency Selection (DFS) ......................................................................................................... 20
+
+    4.2.6.1 Introduction ........................................................................................................................................... 20
+
+    4.2.6.1.1 General ............................................................................................................................................ 20
+
+    4.2.6.1.2 DFS applicable frequency range ...................................................................................................... 21
+
+    4.2.6.1.3 DFS operational modes ................................................................................................................... 21
+
+    4.2.6.1.4 DFS operation .................................................................................................................................. 21
+
+    4.2.6.2 DFS technical requirements specifications ........................................................................................... 22
+
+    ETSI
+
+    4 ETSI EN 301 893 V2.1.1 (2017-05)
+
+    4.2.6.2.1 Applicability .................................................................................................................................... 22
+
+    4.2.6.2.2 Channel Availability Check ............................................................................................................. 23
+
+    4.2.6.2.3 Off-Channel CAC (Off-Channel Channel Availability Check) ....................................................... 23
+
+    4.2.6.2.4 In-Service Monitoring ..................................................................................................................... 23
+
+    4.2.6.2.5 Channel Shutdown........................................................................................................................... 24
+
+    4.2.6.2.6 Non-Occupancy Period ................................................................................................................... 24
+
+    4.2.6.2.7 Uniform Spreading .......................................................................................................................... 25
+
+    4.2.7 Adaptivity (Channel Access Mechanism) ...'
+- id: art-2
+  title: 'Annex C (normative): Procedures for radiated measurements ..................................................... 100'
+  text: 'Annex C (normative): Procedures for radiated measurements ..................................................... 100
+
+    C.1 Introduction .......................................................................................................................................... 100
+
+    C.2 Radiated measurements in an OATS or SAR ....................................................................................... 100
+
+    C.3 Radiated measurements in a FAR ........................................................................................................ 101
+
+    C.4 Substitution measurement .................................................................................................................... 101
+
+    C.5 Guidance for testing technical requirements ........................................................................................ 101
+
+    C.5.1 Radio test suites and corresponding test sites ................................................................................................. 101
+
+    C.5.2 Guidance for testing Adaptivity (Channel Access Mechanism) ..................................................................... 102
+
+    C.5.2.1 Introduction............................................................................................................................................... 102
+
+    C.5.2.2 Measurement Set-up ................................................................................................................................. 102
+
+    C.5.2.3 Calibration of the measurement Set-up ..................................................................................................... 102
+
+    C.5.2.4 Test method .............................................................................................................................................. 103
+
+    C.5.3 Guidance for testing Receiver Blocking ......................................................................................................... 103
+
+    C.5.3.1 Introduction............................................................................................................................................... 103
+
+    C.5.3.2 Measurement Set-up ................................................................................................................................. 103
+
+    C.5.3.3 Calibration of the measurement Set-up ..................................................................................................... 103
+
+    C.5.3.4 Test method .............................................................................................................................................. 104
+
+    Annex D (normative): DFS parameters ........................................................................................... 105
+
+    Annex E Void ...................................................................................................................................... 108
+
+    Annex F (informative): Adaptivity Flowchart ................................................................................... 109
+
+    Annex G (informative): Application form for testing ........................................................................ 110
+
+    G.0 The right to copy .................................................................................................................................. 110
+
+    G.1 Introduction .......................................................................................................................................... 110
+
+    G.2 Information as required by ETSI EN 301 893 (V2.1.1), clause 5.4.1 .................................................. 110
+
+    G.3 Additional information provided by the manufacturer ......................................................................... 119
+
+    G.3.1 Modulation ..................................................................................................................................................... 119
+
+    G.3.2 Duty Cycle...................................................................................................................................................... 119
+
+    G.3.3 About the UUT ............................................................................................................................................... 119
+
+    G.3.4 List of ancillary and/or support equipment provided by the manufacturer..................................................... 119
+
+    Annex H (informative): Bibliography ................................................................................................. 120
+
+    ETSI
+
+    7 ETSI EN 301 893 V2.1.1 (2017-05)'
+- id: art-3
+  title: 'Annex I (informative): Change history ............................................................................................. 121'
+  text: 'Annex I (informative): Change history ............................................................................................. 121
+
+    History ............................................................................................................................................................ 122
+
+    ETSI
+
+    8 ETSI EN 301 893 V2.1.1 (2017-05)
+
+    Intellectual Property Rights
+
+    IPRs essential or potentially essential to the present document may have been declared to ETSI. The information
+
+    pertaining to these essential IPRs, if any, is publicly available for ETSI members and non-members, and can be found
+
+    in ETSI SR 000 314: "Intellectual Property Rights (IPRs); Essential, or potentially Essential, IPRs notified to ETSI in
+
+    respect of ETSI standards", which is available from the ETSI Secretariat. Latest updates are available on the ETSI Web
+
+    server (https://ipr.etsi.org/).
+
+    Pursuant to the ETSI IPR Policy, no investigation, including IPR searches, has been carried out by ETSI. No guarantee
+
+    can be given as to the existence of other IPRs not referenced in ETSI SR 000 314 (or the updates on the ETSI Web
+
+    server) which are, or may be, or may become, essential to the present document.
+
+    Foreword
+
+    This Harmonised European Standard (EN) has been produced by ETSI Technical Committee Broadband Radio Access
+
+    Networks (BRAN).
+
+    The present document has been prepared under the Commission''s standardisation request C(2015) 5376 final [i.4] to
+
+    provide one voluntary means of conforming to the essential requirements of Directive 2014/53/EU on the harmonisation
+
+    of the laws of the Member States relating to the making available on the market of radio equipment and repealing
+
+    Directive 1999/5/EC [i.1].
+
+    Once the present document is cited in the Official Journal of the European Union under that Directive, compliance with
+
+    the normative clauses of the present document given in table A.1 confers, within the limits of the scope of the present
+
+    document, a presumption of conformity with the corresponding essential requirements of that Directive, and associated
+
+    EFTA regulations.
+
+    National transposition dates
+
+    Date of adoption of this EN: 23 May 2017
+
+    Date of latest announcement of this EN (doa): 31 August 2017
+
+    Date of latest publication of new National Standard
+
+    or endorsement of this EN (dop/e): 28 February 2018
+
+    Date of withdrawal of any conflicting National Standard (dow): 28 February 2019
+
+    Modal verbs terminology
+
+    In the present document "shall", "shall not", "should", "should not", "may", "need not", "will", "will not", "can" and
+
+    "cannot" are to be interpreted as described in clause 3.2 of the ETSI Drafting Rules (Verbal forms for the expression of
+
+    provisions).
+
+    "must" and "must not" are NOT allowed in ETSI deliverables except when used in direct citation.
+
+    Introduction
+
+    5 GHz wireless access systems (WAS) including RLAN equipment are used in wireless local area networks which
+
+    provide high speed data communications in between devices connected to the wireless infrastructure. The present
+
+    document also addresses ad-hoc networking where devices communicate directly with each other, without the use of a
+
+    wireless infrastructure.
+
+    ETSI
+
+    9 ETSI EN 301 893 V2.1.1 (2017-05)
+
+    The spectrum usage conditions for equipment within the scope of the present document are set in the ECC
+
+    Decision (04)08 [i.8] and the Commission Decision 2005/513/EC [i.9] as amended by the Commission
+
+    Decision 2007/90/EC [i.10].
+
+    ETSI
+
+    10 ETSI EN 301 893 V2.1.1 (2017-05)
+
+    1 Scope
+
+    The present document specifies technical characteristics and methods of measurements for 5 GHz wireless access
+
+    systems (WAS) including RLAN equipment.
+
+    The present document also describes spectrum access requirements to facilitate spectrum sharing with other equipment.
+
+    These radio equipment are capable of operating in all or parts of the frequency bands given in table 1.
+
+    Table 1: Service frequency bands
+
+    Service frequency bands
+
+    Transmit 5 150 MHz to 5 350 MHz
+
+    Receive 5 150 MHz to 5 350 MHz
+
+    Transmit 5 470 MHz to 5 725 MHz
+
+    Receive 5 470 MHz to 5 725 MHz
+
+    The present document covers the essential requirements of article 3.2 of Directive 2014/53/EU under the conditions
+
+    identified in annex A.
+
+    2 References
+
+    2.1 Normative references
+
+    References are specific, identified by date of publication and/or edition number or version number. Only the cited
+
+    version applies.
+
+    Referenced documents which are not found to be publicly available in the expected location might be found at
+
+    https://docbox.etsi.org/Reference.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    The following referenced documents are necessary for the application of the present document.
+
+    [1] Void.
+
+    [2] Void.
+
+    [3] Void.
+
+    [4] Void.
+
+    [5] Void.
+
+    [6] Void.
+
+    [7] Void.
+
+    [8] ETSI TS 136 141 (V13.5.0) (10-2016): "LTE; Evolved Universal Terrestrial Radio Access
+
+    (E-UTRA); Base Station (BS) conformance testing (3GPP TS 36.141 version 13.5.0 Release 13)".
+
+    [9] IEEE 802.11™-2016: "IEEE Standard for Information Technology - Telecommunications and
+
+    information exchange between systems - Local and metropolitan area networks - Specific
+
+    requirements - Part 11: Wireless LAN Medium Access Control (MAC) and Physical Layer (PHY)
+
+    Specifications".
+
+    ETSI
+
+    11 ETSI EN 301 893 V2.1.1 (2017-05)
+
+    2.2 Informative references
+
+    References are either specific (identified by date of publication and/or edition number or version number) or
+
+    non-specific. For specific references, only the cited version applies. For non-specific references, the latest version of the
+
+    referenced document (including any amendments) applies.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    The following referenced documents are not necessary for the application of the present document but they assist the
+
+    user with regard to a particular subject area.
+
+    [i.1] Directive 2014/53/EU of the European Parliament and of the Council of 16 April 2014 on the
+
+    harmonisation of the laws of the Member States relating to the making available on the market of
+
+    radio equipment and repealing Directive 1999/5/EC.
+
+    [i.2] Void.
+
+    [i.3] Void.
+
+    [i.4] Commission Implementing Decision C(2015) 5376 final of 4.8.2015 on a standardisation request
+
+    to the European Committee for Electrotechnical Standardisation and to the European
+
+    Telecommunications Standards Institute as regards radio equipment in support of Directive
+
+    2014/53/EU of the European Parliament and of the Council.
+
+    [i.5] ETSI EG 203 367 (V1.1.1) (06-2016): "Guide to the application of harmonised standards covering
+
+    articles 3.1b and 3.2 of the Directive 2014/53/EU (RED) to multi-radio and combined radio and
+
+    non-radio equipment".
+
+    [i.6] ETSI TR 100 028-1 (V1.4.1) (12-2001): "Electromagnetic compatibility and Radio spectrum
+
+    Matters (ERM); Uncertainties in the measurement of mobile radio equipment characteristics;
+
+    Part 1".
+
+    [i.7] ETSI TR 100 028-2 (V1.4.1) (12-2001): "Electromagnetic compatibility and Radio spectrum
+
+    Matters (ERM); Uncertainties in the measurement of mobile radio equipment characteristics;
+
+    Part 2".
+
+    [i.8] ECC/DEC/(04)08: "ECC Decision of 9 July 2004 on the harmonised use of the 5 GHz frequency
+
+    bands for the implementation of Wireless Access Systems including Radio Local Area Networks
+
+    (WAS/RLANs) (30/10/2009)".
+
+    [i.9] Commission Decision 2005/513/EC of 11 July 2005 on the harmonised use of radio spectrum in
+
+    the 5 GHz frequency band for the implementation of Wireless Access Systems including Radio
+
+    Local Area Networks (WAS/RLANs).
+
+    [i.10] Commission Decision 2007/90/EC of 12 February 2007 amending Decision 2005/513/EC on the
+
+    harmonised use of radio spectrum in the 5 GHz frequency band for the implementation of Wireless
+
+    Access Systems including Radio Local Area Networks (WAS/RLANs).
+
+    [i.11] ETSI TR 102 273-2 (V1.2.1) (12-2001): "Electromagnetic compatibility and Radio spectrum
+
+    Matters (ERM); Improvement on Radiated Methods of Measurement (using test site) and
+
+    evaluation of the corresponding measurement uncertainties; Part 2: Anechoic chamber".
+
+    [i.12] ETSI TR 102 273-3 (V1.2.1) (12-2001): "Electromagnetic compatibility and Radio spectrum
+
+    Matters (ERM); Improvement on Radiated Methods of Measurement (using test site) and
+
+    evaluation of the corresponding measurement uncertainties; Part 3: Anechoic chamber with a
+
+    ground plane".
+
+    [i.13] ETSI TR 102 273-4 (V1.2.1) (12-2001): "Electromagnetic compatibility and Radio spectrum
+
+    Matters (ERM); Improvement on Radiated Methods of Measurement (using test site) and
+
+    evaluation of the corresponding measurement uncertainties; Part 4: Open area test site".
+
+    ETSI
+
+    12 ETSI EN 301 893 V2.1.1 (2017-05)
+
+    3 Definitions, symbols and abbreviations
+
+    3.1 Definitions
+
+    For the purposes of the present document, the terms and definitions given in Directive 2014/53/EU [i.1] and the
+
+    following apply:
+
+    5 GHz RLAN bands: total frequency range that consists of the 5 150 MHz to 5 350 MHz and the 5470 MHz to
+
+    5 725 MHz sub-bands
+
+    adaptive equipment: equipment operating in an adaptive mode
+
+    adaptive mode: mechanism by which equipment can adapt to its environment by identifying other transmissions
+
+    present in the band
+
+    ad-hoc mode: operating mode in which an RLAN device establishes a temporary wireless connection with other RLAN
+
+    devices without a controlling network infrastructure
+
+    antenna array: two or more antennas connected to a single device and operating simultaneously
+
+    antenna assembly: combination of the antenna (integral or dedicated), its coaxial cable and if applicable, its antenna
+
+    connector and associated switching components
+
+    NOTE 1: This term (antenna assembly) refers to an antenna connected to one transmit chain.
+
+    NOTE 2: The gain of an antenna assembly G in dBi, does not include the additional gain that may result out of
+
+    beamforming.
+
+    available channel: channel identified as available for immediate use as an Operating Channel
+
+    NOTE: Usable Channels whose nominal bandwidth falls completely within the band 5 150 MHz to 5 250 MHz
+
+    can be considered as Available Channels without further testing.
+
+    backoff procedure: procedure that facilitates the sharing of the medium by randomizing the transmission attempts
+
+    from multiple devices competing for access to an Operating Channel
+
+    beamforming gain: additional (antenna) gain realized by using beamforming techniques in smart antenna systems
+
+    NOTE: Beamforming gain as used in the present document does not include the gain of the antenna assembly.
+
+    burst: period during which radio waves are intentionally transmitted, preceded and succeeded by periods during which
+
+    no intentional transmission is made
+
+    channel: minimum amount of spectrum used by a single RLAN device
+
+    NOTE: An RLAN device is permitted to operate (transmit/receive) in one or more adjacent or non-adjacent
+
+    channels simultaneously.
+
+    EXAMPLE: For the purpose of the present document, an IEEE 802.11™ [9] device operating in a 40 MHz
+
+    mode may be considered as operating in 2 adjacent 20 MHz channels simultaneously.
+
+    Channel Access Engine (CAE): mechanism that determines when a transmission attempt is permitted
+
+    channel plan: combination of the centre frequencies and for each of the centre frequencies, the declared nominal
+
+    bandwidth(s)
+
+    clear channel assessment: mechanism used by an equipment to identify other transmissions in the channel
+
+    combined equipment: equipment consisting of two or more products where at least one of which is radio equipment
+
+    within the scope of the present document
+
+    Contention Window (CW): main parameter that determines the duration of the Backoff Procedure
+
+    ETSI
+
+    13 ETSI EN 301 893 V2.1.1 (2017-05)
+
+    dedicated antenna: antenna external to the equipment, using an antenna connector with a cable or a wave-guide and
+
+    which has been designed or developed for one or more specific types of equipment
+
+    energy detect: mechanism used by an adaptive system to determine the presence of another device operating on the
+
+    channel based on detecting the signal level of that other device
+
+    environmental profile: range of environmental conditions '
+- id: art-4
+  title: 'Annex C (normative):'
+  text: 'Annex C (normative):
+
+    Procedures for radiated measurements
+
+    C.1 Introduction
+
+    This annex gives the general procedures for radiated measurements using the test sites and arrangements described in
+
+    annex B.
+
+    Preferably, radiated measurements shall be performed in a FAR, see clause C.3. Radiated measurements in an OATS or
+
+    SAR are described in clause C.2.
+
+    C.2 Radiated measurements in an OATS or SAR
+
+    Radiated measurements shall be performed with the aid of a measurement antenna and a substitution antenna, in test
+
+    sites described in annex B. The measurement set-up shall be calibrated according to the procedure defined in the present
+
+    annex. The UUT and the measurement antenna shall be oriented such as to obtain the maximum emitted power level.
+
+    This position shall be recorded in the measurement report.
+
+    a) The measurement antenna (device 2 in figure C.1) shall be oriented initially for vertical polarization unless
+
+    otherwise stated and the UUT (device 1 in figure C.1) shall be placed on the support in its standard position
+
+    and switched on.
+
+    b) The measurement equipment (device 3 in figure C.1) shall be connected to the measurement antenna and
+
+    set-up according to the specifications of the test.
+
+    2
+
+    specified height
+
+    1 range 1 m to 4 m
+
+    1,5 m
+
+    ground
+
+    plane
+
+    3
+
+    1) UUT
+
+    2) Measurement antenna
+
+    3) Measurement equipment
+
+    Figure C.1: Measurement arrangement
+
+    c) The UUT shall be rotated through 360° in a horizontal plane until a higher maximum signal is received.
+
+    d) The measurement antenna shall be raised or lowered again through the specified height range until a maximum
+
+    is obtained. This level shall be recorded. This maximum may be a lower value than the value obtainable at
+
+    heights outside the specified limits.
+
+    e) This measurement procedure in step c) and step d) above shall be repeated for horizontal polarization.
+
+    ETSI
+
+    101 ETSI EN 301 893 V2.1.1 (2017-05)
+
+    C.3 Radiated measurements in a FAR
+
+    For radiated measurements using a FAR, the procedure is identical to the one described in clause C.2, except that the
+
+    height scan in step d) is omitted.
+
+    C.4 Substitution measurement
+
+    To determine the absolute measurement value a substitution measurement is performed. The following steps have to be
+
+    performed:
+
+    1) Replacing the UUT with the substitution antenna that is depicted as device 1 in figure C.1. The substitution
+
+    antenna shall have vertical polarization.
+
+    2) Connect a signal generator to the substitution antenna, and adjust it to the measurement frequency.
+
+    3) If an OATS or a SAR is used, the measurement antenna height shall be varied within the range provided in
+
+    figure C.1, to ensure that the maximum signal is received.
+
+    4) Subsequently, the power of the signal generator is adjusted until the same level is obtained again at the
+
+    measurement equipment.
+
+    5) The radiated power is equal to the power supplied by the signal generator, increased with the substitution
+
+    antenna gain minus the cable losses (values in dB).
+
+    6) This measurement procedure described in step 2) to step 5) above shall be repeated with horizontal
+
+    polarization for the substitution antenna.
+
+    For test sites with a fixed setup of the measurement antenna(s) and a reproducible positioning of the UUT, correction
+
+    values from a verified site calibration can be used alternatively.
+
+    C.5 Guidance for testing technical requirements
+
+    C.5.1 Radio test suites and corresponding test sites
+
+    Table C.1 provides guidance on the test site to be used for each of the radio test suites when performing radiated
+
+    me'
 doc_files:
 - global/raw/ETSI_EN_301_893_5GHz_RLAN.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_301_893_5GHz_RLAN.pdf (pdf, 309384 chars)，生成 4 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_301_893_5GHz_RLAN.pdf (pdf, 309384 chars)，生成 4 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_301_893_5GHz_RLAN.pdf (pdf, 309384 chars)，生成 4 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

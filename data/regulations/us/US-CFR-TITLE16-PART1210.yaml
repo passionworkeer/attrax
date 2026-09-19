@@ -1,6 +1,6 @@
 id: US-CFR-TITLE16-PART1210
 official_citation: US 16 CFR Part 1210
-short_name: US 16 CFR Part 1210
+short_name: US 16 CFR Part 1210 — SAFETY STANDARD FOR CIGARETTE LIGHTERS
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,602 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '16
+
+    Commercial Practices
+
+    2
+
+    2024-01-01
+
+    2024-01-01
+
+    false
+
+    SAFETY'
+  text: '16
+
+    Commercial Practices
+
+    2
+
+    2024-01-01
+
+    2024-01-01
+
+    false
+
+    SAFETY STANDARD FOR CIGARETTE LIGHTERS
+
+    1210
+
+    PART 1210
+
+    Commercial Practices
+
+    CONSUMER PRODUCT SAFETY COMMISSION
+
+    CONSUMER PRODUCT SAFETY ACT REGULATIONS
+
+    Pt. 1210
+
+    PART 1210—SAFETY STANDARD FOR CIGARETTE LIGHTERS
+
+    Subpart A—Requirements for Child Resistance
+
+    Sec.
+
+    1210.1
+
+    Scope, application, and effective date.
+
+    1210.2
+
+    Definitions.
+
+    1210.3
+
+    Requirements for cigarette lighters.
+
+    1210.4
+
+    Test protocol.
+
+    1210.5
+
+    Findings.
+
+    Subpart B—Certification Requirements
+
+    1210.11
+
+    General.
+
+    1210.12
+
+    Certificate of compliance.
+
+    1210.13
+
+    Certification tests.
+
+    1210.14
+
+    Qualification testing.
+
+    1210.15
+
+    Specifications.
+
+    1210.16
+
+    Production testing.
+
+    1210.17
+
+    Recordkeeping and reporting.
+
+    1210.18
+
+    Refusal of importation.
+
+    Subpart C—Stockpiling
+
+    1210.20
+
+    Stockpiling.
+
+    Source:
+
+    58 FR 37584, July 12, 1993, unless otherwise noted.
+
+    Subpart A—Requirements for Child Resistance
+
+    Authority:
+
+    15 U.S.C. 2056, 2058, 2079(d).'
+- id: art-2
+  title: § 1210.1
+  text: '§ 1210.1
+
+    Scope, application, and effective date.
+
+    This part 1210, a consumer product safety standard, prescribes requirements for disposable and novelty lighters. These requirements are intended to make the lighters subject to the standard''s provisions
+    resistant to successful operation by children younger than 5 years of age. This standard applies to all disposable and novelty lighters, as defined in § 1210.2, that are manufactured or imported after
+    July 12, 1994.'
+- id: art-3
+  title: § 1210.2
+  text: '§ 1210.2
+
+    Definitions.
+
+    As used in this part 1210:
+
+    (a)
+
+    Cigarette lighter.
+
+    See
+
+    Lighter.
+
+    (b)
+
+    Disposable lighter
+
+    —means a lighter that either is:
+
+    (1) Not refillable with fuel or
+
+    (2)(i) Its fuel is butane, isobutane, propane, or other liquified hydrocarbon, or a mixture containing any of these, whose vapor pressure at 75 °F (24 °C) exceeds a gage pressure of 15 psi (103 kPa),
+    and
+
+    (ii) It has a Customs Valuation or ex-factory price under $2.00, as adjusted every 5 years, to the nearest $0.25, in accordance with the percentage changes in the appropriate monthly Producer Price
+    Index (Producer Price Index for Miscellaneous Fabricated Products) from June 1993. The adjusted figure, based on the change in that Index since June 1993, is $2.75.
+
+    (c)
+
+    Lighter,
+
+    also referred to as
+
+    cigarette lighter,
+
+    means a flame-producing product commonly used by consumers to ignite cigarettes, cigars, and pipes, although they may be used to ignite other materials. This term does not include matches or any other
+    lighting device intended primarily for igniting materials other than smoking materials, such as fuel for fireplaces or for charcoal or gas-fired grills. When used in this part 1210, the term
+
+    lighter
+
+    includes only the disposable and novelty lighters to which this regulation applies.
+
+    (d)
+
+    Novelty lighter
+
+    means a lighter that has entertaining audio or visual effects, or that depicts (logos, decals, art work, etc.) or resembles in physical form or function articles commonly recognized as appealing to
+    or intended for use by children under 5 years of age. This includes, but is not limited to, lighters that depict or resemble cartoon characters, toys, guns, watches, musical instruments, vehicles, toy
+    animals, food or beverages, or that play musical notes or have flashing lights or other entertaining features. A novelty lighter may operate on any fuel, including butane or liquid fuel.
+
+    (e)
+
+    Successful operation
+
+    means one signal of any duration from a surrogate lighter within either of the two 5-minute test periods specified in § 1210.4(f).
+
+    (f)
+
+    Surrogate lighter
+
+    means a device that: approximates the appearance, size, shape, and weight of, and is identical in all other factors that affect child resistance (including operation and the force(s) required for operation),
+    within reasonable manufacturing tolerances, to, a lighter intended for use by consumers; has no fuel; does not produce a flame; and produces an audible or visual signal that will be clearly discernible
+    when the surrogate lighter is activated in each manner that would normally produce a flame in a production lighter. (This definition does not require a lighter to be modified with electronics or the
+    like to produce a signal. Manufacturers may use a lighter without fuel as a surrogate lighter if a distinct signal such as a “click” can be heard clearly when the mechanism is operated in each manner
+    that would produce a flame in a production lighter and if a flame cannot be produced in a production lighter without the signal.
+
+    But see'
+- id: art-4
+  title: § 1210.4(f)(1).)
+  text: '§ 1210.4(f)(1).)
+
+    (g)
+
+    Model
+
+    means one or more cigarette lighters from the same manufacturer or importer that do not differ in design or other characteristics in any manner that may affect child-resistance. Lighter characteristics
+    that may affect child-resistance include, but are not limited to, size, shape, case material, and ignition mechanism (including child-resistant features).
+
+    [58 FR 37584, July 12, 1993, as amended at 69 FR 19763, Apr. 14, 2004; 78 FR 52679, Aug. 26, 2013; 83 FR 62241, Dec. 3, 2018]'
+- id: art-5
+  title: § 1210.3
+  text: '§ 1210.3
+
+    Requirements for cigarette lighters.
+
+    (a) A lighter subject to this part 1210 shall be resistant to successful operation by at least 85 percent of the child-test panel when tested in the manner prescribed by § 1210.4.
+
+    (b) The mechanism or system of a lighter subject to this part 1210 that makes the product resist successful operation by children must:
+
+    (1) Reset itself automatically after each operation of the ignition mechanism of the lighter,
+
+    (2) Not impair safe operation of the lighter when used in a normal and convenient manner,
+
+    (3) Be effective for the reasonably expected life of the lighter, and
+
+    (4) Not be easily overriden or deactivated.'
+- id: art-6
+  title: § 1210.4
+  text: '§ 1210.4
+
+    Test protocol.
+
+    (a)
+
+    Child test panel.
+
+    (1) The test to determine if a lighter is resistant to successful operation by children uses a panel of children to test a surrogate lighter representing the production lighter intended for use. Written
+    informed consent shall be obtained from a parent or legal guardian of a child before the child participates in the test.
+
+    (2) The test shall be conducted using at least one, but no more than two, 100-child test panels in accordance with the provisions of § 1210.4(f).
+
+    (3) The children for the test panel shall live within the United States.
+
+    (4) The age and sex distribution of each 100-child panel shall be:
+
+    (i) 30 + or- 2 children (20 + or- 1 males; 10 + or- 1 females) 42 through 44 months old;
+
+    (ii) 40 + or- 2 children (26 + or- 1 males; 14 + or- 1 females) 45 through 48 months old;
+
+    (iii) 30 + or- 2 children (20 + or- 1 males; 10 + or- 1 females) 49 through 51 months old.
+
+    Note: To calculate a child''s age in months:
+
+    1. Subtract the child''s birth date from the test date.
+
+    Month
+
+    Day
+
+    Year
+
+    Test Date
+
+    8
+
+    3
+
+    94
+
+    Birth Date
+
+    6
+
+    23
+
+    90
+
+    Difference
+
+    2
+
+    -20
+
+    4
+
+    2. Multiply the difference in years by 12 months.
+
+    4 years × 12 months = 48 months.
+
+    3. Add the difference in months.
+
+    48 months + 2 months = 50 months.
+
+    4. If the difference in days is greater than 15 (e.g. 16, 17), add 1 month.
+
+    If the difference in days is less than −15 (e.g., −16, −17) subtract 1 month.
+
+    50 months − 1 month = 49 months.
+
+    If the difference in days is between −15 and 15 (e.g., −15, −14, ... 14, 15), do
+
+    not
+
+    add or subtract 1 month.
+
+    (5) No child with a permanent or temporary illness, injury, or handicap that would interfere with the child''s ability to operate the surrogate lighter shall be selected for participation.
+
+    (6) Two children at a time shall participate in testing of surrogate lighters. Extra children whose results will not be counted in the test may be used if necessary to provide the required partner for
+    test subjects, if the extra children are within the required age range and a parent or guardian of each such child has signed a consent form.
+
+    (7) No child shall participate in more than one test panel or test more than one surrogate lighter. No child shall participate in both child-resistant package testing and surrogate lighter testing on
+    the same day.
+
+    (b)
+
+    Test sites, environment, and adult testers.
+
+    (1) Surrogate lighters shall be tested within the United States at 5 or more test sites throughout the geographical area for each 100-child panel if the sites are the customary nursery schools or day
+    care centers of the participating children. No more than 20 children shall be tested at each site. In the alternative, surrogate lighters may be tested within the United States at one or more central
+    locations, provided the participating children are drawn from a variety of locations within the geographical area.
+
+    (2) Testing of surrogate lighters shall be conducted in a room that is familiar to the children on the test panel (for example, a room the children frequent at their customary nursery school or day
+    care center). If the testing is conducted in a room that initially is unfamiliar to the children (for example, a room at a central location), the tester shall allow at least 5 minutes for the children
+    to become accustomed to the new environment before starting the test. The area in which the testing is conducted shall be well-lighted and isolated from distractions. The children shall be allowed freedom
+    of movement to work with their surrogate lighters, as long as the tester can watch both children at the same time. Two children at a time shall participate in testing of surrogate lighters. The children
+    shall be seated side by side in chairs approximately 6 inches apart, across a table from the tester. The table shall be normal table height for the children, so that they can sit up at the table with
+    their legs underneath and so that their arms will be at a comfortable height when on top of the table. The children''s chairs shall be “child-size.”
+
+    (3) Each tester shall be at least 18 years old. Five or 6 adult testers shall be used for each 100-child test panel. Each tester shall test an approximately equal number of children from a 100-child
+    test panel (20 + or- 2 children each for 5 testers and 17 + or- 2 children each for 6 testers).
+
+    Note:
+
+    When a test is initiated with five testers and one tester drops out, a sixth tester may be added to complete the testing. When a test is initiated with six testers and one tester drops out, the test
+    shall be completed using the five remaining testers. When a tester drops out, the requirement for each tester to test an approximately equal number of children does not apply to that tester. When testing
+    is initiated with five testers, no tester shall test more than 19 children until it is certain that the test can be completed with five testers.
+
+    (c)
+
+    Surrogate lighters.
+
+    (1) Six surrogate lighters shall be used for each 100-child panel. The six lighters shall represent the range of forces required for operation of lighters intended for use. All surrogate lighters shall
+    be the same color. The surrogate lighters shall be labeled with sequential numbers beginning with the number one. The same six surrogate lighters shall be used for the entire 100-child panel. The surrogate
+    lighters may be used in more than one 100-child panel test. The surrogate lighters shall not be damaged or jarred during storage or transportation. The surrogate lighters shall not be exposed to extreme
+    heat or cold. The surrogate lighters shall be tested at room temperature. No surrogate lighter shall be left unattended.
+
+    (2) Each surrogate lighter shall be tested by an approximately equal number of children in a 100-child test panel (17 + or- 2 children).
+
+    Note:
+
+    If a surrogate lighter is permanently damaged, testing shall continue with the remaining lighters. When a lighter is dropped out, the requirement that each lighter be tested by an approximately equal
+    number of children does not apply to that lighter.
+
+    (3) Before each 100-child panel is tested, each surrogate lighter shall be examined to verify that it approximates the appearance, size, shape, and weight of a production lighter intended for use.
+
+    (4) Before and after each 100-child panel is tested, force measurements shall be taken on all operating components that could affect child resistance to verify that they are within reasonable operating
+    tolerances for a production lighter intended for use.
+
+    (5) Before and after testing surrogate lighters with each child, each surrogate lighter shall be operated outside the presence of any child participating in the test to verify that the lighters produce
+    a signal. If the surrogate lighter will not produce a signal before the test, it shall be repaired before it is used in testing. If the surrogate lighter does not produce a signal when it is operated
+    after the test, the results for the preceding test with that lighter shall be eliminated. The lighter shall be repaired and tested with another eligible child (as one of a pair of children) to complete
+    the test panel.
+
+    (d)
+
+    Encouragement.
+
+    (1) Prior to the test, the tester shall talk to the children in a normal and friendly tone to make them feel at ease and to gain their confidence.
+
+    (2) The tester shall tell the children that he or she needs their help for a special job. The children shall not be promised a reward of any kind for participating, and shall not be told that the test
+    is a game or contest or that it is fun.
+
+    (3) The tester shall not discourage a child from attempting to operate the surrogate lighter at any time unless a child is in danger of hurting himself or another child. The tester shall not discuss
+    the dangers of lighters or matches with the children to be tested prior to the end of the 10-minute test.
+
+    (4) Whenever a child has stopped attempting to operate the surrogate lighter for a period of approximately one minute, the tester shall encourage the child to try by saying “keep trying for just a little
+    longer.”
+
+    (5) Whenever a child says that his or her parent, grandparent, guardian, etc., said never to touch lighters, say “that''s right — never touch a real lighter — but your [parent, etc.] said it was OK
+    for you to try to make a noise with this special lighter because it can''t hurt you.”
+
+    (6) The children in a pair being tested may encourage each other to operate the surrogate lighter and may tell or show each other how to operate it. (This interaction is
+
+    not
+
+    considered to be disruption as described in paragraph (e)(2) below.) However, neither child shall be allowed to operate the other child''s lighter. If one child takes the other child''s surrogate lighter,
+    that surrogate lighter shall be immediately returned to the proper child. If this occurs, the tester shall say “No. He(she) has to try to do it himself(herself).”
+
+    (e)
+
+    Children who refuse to participate.
+
+    (1) If a child becomes upset or afraid, and cannot be reassured before the test starts, select another eligible child for participation in that pair.
+
+    (2) If a child disrupts the participation of another child for more than one minute during the test, the test shall be stopped and both children eliminated from the results. An explanation shall be
+    recorded on the data collection record. These two children should be replaced with other eligible children to complete the test panel.
+
+    (3) If a child is not disruptive but refuses to attempt to operate the surrogate lighter throughout the entire test period, that child shall be eliminated from the test results and an explanation shall
+    be recorded on the data collection record. The child shall be replaced with another eligible child (as one of a pair of children) to complete the test panel.
+
+    (f)
+
+    Test procedure.
+
+    (1) To begin the test, the tester shall say “I have a special lighter that will not make a flame. It makes a noise like this.” Except where doing so would block the child''s view of a visual signal,
+    the adult tester shall place a 8
+
+    1/2
+
+    by 11 inch sheet of cardboard or other rigid opaque material upright on the table in front of the surrogate lighter, so that the surrogate lighter cannot be seen by the child, and shall operate the
+    surrogate lighter once to produce its signal. The tester shall say “Your parents [or other guardian, if applicable] said it is OK for you to try to make that noise with your lighter.” The tester shall
+    place a surrogate lighter in each child''s hand and say “now
+
+    you
+
+    try to make a noise with your lighter. Keep trying until I tell you to stop.”
+
+    (2) The adult tester shall observe the children for 5 minutes to determine if
+
+    either or both of the children can successfully operate the surrogate lighter by producing one signal of any duration. If a child achieves a spark without defeating the child-resistant feature, say
+    “that''s a spark — it won''t hurt you — try to make the noise with your lighter.” If any child successfully operates the surrogate lighter during this period, the surrogate lighter shall be taken from
+    that child and the child shall not be asked to try to operate the lighter again. The tester shall ask the successful child to remain until the other child is finished.
+
+    (3) If either or both of the children are unable to successfully operate the surrogate lighter during the 5-minute period specified in § 1210.4(f)(2), the adult tester shall demonstrate the operation
+    of the surrogate lighter. To conduct the demonstration, secure the children''s full attention by saying “Okay, give me your lighters now.” Take the lighters and place them on the table in front of you
+    out of the children''s reach. Then say, “I''ll show you how to make the noise with your lighters. First I''ll show you with (child''s name)''s lighter and then I''ll show you with (child''s name)''s
+    lighter.” Pick up the first child''s lighter. Hold the lighter approximately two feet in front of the children at their eye level. Hold the lighter in a vertical position in one hand with the child-resistant
+    feature exposed (not covered by fingers, thumb, etc.) Or'
+- id: art-7
+  title: § 1210.5
+  text: '§ 1210.5
+
+    Findings.'
+- id: art-8
+  title: Section 9(f) of the Consumer Product Safety Act, 15 U.S.C. 2058(f), requires the Commission to make findings concerning the following topics and to include the findings in the rule.
+  text: 'Section 9(f) of the Consumer Product Safety Act, 15 U.S.C. 2058(f), requires the Commission to make findings concerning the following topics and to include the findings in the rule.
+
+    (a)
+
+    The degree and nature of the risk of injury the rule is designed to eliminate or reduce.
+
+    The standard is designed to reduce the risk of death and injury from accidental fires started by children playing with lighters. From 1988 to 1990, an estimated 160 deaths per year resulted from such
+    fires. About 150 of these deaths, plus nearly 1,100 injuries and nearly $70 million in property damage, resulted from fires started by children under the age of 5. Fire-related injuries include thermal
+    burns — many of high severity — as well as anoxia and other, less serious injuries. The annual cost of such fires to the public is estimated at about $385 million (in 1990 dollars). Fires started by
+    young children (under age 5) are those which the standard would be most effective at reducing.
+
+    (b)
+
+    The approximate number of consumer products, or types or classes thereof, subject to the rule.
+
+    The standard covers certain flame-producing devices, commonly known as lighters, which are primarily intended for use in lighting cigarettes and other smoking materials. Lighters may be gas- or liquid-fueled,
+    mechanical or electric, and of various physical configurations. Over 600 million lighters are sold annually to consumers in the U.S.; over 100 million are estimated to be in use at any given time. Over
+    95 percent of all lighters sold are pocket-sized disposable butane models; of the remaining 5 percent, most are pocket refillable butane models. A small proportion of refillables is comprised of pocket
+    liquid-fuel models; still smaller proportions are represented by table lighters and by “novelty” lighters, that is, those having the physical appearance of other specific objects. Approximately 600
+    million pocket butane disposables (nonrefillable), 15-20 million pocket butane refillables, 5-10 million pocket liquid-fuel refillables, and 1-3 million novelty and other lighters were sold to consumers
+    in 1991. The standard covers disposable lighters, including inexpensive butane refillables, and novelty lighters. Roughly 30 million households have at least one lighter; ownership of more than one
+    lighter is typical, especially among smoking households.
+
+    (c)
+
+    The need of the public for the consumer products subject to the rule, and the probable effect of the rule on the utility, cost, or availability of such products to meet such need.
+
+    Consumers use lighters primarily to light smoking materials. Most other lighting needs that could be filled by matches may also be filled by lighters. Disposable butane lighters are, chiefly by virtue
+    of their low price and convenience, the closest available substitutes for matches. Although matches are found in far more households, lighters have steadily replaced matches since the 1960''s as the
+    primary light source among American consumers. The standard generally requires that lighters not be operable by most children under 52 months of age. This would likely be achieved by modifying products
+    to incorporate additional-action switches, levers, or buttons, thereby increasing the difficulty of product activation. Depending on the method of compliance chosen by manufacturers, there could be
+    some adverse effect on the utility of lighters. This may occur to the extent that operation of the products by adult users is made more difficult by the incorporation of child-resistant features. This
+    may lead some consumers to switch to matches, at least temporarily, which could reduce the expected level of safety provided by the standard. In addition, some “novelty” lighters will probably be discontinued,
+    due to the technical difficulty of incorporating child-resistant features or designs. Some loss of utility derived from those products by collectors or other users
+
+    may result, though many novelty models will probably remain on the market. The cost of producing lighters subject to the standard is expected to increase due to manufacturers'' and importers'' expenditures
+    in the areas of research and development, product redesign, tooling and assembly process changes, certification and testing, and other administrative activities. Total per-unit production costs for
+    the various lighter types may increase by 10-40 percent, with an average of less than 20 percent. Cost increases will likely be passed on to consumers in the form of higher retail prices. Disposable
+    lighters may increase in price by 10-40 cents per unit; prices of other lighters may increase by as much as $1-3. The estimated average per-unit price increase for all lighters subject to the standard
+    is about 20 cents. The total annual cost of the standard to consumers is estimated at about $90 million. The estimated cost of the standard per life saved is well under $1 million after considering
+    the benefits of reduced injuries and property damage; this is well below the consensus of estimates of the statistical value of life. A wide range of lighter types and models will continue to be available
+    to consumers. As noted above, some models of novelty lighters — all of which account for less than 1 percent of lighters sold — will likely be discontinued; this should not have a significant impact
+    on the overall availability of lighters to consumers.
+
+    (d)
+
+    Any means of achieving the objective of the order while minimizing adverse effects on competition or disruption or dislocation of manufacturing and other commercial practices consistent with the public
+    health and safety.
+
+    The Commission considered the potential effects on competition and business practices of various aspects of the standard, and, as noted below, incorporated some burden-reducing elements into the proposal.
+    The Commission also encouraged and participated in the development of a draft voluntary standard addressing the risk of child-play fires. A draft voluntary safety standard was developed by members of
+    an ASTM task group (now a subcommittee) to address much of the risk addressed by the proposed CPSC rule. This draft voluntary standard contained performance requirements similar, but not identical,
+    to those in the CPSC proposal. Development work on the voluntary standard ceased in 1991; industry representatives requested that the Commission issue the draft ASTM provisions in a mandatory rule.
+    One possible alternative to this mandatory standard would be for the Commission to rely on voluntary conformance to this draft standard to provide safety to consumers. The expected level of conformance
+    to a voluntary standard is uncertain, however; although some of the largest firms may market some child-resistant lighters that conform to these requirements, most firms (possibly including some of
+    the largest) probably would not. Even under generous assumptions about the level of voluntary conformance, net benefits to consumers would be substantially lower under this alternative than under the
+    standard. Thus, the Commission finds that reliance on voluntary conformance to the draft ASTM standard would not adequately reduce the unreasonable risk associated with lighters.
+
+    (e)
+
+    The rule (including its effective date) is reasonably necessary to eliminate or reduce an unreasonable risk.
+
+    The Commission''s hazard data and regulatory analysis demonstrate that lighters covered by the standard pose an unreasonable risk of death and injury to consumers. The Commission considered a number
+    of alternatives to address this risk, and believes that the standard strikes the most reasonable balance between risk reduction benefits and potential costs. Further, the amount of time before the standard
+    becomes effective will provide manufacturers and importers of most products adequate time to design, produce, and market safer lighters. Thus, the Commission finds that the standard and its effective
+    date are reasonably necessary to reduce the risk of fire-related death and injury associated with young children playing with lighters.
+
+    (f)
+
+    The benefits expected from the rule bear a reasonable relationship to its costs.
+
+    The standard will substantially reduce the number of fire-related deaths, injuries, and property damage associated with young children playing with lighters. The cost of these accidents, which is estimated
+    to be about $385 million
+
+    annually, will also be greatly reduced. Estimated annual benefits of the standard are $205-$270 million; estimated annual costs to the public are about $90 million. Expected annual net benefits would
+    therefore be $115-$180 million. Thus, the Commission finds that a reasonable relationship exists between potential benefits and potential costs of the standard.
+
+    (g)
+
+    The rule imposes the least burdensome requirement which prevents or adequately reduces the risk of injury for which the rule is being promulgated.
+
+    (1) In the final rule, the Commission incorporated a number of changes from the proposed rule in order to minimize the potential burden of the rule on industry and consumers. The Commission also considered
+    and rejected several alternatives during the development of the standard to reduce the potential burden on industry (especially small importers) and on consumers. These alternatives involve different
+    performance and test requirements and different definitions determining the scope of coverage among products. Other alternatives generally would be more burdensome to industry and would have higher
+    costs to consumers. Some less burdensome alternatives would have lower risk-reduction benefits to consumers; none has been identified that would have higher expected net benefits than the standard.
+
+    (2) The scope of this mandatory standard is limited to disposable lighters and novelty lighters; it does not apply to “luxury” lighters (including most higher priced refillable butane and liquid-fuel
+    models). This is similar but not identical to the scope of a draft voluntary industry standard developed in response to the Commission''s advance notice of proposed rulemaking of March 3, 1988 (53 FR
+    6833). This exclusion significantly reduces the potential cost of the standard without significantly affecting potential benefits.
+
+    (3) The Commission narrowed the scope of the final rule with respect to novelty lighters, and considered limiting the scope further to exclude all nondisposable novelty lighters. Though further limiting
+    the scope would ease the potential burden of the standard on manufacturers and importers slightly, inherently less safe non-child-resistant lighters that are considered to be especially appealing to
+    children would remain on the market, thereby reducing the potential safety benefits to the public. The Commission finds that it would not be in the public interest to exclude novelty lighters.
+
+    (4) The Commission considered the potential effect of alternate performance requirements during the development of the standard. A less stringent acceptance criterion of 80 percent (rather than the
+    standard''s 85 percent) might slightly reduce costs to industry and consumers. The safety benefits of this alternative, however, would likely be reduced disproportionately to the potential reduction
+    in costs. A higher (90 percent) acceptance criterion was also considered. This higher performance level is not commercially or technically feasible for many firms, however; the Commission believes that
+    this more stringent alternative would have substantial adverse effects on manufacturing and competition, and would increase costs disproportionate to benefits. The Commission believes that the requirement
+    that complying lighters not be operable by at least 85 percent of children in prescribed tests strikes a reasonable balance between improved safety for a substantial majority of young children and other
+    potential fire victims and the potential for adverse competitive effects and manufacturing disruption.
+
+    (5) The Commission believes that the standard should become effective as soon as reasonably possible. The standard will bec'
+- id: art-9
+  title: § 1210.11
+  text: '§ 1210.11
+
+    General.'
+- id: art-10
+  title: Section 14(a) of the Consumer Product Safety Act (CPSA), 15 U.S.C. 1263(a), requires every manufacturer, private labeler, or importer of a product that is subject to a consumer product safety standard
+  text: Section 14(a) of the Consumer Product Safety Act (CPSA), 15 U.S.C. 1263(a), requires every manufacturer, private labeler, or importer of a product that is subject to a consumer product safety standard
+    and that is distributed in commerce to issue a certificate that such product conforms to the applicable standard and to base that certificate upon a test of each item or upon a reasonable testing program.
+    The purpose of this subpart B of part 1210 is to establish requirements that manufacturers, importers, and private labelers must follow to certify that their products comply with the Safety Standard
+    for Cigarette Lighters. This subpart B describes the minimum features of a reasonable testing program and includes requirements for labeling, recordkeeping, and reporting pursuant to sections 14, 16(b),
+    17(g), and 27(e) of the CPSA, 15 U.S.C. 2063, 2065(b), 2066(g), and 2076(e).
+- id: art-11
+  title: § 1210.12
+  text: '§ 1210.12
+
+    Certificate of compliance.
+
+    (a)
+
+    General requirements
+
+    —(1)
+
+    Manufacturers (including importers).
+
+    Manufacturers of any lighter subject to the standard must issue the certificate of compliance required by section 14(a) of the CPSA and this subpart B, based on a reasonable testing program or a test
+    of each product, as required by §§ 1210.13-1210.14 and 1210.16. Manufacturers must also label each lighter subject to the standard as required by paragraph (c) of this section and keep the records and
+    make the reports required by §§ 1210.15 and 1210.17. For purposes of this requirement, an importer of lighters shall be considered the “manufacturer.”
+
+    (2)
+
+    Private labelers.
+
+    Because private labelers necessarily obtain their products from a manufacturer or importer that is already required to issue the certificate, private labelers are not required to issue a certificate.
+    However, private labelers must ensure that the lighters are labeled in accordance with paragraph (c) of this section and that any certificate of compliance that is supplied with each shipping unit of
+    lighters in accordance with paragraph (b) of this section is supplied to any distributor or retailer who receives the product from the private labeler.
+
+    (3)
+
+    Testing on behalf of importers.
+
+    If the required testing has been performed by or for a foreign manufacturer of a product, an importer may rely on such tests to support the certificate of compliance, provided that the importer is a
+    resident of the United States or has a resident agent in'
 doc_files:
 - us/raw/US-CFR-title16-part1210.xml
+- us/raw/US-CFR-title16-part1210.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1210.xml (xml, 56856 chars)，生成 9 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1210.xml (xml, 56856 chars)，生成 9 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1210.xml (xml, 56854 chars)，生成 11 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1210-4（US 16 CFR Part 1210）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1210-3（US 16 CFR Part 1210）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1210-2（US 16 CFR Part 1210）。'

@@ -9,11 +9,935 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'L_2017117EN.01000101.xml
+
+
+    5.5.2017
+
+
+    EN
+
+
+    Official Journal of '
+  text: 'L_2017117EN.01000101.xml
+
+
+    5.5.2017
+
+
+    EN
+
+
+    Official Journal of the European Union
+
+
+    L 117/1
+
+
+    REGULATION (EU) 2017/745 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL
+
+
+
+    of 5 April 2017
+
+
+
+    on medical devices, amending Directive 2001/83/EC, Regulation (EC) No 178/2002 and Regulation (EC) No 1223/2009 and repealing Council Directives 90/385/EEC and 93/42/EEC
+
+
+    (Text with EEA relevance)
+
+
+    THE EUROPEAN PARLIAMENT AND THE COUNCIL OF THE EUROPEAN UNION,
+
+
+    Having regard to the Treaty on the Functioning of the European Union, and in particular Article 114 and Article 168(4)(c) thereof,
+
+
+    Having regard to the proposal from the European Commission,
+
+
+    After transmission of the draft legislative act to the national parliaments,
+
+
+    Having regard to the opinion of the European Economic and Social Committee
+
+    (
+
+    1
+
+    )
+
+    ,
+
+
+    After consulting the Committee of the Regions,
+
+
+    Acting in accordance with the ordinary legislative procedure
+
+    (
+
+    2
+
+    )
+
+    ,
+
+
+    Whereas:
+
+
+    (1)
+
+
+    Council Directive 90/385/EEC
+
+    (
+
+    3
+
+    )
+
+    and Council Directive 93/42/EEC
+
+    (
+
+    4
+
+    )
+
+    constitute the Union regulatory framework for medical devices, other than
+
+    in vitro
+
+    diagnostic medical devices. However, a fundamental revision of those Directives is needed to establish a robust, transparent, predictable and sustainable regulatory framework for medical devices which
+    ensures a high level of safety and health whilst supporting innovation.
+
+
+    (2)
+
+
+    This Regulation aims to ensure the smooth functioning of the internal market as regards medical devices, taking as a base a high level of protection of health for patients and users, and taking into
+    account the small- and medium-sized enterprises that are active in this sector. At the same time, this Regulation sets high standards of quality and safety for medical devices in order to meet common
+    safety concerns as regards such products. Both objectives are being pursued simultaneously and are inseparably linked whilst one not being secondary to the other. As regards Article 114 of the Treaty
+    on the Functioning of the European Union (TFEU), this Regulation harmonises the rules for the placing on the market and putting into service of medical devices and their accessories on the Union market
+    thus allowing them to benefit from the principle of free movement of goods. As regards Article 168(4)(c) TFEU, this Regulation sets high standards of quality and safety for medical devices by ensuring,
+    among other things, that data generated in clinical investigations are reliable and robust and that the safety of the subjects participating in a clinical investigation is protected.
+
+
+    (3)
+
+
+    This Regulation does not seek to harmonise rules relating to the further making available on the market of medical devices after they have already been put into service such as in the context of second-hand
+    sales.
+
+
+    (4)
+
+
+    Key elements of the existing regulatory approach, such as the supervision of notified bodies, conformity assessment procedures, clinical investigations and clinical evaluation, vigilance and market
+    surveillance should be significantly reinforced, whilst provisions ensuring transparency and traceability regarding medical devices should be introduced, to improve health and safety.
+
+
+    (5)
+
+
+    To the extent possible, guidance developed for medical devices at international level, in particular in the context of the Global Harmonization Task Force (GHTF) and its follow-up initiative, the International
+    Medical Devices Regulators Forum (IMDRF), should be taken into account to promote the global convergence of regulations which contributes to a high level of safety protection worldwide, and to facilitate
+    trade, in particular in the provisions on Unique Device Identification, general safety and performance requirements, technical documentation, classification rules, conformity assessment procedures and
+    clinical investigations.
+
+
+    (6)
+
+
+    For historical reasons, active implantable medical devices, covered by Directive 90/385/EEC, and other medical devices, covered by Directive 93/42/EEC, were regulated in two separate legal instruments.
+    In the interest of simplification, both directives, which have been amended several times, should be replaced by a single legislative act applicable to all medical devices other than
+
+    in vitro
+
+    diagnostic medical devices.
+
+
+    (7)
+
+
+    The scope of application of this Regulation should be clearly delimited from other Union harmonisation legislation concerning products, such as
+
+    in vitro
+
+    diagnostic medical devices, medicinal products, cosmetics and food. Therefore, Regulation (EC) No 178/2002 of the European Parliament and of the Council
+
+    (
+
+    5
+
+    )
+
+    should be amended to exclude medical devices from its scope.
+
+
+    (8)
+
+
+    It should be the responsibility of the Member States to decide on a case-by-case basis whether or not a product falls within the scope of this Regulation. In order to ensure consistent qualification
+    decisions in that regard across all Member States, particularly with regard to borderline cases, the Commission should be allowed to, on its own initiative or at the duly substantiated request of a
+    Member State, having consulted the Medical Device Coordination Group (‘MDCG’), decide on a case-by-case basis whether or not a specific product, category or group of products falls within the scope
+    of this Regulation. When deliberating on the regulatory status of products in borderline cases involving medicinal products, human tissues and cells, biocidal products or food products, the Commission
+    should ensure an appropriate level of consultation of the European Medicines Agency (EMA), the European Chemicals Agency and the European Food Safety Authority, as relevant.
+
+
+    (9)
+
+
+    Since in some cases it is difficult to distinguish between medical devices and cosmetic products, the possibility of taking a Union-wide decision regarding the regulatory status of a product should
+    also be introduced in Regulation (EC) No 1223/2009 of the European Parliament and of the Council
+
+    (
+
+    6
+
+    )
+
+    .
+
+
+    (10)
+
+
+    Products which combine a medicinal product or substance and a medical device are regulated either under this Regulation or under Directive 2001/83/EC of the European Parliament and of the Council.
+
+    (
+
+    7
+
+    )
+
+    The two legislative acts should ensure appropriate interaction in terms of consultations during pre-market assessment, and of exchange of information in the context of vigilance activities involving
+    such combination products. For medicinal products that integrate a medical device part, compliance with the general safety and performance requirements laid down in this Regulation for the device part
+    should be adequately assessed in the context of the marketing authorisation for such medicinal products. Directive 2001/83/EC should therefore be amended.
+
+
+    (11)
+
+
+    Union legislation, in particular Regulation (EC) No 1394/2007 of the European Parliament and of the Council
+
+    (
+
+    8
+
+    )
+
+    and Directive 2004/23/EC of the European Parliament and of the Council
+
+    (
+
+    9
+
+    )
+
+    , is incomplete in respect of certain products manufactured utilising derivatives of tissues or cells of human origin that are non-viable or are rendered non-viable. Such products should come under
+    the scope of this Regulation, provided they comply with the definition of a medical device or are covered by this Regulation.
+
+
+    (12)
+
+
+    Certain groups of products for which a manufacturer claims only an aesthetic or another non-medical purpose but which are similar to medical devices in terms of functioning and risks profile should
+    be covered by this Regulation. In order for manufacturers to be able to demonstrate the conformity of such products, the Commission should adopt common specifications at least with regard to application
+    of risk management and, where necessary, clinical evaluation regarding safety. Such common specifications should be developed specifically for a group of products without an intended medical purpose
+    and should not be used for conformity assessment of the analogous devices with a medical purpose. Devices with both a medical and a non-medical intended purpose should fulfil both the requirements applicable
+    to devices with, and to devices without, an intended medical purpose.
+
+
+    (13)
+
+
+    As is the case for products that contain viable tissues or cells of human or animal origin, that are explicitly excluded from Directives 90/385/EEC and 93/42/EEC and hence from this Regulation, it should
+    be clarified that products that contain or consist of viable biological materials or viable organisms of another origin in order to achieve or support the intended purpose of those products are not
+    covered by this Regulation either.
+
+
+    (14)
+
+
+    The requirements laid down in Directive 2002/98/EC of the European Parliament and of the Council
+
+    (
+
+    10
+
+    )
+
+    should continue to apply.
+
+
+    (15)
+
+
+    There is scientific uncertainty about the risks and benefits of nanomaterials used for devices. In order to ensure a high level of health protection, free movement of goods and legal certainty for manufacturers,
+    it is necessary to introduce a uniform definition for nanomaterials based on Commission Recommendation 2011/696/EU
+
+    (
+
+    11
+
+    )
+
+    , with the necessary flexibility to adapt that definition to scientific and technical progress and subsequent regulatory development at Union and international level. In the design and manufacture of
+    devices, manufacturers should take special care when using nanoparticles for which there is a high or medium potential for internal exposure. Such devices should be subject to the most stringent conformity
+    assessment procedures. In preparation of implementing acts regulating the practical and uniform application of the corresponding requirements laid down in this Regulation, the relevant scientific opinions
+    of the relevant scientific committees should be taken into account.
+
+
+    (16)
+
+
+    Safety aspects addressed by Directive 2014/30/EU of the European Parliament and of the Council
+
+    (
+
+    12
+
+    )
+
+    are an integral part of the general safety and performance requirements laid down in this Regulation for devices. Consequently, this Regulation should be considered a
+
+    lex specialis
+
+    in relation to that Directive.
+
+
+    (17)
+
+
+    This Regulation should include requirements regarding the design and manufacture of devices emitting ionizing radiation without affecting the application of Council Directive 2013/59/Euratom
+
+    (
+
+    13
+
+    )
+
+    which pursues other objectives.
+
+
+    (18)
+
+
+    This Regulation should include requirements for devices'' design, safety and performance characteristics which are developed in such a way as to prevent occupational injuries, including protection from
+    radiation.
+
+
+    (19)
+
+
+    It is necessary to clarify that software in its own right, when specifically intended by the manufacturer to be used for one or more of the medical purposes set out in the definition of a medical device,
+    qualifies as a medical device, while software for general purposes, even when used in a healthcare setting, or software intended for life-style and well-being purposes is not a medical device. The qualification
+    of software, either as a device or an accessory, is independent of the software''s location or the type of interconnection between the software and a device.
+
+
+    (20)
+
+
+    The definitions in this Regulation, regarding devices themselves, the making available of devices, economic operators, users and specific processes, the conformity assessment, clinical investigations
+    and clinical evaluations, post-market surveillance, vigilance and market surveillance, standards and other technical specifications, should be aligned with well-established practice in the field at
+    Union and international level in order to enhance legal certainty.
+
+
+    (21)
+
+
+    It should be made clear that it is essential that devices offered to persons in the Union by means of information society services within the meaning of Directive (EU) 2015/1535 of the European Parliament
+    and of the Council
+
+    (
+
+    14
+
+    )
+
+    and devices used in the context of a commercial activity to provide a diagnostic or therapeutic service to persons within the Union comply with the requirements of this Regulation, where the product
+    in question is placed on the market or the service is provided in'
+- id: art-2
+  title: CHAPTER I
+  text: 'CHAPTER I
+
+
+    SCOPE AND DEFINITIONS'
+- id: art-3
+  title: Article 1
+  text: 'Article 1
+
+
+    Subject matter and scope
+
+
+    1.   This Regulation lays down rules concerning the placing on the market, making available on the market or putting into service of medical devices for human use and accessories for such devices in
+    the Union. This Regulation also applies to clinical investigations concerning such medical devices and accessories conducted in the Union.
+
+
+    2.   This Regulation shall also apply, as from the date of application of common specifications adopted pursuant to Article 9, to the groups of products without an intended medical purpose that are
+    listed in Annex XVI, taking into account the state of the art, and in particular existing harmonised standards for analogous devices with a medical purpose, based on similar technology. The common specifications
+    for each of the groups of products listed in Annex XVI shall address, at least, application of risk management as set out in Annex I for the group of products in question and, where necessary, clinical
+    evaluation regarding safety.
+
+
+    The necessary common specifications shall be adopted by 26 May 2020. They shall apply as from six months after the date of their entry into force or from 26 May 2020, whichever is the latest.
+
+
+    Notwithstanding Article 122, Member States'' measures regarding the qualification of the products covered by Annex XVI as medical devices pursuant to Directive 93/42/EEC shall remain valid until the
+    date of application, as referred to in the first subparagraph, of the relevant common specifications for that group of products.
+
+
+    This Regulation also applies to clinical investigations conducted in the Union concerning the products referred to in the first subparagraph.
+
+
+    3.   Devices with both a medical and a non-medical intended purpose shall fulfil cumulatively the requirements applicable to devices with an intended medical purpose and those applicable to devices
+    without an intended medical purpose.
+
+
+    4.   For the purposes of this Regulation, medical devices, accessories for medical devices, and products listed in Annex XVI to which this Regulation applies pursuant to paragraph 2 shall hereinafter
+    be referred to as ‘devices’.
+
+
+    5.   Where justified on account of the similarity between a device with an intended medical purpose placed on the market and a product without an intended medical purpose in respect of their characteristics
+    and risks, the Commission is empowered to adopt delegated acts in accordance with Article 115 to amend the list in Annex XVI, by adding new groups of products, in order to protect the health and safety
+    of users or other persons or other aspects of public health.
+
+
+    6.   This Regulation does not apply to:
+
+
+    (a)
+
+
+    in vitro
+
+    diagnostic medical devices covered by Regulation (EU) 2017/746;
+
+
+    (b)
+
+
+    medicinal products as defined in point 2 of Article 1 of Directive 2001/83/EC. In deciding whether a product falls under Directive 2001/83/EC or under this Regulation, particular account shall be taken
+    of the principal mode of action of the product;
+
+
+    (c)
+
+
+    advanced therapy medicinal products covered by Regulation (EC) No 1394/2007;
+
+
+    (d)
+
+
+    human blood, blood products, plasma or blood cells of human origin or devices which incorporate, when placed on the market or put into service, such blood products, plasma or cells, except for devices
+    referred to in paragraph 8 of this Article;
+
+
+    (e)
+
+
+    cosmetic products covered by Regulation (EC) No 1223/2009;
+
+
+    (f)
+
+
+    transplants, tissues or cells of animal origin, or their derivatives, or products containing or consisting of them; however this Regulation does apply to devices manufactured utilising tissues or cells
+    of animal origin, or their derivatives, which are non-viable or are rendered non-viable;
+
+
+    (g)
+
+
+    transplants, tissues or cells of human origin, or their derivatives, covered by Directive 2004/23/EC, or products containing or consisting of them; however this Regulation does apply to devices manufactured
+    utilising derivatives of tissues or cells of human origin which are non-viable or are rendered non-viable;
+
+
+    (h)
+
+
+    products, other than those referred to in points (d), (f) and (g), that contain or consist of viable biological material or viable organisms, including living micro-organisms, bacteria, fungi or viruses
+    in order to achieve or support the intended purpose of the product;
+
+
+    (i)
+
+
+    food covered by Regulation (EC) No 178/2002.
+
+
+    7.   Any device which, when placed on the market or put into service, incorporates as an integral part an
+
+    in vitro
+
+    diagnostic medical device as defined in point 2 of Article 2 of Regulation (EU) 2017/746, shall be governed by this Regulation. The requirements of Regulation (EU) 2017/746 shall apply to the
+
+    in vitro
+
+    diagnostic medical device part of the device.
+
+
+    8.   Any device which, when placed on the market or put into service, incorporates, as an integral part, a substance which, if used separately, would be considered to be a medicinal product as defined
+    in point 2 of Article 1 of Directive 2001/83/EC, including a medicinal product derived from human blood or human plasma as defined in point 10 of Article 1 of that Directive, and that has an action
+    ancillary to that of the device, shall be assessed and authorised in accordance with this Regulation.
+
+
+    However, if the action of that substance is principal and not ancillary to that of the device, the integral product shall be governed by Directive 2001/83/EC or Regulation (EC) No 726/2004 of the European
+    Parliament and of the Council
+
+    (
+
+    34
+
+    )
+
+    , as applicable. In that case, the relevant general safety and performance requirements set out in Annex I to this Regulation shall apply as far as the safety and performance of the device part are
+    concerned.
+
+
+    9.   Any device which is intended to administer a medicinal product as defined in point 2 of Article 1 of Directive 2001/83/EC shall be governed by this Regulation, without prejudice to the provisions
+    of that Directive and of Regulation (EC) No 726/2004 with regard to the medicinal product.
+
+
+    However, if the device intended to administer a medicinal product and the medicinal product are placed on the market in such a way that they form a single integral product which is intended exclusively
+    for use in the given combination and which is not reusable, that single integral product shall be governed by Directive 2001/83/EC or Regulation (EC) No 726/2004, as applicable. In that case, the relevant
+    general safety and performance requirements set out in Annex I to this Regulation shall apply as far as the safety and performance of the device part of the single integral product are concerned.
+
+
+    10.   Any device which, when placed on the market or put into service, incorporates, as an integral part, non-viable tissues or cells of human origin or their derivatives that have an action ancillary
+    to that of the device shall be assessed and authorised in accordance with this Regulation. In that case, the provisions for donation, procurement and testing laid down in Directive 2004/23/EC shall
+    apply.
+
+
+    However, if the action of those tissues or cells or their derivatives is principal and not ancillary to that of the device and the product is not governed by Regulation (EC) No 1394/2007, the product
+    shall be governed by Directive 2004/23/EC. In that case, the relevant general safety and performance requirements set out in Annex I to this Regulation shall apply as far as the safety and performance
+    of the device part are concerned.
+
+
+    11.   This Regulation is specific Union legislation within the meaning of Article 2(3) of Directive 2014/30/EU.
+
+
+    12.   Devices that are also machinery within the meaning of point (a) of the second paragraph of Article 2 of Directive 2006/42/EC of the European Parliament and of the Council
+
+    (
+
+    35
+
+    )
+
+    shall, where a hazard relevant under that Directive exists, also meet the essential health and safety requirements set out in Annex I to that Directive to the extent to which those requirements are
+    more specific than the general safety and performance requirements set out in Chapter II of Annex I to this Regulation.
+
+
+    13.   This Regulation shall not affect the application of Directive 2013/59/Euratom.
+
+
+    14.   This Regulation shall not affect the right of a Member State to restrict the use of any specific type of device in relation to aspects not covered by this Regulation.
+
+
+    15.   This Regulation shall not affect national law concerning the organisation, delivery or financing of health services and medical care, such as the requirement that certain devices may only be supplied
+    on a medical prescription, the requirement that only certain health professionals or healthcare institutions may dispense or use certain devices or that their use be accompanied by specific professional
+    counselling.
+
+
+    16.   Nothing in this Regulation shall restrict the freedom of the press or the freedom of expression in the media in so far as those freedoms are guaranteed in the Union and in the Member States, in
+    particular under Article 11 of the Charter of Fundamental Rights of the European Union.'
+- id: art-4
+  title: Article 2
+  text: 'Article 2
+
+
+    Definitions
+
+
+    For the purposes of this Regulation, the following definitions apply:
+
+
+    (1)
+
+
+    ‘medical device’ means any instrument, apparatus, appliance, software, implant, reagent, material or other article intended by the manufacturer to be used, alone or in combination, for human beings
+    for one or more of the following specific medical purposes:
+
+
+    —
+
+
+    diagnosis, prevention, monitoring, prediction, prognosis, treatment or alleviation of disease,
+
+
+    —
+
+
+    diagnosis, monitoring, treatment, alleviation of, or compensation for, an injury or disability,
+
+
+    —
+
+
+    investigation, replacement or modification of the anatomy or of a physiological or pathological process or state,
+
+
+    —
+
+
+    providing information by means of
+
+    in vitro
+
+    examination of specimens derived from the human body, including organ, blood and tissue donations,
+
+
+    and which does not achieve its principal intended action by pharmacological, immunological or metabolic means, in or on the human body, but which may be assisted in its function by such means.
+
+
+    The following products shall also be deemed to be medical devices:
+
+
+    —
+
+
+    devices for the control or support of conception;
+
+
+    —
+
+
+    products specifically intended for the cleaning, disinfection or sterilisation of devices as referred to in Article 1(4) and of those referred to in the first paragraph of this point.
+
+
+    (2)
+
+
+    ‘accessory for a medical device’ means an article which, whilst not being itself a medical device, is intended by its manufacturer to be used together with one or several particular medical device(s)
+    to specifically enable the medical device(s) to be used in accordance with its/their intended purpose(s) or to specifically and directly assist the medical functionality of the medical device(s) in
+    terms of its/their intended purpose(s);
+
+
+    (3)
+
+
+    ‘custom-made device’ means any device specifically made in accordance with a written prescription of any person authorised by national law by virtue of that person''s professional qualifications which
+    gives, under that person''s responsibility, specific design characteristics, and is intended for the sole use of a particular patient exclusively to meet their individual conditions and needs.
+
+
+    However, mass-produced devices which need to be adapted to meet the specific requirements of any professional user and devices which are mass-produced by means of industrial manufacturing processes
+    in accordance with the written prescriptions of any authorised person shall not be considered to be custom-made devices;
+
+
+    (4)
+
+
+    ‘active device’ means any device, the operation of which depends on a source of energy other than that generated by the human body for that purpose, or by gravity, and which acts by changing the density
+    of or converting that energy. Devices intended to transmit energy, substances or other elements between an active device and the patient, without any significant change, shall not be deemed to be active
+    devices.
+
+
+    Software shall also be deemed to be an active device;
+
+
+    (5)
+
+
+    ‘implantable device’ means any device, including those that are partially or wholly absorbed, which is intended:
+
+
+    —
+
+
+    to be totally introduced into the human body, or
+
+
+    —
+
+
+    to replace an epithelial surface or the surface of the eye,
+
+
+    by clinical intervention and which is intended to remain in place after the procedure.
+
+
+    Any device intended to be partially introduced into the human body by clinical intervention and intended to remain in place after the procedure for at least 30 days shall also be deemed to be an implantable
+    device;
+
+
+    (6)
+
+
+    ‘invasive device’ means any device which, in whole or in part, penetrates inside the body, either through a body orifice or through the surface of the body;
+
+
+    (7)
+
+
+    ‘generic device group’ means a set of devices having the same or similar intended purposes or a commonality of technology allowing them to be classified in a generic manner not reflecting specific characteristics;
+
+
+    (8)
+
+
+    ‘single-use device’ means a device that is intended to be used on one individual during a single procedure;
+
+
+    (9)
+
+
+    ‘falsified device’ means any device with a false presentation of its identity and/or of its source and/or its CE marking certificates or documents relating to CE marking procedures. This definition
+    does not include unintentional non-compliance and is without prejudice to infringements of intellectual property rights;
+
+
+    (10)
+
+
+    ‘procedure pack’ means a combination of products packaged together and placed on the market with the purpose of being used for a specific medical purpose;
+
+
+    (11)
+
+
+    ‘system’ means a combination of products, either packaged together or not, which are intended to be inter-connected or combined to achieve a specific medical purpose;
+
+
+    (12)
+
+
+    ‘intended purpose’ means the use for which a device is intended according to the data supplied by the manufacturer on the label, in the instructions for use or in promotional or sales materials or statements
+    and as specified by the manufacturer in the clinical evaluation;
+
+
+    (13)
+
+
+    ‘label’ means the written, printed or graphic information appearing either on the device itself, or on the packaging of each unit or on the packaging of multiple devices;
+
+
+    (14)
+
+
+    ‘instructions for use’ means the information provided by the manufacturer to inform the user of a device''s intended purpose and proper use and of any precautions to be taken;
+
+
+    (15)
+
+
+    ‘Unique Device Identifier’ (‘UDI’) means a series of numeric or alphanumeric characters that is created through internationally accepted device identification and coding standards and that allows unambiguous
+    identification of specific devices on the market;
+
+
+    (16)
+
+
+    ‘non-viable’ means having no potential for metabolism or multiplication;
+
+
+    (17)
+
+
+    ‘derivative’ means a ‘non-cellular substance’ extracted from human or animal tissue or cells through a manufacturing process. The final substance used for manufacturing of the device in this case does
+    not contain any cells or tissues;
+
+
+    (18)
+
+
+    ‘nanomaterial’ means a natural, incidental or manufactured material containing particles in an unbound state or as an aggregate or as an agglomerate and where, for 50 % or more of the particles in the
+    number size distribution, one or more external dimensions is in the size range 1-100 nm;
+
+
+    Fullerenes, graphene flakes and single-wall carbon nanotubes with one or more external dimensions below 1 nm shall also be deemed to be nanomaterials;
+
+
+    (19)
+
+
+    ‘particle’, for the purposes of the definition of nanomaterial in point (18), means a minute piece of matter with defined physical boundaries;
+
+
+    (20)
+
+
+    ‘agglomerate’, for the purposes of the definition of nanomaterial in point (18), means a collection of weakly bound particles or aggregates where the resulting external surface area is similar to the
+    sum of the surface areas of the individual components;
+
+
+    (21)
+
+
+    ‘aggregate’, for the purposes of the definition of nanomaterial in point (18), means a particle comprising of strongly bound or fused particles;
+
+
+    (22)
+
+
+    ‘performance’ means the ability of a device to achieve its intended purpose as stated by the manufacturer;
+
+
+    (23)
+
+
+    ‘risk’ means the combination of the probability of occurrence of harm and the severity of that harm;
+
+
+    (24)
+
+
+    ‘benefit-risk determination’ means the analysis of all assessments of benefit and risk of possible relevance for the use of the device for the intended purpose, when used in accordance with the intended
+    purpose given by the manufacturer;
+
+
+    (25)
+
+
+    ‘compatibility’ is the ability of a device, including software, when used together with one or more other devices in accordance with its intended purpose, to:
+
+
+    (a)
+
+
+    perform without losing or compromising the ability to perform as intended, and/or
+
+
+    (b)
+
+
+    integrate and/or operate without the need for modification or adaption of any part of the combined devices, and/or
+
+
+    (c)
+
+
+    be used together without conflict/interference or adverse reaction.
+
+
+    (26)
+
+
+    ‘interoperability’ is the ability of two or more devices, including software, from the same manufacturer or from different manufacturers, to:
+
+
+    (a)
+
+
+    exchange information and use the information that has been exchanged for the correct execution of a specified function without changing the content of the data, and/or
+
+
+    (b)
+
+
+    communicate with each other, and/or
+
+
+    (c)
+
+
+    work together as intended.
+
+
+    (27)
+
+
+    ‘making available on the market’ means any supply of a device, other than an investigational device, for distribution, consumption or use on the Union market in the course of a commercial activity,
+    whether in return for payment or free of charge;
+
+
+    (28)
+
+
+    ‘placing on the market’ means the first making available of a device, other than an investigational device, on the Union market;
+
+
+    (29)
+
+
+    ‘putting into service’ means the stage at which a device, other than an investigational device, has been made available to the final user as being ready for use on the Union market for the first time
+    for its intended purpose;
+
+
+    (30)
+
+
+    ‘manufacturer’ means a natural or legal person who manufactures or fully refurbishes a device or has a device designed, manufactured or fully refurbished, and markets that device under its name or trademark;
+
+
+    (31)
+
+
+    ‘fully refurbishing’, for the purposes of the definition of manufacturer, means the complete rebuilding of a device already placed on the market or put into service, or the making of a new device from
+    used devices, to bring it into conformity with this Regulation, combined with the assignment of a new lifetime to the refurbished device;
+
+
+    (32)
+
+
+    ‘authorised representative’ means any natural or legal person established within the Union who has received and accepted a written mandate from a manufacturer, located outside the Union, to act on the
+    manufacturer''s behalf in relation to specified tasks with regard to the latter''s obligations under this Regulation;
+
+
+    (33)
+
+
+    ‘importer’ means any natural or legal person established within the Union that places a device from a third country on the Union market;
+
+
+    (34)
+
+
+    ‘distributor’ means any natural or legal person in the supply chain, other than the manufacturer or the importer, that makes a device available on the market, up until the point of putting into service;
+
+
+    (35)
+
+
+    ‘economic operator’ means a manufacturer, an authorised representative, an importer, a distributor or the person referred to in Article 22(1) and 22(3);
+
+
+    (36)
+
+
+    ‘health institution’ means an organisation the primary purpose of which is the care or treatment of patients or the promotion of public health;
+
+
+    (37)
+
+
+    ‘user’ means any healthcare professional or lay person who uses a device;
+
+
+    (38)
+
+
+    ‘lay person’ means an individual who does not have formal education in a relevant field of healthcare or medical discipline;
+
+
+    (39)
+
+
+    ‘reprocessing’ means a process carried out on a used device in order to allow its safe reuse including cleaning, disinfection, sterilisation and related procedures, as well as testing and restoring
+    the technical and functional safety of the used device;
+
+
+    (40)
+
+
+    ‘conformity assessment’ means the process demonstrating whether the requirements of this Regulation relating to a dev'
 doc_files:
 - eu/raw/EU-2017-745_Medical_Devices_Regulation_MDR.xhtml
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2017-745_Medical_Devices_Regulation_MDR.xhtml (html, 646595 chars)，生成 3 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2017-745_Medical_Devices_Regulation_MDR.xhtml (html, 646595 chars)，生成 3 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2017-745_Medical_Devices_Regulation_MDR.xhtml (html, 646394 chars)，生成 4 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

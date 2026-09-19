@@ -1,0 +1,26 @@
+id: KB-other-CN-CN-GB_T_26125-2011_-_-_-_-_-_-_-_
+regulation_id: CN-GB_T_26125-2011_-_-_-_-_-_-_-_
+doc_name: CN-GB GB/T 26125-2011 电子电气产品  六种限用物质（铅、汞、镉、六价铬、多溴联苯和多溴二苯醚）的测定
+official_citation: CN-GB GB/T 26125-2011 电子电气产品  六种限用物质（铅、汞、镉、六价铬、多溴联苯和多溴二苯醚）的测定
+short_name: CN-GB GB/T 26125-2011 电子电气产品  六种限用物质（铅、汞、镉、六价铬、多溴联苯和多溴二苯醚）的测定
+source: category
+primary_source: other
+domain: other
+applies_if:
+  category:
+  - other
+  features_any: []
+  markets:
+  - CN
+key_articles: []
+key_points:
+- CN-GB GB/T 26125-2011 电子电气产品  六种限用物质（铅、汞、镉、六价铬、多溴联苯和多溴二苯醚）的测定：其他品类领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=226880C3DF533874B8531C25B4D13E67
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

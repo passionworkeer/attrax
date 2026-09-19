@@ -1,0 +1,28 @@
+id: KB-other-DE-DE-BATTDG_BATTERIERECHT_DURCHFUEHRUNGSGESETZ
+regulation_id: DE-BATTDG_BATTERIERECHT_DURCHFUEHRUNGSGESETZ
+doc_name: DE BattDG Batterierecht Durchfuehrungsgesetz
+official_citation: DE BattDG Batterierecht Durchfuehrungsgesetz
+short_name: DE BattDG Batterierecht Durchfuehrungsgesetz
+source: category
+primary_source: other
+domain: other
+applies_if:
+  category:
+  - other
+  features_any: []
+  markets:
+  - DE
+key_articles:
+- art-1
+- art-2
+key_points:
+- DE BattDG Batterierecht Durchfuehrungsgesetz：其他品类领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://www.gesetze-im-internet.de/battdg/BattDG.pdf
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

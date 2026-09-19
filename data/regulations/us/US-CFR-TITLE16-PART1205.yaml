@@ -1,6 +1,6 @@
 id: US-CFR-TITLE16-PART1205
 official_citation: US 16 CFR Part 1205
-short_name: US 16 CFR Part 1205
+short_name: US 16 CFR Part 1205 — SAFETY STANDARD FOR WALK-BEHIND POWER LAWN MOWERS
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,761 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '16
+
+    Commercial Practices
+
+    2
+
+    2024-01-01
+
+    2024-01-01
+
+    false
+
+    SAFETY'
+  text: '16
+
+    Commercial Practices
+
+    2
+
+    2024-01-01
+
+    2024-01-01
+
+    false
+
+    SAFETY STANDARD FOR WALK-BEHIND POWER LAWN MOWERS
+
+    1205
+
+    PART 1205
+
+    Commercial Practices
+
+    CONSUMER PRODUCT SAFETY COMMISSION
+
+    CONSUMER PRODUCT SAFETY ACT REGULATIONS
+
+    Pt. 1205
+
+    PART 1205—SAFETY STANDARD FOR WALK-BEHIND POWER LAWN MOWERS
+
+    Subpart A—The Standard
+
+    Sec.
+
+    1205.1
+
+    Scope of the standard.
+
+    1205.2
+
+    Effective date.
+
+    1205.3
+
+    Definitions.
+
+    1205.4
+
+    Walk-behind rotary power mower protective shields.
+
+    1205.5
+
+    Walk-behind rotary power mower controls.
+
+    1205.6
+
+    Warning labels for reel-type and rotary power mowers.
+
+    1205.7
+
+    Prohibited stockpiling.
+
+    1205.8
+
+    Findings.
+
+    Subpart B—Certification
+
+    1205.30
+
+    Purpose, scope, and application.
+
+    1205.31
+
+    Effective date.
+
+    1205.32
+
+    Definitions.
+
+    1205.33
+
+    Certification testing.
+
+    1205.34
+
+    Recordkeeping requirements.
+
+    1205.35
+
+    Product certification and labeling by manufacturers.
+
+    1205.36
+
+    Product certification and labeling by importers.
+
+    Authority:
+
+    Secs. 2, 3, 7, 9, 14, 19, Pub. L. 92-573, 86 Stat. 1207, 1208, 1212-1217, 1220, 1224; 15 U.S.C. 2051, 2052, 2056, 2058, 2063, 2068; sec. 1212, Pub. L. 97-35, 95 Stat. 357.
+
+    Source:
+
+    44 FR 10024, Feb. 15, 1979, unless otherwise noted.
+
+    Subpart A—The Standard'
+- id: art-2
+  title: § 1205.1
+  text: '§ 1205.1
+
+    Scope of the standard.
+
+    (a)
+
+    General.
+
+    This subpart A of part 1205 is a consumer product safety standard which prescribes safety requirements for certain walk-behind power lawn mowers, including labeling and performance requirements. The
+    performance requirements of the standard apply to rotary mowers. The labeling requirements apply to both rotary and reel-type mowers. The standard is intended to reduce the risk of injury to consumers
+    caused by contact, primarily of the foot and hand, with the rotating blade of the mower. A detailed discussion of the risk of injury and of the anticipated costs, benefits, and other factors associated
+    with the standard is contained in § 1205.8
+
+    Findings.
+
+    (b)
+
+    Scope.
+
+    (1) Except as provided in paragraph (c) of this section, all walk-behind rotary and reel-type power lawn mowers manufactured or imported on or after the effective date of the standard are subject to
+    the requirements of this standard if they are “consumer products”. “Walk behind power lawn mower” is defined as a grass cutting machine with a minimum cutting width of 12 in (305 mm) that employs an
+    engine or motor as a power source. Section 3(a)(1) of the Consumer Product Safety Act (“CPSA”), 15 U.S.C. 2052(a)(1), defines the term
+
+    consumer product
+
+    as an “article, or component part thereof, produced or distributed (i) for sale to a consumer for use in or around a permanent or temporary household or residence, a school, in recreation, or otherwise,
+    or (ii) for the personal use, consumption or enjoyment of a consumer in or around a permanent or temporary household or residence, a school, in recreation, or otherwise.” The term does not include products
+    that are not customarily produced or distributed for sale to, or for the use or consumption by, or enjoyment of, a consumer.
+
+    (2) It is unlawful to manufacture for sale, offer for sale, distribute in commerce, or import into the United States any product subject to this standard that is not in conformity with the standard.
+    The Commission is not applying the standard to rental transactions or to the ultimate sale of used rental mowers by rental firms.
+
+    (c)
+
+    Exclusions
+
+    —(1)
+
+    General.
+
+    Mowers that have all three of the following characteristics are not covered by the standard:
+
+    (i) A cutting width of 30 in (762 mm) or greater,
+
+    (ii) A weight of 200 lb (90.7 kg) or more, and
+
+    (iii) For engine-powered mowers, an engine of 8 horsepower (6 kw) or more.
+
+    (2)
+
+    Reel-type mowers.
+
+    Reel-type power lawn mowers need not meet the performance requirements of the standard but they must be labeled as required by § 1205.6.'
+- id: art-3
+  title: § 1205.2
+  text: '§ 1205.2
+
+    Effective date.
+
+    This standard applies to all rotary walk behind power lawn mowers manufactured after June 30, 1982, except § 1205.6
+
+    Warning labels,
+
+    applies to rotary and reel-type walk-behind power lawn
+
+    mowers manufactured after December 31, 1979.
+
+    [44 FR 10024, Feb. 15, 1979, as amended 45 FR 86417, Dec. 31, 1980]'
+- id: art-4
+  title: § 1205.3
+  text: '§ 1205.3
+
+    Definitions.
+
+    (a) As used in this part 1205:
+
+    (1)
+
+    Blade
+
+    means any rigid or semi-rigid device or means that is intended to cut grass during mowing operations and includes all blades of a multi-bladed mower.
+
+    (2)
+
+    Blade tip circle
+
+    means the path described by the outermost point of the blade as it moves about its axis.
+
+    (3)
+
+    Crack
+
+    means a visible external fissure in a solid body caused by tensile, compressive, or shear forces.
+
+    (4)
+
+    Cutting width
+
+    means the blade tip circle diameter or, for a multi-bladed mower, the width, measured perpendicular to the forward direction, of a composite of all blade tip circles.
+
+    (5)
+
+    Deform
+
+    means any visible alteration of shape or dimension of a body caused by stresses induced by external forces.
+
+    (6)
+
+    Engine
+
+    means a power producing device which converts thermal energy from a fuel into mechanical energy.
+
+    (7)
+
+    Manual starting
+
+    means starting the mower engine with power obtained from the physical efforts of the operator.
+
+    (8)
+
+    Maximum operating speed
+
+    means the maximum revolutions per minute (rpm) obtainable by the engine or motor under the conditions of the particular test where the term is used. For an electrically powered mower, it is the speed
+    attained when the mower is energized from a 60 Hz alternating current source that delivers a voltage no greater than 120 V and no less than 115 V at the power input to the mower, with the mower running.
+    For a battery-powered mower, it is the speed attained after the battery has been fully charged in accordance with the mower manufacturer''s instructions.
+
+    (9)
+
+    Motor
+
+    means a power producing device that converts electrical energy into mechanical energy.
+
+    (10)
+
+    Normal starting means
+
+    is the primary mechanism intended to be actuated by the operator to start a mower''s engine or motor (e.g., the cord mechanism of a manual start engine, the switch of an electric motor, or a power start
+    mechanism).
+
+    (11)
+
+    Operating control zone
+
+    means the space enclosed by a cylinder with a radius of 15 in (381 mm) having a horizontal axis that is (1) perpendicular to the fore-aft centerline of the mower and (2) tangent to the rearmost part
+    of the mower handle, extending 4 in (102 mm) beyond the outermost portion of each side of the handle (See Fig. 1).
+
+    EC03OC91.010
+
+    (12)
+
+    Power source
+
+    means an engine or motor.
+
+    (13)
+
+    Reel-type mower
+
+    means a lawn mower which cuts grass by rotating one or more helically formed blades about a horizontal axis to provide a shearing action with a stationary cutter bar or bed knife.
+
+    (14)
+
+    Rotary mower
+
+    means a power lawn mower in which one or more cutting blades rotate in essentially a horizontal plane about at least one vertical axis.
+
+    (15)
+
+    Separate
+
+    means to cause to have any apparent relative displacement induced by external forces.
+
+    (16)
+
+    Shield
+
+    means a part or an assembly which restricts access to a hazardous area. For the purposes of this part 1205, the blade housing is considered a shield.
+
+    (17)
+
+    Stress
+
+    means a force acting across a unit area in a solid material in resisting separation, compacting, or sliding that tends to be induced by external forces.
+
+    (18)
+
+    Top of the mower''s handles
+
+    means the uppermost portion(s) of the handle that would be gripped by an operator in the normal operating position.
+
+    (19)
+
+    Walk-behind power lawn mower
+
+    means a grass cutting machine either pushed or self-propelled, with a minimum cutting width of 12 in (305 mm) that employs an engine or a motor as a power source and is normally controlled by an operator
+    walking behind the mower.
+
+    (b) Where applicable, the definitions in section 3 of the Consumer Product Safety Act (15 U.S.C. 2052) apply to this part 1205.
+
+    [44 FR 10024, Feb. 15, 1979, as amended at 46 FR 54934, Nov. 5, 1981]'
+- id: art-5
+  title: § 1205.4
+  text: '§ 1205.4
+
+    Walk-behind rotary power mower protective shields.
+
+    (a)
+
+    General requirements.
+
+    Walk-behind rotary power mowers shall meet the following requirements:
+
+    (1) When the foot probe of Fig. 2 is inserted under any point within the areas
+
+    to be probed during the foot probe test of paragraph (b)(1) of this section, the shields shall prevent the foot probe from entering the path of the blade or causing any part of the mower to enter the
+    path of the blade.
+
+    EC03OC91.011
+
+    (2) Any shield located totally or partly within the areas to be probed, as defined in paragraph (b)(1)(ii) of this section, shall not permanently separate, crack, or deform when the shield is subjected
+    to a 50 lb (222 N) static tensile force, uniformly distributed over not less than half the length of the
+
+    shield. The force shall be applied for at least 10 seconds in the direction which produces the maximum stress on the shield. While being tested, a shield shall be attached to the mower in the manner
+    in which it is intended to be used. (This requirement does not apply to the housing.)
+
+    (3) During the obstruction test of paragraph (b)(2) of this section, shields shall not:
+
+    (i) Stop the mower as a result of contact with the raised obstacle,
+
+    (ii) Enter the path of the blade, or
+
+    (iii) Cause more than one wheel at a time to be lifted from the fixture surface.
+
+    (b)
+
+    Shield tests—general
+
+    —(1)
+
+    Foot probe test.
+
+    (i) The following test conditions shall be observed:
+
+    (A) The test shall be performed on a smooth level surface.
+
+    (B) Pneumatic tires, when present, shall be inflated to the cold pressures recommended by the mower manufacturer.
+
+    (C) The mower housing shall be adjusted to its highest setting relative to the ground.
+
+    (D) The blade shall be adjusted to its lowest position relative to the blade housing.
+
+    (E) The mower shall be secured so that the mower may not move horizontally but is free to move vertically.
+
+    (ii)
+
+    Areas to be probed.
+
+    (A)(
+
+    1
+
+    ) The minimum area to be probed shall include an area both 60 degrees to the right and 60 degrees to the left of the rear of the fore-aft centerline of the cutting width. For single-blade mowers, these
+    angles shall be measured from a point on this fore-aft centerline which is at the center of the blade tip circle (see Fig. 3). For multi-blade mowers, these angles shall be measured from a point on
+    the fore-aft centerline of the cutting width which is one half of the cutting width forward of the rearmost point of the composite of all the blade tip circles (See Fig. 4).
+
+    EC03OC91.012
+
+    EC03OC91.013
+
+    (
+
+    2
+
+    ) For a mower with a swing-over handle, the areas to be probed shall be determined as in paragraph (b)(1)(ii)(A)(
+
+    1
+
+    ) of this section from both possible rear positions. (See Fig. 5.)
+
+    EC03OC91.014
+
+    (B) Where a 360 degree foot protective shield is required by § 1205.5(a)(1)(iv)(B) or § 1205.5(c), the entire periphery of the mower shall be probed (including any discharge chute comprising part of
+    the periphery).
+
+    (iii)
+
+    Procedure.
+
+    Within the areas specified in paragraph (b)(1)(ii), the foot probe of Fig. 2 shall be inserted under the bottom edge of the blade housing and shields. During each insertion, the “sole” of the probe
+    shall be kept in contact with the supporting surface. Insertion shall stop when the mower housing lifts or the horizontal force used to insert the probe reaches 4 lb (17.8 N), whichever occurs first.
+    As the foot probe is withdrawn after each insertion, the “toe” shall be pivoted upward around the “heel” as much as possible without lifing the mower.
+
+    (2)
+
+    Obstruction test.
+
+    (i) The following test conditions shall be observed:
+
+    (A) Pneumatic tires, when present, shall be inflated to the cold pressure recommended by the mower manufacturer.
+
+    (B) The mower housing shall be at its highest setting relative to the ground.
+
+    (ii) The test shall be performed on the fixture of Fig. 6, which consists of a level surface having (A) a 0.99 in (25 mm) deep depression with a 5.90 in (150 mm) radius of curvature and (B) a raised
+    obstacle 0.60 in (15 mm) square, each extending the full width of the fixture. The depression shall be lined with a material having a surface equivalent to a 16- to 36-grit abrasive. The depression
+    and the obstacle shall be located a sufficient distance apart so that the mower contacts only one at a time.
+
+    EC03OC91.015
+
+    (iii) The test fixture may be relieved, only to the extent necessary, to prevent interference with any blade retaining device.
+
+    (iv) The mower shall be pushed forward and pulled rearward perpendicular to and across the depression and the raised obstacle on the fixture. The mower shall be pulled and pushed, without lifting, with
+    a horizontal force sufficient to transit the obstruction fixture at a speed not to exceed 2.2 ft/sec (0.7 m/sec).
+
+    (c)
+
+    Movable shields
+
+    —(1)
+
+    General.
+
+    Movable shields must meet the general shield requirements of paragraph (a) of this section. In addition, movable shields which are in any of the areas to be probed defined in paragraph (b)(1)(ii) of
+    this section and which are intended to be movable for the purpose of attaching auxiliary equipment, when deflected to their extreme open position in the manner intended by the manufacturer and released,
+    shall either:
+
+    (i) Return automatically to a position that meets the requirements of subpart A of this part 1205 when the attached equipment is not present, or
+
+    (ii) Prevent operation of the blade(s) unless the attached equipment is present or the movable shield is returned to a position that meets the requirements of subpart A of this part 1205.
+
+    (2)
+
+    Tests.
+
+    (i) Automatic return of a movable shield shall be determined by manually deflecting the shield to its extreme open position, then releasing the shield and visually observing that it immediately returns
+    to the closed position.
+
+    (ii) Prevention of operation of the blade(s) shall be determined, first by manually deflecting the shield to its extreme open position, then, following the appropriate manufacturer''s instructions,
+    completing the procedures necessary to operate the blade. Observe, using any safe method, that the blade(s) has been prevented from operating.
+
+    [44 FR 10024, Feb. 15, 1979, as amended at 45 FR 86417, 86418, Dec. 31, 1980; 46 FR 54934, Nov. 5, 1981; 48 FR 6328, Feb. 11, 1983]'
+- id: art-6
+  title: § 1205.5
+  text: '§ 1205.5
+
+    Walk-behind rotary power mower controls.
+
+    (a)
+
+    Blade control systems
+
+    —(1)
+
+    Requirements for blade control.
+
+    A walk-behind rotary power mower shall have a blade control system that will perform the following functions:
+
+    (i) Prevent the blade from operating unless the operator actuates the control.
+
+    (ii) Require continuous contact with the control in order for the blade to continue to be driven.
+
+    (iii) Cause the blade motion in the normal direction of travel to come to a complete stop within 3.0 seconds after release of the control.
+
+    (iv) For a mower with an engine and with only manual starting controls, this blade control shall stop the blade without stopping the engine, unless:
+
+    (A) The engine starting controls for the lawn mower are located within 24 inches from the top of the mower''s handles, or
+
+    (B) The mower has a protective foot shield which extends 360 degrees around the mower housing (see § 1205.4 (b)(1)(ii)(B)).
+
+    1
+
+    1
+
+    Paragraphs (A) and (B) of § 1205.5(a)(1)(iv), permitting mowers that stop the blade by stopping the engine but that do not have power restart, were added to the standard as directed by Sec. 1212 of
+    the Omnibus Budget Reconciliation Act of 1981, Pub. L. 97-35, 95 Stat. 357.
+
+    (2) All walk-behind rotary power mowers shall have, in addition to any blade control required by paragraph (a)(1) of this section, another means which must be manually actuated before a stopped blade
+    can be restarted. This additional means may be either a control which is separate from the control required by paragraph (a)(1) of this section, or may be incorporated into the control required by paragraph
+    (a)(1) of this section as a double-action device requiring two distinct actions to restart the blade.
+
+    (b)
+
+    Blade stopping test
+
+    —(1)
+
+    General.
+
+    Any test method that will determine the time between the release of the blade control and the complete stop of the blade motion in the normal direction of travel may be used.
+
+    (2)
+
+    Conditions.
+
+    (i) The mower shall be operated at maximum operating speed
+
+    for at least 6 minutes immediately prior to the test.
+
+    (ii) The blade must be at maximum operating speed when the blade control is released.
+
+    (c)
+
+    Starting controls location.
+
+    Walk-behind mowers with blades that begin operation when the power source starts shall have their normal starting means located within the operating control zone unless the requirements of paragraphs
+    (a)(1)(iv) (A) or (B) of this section apply to the mowers.
+
+    [44 FR 10024, Feb. 15, 1979, as amended at 46 FR 54934, Nov. 5, 1978]'
+- id: art-7
+  title: § 1205.6
+  text: '§ 1205.6
+
+    Warning label for reel-type and rotary power mowers.
+
+    (a)
+
+    General.
+
+    Walk-behind power lawn mowers shall be labeled on the blade housing or, in the absence of a blade housing, on other blade shielding or on an adjacent supporting structure or assembly, with the warning
+    label shown in Fig. 7. The label shall be at least 3.25 in (82.5 mm) high and 4 in (102 mm) wide, and the lettering and symbol shall retain the same size relation to each other and to the label as shown
+    in Fig. 7.
+
+    EC03OC91.016
+
+    (b)
+
+    Rotary mowers.
+
+    Walk-behind rotary mowers shall have one label as shown in Fig. 7, on the blade housing. The label shall be located as close as possible to any discharge opening, or, if there is no discharge opening,
+    in a position that is conspicuous to an operator in the normal operating position.
+
+    (c)
+
+    Reel-type mowers.
+
+    Walk-behind power reel-type mowers shall have one label as shown in Fig. 7, located as close to the center of the cutting width of the blade as possible. However, in the absence of a suitable mounting
+    surface near the center of the cutting width, the label shall be placed on the nearest suitable mounting surface to the center of the cutting width.
+
+    [44 FR 10024, Feb. 15, 1979, as amended at 45 FR 86417, Dec. 31, 1980]'
+- id: art-8
+  title: § 1205.7
+  text: '§ 1205.7
+
+    Prohibited stockpiling.
+
+    (a)
+
+    Stockpiling. Stockpiling
+
+    means manufacturing or importing a product
+
+    which is the subject of a consumer product safety rule between the date of issuance of the rule and its effective date at a rate that is significantly greater than the rate at which such product was
+    produced or imported during a base period prescribed by the Consumer Product Safety Commission.
+
+    (b)
+
+    Prohibited acts.
+
+    Stockpiling of power lawn mowers that do not comply with this subpart A of part 1205 at a rate that exceeds by 20% the rate at which the product was produced or imported during the base period described
+    in paragraph (c) of this section is prohibited.
+
+    (c)
+
+    Base period.
+
+    The base period for power lawn mowers is, at the option of each manufacturer or importer, any period of 365 consecutive days beginning on or after September 1, 1971, and ending on or before August 31,
+    1978.'
+- id: art-9
+  title: § 1205.8
+  text: '§ 1205.8
+
+    Findings.
+
+    (a)
+
+    General.
+
+    In order to issue a rule such as part 1205, the Consumer Product Safety Act requires the Commission to consider and make appropriate findings with respect to a number of topics. These findings are discussed
+    below.
+
+    (b)
+
+    The degree and nature of the risk of injury part 1205 is designed to eliminate or reduce.
+
+    (1) The Commission estimates that there are approximately 77,000 injuries to consumers each year caused by contact with the blades of power lawn mowers. From 1977 data, the Commission estimates that
+    each year there are approximately 7,300 finger amputations, 2,600 toe amputations, 2,400 avulsions (the tearing of flesh or a body part), 11,450 fractures, 51,400 lacerations, and 2,300 contusions.
+    Among the lacerations and avulsions, 35,800 were to hands and fingers and 18,000 were to toes and feet. The estimated costs caused by these injuries are $253 million, not counting any monetary damages
+    for pain and suffering. These injuries are caused when consumers accidentally contact the blade, either inadvertently while in the vicinity of the mower, or while intentionally performing some task
+    which they erroneously believe will not bring their hand or foot into the path of the blade.
+
+    (2) Part 1205 is expected to eliminate or reduce the severity of about 60,000 blade contact injuries per year, or 77% of all such injuries. The Commission estimates that if all mowers had been in compliance
+    with the standard in 1977, about 6,800 finger amputations, 1,500 toe amputations, 11,000 fractures, 1,800 avulsions, 38,400 lacerations, and several hundred contusions would not have occurred. Of the
+    lacerations and avulsions, 28,300 were finger injuries and 9,400 were toe injuries.
+
+    (c)
+
+    Consumer products subject to the rule.
+
+    The products subject to this standard are walk-behind power mowers. Power mowers with rigid or semi-rigid rotary blades are subject to all the provisions of the standard while reel-type and rotary mowers
+    are subject to the labeling requirements. Mowers that in combination have engines of 8 hp or greater, weigh 200 lb or more, and have a cutting width of 30 in or more are excluded from the standard.
+    The Commission estimates that at least 98% of the total annual market (by unit volume) for walk-behind mowers will be affected by the standard, and the Commission estimates that in 1978 this market
+    was 5.4 million units.
+
+    (d)
+
+    Need of the public for the products subject to the rule.
+
+    The Commission finds that the public need for walk-behind power mowers, which provide a relatively quick and effective way to cut grass, is substantial. Riding mowers, lawn and garden tractors, hand
+    reel mowers, trimmers and edgers, and sickle-bar mowers also provide grass-cutting services, but walk-behind power rotary mowers are by far the most commonly used devices for maintaining household lawns.
+    There are no devices that can completely substitute for walk-behind power mowers as a group, since they have applications for which other products are not as suitable. Each type of walk-behind power
+    mower has individual properties which meet public needs, although one type of walk-behind is often an acceptable substitute for another. The newly developed monofilament line mower is not included within
+    the scope of the standard and could be a substitute for mowers using rigid or semi-rigid blades under some conditions.
+
+    (e)
+
+    Probable effect of the rule upon the utility of the product.
+
+    (1) The Commission finds that the probable overall effect of the standard on the utility of mowers should be to increase their utility. In the first place, consumers are likely to experience an increased
+    sense of security from having a safer mower. A study of brake-clutch mowers conducted by the Federal Supply Service (GSA) shows that almost all users appreciated the safety features on brake-clutch
+    mowers. In addition, by releasing the blade control and stopping the blade, the operator can then travel over gravel or other surfaces without fear of thrown objects or of the blade striking objects
+    that might damage the mower. Brake-clutch type mowers would also give an increase in utility by virtue of enabling the operator to use the clutch to prevent stalling when the mower bogs down in heavy
+    grass. On the other hand, there may be some minor adverse effects on utility caused by some aspects of complying mowers. For example, in very heavy mowing conditions, there may be some difficulty in
+    engaging the blade in a blade-clutch mower. (However, mowers that are currently on the market that are not equipped with a blade clutch may have difficulty in starting the engine in heavy grass.) Complying
+    mowers may require slightly more time and a few additional actions to operate. Since complying mowers may have more electrical and mechanical parts than current mowers, they may weigh more and require
+    more maintenance than current mowers. No significant increase in mowing time is expected if a brake-clutch device is used to comply with the standard since each engagement of the blade would require
+    only a few seconds. The amount of additional time and expense required for maintenance, if any, will be dependent on the design solution used. Such disutilities are expected to be slight and to be more
+    than balanced by the increased sense of security consumers are likely to experience from having a safer mower.
+
+    (2) During the development of the rule, questions were raised about whether changes in the shields necessitated by the foot probe requirements would adversely affect utility by causing mowers to be
+    hard to push in grass or to be unable to mow close to walls. At the time of issuance of this rule, mowers are available that will pass a 360° foot probe and others are available that will pass rear
+    and side foot probing without any significant loss of utility caused by shielding. Therefore, the Commission concludes that this requirement will not adversely affect the utility of mowers. Mowers with
+    swing-over handles, however, may be more difficult to design in this regard, since 120° at each end of the mower are subject to the foot probe requirement. However, since mowers meeting this requirement
+    have already been built without apparent loss of utility, the Commission concludes that shielding can be designed so that there should be no loss of utility even for mowers with swing-over handles.
+
+    (3) As required by section 9(b) of the CPSA, the Commission, in considering the issues involved in issuing a power lawn mower safety standard, has considered and taken into account the special needs
+    of elderly and handicapped persons to determine the extent to which such persons may be adversely affected by the rule. The Commission has determined that there will be no significant adverse effect
+    on such persons as a result of this part 1205. In the first place, the rule can affect only those persons who are physically capable of using a power lawn mower. None of the rule''s provisions will
+    make it more difficult to operate a mower that complies with the standard. On the contrary, complying mowers should be easier to use because the need for manually restarting the mower will be less and
+    because, if the mower uses a brake-clutch to comply with the blade control requirement, use of the brake-clutch can reduce the tendency of the engine to stall in heavy grass. Although a person''s ability
+    to hold a device such as a blade control for a long period of time will decline with age, the force required to hold the blade control can be made low enough that it will not be a problem during the
+    length of time that it takes for consumers to mow a lawn.
+
+    (4) After considering the possible adverse effects on mowers that could be caused by the standard and balancing
+
+    them against the increase in utility that is expected, the Commission concludes that, for a typical consumer, the increases in utility should more than offset any decreases.
+
+    (f)
+
+    Probable effect of the rule upon the cost of the product.
+
+    The Commission estimates that the retail price impact of the standard will be about $35 for the average walk-behind mower. Based on an average useful mower-life of about 8 years, the additional annual
+    cost to the purchaser is expected to average about $4.40. The probable effect of the standard will differ on the various types of mowers within its scope. Percentage increases in price will vary from
+    about a 7 percent increase for power-restart self-propelled mowers to about a 30 percent increase for gasoline-powered manual start push mowers. The costs attributable to individual requirements of
+    the standard are discussed in paragraph (i) of this section.
+
+    (g)
+
+    Probable effect of the rule upon the availability of the product.
+
+    (1) The Commission finds that the standard is not expected to have a significant impact on the availability of walk-behind rotary mowers, since domestic production capacity appears to be sufficient
+    to handle any increased demand for safety-related components or materials. Although adapting some types of power mowers to the standard may be more costly than others, the effects of the standard on
+    the price or utility of a particular category of power mowers are not expected to cause radical shifts in demand among types of mowers. The Commission finds that all types of power mowers subject to
+    the standard will be available, although some, such as house-current-powered mowers, may increase their market shares becauses they can be brought into compliance with the standard at a lesser cost.
+
+    (2) Because some manufacturers may not revise their entire product line before the effective date of the standard, individual mower manufacturers may initially have less varied lines than at present,
+    but there should be no decrease in the overall types and features of mowers available to consumers.
+
+    (h)
+
+    Alternative methods.
+
+    (1) The Commission has considered other means of achieving the objective of the standard. For example, alternatives were considered such as hand probes, “blade harmless” tests, and blade control by
+    engine kill but allowing manual restart. These alternatives have been rejected by the Commission as being either unfeasible or not as effective as the rule which is being issued.
+
+    (2) Similarly, the Commission has found no alternative means of achieving the objective of the standard that it believes would have fewer adverse effects on competition or that would cause less disruption
+    or dislocation of manufacturing and other commercial practices, consistent with the public health and safety.
+
+    (i)
+
+    Unreasonable risk of injury.
+
+    (1) The determination of whether a consumer product safety rule is reasonably necessary to reduce an unreasonable risk of injury involves a balancing of the degree and nature of risk of injury addressed
+    by the rule against the probable effect of the rule on the utility, cost, or availability of the product. The factors of utility and availability of the products, adverse effects on competition, and
+    disruption or dislocation of manufacturing and other commercial practices have been discussed above. The following discussion concerns the relationship of anticipated injury reduction and costs for
+    various requirements of the standard. (See the report,
+
+    Economic Impact of Blade Contact Requirements for Power Mowers,
+
+    January 1979, for a detailed analysis of the possible effects of discounting and inflation on the computation of the quantifiable benefits associated with this regulation.)
+
+    (2) The foot probe and related requirements are expected to reduce the number of blade contact injuries to the foot by 13,000 each year. It is not possible to apportion this injury reduction among the
+    respective requirements. The cost of these requirements is estimated to be about $4.00 per mower, mostly for redesign of the shields. The shield strength requirement is similar to a requirement in the
+    existing voluntary standard that is almost universally complied with, and should comprise only a small portion of the $4.00 retail cost increase compared to pre-standard mo'
+- id: art-10
+  title: § 1205.30
+  text: '§ 1205.30
+
+    Purpose, scope, and application.
+
+    (a)
+
+    Purpose.'
+- id: art-11
+  title: Section 14(a) of the Consumer Product Safety Act, 15 U.S.C. 2063(a), requires every manufacturer (including importer) and private labeler of a product which is subject to a consumer product safety
+    sta
+  text: 'Section 14(a) of the Consumer Product Safety Act, 15 U.S.C. 2063(a), requires every manufacturer (including importer) and private labeler of a product which is subject to a consumer product safety
+    standard to issue a certificate that the product conforms to the applicable standard, and to base that certificate either on a test of each product or on a “reasonable testing program.” The purpose
+    of this subpart B of part 1205 is to establish requirements that manufacturers and importers of walk-behind rotary power lawn mowers subject to the Safety Standard for Walk-Behind Power Lawn Mowers
+    (16 CFR part 1205, subpart A), shall issue certificates of compliance in the form of specified labeling and shall keep records of the testing program on which the certificates are based.
+
+    (b)
+
+    Scope and application.
+
+    (1) The provisions of this rule apply to all rotary walk-behind power lawn mowers which are subject to the requirements of the Safety Standard for Walk-Behind Power Lawn Mowers. This rule does not apply
+    to reel-type mowers, which are subject only to the labeling requirements of the standard.
+
+    (2) As authorized by section 14(a)(2) of the act, the Commission exempts manufacturers who manufacture or import only component parts, and private labelers, from the requirement to issue certificates.
+    (Private labelers who are also importers mus'
 doc_files:
 - us/raw/US-CFR-title16-part1205.xml
+- us/raw/US-CFR-title16-part1205.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1205.xml (xml, 45141 chars)，生成 11 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1205.xml (xml, 45141 chars)，生成 11 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1205.xml (xml, 45140 chars)，生成 11 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1205-4（US 16 CFR Part 1205）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1205-3（US 16 CFR Part 1205）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1205-2（US 16 CFR Part 1205）。'

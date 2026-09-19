@@ -9,11 +9,357 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'Indonesia - Impacts of the Omnibus Law on
+
+    Labor Law
+
+    Transver'
+  text: 'Indonesia - Impacts of the Omnibus Law on
+
+    Labor Law
+
+    Transversal reform initiated by Law 11/2020 on job creation, or Omnibus Law. The Indonesian
+
+    government promulgated on February 2, 2021, several implementing regulations, outlining new
+
+    applicable rules to Indonesian employees (the “Corpus Omnibus”).
+
+    The Corpus Omnibus aims to provide greater flexibility to the labor market, attractiveness of the
+
+    Indonesian market for investors, while maintaining the protection of workers'' rights. This body of
+
+    regulations reaffirms certain social gains, attempts to fill in the vagueness of Labor Law 13/2003 and
+
+    provides new rules relating to employment agreements. Our article focuses on the substantial changes
+
+    brought by the reform, compared to the previous regulation.
+
+    1. Establishment of compulsory unemployment insurance: JKP
+
+    Major provision brought by Regulation 37/2021, a new unemployment insurance scheme is set, the
+
+    Jaminan Kehilangan Pekerjaan (“JKP”). The JKP is part of other compulsory social security (“BPJS”),
+
+    alongside with health social security (“JKN”), work accident social security (“JKK”), death social security
+
+    (“JKM”), old age social security (“JHT”) and pension social security (“JP”).
+
+    The registration of all new employees is mandatory for Indonesian employees under the age of 54 and
+
+    must be completed within 30 days of hiring.
+
+    Employees previously registered to BPJS, will be automatically registered. Registration is therefore only
+
+    necessary for new hires. Failure to register will be sanctioned by the obligation for the defaulting
+
+    employer to pay the amounts that should have been covered by JKP (ie. JKP cash benefit) and shall
+
+    fulfil the right of employee for the work training (as detailed below).
+
+    The amount of contributions is set at 0.46% of the amount of the monthly salary, with a maximum
+
+    basis of an amount of IDR5,000,000.
+
+    These contributions are financed by (i) the central government for amount of 0.22% and (ii) a
+
+    reallocation of other compulsory social charges paid by the employer which are 0.14% from JKK and
+
+    0.10% from JKM. This method of financing allows, for the moment, not to increase social charges for
+
+    both employers and employees.
+
+    In the event of termination of the employment agreement, the JKP system will allow employees to
+
+    obtain JKP cash benefit, for the six months following the termination date, as follows:
+
+    - cash benefit equivalent to45% of the salary for the first three months; and,
+
+    - cash benefit equivalent to 25% of the salary for the following three months.
+
+    In addition, employees will have the right to access labor market information and vocational training.
+
+    The calculation of the amount is based on the last monthly salary and limited to an amount of
+
+    IDR5,000,000.
+
+    The eligibility criteria for the benefits of the JKP are as follows:
+
+    - the minimum JKP contributions has been paid in accordance with the laws and regulations;
+
+    - the occurrence of termination can be evidenced as follows: (i) evidence that the employee has
+
+    accepted the termination of the employment agreement and receipt of the mandatory report
+
+    to the relevant authorities has been obtained; or (ii) mutual agreement for termination has
+
+    been agreed and signed by the employer and employee and registered with the relevant
+
+    Industrial Relation Court; or (iii) final and binding decision of the relevant Industrial Relation
+
+    Court concerning such termination;
+
+    - the termination of the employment agreement is not motivated by a resignation, total
+
+    disability, retirement or death of the employee, or the expiration of a definite period
+
+    employment agreement;
+
+    - the employee is still willing to work; and
+
+    - the request for the opening of rights must be made by the employee within at least 3 months
+
+    of the termination of the employment agreement, with condition that the employee has not
+
+    entered into a new employment agreement during this period.
+
+    Benefits of the JKP scheme will be limited to three times during the career of employees:
+
+    (i) the 1st request can take place if the contributions have been paid in the last 12 months
+
+    over a 24-month period of registration with the JKP and after payment of contributions
+
+    more than six months prior to the termination;
+
+    (ii) the 2nd request can take place 5 years after the 1st request; and;
+
+    (iii) the 3rd request can take place 5 years after the 2nd request.
+
+    2. Wages'
+- id: art-2
+  title: Regulation 36/2021 imposes on the employer an obligation to establish common rules for determining
+  text: 'Regulation 36/2021 imposes on the employer an obligation to establish common rules for determining
+
+    the wages applicable within the company. These rules must be shown to the labor inspectorate from
+
+    the Ministry of Manpower (Kementerian Ketenagakerjaan).'
+- id: art-3
+  title: Regulation 36/2021 also specifies the components of wages, the calculation of the amount according
+  text: 'Regulation 36/2021 also specifies the components of wages, the calculation of the amount according
+
+    to working time (hourly and daily) and the amounts and conditions of application of minimum wages.
+
+    It should be noted on this last point that sectoral minimum wages have been repealed in favor of
+
+    geographic minimum wages, which are also specified by regulation 36/2021.
+
+    3. Weekly working time, overtime and holidays'
+- id: art-4
+  title: Regulation 35/2021 specifies the weekly working time and extends allowed overtime to 4 hours per
+  text: 'Regulation 35/2021 specifies the weekly working time and extends allowed overtime to 4 hours per
+
+    day and 18 hours per week, increasing the latter by respectively 1 and 4 hours and specifying the
+
+    treatment conditions, except for certain specific sectors (oil & gas, mining etc.).
+
+    Sabbatical leave conditions (formerly greater than 2 months, per six-year period of service) are now
+
+    dealt with by internal company regulations or the employment agreement.
+
+    4. Fixed-term agreement ("FTA")'
+- id: art-5
+  title: Regulation 35/2021 changes the maximum duration of the FTA to 5 years, compared to the previous
+  text: 'Regulation 35/2021 changes the maximum duration of the FTA to 5 years, compared to the previous
+
+    regulations which stipulates 2 years maximum duration, with maximum 1 year extension and
+
+    maximum 2 years for renewal (2 + 1 + 2 years). This maximum duration includes all extensions or
+
+    renewals.
+
+    Another update is that employees on FTA will be able to benefit from compensation at the end of their
+
+    fixed-term agreement, set at one month per year of work, or prorated monthly if the working time is
+
+    not equal to the calendar year.
+
+    In the event of early termination of the FTA, this compensation remains due, regardless of the reason
+
+    for termination.
+
+    It should be noted that regulation 35/2021 does not modify positions available for fixed-term
+
+    agreements, which remain temporary or seasonal positions by nature.
+
+    5. Outsourcing'
+- id: art-6
+  title: Regulation 35/2021 clarifies the conditions for employing temporary workers, and removes some
+  text: 'Regulation 35/2021 clarifies the conditions for employing temporary workers, and removes some
+
+    doubts about their use by employers.
+
+    The regulation lifts the restrictions on the nature of the position available to be held by temporary
+
+    workers, which was previously restricted to positions unrelated to the employer''s main activity.
+
+    In return, the regulation specifies the rights of temporary workers, in particular against the outsourcing
+
+    company and in the event of a change of the outsourced employer.
+
+    However, a doubt remains as to the responsibility for the payment of rights acquired by the employee
+
+    in the event of a change of employer.
+
+    It should also be remembered that the regulation reaffirms the need for the outsourcing company to
+
+    hold ad hoc licenses to conduct outsourcing of employees within another company.
+
+    6. Termination of the employment agreement
+
+    The Corpus Omnibus, while reaffirming certain principles applicable in the procedures for termination
+
+    of employment agreements, modifies the following elements:
+
+    (i) Termination notice
+
+    The Corpus Omnibus revokes two main components of the termination procedure. Previously, the
+
+    termination could occur according to a negotiation between the employer and the employee. In
+
+    addition, the termination was valid and effective only after determination by the industrial relation
+
+    dispute settlement.
+
+    From now on, the employer may terminate the employment agreement by issuing a termination notice,
+
+    which shall be further reported to the relevant ministry or manpower services, unless the employee
+
+    challenges the termination.
+
+    The termination notice of the employment agreement must be issued in writing and motivated within
+
+    14 working days before the termination date. This period can be reduced to 7 working days, if the
+
+    employee is still in his probationary period. In the event the employee challenges the termination, the
+
+    latter has 7 working days to send the employer the reasons of such a challenge. It should be noted that
+
+    the termination notice is not required for the termination due to employee’s violation which is urgent
+
+    in nature according to the relevant employment contract, company regulation or collective labor
+
+    agreement.
+
+    (ii) Grounds for termination
+
+    In addition to reaffirming the authorised grounds for termination of employment agreements,'
+- id: art-7
+  title: 'Regulation 35/2021 adds the following occurrences:'
+  text: 'Regulation 35/2021 adds the following occurrences:
+
+    - by separating the termination due to acquisition and other corporate actions (merger,
+
+    amalgamation and separation), the right of the employee to request for termination in the
+
+    occurrence of merger, amalgamation and separation of the employer is revoked. However, the
+
+    right of the employee to request for termination in the occurrence of acquisition has been
+
+    maintained;
+
+    - The termination for reasons of efficiency has been divided into (i) efficiency due to losses of
+
+    the employer; and (ii) efficiency to prevent losses of the employer. It also removes the
+
+    requirement to cease the activity (company closure) for the employment termination due to
+
+    efficiency, while termination due to the company closure remains valid, separated from
+
+    termination due to efficiency (lifting the confusion which was previously noted due to the
+
+    imprecision of the letter of art. 164 of the Labor Law);
+
+    - The employer may dismiss employees in the event of force majeure, which is now distinct from
+
+    specific ground of termination, and is also divided into: (i) force majeure which caused the
+
+    closure of the company; and (ii) force majeure not causing the closure of the company.
+
+    However, the specific definition of “force majeure” has not been provided yet;
+
+    - The employer may dismiss employees if the company is placed in suspension of debts payment
+
+    procedure (PKPU), which is also divided into (i) PKPU due to company’s losses; and (ii) PKPU
+
+    not due to company’s losses;
+
+    - The employer may also terminate the employee due to employee’s violation which is “urgent
+
+    in nature” toward the provision of employment contract, company regulation or collective
+
+    labor agreement.
+
+    (iii) Modifications to the calculation methods for termination compensation'
+- id: art-8
+  title: Regulation 35/2021 does not modify the basic rules for calculating compensation for termination of
+  text: 'Regulation 35/2021 does not modify the basic rules for calculating compensation for termination of
+
+    employment agreements related to severance pay and the long service pay.
+
+    However, it does changes the rights of compensation pay, in which compensation of housing,
+
+    medication and treatment in the amount of 15% of the severance pay and long service pay has been
+
+    removed.
+
+    In addition, the severance pay coefficient of several termination reasons have been significantly
+
+    reduced (halved and further) and new coefficient are allocated to match the creation of the new
+
+    termination reasons.
+
+    It should be noted that these rules are no longer applicable for micro-enterprises and individual
+
+    entrepreneurs, whose compensation rules must be agreed by the parties.
+
+    In addition, save for termination for the reason of the employee has been detained due to criminal
+
+    sanctions, the employer’s social contribution for the pension social security can be calculated as part
+
+    of the severance pay, long service pay and separation pay.
+
+    7. Foreign workers
+
+    Foreign workers, for their part, see some of their employment conditions clarified and reaffirmed, and
+
+    in particular certain positions are exempted from submitting an application for the creation of an
+
+    expatriate or RPTKA: for positions of vocational training and technological start-ups (for a maximum
+
+    period of employment of 3 months) , expatriate who is needed in case of the production process has
+
+    been interrupted due to emergency, business visit and research.
+
+    These new rules took effect on April 1, 2021.
+
+    Despite this reform, application of Indonesian labor law to foreign workers remains unclear, and the
+
+    Corpus Omnibus reinforces the argument that only labor law obligations apply to foreign workers,
+
+    without granting them the same rights as Indonesians workers.
+
+    Indeed, the Corpus Omnibus excludes foreign workers from unemployment insurance rights to any
+
+    compensation in the event of termination of the employment agreement (a foreign worker must be
+
+    hired for a fixed term agreement, regulation 35/2021 excludes foreign workers from all compensation
+
+    for termination of fixed-term agreement).
+
+    Pour toute autre information, contactez Lucas Mascarade.
+
+    Pour vous désinscrire, cliquez-ici'
 doc_files:
 - id/raw/印尼《创造就业法》（Omnibus Law No 6 of 2023，DS Avocats解读）.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：id/raw/印尼《创造就业法》（Omnibus Law No 6 of 2023，DS Avocats解读）.pdf (pdf, 12624 chars)，生成 8 条共 12624 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：id/raw/印尼《创造就业法》（Omnibus Law No 6 of 2023，DS Avocats解读）.pdf (pdf, 12624 chars)，生成 8 条共 12624 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：id/raw/印尼《创造就业法》（Omnibus Law No 6 of 2023，DS Avocats解读）.pdf (pdf, 12624 chars)，生成 8 条共 12624 字符；解析文本未人工复核，引用以官方原件为准。'

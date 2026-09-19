@@ -9,11 +9,662 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'ETSI EN 300 440-2
+
+    V3.1.1
+
+    (2025-10)
+
+    HARMONISED EUROPEAN STAND'
+  text: 'ETSI EN 300 440-2
+
+    V3.1.1
+
+    (2025-10)
+
+    HARMONISED EUROPEAN STANDARD
+
+    Short Range Devices (SRD) operating in 1 GHz to 40 GHz;
+
+    Harmonised Standard for access to radio spectrum;
+
+    Part 2: Radiodetermination equipment for location tracking
+
+    applications operating in the frequency range
+
+    2,4 GHz to 2,4835 GHz
+
+    2 ETSI EN 300 440-2 V3.1.1 (2025-10)
+
+    Reference
+
+    REN/ERM-TG28-563
+
+    Keywords
+
+    radio, SRD, testing
+
+    ETSI
+
+    650 Route des Lucioles
+
+    F-06921 Sophia Antipolis Cedex - FRANCE
+
+    Tel.: +33 4 92 94 42 00 Fax: +33 4 93 65 47 16
+
+    Siret N° 348 623 562 00017 - APE 7112B
+
+    Association à but non lucratif enregistrée à la
+
+    Sous-Préfecture de Grasse (06) N° w061004871
+
+    Important notice
+
+    The present document can be downloaded from the
+
+    ETSI Search & Browse Standards application.
+
+    The present document may be made available in electronic versions and/or in print. The content of any electronic and/or
+
+    print versions of the present document shall not be modified without the prior written authorization of ETSI. In case of any
+
+    existing or perceived difference in contents between such versions and/or in print, the prevailing version of an ETSI
+
+    deliverable is the one made publicly available in PDF format on ETSI deliver repository.
+
+    Users should be aware that the present document may be revised or have its status changed,
+
+    this information is available in the Milestones listing.
+
+    If you find errors in the present document, please send your comments to
+
+    the relevant service listed under Committee Support Staff.
+
+    If you find a security vulnerability in the present document, please report it through our
+
+    Coordinated Vulnerability Disclosure (CVD) program.
+
+    Notice of disclaimer & limitation of liability
+
+    The information provided in the present deliverable is directed solely to professionals who have the appropriate degree of
+
+    experience to understand and interpret its content in accordance with generally accepted engineering or
+
+    other professional standard and applicable regulations.
+
+    No recommendation as to products and services or vendors is made or should be implied.
+
+    In no event shall ETSI be held liable for loss of profits or any other incidental or consequential damages.
+
+    Any software contained in this deliverable is provided "AS IS" with no warranties, express or implied, including but not
+
+    limited to, the warranties of merchantability, fitness for a particular purpose and non-infringement of intellectual property
+
+    rights and ETSI shall not be held liable in any event for any damages whatsoever (including, without limitation, damages
+
+    for loss of profits, business interruption, loss of information, or any other pecuniary loss) arising out of or related to the use
+
+    of or inability to use the software.
+
+    Copyright Notification
+
+    No part may be reproduced or utilized in any form or by any means, electronic or mechanical, including photocopying and
+
+    microfilm except as authorized by written permission of ETSI.
+
+    The content of the PDF version shall not be modified without the written authorization of ETSI.
+
+    The copyright and the foregoing restriction extend to reproduction in all media.
+
+    © ETSI 2025.
+
+    All rights reserved.
+
+    ETSI
+
+    3 ETSI EN 300 440-2 V3.1.1 (2025-10)
+
+    Contents
+
+    Intellectual Property Rights ................................................................................................................................ 5
+
+    Foreword ............................................................................................................................................................. 5
+
+    Modal verbs terminology .................................................................................................................................... 6
+
+    Introduction ........................................................................................................................................................ 6
+
+    1 Scope ........................................................................................................................................................ 7
+
+    2 References ................................................................................................................................................ 7
+
+    2.1 Normative references ......................................................................................................................................... 7
+
+    2.2 Informative references ........................................................................................................................................ 7
+
+    3 Definition of terms, symbols and abbreviations ....................................................................................... 8
+
+    3.1 Terms .................................................................................................................................................................. 8
+
+    3.2 Symbols .............................................................................................................................................................. 8
+
+    3.3 Abbreviations ..................................................................................................................................................... 9
+
+    4 Technical requirements specifications ..................................................................................................... 9
+
+    4.1 Environmental profile ......................................................................................................................................... 9
+
+    4.2 Equipment categories ......................................................................................................................................... 9
+
+    4.3 Transmitter requirements ................................................................................................................................. 10
+
+    4.3.1 General ........................................................................................................................................................ 10
+
+    4.3.2 Operating Frequency Range (OFR) ............................................................................................................ 10
+
+    4.3.2.1 Applicability.......................................................................................................................................... 10
+
+    4.3.2.2 Description Operating Frequency Range .............................................................................................. 10
+
+    4.3.2.3 Limits for Operating Frequency Range ................................................................................................. 10
+
+    4.3.2.4 Conformance ......................................................................................................................................... 10
+
+    4.3.3 RF output power ......................................................................................................................................... 10
+
+    4.3.3.1 Applicability.......................................................................................................................................... 10
+
+    4.3.3.2 Description RF output power ................................................................................................................ 10
+
+    4.3.3.3 Limits for RF output power ................................................................................................................... 10
+
+    4.3.3.4 Conformance ......................................................................................................................................... 11
+
+    4.3.4 TX unwanted emissions (TXUE) ................................................................................................................ 11
+
+    4.3.4.1 Applicability.......................................................................................................................................... 11
+
+    4.3.4.2 Description TX unwanted emissions ..................................................................................................... 11
+
+    4.3.4.3 Limits for TX unwanted emissions ....................................................................................................... 11
+
+    4.3.4.4 Conformance ......................................................................................................................................... 11
+
+    4.3.5 TX behaviour .............................................................................................................................................. 12
+
+    4.3.5.1 Applicability.......................................................................................................................................... 12
+
+    4.3.5.2 Description ............................................................................................................................................ 12
+
+    4.3.5.3 Limits .................................................................................................................................................... 12
+
+    4.3.5.4 Conformance ......................................................................................................................................... 12
+
+    4.4 Receiver requirements ...................................................................................................................................... 12
+
+    4.4.1 General ........................................................................................................................................................ 12
+
+    4.4.2 Wanted Technical Performance Criteria ..................................................................................................... 12
+
+    4.4.3 Receiver spurious emissions ....................................................................................................................... 13
+
+    4.4.3.1 Applicability.......................................................................................................................................... 13
+
+    4.4.3.2 Description ............................................................................................................................................ 13
+
+    4.4.3.3 Limits .................................................................................................................................................... 13
+
+    4.4.3.4 Conformance ......................................................................................................................................... 14
+
+    4.4.4 Receiver Baseline Sensitivity (RBS) .......................................................................................................... 14
+
+    4.4.4.1 Applicability.......................................................................................................................................... 14
+
+    4.4.4.2 Description for the RBS requirements .................................................................................................. 14
+
+    4.4.4.3 Limits .................................................................................................................................................... 14
+
+    4.4.4.4 Conformance ......................................................................................................................................... 14
+
+    4.4.5 Receiver Baseline Resilience (RBR) .......................................................................................................... 14
+
+    4.4.5.1 Applicability.......................................................................................................................................... 14
+
+    4.4.5.2 Description for the RBR requirement ................................................................................................... 14
+
+    4.4.5.3 Limits .................................................................................................................................................... 14
+
+    ETSI
+
+    4 ETSI EN 300 440-2 V3.1.1 (2025-10)
+
+    4.4.5.4 Conformance ......................................................................................................................................... 15
+
+    5 Testing for '
+- id: art-2
+  title: 'Annex C (informative): Change history ............................................................................................... 25'
+  text: 'Annex C (informative): Change history ............................................................................................... 25
+
+    History .............................................................................................................................................................. 26
+
+    ETSI
+
+    5 ETSI EN 300 440-2 V3.1.1 (2025-10)
+
+    Intellectual Property Rights
+
+    Essential patents
+
+    IPRs essential or potentially essential to normative deliverables may have been declared to ETSI. The declarations
+
+    pertaining to these essential IPRs, if any, are publicly available for ETSI members and non-members, and can be
+
+    found in ETSI SR 000 314: "Intellectual Property Rights (IPRs); Essential, or potentially Essential, IPRs notified to
+
+    ETSI in respect of ETSI standards", which is available from the ETSI Secretariat. Latest updates are available on the
+
+    ETSI IPR online database.
+
+    Pursuant to the ETSI Directives including the ETSI IPR Policy, no investigation regarding the essentiality of IPRs,
+
+    including IPR searches, has been carried out by ETSI. No guarantee can be given as to the existence of other IPRs not
+
+    referenced in ETSI SR 000 314 (or the updates on the ETSI Web server) which are, or may be, or may become,
+
+    essential to the present document.
+
+    Trademarks
+
+    The present document may include trademarks and/or tradenames which are asserted and/or registered by their owners.
+
+    ETSI claims no ownership of these except for any which are indicated as being the property of ETSI, and conveys no
+
+    right to use or reproduce any trademark and/or tradename. Mention of those trademarks in the present document does
+
+    not constitute an endorsement by ETSI of products, services or organizations associated with those trademarks.
+
+    DECT™, PLUGTESTS™, UMTS™ and the ETSI logo are trademarks of ETSI registered for the benefit of its
+
+    Members. 3GPP™, LTE™ and 5G™ logo are trademarks of ETSI registered for the benefit of its Members and of the
+
+    3GPP Organizational Partners. oneM2M™ logo is a trademark of ETSI registered for the benefit of its Members and of
+
+    the oneM2M Partners. GSM® and the GSM logo are trademarks registered and owned by the GSM Association.
+
+    Foreword
+
+    This Harmonised European Standard (EN) has been produced by ETSI Technical Committee Electromagnetic
+
+    compatibility and Radio spectrum Matters (ERM).
+
+    The present document has been prepared under the Commission''s standardisation request C(2015) 5376 final [i.4] to
+
+    provide one voluntary means of conforming to the essential requirements of Directive 2014/53/EU on the harmonisation
+
+    of the laws of the Member States relating to the making available on the market of radio equipment and repealing
+
+    Directive 1999/5/EC [i.3].
+
+    Once the present document is cited in the Official Journal of the European Union under that Directive, compliance with
+
+    the normative clauses of the present document given in Table A.1 confers, within the limits of the scope of the present
+
+    document, a presumption of conformity with the corresponding essential requirements of that Directive and associated
+
+    EFTA regulations.
+
+    The present document is part 2 of a multi-part deliverable covering Short Range Devices (SRD) operating in 1 GHz to
+
+    40 GHz; Harmonised Standard for access to radio spectrum, as identified below:
+
+    Part 1: "Radiocommunication equipment in the frequency ranges 2,4 GHz to 2,4835 GHz and 5,725 GHz to
+
+    5,875 GHz";
+
+    Part 2: "Radiodetermination equipment for location tracking applications operating in the frequency
+
+    range 2,4 GHz to 2,4835 GHz";
+
+    Part 3: "Intrusion radiodetermination equipment operating in the frequency range 1 GHz to 40 GHz".
+
+    NOTE: The list above shows the planned multi-part deliverable, at the time, when the present document was
+
+    published.
+
+    ETSI
+
+    6 ETSI EN 300 440-2 V3.1.1 (2025-10)
+
+    National transposition dates
+
+    Date of adoption of this EN: 17 September 2025
+
+    Date of latest announcement of this EN (doa): 31 December 2025
+
+    Date of latest publication of new National Standard
+
+    or endorsement of this EN (dop/e): 30 June 2026
+
+    Date of withdrawal of any conflicting National Standard (dow): 30 June 2027
+
+    Modal verbs terminology
+
+    In the present document "shall", "shall not", "should", "should not", "may", "need not", "will", "will not", "can" and
+
+    "cannot" are to be interpreted as described in clause 3.2 of the ETSI Drafting Rules (Verbal forms for the expression of
+
+    provisions).
+
+    "must" and "must not" are NOT allowed in ETSI deliverables except when used in direct citation.
+
+    Introduction
+
+    Attention is drawn to new clauses 4.1 and 5.1 which ensure that requirements and tests apply at all operating conditions
+
+    within the environmental profile given by the equipment''s intended use. The intended use is provided in equipment
+
+    documentation according to article 10 of the Radio Equipment Directive 2014/53/EU [i.3].
+
+    ETSI
+
+    7 ETSI EN 300 440-2 V3.1.1 (2025-10)
+
+    1 Scope
+
+    The present document specifies technical requirements, limits, and test methods for radiodetermination equipment for
+
+    location tracking applications operating in the frequency range 2,4 GHz to 2,4835 GHz.
+
+    Further details of the covered equipment can be found in clause 4.2 of the present document.
+
+    NOTE: The relationship between the present document and essential requirements of article 3.2 of
+
+    Directive 2014/53/EU [i.3] is given in annex A.
+
+    2 References
+
+    2.1 Normative references
+
+    References are either specific (identified by date of publication and/or edition number or version number) or non-
+
+    specific. For specific references, only the cited version applies. For non-specific references, the latest version of the
+
+    referenced document (including any amendments) applies.
+
+    Referenced documents which are not found to be publicly available in the expected location might be found in the
+
+    ETSI docbox.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long-term validity.
+
+    The following referenced documents are necessary for the application of the present document.
+
+    [1] ETSI EN 303 883-1 (V2.1.1) (08-2024): "Short Range Devices (SRD) and Ultra Wide Band
+
+    (UWB); Part 1: Measurement techniques for transmitter requirements".
+
+    [2] ETSI EN 303 883-2 (V2.1.1) (08-2024): "Short Range Devices (SRD) and Ultra Wide Band
+
+    (UWB); Part 2: Measurement techniques for receiver requirements".
+
+    [3] ETSI TS 103 941 (V1.1.1) (01-2024): "Short Range Devices (SRD) and Ultra Wide Band (UWB);
+
+    Measurement setups and specifications for testing under full environmental profile (normal and
+
+    extreme environmental conditions)".
+
+    2.2 Informative references
+
+    References are either specific (identified by date of publication and/or edition number or version number) or
+
+    non-specific. For specific references, only the cited version applies. For non-specific references, the latest version of the
+
+    referenced document (including any amendments) applies.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long-term validity.
+
+    The following referenced documents may be useful in implementing an ETSI deliverable or add to the reader''s
+
+    understanding, but are not required for conformance to the present document.
+
+    [i.1] Void.
+
+    [i.2] Commission Implementing Decision (EU) 2025/105 of 22 January 2025 amending
+
+    Decision 2006/771/EC updating harmonised technical conditions in the area of radio spectrum use
+
+    for short-range devices and repealing Implementing Decision 2014/641/EU on harmonised
+
+    technical conditions of radio spectrum use by wireless audio programme making and special
+
+    events equipment in the Union.
+
+    [i.3] Directive 2014/53/EU of the European Parliament and of the Council of 16 April 2014 on the
+
+    harmonisation of the laws of the Member States relating to the making available on the market of
+
+    radio equipment and repealing Directive 1999/5/EC.
+
+    ETSI
+
+    8 ETSI EN 300 440-2 V3.1.1 (2025-10)
+
+    [i.4] Commission Implementing Decision C(2015) 5376 final of 4.8.2015 on a standardisation request
+
+    to the European Committee for Electrotechnical Standardisation and to the European
+
+    Telecommunications Standards Institute as regards radio equipment in support of Directive
+
+    2014/53/EU of the European Parliament and of the Council.
+
+    [i.5] ETSI EG 203 336 (V1.2.1): "Guide for the selection of technical parameters for the production of
+
+    Harmonised Standards covering article 3.1(b) and article 3.2 of Directive 2014/53/EU".
+
+    [i.6] ETSI TS 103 567 (V1.1.1): "Requirements on signal interferer handling".
+
+    [i.7] ERC/REC 74-01: "Unwanted emissions in the spurious domain", latest amendment on 23 May
+
+    2022.
+
+    [i.8] ETSI TR 102 273-2 (V1.2.1): "Electromagnetic compatibility and Radio spectrum Matters (ERM);
+
+    Improvement on Radiated Methods of Measurement (using test site) and evaluation of the
+
+    corresponding measurement uncertainties; Part 2: Anechoic chamber".
+
+    [i.9] ETSI TS 102 321 (V1.1.1): "Electromagnetic compatibility and Radio spectrum Matters (ERM);
+
+    Normalized Site Attenuation (NSA) and validation of a fully lined anechoic chamber up to
+
+    40 GHz".
+
+    3 Definition of terms, symbols and abbreviations
+
+    3.1 Terms
+
+    For the purposes of the present document, the terms given in ETSI EN 303 883-1 [1], ETSI EN 303 883-2 [2], ETSI
+
+    TS 103 941 [3] and the following apply:
+
+    Angle of Arrival (AOA): method used to determine the direction of a radio-frequency wave that hits an antenna array.
+
+    It is calculated by measuring the difference in path length between the different elements of the array
+
+    NOTE: The location of a transmitter may be found by determining the intersection of multiple paths.
+
+    Receiver Baseline Resilience (RBR): capability to maintain a pre-determined minimum acceptable level of
+
+    performance in the presence of unwanted signals over the frequency band of operation, applicable adjacent and remote
+
+    frequency bands
+
+    Receiver Baseline Sensitivity (RBS): capability to receive a wanted signal at application related defined input signal
+
+    levels while providing a pre-determined minimum acceptable level of technical performance
+
+    Received Signal Strength Indication (RSSI): measurement of the power of a received radio signal
+
+    NOTE: The location of a transmitter can be determined by comparing the strength of the signal received at
+
+    multiple known locations.
+
+    Time Difference Of Arrival (TDOA): method to compare the moment of reception of a single transmission at multiple
+
+    synchronized receivers
+
+    NOTE: It can be used to compute the location of a transmitter by comparing the difference of arrival time of the
+
+    multiple receivers at known locations.
+
+    3.2 Symbols
+
+    For the purposes of the present document, the symbols given in ETSI EN 303 883-1 [1], ETSI EN 303 883-2 [2], ETSI
+
+    TS 103 941 [3] and the following apply.
+
+    f lowest frequency of the operating frequency range
+
+    L
+
+    f lowest frequency of the operating frequency range start spurious domain below f
+
+    LS C
+
+    f highest frequency of the operating frequency range
+
+    H
+
+    f start spurious domain above f
+
+    LS C
+
+    f centre frequency of the operating frequency range
+
+    C
+
+    ETSI
+
+    9 ETSI EN 300 440-2 V3.1.1 (2025-10)
+
+    3.3 Abbreviations
+
+    For the purposes of the present document, the abbreviations given in ETSI EN 303 883-1 [1], ETSI EN 303 883-2 [2],
+
+    ETSI TS 103 941 [3] and the following apply:
+
+    AOA Angle Of Arrival
+
+    RSSI Received Signal Strength Indication
+
+    TDOA Time Difference Of Arrival
+
+    4 Technical requirements specifications
+
+    4.1 Environmental profile
+
+    The technical requirements of the present document apply under the environmental profile for operation of the
+
+    equipment, which shall be in accordance with its intended use, but as a minimum, shall be that specified in the test
+
+    conditions contained in the present document. The equipment shall comply with all the technical requirements of the
+
+    present document at all times when operating within the boundary limits of the operational environmental profile
+
+    defined by its intended use.
+
+    4.2 Equipment categories
+
+    There are two equipment categories in the scope of the present document (see Table 1).
+
+    Table 1: Equipment categories
+
+    Equipment Equipment type Frequency Band Band number in
+
+    Category EC Decisio'
+- id: art-3
+  title: 'Annex C (informative):'
+  text: 'Annex C (informative):
+
+    Change history
+
+    Version Information about changes
+
+    V2.1.1 This work included merging of previous versions of part 1 and 2. Revision of standard
+
+    parts to cover the essential requirements of article 3.2 of the RE-D. Clarifications in the
+
+    measurement procedure.
+
+    V2.2.1 • Additional Rx-requirement for category 3 receivers: "blocking or desensitization".
+
+    • Clarification harmonized and non-harmonized frequency ranges covered by the
+
+    present document.
+
+    Clarification text: "General performance criteria".
+
+    • 2,4 GHz RFID, GBSAR removed sent to TG 34 (RFID), and TGUWB (UWB)
+
+    respectively.
+
+    • ETSI EN 300 440 split into 3 application specific parts: Communication,
+
+    V3.1.1
+
+    Radiodetermination location tracking, Intrusion radiodetermination.
+
+    • Testing methodology standardized to use ETSI EN 303 883-1 and -2 for
+
+    transmitter and receiver.
+
+    ETSI
+
+    26 ETSI EN 300 440-2 V3.1.1 (2025-10)
+
+    History
+
+    Document history
+
+    Edition 1 December 1995 Publication as ETSI I-ETS 300 440
+
+    Corrigendum 1 April 1996 Corrigendum 1 to 1st Edition of ETSI I-ETS 300 440
+
+    V1.3.1/V1.1.1 September 2001 Publication as ETSI EN 300 440 parts 1 and 2
+
+    V1.1.2 July 2004 Publication as ETSI EN 300 440 part 2
+
+    V1.4.1/V1.2.1 May 2008 Publication as ETSI EN 300 440 parts 1 and 2
+
+    V1.5.1/V1.3.1 March 2009 Publication as ETSI EN 300 440 parts 1 and 2
+
+    V1.6.1/V1.4.1 August 2010 Publication as ETSI EN 300 440 parts 1 and 2
+
+    V2.1.1 March 2017 Publication as ETSI EN 300 440
+
+    V2.2.1 July 2018 Publication as ETSI EN 300 440
+
+    V3.1.0 June 2025 SRdAP process EV 20250917: 2025-06-19 to 2025-09-17
+
+    V3.1.1 October 2025 Publication
+
+    ETSI'
 doc_files:
 - global/raw/ETSI_EN_30044002_v03.01.01_60.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30044002_v03.01.01_60.pdf (pdf, 63043 chars)，生成 3 条共 25590 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30044002_v03.01.01_60.pdf (pdf, 63043 chars)，生成 3 条共 25590 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30044002_v03.01.01_60.pdf (pdf, 63043 chars)，生成 3 条共 25590 字符；解析文本未人工复核，引用以官方原件为准。'

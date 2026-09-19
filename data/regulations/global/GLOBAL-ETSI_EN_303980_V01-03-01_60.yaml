@@ -9,11 +9,806 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'ETSI EN 303 980
+
+    V1.3.1
+
+    (2022-10)
+
+    HARMONISED EUROPEAN STANDAR'
+  text: 'ETSI EN 303 980
+
+    V1.3.1
+
+    (2022-10)
+
+    HARMONISED EUROPEAN STANDARD
+
+    Satellite Earth Stations and Systems (SES);
+
+    Fixed and in-motion Earth Stations communicating with
+
+    non-geostationary satellite systems (NEST)
+
+    in the 11 GHz to 14 GHz frequency bands;
+
+    Harmonised Standard for access to radio spectrum
+
+    2 ETSI EN 303 980 V1.3.1 (2022-10)
+
+    Reference
+
+    REN/SES-00460
+
+    Keywords
+
+    broadband, earth station, mobile, regulation,
+
+    satellite
+
+    ETSI
+
+    650 Route des Lucioles
+
+    F-06921 Sophia Antipolis Cedex - FRANCE
+
+    Tel.: +33 4 92 94 42 00 Fax: +33 4 93 65 47 16
+
+    Siret N° 348 623 562 00017 - APE 7112B
+
+    Association à but non lucratif enregistrée à la
+
+    Sous-Préfecture de Grasse (06) N° w061004871
+
+    Important notice
+
+    The present document can be downloaded from:
+
+    http://www.etsi.org/standards-search
+
+    The present document may be made available in electronic versions and/or in print. The content of any electronic and/or
+
+    print versions of the present document shall not be modified without the prior written authorization of ETSI. In case of any
+
+    existing or perceived difference in contents between such versions and/or in print, the prevailing version of an ETSI
+
+    deliverable is the one made publicly available in PDF format at www.etsi.org/deliver.
+
+    Users of the present document should be aware that the document may be subject to revision or change of status.
+
+    Information on the current status of this and other ETSI documents is available at
+
+    https://portal.etsi.org/TB/ETSIDeliverableStatus.aspx
+
+    If you find errors in the present document, please send your comment to one of the following services:
+
+    https://portal.etsi.org/People/CommiteeSupportStaff.aspx
+
+    If you find a security vulnerability in the present document, please report it through our
+
+    Coordinated Vulnerability Disclosure Program:
+
+    https://www.etsi.org/standards/coordinated-vulnerability-disclosure
+
+    Notice of disclaimer & limitation of liability
+
+    The information provided in the present deliverable is directed solely to professionals who have the appropriate degree of
+
+    experience to understand and interpret its content in accordance with generally accepted engineering or
+
+    other professional standard and applicable regulations.
+
+    No recommendation as to products and services or vendors is made or should be implied.
+
+    In no event shall ETSI be held liable for loss of profits or any other incidental or consequential damages.
+
+    Any software contained in this deliverable is provided "AS IS" with no warranties, express or implied, including but not
+
+    limited to, the warranties of merchantability, fitness for a particular purpose and non-infringement of intellectual property
+
+    rights and ETSI shall not be held liable in any event for any damages whatsoever (including, without limitation, damages
+
+    for loss of profits, business interruption, loss of information, or any other pecuniary loss) arising out of or related to the use
+
+    of or inability to use the software.
+
+    Copyright Notification
+
+    No part may be reproduced or utilized in any form or by any means, electronic or mechanical, including photocopying and
+
+    microfilm except as authorized by written permission of ETSI.
+
+    The content of the PDF version shall not be modified without the written authorization of ETSI.
+
+    The copyright and the foregoing restriction extend to reproduction in all media.
+
+    © ETSI 2022.
+
+    All rights reserved.
+
+    ETSI
+
+    3 ETSI EN 303 980 V1.3.1 (2022-10)
+
+    Contents
+
+    Intellectual Property Rights ................................................................................................................................ 7
+
+    Foreword ............................................................................................................................................................. 7
+
+    Modal verbs terminology .................................................................................................................................... 8
+
+    Introduction ........................................................................................................................................................ 8
+
+    1 Scope ........................................................................................................................................................ 9
+
+    2 References .............................................................................................................................................. 10
+
+    2.1 Normative references ....................................................................................................................................... 10
+
+    2.2 Informative references ...................................................................................................................................... 10
+
+    3 Definition of terms, symbols and abbreviations ..................................................................................... 11
+
+    3.1 Terms ................................................................................................................................................................ 11
+
+    3.2 Symbols ............................................................................................................................................................ 12
+
+    3.3 Abbreviations ................................................................................................................................................... 13
+
+    4 Technical requirements specifications ................................................................................................... 14
+
+    4.1 General ............................................................................................................................................................. 14
+
+    4.1.0 Objective ..................................................................................................................................................... 14
+
+    4.1.1 Environmental profile ................................................................................................................................. 14
+
+    4.1.2 Void ............................................................................................................................................................ 14
+
+    4.1.3 Operating configurations ............................................................................................................................ 14
+
+    4.1.4 Presentation of equipment for testing purposes .......................................................................................... 14
+
+    4.1.5 Choice of model for testing ........................................................................................................................ 15
+
+    4.1.6 Operation of multiple NEST on a single frequency .................................................................................... 15
+
+    4.2 Conformance requirements .............................................................................................................................. 15
+
+    4.2.1 Void ............................................................................................................................................................ 15
+
+    4.2.2 Antenna beam pointing ............................................................................................................................... 15
+
+    4.2.2.1 Pointing accuracy .................................................................................................................................. 15
+
+    4.2.2.1.1 Purpose ............................................................................................................................................ 15
+
+    4.2.2.1.2 Antenna Beam Pointing error .......................................................................................................... 15
+
+    4.2.2.2 Pointing error detection ......................................................................................................................... 15
+
+    4.2.2.2.1 Purpose ............................................................................................................................................ 15
+
+    4.2.2.2.2 Pointing error detection specification .............................................................................................. 16
+
+    4.2.2.3 Conformance tests ................................................................................................................................. 16
+
+    4.2.3 Off-axis spurious radiation ......................................................................................................................... 16
+
+    4.2.3.1 Justification ........................................................................................................................................... 16
+
+    4.2.3.2 Specification.......................................................................................................................................... 16
+
+    4.2.3.3 Conformance tests ................................................................................................................................. 17
+
+    4.2.4 On-axis spurious radiation .......................................................................................................................... 17
+
+    4.2.4.1 Justification ........................................................................................................................................... 17
+
+    4.2.4.2 Specification.......................................................................................................................................... 17
+
+    4.2.4.2.1 "Carrier-on" radio state .................................................................................................................... 17
+
+    4.2.4.2.2 "Carrier-off" and "Emissions disabled" radio states ........................................................................ 18
+
+    4.2.4.3 Conformance tests ................................................................................................................................. 18
+
+    4.2.5 Carrier suppression ..................................................................................................................................... 18
+
+    4.2.5.1 Justification ........................................................................................................................................... 18
+
+    4.2.5.2 Specification.......................................................................................................................................... 18
+
+    4.2.5.3 Conformance tests ................................................................................................................................. 18
+
+    4.2.6 Cessation of emissions ................................................................................................................................ 18
+
+    4.2.6.1 Justification ........................................................................................................................................... 18
+
+    4.2.6.2 Specification.......................................................................................................................................... 18
+
+    4.2.6.2.1 Specification 1: Mode of cessation of emissions ............................................................................. 18
+
+    4.2.6.2.2 Specification 2: Conditions under which the NEST shall cease emissions ..................................... 19
+
+    4.2.6.2.3 Specification 3: Cessation of emissions .......................................................................................... 19
+
+    4.2.6.2.4 Specification 4: Fault conditions ..................................................................................................... 20
+
+    4.2.6.3 Conformance tests ................................................................................................................................. 20
+
+    4.2.7 Identification of the NEST and its location ................................................................................................ 20
+
+    ETSI
+
+    4 ETSI EN 303 980 V1.3.1 (2022-10)
+
+    4.2.7.1 Justification ..............................'
+- id: art-2
+  title: 'Annex C (normative): Conducted measurements ............................................................................. 66'
+  text: 'Annex C (normative): Conducted measurements ............................................................................. 66
+
+    Annex D (informative): General Requirements for RF Cables .......................................................... 67
+
+    Annex E (informative): RF Waveguides .............................................................................................. 68
+
+    Annex F (informative): Measurement Equipment .............................................................................. 69
+
+    F.1 Special considerations for the interpretation of measurement results .................................................... 69
+
+    F.2 Maximum measurement uncertainty ...................................................................................................... 69
+
+    F.3 Measuring receiver ................................................................................................................................. 70
+
+    F.4 Measurement results ............................................................................................................................... 71
+
+    Annex G (informative): Applicability of parameters given in ETSI EG 203 336 ............................. 72
+
+    Annex H (informative): Bibliography ................................................................................................... 74'
+- id: art-3
+  title: 'Annex I (informative): Change history ............................................................................................... 75'
+  text: 'Annex I (informative): Change history ............................................................................................... 75
+
+    History .............................................................................................................................................................. 76
+
+    ETSI
+
+    7 ETSI EN 303 980 V1.3.1 (2022-10)
+
+    Intellectual Property Rights
+
+    Essential patents
+
+    IPRs essential or potentially essential to normative deliverables may have been declared to ETSI. The declarations
+
+    pertaining to these essential IPRs, if any, are publicly available for ETSI members and non-members, and can be
+
+    found in ETSI SR 000 314: "Intellectual Property Rights (IPRs); Essential, or potentially Essential, IPRs notified to
+
+    ETSI in respect of ETSI standards", which is available from the ETSI Secretariat. Latest updates are available on the
+
+    ETSI Web server (https://ipr.etsi.org/).
+
+    Pursuant to the ETSI Directives including the ETSI IPR Policy, no investigation regarding the essentiality of IPRs,
+
+    including IPR searches, has been carried out by ETSI. No guarantee can be given as to the existence of other IPRs not
+
+    referenced in ETSI SR 000 314 (or the updates on the ETSI Web server) which are, or may be, or may become,
+
+    essential to the present document.
+
+    Trademarks
+
+    The present document may include trademarks and/or tradenames which are asserted and/or registered by their owners.
+
+    ETSI claims no ownership of these except for any which are indicated as being the property of ETSI, and conveys no
+
+    right to use or reproduce any trademark and/or tradename. Mention of those trademarks in the present document does
+
+    not constitute an endorsement by ETSI of products, services or organizations associated with those trademarks.
+
+    DECT™, PLUGTESTS™, UMTS™ and the ETSI logo are trademarks of ETSI registered for the benefit of its
+
+    Members. 3GPP™ and LTE™ are trademarks of ETSI registered for the benefit of its Members and of the 3GPP
+
+    Organizational Partners. oneM2M™ logo is a trademark of ETSI registered for the benefit of its Members and of the
+
+    oneM2M Partners. GSM® and the GSM logo are trademarks registered and owned by the GSM Association.
+
+    Foreword
+
+    This Harmonised European Standard (EN) has been produced by ETSI Technical Committee Satellite Earth Stations
+
+    and Systems (SES).
+
+    The present document has been prepared under the Commission''s standardisation request C(2015) 5376 final [i.1] to
+
+    provide one voluntary means of conforming to the essential requirements of Directive 2014/53/EU on the harmonisation
+
+    of the laws of the Member States relating to the making available on the market of radio equipment and repealing
+
+    Directive 1999/5/EC [i.6].
+
+    Once the present document is cited in the Official Journal of the European Union under that Directive, compliance with
+
+    the normative clauses of the present document given in Table A.1 confers, within the limits of the scope of the present
+
+    document, a presumption of conformity with the corresponding essential requirements of that Directive and associated
+
+    EFTA regulations.
+
+    National transposition dates
+
+    Date of adoption of this EN: 10 October 2022
+
+    Date of latest announcement of this EN (doa): 31 January 2023
+
+    Date of latest publication of new National Standard
+
+    or endorsement of this EN (dop/e): 31 July 2023
+
+    Date of withdrawal of any conflicting National Standard (dow): 31 July 2024
+
+    ETSI
+
+    8 ETSI EN 303 980 V1.3.1 (2022-10)
+
+    Modal verbs terminology
+
+    In the present document "shall", "shall not", "should", "should not", "may", "need not", "will", "will not", "can" and
+
+    "cannot" are to be interpreted as described in clause 3.2 of the ETSI Drafting Rules (Verbal forms for the expression of
+
+    provisions).
+
+    "must" and "must not" are NOT allowed in ETSI deliverables except when used in direct citation.
+
+    Introduction
+
+    The present document is part of a set of standards developed by ETSI and is designed to fit in a modular structure to
+
+    cover all radio and telecommunications terminal equipment within the scope of the RE Directive [i.6]. The modular
+
+    structure is shown in ETSI EG 201 399 [i.2].
+
+    The present document is largely based on ETSI EN 303 979 [i.4], for ESOMPs operating with NGSO satellites.
+
+    The present document may also be applicable to the frequency band 14,0 GHz to 14,50 GHz (Earth-to-space) and
+
+    10,70 GHz to 12,75 GHz (space-to-Earth) subject to national regulation.
+
+    Annex A (informative) provides HS Requirements specifications.
+
+    Annex B (normative) describes methods of taking radiated measurements.'
+- id: art-4
+  title: Annex C (normative) describes methods of taking conducted measurements.
+  text: 'Annex C (normative) describes methods of taking conducted measurements.
+
+    Annex D (informative) describes requirements for RF measurement cables.
+
+    Annex E (informative) describes use of RF waveguides.
+
+    Annex F (informative) describes measurement equipment.
+
+    Annex G (informative) describes the applicability of parameters in ETSI EG 203 336 [i.7].
+
+    Annex H (informative) Bibliography covers other supplementary information.
+
+    Recital 10 of Directive 2014/53/EU [i.6] states that "in order to ensure that radio equipment uses the radio spectrum
+
+    effectively and supports the efficient use of radio spectrum, radio equipment should be constructed so that: in the case
+
+    of a transmitter, when the transmitter is properly installed, maintained and used for its intended purpose it generates
+
+    radio waves emissions that do not create harmful interference, while unwanted radio waves emissions generated by the
+
+    transmitter (e.g. in adjacent channels) with a potential negative impact on the goals of radio spectrum policy should be
+
+    limited to such a level that, according to the state of the art, harmful interference is avoided; and, in the case of a
+
+    receiver, it has a level of performance that allows it to operate as intended and protects it against the risk of harmful
+
+    interference, in particular from shared or adjacent channels, and, in so doing, supports improvements in the efficient
+
+    use of shared or adjacent channels".
+
+    Recital 11 of Directive 2014/53/EU [i.6] states that "although receivers do not themselves cause harmful interference,
+
+    reception capabilities are an increasingly important factor in ensuring the efficient use of radio spectrum by way of an
+
+    increased resilience of receivers against harmful interference and unwanted signals on the basis of the relevant
+
+    essential requirements of Union harmonisation legislation".
+
+    As a consequence, the present document includes both transmitting and receiving parameters aiming to maximize the
+
+    efficient use of radio spectrum.
+
+    ETSI
+
+    9 ETSI EN 303 980 V1.3.1 (2022-10)
+
+    1 Scope
+
+    The present document specifies technical characteristics and methods of measurements for fixed and in-motion Earth
+
+    Stations communicating with non-geostationary satellite systems (NEST) in the 11 GHz to 14 GHz FSS frequency
+
+    bands, which have the following characteristics:
+
+    • The NEST is designed for both in-motion and stationary operation.
+
+    • The NEST operates in-motion on various platforms such as trains, maritime vessels, aircraft and other vehicles
+
+    and, therefore, may be subject to occasional disturbances and interruptions in the satellite link.
+
+    • The NEST is operating as part of a satellite system used for the provision of broadband communications.
+
+    • The NEST is comprised of all the equipment, electrical and mechanical, from the antenna itself to the interface
+
+    with other communications equipment on a mobile platform.
+
+    • The NEST comprises one or more emitters and the system overview as given in Figure 1 should be interpreted
+
+    accordingly.
+
+    • The transmit and receive frequencies are shown in Table 1.
+
+    Table 1: Frequency bands
+
+    Frequency Bands
+
+    Transmit (Earth-to-space) 14,0 GHz to 14,50 GHz
+
+    Receive (space-to-Earth) 10,70 GHz to 12,75 GHz
+
+    • The NEST transmits within the frequency range from 14,0 GHz to 14,50 GHz. The NEST transmits at
+
+    elevation angles of 35° or greater, relative to the horizontal plane.
+
+    • The NEST receives within the range from 10,70 GHz to 12,75 GHz.
+
+    • The NEST uses linear or circular polarization.
+
+    • The NEST communicates with non-geostationary satellites.
+
+    • The NEST is designed for unattended operation.
+
+    • The NEST is controlled and monitored by a Network Control Facility (NCF). The NCF is outside the scope of
+
+    the present document.
+
+    Figure 1: NEST System Overview
+
+    The present document applies to the NEST with its ancillary equipment and its various telecommunication ports, and
+
+    when operated within the boundary limits of the operational environmental profile as declared by the manufacturer and
+
+    when installed as required by the manufacturer''s declaration or in the user documentation.
+
+    ETSI
+
+    10 ETSI EN 303 980 V1.3.1 (2022-10)
+
+    NOTE: The relationship between the present document and essential requirements of article 3.2 of Directive
+
+    2014/53/EU [i.6] is given in annex A.
+
+    2 References
+
+    2.1 Normative references
+
+    References are either specific (identified by date of publication and/or edition number or version number) or
+
+    non-specific. For specific references, only the cited version applies. For non-specific references, the latest version of the
+
+    referenced document (including any amendments) applies.
+
+    Referenced documents which are not found to be publicly available in the expected location might be found at
+
+    https://docbox.etsi.org/Reference/.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    The following referenced documents are necessary for the application of the present document.
+
+    [1] CISPR 16-1-1:2019: "Specification for radio disturbance and immunity measuring apparatus and
+
+    methods - Part 1-1: Radio disturbance and immunity measuring apparatus - Measuring apparatus".
+
+    [2] CISPR 16-1-4:2019: "Specification for radio disturbance and immunity measuring apparatus and
+
+    methods - Part 1-4: Radio disturbance and immunity measuring apparatus - Antennas and test sites
+
+    for radiated disturbance measurements".
+
+    [3] Recommendation ITU-R S.1503-3 (01/2018), Section 3.1: "Generation of Earth Station e.i.r.p.
+
+    density masks".
+
+    2.2 Informative references
+
+    References are either specific (identified by date of publication and/or edition number or version number) or
+
+    non-specific. For specific references, only the cited version applies. For non-specific references, the latest version of the
+
+    referenced document (including any amendments) applies.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    The following referenced documents are not necessary for the application of the present document but they assist the
+
+    user with regard to a particular subject area.
+
+    [i.1] Commission Implementing Decision C(2015) 5376 final of 04.08.2015 on a standardisation
+
+    request to the European Committee for Electrotechnical Standardisation and to the European
+
+    Telecommunications Standards Institute as regards radio equipment in support of Directive
+
+    2014/53/EU of the European Parliament and of the Council.
+
+    [i.2] ETSI EG 201 399: "Electromagnetic compatibility and Radio spectrum Matters (ERM); A guide to
+
+    the production of Harmonized Standards for application under the Radio & Telecommunication
+
+    Terminal Equipment Directive 1999/5/EC (R&TTE) and a first guide on the impact of the Radio
+
+    Equipment Directive 2014/53/EU (RED) on Harmonized Standards".
+
+    [i.3] ETSI TS 103 052: "Electromagnetic compatibility and Radio spectrum Matters (ERM); Radiated
+
+    measurement methods and general arrangements for test sites up to 100 GHz".
+
+    [i.4] ETSI EN 303 979 (V2.1.2): "Satellite Earth Stations and Systems (SES); Harmonised Standard for
+
+    Earth Stations on Mobile Platforms (ESOMP) transmitting towards satellites in non-geostationary
+
+    orbit, operating in the 27,5 GHz to 29,1 GHz and 29,5 GHz to 30,0 GHz frequency bands covering
+
+    the essential requirements of article 3.2 of the Directive 2014/53/EU".
+
+    [i.5] Void.
+
+    ETSI
+
+    11 ETSI EN 303 980 V1.3.1 (2022-10)
+
+    [i.6] Directive 2014/53/EU of the European Parliament and of the Council of 16 April 2014 on the
+
+    harmonisation of the laws of the Member States relating to the making available on the market of
+
+    radio equipment and repealing Directive 1999/5/EC.
+
+    [i.7] ETSI EG 203 336 (V1.2.1): "Guide for the selection of technical parameters for the production of
+
+    Harmonised Standards covering article 3.1(b) and article 3.2 of Directive 2014/53/EU".
+
+    [i.8] IEC 60153 (parts 1 to 7): "Hollow metallic waveguides".
+
+    [i.9] Recommendation ITU-R BO.1213: "Reference receiving Earth station antenna pattern for the
+
+    broadcasting-satellite service in the 11.7-12.75 GHz band".
+
+    [i.10] ETSI TR 102 273 (all parts) (V1.2.1) (2001-12): "Electromagnetic compatibility and Radio
+
+    spectrum Matters (ERM); Improvement on Radiated Methods of Measurement (using test site) and
+
+    evaluation of the corresponding measurement uncertainties".
+
+    [i.11] ANSI C63.5 (2006): "American National Standard for Electromagnetic Compatibility Radiated
+
+    Emission Measurements in Electromagnetic Interference (EMI) Control Calibration of Antennas
+
+    (9 kHz to 40 GHz)".
+
+    [i.12] ETSI TR 100 028 (V1.4.1) (12-2001) (Parts 1 and 2): "Electromagnetic compatibility and Radio
+
+    spectrum Matters (ERM); Uncertainties in the measurement of mobile radio equipment
+
+    characteristics".
+
+    [i.13] ITU Radio Regulations (Edition 2020).
+
+    3 Definition of terms, symbols and abbreviations
+
+    3.1 Terms
+
+    For the purposes of the present document, the terms given in Directive 2014/53/EU [i.6] and the following apply:
+
+    ancillary equipment: equipment used in connection with a NEST
+
+    NOTE: See clause 5.2.
+
+    antenna controller: equipment used to maintain antenna stabilization and tracking accuracy based on inputs from the
+
+    Control and Monitoring Function
+
+    carrier-off radio state: radio state in which the NEST may transmit and does not transmit any carrier
+
+    NOTE: See clause 4.2.8.
+
+    carrier-on radio state: radio state in which the NEST may transmit and transmits a carrier
+
+    Control Channel (CC): channel or channels by which NESTs receive and send control information from and to the
+
+    NCF
+
+    EIRP : maximum EIRP capability of the NEST as declared by the manufacturer
+
+    max
+
+    emissions disabled radio state: radio state in which the NEST may not emit
+
+    NOTE: Examples of cases where the NEST is in this radio state:
+
+    
+
+    before system monitoring pass, before the control channel is received;
+
+    
+
+    when a failure is detected;
+
+    
+
+    when a NEST is commanded to disable; and
+
+    
+
+    when the NEST is in a location requiring cessation of emissions.
+
+    ETSI
+
+    12 ETSI EN 303 980 V1.3.1 (2022-10)
+
+    external control channel: control channel which is either:
+
+    i) carried by the NEST network via the same or another satellite, but not within the internal protocol of the NEST
+
+    system; or
+
+    ii) carried by any other radio communication system.
+
+    external response channel: response channel which is either:
+
+    i) carried by the NEST network via the same or another satellite, but not within the internal protocol of the NEST
+
+    system; or
+
+    ii) carried by any other radio communication system.
+
+    integral antenna: antenna which may not be removed during the tests according to the manufacturer''s declaration
+
+    internal control channel: control channel which is carried by the NEST network via the same satellite as used for
+
+    transmission of user data and within the internal protocol structure of the NEST system
+
+    internal response channel: response channel which is carried by the NEST network via the same satellite as used for
+
+    transmission of user data and within the internal protocol structure of the NEST system
+
+    manufacturer: means any natural or legal person who manufactures radio equipment or has radio equipment designed
+
+    or manufactured, and markets that equipment under his name or trade mark
+
+    Network Control Facility (NCF): set of functional entities that, at system level, monitor and control the correct
+
+    operation of the NEST and, if appropriate, all of the NESTs in a network
+
+    nominated bandwidth: bandwidth of the NEST radio frequency transmission declared by the manufacturer
+
+    NOTE: See clause 5.3.
+
+    off-axis angle: angle between the direction of the axis of the antenna main beam and the considered direction
+
+    removable antenna: antenna which may be removed during the tests according to the manufacturer''s declaration
+
+    Response Channel (RC): channel by which the NEST transmit monitoring information to the NCF
+
+    spurious radiation: in the present document, any radiation outside the nominated bandwidth
+
+    transmission disabled state: radio state in which the NEST is not authorized to transmit by the NCF
+
+    transmission enabled state: radio state in which the NEST is authorized to tr'
+- id: art-5
+  title: 'Annex C (normative):'
+  text: 'Annex C (normative):
+
+    Conducted measurements
+
+    In view of the low power levels of the equipment to be tested under the present document, conducted measurements
+
+    may be applied to equipment provided with an antenna connector. Where the equipment to be tested does not provide a
+
+    suitable termination, a coupler or attenuator that does provide the correct termination value shall be used.
+
+    The equivalent isotropically radiated power is then calculated from the measured value, the known antenna gain,
+
+    relative to an isotropic antenna, and if applicable, any losses due to cables and connectors in the measurement system.
+
+    The Voltage Standing Wave Ratio (VSWR) shall not be greater than 1,5:1 over the frequency range of the
+
+    measurement.
+
+    ETSI
+
+    67 ETSI EN 303 980 V1.3.1 (2022-10)
+
+    Annex D (informative):
+
+    General Requirements for RF Cables
+
+    All RF cables including their connectors at both ends used within the measurement arrangements and set-ups should be
+
+    of coaxial or waveguide type featuring within the frequency range they are used:
+
+    • a VSWR of less than 1,2 at either end;
+
+    • a shielding loss in excess of 60 dB.
+
+    When using coaxial cables for frequencies above 40 GHz attenuation features increase significantly and decrease of
+
+    return loss due to mismatching caused by joints at RF connectors and impedance errors should be considered.
+
+    All RF cables and waveguide interconnects should be routed suitably in order to reduce impacts on antenna radiation
+
+    pattern, antenna gain, antenna impedance. Table D.1 provides some information about connector systems that can be
+
+    used in connection with the cables.
+
+    Table D.1: Connector systems
+
+    Connector System Frequency Recommended coupling torque
+
+    N 18 GHz 0,68 Nm to 1,13 Nm
+
+    SMA 18 GHz ~ 0,56 Nm
+
+    (some up to 26 GHz)
+
+    3,50 mm 26,5 GHz 0,8 Nm to 1,1 Nm
+
+    2,92 mm 40 GHz 0,8 Nm to 1,1 Nm
+
+    (some up to 46 GHz)
+
+    2,40 mm 50 GHz 0,8 Nm to 1,1 Nm
+
+    (some up to 60 GHz)
+
+    1,85 mm 65 GHz 0,8 Nm to 1,1 Nm
+
+    (some up to 75 GHz)
+
+    ETSI
+
+    68 ETSI EN 303 980 V1.3.1 (2022-10)
+
+    Annex E (informative):
+
+    RF Waveguides
+
+    Wired signal transmission in the millimetre range is preferably realized by means of waveguides because they offer low
+
+    attenuation and high reproducibility. Unlike coax'
 doc_files:
 - global/raw/ETSI_EN_303980_v01.03.01_60.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_303980_v01.03.01_60.pdf (pdf, 197226 chars)，生成 5 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_303980_v01.03.01_60.pdf (pdf, 197226 chars)，生成 5 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_303980_v01.03.01_60.pdf (pdf, 197226 chars)，生成 5 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

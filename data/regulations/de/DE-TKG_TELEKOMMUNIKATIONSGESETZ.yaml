@@ -9,11 +9,323 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: Ein Service des Bundesministerium der Justiz und für Verbrau
+  text: 'Ein Service des Bundesministerium der Justiz und für Verbraucherschutz
+
+    sowie des Bundesamts für Justiz ‒ www.gesetze-im-internet.de
+
+    Telekommunikationsgesetz (TKG)
+
+    TKG
+
+    Ausfertigungsdatum: 23.06.2021
+
+    Vollzitat:
+
+    "Telekommunikationsgesetz vom 23. Juni 2021 (BGBl. I S. 1858), das zuletzt durch Artikel 2 des Gesetzes vom 12.
+
+    Mai 2026 (BGBl. 2026 I Nr. 138) geändert worden ist"
+
+    Stand: Zuletzt geändert durch Art. 6 G v. 11.3.2026 I Nr. 66
+
+    Hinweis: Änderung durch Art. 2 G v. 12.5.2026 I Nr. 138 textlich nachgewiesen, dokumentarisch noch nicht
+
+    abschließend bearbeitet
+
+    Ersetzt G v. 22.6.2004 I 1190 (TKG 2004)
+
+    Fußnote
+
+    (+++ Textnachweis ab: 1.12.2021 +++)
+
+    (+++ Zur Anwendung vgl. § 230 +++)
+
+    (+++ EU-Vollzitate: vgl. Liste EU-Rechtsakte G v. 10.3.2026 I Nr. 64,
+
+    G v. 12.5.2026 I Nr. 138 +++)
+
+    Das G wurde als Artikel 1 des G v. 23.6.2021 I 1858 vom Bundestag mit Zustimmung des Bundesrates
+
+    beschlossen. Es ist gem. Art. 61 Abs. 1 Satz 1 dieses G am 1.12.2021 in Kraft getreten.
+
+    Inhaltsübersicht
+
+    Teil 1
+
+    Allgemeine Vorschriften'
+- id: art-2
+  title: § 1 Zweck des Gesetzes, Anwendungsbereich
+  text: § 1 Zweck des Gesetzes, Anwendungsbereich
+- id: art-3
+  title: § 2 Ziele und Grundsätze der Regulierung
+  text: § 2 Ziele und Grundsätze der Regulierung
+- id: art-4
+  title: § 3 Begriffsbestimmungen
+  text: § 3 Begriffsbestimmungen
+- id: art-5
+  title: § 4 Internationale Berichtspflichten
+  text: § 4 Internationale Berichtspflichten
+- id: art-6
+  title: § 5 Meldepflicht
+  text: § 5 Meldepflicht
+- id: art-7
+  title: § 6 Jahresfinanzbericht
+  text: § 6 Jahresfinanzbericht
+- id: art-8
+  title: § 7 Strukturelle Separierung und getrennte Rechnungslegung
+  text: § 7 Strukturelle Separierung und getrennte Rechnungslegung
+- id: art-9
+  title: § 8 Ordnungsgeldvorschriften
+  text: § 8 Ordnungsgeldvorschriften
+- id: art-10
+  title: § 9 Internationaler Status
+  text: '§ 9 Internationaler Status
+
+    Teil 2
+
+    Marktregulierung
+
+    Abschnitt 1
+
+    Verfahren der Marktregulierung
+
+    - Seite 1 von 151 -
+
+    Ein Service des Bundesministerium der Justiz und für Verbraucherschutz
+
+    sowie des Bundesamts für Justiz ‒ www.gesetze-im-internet.de'
+- id: art-11
+  title: § 10 Marktdefinition
+  text: § 10 Marktdefinition
+- id: art-12
+  title: § 11 Marktanalyse
+  text: § 11 Marktanalyse
+- id: art-13
+  title: § 12 Konsultations- und Konsolidierungsverfahren
+  text: § 12 Konsultations- und Konsolidierungsverfahren
+- id: art-14
+  title: § 13 Regulierungsverfügung
+  text: § 13 Regulierungsverfügung
+- id: art-15
+  title: § 14 Verfahren der Regulierungsverfügung
+  text: § 14 Verfahren der Regulierungsverfügung
+- id: art-16
+  title: § 15 Überprüfung von Marktdefinition, Marktanalyse und Regulierungsverfügung
+  text: § 15 Überprüfung von Marktdefinition, Marktanalyse und Regulierungsverfügung
+- id: art-17
+  title: § 16 Verfahren bei sonstigen marktrelevanten Maßnahmen
+  text: § 16 Verfahren bei sonstigen marktrelevanten Maßnahmen
+- id: art-18
+  title: § 17 Verwaltungsvorschriften zu Regulierungsgrundsätzen und Anträge auf Auskunft über den
+  text: '§ 17 Verwaltungsvorschriften zu Regulierungsgrundsätzen und Anträge auf Auskunft über den
+
+    Regulierungsrahmen für Netze mit sehr hoher Kapazität'
+- id: art-19
+  title: § 18 Verpflichtungszusagen
+  text: § 18 Verpflichtungszusagen
+- id: art-20
+  title: § 19 Marktprüfungsverfahren für Verpflichtungszusagen
+  text: '§ 19 Marktprüfungsverfahren für Verpflichtungszusagen
+
+    Abschnitt 2
+
+    Zugangsregulierung
+
+    Unterabschnitt 1
+
+    Allgemeine Zugangsvorschriften'
+- id: art-21
+  title: § 20 Verhandlungen über Zugang und Zusammenschaltung
+  text: § 20 Verhandlungen über Zugang und Zusammenschaltung
+- id: art-22
+  title: § 21 Zugangsverpflichtung und Zusammenschaltung bei Kontrolle über Zugang zu Endnutzern
+  text: § 21 Zugangsverpflichtung und Zusammenschaltung bei Kontrolle über Zugang zu Endnutzern
+- id: art-23
+  title: § 22 Zugangsverpflichtung bei Hindernissen der Replizierbarkeit
+  text: § 22 Zugangsverpflichtung bei Hindernissen der Replizierbarkeit
+- id: art-24
+  title: § 23 Zugangsvereinbarungen bei Kontrolle über Zugang zu Endnutzern oder bei Hindernissen der
+  text: '§ 23 Zugangsvereinbarungen bei Kontrolle über Zugang zu Endnutzern oder bei Hindernissen der
+
+    Replizierbarkeit
+
+    Unterabschnitt 2
+
+    Zugangsvorschriften für
+
+    Unternehmen mit beträchtlicher Marktmacht'
+- id: art-25
+  title: § 24 Diskriminierungsverbot
+  text: § 24 Diskriminierungsverbot
+- id: art-26
+  title: § 25 Transparenzverpflichtung
+  text: § 25 Transparenzverpflichtung
+- id: art-27
+  title: § 26 Zugangsverpflichtungen
+  text: § 26 Zugangsverpflichtungen
+- id: art-28
+  title: § 27 Verpflichtungen zur einheitlichen Rechnungsstellung und Inkasso
+  text: § 27 Verpflichtungen zur einheitlichen Rechnungsstellung und Inkasso
+- id: art-29
+  title: § 28 Zugangsvereinbarungen
+  text: § 28 Zugangsvereinbarungen
+- id: art-30
+  title: § 29 Standardangebot
+  text: § 29 Standardangebot
+- id: art-31
+  title: § 30 Getrennte Rechnungslegung
+  text: '§ 30 Getrennte Rechnungslegung
+
+    Unterabschnitt 3
+
+    - Seite 2 von 151 -
+
+    Ein Service des Bundesministerium der Justiz und für Verbraucherschutz
+
+    sowie des Bundesamts für Justiz ‒ www.gesetze-im-internet.de
+
+    Sonstige Zugangsvorschriften für
+
+    Unternehmen mit beträchtlicher Marktmacht'
+- id: art-32
+  title: § 31 Verpflichtung zur funktionellen Trennung eines vertikal integrierten Unternehmens
+  text: § 31 Verpflichtung zur funktionellen Trennung eines vertikal integrierten Unternehmens
+- id: art-33
+  title: § 32 Freiwillige funktionelle Trennung durch ein vertikal integriertes Unternehmen
+  text: § 32 Freiwillige funktionelle Trennung durch ein vertikal integriertes Unternehmen
+- id: art-34
+  title: § 33 Ausschließlich auf der Vorleistungsebene tätige Unternehmen
+  text: § 33 Ausschließlich auf der Vorleistungsebene tätige Unternehmen
+- id: art-35
+  title: § 34 Migration von herkömmlichen Infrastrukturen
+  text: '§ 34 Migration von herkömmlichen Infrastrukturen
+
+    Unterabschnitt 4
+
+    Allgemeine Vorschriften'
+- id: art-36
+  title: § 35 Anordnungen im Rahmen der Zugangsregulierung
+  text: § 35 Anordnungen im Rahmen der Zugangsregulierung
+- id: art-37
+  title: § 36 Veröffentlichung
+  text: '§ 36 Veröffentlichung
+
+    Abschnitt 3
+
+    Entgeltregulierung
+
+    Unterabschnitt 1
+
+    Entgeltvorschriften für Zugangsleistungen'
+- id: art-38
+  title: § 37 Missbräuchliches Verhalten eines Unternehmens mit beträchtlicher Marktmacht bei der Forderung
+  text: '§ 37 Missbräuchliches Verhalten eines Unternehmens mit beträchtlicher Marktmacht bei der Forderung
+
+    und Vereinbarung von Entgelten'
+- id: art-39
+  title: § 38 Entgeltregulierung
+  text: § 38 Entgeltregulierung
+- id: art-40
+  title: § 39 Maßstäbe der Entgeltgenehmigung
+  text: § 39 Maßstäbe der Entgeltgenehmigung
+- id: art-41
+  title: § 40 Verfahren der Entgeltgenehmigung
+  text: § 40 Verfahren der Entgeltgenehmigung
+- id: art-42
+  title: § 41 Rechtsschutz bei Verfahren der Entgeltgenehmigung
+  text: § 41 Rechtsschutz bei Verfahren der Entgeltgenehmigung
+- id: art-43
+  title: § 42 Kosten der effizienten Leistungsbereitstellung
+  text: § 42 Kosten der effizienten Leistungsbereitstellung
+- id: art-44
+  title: § 43 Kostenunterlagen
+  text: § 43 Kostenunterlagen
+- id: art-45
+  title: § 44 Abweichung von genehmigten Entgelten
+  text: § 44 Abweichung von genehmigten Entgelten
+- id: art-46
+  title: § 45 Verfahren der Entgeltanzeige
+  text: § 45 Verfahren der Entgeltanzeige
+- id: art-47
+  title: § 46 Nachträgliche Missbrauchsprüfung
+  text: '§ 46 Nachträgliche Missbrauchsprüfung
+
+    Unterabschnitt 2
+
+    Allgemeine Vorschriften'
+- id: art-48
+  title: § 47 Anordnungen im Rahmen der Entgeltregulierung
+  text: '§ 47 Anordnungen im Rahmen der Entgeltregulierung
+
+    - Seite 3 von 151 -
+
+    Ein Service des Bundesministerium der Justiz und für Verbraucherschutz
+
+    sowie des Bundesamts für Justiz ‒ www.gesetze-im-internet.de'
+- id: art-49
+  title: § 48 Veröffentlichung
+  text: '§ 48 Veröffentlichung
+
+    Abschnitt 4
+
+    Regulierung
+
+    von Endnutzerleistungen'
+- id: art-50
+  title: § 49 Regulierung von Endnutzerleistungen
+  text: '§ 49 Regulierung von Endnutzerleistungen
+
+    Abschnitt 5
+
+    Besondere Missbrauchsaufsicht'
+- id: art-51
+  title: § 50 Missbräuchliches Verhalten eines Unternehmens mit beträchtlicher Marktmacht
+  text: '§ 50 Missbräuchliches Verhalten eines Unternehmens mit beträchtlicher Marktmacht
+
+    Teil 3
+
+    Kundenschutz'
+- id: art-52
+  title: § 51 Nichtdiskriminierung, Berücksichtigung der Interessen von Endnutzern mit Behinderungen
+  text: § 51 Nichtdiskriminierung, Berücksichtigung der Interessen von Endnutzern mit Behinderungen
+- id: art-53
+  title: § 52 Transparenz, Veröffentlichung von Informationen und Dienstemerkmalen zur Kostenkontrolle;
+  text: '§ 52 Transparenz, Veröffentlichung von Informationen und Dienstemerkmalen zur Kostenkontrolle;
+
+    Rechtsverordnung'
+- id: art-54
+  title: § 53 Unabhängige Vergleichsinstrumente
+  text: § 53 Unabhängige Vergleichsinstrumente
+- id: art-55
+  title: § 54 Vertragsschluss und Vertragszusammenfassung
+  text: § 54 Vertragsschluss und Vertragszusammenfassung
+- id: art-56
+  title: § 55 Informationsanforderungen für Verträge
+  text: § 55 Informationsanforderungen für Verträge
+- id: art-57
+  title: § 56 Vertragslaufzeit, Kündigung nach stillschweigender Vertragsverlängerung
+  text: § 56 Vertragslaufzeit, Kündigung nach stillschweigender Vertragsverlängerung
+- id: art-58
+  title: § 57 Vertragsänderung, Minderung und außerordentliche Kündigung
+  text: § 57 Vertragsänderung, Minderung und außerordentliche Kündigung
+- id: art-59
+  title: § 58 Entstörung
+  text: § 58 Entstörung
+- id: art-60
+  title: § 59 Anbieterwechsel und Rufnummernmitnahme
+  text: § 59 Anbieterwechsel und Rufnummernmitnahme
 doc_files:
 - de/raw/DE-TKG_Telekommunikationsgesetz.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：de/raw/DE-TKG_Telekommunikationsgesetz.pdf (pdf, 609706 chars)，生成 47 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：de/raw/DE-TKG_Telekommunikationsgesetz.pdf (pdf, 609706 chars)，生成 47 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：de/raw/DE-TKG_Telekommunikationsgesetz.pdf (pdf, 609518 chars)，生成 60 条共 4939 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

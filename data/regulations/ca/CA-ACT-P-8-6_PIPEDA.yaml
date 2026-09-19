@@ -9,11 +9,1163 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: An Act to support and promote electronic commerce by protect
+  text: 'An Act to support and promote electronic commerce by protecting personal information that is collected, used or disclosed in certain circumstances, by providing for the use of electronic means
+    to communicate or record information or transactions and by amending the Canada Evidence Act, the Statutory Instruments Act and the Statute Revision Act
+
+    Personal Information Protection and Electronic Documents Act
+
+    Personal Information Protection and Electronic Documents
+
+    2000
+
+    4
+
+    13
+
+    2026
+
+    4
+
+    1
+
+    P-8.6
+
+    5
+
+    2000
+
+    Her Majesty, by and with the advice and consent of the Senate and House of Commons of Canada, enacts as follows:
+
+    Short Title
+
+    Short title
+
+    1
+
+    This Act may be cited as the
+
+    Personal Information Protection and Electronic Documents Act
+
+    .
+
+    PART 1
+
+    Protection of Personal Information in the Private Sector
+
+    Interpretation
+
+    Definitions
+
+    2
+
+    (1)
+
+    The definitions in this subsection apply in this Part.
+
+    alternative format
+
+    , with respect to personal information, means a format that allows a person with a sensory disability to read or listen to the personal information. (
+
+    support de substitution
+
+    )
+
+    breach of security safeguards
+
+    means the loss of, unauthorized access to or unauthorized disclosure of personal information resulting from a breach of an organization’s security safeguards that are referred to in clause 4.7 of Schedule
+    1 or from a failure to establish those safeguards. (
+
+    atteinte aux mesures de sécurité
+
+    )
+
+    business contact information
+
+    means any information that is used for the purpose of communicating or facilitating communication with an individual in relation to their employment, business or profession such as the individual’s
+    name, position name or title, work address, work telephone number, work fax number or work electronic address. (
+
+    coordonnées d’affaires
+
+    )
+
+    business transaction
+
+    includes
+
+    (a)
+
+    the purchase, sale or other acquisition or disposition of an organization or a part of an organization, or any of its assets;
+
+    (b)
+
+    the merger or amalgamation of two or more organizations;
+
+    (c)
+
+    the making of a loan or provision of other financing to an organization or a part of an organization;
+
+    (d)
+
+    the creating of a charge on, or the taking of a security interest in or a security on, any assets or securities of an organization;
+
+    (e)
+
+    the lease or licensing of any of an organization’s assets; and
+
+    (f)
+
+    any other prescribed arrangement between two or more organizations to conduct a business activity. (
+
+    transaction commerciale
+
+    )
+
+    commercial activity
+
+    means any particular transaction, act or conduct or any regular course of conduct that is of a commercial character, including the selling, bartering or leasing of donor, membership or other fundraising
+    lists. (
+
+    activité commerciale
+
+    )
+
+    Commissioner
+
+    means the Privacy Commissioner appointed under section 53 of the
+
+    Privacy Act
+
+    . (
+
+    commissaire
+
+    )
+
+    Court
+
+    means the Federal Court. (
+
+    Cour
+
+    )
+
+    federal work, undertaking or business
+
+    means any work, undertaking or business that is within the legislative authority of Parliament. It includes
+
+    (a)
+
+    a work, undertaking or business that is operated or carried on for or in connection with navigation and shipping, whether inland or maritime, including the operation of ships and transportation by ship
+    anywhere in Canada;
+
+    (b)
+
+    a railway, canal, telegraph or other work or undertaking that connects a province with another province, or that extends beyond the limits of a province;
+
+    (c)
+
+    a line of ships that connects a province with another province, or that extends beyond the limits of a province;
+
+    (d)
+
+    a ferry between a province and another province or between a province and a country other than Canada;
+
+    (e)
+
+    aerodromes, aircraft or a line of air transportation;
+
+    (f)
+
+    a radio broadcasting station;
+
+    (g)
+
+    a bank or an authorized foreign bank as defined in section 2 of the
+
+    Bank Act
+
+    ;
+
+    (h)
+
+    a work that, although wholly situated within a province, is before or after its execution declared by Parliament to be for the general advantage of Canada or for the advantage of two or more provinces;
+
+    (i)'
+- id: art-2
+  title: a work, undertaking or business outside the exclusive legisl
+  text: 'a work, undertaking or business outside the exclusive legislative authority of the legislatures of the provinces; and
+
+    (j)
+
+    a work, undertaking or business to which federal laws, within the meaning of section 2 of the
+
+    Oceans Act
+
+    , apply under section 20 of that Act and any regulations made under paragraph 26(1)(k) of that Act. (
+
+    entreprises fédérales
+
+    )
+
+    organization
+
+    includes an association, a partnership, a person and a trade union. (
+
+    organisation
+
+    )
+
+    personal health information
+
+    , with respect to an individual, whether living or deceased, means
+
+    (a)
+
+    information concerning the physical or mental health of the individual;
+
+    (b)
+
+    information concerning any health service provided to the individual;
+
+    (c)
+
+    information concerning the donation by the individual of any body part or any bodily substance of the individual or information derived from the testing or examination of a body part or bodily substance
+    of the individual;
+
+    (d)
+
+    information that is collected in the course of providing health services to the individual; or
+
+    (e)
+
+    information that is collected incidentally to the provision of health services to the individual. (
+
+    renseignement personnel sur la santé
+
+    )
+
+    personal information
+
+    means information about an identifiable individual. (
+
+    renseignement personnel
+
+    )
+
+    prescribed
+
+    means prescribed by regulation. (
+
+    Version anglaise seulement
+
+    )
+
+    record
+
+    includes any correspondence, memorandum, book, plan, map, drawing, diagram, pictorial or graphic work, photograph, film, microform, sound recording, videotape, machine-readable record and any other
+    documentary material, regardless of physical form or characteristics, and any copy of any of those things. (
+
+    document
+
+    )
+
+    Notes in Schedule 1
+
+    (2)
+
+    In this Part, a reference to clause 4.3 or 4.9 of Schedule 1 does not include a reference to the note that accompanies that clause.
+
+    2000, c. 5, s. 2; 2002, c. 8, s. 183; 2015, c. 32, s. 2
+
+    Purpose
+
+    Purpose
+
+    3
+
+    The purpose of this Part is to establish, in an era in which technology increasingly facilitates the circulation and exchange of information, rules to govern the collection, use and disclosure of personal
+    information in a manner that recognizes the right of privacy of individuals with respect to their personal information and the need of organizations to collect, use or disclose personal information
+    for purposes that a reasonable person would consider appropriate in the circumstances.
+
+    Application
+
+    Application
+
+    4
+
+    (1)
+
+    This Part applies to every organization in respect of personal information that
+
+    (a)
+
+    the organization collects, uses or discloses in the course of commercial activities; or
+
+    (b)
+
+    is about an employee of, or an applicant for employment with, the organization and that the organization collects, uses or discloses in connection with the operation of a federal work, undertaking or
+    business.
+
+    Application
+
+    (1.1)
+
+    This Part applies to an organization set out in column 1 of Schedule 4 in respect of personal information set out in column 2.
+
+    Limit
+
+    (2)
+
+    This Part does not apply to
+
+    (a)
+
+    any government institution to which the
+
+    Privacy Act
+
+    applies;
+
+    (b)
+
+    any individual in respect of personal information that the individual collects, uses or discloses for personal or domestic purposes and does not collect, use or disclose for any other purpose; or
+
+    (c)
+
+    any organization in respect of personal information that the organization collects, uses or discloses for journalistic, artistic or literary purposes and does not collect, use or disclose for any other
+    purpose.
+
+    Other Acts
+
+    *
+
+    (3)
+
+    Every provision of this Part applies despite any provision, enacted after this subsection comes into force, of any other Act of Parliament, unless the other Act expressly declares that that provision
+    operates despite the provision of this Part.
+
+    *
+
+    [Note: Subsection 4(3) in force January 1, 2001,
+
+    see
+
+    SI/2000-29.]
+
+    2000, c. 5, s. 4; 2015, c. 32, s. 3, c. 36, s. 164
+
+    Business contact information
+
+    4.01'
+- id: art-3
+  title: This Part does not apply to an organization in respect of th
+  text: 'This Part does not apply to an organization in respect of the business contact information of an individual that the organization collects, uses or discloses solely for the purpose of communicating
+    or facilitating communication with the individual in relation to their employment, business or profession.
+
+    2015, c. 32, s. 4
+
+    Certificate under
+
+    Canada Evidence Act
+
+    4.1
+
+    (1)
+
+    If a certificate under section 38.13 or 38.41 of the
+
+    Canada Evidence Act
+
+    prohibiting the disclosure of personal information of a specific individual is issued before a complaint is filed by that individual under this Part in respect of a request for access to that information,
+    the provisions of this Part respecting that individual’s right of access to their personal information do not apply to the information that is subject to the certificate.
+
+    Certificate following filing of complaint
+
+    (2)
+
+    Despite any other provision of this Part, if a certificate under section 38.13 or 38.41 of the
+
+    Canada Evidence Act
+
+    prohibiting the disclosure of personal information of a specific individual is issued after the filing of a complaint under this Part in relation to a request for access to that information:
+
+    (a)
+
+    all proceedings under this Part in respect of that information, including an investigation, audit, appeal or judicial review, are discontinued;
+
+    (b)
+
+    the Commissioner shall not disclose the information and shall take all necessary precautions to prevent its disclosure; and
+
+    (c)
+
+    the Commissioner shall, within 10 days after the certificate is published in the
+
+    Canada Gazette
+
+    , return the information to the organization that provided the information.
+
+    Information not to be disclosed
+
+    (3)
+
+    The Commissioner and every person acting on behalf or under the direction of the Commissioner, in carrying out their functions under this Part, shall not disclose information subject to a certificate
+    issued under section 38.13 or 38.41 of the
+
+    Canada Evidence Act
+
+    , and shall take every reasonable precaution to avoid the disclosure of that information.
+
+    Power to delegate
+
+    (4)
+
+    The Commissioner may not delegate the investigation of any complaint relating to information subject to a certificate issued under section 38.13 or 38.41 of the
+
+    Canada Evidence Act
+
+    except to one of a maximum of four officers or employees of the Commissioner specifically designated by the Commissioner for the purpose of conducting that investigation.
+
+    2001, c. 41, s. 103
+
+    2024, c. 16, s. 93
+
+    DIVISION 1
+
+    Protection of Personal Information
+
+    Compliance with obligations
+
+    5
+
+    (1)
+
+    Subject to sections 6 to 9, every organization shall comply with the obligations set out in Schedule 1.
+
+    Meaning of
+
+    should
+
+    (2)
+
+    The word
+
+    should
+
+    , when used in Schedule 1, indicates a recommendation and does not impose an obligation.
+
+    Appropriate purposes
+
+    (3)
+
+    An organization may collect, use or disclose personal information only for purposes that a reasonable person would consider are appropriate in the circumstances.
+
+    Effect of designation of individual
+
+    6
+
+    The designation of an individual under clause 4.1 of Schedule 1 does not relieve the organization of the obligation to comply with the obligations set out in that Schedule.
+
+    Valid consent
+
+    6.1
+
+    For the purposes of clause 4.3 of Schedule 1, the consent of an individual is only valid if it is reasonable to expect that an individual to whom the organization’s activities are directed would understand
+    the nature, purpose and consequences of the collection, use or disclosure of the personal information to which they are consenting.
+
+    2015, c. 32, s. 5
+
+    Collection without knowledge or consent
+
+    7
+
+    (1)
+
+    For the purpose of clause 4.3 of Schedule 1, and despite the note that accompanies that clause, an organization may collect personal information without the knowledge or consent of the individual only
+    if
+
+    (a)
+
+    the collection is clearly in the interests of the individual and consent cannot be obtained in a timely way;
+
+    (b)'
+- id: art-4
+  title: it is reasonable to expect that the collection with the know
+  text: 'it is reasonable to expect that the collection with the knowledge or consent of the individual would compromise the availability or the accuracy of the information and the collection is reasonable
+    for purposes related to investigating a breach of an agreement or a contravention of the laws of Canada or a province;
+
+    (b.01)
+
+    it was disclosed under paragraph (3)(d.21);
+
+    (b.1)
+
+    it is contained in a witness statement and the collection is necessary to assess, process or settle an insurance claim;
+
+    (b.2)
+
+    it was produced by the individual in the course of their employment, business or profession and the collection is consistent with the purposes for which the information was produced;
+
+    (c)
+
+    the collection is solely for journalistic, artistic or literary purposes;
+
+    (d)
+
+    the information is publicly available and is specified by the regulations; or
+
+    (e)
+
+    the collection is made for the purpose of making a disclosure
+
+    (i)
+
+    under subparagraph (3)(c.1)(i) or (d)(ii), or
+
+    (ii)
+
+    that is required by law.
+
+    Use without knowledge or consent
+
+    (2)
+
+    For the purpose of clause 4.3 of Schedule 1, and despite the note that accompanies that clause, an organization may, without the knowledge or consent of the individual, use personal information only
+    if
+
+    (a)
+
+    in the course of its activities, the organization becomes aware of information that it has reasonable grounds to believe could be useful in the investigation of a contravention of the laws of Canada,
+    a province or a foreign jurisdiction that has been, is being or is about to be committed, and the information is used for the purpose of investigating that contravention;
+
+    (b)
+
+    it is used for the purpose of acting in respect of an emergency that threatens the life, health or security of an individual;
+
+    (b.1)
+
+    the information is contained in a witness statement and the use is necessary to assess, process or settle an insurance claim;
+
+    (b.2)
+
+    the information was produced by the individual in the course of their employment, business or profession and the use is consistent with the purposes for which the information was produced;
+
+    (c)
+
+    it is used for statistical, or scholarly study or research, purposes that cannot be achieved without using the information, the information is used in a manner that will ensure its confidentiality,
+    it is impracticable to obtain consent and the organization informs the Commissioner of the use before the information is used;
+
+    (c.1)
+
+    it is publicly available and is specified by the regulations; or
+
+    (d)
+
+    it was collected under paragraph (1)(a), (b), (b.01) or (e).
+
+    Disclosure without knowledge or consent
+
+    (3)
+
+    For the purpose of clause 4.3 of Schedule 1, and despite the note that accompanies that clause, an organization may disclose personal information without the knowledge or consent of the individual only
+    if the disclosure is
+
+    (a)
+
+    made to, in the Province of Quebec, an advocate or notary or, in any other province, a barrister or solicitor who is representing the organization;
+
+    (b)
+
+    for the purpose of collecting a debt owed by the individual to the organization;
+
+    (c)
+
+    required to comply with a subpoena or warrant issued or an order made by a court, person or body with jurisdiction to compel the production of information, or to comply with rules of court relating
+    to the production of records;
+
+    (c.1)
+
+    made to a government institution or part of a government institution that has made a request for the information, identified its lawful authority to obtain the information and indicated that
+
+    (i)
+
+    it suspects that the information relates to national security, the defence of Canada or the conduct of international affairs,
+
+    (ii)
+
+    the disclosure is requested for the purpose of enforcing any law of Canada, a province or a foreign jurisdiction, carrying out an investigation relating to the enforcement of any such law or gathering
+    intelligence for the purpose of enforcing any such law,
+
+    (iii)
+
+    the disclosure is requested for the purpose of administering any law of Canada or a province, or
+
+    (iv)'
+- id: art-5
+  title: the disclosure is requested for the purpose of communicating
+  text: 'the disclosure is requested for the purpose of communicating with the next of kin or authorized representative of an injured, ill or deceased individual;
+
+    (c.2)
+
+    made to the government institution mentioned in section 7 of the
+
+    Proceeds of Crime (Money Laundering) and Terrorist Financing Act
+
+    as required by that section;
+
+    (d)
+
+    made on the initiative of the organization to a government institution or a part of a government institution and the organization
+
+    (i)
+
+    has reasonable grounds to believe that the information relates to a contravention of the laws of Canada, a province or a foreign jurisdiction that has been, is being or is about to be committed, or
+
+    (ii)
+
+    suspects that the information relates to national security, the defence of Canada or the conduct of international affairs;
+
+    (d.1)
+
+    made to another organization and is reasonable for the purposes of investigating a breach of an agreement or a contravention of the laws of Canada or a province that has been, is being or is about to
+    be committed and it is reasonable to expect that disclosure with the knowledge or consent of the individual would compromise the investigation;
+
+    (d.2)
+
+    made to another organization and is reasonable for the purposes of detecting or suppressing fraud or of preventing fraud that is likely to be committed and it is reasonable to expect that the disclosure
+    with the knowledge or consent of the individual would compromise the ability to prevent, detect or suppress the fraud;
+
+    (d.21)
+
+    made to another organization under subsection 11.01(1) of the
+
+    Proceeds of Crime (Money Laundering) and Terrorist Financing Act
+
+    ;
+
+    (d.3)
+
+    made on the initiative of the organization to a government institution, a part of a government institution or the individual’s next of kin or authorized representative and
+
+    (i)
+
+    the organization has reasonable grounds to believe that the individual has been, is or may be the victim of financial abuse,
+
+    (ii)
+
+    the disclosure is made solely for purposes related to preventing or investigating the abuse, and
+
+    (iii)
+
+    it is reasonable to expect that disclosure with the knowledge or consent of the individual would compromise the ability to prevent or investigate the abuse;
+
+    (d.4)
+
+    necessary to identify the individual who is injured, ill or deceased, made to a government institution, a part of a government institution or the individual’s next of kin or authorized representative
+    and, if the individual is alive, the organization informs that individual in writing without delay of the disclosure;
+
+    (e)
+
+    made to a person who needs the information because of an emergency that threatens the life, health or security of an individual and, if the individual whom the information is about is alive, the organization
+    informs that individual in writing without delay of the disclosure;
+
+    (e.1)
+
+    of information that is contained in a witness statement and the disclosure is necessary to assess, process or settle an insurance claim;
+
+    (e.2)
+
+    of information that was produced by the individual in the course of their employment, business or profession and the disclosure is consistent with the purposes for which the information was produced;
+
+    (f)
+
+    for statistical, or scholarly study or research, purposes that cannot be achieved without disclosing the information, it is impracticable to obtain consent and the organization informs the Commissioner
+    of the disclosure before the information is disclosed;
+
+    (g)
+
+    made to an institution whose functions include the conservation of records of historic or archival importance, and the disclosure is made for the purpose of such conservation;
+
+    (h)
+
+    made after the earlier of
+
+    (i)
+
+    one hundred years after the record containing the information was created, and
+
+    (ii)
+
+    twenty years after the death of the individual whom the information is about;
+
+    (h.1)
+
+    of information that is publicly available and is specified by the regulations; or
+
+    (h.2)
+
+    [Repealed, 2015, c. 32, s. 6]
+
+    (i)
+
+    required by law.
+
+    Use without consent
+
+    (4)'
+- id: art-6
+  title: Despite clause 4.5 of Schedule 1, an organization may use pe
+  text: 'Despite clause 4.5 of Schedule 1, an organization may use personal information for purposes other than those for which it was collected in any of the circumstances set out in subsection (2).
+
+    Disclosure without consent
+
+    (5)
+
+    Despite clause 4.5 of Schedule 1, an organization may disclose personal information for purposes other than those for which it was collected in any of the circumstances set out in paragraphs (3)(a)
+    to (h.1).
+
+    2000, c. 5, s. 7, c. 17, s. 97; 2001, c. 41, s. 81; 2004, c. 15, s. 98; 2015, c. 32, s. 6
+
+    2024, c. 17, s. 347
+
+    Definitions
+
+    7.1
+
+    (1)
+
+    The following definitions apply in this section.
+
+    access
+
+    means to program, to execute programs on, to communicate with, to store data in, to retrieve data from, or to otherwise make use of any resources, including data or programs on a computer system or
+    a computer network. (
+
+    utiliser
+
+    )
+
+    computer program
+
+    has the same meaning as in subsection 342.1(2) of the
+
+    Criminal Code
+
+    . (
+
+    programme d’ordinateur
+
+    )
+
+    computer system
+
+    has the same meaning as in subsection 342.1(2) of the
+
+    Criminal Code
+
+    . (
+
+    ordinateur
+
+    )
+
+    electronic address
+
+    means an address used in connection with
+
+    (a)
+
+    an electronic mail account;
+
+    (b)
+
+    an instant messaging account; or
+
+    (c)
+
+    any similar account. (
+
+    adresse électronique
+
+    )
+
+    Collection of electronic addresses, etc.
+
+    (2)
+
+    Paragraphs 7(1)(a) and (b.1) to (d) and (2)(a) to (c.1) and the exception set out in clause 4.3 of Schedule 1 do not apply in respect of
+
+    (a)
+
+    the collection of an individual’s electronic address, if the address is collected by the use of a computer program that is designed or marketed primarily for use in generating or searching for, and
+    collecting, electronic addresses; or
+
+    (b)
+
+    the use of an individual’s electronic address, if the address is collected by the use of a computer program described in paragraph (a).
+
+    Accessing a computer system to collect personal information, etc.
+
+    (3)
+
+    Paragraphs 7(1)(a) to (d) and (2)(a) to (c.1) and the exception set out in clause 4.3 of Schedule 1 do not apply in respect of
+
+    (a)
+
+    the collection of personal information, through any means of telecommunication, if the collection is made by accessing a computer system or causing a computer system to be accessed in contravention
+    of an Act of Parliament; or
+
+    (b)
+
+    the use of personal information that is collected in a manner described in paragraph (a).
+
+    2010, c. 23, s. 82; 2015, c. 32, s. 26
+
+    Prospective business transaction
+
+    7.2
+
+    (1)
+
+    In addition to the circumstances set out in subsections 7(2) and (3), for the purpose of clause 4.3 of Schedule 1, and despite the note that accompanies that clause, organizations that are parties to
+    a prospective business transaction may use and disclose personal information without the knowledge or consent of the individual if
+
+    (a)
+
+    the organizations have entered into an agreement that requires the organization that receives the personal information
+
+    (i)
+
+    to use and disclose that information solely for purposes related to the transaction,
+
+    (ii)
+
+    to protect that information by security safeguards appropriate to the sensitivity of the information, and
+
+    (iii)
+
+    if the transaction does not proceed, to return that information to the organization that disclosed it, or destroy it, within a reasonable time; and
+
+    (b)
+
+    the personal information is necessary
+
+    (i)
+
+    to determine whether to proceed with the transaction, and
+
+    (ii)
+
+    if the determination is made to proceed with the transaction, to complete it.
+
+    Completed business transaction
+
+    (2)
+
+    In addition to the circumstances set out in subsections 7(2) and (3), for the purpose of clause 4.3 of Schedule 1, and despite the note that accompanies that clause, if the business transaction is completed,
+    organizations that are parties to the transaction may use and disclose personal information, which was disclosed under subsection (1), without the knowledge or consent of the individual if
+
+    (a)
+
+    the organizations have entered into an agreement that requires each of them
+
+    (i)'
+- id: art-7
+  title: to use and disclose the personal information under its contr
+  text: 'to use and disclose the personal information under its control solely for the purposes for which the personal information was collected, permitted to be used or disclosed before the transaction
+    was completed,
+
+    (ii)
+
+    to protect that information by security safeguards appropriate to the sensitivity of the information, and
+
+    (iii)
+
+    to give effect to any withdrawal of consent made under clause 4.3.8 of Schedule 1;
+
+    (b)
+
+    the personal information is necessary for carrying on the business or activity that was the object of the transaction; and
+
+    (c)
+
+    one of the parties notifies the individual, within a reasonable time after the transaction is completed, that the transaction has been completed and that their personal information has been disclosed
+    under subsection (1).
+
+    Agreements binding
+
+    (3)
+
+    An organization shall comply with the terms of any agreement into which it enters under paragraph (1)(a) or (2)(a).
+
+    Exception
+
+    (4)
+
+    Subsections (1) and (2) do not apply to a business transaction of which the primary purpose or result is the purchase, sale or other acquisition or disposition, or lease, of personal information.
+
+    2015, c. 32, s. 7
+
+    Employment relationship
+
+    7.3
+
+    In addition to the circumstances set out in section 7, for the purpose of clause 4.3 of Schedule 1, and despite the note that accompanies that clause, a federal work, undertaking or business may collect,
+    use and disclose personal information without the consent of the individual if
+
+    (a)
+
+    the collection, use or disclosure is necessary to establish, manage or terminate an employment relationship between the federal work, undertaking or business and the individual; and
+
+    (b)
+
+    the federal work, undertaking or business has informed the individual that the personal information will be or may be collected, used or disclosed for those purposes.
+
+    2015, c. 32, s. 7
+
+    Use without consent
+
+    7.4
+
+    (1)
+
+    Despite clause 4.5 of Schedule 1, an organization may use personal information for purposes other than those for which it was collected in any of the circumstances set out in subsection 7.2(1) or (2)
+    or section 7.3.
+
+    Disclosure without consent
+
+    (2)
+
+    Despite clause 4.5 of Schedule 1, an organization may disclose personal information for purposes other than those for which it was collected in any of the circumstances set out in subsection 7.2(1)
+    or (2) or section 7.3.
+
+    2015, c. 32, s. 7
+
+    Written request
+
+    8
+
+    (1)
+
+    A request under clause 4.9 of Schedule 1 must be made in writing.
+
+    Assistance
+
+    (2)
+
+    An organization shall assist any individual who informs the organization that they need assistance in preparing a request to the organization.
+
+    Time limit
+
+    (3)
+
+    An organization shall respond to a request with due diligence and in any case not later than thirty days after receipt of the request.
+
+    Extension of time limit
+
+    (4)
+
+    An organization may extend the time limit
+
+    (a)
+
+    for a maximum of thirty days if
+
+    (i)
+
+    meeting the time limit would unreasonably interfere with the activities of the organization, or
+
+    (ii)
+
+    the time required to undertake any consultations necessary to respond to the request would make the time limit impracticable to meet; or
+
+    (b)
+
+    for the period that is necessary in order to be able to convert the personal information into an alternative format.
+
+    In either case, the organization shall, no later than thirty days after the date of the request, send a notice of extension to the individual, advising them of the new time limit, the reasons for extending
+    the time limit and of their right to make a complaint to the Commissioner in respect of the extension.
+
+    Deemed refusal
+
+    (5)
+
+    If the organization fails to respond within the time limit, the organization is deemed to have refused the request.
+
+    Costs for responding
+
+    (6)
+
+    An organization may respond to an individual’s request at a cost to the individual only if
+
+    (a)
+
+    the organization has informed the individual of the approximate cost; and
+
+    (b)
+
+    the individual has advised the organization that the request is not being withdrawn.
+
+    Reasons
+
+    (7)'
+- id: art-8
+  title: An organization that responds within the time limit and refu
+  text: 'An organization that responds within the time limit and refuses a request shall inform the individual in writing of the refusal, setting out the reasons and any recourse that they may have under
+    this Part.
+
+    Retention of information
+
+    (8)
+
+    Despite clause 4.5 of Schedule 1, an organization that has personal information that is the subject of a request shall retain the information for as long as is necessary to allow the individual to exhaust
+    any recourse under this Part that they may have.
+
+    2000, c. 5, s. 8; 2015, c. 32, s. 8(F)
+
+    When access prohibited
+
+    9
+
+    (1)
+
+    Despite clause 4.9 of Schedule 1, an organization shall not give an individual access to personal information if doing so would likely reveal personal information about a third party. However, if the
+    information about the third party is severable from the record containing the information about the individual, the organization shall sever the information about the third party before giving the individual
+    access.
+
+    Limit
+
+    (2)
+
+    Subsection (1) does not apply if the third party consents to the access or the individual needs the information because an individual’s life, health or security is threatened.
+
+    Information related to paragraphs 7(3)(c), (c.1) or (d)
+
+    (2.1)
+
+    An organization shall comply with subsection (2.2) if an individual requests that the organization
+
+    (a)
+
+    inform the individual about
+
+    (i)
+
+    any disclosure of information to a government institution or a part of a government institution under paragraph 7(3)(c), subparagraph 7(3)(c.1)(i) or (ii) or paragraph 7(3)(c.2) or (d), or
+
+    (ii)
+
+    the existence of any information that the organization has relating to a disclosure referred to in subparagraph (i), to a subpoena, warrant or order referred to in paragraph 7(3)(c) or to a request
+    made by a government institution or a part of a government institution under subparagraph 7(3)(c.1)(i) or (ii); or
+
+    (b)
+
+    give the individual access to the information referred to in subparagraph (a)(ii).
+
+    Notification and response
+
+    (2.2)
+
+    An organization to which subsection (2.1) applies
+
+    (a)
+
+    shall, in writing and without delay, notify the institution or part concerned of the request made by the individual; and
+
+    (b)
+
+    shall not respond to the request before the earlier of
+
+    (i)
+
+    the day on which it is notified under subsection (2.3), and
+
+    (ii)
+
+    thirty days after the day on which the institution or part was notified.
+
+    Objection
+
+    (2.3)
+
+    Within thirty days after the day on which it is notified under subsection (2.2), the institution or part shall notify the organization whether or not the institution or part objects to the organization
+    complying with the request. The institution or part may object only if the institution or part is of the opinion that compliance with the request could reasonably be expected to be injurious to
+
+    (a)
+
+    national security, the defence of Canada or the conduct of international affairs;
+
+    (a.1)
+
+    the detection, prevention or deterrence of money laundering or the financing of terrorist activities; or
+
+    (b)
+
+    the enforcement of any law of Canada, a province or a foreign jurisdiction, an investigation relating to the enforcement of any such law or the gathering of intelligence for the purpose of enforcing
+    any such law.
+
+    Prohibition
+
+    (2.4)
+
+    Despite clause 4.9 of Schedule 1, if an organization is notified under subsection (2.3) that the institution or part objects to the organization complying with the request, the organization
+
+    (a)
+
+    shall refuse the request to the extent that it relates to paragraph (2.1)(a) or to information referred to in subparagraph (2.1)(a)(ii);
+
+    (b)
+
+    shall notify the Commissioner, in writing and without delay, of the refusal; and
+
+    (c)
+
+    shall not disclose to the individual
+
+    (i)
+
+    any information that the organization has relating to a disclosure to a government institution or a part of a government institution under paragraph 7(3)(c), subparagraph 7(3)(c.1)(i) or (ii) or paragraph 7(3)(c.2)
+    or (d) or to a request made by a government institution under either of those subparagraphs,
+
+    (ii)'
+- id: art-9
+  title: 'that the organization notified an institution or part under '
+  text: 'that the organization notified an institution or part under paragraph (2.2)(a) or the Commissioner under paragraph (b), or
+
+    (iii)
+
+    that the institution or part objects.
+
+    When access may be refused
+
+    (3)
+
+    Despite the note that accompanies clause 4.9 of Schedule 1, an organization is not required to give access to personal information only if
+
+    (a)
+
+    the information is protected by solicitor-client privilege or the professional secrecy of advocates and notaries or by litigation privilege;
+
+    (b)
+
+    to do so would reveal confidential commercial information;
+
+    (c)
+
+    to do so could reasonably be expe'
 doc_files:
 - ca/raw/CA-act-P-8.6_PIPEDA.xml
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：ca/raw/CA-act-P-8.6_PIPEDA.xml (xml, 110471 chars)，生成 9 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：ca/raw/CA-act-P-8.6_PIPEDA.xml (xml, 110471 chars)，生成 9 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：ca/raw/CA-act-P-8.6_PIPEDA.xml (xml, 110471 chars)，生成 9 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

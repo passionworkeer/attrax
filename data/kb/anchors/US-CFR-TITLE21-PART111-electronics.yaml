@@ -1,0 +1,28 @@
+id: KB-electronics-US-US-CFR-TITLE21-PART111
+regulation_id: US-CFR-TITLE21-PART111
+doc_name: US 21 CFR Part 111
+official_citation: US 21 CFR Part 111
+short_name: US 21 CFR Part 111 — CURRENT GOOD MANUFACTURING PRACTICE IN MANUFACTURING, PACKAGING, LABELING, OR HOLDING OPERATIONS FOR DIETARY SUPPLEMENTS
+source: category
+primary_source: electronics
+domain: electronics
+applies_if:
+  category:
+  - electronics
+  features_any: []
+  markets:
+  - US
+key_articles:
+- art-1
+- art-2
+key_points:
+- US 21 CFR Part 111 — CURRENT GOOD MANUFACTURING PRACTICE IN MANUFACTURING, PACKAGING, LABELING, OR HOLDING OPERATIONS FOR DIETARY SUPPLEMENTS：电子产品领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol2/xml/CFR-2024-title21-vol2-part111.xml
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

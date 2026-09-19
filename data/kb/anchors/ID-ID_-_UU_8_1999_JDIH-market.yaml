@@ -1,0 +1,25 @@
+id: KB-market-ID-ID-ID_-_UU_8_1999_JDIH
+regulation_id: ID-ID_-_UU_8_1999_JDIH
+doc_name: ID 消费者保护法 UU 8/1999 (JDIH)
+official_citation: ID 消费者保护法 UU 8/1999 (JDIH)
+short_name: ID 消费者保护法 UU 8/1999 (JDIH)
+source: market
+primary_source: market
+domain: 消费者保护
+applies_if:
+  category: []
+  features_any: []
+  markets:
+  - ID
+key_articles: []
+key_points:
+- ID 消费者保护法 UU 8/1999 (JDIH)：消费者保护领域法规，适用于 ID 市场相关经营行为（库自动接入，按市场匹配）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://jdih.setneg.go.id/
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

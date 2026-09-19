@@ -1,6 +1,6 @@
 id: US-CFR-TITLE16-PART1207
 official_citation: US 16 CFR Part 1207
-short_name: US 16 CFR Part 1207
+short_name: US 16 CFR Part 1207 — SAFETY STANDARD FOR SWIMMING POOL SLIDES
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,840 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '16
+
+    Commercial Practices
+
+    2
+
+    2024-01-01
+
+    2024-01-01
+
+    false
+
+    SAFETY'
+  text: '16
+
+    Commercial Practices
+
+    2
+
+    2024-01-01
+
+    2024-01-01
+
+    false
+
+    SAFETY STANDARD FOR SWIMMING POOL SLIDES
+
+    1207
+
+    PART 1207
+
+    Commercial Practices
+
+    CONSUMER PRODUCT SAFETY COMMISSION
+
+    CONSUMER PRODUCT SAFETY ACT REGULATIONS
+
+    Pt. 1207
+
+    PART 1207—SAFETY STANDARD FOR SWIMMING POOL SLIDES
+
+    Sec.
+
+    1207.1
+
+    Scope, purpose, and findings.
+
+    1207.2
+
+    Effective date.
+
+    1207.3
+
+    Definitions.
+
+    1207.4
+
+    Recommended standards for materials of manufacture.
+
+    1207.5
+
+    Design.
+
+    1207.6-1207.8
+
+    [Reserved]
+
+    1207.9
+
+    Product certification.
+
+    1207.10
+
+    Handling, storage, and marking.
+
+    1207.11
+
+    References.
+
+    1207.12
+
+    Stockpiling.
+
+    Authority:
+
+    Secs. 2, 7, 9, 14, 30, Pub. L. 92-573; 86 Stat. 1207, 1212, 1215, 1220, 1236; (15 U.S.C. 2051, 2056, 2058, 2063, 2079).
+
+    Source:
+
+    41 FR 2751, Jan. 19, 1976, unless otherwise noted.'
+- id: art-2
+  title: § 1207.1
+  text: '§ 1207.1
+
+    Scope, purpose, and findings.
+
+    (a)
+
+    Scope and purpose.
+
+    This part 1207 sets forth the consumer product safety standard issued by the Consumer Product Safety Commission for the manufacture and construction of slides for use in swimming pools. The requirements
+    of this standard are designed to reduce or eliminate the unreasonable risks of death or injury associated with swimming pool slides. This standard also makes certain recommendations regarding the installation,
+    maintenance, and intended use of swimming pool slides that supplement its mandatory requirements. This standard is applicable to all swimming pool slides manufactured after July 17, 1976. Paragraph
+    (b) of this section sets forth the findings which the Commission is required to make by section 9(c) of the Consumer Product Safety Act (15 U.S.C. 2058(c)).
+
+    (b)
+
+    Findings.
+
+    1
+
+    (1) The Commission finds that unreasonable risks of death
+
+    or injury from accidents are associated with swimming pool slides. These risks are (i) quadriplegia and paraplegia resulting from users (primarily adults using the swimming pool slide for the first
+    time) sliding down the slide in a head first position and striking the bottom of the pool, (ii) leg fractures resulting from feet first entry, (iii) impact of sliders with other people in the pool,
+    and (iv) falls from the slide ladder.
+
+    1
+
+    The Commission''s findings apply to the swimming pool slide standard that it published on January 19, 1976 (42 FR 2751). On March 3, 1978 the U.S. Court of Appeals for the Fifth Circuit set aside portions
+    of that standard (
+
+    Aqua Slide ‘N’ Drive Corporation
+
+    v.
+
+    CPSC,
+
+    569 F.2d 831 (5th Cir. 1978)). On December 18, 1978, the Commission published revisions to the standard which reflect the court''s decision. However, the findings have
+
+    not been revised and they are therefore not fully applicable to the revised swimming pool slide requirements. For example, the revised standard does not address the risk of quadriplegia and paraplegia
+    (except insofar as the standard specifies a low angle of attack of the slider into the water) because the court set aside the provisions concerning installation instructions and warning signs.
+
+    (2) The Commission finds that the types or classes of products that are subject to this standard are those swimming pool slides manufactured, constructed, or imported for use in connection with all
+    swimming pools, whether in-ground, on-ground, or above-ground, regardless of the materials of manufacture or structural characteristics of the slides. It is estimated that 350,000 of these slides are
+    currently in service and that each year the number of slides in use may increase by 5 to 10 percent.
+
+    (3) The Commission finds that the public uses swimming pool slides in recreation at both public and private swimming pools, and it is estimated that 75% of these slides are located at residential pools.
+    It is anticipated that public demand for the products will decline slightly for a time following issuance of this standard as a result of consumer awareness of hazards associated with the product caused
+    by the mandatory signs placed on the slides and as a result of recommendations regarding the installation and intended use of the products. The decline in demand is expected to be short-term. It is
+    anticipated that the utility of the slides as a recreational device will be increased to the extent that injury or death associated with the use of the product is eliminated or reduced.
+
+    (4) The Commission also finds that manufacturing cost increases as a direct result of this standard and promotional cost increases as an indirect result of this standard are expected to be modest for
+    the industry as a whole. Any resulting increase in the cost of slides to consumers attributable directly or indirectly to the requirements of this standard will be small. No adverse effect on the availability
+    of the product to consumers is expected.
+
+    (5) The Commission has considered other means of achieving the objective of the standard, but has found none that would have fewer adverse effects on competition or that would cause less disruption
+    or dislocation of manufacturing and other commercial practices, consistent with the public health and safety.
+
+    (6) The Commission also finds that this standard, including its effective date, is reasonably necessary to eliminate or reduce the unreasonable risks of injury associated with swimming pool slides and
+    that promulgation of the standard is in the public interest.
+
+    [41 FR 2751, Jan. 19, 1976; 41 FR 9307, Mar. 4, 1976, as amended at 41 FR 23187, June 9, 1976; 43 FR 58813, Dec. 18, 1978]'
+- id: art-3
+  title: § 1207.2
+  text: '§ 1207.2
+
+    Effective date.
+
+    This part 1207 shall become effective July 17, 1976. All swimming pool slides manufactured after that date must meet the requirements of this part 1207.
+
+    [41 FR 23187, June 9, 1976]'
+- id: art-4
+  title: § 1207.3
+  text: '§ 1207.3
+
+    Definitions.
+
+    (a) As used in this part 1207:
+
+    (1)
+
+    Aboveground pool slide ladder
+
+    means a slide ladder that is not anchored in the ground or support deck and that can be removed from the slide or hinged and locked so that unauthorized or unsupervised use of the slide is prevented.
+
+    (2)
+
+    Abrasion hazard
+
+    means a sharp or rough surface of a swimming pool slide that would scrape the skin upon casual contact.
+
+    (3)
+
+    Assembled product
+
+    means all parts, components, and fasteners as defined in and assembled according to the manufacturer''s assembly and installation instructions.
+
+    (4)
+
+    Bracing
+
+    means members providing structural support to the assembled, installed slide.
+
+    (5)
+
+    Casual contact
+
+    means contact of any body part with the slide occurring by chance or nonchalant encounters.
+
+    (6)
+
+    Center of gravity
+
+    means the point that represents the mean position of the concentrated mass of a body.
+
+    (7)
+
+    Curved slide
+
+    means a slide whose runway curves out of the vertical plane at any point along the slide path.
+
+    (8)
+
+    Cutting hazard
+
+    means a slide surface that would cut the skin under casual contact.
+
+    (9)
+
+    Designated waterline
+
+    means the horizontal line through whichever of the following is applicable: (i) The midpoint of the operating range of the skimmers, or (ii) on pools with overflow systems, the height of the overflow
+    rim.
+
+    (10)
+
+    Edge guards
+
+    means shields designed to cover sharp edges on slides.
+
+    (11) [Reserved]
+
+    (12)
+
+    Freestanding slide
+
+    means a slide designed for aboveground pools that is not fastened to the pool deck or the ground. This slide may have attachments to the aboveground pool to prevent misalignment.
+
+    (13)
+
+    Friction
+
+    means the force tending to reduce the velocity of the slider on the slide.
+
+    (14) [Reserved]
+
+    (15)
+
+    Intended use
+
+    means behavior on swimming pool slides as disclosed by the manufacturer, as specified in this part 1207, or to which the slide may be subjected by a reasonable user (including reasonably foreseeable
+    misuse).
+
+    (16)
+
+    Ladder angle
+
+    means the angle of the ladder measured from a plumbline.
+
+    (17)
+
+    Ladder platform
+
+    means a platform built into the slide ladder.
+
+    (18)
+
+    Operational strength
+
+    means the strength of the slide and/or its components after installation according to the manufacturer''s instructions.
+
+    (19)
+
+    Performance test
+
+    means a test to measure the functional or structural characteristics of the slide and may include:
+
+    (i) Observations and measurements of the slide''s functioning in the “intended use” mode, installed according to the manufacturer''s installation instructions, and/or
+
+    (ii) Observations and measurements of the slide''s response to dynamic and static loads.
+
+    (20) [Reserved]
+
+    (21)
+
+    Pinching hazard
+
+    means any configuration of slide components that would pinch or entrap the fingers or toes of a child or an adult.
+
+    (22)
+
+    Puncture hazard
+
+    means any slide surface or protrusion that would puncture a child''s skin under casual contact.
+
+    (23)
+
+    Runway
+
+    means the surface on which the user slides in the intended use of a slide.
+
+    (24)
+
+    Runway rail
+
+    means a raised edge or guard that keeps the slider on the runway.
+
+    (25)
+
+    Runway length
+
+    means the length of the runway measured along its centerline.
+
+    (26)
+
+    Slide width
+
+    means the width of the slide runway measured between the inside of the left and right runway rails.
+
+    (27)
+
+    Straight slide
+
+    means a slide whose runway curves only in the vertical plane.
+
+    (28)
+
+    Swimming pool slide
+
+    means any device used to enter a swimming pool by sliding down an inclined plane.
+
+    (29)
+
+    Tamperproof
+
+    means that tools are required to alter or remove portions of the slide such as guards, treads, etc.
+
+    (30)
+
+    Trajectory
+
+    means the path of a slider''s center of gravity from start to finish.
+
+    (31) [Reserved]
+
+    (32)
+
+    Tread contact surface
+
+    means foot contact surfaces of ladder, step, stair, or ramp.
+
+    [41 FR 2751, Jan. 19, 1976, as amended at 43 FR 58813, Dec. 18, 1978]'
+- id: art-5
+  title: § 1207.4
+  text: '§ 1207.4
+
+    Recommended standards for materials of manufacture.
+
+    (a)
+
+    General.
+
+    The materials used in swimming pool slides should be compatible with man and compatible with the environment in which they are installed. These materials should be capable of fulfilling the design requirements
+    prescribed by § 1207.5.
+
+    (b)
+
+    Effects of environment.
+
+    The choice of materials for swimming pool slides should be such that the operational strength of the entire slide assembly, as defined by the performance tests in § 1207.5, should not be adversely affected
+    by exposure to rain, snow, ice, sunlight, local, normal temperature extremes, local normal wind variations, expected local air pollution products,
+
+    and the mechanical, electrical, and chemical environment in and around swimming pools. For purposes of this part 1207, “local normal” temperature extremes and wind variations are defined as the average
+    annual record limits for the past 10 years at any slide installation point in the U.S.A. where such statistical information exists (see reference (a) in § 1207.11)
+
+    (c)
+
+    Materials selection.
+
+    The selection of all materials for swimming pool slides should be such that all surfaces and edges that may come in contact with the user are assembled, arranged, and/or finished (deburred, polished,
+    etc.) so that they will not constitute a cutting, pinching, puncturing, or abrasion hazard under casual contact and intended use by children or adults.
+
+    (d)
+
+    Toxicity.
+
+    The selection of materials used in swimming pool slides should be such that the assembled and installed products should not be toxic to man or harmful to the environment under intended use and reasonably
+    foreseeable abuse or disposal. All paints and finishes used on swimming pool slides shall comply with 16 CFR 1303.2(b)(2) and 1303.4(a).
+
+    (e)
+
+    Chemical compatibility.
+
+    The selection of materials for swimming pool slides should be such that the assembled and installed product, and the parts, are chemically compatible with the materials and environment contacted under
+    intended use and reasonably foreseeable abuse.
+
+    [41 FR 2751, Jan. 19, 1976, as amended at 43 FR 58813, Dec. 18, 1978]'
+- id: art-6
+  title: § 1207.5
+  text: '§ 1207.5
+
+    Design.
+
+    (a)
+
+    Strength.
+
+    The strength of the assembled and installed swimming pool slide shall be such that no structural failures of any component part shall cause failures of any other component part of the slide as described
+    in the performance tests in paragraphs (d)(4) and (f)(9) of this section.
+
+    (b)
+
+    Edges.
+
+    Edges of swimming pool slide runways, ladders, handrails, and deck anchor flanges shall be designed, finished (deburred, polished, etc.), or protected in such a manner as to prevent cutting human tissue
+    on casual contact and intended use. If edge guards are used, they shall be permanently affixed to the structure in a tamper-proof fashion.
+
+    (c)
+
+    Ladders, steps, stairs, or ramps
+
+    —(1)
+
+    General.
+
+    Swimming pool slide ladders, steps, stairs, or ramps shall have treads, not rungs, if the angle of the incline is 15° or greater from a plumbline.
+
+    (2)
+
+    Angle.
+
+    Swimming pool slide ladders not using rungs shall be designed and installed in such a manner that the user''s center of gravity will be approximately positioned directly over each step during the use
+    of the ladder. When tread design ladders are used, the minimum installed angle shall be not less than 15° from a plumbline dropped from a ladder step as shown in figure A. If stairs or ramps are used
+    to ascent to the top of the slide, they shall be designed in accordance with reference (c) of § 1207.11, pages 457-463.
+
+    (Note:
+
+    To convert the English system values given in the figures to metric values, the following conversion factors should be used: 1 inch = 2.54 cm., 1 foot = 30.48 cm., 1 square inch = 6.452 sq. cm., 1 lb.
+    (mass) = 0.4536 kg., 1 lb. (force) = 4.448 newtons, and 1 ft.-lb. = 1.356 newton-meters.)
+
+    EC03OC91.017
+
+    (3)
+
+    Steps
+
+    —(i)
+
+    Dimensions.
+
+    Slide ladder treads may have flat or curved tread surfaces and shall be designed so that they have a minimum tread width of 2 inches (5.08 cm) and a minimum length of 12 inches (30.48 cm) (reference
+    (c) of § 1207.11). The riser height of slide ladder treads shall be no more than 12 inches (30.5 cm) nor less than 7 inches (17.8 cm) and shall be constant over the entire height of the ladder (reference
+    (c) of § 1207.11).
+
+    EC03OC91.018
+
+    (ii)
+
+    Tread curvature.
+
+    If slide ladder tread surfaces are curved, they shall not have a radius of curvature less than seven times the tread width.
+
+    (iii)
+
+    Slip resistant surfaces
+
+    —(A)
+
+    General.
+
+    The tread surface of all swimming pool slide ladders shall have a slip-resistant surface that is either an integral part of or permanently attached to the ladder steps. The performance test is designed
+    to insure that all tread slip-resistant surfaces shall have the ability to maintain a barefooted 50-percentile adult male (reference (d) of § 1207.11) at an angle of repose of 33° ±1° without movement
+    with a safety factor of 2.0. The angle of repose is the angle formed by the intersection of the ladder rails and the line connecting the user''s feet and center of gravity. The tread and the foot shall
+    be wet for this test.
+
+    (B)
+
+    Performance test.
+
+    A wooden block shall be prepared in accordance with figure C. The contact surface area of the block shall be 8 square inches (51.61 square cm) to simulate the ball of the foot (reference (d) of § 1207.11).
+    It shall be covered with
+
+    1/4
+
+    ±
+
+    1/8
+
+    inch (.64±.32 cm) of natural or silicone rubber sponge capped with porous soft leather as shown in figure C.
+
+    EC03OC91.019
+
+    The tests shall be carried out on a slide assembled and installed according to the manufacturer''s instructions. The block shall be soaked in pool water for at least 3 minutes and placed at the midpoint
+    of the wet step with the centroid of load of the block on the longitudinal axis of the step. The block shall be loaded symmetrically on its upper bearing surface with a weight of 300±2 pounds (136.1±.9
+    kg). A controlled and measured force shall be applied at the tangential load ring of the block tangent to the horizontal and increased at a rate of no more than 20 pounds (88.96 newtons) per second.
+    If the block does not move at the point that the tangential load is equal to 105 pounds (467.1 newtons), the tread surface passes this performance test. Other force-creating means that produce equal
+    forces on the block (300±2lbs, 1,334 newtons) may be substituted for weights if they result in substantially identical slip-resistance measurements.
+
+    (iv)
+
+    Fastener requirements.
+
+    Ladder treads shall be attached to the ladder rails in such a manner that continued intended use or reasonably foreseeable abuse shall not cause any fastener to loosen, crack, or break. All attachment
+    methods that are used to hold the ladder tread to the ladder rails shall be permanent and tamperproof. If fasteners are used for the tread-rail attachment, the number and placement of such fasteners
+    shall not cause a failure of the tread under the ladder loading conditions specified in this paragraph (c)(3).
+
+    (v)
+
+    Aboveground pool ladders.
+
+    Above-ground pool slides equipped with swing-up ladders shall be designed so that the ladders may be fixed in the up position by a tamperproof lock.
+
+    (vi)
+
+    Ladder platforms.
+
+    Swimming pool slides whose height above the surface upon which the slide is mounted is greater than 7.5 feet (2.29 meters) shall have a platform built into the ladder. This platform shall be located
+    at least 6 feet (1.83 meters) above the deck and shall have minimum dimensions of 12 by 12 inches (30.48 × 30.48 cm.). The floor of the platform shall have a slip-resistant surface whose performance
+    exceeds the requirements of the tests specified in paragraph (c)(3)(iii)(B) of this section. A minimum dimension of two times the riser height shall be maintained from the platform to the
+
+    top of the slide runway. Transitional handrails shall be provided when a platform is used.
+
+    (vii)
+
+    Static load performance test.
+
+    Ladder treads or rungs shall be capable of supporting a 300-pound (1,334-newton) static load in the center without failure or permanent deformation.
+
+    (d)
+
+    Handrails.
+
+    Swimming pool slide ladders shall be equipped with handrails to aid the slider in safely making the transition to the runway. The handrails shall extend no more than 18 inches (45.72 cm) above the top
+    of the slide runway platform (see figure D
+
+    1
+
+    ).
+
+    EC03OC91.020
+
+    (1)
+
+    Size.
+
+    The outside diameter of handrails shall be between 1.00 and 1.90 inches (2.54 and 4.83 cm) (references (c) and (d) of § 1207.11).
+
+    (2)
+
+    Extent of handrails
+
+    —(i)
+
+    Maximum angle ladder.
+
+    If ladder handrails for a ladder inclined 15 degrees or less from the vertical extend below the slide transition area, they shall be parallel to the ladder rails at a perpendicular distance from them
+    of 4 to 6 inches (10.16 to 15.24 cm) (see figure D
+
+    2
+
+    ). The handrail shall begin 3 to 5 feet (0.91 to 1.52 meters) above the pool deck. Handrails should not provide a means of entrapment.
+
+    EC03OC91.021
+
+    (ii)
+
+    Extent of handrails for ladders, steps, stairs, or ramps.
+
+    For slides not using the minimum angle ladder (15 degrees or less from the vertical), the perpendicular distance between the ladder handrails and the ladder rails below the slide transition area shall
+    be the distance “
+
+    l
+
+    ” as shown in table 1.
+
+    Table 1—Variations of
+
+    l
+
+    Ladders: 15°<θ<40°
+
+    L
+
+    =(34.09θ
+
+    rad
+
+    −3.86) ±1″
+
+    =(86.59θ
+
+    rad
+
+    −9.80)±2.54 cm
+
+    Stairs: 40°<θ<70°
+
+    l
+
+    = 34″ ±1″
+
+    = 86.36 ±2.54 cm
+
+    Ramps: θ<70°
+
+    l
+
+    = 42″ ±1″
+
+    = 106.68±2.54 cm
+
+    (3)
+
+    Bracing of handrails.
+
+    If handrail braces are used, they shall withstand intended use and reasonably foreseeable abuse.
+
+    (4)
+
+    Attachment and strength of handrails.
+
+    Handrails and their fasteners shall withstand allowable shear, bending, and cyclical loading in intended use and reasonably foreseeable abuse. All fasteners for handrail connections shall be vibrationproof,
+    selflocking, and tamperproof. Threaded fasteners shall be capable of withstanding a 1-foot-pound (1,356-newton meter) back-off torque.
+
+    (i)
+
+    Sockets performance test.
+
+    If handrail sockets are used, the handrail end shall be permanently fixed in the socket so that it cannot be pulled out or bent at the socket by a moment of 233 foot-pounds (316 newton-meters) applied
+    clockwise around point A in figure E. The socket shall not permanently deform under the maximum applied loads.
+
+    EC03OC91.022
+
+    (ii)
+
+    Side forces.
+
+    If the handrail is in a socket or attached to the side of the slide runway rail, the attachment methods must be capable of withstanding all shear and bending forces induced by a 172-foot-pound (233-newton-meter)
+    moment counterclockwise around point A in figure F.
+
+    EC03OC91.023
+
+    (iii)
+
+    Performance tests
+
+    —(A)
+
+    Strength for climbing and falls.
+
+    (
+
+    1
+
+    ) Attach a pull loop to point C of the upper handrail (figure E). Point C is the point where a perpendicular to the axis of the handrail passes through point A, the socket, or other attachment point.
+    Attach a stranded steel cable or wire rope to point C. All cables and ropes shall have at least a 1,000-pound (4,448-newton) tensile capacity. Attach a 162-pound (73.5-kg) weight to this cable at least
+    4 feet (1.22 meters) below point C. Observe any permanent deformation or bending on the hand-rail at point A. If none exists, the handrail passes this performance test.
+
+    (
+
+    2
+
+    ) Lift the weight one foot (30.48 cm) from its maximum static position and drop it. Observe any permanent deformation of the handrail or its attachments at point A. If each handrail will still support
+    the 162-pound (73.5-kg) weight for a period of 15 minutes and has not been bent more than 45° from its original direction, it passes this performance test.
+
+    (B)
+
+    Transition handrail strength.
+
+    Rotate the assembled slide into the horizontal position on its side on a loading dock or other platform. Move the slide into such a position that the entire
+
+    handrail assembly overhangs the platform and level the slide. Fasten the slide firmly in this position and attach a 115-pound (52.2-kg) weight to point D, as shown in figure F, and check for any visible
+    permanent deformation of the handrail at point A. If none exists, the handrails pass this performance test.
+
+    (e)
+
+    Lubrication.
+
+    Swimming pool slides shall either be equipped with a method of lubrication (for example, water) or have a similar coefficient of friction so that the slider has a smooth, continuous slide. If water
+    is used, the nozzles, piping, or hoses that deliver water to the runway shall be recessed or designed in such a fashion as not to interfere with a slider''s progress down the slide or create tripping
+    hazards on the slide.
+
+    (f)
+
+    Runways
+
+    —(1)
+
+    Curvature.
+
+    Slide runway curvature between the front and rear support legs of the slide shall be consistent with maintaining the slider safely on the slide during intended use and reasonably foreseeable abuse.
+
+    (2)
+
+    Dynamic equilibrium.
+
+    (i) Swimming pool slide runways, whether straight or curved, shall be designed as “balanced curves.” On a balanced curve, the test fixture discussed in paragraph (f)(2)(ii) of this section shall stay
+    on a trajectory that keeps it within a distance of ±41 percent of the runway width to the runway centerline at all points along the runway without contacting the runway rails.
+
+    (ii)
+
+    Performance test
+
+    —(A)
+
+    Direct measurement.
+
+    Build a wooden pallet no larger than 5 by 5 inches (12.7 × 12.7 cm), as shown in figure G. Securely attach a lead rod or bar on the pallet. Size the bar so that the weight-to-area ratio of the assembly
+    is 1.30±0.05 lbs./sq. in. (8,960±340 newtons/sq. meter) and the pallet does not tip over when in motion. Attach a felt pen or other suitable marking device to the pallet assembly as shown in figure
+    G to mark the slide during descent.
+
+    (B)
+
+    Test.
+
+    Lubricate the slide in accordance with the manufacturer''s instructions. Center the pallet at the top of the slide runway and release. Observe the pallet''s descent and note if it touches the slide''s
+    side rails. If it touches, check alignment and installation again. With water off and the slide dry, center the pallet at the top of the runway and release. Measure the distance from the felt pen marked
+    line to the centerline of the runway. If within ±41 percent of the width measured from the centerline along'
+- id: art-7
+  title: § 1207.9
+  text: '§ 1207.9
+
+    Product certification.
+
+    (a) Certification shall be in accordance with section 14(a)(1) of the Consumer Product Safety Act (15 U.S.C. 2063(a)(1)).
+
+    (b) A certificate shall accompany the swimming pool slide (in the form of a permanent label on the shipping container(s) or in the form of a separate certificate) to all distributors and retailers to
+    whom the material is delivered certifying that the slide conforms to this part 1207. The certificate or permanent label issued under this section shall be based upon either a test of each product or
+    a reasonable testing program, shall state the name of the manufacturer or private labeler issuing the certificate, and shall include the date and place of manufacture.
+
+    (c) Any certificate shall be based upon the test procedures and requirements specified in this part 1207.'
+- id: art-8
+  title: § 1207.10
+  text: '§ 1207.10
+
+    Handling, storage, and marking.
+
+    (a)
+
+    Marking.
+
+    The manufacturer''s or private labeler''s identification shall appear on the slide and shipping container. Such identification shall include the identity and address of the manufacturer or private labeler.
+    If a private labeler''s name is used, the marking shall include a code mark that will permit an identification of the manufacturer.
+
+    (b)
+
+    Shipping, handling, and storage.
+
+    The slide shall be designed, constructed, or packaged so that reasonably foreseeable shipping, handling, and storage will not cause defects in the slide that will prevent the slide from complying with
+    the requirements of this part 1207.'
+- id: art-9
+  title: § 1207.11
+  text: '§ 1207.11
+
+    References.
+
+    (a) “Statistical Abstract of the United States 1973,” U.S. Dept. of Commerce, pp. 181-185, 192.
+
+    (b) “Human Engineering Guide for Equipment Designers,” Woodson and Conover, pp. 2-166 through 2-169 published by the University of California Press, 2223 Fulton St., Berkeley, California 94720.
+
+    (c) “Human Engineering Guide to Equipment Design,” Van Cott and KinKade, published by U.S. Dept. of
+
+    Defense, 1972, Library of Congress Card No. 72-600054, pp. 457-465.
+
+    (d) “The Measure of Man—Human Factors in Design,” by Henry Dreyfuss, published by Watson-Guptill Publications, Inc., 1 Astor Plaza, New York, New York, 10036.
+
+    (e) “Medical Tribune”, Wed., 8/15/73, p. 21.
+
+    (f) “Technical Rationale in Support of A Safety Standard for Swimming Pool Slides,” 5/30/75. National Swimming Pool Institute, 2000 K Street NW., Washington, D.C. 20006.'
+- id: art-10
+  title: § 1207.12
+  text: '§ 1207.12
+
+    Stockpiling.
+
+    (a)
+
+    Definitions.
+
+    As used in this section:
+
+    (1)
+
+    Stockpiling
+
+    means manufacturing or importing swimming pool slides between the date of promulgation of part 1207 in the
+
+    Federal Register
+
+    and its effective date at a rate greater than five percent more than the rate at which the slides were manufactured or imported during the base period.
+
+    (2)
+
+    Base period
+
+    means, at the option of the manufacturer or importer concerned, any period of 180 consecutive days beginning on or after January 2, 1974, and ending on or before December 31, 1974.
+
+    (3)
+
+    Rate of production (or importation)
+
+    means the total number of swimming pool slides manufactured (or imported) during a stated time period. In determining whether a slide was manufactured (or imported) during a stated time period, the
+    later of the date on which the slide runway was manufactured (or imported) or the date on which the accompanying ladder and other support parts were manufactured (or imported) shall be used.
+
+    (b)
+
+    Prohibited acts.
+
+    Manufacturers and importers of swimming pool slides, as these products are defined in § 1207.3(a)(28) shall not manufacture or import slides that do not comply with the requirements of this part 1207
+    between January 19, 1976, and July 17, 1976, at a rate which is greater than the rate of production or importation during the base period plus five percent of that rate.
+
+    (c) Manufacturers and importers shall maintain appropriate documentation to be able to substantiate to the Commission that they are in compliance with the provisions of this section.
+
+    [41 FR 2751, Jan. 19, 1976, as amended at 41 FR 15003, Apr. 9, 1976]'
 doc_files:
 - us/raw/US-CFR-title16-part1207.xml
+- us/raw/US-CFR-title16-part1207.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1207.xml (xml, 34560 chars)，生成 10 条共 27448 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1207.xml (xml, 34560 chars)，生成 10 条共 27448 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1207.xml (xml, 34560 chars)，生成 10 条共 27448 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1207-4（US 16 CFR Part 1207）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1207-3（US 16 CFR Part 1207）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1207-2（US 16 CFR Part 1207）。'

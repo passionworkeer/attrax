@@ -1,6 +1,6 @@
 id: US-CFR-TITLE47-PART2
 official_citation: US 47 CFR Part 2
-short_name: US 47 CFR Part 2
+short_name: US 47 CFR Part 2 — FREQUENCY ALLOCATIONS AND RADIO TREATY MATTERS; GENERAL RULES AND REGULATIONS
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,1129 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '47
+
+    Telecommunication
+
+    1
+
+    2024-10-01
+
+    false
+
+    2024-10-01
+
+    FREQUENCY'
+  text: '47
+
+    Telecommunication
+
+    1
+
+    2024-10-01
+
+    false
+
+    2024-10-01
+
+    FREQUENCY ALLOCATIONS AND RADIO TREATY MATTERS; GENERAL RULES AND REGULATIONS
+
+    Telecommunication
+
+    FEDERAL COMMUNICATIONS COMMISSION
+
+    GENERAL
+
+    Pt. 2
+
+    PART 2—FREQUENCY ALLOCATIONS AND RADIO TREATY MATTERS; GENERAL RULES AND REGULATIONS
+
+    Subpart A—Terminology
+
+    Sec.
+
+    2.1
+
+    Terms and definitions.
+
+    Subpart B—Allocation, Assignment, and Use of Radio Frequencies
+
+    2.100
+
+    International Radio Regulations.
+
+    2.101
+
+    Frequency and wavelength bands.
+
+    2.102
+
+    Assignment of frequencies.
+
+    2.103
+
+    Federal use of non-Federal frequencies.
+
+    2.104
+
+    International Table of Frequency Allocations.
+
+    2.105
+
+    United States Table of Frequency Allocations.
+
+    2.106
+
+    Table of Frequency Allocations.
+
+    2.107
+
+    Radio astronomy station notification.
+
+    2.108
+
+    Policy regarding the use of the fixed-satellite allocations in the 3.6-3.7, 4.5-4.8, and 5.85-5.925 GHz bands.
+
+    Subpart C—Emissions
+
+    2.201
+
+    Emission, modulation, and transmission characteristics.
+
+    2.202
+
+    Bandwidths.
+
+    Subpart D—Call Signs and Other Forms of Identifying Radio Transmissions
+
+    2.301
+
+    Station identification requirement.
+
+    2.302
+
+    Call signs.
+
+    2.303
+
+    Other forms of identification of stations.
+
+    Subpart E—Distress, Disaster, and Emergency Communications
+
+    2.401
+
+    Distress messages.
+
+    2.402
+
+    Control of distress traffic.
+
+    2.403
+
+    Retransmission of distress message.
+
+    2.404
+
+    Resumption of operation after distress.
+
+    2.405
+
+    Operation during emergency.
+
+    2.406
+
+    National defense; free service.
+
+    2.407
+
+    National defense; emergency authorization.
+
+    Subparts F-G [Reserved]
+
+    Subpart H—Prohibition Against Eavesdropping
+
+    2.701
+
+    Prohibition against use of a radio device for eavesdropping.
+
+    Subpart I—Marketing of Radiofrequency Devices
+
+    2.801
+
+    Radiofrequency device defined.
+
+    2.803
+
+    Marketing of radio frequency devices prior to equipment authorization.
+
+    2.805
+
+    Operation of radio frequency devices prior to equipment authorization.
+
+    2.807
+
+    Statutory exceptions.
+
+    2.811
+
+    Transmitters operated under part 73 of this chapter.
+
+    2.813
+
+    Transmitters operated in the Instructional Television Fixed Service.
+
+    2.815
+
+    External radio frequency power amplifiers.
+
+    Subpart J—Equipment Authorization Procedures
+
+    General Provisions
+
+    2.901
+
+    Basis and purpose.
+
+    2.903
+
+    Prohibition on authorization of equipment on the Covered List.
+
+    2.906
+
+    Supplier''s Declaration of Conformity.
+
+    2.907
+
+    Certification.
+
+    2.908
+
+    Identical defined.
+
+    2.909
+
+    Responsible party.
+
+    2.910
+
+    Incorporation by reference.
+
+    Application Procedures for Equipment Authorizations
+
+    2.911
+
+    Application requirements.
+
+    2.915
+
+    Grant of application.
+
+    2.917
+
+    Dismissal of application.
+
+    2.919
+
+    Denial of application.
+
+    2.921
+
+    Hearing on application.
+
+    2.923
+
+    Petition for reconsideration; application for review.
+
+    2.924
+
+    Marketing of electrically identical equipment having multiple trade names and models or type numbers under the same FCC Identifier.
+
+    2.925
+
+    Identification of equipment.
+
+    2.926
+
+    FCC identifier.
+
+    Conditions Attendant to an Equipment Authorization
+
+    2.927
+
+    Limitations on grants.
+
+    2.929
+
+    Changes in name, address, ownership or control of grantee.
+
+    2.931
+
+    Responsibilities.
+
+    2.932
+
+    Modification of equipment.
+
+    2.933
+
+    Change in identification of equipment.
+
+    2.935
+
+    Electronic labeling of radiofrequency devices.
+
+    2.937
+
+    Equipment defect and/or design change.
+
+    2.938
+
+    Retention of records.
+
+    2.939
+
+    Revocation or withdrawal of equipment authorization.
+
+    2.941
+
+    Availability of information relating to grants.
+
+    2.944
+
+    Software defined radios.
+
+    2.945
+
+    Submission of equipment for testing and equipment records.
+
+    2.947
+
+    Measurement procedure.
+
+    2.948
+
+    Measurement facilities.
+
+    2.949
+
+    Recognition of laboratory accreditation bodies.
+
+    2.950
+
+    Transition periods.
+
+    Telecommunication Certification Bodies (TCBs)
+
+    2.960
+
+    Recognition of Telecommunication Certification Bodies (TCBs).
+
+    2.962
+
+    Requirements for Telecommunication Certification Bodies.
+
+    2.964
+
+    Pre-approval guidance procedure for Telecommunication Certification Bodies.
+
+    Certification
+
+    2.1031
+
+    Cross reference.
+
+    2.1033
+
+    Application for certification.
+
+    2.1035
+
+    [Reserved]
+
+    2.1041
+
+    Measurement procedure.
+
+    2.1043
+
+    Changes in certificated equipment.
+
+    2.1046
+
+    Measurements required: RF power output.
+
+    2.1047
+
+    Measurements required: Modulation characteristics.
+
+    2.1049
+
+    Measurements required: Occupied bandwidth.
+
+    2.1051
+
+    Measurements required: Spurious emissions at antenna terminals.
+
+    2.1053
+
+    Measurements required: Field strength of spurious radiation.
+
+    2.1055
+
+    Measurements required: Frequency stability.
+
+    2.1057
+
+    Frequency spectrum to be investigated.
+
+    2.1060
+
+    Equipment for use in the amateur radio service.
+
+    Supplier''s Declaration of Conformity
+
+    2.1071
+
+    Cross reference.
+
+    2.1072
+
+    Limitation on Supplier''s Declaration of Conformity.
+
+    2.1074
+
+    Identification.
+
+    2.1077
+
+    Compliance information.
+
+    Radiofrequency Radiation Exposure
+
+    2.1091
+
+    Radiofrequency radiation exposure evaluation: mobile devices.
+
+    2.1093
+
+    Radiofrequency radiation exposure evaluation: portable devices.
+
+    Subpart K—Importation of Devices Capable of Causing Harmful Interference
+
+    2.1201
+
+    Purpose.
+
+    2.1202
+
+    Exclusions.
+
+    2.1203
+
+    General requirement for entry into the U.S.A.
+
+    2.1204
+
+    Import conditions.
+
+    2.1207
+
+    Examination of imported equipment.
+
+    Subpart L [Reserved]
+
+    Subpart M—Advance Approval of Subscription TV Transmission Systems
+
+    Advance Approval Procedure
+
+    2.1400
+
+    Application for advance approval under part 73.
+
+    Subpart N [Reserved]
+
+    Authority:
+
+    47 U.S.C. 154, 302a, 303, and 336, unless otherwise noted.
+
+    Source:
+
+    28 FR 12465, Nov. 22, 1963, unless otherwise noted.
+
+    Editorial Note:
+
+    Nomenclature changes to part 2 appear at 63 FR 54077, Oct. 8, 1998.
+
+    Subpart A—Terminology'
+- id: art-2
+  title: § 2.1
+  text: '§ 2.1
+
+    Terms and definitions.
+
+    (a) Where a term or definition appears in this part of the Commission''s Rules, it shall be the definitive term or definition and shall prevail throughout the Commission''s Rules.
+
+    (b) The source of each definition is indicated as follows:
+
+    CS—Annex to the Constitution of the International Telecommunication Union (ITU)
+
+    CV—Annex to the Convention of the ITU
+
+    FCC—Federal Communications Commission
+
+    RR—ITU Radio Regulations
+
+    (c) The following terms and definitions are issued:
+
+    Accepted Interference.
+
+    1
+
+    Interference at a higher level than defined as permissible interference and which has been agreed upon between two or more administrations without prejudice to other administrations. (RR)
+
+    1
+
+    The terms
+
+    permissible interference
+
+    and
+
+    accepted interference
+
+    are used in the coordination of frequency assignments between administrations.
+
+    Active Satellite.
+
+    A satellite carrying a station intended to transmit or retransmit radiocommunication signals. (RR)
+
+    Active Sensor.
+
+    A measuring instrument in the earth exploration-satellite service or in the space research service by means of which information is obtained by transmission and reception of radio waves. (RR)
+
+    Adaptive System.
+
+    A radiocommunication system which varies its radio characteristics according to channel quality. (RR)
+
+    Administration.
+
+    Any governmental department or service responsible for discharging the obligations undertaken in the Constitution of the International Telecommunication Union, in the Convention of the International
+    Telecommunication Union and in the Administrative Regulations. (CS)
+
+    Aeronautical Earth Station.
+
+    An Earth station in the fixed-satellite service, or, in some cases, in the aeronautical mobile-satellite service, located at a specified fixed point on land to provide a feeder link for the aeronautical
+    mobile-satellite service. (RR)
+
+    Aeronautical Fixed Service.
+
+    A radiocommunication service between specified fixed points provided primarily for the safety of air navigation and for the regular, efficient and economical operation of air transport. (RR)
+
+    Aeronautical Fixed Station.
+
+    A station in the aeronautical fixed service. (RR)
+
+    Aeronautical Mobile Off-Route (OR) Service.
+
+    An aeronautical mobile service intended for communications, including those relating to flight coordination, primarily outside national or international civil air routes. (RR)
+
+    Aeronautical Mobile Route (R) Service.
+
+    An aeronautical mobile service reserved for communications relating to safety and regularity of flight, primarily along national or international civil air routes. (RR)
+
+    Aeronautical Mobile-Satellite Off-Route (OR) Service.
+
+    An aeronautical mobile-satellite service intended for communications, including those relating to flight coordination, primarily outside national and international civil air routes. (RR)
+
+    Aeronautical Mobile-Satellite Route (R) Service.
+
+    An aeronautical mobile-satellite service reserved for communications relating to safety and regularity of flights, primarily along national or international civil air routes. (RR)
+
+    Aeronautical Mobile-Satellite Service.
+
+    A mobile-satellite service in which mobile earth stations are located on board aircraft; survival craft stations and emergency position-indicating radiobeacon stations may also participate in this service.
+    (RR)
+
+    Aeronautical Mobile Service.
+
+    A mobile service between aeronautical stations and aircraft stations, or between aircraft stations, in which survival craft stations may participate; emergency position-indicating radiobeacon stations
+    may also participate in this service on designated distress and emergency frequencies. (RR)
+
+    Aeronautical Radionavigation-Satellite Service.
+
+    A radionavigation-satellite service in which earth stations are located on board aircraft. (RR)
+
+    Aeronautical Radionavigation Service.
+
+    A radio-navigation service intended for the benefit and for the safe operation of aircraft. (RR)
+
+    Aeronautical Station.
+
+    A land station in the aeronautical mobile service.
+
+    Note:
+
+    In certain instances, an aeronautical station may be located, for example, on board ship or on a platform at sea. (RR)
+
+    Aircraft Earth Station.
+
+    A mobile earth station in the aeronautical mobile-satellite service located on board an aircraft. (RR)
+
+    Aircraft Station.
+
+    A mobile station in the aeronautical mobile service, other than a survival craft station, located on board an aircraft. (RR)
+
+    Allocation (of a frequency band).
+
+    Entry in the Table of Frequency Allocations of a given frequency band for the purpose of its use by one or more terrestrial or space radiocommunication services or the radio astronomy service under
+    specified conditions. This term shall also be applied to the frequency band concerned. (RR)
+
+    Allotment (of a radio frequency or radio frequency channel).
+
+    Entry of a designated frequency channel in an agreed plan, adopted by a competent conference, for use by one or more administrations for a terrestrial or space radiocommunication service in one or more
+    identified countries or geographical area and under specified conditions. (RR)
+
+    Altitude of the Apogee or Perigee.
+
+    The altitude of the apogee or perigee above a specified reference surface serving to represent the surface of the Earth. (RR)
+
+    Amateur-Satellite Service.
+
+    A radiocommunication service using space stations on earth satellites for the same purposes as those of the amateur service. (RR)
+
+    Amateur Service.
+
+    A radiocommunication service for the purpose of self-training, intercommunication and technical investigations carried out by amateurs, that is, by duly authorized persons interested in radio technique
+    solely with a personal aim and without pecuniary interest. (RR)
+
+    Amateur Station.
+
+    A station in the amateur service. (RR)
+
+    Assigned Frequency.
+
+    The centre of the frequency band assigned to a station. (RR)
+
+    Assigned Frequency Band.
+
+    The frequency band within which the emission of a station is authorized; the width of the band equals the necessary bandwidth plus twice the absolute value of the frequency tolerance. Where space stations
+    are concerned, the assigned frequency band includes twice the maximum Doppler shift that may occur in relation to any point of the Earth''s surface. (RR)
+
+    Assignment (of a radio frequency or radio frequency channel).
+
+    Authorization given by an administration for a radio station to use a radio frequency or radio frequency channel under specified conditions. (RR)
+
+    Base Earth Station.
+
+    An earth station in the fixed-satellite service or, in some cases, in the land mobile-satellite service, located at a specified fixed point or within a specified area on land to provide a feeder link
+    for the land mobile-satellite service. (RR)
+
+    Base Station.
+
+    A land station in the land mobile service. (RR)
+
+    Broadcasting-Satellite Service.
+
+    A radiocommunication service in which signals transmitted or retransmitted by space stations are intended for direct reception by the general public.
+
+    Note:
+
+    In the broadcasting-satellite service, the term
+
+    direct reception
+
+    shall encompass both individual reception and community reception. (RR)
+
+    Broadcasting Service.
+
+    A radiocommunication service in which the transmissions are intended for direct reception by the general public. This service may include sound transmissions, television transmissions or other types
+    of transmission. (CS)
+
+    Broadcasting Station.
+
+    A station in the broadcasting service. (RR)
+
+    Carrier Power (of a radio transmitter).
+
+    The average power supplied to the antenna transmission line by a transmitter during one radio frequency cycle taken under the condition of no modulation. (RR)
+
+    Characteristic Frequency.
+
+    A frequency which can be easily identified and measured in a given emission.
+
+    Note:
+
+    A carrier frequency may, for example, be designated as the characteristic frequency. (RR)
+
+    Class of Emission.
+
+    The set of characteristics of an emission, designated by standard symbols, e.g., type of modulation, modulating signal, type of information to be transmitted, and also if appropriate, any additional
+    signal characteristics. (RR)
+
+    Coast Earth Station.
+
+    An earth station in the fixed-satellite service or, in some cases, in the maritime mobile-satellite service, located at a specified fixed point on land to provide a feeder link for the maritime mobile-satellite
+    service. (RR)
+
+    Coast Station.
+
+    A land station in the maritime mobile service. (RR)
+
+    Community Reception (in the broadcasting-satellite service).
+
+    The reception of emissions from a space station in the broadcasting-satellite service by receiving equipment, which in some cases may be complex and have antennae larger than those for individual reception,
+    and intended for use: (1) by a group of the general public at one location; or (2) through a distribution system covering a limited area. (RR)
+
+    Conterminous United States.
+
+    The contiguous 48 States and the District of Columbia. (FCC)
+
+    Coordinated Universal Time (UTC).
+
+    Time scale, based on the second (SI), as defined in Recommendation ITU-R TF.460-6.
+
+    Note:
+
+    For most practical purposes associated with the ITU
+
+    Radio Regulations
+
+    , UTC is equivalent to mean solar time at the prime meridian (0° longitude), formerly expressed in GMT. (RR)
+
+    Coordination Area.
+
+    When determining the need for coordination, the area surrounding an earth station sharing the same frequency band with terrestrial stations, or surrounding a transmitting earth station sharing the same
+    bidirectionally allocated frequency band with receiving earth stations, beyond which the level of permissible interference will not be exceeded and coordination is therefore not required. (RR)
+
+    Coordination Contour.
+
+    The line enclosing the coordination area. (RR)
+
+    Coordination Distance.
+
+    When determining the need for coordination, the distance on a given azimuth from an earth station sharing the same frequency band with terrestrial stations, or from a transmitting earth station sharing
+    the same bidirectionally allocated frequency band with receiving earth stations, beyond which the level of permissible interference will not be exceeded and coordination is therefore not required. (RR)
+
+    Deep Space.
+
+    Space at distance from the Earth equal to, or greater than, 2 × 10
+
+    6
+
+    kilometers. (RR)
+
+    Differential Global Positioning System (DGPS) Station.
+
+    A differential RNSS station for specific augmentation of GPS.
+
+    Differential Radionavigation Satellite Service (Differential RNSS) Station.
+
+    A station used for the transmission of differential correction data and related information (such as ionospheric data and RNSS satellite integrity information) as an augmentation to an RNSS system for
+    the purpose of improved navigation accuracy.
+
+    Direct Sequence Systems.
+
+    A spread spectrum system in which the carrier has been modulated by a high speed spreading code and an information data stream. The high speed code sequence dominates the “modulating function” and is
+    the direct cause of the wide spreading of the transmitted signal.
+
+    Duplex Operation.
+
+    Operating method in which transmission is possible simultaneously in both directions of a telecommunication channel.
+
+    3
+
+    (RR)
+
+    3
+
+    In general, duplex operation and semi-duplex operation require two frequencies in radiocommunication; simplex operation may use either one or two.
+
+    Earth Exploration-Satellite Service.
+
+    A radiocommunication service between earth stations and one or more space stations, which may include links between space stations, in which:
+
+    (1) Information relating to the characteristics of the Earth and its natural phenomena, including data relating to
+
+    the state of the environment, is obtained from active sensors or passive sensors on Earth satellites;
+
+    (2) Similar information is collected from airborne or Earth-based platforms;
+
+    (3) Such information may be distributed to earth stations within the system concerned; and
+
+    (4) Platform interrogation may be included. This service may also include feeder links necessary for its operation. (RR)
+
+    Earth Station.
+
+    A station located either on the earth''s surface or within the major portion of earth''s atmosphere and intended for communication:
+
+    (1) With one or more space stations; or
+
+    (2) With one or more stations '
+- id: art-3
+  title: § 2.100
+  text: '§ 2.100
+
+    International Radio Regulations.
+
+    The United States is a Member State of the International Telecommunication Union (ITU). The legal framework of the ITU is comprised of the Constitution and Convention of the International Telecommunication
+    Union—which have treaty status and are binding on ITU Member States—and the Administrative Regulations—which complement the Constitution and the Convention. The Radio Regulations form an integral part
+    of the Administrative Regulations.
+
+    (a) The Radio Regulations are available at
+
+    https://www.itu.int/pub/R-REG-RR/en
+
+    and consist of:
+
+    (1) Articles in volume 1. Article 5 includes the ITU''s Table of Frequency Allocations, which is the basis for the International Table in § 2.106, as well as the text of the footnotes to the ITU''s
+    Table of Frequency Allocations, which is the basis for the list of international footnotes in § 2.106. A description of terms and abbreviations used in the international footnotes is as follows:
+
+    (i) ITU-R (ITU Radiocommunication Sector).
+
+    (ii) No. (composite number indicating the number of the ITU Article and the provision number within that Article (e.g., No. 9.2B means provision No. 2B of Article 9).
+
+    (iii) Radio Regulations (ITU Radio Regulations).
+
+    (iv) WRC (World Radiocommunication Conference).
+
+    (2) Appendices (with Annexes) in volume 2.
+
+    (3) Resolutions and Recommendations in volume 3.
+
+    (4) ITU Radiocommunication Sector (ITU-R) Recommendations as referenced in volume 4.
+
+    (b) The Radio Regulations (Edition of 2012) have been incorporated to the extent practicable in this part, except that the International Table within § 2.106 has been updated to reflect the Radio Regulations
+    (Edition of 2016).
+
+    [88 FR 37320, June 7, 2023]'
+- id: art-4
+  title: § 2.101
+  text: '§ 2.101
+
+    Frequency and wavelength bands.
+
+    (a) The radio spectrum shall be subdivided into nine frequency bands, which shall be designated by progressive whole numbers in accordance with the following table. As the unit of frequency is the hertz
+    (Hz), frequencies shall be expressed:
+
+    (1) In kilohertz (kHz), up to and including 3 000 kHz;
+
+    (2) In megahertz (MHz), above 3 MHz, up to and including 3 000 MHz;
+
+    (3) In gigahertz (GHz), above 3 GHz, up to and including 3 000 GHz.
+
+    (b) However, where adherence to these provisions would introduce serious difficulties, for example in connection with the notification and registration of frequencies, the lists of frequencies and related
+    matters, reasonable departures may be made.
+
+    1
+
+    1
+
+    In the application of the ITU
+
+    Radio Regulations,
+
+    the Radiocommunication Bureau uses the following units:
+
+    kHz: For frequencies up to 28 000 kHz inclusive;
+
+    MHz: For frequencies above 28 000 kHz up to 10 500 MHz inclusive; and
+
+    GHz: For frequencies above 10 500 MHz.
+
+    Table 1 to Paragraph (
+
+    b
+
+    )
+
+    Band No.
+
+    Symbols
+
+    Frequency range (lower limit exclusive, upper limit inclusive)
+
+    Corresponding metric subdivision
+
+    4
+
+    VLF
+
+    3 to 30 kHz
+
+    Myriametric waves.
+
+    5
+
+    LF
+
+    30 to 300 kHz
+
+    Kilometric waves.
+
+    6
+
+    MF
+
+    300 to 3 000 kHz
+
+    Hectometric waves.
+
+    7
+
+    HF
+
+    3 to 30 MHz
+
+    Decametric waves.
+
+    8
+
+    VHF
+
+    30 to 300 MHz
+
+    Metric waves.
+
+    9
+
+    UHF
+
+    300 to 3 000 MHz
+
+    Decimetric waves.
+
+    10
+
+    SHF
+
+    3 to 30 GHz
+
+    Centimetric waves.
+
+    11
+
+    EHF
+
+    30 to 300 GHz
+
+    Millimetric waves.
+
+    12
+
+    300 to 3 000 GHz
+
+    Decimillimetric waves.
+
+    Note 1:
+
+    “Band N” (N = band number) extends from 0.3 × 10
+
+    N
+
+    Hz to 3 × 10
+
+    N
+
+    Hz.
+
+    Note 2:
+
+    Prefix: k = kilo (10
+
+    3
+
+    ), M = mega (10
+
+    6
+
+    ), G = giga (10
+
+    9
+
+    ).
+
+    (c) In communications between administrations and the ITU, no names, symbols or abbreviations should be used for the various frequency bands other than those specified in this section.
+
+    [70 FR 46583, Aug. 10, 2005; 70 FR 53074, Sept. 7, 2005; 75 FR 62933, Oct. 13, 2010; 80 FR 38823, July 7, 2015; 85 FR 38632, June 26, 2020]'
+- id: art-5
+  title: § 2.102
+  text: '§ 2.102
+
+    Assignment of frequencies.
+
+    (a) Except as otherwise provided in this section, the assignment of frequencies and frequency bands to all stations and classes of stations and the licensing and authorizing of the use of all such frequencies
+    between 8.3 kHz and 275 GHz, and the actual use of such frequencies for radiocommunication or for any other purpose, including the transfer of energy by radio, shall be in accordance with the Table
+    of Frequency Allocations in § 2.106.
+
+    (b) On the condition that harmful interference will not be caused to services operating in accordance with the Table of Frequency Allocations the following exceptions to paragraph (a) of this section
+    may be authorized:
+
+    (1) In individual cases the Commission may, without rule making proceedings, authorize on a temporary basis only, the use of frequencies not in accordance with the Table of Frequency Allocations for
+    projects of short duration or emergencies where the Commission finds that important or exceptional circumstances require such utilization. Such authorizations are not intended to develop a service to
+    be operated on frequencies other than those allocated such service.
+
+    (2) [Reserved]
+
+    (3) Experimental stations, pursuant to part 5 of this chapter, may be authorized the use of any frequency or frequency band not exclusively allocated to the passive services (including the radio astronomy
+    service).
+
+    (4) In the event a band is reallocated so as to delete its availability for use by a particular service, the Commission may provide for the further interim use of the band by stations in that service
+    for a temporary, specific period of time.
+
+    (c) Non-Federal stations may be authorized to use Federal frequencies in the bands above 25 MHz:
+
+    (1) If the Commission finds, after consultations with the appropriate Federal agency or agencies, that such use is necessary for coordination of Federal and non-Federal activities. Such operations must
+    meet the following requirements:
+
+    (i) Non-Federal operation on Federal frequencies shall conform with the conditions agreed upon by the Commission and NTIA;
+
+    (ii) Such operations shall be in accordance with NTIA rules governing the service to which the frequencies involved are allocated;
+
+    (iii) Such operations shall not cause harmful interference to Federal stations and, should harmful interference result, that the interfering non-Federal operation shall immediately terminate; and
+
+    (iv) Non-Federal operation has been certified as necessary by the Federal agency involved and this certification has been furnished, in writing, to the non-Federal licensee with which communication
+    is required; or
+
+    (2) Pursuant to the provisions of § 90.25 of this chapter, provided that such operations shall not cause harmful interference to Federal stations and, should harmful interference result, that the interfering
+    non-Federal operation shall immediately terminate.
+
+    (d) Aircraft stations may communicate with stations of the maritime mobile service. They shall then conform to those provisions of the international
+
+    Radio Regulations
+
+    which relate to the maritime mobile service. For this purpose aircraft stations should use the frequencies allocated to the maritime mobile service. However, having regard to interference which may
+    be caused by aircraft stations at high altitudes, maritime mobile frequencies in the bands above 30 MHz shall not be used by aircraft stations in any specific area without the prior agreement of all
+    administrations of the area in which interference is likely to be caused. In particular, aircraft stations operating in Region 1 should not use frequencies in the bands above 30 MHz allocated to the
+    maritime mobile service by virtue of any agreement between administrations in that Region.
+
+    (e) Non-Federal services operating on frequencies in the band 25-50 MHz must recognize that it is shared with various services of other countries; that harmful interference may be caused by skywave
+    signals received from distant stations of all services of the United States and other countries radiating power on frequencies in this band; and that no protection from such harmful interference generally
+    can be expected. Persons desiring to avoid such harmful interference should consider operation on available frequencies higher in the radio spectrum not generally subject to this type of difficulty.
+
+    (f) The stations of a service shall use frequencies so separated from the limits of a band allocated to that service as not to cause harmful interference to allocated services in immediately adjoining
+    frequency bands.
+
+    (g) In the bands above 25 MHz which are allocated to the non-Federal land mobile service, fixed stations may be authorized on the following conditions:
+
+    (1) That such stations are authorized in the service shown in Column 5 of the Table of Frequency Allocations in the band in question;
+
+    (2) That harmful interference will not be caused to services operating in accordance with the Table of Frequency Allocations.
+
+    (h) Special provisions regarding the use of spectrum allocated to the fixed and land mobile services below 25 MHz by non-Federal stations.
+
+    (1) Only in the following circumstances will authority be extended to stations in the fixed service to operate on frequencies below 25 MHz.
+
+    (i) With respect to aeronautical fixed stations, only when a showing can be made that more suitable facilities are not available.
+
+    (ii) With respect to fixed stations, except aeronautical fixed stations, only to:
+
+    (A) Provide communication circuits in emergency and/or disaster situations, where safety of life and property are concerned;
+
+    (B) Provide standby and/or backup facilities to satellite and cable circuits used for international public correspondence;
+
+    (C) Provide standby and/or backup communications circuits to regular domestic communication circuits which have been disrupted by disasters and/or emergencies;
+
+    (D) Provide communication circuits wholly within the State of Alaska and the United States insular areas in the Pacific; and
+
+    (E) Provide communication circuits to support operations which are highly important to the national interest and where other means of telecommunication are unavailable.
+
+    (2) Only in the following circumstances will authority be extended to stations in the land mobile service to operate below 25 MHz.
+
+    (i) Provide communication circuits in emergency and/or disaster situations, where safety of life and property are concerned;
+
+    (ii) Provide standby and/or backup communications circuits to regular domestic communication circuits which have been disrupted by disasters and/or emergencies;
+
+    (iii) Provide communication circuits wholly within the State of Alaska and the United States insular areas in the Pacific; and
+
+    (iv) Provide communication circuits to support operations which are highly important to the national interest and where other means of telecommunication are unavailable.
+
+    (3) Except in the State of Alaska and the United States Pacific insular areas, the Commission does not intend to seek international protection for assignments made pursuant to paragraphs (h) (1)(ii)
+    and (2) of this section; this results in the following constraints upon the circuits/assignments.
+
+    (i) The Commission will not accept responsibility for protection of the circuits from harmful interference caused by foreign operations.
+
+    (ii) In the event that a complaint of harmful interference resulting from operation of these circuits is received from a foreign source, the offending circuit(s) must cease operation on the particular
+    frequency concerned.
+
+    (iii) In order to accommodate the situations described in paragraphs (h)(3) (i) and (ii) of this section, equipments shall be capable of transmitting and receiving on any frequency in the bands assigned
+    to the particular operation and capable of immediate change among the frequencies.
+
+    [49 FR 2373, Jan. 19, 1984, 70 FR 46585, Aug. 10, 2005, as amended at 78 FR 25161, Apr. 29, 2013; 82 FR 27185, June 14, 2017; 83 FR 19977, May 7, 2018; 85 FR 38633, June 26, 2020]'
+- id: art-6
+  title: § 2.103
+  text: '§ 2.103
+
+    Federal use of non-Federal frequencies.
+
+    (a) Federal stations may be authorized to use non-Federal frequencies in the bands above 25 MHz (except the 758-775 MHz and 788-805 MHz public safety bands) if the Commission finds that such use is
+    necessary for coordination of Federal and non-Federal activities: Provided, however, that:
+
+    (1) Federal operation on non-Federal frequencies shall conform with the conditions agreed upon by the Commission and NTIA (the more important of which are contained in paragraphs (a)(2), (a)(3) and
+    (a)(4) of this section);
+
+    (2) Such operations shall be in accordance with Commission rules governing the service to which the frequencies involved are allocated;
+
+    (3) Such operations shall not cause harmful interference to non-Federal
+
+    stations and, should harmful interference result, that the interfering Federal operation shall immediately terminate; and
+
+    (4) Federal operation has been certified as necessary by the non-Federal licensees involved and this certification has been furnished, in writing, to the Federal agency with which communication is required.
+
+    (b) Federal stations may be authorized to use channels in the 769-775 MHz, 799-805 MHz and 4940-4990 MHz public safety bands with non-Federal entities if the Commission finds such use necessary; where:
+
+    (1) The stations are used for interoperability or part of a Federal/non-Federal shared or joint-use system;
+
+    (2) The Federal entity obtains the approval of the non-Federal (State/local government) licensee(s) or applicant(s) involved;
+
+    (3) Federal operation is in accordance with the Commission''s Rules governing operation of this band and conforms with any conditions agreed upon by the Commission and NTIA; and
+
+    (4) Interoperability, shared or joint-use systems are the subject of a mutual agreement between the Federal and non-Federal entities. This section does not preclude other arrangements or agreements
+    as permitted under part 90 of the rules. See 47 CFR 90.179 and 90.421 of this chapter.
+
+    (c) Federal stations may be authorized by the First Responder Network Authority to use channels in the 758-769 MHz and 788-799 MHz public safety bands.
+
+    [63 FR 58650, Nov. 2, 1998, as amended at 68 FR 38638, June 30, 2003; 70 FR 46586, Aug. 10, 2005; 72 FR 48843, Aug. 24, 2007; 79 FR 596, Jan. 6, 2014]'
+- id: art-7
+  title: § 2.104
+  text: '§ 2.104
+
+    International Table of Frequency Allocations.
+
+    (a) The International Table of Frequency Allocations is subdivided into the Region 1 Table (column 1 of § 2.106), the Region 2 Table (column 2 of § 2.106), and the Region 3 Table (column 3 of § 2.106).
+    The International Table is included for informational purposes only.
+
+    (b)
+
+    Regions.
+
+    For the allocation of frequencies the International Telecommunication Union (ITU) has divided the world into three Regions
+
+    1
+
+    as shown in Figure 1 of this section and described as follows:
+
+    1
+
+    It should be noted that where the words “regions” or “regional” are without a capital “R,” they do not relat'
 doc_files:
 - us/raw/US-CFR-title47-part2.xml
+- us/raw/US-CFR-title47-part2.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title47-part2.xml (xml, 778213 chars)，生成 7 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title47-part2.xml (xml, 778213 chars)，生成 7 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title47-part2.xml (xml, 778210 chars)，生成 7 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE47-PART2-4（US 47 CFR Part 2）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE47-PART2-3（US 47 CFR Part 2）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE47-PART2-2（US 47 CFR Part 2）。'

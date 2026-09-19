@@ -1,0 +1,28 @@
+id: KB-other-AE-AE-AE_UAE_-_U-AE
+regulation_id: AE-AE_UAE_-_U-AE
+doc_name: AE UAE 立法门户 (u.ae)
+official_citation: AE UAE 立法门户 (u.ae)
+short_name: AE UAE 立法门户 (u.ae)
+source: category
+primary_source: other
+domain: other
+applies_if:
+  category:
+  - other
+  features_any: []
+  markets:
+  - AE
+key_articles:
+- art-1
+- art-2
+key_points:
+- AE UAE 立法门户 (u.ae)：其他品类领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://u.ae/en/information-and-services
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

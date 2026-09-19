@@ -1,0 +1,27 @@
+id: KB-market-US-US-INFORM-ACT
+regulation_id: US-INFORM-ACT
+doc_name: INFORM Consumers Act (15 U.S.C. § 45f)
+official_citation: INFORM Consumers Act (15 U.S.C. § 45f)
+short_name: INFORM 消费者法案
+source: market
+primary_source: market
+domain: 电商平台
+applies_if:
+  category: []
+  features_any: []
+  markets:
+  - US
+key_articles:
+- art-1
+- art-2
+key_points:
+- INFORM 消费者法案：电商平台领域法规，适用于 US 市场相关经营行为（库自动接入，按市场匹配）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://www.ftc.gov/business-guidance/resources/INFORMAct
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

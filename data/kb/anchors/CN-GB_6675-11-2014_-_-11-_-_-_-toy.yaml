@@ -1,0 +1,26 @@
+id: KB-toy-CN-CN-GB_6675-11-2014_-_-11-_-_-_
+regulation_id: CN-GB_6675-11-2014_-_-11-_-_-_
+doc_name: CN-GB GB 6675.11-2014 玩具安全  第11部分：家用秋千、滑梯及类似用途室内、室外活动玩具
+official_citation: CN-GB GB 6675.11-2014 玩具安全  第11部分：家用秋千、滑梯及类似用途室内、室外活动玩具
+short_name: CN-GB GB 6675.11-2014 玩具安全  第11部分：家用秋千、滑梯及类似用途室内、室外活动玩具
+source: category
+primary_source: toy
+domain: toy
+applies_if:
+  category:
+  - toy
+  features_any: []
+  markets:
+  - CN
+key_articles: []
+key_points:
+- CN-GB GB 6675.11-2014 玩具安全  第11部分：家用秋千、滑梯及类似用途室内、室外活动玩具：玩具领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=34E5872E97D03A4A1CE467F9AAD03EF3
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

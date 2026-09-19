@@ -1,0 +1,28 @@
+id: KB-other-JP-JP-DENANHO_ELECTRICAL_APPLIANCE_AND_MATERIAL_SAFETY_ACT
+regulation_id: JP-DENANHO_ELECTRICAL_APPLIANCE_AND_MATERIAL_SAFETY_ACT
+doc_name: JP-DENANHO Electrical Appliance and Material Safety Act
+official_citation: JP-DENANHO Electrical Appliance and Material Safety Act
+short_name: JP-DENANHO Electrical Appliance and Material Safety Act
+source: category
+primary_source: other
+domain: other
+applies_if:
+  category:
+  - other
+  features_any: []
+  markets:
+  - JP
+key_articles:
+- art-1
+- art-2
+key_points:
+- JP-DENANHO Electrical Appliance and Material Safety Act：其他品类领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://laws.e-gov.go.jp/api/1/lawdata/336AC0000000234
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

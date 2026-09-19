@@ -1,0 +1,26 @@
+id: KB-other-CN-CN-TECH-EXPORT-CATALOG_-_MOFCOM
+regulation_id: CN-TECH-EXPORT-CATALOG_-_MOFCOM
+doc_name: CN-TECH-EXPORT-CATALOG 禁止出口限制出口技术目录 (mofcom)
+official_citation: CN-TECH-EXPORT-CATALOG 禁止出口限制出口技术目录 (mofcom)
+short_name: CN-TECH-EXPORT-CATALOG 禁止出口限制出口技术目录 (mofcom)
+source: category
+primary_source: other
+domain: other
+applies_if:
+  category:
+  - other
+  features_any: []
+  markets:
+  - CN
+key_articles: []
+key_points:
+- CN-TECH-EXPORT-CATALOG 禁止出口限制出口技术目录 (mofcom)：其他品类领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://www.mofcom.gov.cn/zcfb/zgdwjjmywg/art/2025/art_67e2a41850ec428eb1b7be6ec2f2bded.html
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

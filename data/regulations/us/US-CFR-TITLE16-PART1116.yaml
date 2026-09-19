@@ -1,6 +1,6 @@
 id: US-CFR-TITLE16-PART1116
 official_citation: US 16 CFR Part 1116
-short_name: US 16 CFR Part 1116
+short_name: US 16 CFR Part 1116 — REPORTS SUBMITTED PURSUANT TO SECTION 37 OF THE CONSUMER PRODUCT SAFETY ACT
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,528 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '16
+
+    Commercial Practices
+
+    2
+
+    2024-01-01
+
+    2024-01-01
+
+    false
+
+    REPORT'
+  text: '16
+
+    Commercial Practices
+
+    2
+
+    2024-01-01
+
+    2024-01-01
+
+    false
+
+    REPORTS SUBMITTED PURSUANT TO SECTION 37 OF THE CONSUMER PRODUCT SAFETY ACT
+
+    1116
+
+    PART 1116
+
+    Commercial Practices
+
+    CONSUMER PRODUCT SAFETY COMMISSION
+
+    CONSUMER PRODUCT SAFETY ACT REGULATIONS
+
+    Pt. 1116
+
+    PART 1116—REPORTS SUBMITTED PURSUANT TO SECTION 37 OF THE CONSUMER PRODUCT SAFETY ACT
+
+    Sec.
+
+    1116.1
+
+    Purpose.
+
+    1116.2
+
+    Definitions.
+
+    1116.3
+
+    Persons who must report under section 37.
+
+    1116.4
+
+    Where to report.
+
+    1116.5
+
+    When must a report be made.
+
+    1116.6
+
+    Contents of section 37 reports.
+
+    1116.7
+
+    Scope of section 37 and its relationship to section 15(b) of the CPSA.
+
+    1116.8
+
+    Determination of particular model.
+
+    1116.9
+
+    Confidentiality of reports.
+
+    1116.10
+
+    Restrictions on use of reports.
+
+    1116.11
+
+    Reports of civil actions under section 37 not admissions.
+
+    1116.12
+
+    Commission response to section 37 reports.
+
+    Authority:
+
+    15 U.S.C. 2055(e), 2084.
+
+    Source:
+
+    57 FR 34239, Aug. 4, 1992, unless otherwise noted.'
+- id: art-2
+  title: § 1116.1
+  text: '§ 1116.1
+
+    Purpose.
+
+    The purpose of this part 1116 is to establish procedures for filing with the Consumer Product Safety Commission (“the Commission”) reports required by section 37 of the Consumer Product Safety Act (CPSA)
+    (15 U.S.C. 2084) and to set forth the Commission''s interpretation of the provisions of section 37.'
+- id: art-3
+  title: § 1116.2
+  text: '§ 1116.2
+
+    Definitions.
+
+    (a) A
+
+    24-month period(s)
+
+    means the 24-month period beginning on January 1, 1991, and each subsequent 24-month period beginning on January 1 of the calendar year that is two years following the beginning of the previous 24-month
+    period. The first statutory two year period ends on December 31, 1992. The second begins on January 1, 1993 and ends on December 31, 1994, and so forth.
+
+    (b)
+
+    Grievous bodily injury
+
+    includes, but is not limited to, any of the following categories of injury:
+
+    (1) Mutilation or disfigurement. Disfigurement includes permanent facial disfigurement or non-facial scarring that results in permanent restriction of motion;
+
+    (2) Dismemberment or amputation, including the removal of a limb or other appendage of the body;
+
+    (3) The loss of important bodily functions or debilitating internal disorder. These terms include:
+
+    (i) Permanent injury to a vital organ, in any degree;
+
+    (ii) The total loss or loss of use of any internal organ,
+
+    (iii) Injury, temporary or permanent, to more than one internal organ;
+
+    (iv) Permanent brain injury to any degree or with any residual disorder (e.g. epilepsy), and brain or brain stem injury including coma and spinal cord injuries;
+
+    (v) Paraplegia, quadriplegia, or permanent paralysis or paresis, to any degree;
+
+    (vi) Blindness or permanent loss, to any degree, of vision, hearing, or sense of smell, touch, or taste;
+
+    (vii) Any back or neck injury requiring surgery, or any injury requiring joint replacement or any form of prosthesis, or;
+
+    (viii) Compound fracture of any long bone, or multiple fractures that result in permanent or significant temporary loss of the function of an important part of the body;
+
+    (4) Injuries likely to require extended hospitalization, including any injury requiring 30 or more consecutive days of in-patient care in an acute care facility, or 60 or more consecutive days of in-patient
+    care in a rehabilitation facility;
+
+    (5) Severe burns, including any third degree burn over ten percent of the body or more, or any second degree burn over thirty percent of the body or more;
+
+    (6) Severe electric shock, including ventricular fibrillation, neurological damage, or thermal damage to internal tissue caused by electric shock.
+
+    (7) Other grievous injuries, including any allegation of traumatically induced disease.
+
+    Manufacturers may wish to consult with the Commission staff to determine whether injuries not included in the examples above are regarded as grievous bodily injury.
+
+    (c) A
+
+    particular model
+
+    of a consumer product is one that is distinctive in functional design, construction, warnings or instructions related to safety, function, user population, or other characteristics which could affect
+    the product''s safety related performance. (15 U.S.C. 2084(e)(2))
+
+    (1) The
+
+    functional design
+
+    of a product refers to those design features that directly affect the ability of the product to perform its intended use or purpose.
+
+    (2) The
+
+    construction
+
+    of a product refers to its finished assembly or fabrication, its materials, and its components.
+
+    (3)
+
+    Warnings or instructions related to safety
+
+    include statements of the principal hazards associated with a product, and statements of precautionary or affirmative measures to take during the use, handling, or storage of a product, to the extent
+    that a reasonable person would understand such statements to be related to the safety of the product. Warnings or instructions may be written or graphically depicted and may be attached to the product
+    or appear on the product itself, in operating manuals, or in other literature that accompanies or describes the product.
+
+    (4) The
+
+    function
+
+    of a product refers to its intended use or purpose.
+
+    (5)
+
+    User population
+
+    refers to the group or class of people by whom a product is principally used. While the manufacturer''s stated intent may be relevant to an inquiry concerning the nature of the user population, the
+    method of distribution, the availability of the product to the public and to specific groups, and the identity of purchasers or users of the product should be considered.
+
+    (6)
+
+    Other characteristics which could affect a product''s safety related performance
+
+    include safety features incorporated into the product to protect against foreseeable risks that might arise during the use, handling, or storage of a product.
+
+    (d) The term
+
+    manufacturer
+
+    means any person who manufactures or imports a consumer product. (15 U.S.C. 2052(a)(4)).
+
+    [57 FR 34239, Aug. 4, 1992, as amended at 58 FR 16121, Mar. 25, 1993]'
+- id: art-4
+  title: § 1116.3
+  text: '§ 1116.3
+
+    Persons who must report under section 37.
+
+    A manufacturer of a consumer product must report if:
+
+    (a) A particular model of the product is the subject of at least 3 civil actions filed in Federal or State Court;
+
+    (b) Each suit alleges the involvement of that particular model in death or grievous bodily injury;
+
+    (c) The manufacturer is—
+
+    (1) A party to, or
+
+    (2) Is involved in the defense of or has notice of each action prior to entry of a final order, and is involved in the discharge of any obligation owed to plaintiff under the settlement of or in satisfaction
+    of the judgment after adjudication in each of the suits; and
+
+    (d) During one of the 24-month periods defined in § 1116.2(a), each of the three actions results in either a final settlement involving the manufacturer or in a court judgment in favor of the plaintiff.
+
+    For reporting purposes, a multiple plaintiff suit for death or grievous bodily injury is reportable if the suit involves three or more separate incidents of injury. The reporting obligation arises when
+    at least three plaintiffs have settled their claims or when a combination of settled claims and adjudications favorable to plaintiffs reaches three. Multiple lawsuits arising from one incident involving
+    the same product only count as one lawsuit for the purposes of section 37.'
+- id: art-5
+  title: § 1116.4
+  text: '§ 1116.4
+
+    Where to report.
+
+    Reports must be sent in writing to the Commission''s Office of Compliance and Enforcement, Division of Corrective Actions, Washington, DC 20207, telephone (301) 504-0608).'
+- id: art-6
+  title: § 1116.5
+  text: '§ 1116.5
+
+    When must a report be made.
+
+    (a) A manufacturer must report to the Commission within 30 days after the final settlement or court judgment in the last of the three civil actions referenced in § 1116.3.
+
+    (b) If a manufacturer has filed a section 37 report within one of the 24-month periods defined in § 1116.2(a), the manufacturer must also report the information required by section 37(c)(1) for any
+    subsequent settlement or judgment in a civil action that alleges that the same particular model of the product was involved in death or grievous bodily injury and that takes place during the same 24-month
+    period. Each such supplemental report must be filed within 30 days of the settlement or final judgment in the reportable civil action.'
+- id: art-7
+  title: § 1116.6
+  text: '§ 1116.6
+
+    Contents of section 37 reports.
+
+    (a)
+
+    Required information.
+
+    With respect to each of the civil actions that is the subject of a report under section 37, the report must contain the following information:
+
+    (1) The name and address of the manufacturer of the product that was the subject of each civil action;
+
+    (2) The model and model number or designation of the consumer product subject to each action;
+
+    (3) A statement as to whether the civil action alleged death or grievous bodily injury, and, in the case of an allegation of grievous bodily injury, a statement of the category of such injury;
+
+    (4) A statement as to whether the civil action resulted in a final settlement or a judgment in favor of the plaintiff; and
+
+    (5) In the case of a judgment in favor of the plaintiff, the name of the civil action, the number assigned to the
+
+    civil action, and the court in which the civil action was filed.
+
+    (b)
+
+    Optional information.
+
+    A manufacturer furnishing a report may include:
+
+    (1) A statement as to whether any judgment in favor of the plaintiff is under appeal or is expected to be appealed (section 15 U.S.C. 2084(c)(2)(A));
+
+    (2) Any other information that the manufacturer chooses to provide (15 U.S.C. 2084(c)(2)(B)), including the dates on which final orders were entered in the reported lawsuits, and, where appropriate,
+    an explanation why the manufacturer has not previously filed a report under section 15(b) of the CPSA covering the same particular product model that is the subject of the section 37 report; and
+
+    (3) A specific denial that the information it submits reasonably supports the conclusion that its consumer product caused a death or grievous bodily injury.
+
+    (c)
+
+    Statement of amount not required.
+
+    A manufacturer submitting a section 37 report is not required by section 37 or any other provision of the Consumer Product Safety Act to provide a statement of any amount paid in final settlement of
+    any civil action that is the subject of the report.
+
+    (d)
+
+    Admission of liability not required.
+
+    A manufacturer reporting to the Commission under section 37 need not admit that the information it reports supports the conclusion that its consumer product caused a death or grievous bodily injury.'
+- id: art-8
+  title: § 1116.7
+  text: '§ 1116.7
+
+    Scope of section 37 and its relationship to section 15(b) of the CPSA.
+
+    (a) According to the legislative history of the Consumer Product Safety Improvement Act of 1990, the purpose of section 37 is to increase the reporting of information to the Commission that will assist
+    it in carrying out its responsibilities.
+
+    (b) Section 37(c)(1) requires a manufacturer or importer (hereinafter “manufacturer”) to include in a section 37 report a statement as to whether a civil action that is the subject of the report alleged
+    death or grievous bodily injury. Furthermore, under section 37(c)(2), a manufacturer may specifically deny that the information it submits pursuant to section 37 reasonably supports the conclusion that
+    its consumer product caused a death or grievous bodily injury, and may also include any additional information that it chooses to provide. In view of the foregoing, the reporting obligation is not limited
+    to those cases in which a product has been adjudicated as the cause of death or grievous injury or to those settled or adjudicated cases in which the manufacturer has satisfied itself that the product
+    was the cause of such trauma. Rather, when the specific injury alleged by the plaintiff meets the definition of “grievous bodily injury” contained in § 1116.2(b) of this part, the lawsuit falls within
+    the scope of section 37 after settlement or adjudication. The manufacturer''s opinion as to the validity of the allegation is irrelevant for reporting purposes. The category of injury alleged may be
+    clear from the face of an original or amended complaint in a case or may reasonably be determined during pre-complaint investigation, post-complaint discovery, or informal settlement negotiation. Conclusory
+    language in a complaint that the plaintiff suffered grievous bodily injury without further elaboration raises a presumption that the injury falls within one of the statutory categories, but is insufficient
+    in itself to bring the suit within the ambit of the statute, unless the defendant manufacturer elects to settle such a matter without any investigation of the underlying facts. A case alleging the occurrence
+    of grievous bodily injury in which a litigated verdict contains express findings that the injury suffered by the plaintiff did not meet the statutory criteria is also not reportable. Should a manufacturer
+    believe that its product is wrongly implicated in an action, the statute expressly incorporates the mechanism for the manufacturer to communicate that belief to the Commission by denying in the report
+    the involvement of the product or that the injury in fact suffered by the plaintiff was not grievous bodily injury, despite the plaintiff''s allegations to the contrary. In addition, the statute imposes
+    stringent confidentiality requirements on the disclosure by the Commission or the Department of Justice of information submitted pursuant to sections
+
+    37(c)(1) and 37(c)(2)(A). Moreover, it specifies that the reporting of a civil action shall not constitute an admission of liability under any statute or common law or under the relevant provisions
+    of the Consumer Product Safety Act. In view of these safeguards, the reporting of lawsuits alleging the occurrence of death or grievous injury should have little adverse effect on manufacturers.
+
+    (c) Section 37 applies to judgments and “final settlements”. Accordingly, the date on which a civil action is filed or the date on which the product that is the subject of such an action was manufactured
+    is irrelevant to the obligation to report. A settlement is final upon the entry by a court of an order disposing of a civil action with respect to the manufacturer of the product that is the subject
+    of the action, even through the case may continue with respect to other defendants.
+
+    (d) A judgment becomes reportable upon the entry of a final order by the trial court disposing of the matter in favor of the plaintiff and from which an appeal lies. Because section 37(c)(2) specifies
+    that a reporting manufacturer may include a statement that a judgment in favor of a plaintiff is under appeal or is expected to be appealed, Congress clearly intended section 37 to apply prior to the
+    exhaustion of or even the initiation of action to seek appellate remedies.
+
+    (e) No language in section 37 limits the reporting obligation to those litigated cases in which the plaintiff prevails completely. Therefore, if a court enters a partial judgment in favor of the plaintiff,
+    the judgment is reportable, unless it is unrelated to the product that is the subject of the suit. For example, if a manufacturer''s product is exonerated during a suit, but liability is assessed against
+    another defendant, the manufacturer need not report under section 37.
+
+    (f)(1) Section 37 applies to civil actions that allege the involvement of a particular model of a consumer product in death or grievous bodily injury. Section 3(a) of the Consumer Product Safety Act
+    (15 U.S.C. 2052(a)) defines a “consumer product” as any article, or component part thereof, produced or distributed for sale to a consumer for use in or around a permanent or temporary household or
+    residence, a school, in recreation, or otherwise, or for the personal use, consumption, or enjoyment of a consumer in or around a permanent or temporary household or residence, a school, in recreation,
+    or otherwise. The term “consumer product” does not include any article which is not customarily produced or distributed for sale to, or use or consumption by, or enjoyment of, a consumer.
+
+    (2) Since section 37 focuses on consumer products, it is the responsibility of the manufacturer of a product implicated in a civil action to determine whether the production or distribution of the product
+    satisfies the statutory criteria of section 3(a). If it does, the action falls within the ambit of section 37. True industrial products are beyond the scope of section 37. However, if a lawsuit is based
+    on an allegation of injury involving a consumer product, that suit falls within the scope of section 37, even though the injury may have occurred during the use of the product in employment. By the
+    same token, occupational injuries arising during the fabrication of a consumer product are not reportable if the entity involved in the injury is not a consumer product at the time the injury occurs.
+    In determining whether a product meets the statutory definition, manufacturers may wish to consult the relevant case law and the advisory opinions issued by the Commission''s Office of the General Counsel.
+    The unique circumstances surrounding litigation involving asbestos-containing products warrant one exception to this analysis. The Commission, as a matter of agency discretion, will require manufacturers
+    of such products to report under section 37 only those lawsuits that allege the occurrence of death or grievous bodily injury as the result of exposure to asbestos from a particular model of a consumer
+    product purchased by a consumer for personal use. Such lawsuits would include not only injury to the purchaser, but also to other consumers including family, subsequent property owners, and visitors.
+    The Commission may consider granting similar relief to manufacturers of other products that present a risk of
+
+    chronic injury similar to that presented by asbestos. Any such request must contain documented evidence demonstrating that compliance with the reporting requirements will be unduly burdensome and will
+    be unlikely to produce information that will assist the Commission in carrying out its obligations under the statutes it administers.
+
+    (g) The definition of “consumer product” also encompasses a variety of products that are subject to regulation under the Federal Hazardous Substances Act (15 U.S.C. 1261
+
+    et seq.
+
+    ), the Poison Prevention Packaging Act (15 U.S.C. 1471
+
+    et seq.
+
+    ), the Flammable Fabrics Act (15 U.S.C. 1191
+
+    et seq.
+
+    ), and the Refrigerator Safety Act (15 U.S.C. 1211
+
+    et seq.
+
+    ). Lawsuits involving such products are also subject to section 37, notwithstanding the fact that the products may be regulated or subject to regulation under one of the other statutes.
+
+    (h)
+
+    Relationship of Section 37 to Section 15 of the CPSA.
+
+    (1) Section 37 plays a complementary role to the reporting requirements of section 15(b) of the CPSA (15 U.S.C. 2064(b)). Section 15(b) establishes a substantial obligation for firms to review information
+    as it becomes available to determine whether an obligation to report exists. Accordingly, the responsibility to report under section 15(b) may arise long before enough lawsuits involving a product are
+    resolved to create the obligation to report under section 37. The enactment of section 15(b)(3) in the Consumer Product Safety Improvement Act of 1990 reinforces this expectation. Under this amendment,
+    manufacturers must report to the Commission when they obtain information that reasonably supports the conclusion that a product creates an unreasonable risk of serious injury or death. Previously, the
+    reporting obligation for unregulated products only arose when available information indicated that the product in question was defective and created a substantial product hazard because of the pattern
+    of the defect, the severity of the risk of injury, the number of products distributed in commerce, etc. The effect of the 1990 amendment is discussed in detail in the Commission''s interpretative rule
+    relating to the reporting of substantial product hazards at 16 CFR part 1115.
+
+    (2) The new substantive reporting requirements of section 15(b)(3) support the conclusion that Congress intended section 37 to capture product-related accident information that has not been reported
+    under section 15(b). Between the time a firm learns of an incident or problem involving a product that raises safety-related concerns and the time that a lawsuit involving that product is resolved by
+    settlement or adjudication, the firm generally has numerous opportunities to evaluate whether a section 15 report is appropriate. Such evaluation might be appropriate, for example, after an analysis
+    of product returns, the receipt of an insurance investigator''s report, a physical examination of the product, the interview or deposition of an injured party or an eyewitness to the event that gave
+    rise to the lawsuit, or even preparation of the firm''s responses to plaintiff''s discovery requests. Even if a manufacturer does not believe that a report is required prior to the resolution of a single
+    lawsuit, an obligation to investigate whether a report is appropriate may arise if, for example, a verdict in favor of the plaintiff raises the issue of whether the product in question creates an unreasonable
+    risk of death or serious injury.
+
+    (3) In contrast, the application of section 37 does not involve the discretionary judgment and subjective analyses of hazard and causation associated with section 15 reports. Once the statutory criteria
+    of three settled or adjudicated civil actions alleging grievous injury or death in a two year period are met, the obligation to report under section 37 is automatic. For this reason, the Commission
+    regards section 37 as a “safety net” to surface product hazards that remain unreported either intentionally or by inadvertence. The provisions in the law limiting such reports to cases in which three
+    or more lawsuits alleging grievous injury or death are settled or adjudicated in favor of plaintiffs during a two year period provide assurance that the product involved presents a sufficiently grave
+    risk of injury to warrant consideration by the Commission. Indeed, once the obligation to report under section 37
+
+    arises, the obligation to file a section 15 report concurrently may exist if the information available to the manufacturer meets the criteria established in section 15(b) for reporting.
+
+    (4) Section 37 contains no specific record keeping requirements. However, to track and catalog lawsuits to determine whether they are reportable, prudent manufacturers will devel'
+- id: art-9
+  title: § 1116.8
+  text: '§ 1116.8
+
+    Determination of particular model.
+
+    (a) The obligation rests with the manufacturer of a product to determine whether a reasonable basis exists to conclude that a product that is the subject of a settled or adjudicated lawsuit is sufficiently
+    different from other similar products to be regarded as a “particular model” under section 37 because it is “distinctive.” To determine whether a product is “distinctive”, the proper inquiry should
+    be directed toward the degree to which a product differs from other comparable products in one or more of the characteristics enumerated in section 37(e)(2) and § 1116.2(c) of this part. A product is
+    “distinctive” if, after an analysis of information relating to one or more of the statutory characteristics, a manufacturer, acting in accordance with the customs and practices of the trade of which
+    it is a member, could reasonably conclude that the difference between that product and other items of the same product class manufactured or imported by the same manufacturer is substantial and material.
+    Information relevant to the determination of whether a product is a “particular model” includes:
+
+    (1) The description of the features and uses of the products in question in written material such as instruction manuals, description brochures, marketing or promotional programs, reports of certification
+    of products, specification sheets, and product drawings.
+
+    (2) The differences or similarities between products in their observable physical characteristics and in components or features that are not readily observable and that are incorporated in those products
+    for safety-related purposes;
+
+    (3) The customs and practices of the trade of which the manufacturer is a member in marketing, designating, or evaluating similar products.
+
+    (4) Information on how consumers use the products and on consumer need or demand for different products, such as products of different size. In analyzing whether products are different models, differences
+    in size or calibration afford the basis for distinguishing between products only if those differences make the products distinctive in functional design or function.
+
+    (5) The history of the manufacturer''s model identification and marketing of the products in question;
+
+    (6) Whether variations between products relate solely to appearance, ornamentation, color, or other cosmetic features; such variations are not ordinarily sufficient to differentiate between models.
+
+    (7) Whether component parts used in a product are interchangeable with or perform substantially the same function as comparable components in other units; if they are, the use of such components does
+    not afford a basis for distinguishing between models.
+
+    (8) Retail price. Substantial variations in price arising directly from the characteristics enumerated in section 37(e)(2) for evaluating product models may be evidence that products
+
+    are different models because their differences are distinctive. Price variations imposed to accommodate different markets or vendors are not sufficient to draw such a distinction.
+
+    (9) Manufacturer''s designation, model number, or private label designation. These factors are not controlling in identifying “particular models”.
+
+    (10) Expert evaluation of the characteristics of the products in question, and surveys of consumer users or a manufacturer''s retail customers.
+
+    (b) The definition of “consumer product” expressly applies to components of consumer products. Should a component manufacturer be joined in a civil action against a manufacturer of a consumer product,
+    the section 37 reporting requirements may apply to that manufacturer after a combination of three judgments or settlements involving the same component model during a two year period, even though the
+    manufacturer of the finished product is exempt from such reporting because the lawsuits do not involve the same particular model of the finished consumer product. The same proposition holds true for
+    common components used in different consumer products. If the manufacturer of such a component is a defendant in three suits and the requisite statutory criteria are met, the reporting obligations apply.
+
+    (c) Section 37 expressly defines the reporting obligation in terms of the particular model of a product rather than the manner in which a product was involved in an accident. Accordingly, even if the
+    characteristic of a product that caused or resulted in the deaths of grievous injuries alleged in three or more civil actions is the same in all of the suits, the requirement to report under section
+    37 would arise only if the same particular model was involved in at least three of the suits. However, the existence of such a pattern would strongly suggest that the obligation to file a report under
+    section 15(b) (2) or (3) (15 U.S.C. 2064(b) (2) or (3)) exists because the information reasonably supports the conclusion that the product contains a defect that could present a substantial risk of
+    injury to the public or creates an unreasonable risk of serious injury or death.
+
+    (d) Section 37 does not require that the same category of injury be involved in multiple lawsuits for the reporting obligation to arise. As long as a particular model of a consumer product is the subject
+    of at least three civil actions that are settled or adjudicated in favor of the plaintiff in one of the statutory two year periods, the manufacturer must report, even though the alleged category of
+    injury and the alleged causal relationship of the product to the injury in each suit may differ.'
+- id: art-10
+  title: § 1116.9
+  text: '§ 1116.9
+
+    Confidentiality of reports.
+
+    (a) Pursuant to section 6(e) of the Consumer Product Safety Act (15 U.S.C. 2055(e)) no member of the Commission, no officer or employee of the Commission, and no officer or employee of the Department
+    of Justice may publicly disclose information furnished to the Commission under section 37(c)(1) and section 37(c)(2)(A) of the Act, except that:
+
+    (1) An authenticated copy of a section 37 report furnished to the Commission by or on behalf of a manufacturer may, upon written request, be furnished to the manufacturer or its authorized agent after
+    payment of the actual or estimated cost of searching the records and furnishing such copies; or
+
+    (2) Any information furnished to the Commission under section 37 shall, upon written request of the Chairman or Ranking Minority Member of the Committee on Commerce, Science, and Transportation of the
+    Senate or the Committee on Energy and Commerce of the House of Representatives or any subcommittee of such committee, be provided to the Chairman or Ranking Minority Member for purposes that are related
+    to the jurisdiction of such committee or subcommittee.
+
+    (b) The prohibition contained in section 6(e) (15 U.S.C. 2055(e)) against the disclosure of information submitted pursuant to section 37 only applies to the specific items of information that a manufacturer
+    is required to submit under section 37(c)(1) and to statements under section 37(c)(2)(A) relating to the possibility or existence of an appeal of a reported judgment adverse to a manufacturer. Section
+    6(e)(1) does not, by its terms, apply to information that the manufacturer voluntarily
+
+    chooses to submit pursuant to section 37(c)(2)(B). Thus, disclosure of such information is governed by the other provisions of section 6 of the CPSA (15 U.S.C. 2055) and by the interpretative rules
+    issued by the Commission (16 CFR parts 1101 and 1015). For example, if a manufacturer includes information otherwise reportable under section 15 as part of a section 37 report, the Commission will treat
+    the information reported pursuant to section 15 as “additional information” submitted pursuant to section 37(c)(2)(B). Generally, any issue of the public disclosure of that information will be controlled
+    by the relevant provisions of section 6(b), including section 6(b)(5) relating to the disclosure of substantial product hazard reports, and section 6(a) relating to the disclosure of confidential or
+    trade secret information. However, to the extent the section 15 report reiterates or references information reported under section 37, the confidentiality provisions of section 6(e) still apply to the
+    reiteration or reference. In addition, interpretative regulations issued under section 6(b) of the Act establish that disclosure of certain information may be barred if the disclosure would not be fair
+    in the circumstances. 16 CFR 1101.33. Accordingly, issues of releasing additional information submitted pursuant to section 37 will also be evaluated under the fairness provisions of section 6(b). Should
+    the Commission receive a request for such information or contemplate disclosure on its own initiative, the manufacturer will be given an opportunity to present arguments to the Commission why the information
+    should not be disclosed, including, if appropriate, why disclosure of the information would be unfair in the circumstances. Among the factors the Commission will consider in evaluating the fairness
+    of releasing the information are the nature of the information, the fact that it is an adjunct to a Congressional protected report, and whether the information in question supports the conclusion that
+    a section 37 or 15(b), CPSA, report should have been filed earlier.
+
+    (c) Section 6(e) imposes no confidentiality requirements on information obtained by the Commission independently of a report pursuant to section 37. The provisions of section 6(b) govern the disclosure
+    of such information.'
+- id: art-11
+  title: § 1116.10
+  text: '§ 1116.10
+
+    Restrictions on use of reports.
+
+    No member of the Commission, no officer or employee of the Commission, and no officer or employee of the Department of Justice may use information provided to the Commission under section 37 for any
+    purpose other than to carry out the responsibilities of the Commission.'
+- id: art-12
+  title: § 1116.11
+  text: §
 doc_files:
 - us/raw/US-CFR-title16-part1116.xml
+- us/raw/US-CFR-title16-part1116.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1116.xml (xml, 34482 chars)，生成 12 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1116.xml (xml, 34482 chars)，生成 12 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1116.xml (xml, 34482 chars)，生成 12 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1116-4（US 16 CFR Part 1116）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1116-3（US 16 CFR Part 1116）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1116-2（US 16 CFR Part 1116）。'

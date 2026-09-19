@@ -9,11 +9,902 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'ETSI EN 301 511
+
+    V12.5.1
+
+    (2017-03)
+
+    HARMONISED EUROPEAN STANDA'
+  text: 'ETSI EN 301 511
+
+    V12.5.1
+
+    (2017-03)
+
+    HARMONISED EUROPEAN STANDARD
+
+    Global System for Mobile communications (GSM);
+
+    Mobile Stations (MS) equipment;
+
+    Harmonised Standard covering the essential requirements
+
+    of article 3.2 of Directive 2014/53/EU
+
+    2 ETSI EN 301 511 V12.5.1 (2017-03)
+
+    Reference
+
+    REN/MSG-0020-RED
+
+    Keywords
+
+    cellular, ER-GSM, GSM, mobile, R-GSM
+
+    ETSI
+
+    650 Route des Lucioles
+
+    F-06921 Sophia Antipolis Cedex - FRANCE
+
+    Tel.: +33 4 92 94 42 00 Fax: +33 4 93 65 47 16
+
+    Siret N° 348 623 562 00017 - NAF 742 C
+
+    Association à but non lucratif enregistrée à la
+
+    Sous-Préfecture de Grasse (06) N° 7803/88
+
+    Important notice
+
+    The present document can be downloaded from:
+
+    http://www.etsi.org/standards-search
+
+    The present document may be made available in electronic versions and/or in print. The content of any electronic and/or
+
+    print versions of the present document shall not be modified without the prior written authorization of ETSI. In case of any
+
+    existing or perceived difference in contents between such versions and/or in print, the only prevailing document is the
+
+    print of the Portable Document Format (PDF) version kept on a specific network drive within ETSI Secretariat.
+
+    Users of the present document should be aware that the document may be subject to revision or change of status.
+
+    Information on the current status of this and other ETSI documents is available at
+
+    https://portal.etsi.org/TB/ETSIDeliverableStatus.aspx
+
+    If you find errors in the present document, please send your comment to one of the following services:
+
+    https://portal.etsi.org/People/CommiteeSupportStaff.aspx
+
+    Copyright Notification
+
+    No part may be reproduced or utilized in any form or by any means, electronic or mechanical, including photocopying
+
+    and microfilm except as authorized by written permission of ETSI.
+
+    The content of the PDF version shall not be modified without the written authorization of ETSI.
+
+    The copyright and the foregoing restriction extend to reproduction in all media.
+
+    © European Telecommunications Standards Institute 2017.
+
+    All rights reserved.
+
+    DECTTM, PLUGTESTSTM, UMTSTM and the ETSI logo are Trade Marks of ETSI registered for the benefit of its Members.
+
+    3GPPTM and LTE™ are Trade Marks of ETSI registered for the benefit of its Members and
+
+    of the 3GPP Organizational Partners.
+
+    GSM® and the GSM logo are Trade Marks registered and owned by the GSM Association.
+
+    ETSI
+
+    3 ETSI EN 301 511 V12.5.1 (2017-03)
+
+    Contents
+
+    Intellectual Property Rights ................................................................................................................................ 6
+
+    Foreword ............................................................................................................................................................. 6
+
+    Modal verbs terminology .................................................................................................................................... 6
+
+    Introduction ........................................................................................................................................................ 6
+
+    1 Scope ........................................................................................................................................................ 7
+
+    2 References ................................................................................................................................................ 8
+
+    2.1 Normative references ......................................................................................................................................... 8
+
+    2.2 Informative references ........................................................................................................................................ 8
+
+    3 Definitions and abbreviations ................................................................................................................... 9
+
+    3.1 Definitions .......................................................................................................................................................... 9
+
+    3.2 Abbreviations ................................................................................................................................................... 10
+
+    4 Technical requirements specifications ................................................................................................... 10
+
+    4.1 Environmental profile ....................................................................................................................................... 10
+
+    4.2 Conformance requirements .............................................................................................................................. 10
+
+    4.2.0 Introduction................................................................................................................................................. 10
+
+    4.2.1 Transmitter - Frequency error and phase error ........................................................................................... 12
+
+    4.2.2 Transmitter - Frequency error under multipath and interference conditions .............................................. 12
+
+    4.2.3 Transmitter - Frequency error and phase error in HSCSD multislot configuration .................................... 13
+
+    4.2.4 Frequency error and phase error in GPRS multislot configuration ............................................................. 13
+
+    4.2.5 Transmitter output power and burst timing ................................................................................................. 13
+
+    4.2.6 Transmitter - Output RF spectrum .............................................................................................................. 13
+
+    4.2.7 Transmitter output power and burst timing in HSCSD multislot configurations ........................................ 13
+
+    4.2.8 Transmitter - Output RF spectrum in HSCSD multislot configuration....................................................... 13
+
+    4.2.9 Transmitter - Output RF spectrum for MS supporting the R-GSM or ER-GSM frequency band .............. 13
+
+    4.2.10 Transmitter output power in GPRS multislot configuration ....................................................................... 13
+
+    4.2.11 Output RF spectrum in GPRS multislot configuration ............................................................................... 13
+
+    4.2.12 Conducted spurious emissions - MS allocated a channel ........................................................................... 13
+
+    4.2.13 Conducted spurious emissions - MS in idle mode ...................................................................................... 13
+
+    4.2.14 Conducted spurious emissions for MS supporting the R-GSM or ER-GSM frequency band - MS
+
+    allocated a channel ...................................................................................................................................... 13
+
+    4.2.15 Conducted spurious emissions for MS supporting the R-GSM or ER-GSM frequency band - MS in
+
+    idle mode .................................................................................................................................................... 14
+
+    4.2.16 Radiated spurious emissions - MS allocated a channel .............................................................................. 14
+
+    4.2.17 Radiated spurious emissions - MS in idle mode ......................................................................................... 14
+
+    4.2.18 Radiated spurious emissions for MS supporting the R-GSM or ER-GSM frequency band - MS
+
+    allocated a channel ...................................................................................................................................... 14
+
+    4.2.19 Radiated spurious emissions for MS supporting the R-GSM or ER-GSM frequency band - MS in
+
+    idle mode .................................................................................................................................................... 14
+
+    4.2.20 Receiver Blocking and spurious response - speech channels ..................................................................... 14
+
+    4.2.21 Receiver Blocking and spurious response - speech channels for MS supporting the R-GSM or ER-
+
+    GSM frequency band .................................................................................................................................. 14
+
+    4.2.22 Improved Receiver Blocking and spurious response - speech channels for 8W MS supporting the R-
+
+    GSM or ER-GSM frequency band .............................................................................................................. 14
+
+    4.2.23 Improved Receiver Blocking and spurious response - speech channels for 2W MS supporting the R-
+
+    GSM or ER-GSM frequency band .............................................................................................................. 14
+
+    4.2.24 Improved Receiver Blocking and spurious response - control channels for 8W MS supporting the R-
+
+    GSM or ER-GSM frequency band not supporting speech .......................................................................... 14
+
+    4.2.25 Improved Receiver Blocking and spurious response - control channels for 2W MS supporting the R-
+
+    GSM or ER-GSM frequency band not supporting speech .......................................................................... 15
+
+    4.2.26 Frequency error and Modulation accuracy in EGPRS Configuration ......................................................... 15
+
+    4.2.27 Frequency error under multipath and interference conditions in EGPRS Configuration ............................ 15
+
+    4.2.28 EGPRS Transmitter output power .............................................................................................................. 15
+
+    4.2.29 Output RF spectrum in EGPRS configuration ............................................................................................ 15
+
+    4.2.30 Blocking and spurious response in EGPRS configuration .......................................................................... 15
+
+    ETSI
+
+    4 ETSI EN 301 511 V12.5.1 (2017-03)
+
+    4.2.31 Blocking and spurious response in DLMC configuration ........................................................................... 15
+
+    4.2.32 Intermodulation rejection - speech channels ............................................................................................... 15
+
+    4.2.33 Intermodulation rejection - control channels .............................................................................................. 15
+
+    4.2.34 Intermodulation rejection - EGPRS ............................................................................................................ 15
+
+    4.2.35 AM suppression - speech channels ............................................................................................................. 15
+
+    4.2.36 AM suppression - control channels ............................................................................................................. 15
+
+    4.2.37 AM suppression - packet channels ............................................................................................................. 15
+
+    4.2.38 Adjacent channel rejection - speech channels (TCH/FS)............................................................................ 16
+
+    4.2.39 Adjacent channel rejection - control channels ............................................................................................ 16
+
+    4.2.40 Adjacent channel rejection - EGPRS .......................................................................................................... 16
+
+    4.2.41 Adjacent channel rejection in DLMC configuration ................................................................................... 16
+
+    4.2.42 Reference sensitivity - TCH/FS .................................................................................................................. 16
+
+    4.2.43 Reference sensitivity - FACCH/F ............................................................................................................... 16
+
+    4.2.44 Minimum Input level for Reference Performance - GPRS .....'
+- id: art-2
+  title: 'Annex C (informative): Additional information .................................................................................. 26'
+  text: 'Annex C (informative): Additional information .................................................................................. 26
+
+    Annex D (informative): Change history ............................................................................................... 27
+
+    History .............................................................................................................................................................. 28
+
+    ETSI
+
+    6 ETSI EN 301 511 V12.5.1 (2017-03)
+
+    Intellectual Property Rights
+
+    IPRs essential or potentially essential to the present document may have been declared to ETSI. The information
+
+    pertaining to these essential IPRs, if any, is publicly available for ETSI members and non-members, and can be found
+
+    in ETSI SR 000 314: "Intellectual Property Rights (IPRs); Essential, or potentially Essential, IPRs notified to ETSI in
+
+    respect of ETSI standards", which is available from the ETSI Secretariat. Latest updates are available on the ETSI Web
+
+    server (https://ipr.etsi.org/).
+
+    Pursuant to the ETSI IPR Policy, no investigation, including IPR searches, has been carried out by ETSI. No guarantee
+
+    can be given as to the existence of other IPRs not referenced in ETSI SR 000 314 (or the updates on the ETSI Web
+
+    server) which are, or may be, or may become, essential to the present document.
+
+    Foreword
+
+    This Harmonised European Standard (EN) has been produced by ETSI Technical Committee Mobile Standards Group
+
+    (MSG).
+
+    The present document has been prepared under the Commission''s standardisation request C(2015) 5376 final [i.10] to
+
+    provide one voluntary means of conforming to the essential requirements of Directive 2014/53/EU on the harmonisation
+
+    of the laws of the Member States relating to the making available on the market of radio equipment and repealing
+
+    Directive 1999/5/EC [i.9].
+
+    Once the present document is cited in the Official Journal of the European Union under that Directive, compliance with
+
+    the normative clauses of the present document given in table A.1 confers, within the limits of the scope of the present
+
+    document, a presumption of conformity with the corresponding essential requirements of that Directive, and associated
+
+    EFTA regulations.
+
+    National transposition dates
+
+    Date of adoption of this EN: 13 March 2017
+
+    Date of latest announcement of this EN (doa): 30 June 2017
+
+    Date of latest publication of new National Standard
+
+    or endorsement of this EN (dop/e): 31 December 2017
+
+    Date of withdrawal of any conflicting National Standard (dow): 31 December 2018
+
+    Modal verbs terminology
+
+    In the present document "shall", "shall not", "should", "should not", "may", "need not", "will", "will not", "can" and
+
+    "cannot" are to be interpreted as described in clause 3.2 of the ETSI Drafting Rules (Verbal forms for the expression of
+
+    provisions).
+
+    "must" and "must not" are NOT allowed in ETSI deliverables except when used in direct citation.
+
+    Introduction
+
+    The present document is part of a set of standards developed by ETSI that are designed to fit in a modular structure to
+
+    cover radio equipment within the scope of the Radio Equipment Directive [i.9]. The present document is produced
+
+    following the guidance in ETSI EG 203 336 [i.12] as applicable.
+
+    ETSI
+
+    7 ETSI EN 301 511 V12.5.1 (2017-03)
+
+    1 Scope
+
+    The present document specifies technical characteristics and methods of measurements for the following radio
+
+    equipment type:
+
+    - GSM mobile station.
+
+    This radio equipment type is for operation within the Digital cellular telecommunications system in the GSM 900
+
+    and/or GSM 1800 frequency bands as shown in table 1, with a channel separation of 200 kHz, utilizing constant
+
+    envelope modulation and carrying traffic channels according to the Time Division Multiple Access (TDMA) principle.
+
+    Table 1: Frequency bands for GSM 900 and GSM 1800 Mobile Station system
+
+    Type TX RX
+
+    P-GSM 900 890 MHz to 915 MHz 935 MHz to 960 MHz
+
+    GSM 1800 1 710 MHz to 1 785 MHz 1 805 MHz to 1 880 MHz
+
+    E-GSM 900 880 MHz to 915 MHz 925 MHz to 960 MHz
+
+    R-GSM 900 876 MHz to 915 MHz 921 MHz to 960 MHz
+
+    ER-GSM 900 873 MHz to 915 MHz 918 MHz to 960 MHz
+
+    The present document covers the essential requirements of article 3.2 of Directive 2014/53/EU [i.9] under the
+
+    conditions identified in annex A.
+
+    The present document covers the general access requirements for terminal equipment up to and including 3GPP Rel-12.
+
+    The general access requirements, applied to the terminal equipment, are for one release only. The present document
+
+    does not cover the GPRS Class A mobiles and the ECSD mobiles.
+
+    For each test purpose and its corresponding conformance requirement, a reference is given to the test method in
+
+    ETSI TS 151 010-1 [2]. The requirements apply at the air interface, which may be stimulated to perform the tests by
+
+    additional equipment if necessary.
+
+    The measurement uncertainty is described in ETSI TS 151 010-1 [2], annex 5.
+
+    In addition to the present document, other ENs that specify technical requirements in respect of essential requirements
+
+    under other parts of article 3 of the Radio Equipment Directive [i.9] will apply to equipment within the scope of the
+
+    present document.
+
+    NOTE 1: A list of such ENs is included on the web site http://www.newapproach.org.
+
+    ETSI TS 151 010-1 [2] constitutes the conformance test suite for GSM. The verification of the conformance
+
+    requirements in the present document is based on the tests described in this reference. The set of requirements in
+
+    ETSI TS 151 010-1 [2] and the set of requirements in the present document need not be identical.
+
+    Some requirements only apply to specific types of mobile station (e.g. data tests only apply to mobile stations with a
+
+    data facility, tests that only apply to GSM 900 or only to GSM 1800 or to both). The present document indicates the
+
+    specific test which should be carried out for each mobile station type.
+
+    An active accessory is covered by the present document if it modifies the terminal performance in an aspect which
+
+    affects conformance to essential requirements.
+
+    NOTE 2: Only active devices are subject to the present document. Accessories may be tested with specific
+
+    terminals, and either approved for use with those terminals only, or may possibly be approved for use
+
+    with a wider range of terminals, depending on the nature and effect of the accessory.
+
+    ETSI
+
+    8 ETSI EN 301 511 V12.5.1 (2017-03)
+
+    2 References
+
+    2.1 Normative references
+
+    References are specific, identified by date of publication and/or edition number or version number. Only the cited
+
+    version applies.
+
+    Referenced documents which are not found to be publicly available in the expected location might be found at
+
+    https://docbox.etsi.org/Reference/.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    The following referenced documents are necessary for the application of the present document.
+
+    [1] Void.
+
+    [2] ETSI TS 151 010-1 (V12.8.0) (05-2016): "Digital cellular telecommunications system (Phase 2+);
+
+    Mobile Station (MS) conformance specification; Part 1: Conformance specification (3GPP
+
+    TS 51.010-1 version 12.8.0 Release 12)".
+
+    [3] Void.
+
+    [4] ETSI TS 102 933-2 (V2.1.1) (06-2015): "Railway Telecommunications (RT); GSM-R improved
+
+    Receiver parameters; Part 2: Radio conformance testing".
+
+    2.2 Informative references
+
+    References are either specific (identified by date of publication and/or edition number or version number) or
+
+    non-specific. For specific references, only the cited version applies. For non-specific references, the latest version of the
+
+    referenced document (including any amendments) applies.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    The following referenced documents are not necessary for the application of the present document but they assist the
+
+    user with regard to a particular subject area.
+
+    [i.1] ETSI TS 102 933-1 (V2.1.1) (06-2015): "Railway Telecommunications (RT); GSM-R improved
+
+    Receiver parameters; Part 1: Requirements for radio reception".
+
+    [i.2] ETSI ETS 300 905 (V5.3.2) (01-1998): "Digital cellular telecommunications system (Phase 2+)
+
+    (GSM); Teleservices supported by a GSM Public Land Mobile Network (PLMN) (GSM 02.03
+
+    version 5.3.2)".
+
+    [i.3] ETSI TS 122 060 (V4.4.0) (06-2002): "Digital cellular telecommunications system (Phase 2+);
+
+    Universal Mobile Telecommunications System (UMTS); General Packet Radio Service (GPRS);
+
+    Service description; Stage 1 (3GPP TS 22.060 version 4.4.0 Release 4)".
+
+    [i.4] ETSI TS 100 905 (V7.0.0) (08-1999): "Digital cellular telecommunications system (Phase 2+)
+
+    (GSM); Teleservices supported by a GSM Public Land Mobile Network (PLMN) (GSM 02.03
+
+    version 7.0.0 Release 1998)".
+
+    [i.5] ETSI TS 122 003 (V4.3.0) (03-2002): "Digital cellular telecommunications system (Phase 2+)
+
+    (GSM); Universal Mobile Telecommunications System (UMTS); Circuit Teleservices supported
+
+    by a Public Land Mobile Network (PLMN) (3GPP TS 22.003 version 4.3.0 Release 4)".
+
+    [i.6] ETSI TS 101 349 (V8.16.0) (09-2002): "Digital cellular telecommunications system (Phase 2+);
+
+    General Packet Radio Service (GPRS); Mobile Station (MS) - Base Station System (BSS)
+
+    interface; Radio Link Control/ Medium Access Control (RLC/MAC) protocol (3GPP TS 04.60
+
+    version 8.16.0 Release 1999)".
+
+    ETSI
+
+    9 ETSI EN 301 511 V12.5.1 (2017-03)
+
+    [i.7] ETSI TR 100 028 (all parts) (V1.4.1) (12-2001): "Electromagnetic compatibility and Radio
+
+    spectrum Matters (ERM); Uncertainties in the measurement of mobile radio equipment
+
+    characteristics".
+
+    [i.8] Void.
+
+    [i.9] Directive 2014/53/EU of the European Parliament and of the Council of 16 April 2014 on the
+
+    harmonisation of the laws of the Member States relating to the making available on the market of
+
+    radio equipment and repealing Directive 1999/5/EC.
+
+    [i.10] Commission Implementing Decision C(2015) 5376 final of 4.8.2015 on a standardisation request
+
+    to the European Committee for Electrotechnical Standardisation and to the European
+
+    Telecommunications Standards Institute as regards radio equipment in support of
+
+    Directive 2014/53/EU of the European Parliament and of the Council.
+
+    [i.11] ETSI TR 100 028-2: "ElectroMagnetic Compatibility and Radio Spectrum Matters (ERM);
+
+    Uncertainties in the measurement of mobile radio equipment characteristics Part 2".
+
+    [i.12] ETSI EG 203 336: "Electromagnetic compatibility and Radio spectrum Matters (ERM); Guide for
+
+    the selection of technical parameters for the production of Harmonised Standards covering'
+- id: art-3
+  title: article 3.1(b) and article 3.2 of Directive 2014/53/EU".
+  text: 'article 3.1(b) and article 3.2 of Directive 2014/53/EU".
+
+    [i.13] ETSI TS 100 908 (V8.10.0) (10-2001): "Digital cellular telecommunications system (Phase 2+);
+
+    Multiplexing and multiple access on the radio path (3GPP TS 05.02 version 8.10.0 Release 1999)".
+
+    [i.14] ETSI TS 145 002 (V4.5.0) (11-2001): "Digital cellular telecommunications system (Phase 2+);
+
+    Multiplexing and multiple access on the radio path (3GPP TS 45.002 version 4.5.0 Release 4)".
+
+    [i.15] ETSI TS 144 060 (V12.3.0) (01-2015): "Digital cellular telecommunications system (Phase 2+);
+
+    General Packet Radio Service (GPRS); Mobile Station (MS) - Base Station System (BSS)
+
+    interface; Radio Link Control / Medium Access Control (RLC/MAC) protocol (3GPP TS 44.060
+
+    version 12.3.0 Release 12)".
+
+    [i.16] ETSI TS 100 910 (V8.20.0) (11-2005): "Digital cellular telecommunications system (Phase 2+);
+
+    Radio Transmission and Reception (3GPP TS 05.05 version 8.20.0 Release 1999)".
+
+    [i.17] ETSI TS 145 005 (V12.5.0) (04-2015): "Digital cellular telecommunications system (Phase 2+);
+
+    Radio transmission and reception (3GPP TS 45.005 version 12.5.0 Release 12)".
+
+    [i.18] ETSI TR 121 905 (V12.0.0) (10-2014): "Digital cellular telecommunications system (Phase 2+);
+
+    Universal Mobile Telecommunications System (UMTS); LTE; Vocabulary for 3GPP
+
+    Specifications (3GPP TR 21.905 version 12.0.0 Release 12)".
+
+    3 Definitions and abbreviations
+
+    3.1 Definitions
+
+    For the purposes of the present document, the terms and definitions given in ETSI TR 121 905 [i.18] and the following
+
+    apply:
+
+    EGPRS: any subset of the packet traffic channels PDTCH/MCS-1 to MCS-9 and related control channels
+
+    E-GSM: extended GSM 900 band (includes P-GSM band)
+
+    environmental profile: range of environmental conditions under which equipment within the scope of the present
+
+    document is required to comply with the provisions of the present document
+
+    ER-GSM 900: extended Railway GSM 900 band (includes R-GSM band)
+
+    GPRS: any subset of the packet traffic channels PDTCH/CS-1 to CS-4 and related control channels
+
+    GSM 900: P-GSM, E-GSM and R-GSM band unless otherwise specified,
+
+    ETSI
+
+    10 ETSI EN 301 511 V12.5.1 (2017-03)
+
+    GSM: GSM 400, GSM 900, ER-GSM 900 and DCS 1800 band unless otherwise specified
+
+    P-GSM: primary GSM 900 band
+
+    R-GSM: Railways GSM 900 band (includes P-GSM band and E-GSM band)
+
+    3.2 Abbreviations
+
+    For the purposes of the present document, the following abbreviations apply:
+
+    AM Amplitude Modulation
+
+    DLMC Downlink Multi-Carrier
+
+    ECSD Enhanced Circuit Switched Data
+
+    EGPRS Enhanced GPRS
+
+    ER-GSM Extended Railways GSM
+
+    GPRS General Packet Radio Service
+
+    GSM Global System for Mobile communications
+
+    HSCSD High Speed Circuit Switched Data
+
+    MS Mobile Station which includes a GSM radio part
+
+    RF Radio Frequency
+
+    RX Reception
+
+    TCH/FS Traffic CHannel for Full rate Speech
+
+    TDMA Time Division Multiple Access
+
+    TX Transmission
+
+    4 Technical requirements specifications
+
+    4.1 Environmental profile
+
+    The technical requirements of the present document apply under the environmental profile for operation of the
+
+    equipment, which shall be declared by the manufacturer. The equipment shall comply with all the technical
+
+    requirements of the present document which are identified as applicable in annex A at all times when operating within
+
+    the boundary limits of the required operational environmental profile.
+
+    4.2 Conformance requirements
+
+    4.2.0 Introduction
+
+    The present document contains all requirements that are needed for terminals to meet the essential requirement as
+
+    defined in the Directive 2014/53/EU [i.9], article 3.2:
+
+    - The present document gives normative reference to a clause of ETSI TS 151 010-1 [2] containing the
+
+    conformance requirement text and references to the base standard.
+
+    To meet the essential requirement under article 3.2 of Directive 2014/53/EU [i.9], a set of essential parameters have
+
+    been identified. Table 2 provides a cross reference between these essential parameters and the corresponding technical
+
+    requirements for equipment within the scope of the present document.
+
+    ETSI
+
+    11 ETSI EN 301 511 V12.5.1 (2017-03)
+
+    Table 2: Essential parameters and corresponding technical requirements and test suites
+
+    Essential parameters Corresponding technical requirements Corresponding
+
+    test suites
+
+    Transmitter spectrum mask 4.2.6 Transmitter - Output RF spectrum 5.3.6
+
+    4.2.7 Transmitter output power and burst timing in 5.3.7
+
+    HSCSD multislot configurations
+
+    4.2.8 Transmitter - Output RF spectrum in HSCSD 5.3.8
+
+    multislot configuration
+
+    Transmitter unwanted emissions in the
+
+    4.2.9 Transmitter - Output RF spectrum for MS 5.3.9
+
+    out of band domain
+
+    supporting the R-GSM or ER-GSM frequency band
+
+    4.2.11 Output RF spectrum in GPRS multislot 5.3.11
+
+    configuration
+
+    4.2.29 Output RF spectrum in EGPRS configuration 5.3.29
+
+    Transmitter unwanted emissions in the 4.2.12 Conducted spurious emissions - MS allocated a 5.3.12
+
+    spurious domain channel
+
+    4.2.13 Conducted spurious emissions - MS in idle 5.3.13
+
+    mode 5.3.14
+
+    4.2.14 Conducted spurious emissions for MS
+
+    supporting the R-GSM or ER-GSM frequency band -
+
+    MS allocated a channel 5.3.15
+
+    4.2.15 Conducted spurious emissions for MS
+
+    supporting the R-GSM or ER-GSM frequency band -
+
+    MS in idle mode 5.3.16
+
+    4.2.16 Radiated spurious emissions - MS allocated a
+
+    channel 5.3.17
+
+    4.2.17 Radiated spurious emissions - MS in idle mode 5.3.18
+
+    4.2.18 Radiated spurious emissions for MS supporting
+
+    the R-GSM or ER-GSM frequency band - MS allocated
+
+    a channel 5.3.19
+
+    4.2.19 Radiated spurious emissions for MS supporting
+
+    the R-GSM or ER-GSM frequency band - MS in idle
+
+    mode
+
+    Transmitter power limits 4.2.5 Transmitter output power and burst timing 5.3.5
+
+    4.2.10 Transmitter output power in GPRS multislot 5.3.10
+
+    Transmitter power accuracy configuration
+
+    4.2.28 EGPRS Transmitter output power 5.3.28
+
+    Transmitter frequency stability 4.2.1 Transmitter - Frequency error and phase error 5.3.1
+
+    4.2.2 Transmitter - Frequency error under multipath 5.3.2
+
+    and interference conditions
+
+    4.2.3 Transmitter - Frequency error and phase error 5.3.3
+
+    in HSCSD multislot configuration
+
+    4.2.4 Frequency error and phase error in GPRS 5.3.4
+
+    multislot configuration
+
+    4.2.26 Frequency error and Modulation accuracy in 5.3.26
+
+    EGPRS Configuration
+
+    4.2.27 Frequency error under multipath and 5.3.27
+
+    interference conditions in EGPRS Configuration
+
+    ETSI
+
+    12 ETSI EN 301 511 V12.5.1 (2017-03)
+
+    Essential parameters Corresponding technical requirements Corresponding
+
+    test suites
+
+    Receiver unwanted emissions in the 4.2.20 Receiver Blocking and spurious response - 5.3.20
+
+    spurious domain speech channels
+
+    Receiver blocking 4.2.21 Receiver Blocking and spurious response - 5.3.21
+
+    Receiver spurious response rejection speech channels for MS supporting the R-GSM or
+
+    ER-GSM frequency band
+
+    4.2.22 Improved Receiver Blocking and spurious 5.3.22
+
+    response - speech channels for 8W MS supporting the
+
+    R-GSM or ER-GSM frequency band
+
+    4.2.23 Improved Receiver Blocking and spurious 5.3.23
+
+    response - speech channels for 2W MS supporting the
+
+    R-GSM or ER-GSM frequency band
+
+    4.2.24 Improved Receiver Blocking and spurious 5.3.24
+
+    response - control channels for 8W MS supporting the
+
+    Desensitization R-GSM or ER-GSM frequency band not supporting
+
+    speech
+
+    4.2.25 Improved Receiver Blocking and spurious 5.3.25
+
+    response - control channels for 2W MS supporting the
+
+    R-GSM or ER-GSM frequency band not supporting
+
+    speech
+
+    4.2.30 Blocking and spurious response in EGPRS 5.3.30
+
+    configuration
+
+    4.2.31 Blocking and spurious response in DLMC 5.3.31
+
+    configuration
+
+    Receiver intermodulation 4.2.32 Intermodulation rejection - speech channels 5.3.32
+
+    4.2.33 Intermodulation rejection - speech channels 5.3.33
+
+    4.2.34 Intermodulation rejection - EGPRS 5.3.34
+
+    4.2.35 AM suppression - speech channels 5.3.35
+
+    4.2.36 AM suppression - control channels 5.3.36
+
+    4.2.37 AM suppression - packet channels 5.3.37
+
+    Receiver adjacent channel signal 4.2.38 Adjacent channel rejection - speech channels 5.3.38
+
+    selectivity (TCH/FS)
+
+    4.2.39 Adjacent channel rejection - control channels 5.3.39
+
+    4.2.40 Adjacent channel rejection - EGPRS 5.3.40
+
+    4.2.41 Adjacent channel rejection in DLMC 5.3.41
+
+    configuration
+
+    Receiver sensitivity 4.2.42 Reference sensitivity - TCH/FS 5.3.42
+
+    Antenna 4.2.43 Reference sensitivity - FACCH/F 5.3.43
+
+    4.2.44 Minimum Input level for Reference Performance 5.3.44
+
+    - GPRS
+
+    4.2.45 Minimum Input level for Reference Performance 5.3.45
+
+    - EGPRS
+
+    4.2.46 Reference sensitivity - TCH/FS for MS 5.3.46
+
+    supporting the R-GSM or ER-GSM band
+
+    Unless otherwise stated, the transmitter and receiver characteristics are specified at the antenna connector(s) of the MS.
+
+    For MS(s) with an integral antenna only, a reference antenna(s) with a gain of 0 dBi should be assumed for each
+
+    antenna port(s). An MS with integral antenna(s) may be taken into account by converting these power levels into field
+
+    strength requirements, assuming a 0 dBi gain antenna.
+
+    4.2.1 Transmitter - Frequency error and phase error
+
+    Clauses 13.1.1 and 13.1.2 of ETSI TS 151 010-1 [2] shall apply.
+
+    4.2.2 Transmitter - Frequency error under multipath and interference
+
+    conditions
+
+    Clauses 13.2.1 and 13.2.2 of ETSI TS 151 010-1 [2] shall apply.
+
+    ETSI
+
+    13 ETSI EN 301 511 V12.5.1 (2017-03)
+
+    4.2.3 Transmitter - Frequency error and phase error in HSCSD multislot
+
+    configuration
+
+    Clauses 13.6.1 and 13.6.2 of ETSI TS 151 010-1 [2] shall apply.
+
+    4.2.4 Frequency error and phase error in GPRS multislot configuration
+
+    Clauses 13.16.1.1 and 13.16.1.2 of ETSI TS 151 010-1 [2] shall apply.
+
+    4.2.5 Transmitter output power and burst timing
+
+    Clauses 13.3.1 and 13.3.2 of ETSI TS 151 010-1 [2] shall apply.
+
+    4.2.6 Transmitter - Output RF spectrum
+
+    Clauses 13.4.1 and 13.4.2 of ETSI TS 151 010-1 [2] shall apply'
 doc_files:
 - global/raw/ETSI_EN_301511_v12.05.01_60.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_301511_v12.05.01_60.pdf (pdf, 67356 chars)，生成 3 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_301511_v12.05.01_60.pdf (pdf, 67356 chars)，生成 3 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_301511_v12.05.01_60.pdf (pdf, 67356 chars)，生成 3 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

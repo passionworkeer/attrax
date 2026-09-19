@@ -1,0 +1,27 @@
+id: KB-market-US-US-FIRRMA
+regulation_id: US-FIRRMA
+doc_name: Foreign Investment Risk Review Modernization Act of 2018 (FIRRMA)
+official_citation: Foreign Investment Risk Review Modernization Act of 2018 (FIRRMA)
+short_name: FIRRMA (外资审查现代化法案)
+source: market
+primary_source: market
+domain: 投资准入
+applies_if:
+  category: []
+  features_any: []
+  markets:
+  - US
+key_articles:
+- art-1
+- art-2
+key_points:
+- FIRRMA (外资审查现代化法案)：投资准入领域法规，适用于 US 市场相关经营行为（库自动接入，按市场匹配）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://home.treasury.gov/policy-issues/international/the-committee-on-foreign-investment-in-the-united-states-cfius
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

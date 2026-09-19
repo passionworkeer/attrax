@@ -9,11 +9,355 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: Ein Service des Bundesministerium der Justiz und für Verbrau
+  text: 'Ein Service des Bundesministerium der Justiz und für Verbraucherschutz
+
+    sowie des Bundesamts für Justiz ‒ www.gesetze-im-internet.de
+
+    Gesetz zur Durchführung der Verordnung (EU) 2023/1542
+
+    betreffend Batterien und Altbatterien (Batterierecht-
+
+    Durchführungsgesetz - BattDG)
+
+    BattDG
+
+    Ausfertigungsdatum: 30.09.2025
+
+    Vollzitat:
+
+    "Batterierecht-Durchführungsgesetz vom 30. September 2025 (BGBl. 2025 I Nr. 233), das durch Artikel 2 des
+
+    Gesetzes vom 25. November 2025 (BGBl. 2025 I Nr. 286) geändert worden ist"
+
+    Stand: Geändert durch Art. 2 G v. 25.11.2025 I Nr. 286
+
+    mittelbare Änderung durch Art. 3 G v. 25.11.2025 I Nr. 286 ist berücksichtigt
+
+    Ersetzt G 2129-53 v. 25.6.2009 I 1582 (BattG)
+
+    Fußnote
+
+    (+++ Textnachweis ab: 7.10.2025 +++)
+
+    (+++ EU-Vollzitate: vgl. Liste EU-Rechtsakte G v. 25.11.2025 I Nr. 286 +++)
+
+    Das G wurde als Artikel 1 des G v. 30.9.2025 I Nr. 233 vom Bundestag beschlossen. Es tritt gem. Art. 11 Abs. 1
+
+    dieses G am 7.10.2025 in Kraft.
+
+    Inhaltsübersicht
+
+    Teil 1
+
+    Allgemeine Vorschriften'
+- id: art-2
+  title: § 1 Zweck des Gesetzes
+  text: § 1 Zweck des Gesetzes
+- id: art-3
+  title: § 2 Anwendungsbereich des Gesetzes
+  text: § 2 Anwendungsbereich des Gesetzes
+- id: art-4
+  title: § 3 Ergänzende Begriffsbestimmungen
+  text: '§ 3 Ergänzende Begriffsbestimmungen
+
+    Teil 2
+
+    Bewirtschaftung von Altbatterien
+
+    Kapitel 1
+
+    Vertrieb von Batterien'
+- id: art-5
+  title: § 4 Verkehrsverbote
+  text: § 4 Verkehrsverbote
+- id: art-6
+  title: § 5 Registrierung der Hersteller
+  text: '§ 5 Registrierung der Hersteller
+
+    Kapitel 2
+
+    Rücknahme von Altbatterien
+
+    - Seite 1 von 36 -
+
+    Ein Service des Bundesministerium der Justiz und für Verbraucherschutz
+
+    sowie des Bundesamts für Justiz ‒ www.gesetze-im-internet.de
+
+    Abschnitt 1
+
+    Pflichten des Endnutzers'
+- id: art-7
+  title: § 6 Pflichten des Endnutzers
+  text: '§ 6 Pflichten des Endnutzers
+
+    Abschnitt 2
+
+    Organisationen für Herstellerverantwortung'
+- id: art-8
+  title: § 7 Pflichten der Hersteller
+  text: § 7 Pflichten der Hersteller
+- id: art-9
+  title: § 8 Zulassung von Organisationen für Herstellerverantwortung
+  text: § 8 Zulassung von Organisationen für Herstellerverantwortung
+- id: art-10
+  title: § 9 Sicherheitsleistung
+  text: § 9 Sicherheitsleistung
+- id: art-11
+  title: § 10 Berücksichtigung ökologischer Kriterien bei der Beitragsbemessung
+  text: § 10 Berücksichtigung ökologischer Kriterien bei der Beitragsbemessung
+- id: art-12
+  title: § 11 Pflichten der Organisationen für Herstellerverantwortung
+  text: § 11 Pflichten der Organisationen für Herstellerverantwortung
+- id: art-13
+  title: § 12 Wegfall einer Organisation für Herstellerverantwortung
+  text: '§ 12 Wegfall einer Organisation für Herstellerverantwortung
+
+    Abschnitt 3
+
+    Rücknahme von Gerätealtbatterien und LV-Altbatterien'
+- id: art-14
+  title: § 13 Sammelziele
+  text: § 13 Sammelziele
+- id: art-15
+  title: § 14 Rücknahmepflichten der Händler
+  text: § 14 Rücknahmepflichten der Händler
+- id: art-16
+  title: § 15 Annahmepflicht der öffentlich-rechtlichen Entsorgungsträger
+  text: § 15 Annahmepflicht der öffentlich-rechtlichen Entsorgungsträger
+- id: art-17
+  title: § 16 Mitwirkung von freiwilligen Sammelstellen
+  text: § 16 Mitwirkung von freiwilligen Sammelstellen
+- id: art-18
+  title: § 17 Überlassungspflichten Dritter
+  text: '§ 17 Überlassungspflichten Dritter
+
+    Abschnitt 4
+
+    Rücknahme von Starter-, Industrie- und Elektrofahrzeugbatterien'
+- id: art-19
+  title: § 18 Rücknahmepflichten der Händler
+  text: § 18 Rücknahmepflichten der Händler
+- id: art-20
+  title: § 19 Pfandpflicht für Starterbatterien
+  text: § 19 Pfandpflicht für Starterbatterien
+- id: art-21
+  title: § 20 Mitwirkung von öffentlich-rechtlichen Entsorgungsträgern
+  text: § 20 Mitwirkung von öffentlich-rechtlichen Entsorgungsträgern
+- id: art-22
+  title: § 21 Überlassungspflichten Dritter
+  text: § 21 Überlassungspflichten Dritter
+- id: art-23
+  title: § 22 Meldung zur Zuweisung an Organisationen für Herstellerverantwortung
+  text: '§ 22 Meldung zur Zuweisung an Organisationen für Herstellerverantwortung
+
+    Kapitel 3
+
+    Behandlungspflichten
+
+    - Seite 2 von 36 -
+
+    Ein Service des Bundesministerium der Justiz und für Verbraucherschutz
+
+    sowie des Bundesamts für Justiz ‒ www.gesetze-im-internet.de'
+- id: art-24
+  title: § 23 Behandlung und Beseitigung
+  text: '§ 23 Behandlung und Beseitigung
+
+    Kapitel 4
+
+    Informationspflichten'
+- id: art-25
+  title: § 24 Informationspflichten der Händler
+  text: § 24 Informationspflichten der Händler
+- id: art-26
+  title: § 25 Informationspflichten der Organisationen für Herstellerverantwortung
+  text: '§ 25 Informationspflichten der Organisationen für Herstellerverantwortung
+
+    Kapitel 5
+
+    Mitteilungspflichten'
+- id: art-27
+  title: § 26 Mitteilungspflichten der Organisationen für Herstellerverantwortung
+  text: § 26 Mitteilungspflichten der Organisationen für Herstellerverantwortung
+- id: art-28
+  title: § 27 Mitteilungspflichten ausgewählter Abfallbewirtschafter
+  text: § 27 Mitteilungspflichten ausgewählter Abfallbewirtschafter
+- id: art-29
+  title: § 28 Mitteilungspflichten öffentlich-rechtlicher Entsorgungsträger
+  text: § 28 Mitteilungspflichten öffentlich-rechtlicher Entsorgungsträger
+- id: art-30
+  title: § 29 Mitteilungspflichten von Abfallbewirtschaftern, die Altbatterien behandeln, und Recyclingbetreibern
+  text: '§ 29 Mitteilungspflichten von Abfallbewirtschaftern, die Altbatterien behandeln, und Recyclingbetreibern
+
+    Kapitel 6
+
+    Aufgaben und Befugnisse der zuständigen Behörden
+
+    Abschnitt 1
+
+    Zuständige Behörde nach Kapitel VIII der Verordnung (EU) 2023/1542'
+- id: art-31
+  title: § 30 Zuständige Behörde nach Kapitel VIII der Verordnung (EU) 2023/1542
+  text: § 30 Zuständige Behörde nach Kapitel VIII der Verordnung (EU) 2023/1542
+- id: art-32
+  title: § 31 Aufgaben der zuständigen Behörde im Zusammenhang mit der Registrierung und Zulassung
+  text: § 31 Aufgaben der zuständigen Behörde im Zusammenhang mit der Registrierung und Zulassung
+- id: art-33
+  title: § 32 Weitere Aufgaben der zuständigen Behörde
+  text: § 32 Weitere Aufgaben der zuständigen Behörde
+- id: art-34
+  title: § 33 Befugnisse der zuständigen Behörde
+  text: § 33 Befugnisse der zuständigen Behörde
+- id: art-35
+  title: § 34 Vollständig automatisierter Erlass von Verwaltungsakten
+  text: '§ 34 Vollständig automatisierter Erlass von Verwaltungsakten
+
+    Abschnitt 2
+
+    Altbatteriekommission'
+- id: art-36
+  title: § 35 Einrichtung, Aufgaben und Verfahren
+  text: § 35 Einrichtung, Aufgaben und Verfahren
+- id: art-37
+  title: § 36 Besetzung und Benennung
+  text: '§ 36 Besetzung und Benennung
+
+    - Seite 3 von 36 -
+
+    Ein Service des Bundesministerium der Justiz und für Verbraucherschutz
+
+    sowie des Bundesamts für Justiz ‒ www.gesetze-im-internet.de
+
+    Abschnitt 3
+
+    Beleihung'
+- id: art-38
+  title: § 37 Ermächtigung zur Beleihung
+  text: § 37 Ermächtigung zur Beleihung
+- id: art-39
+  title: § 38 Aufsicht über die Beliehene
+  text: § 38 Aufsicht über die Beliehene
+- id: art-40
+  title: § 39 Beendigung der Beleihung
+  text: '§ 39 Beendigung der Beleihung
+
+    Kapitel 7
+
+    Beauftragung Dritter, Vollzug'
+- id: art-41
+  title: § 40 Beauftragung Dritter und Bevollmächtigung
+  text: § 40 Beauftragung Dritter und Bevollmächtigung
+- id: art-42
+  title: § 41 Vollzug
+  text: '§ 41 Vollzug
+
+    Teil 3
+
+    Beteiligung von Bundesbehörden
+
+    an Verfahren zur Änderung von Beschränkungen für Stoffe'
+- id: art-43
+  title: § 42 Beteiligung der Bundesbehörden an Beschränkungsverfahren für Stoffe
+  text: '§ 42 Beteiligung der Bundesbehörden an Beschränkungsverfahren für Stoffe
+
+    Teil 4
+
+    Konformitätsbewertung
+
+    Kapitel 1
+
+    Bestimmungen über die notifizierende Behörde'
+- id: art-44
+  title: § 43 Notifizierende Behörde
+  text: § 43 Notifizierende Behörde
+- id: art-45
+  title: § 44 Aufgaben der notifizierenden Behörde
+  text: § 44 Aufgaben der notifizierenden Behörde
+- id: art-46
+  title: § 45 Aufgaben und Befugnisse der Akkreditierungsstelle
+  text: '§ 45 Aufgaben und Befugnisse der Akkreditierungsstelle
+
+    Kapitel 2
+
+    Notifizierungsverfahren'
+- id: art-47
+  title: § 46 Anträge auf Notifizierung, Erteilung der Befugnis
+  text: § 46 Anträge auf Notifizierung, Erteilung der Befugnis
+- id: art-48
+  title: § 47 Einspruch gegen Entscheidungen notifizierter Stellen
+  text: § 47 Einspruch gegen Entscheidungen notifizierter Stellen
+- id: art-49
+  title: § 48 Sprache der Anleitungen, der Informationen und der EU-Konformitätserklärungen
+  text: '§ 48 Sprache der Anleitungen, der Informationen und der EU-Konformitätserklärungen
+
+    - Seite 4 von 36 -
+
+    Ein Service des Bundesministerium der Justiz und für Verbraucherschutz
+
+    sowie des Bundesamts für Justiz ‒ www.gesetze-im-internet.de
+
+    Kapitel 3
+
+    Überwachung'
+- id: art-50
+  title: § 49 Unterrichtung bei Nichtkonformität einer Batterie
+  text: § 49 Unterrichtung bei Nichtkonformität einer Batterie
+- id: art-51
+  title: § 50 Maßnahmen bei Nichtkonformität einer Batterie in einem anderen Mitgliedstaat der Europäischen Union
+  text: § 50 Maßnahmen bei Nichtkonformität einer Batterie in einem anderen Mitgliedstaat der Europäischen Union
+- id: art-52
+  title: § 51 Unterrichtung bei Risiken trotz Konformität einer Batterie
+  text: '§ 51 Unterrichtung bei Risiken trotz Konformität einer Batterie
+
+    Teil 5
+
+    Sorgfaltspflichten in der Lieferkette'
+- id: art-53
+  title: § 52 Zuständige Behörde für die Durchführung von Kapitel VII der Verordnung (EU) 2023/1542
+  text: § 52 Zuständige Behörde für die Durchführung von Kapitel VII der Verordnung (EU) 2023/1542
+- id: art-54
+  title: § 53 Aufgaben der zuständigen Behörde und Eingriffsbefugnisse
+  text: § 53 Aufgaben der zuständigen Behörde und Eingriffsbefugnisse
+- id: art-55
+  title: § 54 Tätigwerden der zuständigen Behörde
+  text: § 54 Tätigwerden der zuständigen Behörde
+- id: art-56
+  title: § 55 Datenübermittlung an das Bundesamt für Wirtschaft und Ausfuhrkontrolle
+  text: § 55 Datenübermittlung an das Bundesamt für Wirtschaft und Ausfuhrkontrolle
+- id: art-57
+  title: § 56 Auskunftspflichten
+  text: § 56 Auskunftspflichten
+- id: art-58
+  title: § 57 Betretensrechte, Mitwirkungs- und Duldungspflichten
+  text: § 57 Betretensrechte, Mitwirkungs- und Duldungspflichten
+- id: art-59
+  title: § 58 Zwangsgeld
+  text: '§ 58 Zwangsgeld
+
+    Teil 6
+
+    Ermächtigung zum Erlass von Rechtsverordnungen'
+- id: art-60
+  title: § 59 Ermächtigung zum Erlass von Rechtsverordnungen
+  text: '§ 59 Ermächtigung zum Erlass von Rechtsverordnungen
+
+    Teil 7
+
+    Bußgeldvorschriften, Schlussbestimmungen'
 doc_files:
 - de/raw/DE-BattDG_Batterierecht_Durchfuehrungsgesetz.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：de/raw/DE-BattDG_Batterierecht_Durchfuehrungsgesetz.pdf (pdf, 133438 chars)，生成 31 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：de/raw/DE-BattDG_Batterierecht_Durchfuehrungsgesetz.pdf (pdf, 133438 chars)，生成 31 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：de/raw/DE-BattDG_Batterierecht_Durchfuehrungsgesetz.pdf (pdf, 133392 chars)，生成 60 条共 5536 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

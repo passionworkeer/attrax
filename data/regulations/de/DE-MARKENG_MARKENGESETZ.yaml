@@ -9,11 +9,307 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: Ein Service des Bundesministerium der Justiz und für Verbrau
+  text: 'Ein Service des Bundesministerium der Justiz und für Verbraucherschutz
+
+    sowie des Bundesamts für Justiz ‒ www.gesetze-im-internet.de
+
+    Gesetz über den Schutz von Marken und sonstigen Kennzeichen
+
+    (Markengesetz - MarkenG)
+
+    MarkenG
+
+    Ausfertigungsdatum: 25.10.1994
+
+    Vollzitat:
+
+    "Markengesetz vom 25. Oktober 1994 (BGBl. I S. 3082; 1995 I S. 156); 1996 I S. 682), das zuletzt durch Artikel 14
+
+    des Gesetzes vom 20. Mai 2026 (BGBl. 2026 I Nr. 152) geändert worden ist"
+
+    Stand: Zuletzt geändert durch Art. 14 G v. 20.5.2026 I Nr. 152
+
+    Die §§ 119 bis 125 sind gem. Bek. v. 24.4.1996 I 682 mWv 20.3.1996 in Kraft getreten.
+
+    Fußnote
+
+    (+++ Textnachweis ab: 1.1.1995 +++)
+
+    (+++ Amtlicher Hinweis des Normgebers auf EG-Recht:
+
+    Umsetzung der
+
+    EWGRL 104/89 (CELEX Nr: 389L0104) +++)
+
+    (+++ EU-Vollzitate: vgl. Liste EU-Rechtsakte G v. 11.1.2026 I Nr. 9 +++)
+
+    Das G wurde als Artikel 1 G (423-5-1) v. 25.10.1994 I 3082 vom Bundestag mit Zustimmung des Bundesrates
+
+    beschlossen. Es ist gem. Art. 50 Abs. 3 dieses G nach Maßgabe der Abs. 1 und 2 mWv 1.1.1995 in Kraft getreten.
+
+    Inhaltsübersicht
+
+    Teil 1
+
+    Anwendungsbereich'
+- id: art-2
+  title: § 1 Geschützte Marken und sonstige Kennzeichen
+  text: § 1 Geschützte Marken und sonstige Kennzeichen
+- id: art-3
+  title: § 2 Anwendung anderer Vorschriften
+  text: '§ 2 Anwendung anderer Vorschriften
+
+    Teil 2
+
+    Voraussetzungen; Inhalt und Schranken des Schutzes von Marken und geschäftlichen Bezeichnungen;
+
+    weitere Zeichen; Übertragung und Lizenz
+
+    Abschnitt 1
+
+    Marken und geschäftliche Bezeichnungen; Vorrang und Zeitrang'
+- id: art-4
+  title: § 3 Als Marke schutzfähige Zeichen
+  text: § 3 Als Marke schutzfähige Zeichen
+- id: art-5
+  title: § 4 Entstehung des Markenschutzes
+  text: § 4 Entstehung des Markenschutzes
+- id: art-6
+  title: § 5 Geschäftliche Bezeichnungen
+  text: § 5 Geschäftliche Bezeichnungen
+- id: art-7
+  title: § 6 Vorrang und Zeitrang
+  text: '§ 6 Vorrang und Zeitrang
+
+    Abschnitt 1a
+
+    Wappen, Flaggen, Hoheitszeichen, amtliche Prüf- und Gewährzeichen, Kennzeichen, Siegel
+
+    und Bezeichnungen internationaler zwischenstaatlicher Organisationen'
+- id: art-8
+  title: § 6a Verbot des Gebrauchs
+  text: '§ 6a Verbot des Gebrauchs
+
+    Abschnitt 2
+
+    Voraussetzungen für den Schutz von Marken durch Eintragung'
+- id: art-9
+  title: § 7 Inhaberschaft
+  text: § 7 Inhaberschaft
+- id: art-10
+  title: § 8 Absolute Schutzhindernisse
+  text: '§ 8 Absolute Schutzhindernisse
+
+    - Seite 1 von 63 -
+
+    Ein Service des Bundesministerium der Justiz und für Verbraucherschutz
+
+    sowie des Bundesamts für Justiz ‒ www.gesetze-im-internet.de'
+- id: art-11
+  title: § 9 Angemeldete oder eingetragene Marken als relative Schutzhindernisse
+  text: § 9 Angemeldete oder eingetragene Marken als relative Schutzhindernisse
+- id: art-12
+  title: § 10 Notorisch bekannte Marken
+  text: § 10 Notorisch bekannte Marken
+- id: art-13
+  title: § 11 Agentenmarken
+  text: § 11 Agentenmarken
+- id: art-14
+  title: § 12 Durch Benutzung erworbene Marken und geschäftliche Bezeichnungen mit älterem
+  text: '§ 12 Durch Benutzung erworbene Marken und geschäftliche Bezeichnungen mit älterem
+
+    Zeitrang'
+- id: art-15
+  title: § 13 Sonstige ältere Rechte
+  text: '§ 13 Sonstige ältere Rechte
+
+    Abschnitt 3
+
+    Schutzinhalt; Rechtsverletzungen'
+- id: art-16
+  title: § 14 Ausschließliches Recht des Inhabers einer Marke; Unterlassungsanspruch;
+  text: '§ 14 Ausschließliches Recht des Inhabers einer Marke; Unterlassungsanspruch;
+
+    Schadensersatzanspruch'
+- id: art-17
+  title: § 14a Waren unter zollamtlicher Überwachung
+  text: § 14a Waren unter zollamtlicher Überwachung
+- id: art-18
+  title: § 15 Ausschließliches Recht des Inhabers einer geschäftlichen Bezeichnung;
+  text: '§ 15 Ausschließliches Recht des Inhabers einer geschäftlichen Bezeichnung;
+
+    Unterlassungsanspruch; Schadensersatzanspruch'
+- id: art-19
+  title: § 16 Wiedergabe einer eingetragenen Marke in Nachschlagewerken
+  text: § 16 Wiedergabe einer eingetragenen Marke in Nachschlagewerken
+- id: art-20
+  title: § 17 Ansprüche gegen Agenten oder Vertreter
+  text: § 17 Ansprüche gegen Agenten oder Vertreter
+- id: art-21
+  title: § 18 Vernichtungs- und Rückrufansprüche
+  text: § 18 Vernichtungs- und Rückrufansprüche
+- id: art-22
+  title: § 19 Auskunftsanspruch
+  text: § 19 Auskunftsanspruch
+- id: art-23
+  title: § 19a Vorlage- und Besichtigungsansprüche
+  text: § 19a Vorlage- und Besichtigungsansprüche
+- id: art-24
+  title: § 19b Sicherung von Schadensersatzansprüchen
+  text: § 19b Sicherung von Schadensersatzansprüchen
+- id: art-25
+  title: § 19c Urteilsbekanntmachung
+  text: § 19c Urteilsbekanntmachung
+- id: art-26
+  title: § 19d Ansprüche aus anderen gesetzlichen Vorschriften
+  text: '§ 19d Ansprüche aus anderen gesetzlichen Vorschriften
+
+    Abschnitt 4
+
+    Schranken des Schutzes'
+- id: art-27
+  title: § 20 Verjährung
+  text: § 20 Verjährung
+- id: art-28
+  title: § 21 Verwirkung von Ansprüchen
+  text: § 21 Verwirkung von Ansprüchen
+- id: art-29
+  title: § 22 Ausschluß von Ansprüchen bei Bestandskraft der Eintragung einer Marke mit
+  text: '§ 22 Ausschluß von Ansprüchen bei Bestandskraft der Eintragung einer Marke mit
+
+    jüngerem Zeitrang'
+- id: art-30
+  title: § 23 Benutzung von Namen und beschreibenden Angaben; Ersatzteilgeschäft
+  text: § 23 Benutzung von Namen und beschreibenden Angaben; Ersatzteilgeschäft
+- id: art-31
+  title: § 24 Erschöpfung
+  text: § 24 Erschöpfung
+- id: art-32
+  title: § 25 Ausschluß von Ansprüchen bei mangelnder Benutzung
+  text: § 25 Ausschluß von Ansprüchen bei mangelnder Benutzung
+- id: art-33
+  title: § 26 Benutzung der Marke
+  text: '§ 26 Benutzung der Marke
+
+    Abschnitt 5
+
+    Marken als Gegenstand des Vermögens'
+- id: art-34
+  title: § 27 Rechtsübergang
+  text: § 27 Rechtsübergang
+- id: art-35
+  title: § 28 Vermutung der Rechtsinhaberschaft; Zustellungen an den Inhaber
+  text: § 28 Vermutung der Rechtsinhaberschaft; Zustellungen an den Inhaber
+- id: art-36
+  title: § 29 Dingliche Rechte; Zwangsvollstreckung; Insolvenzverfahren
+  text: § 29 Dingliche Rechte; Zwangsvollstreckung; Insolvenzverfahren
+- id: art-37
+  title: § 30 Lizenzen
+  text: § 30 Lizenzen
+- id: art-38
+  title: § 31 Angemeldete Marken
+  text: '§ 31 Angemeldete Marken
+
+    Teil 3
+
+    Verfahren in Markenangelegenheiten
+
+    Abschnitt 1
+
+    Eintragungsverfahren
+
+    - Seite 2 von 63 -
+
+    Ein Service des Bundesministerium der Justiz und für Verbraucherschutz
+
+    sowie des Bundesamts für Justiz ‒ www.gesetze-im-internet.de'
+- id: art-39
+  title: § 32 Erfordernisse der Anmeldung
+  text: § 32 Erfordernisse der Anmeldung
+- id: art-40
+  title: § 33 Anmeldetag; Anspruch auf Eintragung; Veröffentlichung der Anmeldung
+  text: § 33 Anmeldetag; Anspruch auf Eintragung; Veröffentlichung der Anmeldung
+- id: art-41
+  title: § 34 Ausländische Priorität
+  text: § 34 Ausländische Priorität
+- id: art-42
+  title: § 35 Ausstellungspriorität
+  text: § 35 Ausstellungspriorität
+- id: art-43
+  title: § 36 Prüfung der Anmeldungserfordernisse
+  text: § 36 Prüfung der Anmeldungserfordernisse
+- id: art-44
+  title: § 37 Prüfung auf absolute Schutzhindernisse; Bemerkungen Dritter
+  text: § 37 Prüfung auf absolute Schutzhindernisse; Bemerkungen Dritter
+- id: art-45
+  title: § 38 Beschleunigte Prüfung
+  text: § 38 Beschleunigte Prüfung
+- id: art-46
+  title: § 39 Zurücknahme, Einschränkung und Berichtigung der Anmeldung
+  text: § 39 Zurücknahme, Einschränkung und Berichtigung der Anmeldung
+- id: art-47
+  title: § 40 Teilung der Anmeldung
+  text: § 40 Teilung der Anmeldung
+- id: art-48
+  title: § 41 Eintragung, Veröffentlichung und Markeninformation
+  text: § 41 Eintragung, Veröffentlichung und Markeninformation
+- id: art-49
+  title: § 42 Widerspruch
+  text: § 42 Widerspruch
+- id: art-50
+  title: § 43 Einrede mangelnder Benutzung; Entscheidung über den Widerspruch
+  text: § 43 Einrede mangelnder Benutzung; Entscheidung über den Widerspruch
+- id: art-51
+  title: § 44 Eintragungsbewilligungsklage
+  text: '§ 44 Eintragungsbewilligungsklage
+
+    Abschnitt 2
+
+    Berichtigung; Teilung; Schutzdauer und Verlängerung'
+- id: art-52
+  title: § 45 Berichtigung des Registers und von Veröffentlichungen
+  text: § 45 Berichtigung des Registers und von Veröffentlichungen
+- id: art-53
+  title: § 46 Teilung der Eintragung
+  text: § 46 Teilung der Eintragung
+- id: art-54
+  title: § 47 Schutzdauer und Verlängerung
+  text: '§ 47 Schutzdauer und Verlängerung
+
+    Abschnitt 3
+
+    Verzicht; Verfalls- und Nichtigkeitsverfahren'
+- id: art-55
+  title: § 48 Verzicht
+  text: § 48 Verzicht
+- id: art-56
+  title: § 49 Verfall
+  text: § 49 Verfall
+- id: art-57
+  title: § 50 Nichtigkeit wegen absoluter Schutzhindernisse
+  text: § 50 Nichtigkeit wegen absoluter Schutzhindernisse
+- id: art-58
+  title: § 51 Nichtigkeit wegen des Bestehens älterer Rechte
+  text: § 51 Nichtigkeit wegen des Bestehens älterer Rechte
+- id: art-59
+  title: § 52 Wirkungen des Verfalls und der Nichtigkeit
+  text: § 52 Wirkungen des Verfalls und der Nichtigkeit
+- id: art-60
+  title: § 53 Verfalls- und Nichtigkeitsverfahren vor dem Deutschen Patent- und Markenamt
+  text: § 53 Verfalls- und Nichtigkeitsverfahren vor dem Deutschen Patent- und Markenamt
 doc_files:
 - de/raw/DE-MarkenG_Markengesetz.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：de/raw/DE-MarkenG_Markengesetz.pdf (pdf, 230467 chars)，生成 53 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：de/raw/DE-MarkenG_Markengesetz.pdf (pdf, 230467 chars)，生成 53 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：de/raw/DE-MarkenG_Markengesetz.pdf (pdf, 230312 chars)，生成 60 条共 4676 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

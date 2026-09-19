@@ -1,6 +1,6 @@
 id: US-CFR-TITLE16-PART1211
 official_citation: US 16 CFR Part 1211
-short_name: US 16 CFR Part 1211
+short_name: US 16 CFR Part 1211 — SAFETY STANDARD FOR AUTOMATIC RESIDENTIAL GARAGE DOOR OPERATORS
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,658 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '16
+
+    Commercial Practices
+
+    2
+
+    2024-01-01
+
+    2024-01-01
+
+    false
+
+    SAFETY'
+  text: '16
+
+    Commercial Practices
+
+    2
+
+    2024-01-01
+
+    2024-01-01
+
+    false
+
+    SAFETY STANDARD FOR AUTOMATIC RESIDENTIAL GARAGE DOOR OPERATORS
+
+    1211
+
+    PART 1211
+
+    Commercial Practices
+
+    CONSUMER PRODUCT SAFETY COMMISSION
+
+    CONSUMER PRODUCT SAFETY ACT REGULATIONS
+
+    Pt. 1211
+
+    PART 1211—SAFETY STANDARD FOR AUTOMATIC RESIDENTIAL GARAGE DOOR OPERATORS
+
+    Subpart A—The Standard
+
+    Sec.
+
+    1211.1
+
+    Effective date.
+
+    1211.2
+
+    Definition.
+
+    1211.3
+
+    Units of measurement.
+
+    1211.4
+
+    General requirements for protection against risk of injury.
+
+    1211.5
+
+    General testing parameters.
+
+    1211.6
+
+    General entrapment protection requirements.
+
+    1211.7
+
+    Inherent primary entrapment protection requirements.
+
+    1211.8
+
+    Secondary entrapment protection requirements.
+
+    1211.9
+
+    Additional entrapment protection requirements.
+
+    1211.10
+
+    Requirements for all entrapment protection devices.
+
+    1211.11
+
+    Requirements for photoelectric sensors.
+
+    1211.12
+
+    Requirements for edge sensors.
+
+    1211.13
+
+    Inherent force activated secondary door sensors.
+
+    1211.14
+
+    Unattended operation requirements.
+
+    1211.15
+
+    Vertically moving combination rigid one-piece overhead residential garage door and operator system.
+
+    1211.16
+
+    Instruction manual.
+
+    1211.17
+
+    Field-installed labels.
+
+    1211.18
+
+    UL marking requirement.
+
+    1211.19
+
+    Statutory labeling requirement.
+
+    Figures 1-10 to Subpart A of Part 1211
+
+    Figure 1 to Subpart A to Part 1211—Critical Condition Flow Chart for Residential Garage Door Operator Entrapment Protection Devices and Functions
+
+    Figure 2 to Subpart A of Part 1211—Nozzle Section A-A
+
+    Figure 3 to Subpart A of Part 1211—Stationary Obstruction
+
+    Figure 4 to Subpart A of Part 1211—Moving Obstruction
+
+    Figure 5 to Subpart A of Part 1211—Ambient Light Test
+
+    Figure 6 to Subpart A of Part 1211—Edge Sensor Normal Operation Test
+
+    Figure 7 to Subpart A of Part 1211—Puncture Probe
+
+    Figure 8 to Subpart A of Part 1211—Example Test Apparatus for Measurements at 12 Inches or Greater
+
+    Figure 9 to Subpart A oo Part 1211—Example Test Apparatus for Measurements at 12 Inches or Greater
+
+    Figure 10 to Subpart A of Part 1211—Example Test Apparatus for Measurements at 12 Inches or Greater
+
+    Table 1 to Subpart A of Part 1211—Physical Properties of Gasket-Accelerated Aging Test
+
+    Subpart B—Certification
+
+    1211.20
+
+    Purpose, scope, and application.
+
+    1211.21
+
+    Effective date.
+
+    1211.22
+
+    Definitions.
+
+    1211.23
+
+    Certification testing.
+
+    1211.24
+
+    Product certification and labeling by manufacturers.
+
+    1211.25
+
+    Product certification and labeling by importers.
+
+    Subpart C—Recordkeeping
+
+    1211.30
+
+    Effective date.
+
+    1211.31
+
+    Recordkeeping requirements.
+
+    Subpart D—Incorporation by Reference
+
+    1211.40
+
+    Incorporation by reference.
+
+    Authority:
+
+    Sec. 203 of Pub. L. 101-608, 104 Stat. 3110; 15 U.S.C. 2063 and 2065.
+
+    Subpart A—The Standard
+
+    Source:
+
+    57 FR 60455, Dec. 21, 1992, unless otherwise noted.'
+- id: art-2
+  title: § 1211.1
+  text: '§ 1211.1
+
+    Effective date.
+
+    This standard applies to all residential garage door operators manufactured on or after January 1, 1993 for sale in the United States.'
+- id: art-3
+  title: § 1211.2
+  text: '§ 1211.2
+
+    Definition.
+
+    As used in this part 1211:
+
+    Residential garage door operator
+
+    means a vehicular door operator which:
+
+    (a) Serves a residential building of one to four single family units;
+
+    (b) Is rated 600 volts or less; and
+
+    (c) Is intended to be employed in ordinary locations in accordance with NFPA 70 (incorporated by reference, see § 1211.32).
+
+    [57 FR 60455, Dec. 21, 1992, as amended at 62 FR 46667, Sept. 4, 1997; 65 FR 70657, Nov. 27, 2000; 81 FR 20228, Apr. 7, 2016]'
+- id: art-4
+  title: § 1211.3
+  text: '§ 1211.3
+
+    Units of measurement.
+
+    If a value for measurement is followed by a value in other units, in parentheses, the second value may be only approximate. The first stated value is the requirement.
+
+    [57 FR 60455, Dec. 21, 1992, as amended at 65 FR 70657, Nov. 27, 2000]'
+- id: art-5
+  title: § 1211.4
+  text: '§ 1211.4
+
+    General requirements for protection against risk of injury.
+
+    (a) If an automatically reset protective device is employed, automatic restarting of a motor shall not result in a risk of injury to persons.
+
+    (b) A residential garage door operator is considered to comply with the requirement in paragraph (a) of this section if some means is provided to prevent the motor from restarting when the protector
+    closes.
+
+    (c) An electronic or solid-state circuit that performs a back-up, limiting, or other function intended to reduce the risk of fire, electric shock, or injury to persons, including entrapment protection
+    circuits, shall comply with the requirements in UL 991 (incorporated by reference, see § 1211.40), including environmental and stress tests appropriate to the intended usage of the end-product. Exception:
+    A control or electronic circuit that complies with Supplement SA of UL 325-2017 (incorporated by reference, see § 1211.40) is considered to fulfill this requirement.
+
+    [57 FR 60455, Dec. 21, 1992, as amended at 62 FR 46667, Sept. 4, 1997; 65 FR 70657, Nov. 27, 2000; 81 FR 20228, Apr. 7, 2016; 83 FR 32568, July 13, 2018]'
+- id: art-6
+  title: § 1211.5
+  text: '§ 1211.5
+
+    General testing parameters.
+
+    (a) The following test parameters are to be used in the investigation of the circuit covered by § 1211.4(c) for compliance with either, UL 991, or Supplement SA of UL 325-2017 (incorporated by reference,
+    see § 1211.40):
+
+    (1) With regard to electrical supervision of critical components, an operator being inoperative with respect to
+
+    closing movement of the door meets the criteria for trouble indication.
+
+    (2) A field strength of 3 volts per meter is to be used for the Radiated EMI Test.
+
+    (3) The Composite Operational and Cycling Test is to be used for 14 days at temperature extremes of minus 35 °Celsius (minus 31 °F) and 70 °C (158 °F).
+
+    (4) Exposure Class H5 is to be used for the Humidity Test.
+
+    (5) A vibration level of 5g is to be used for the Vibration Test.
+
+    (6) When a Computational Investigation is conducted, λ
+
+    p
+
+    shall not be greater than 6 failures/10
+
+    6
+
+    hours for the entire system. For external secondary entrapment protection devices or systems that are sold separately, λ
+
+    p
+
+    shall not be greater than 0 failures/10
+
+    6
+
+    hours. For internal secondary entrapment protection devices or systems whether or not they are sold separately, λ
+
+    p
+
+    shall not be greater than 0 failures/10
+
+    6
+
+    hours. The operational test is conducted for 14 days. An external secondary entrapment protection device or system that is sold separately, and that has a λ
+
+    p
+
+    greater than 0 failures/10
+
+    6
+
+    hours meets the intent of the requirement when for the combination of the operator and the specified external secondary entrapment protection device or system λ
+
+    p
+
+    does not exceed 6 failures/10
+
+    6
+
+    hours. See § 1211.18(j) through (l).
+
+    (7) When the Demonstrated Method Test is conducted, the multiplier is to be based on the continuous usage level, and a minimum of 24 units for a minimum of 24 hours per unit are to be tested.
+
+    (8) The Endurance test is to be conducted concurrently with the Operational test. The control shall perform its intended function while being conditioned for fourteen days in an ambient air temperature
+    of 60 °C (140 °F), or 10 °C (18 °F) greater than the operating temperature of the control, whichever is higher. During the test, the control is to be operated in a manner representing the opening and
+    closing of the door at a rate of one open-close operation per minute.
+
+    (9) For the Electrical Fast Transient Burst Test, test level 3 is to be used for residential garage door operators.
+
+    (b) In the evaluation of entrapment protection circuits used in residential garage door operators, the critical condition flow chart shown in figure 1 to subpart A shall be used:
+
+    (1) To conduct a failure-mode and effect analysis (FMEA);
+
+    (2) In investigating the performance during the Environmental Stress Tests;
+
+    (3) During the Power Cycling Safety for Tests in accordance with UL 991 (incorporated by reference, see § 1211.40); and
+
+    (4) During evaluation of the circuit to the requirements of Supplement SA of UL 325-2017 (incorporated by reference, see § 1211.40).
+
+    [57 FR 60455, Dec. 21, 1992, as amended at 62 FR 46667, Sept. 4, 1997; 65 FR 70657, Nov. 27, 2000; 81 FR 20228, Apr. 7, 2016; 83 FR 32568, July 13, 2018]'
+- id: art-7
+  title: § 1211.6
+  text: '§ 1211.6
+
+    General entrapment protection requirements.
+
+    (a) A residential garage door operator system shall be provided with inherent primary entrapment protection that complies with the requirements as specified in § 1211.7.
+
+    (b) In addition to the inherent primary entrapment protection as required by paragraph (a) of this section, a vertically moving residential garage door operator shall comply with one of the following:
+
+    (1) Shall be constructed to:
+
+    (i) Require constant pressure on a control intended to be installed and activated within line of sight of the door to lower the door;
+
+    (ii) Reverse direction and open the door to the upmost position when constant pressure on a control is removed prior to operator reaching its lower limit, and
+
+    (iii) Limit a portable transmitter, when supplied, to function only to cause the operator to open the door;
+
+    (2) Shall be provided with a means for connection of an external secondary entrapment protection device as described in § 1211.8 (a) and (c) through (e), as applicable to vertically moving doors; or
+
+    (3)(i) Shall be provided with an inherent secondary entrapment protection device as described in §§ 1211.8(a) and (f), 1211.10, and 1211.12 and is:
+
+    (A) A combination sectional overhead garage door operator system as described in § 1211.6(c); and
+
+    (B) For use only with vertically moving garage doors.
+
+    (ii) With respect to § 1211.6(b)(3)(i)(A), trolley-driven operators do not meet the definition of a combination sectional overhead garage door operator system.
+
+    (c) In the case of a vertically moving combination sectional overhead garage door operator system, the door shall comply with the requirements in ANSI/DASMA 102 (incorporated by reference, see § 1211.40).
+
+    (d) In addition to the inherent primary entrapment protection as required by § 1211.6(a), a horizontally sliding residential garage door operator shall comply with one of the following:
+
+    (1) Shall be constructed to:
+
+    (i) Require constant pressure on a control to close the door;
+
+    (ii) Reverse direction and open the door a minimum of 2 in (50.8 mm) when constant pressure on a control is removed prior to operator reaching its position limit; and
+
+    (iii) Stop the door if a second obstruction is detected in the reverse direction.
+
+    (2) Shall be provided with a means for connection of an external secondary entrapment protection device for each leading edge as described in § 1211.8(c) through (e), as applicable to horizontally moving
+    doors.
+
+    (e) A mechanical switch or a relay used in an entrapment protection circuit of an operator shall withstand 100,000 cycles of operation controlling a load no less severe (voltage, current, power factor,
+    inrush and similar ratings) than it controls in the operator, and shall function normally upon completion of the test.
+
+    (f) In addition to complying with paragraph (e) of this section, in the event of a malfunction of a switch or relay (open or short) described in paragraph (c) of this section results in loss of any
+    entrapment protection required by § 1211.7(a), § 1211.7(b)(7), § 1211.7(c)(7), § 1211.8(a), or § 1211.8(b), the door operator shall become inoperative at the end of the opening or closing operation,
+    the door operator shall move the door to, and stay within, 1 foot (305 mm) of the uppermost position.
+
+    [81 FR 20228, Apr. 7, 2016, as amended at 83 FR 32569, July 13, 2018]'
+- id: art-8
+  title: § 1211.7
+  text: '§ 1211.7
+
+    Inherent primary entrapment protection requirements.
+
+    (a)
+
+    General requirements.
+
+    A vertically moving residential garage door operator system shall be supplied with inherent primary entrapment protection that complies with the requirements as specified in paragraph (b) of this section.
+    A horizontally sliding residential garage door operator system shall be supplied with inherent primary entrapment protection that complies with the requirements as specified in paragraph (c) of this
+    section.
+
+    (b)
+
+    Inherent primary entrapment protection, vertically moving doors.
+
+    (1)(i) For a vertically moving residential garage door operator system, other than for the first 1 foot (305mm) of door travel from the full upmost position both with and without any secondary external
+    entrapment protection device functional, the operator of a downward moving residential garage door shall initiate reversal of the door within 2 seconds of contact with the obstruction as specified in
+    subparagraph (b)(3) of this section. After reversing the door, the operator shall return the door to, and stop at, the full upmost position. Compliance shall be determined in accordance with paragraphs
+    (b)(3) through (10) of this section.
+
+    (ii) The door operator is not required to return the door to, and stop the door at, the full upmost position when the operator senses a second obstruction during the upward travel.
+
+    (iii) The door operator is not required to return the door to, and stop the door at, the full upmost position when a control is actuated to stop the door during the upward travel—but the door can not
+    be moved downward until the operator reverses the door a minimum of 2 inches (50.8 mm).
+
+    (2) The test shall be performed on a representative operating system installed in accordance with the manufacturer''s installation instructions with the operator exerting a 25-lbf (111.21-N) pull or
+    its rated pull, whichever is greater.
+
+    (3)(i) A solid object is to be placed on the floor of the test installation and at various heights under the edge of the door and located in line with the driving point of the operator. When tested
+    on the floor, the object shall be 1 inch
+
+    (25.4 mm) high. In the test installation, the bottom edge of the door under the driving force of the operator is to be against the floor when the door is fully closed.
+
+    (ii) For operators other than those attached to the door, a solid object is not required to be located in line with the driving point of the operator. The solid object is to be located at points at
+    the center, and within 1 foot of each end of the door.
+
+    (iii) To test operators for compliance with requirements in paragraphs (b)(1)(iii), (b)(7)(iii), and (b)(8)(iii) of this section and § 1211.13(c), a solid rectangular object measuring 4 inches (102
+    mm) high by 6 inches (152 mm) wide by a minimum of 6 inches (152 mm)long is to be placed on the floor of the test installation to provide a 4-inch (102 mm) high obstruction when operated from a partially
+    open position.
+
+    (4) An operator is to be tested for compliance with paragraph (b)(1) of this section for 50 open-and-close cycles of operation while the operator is connected to the type of residential garage door
+    with which it is intended to be used or with the doors specified in paragraph (b)(6) of this section. For an operator having a force adjustment on the operator, the force is to be adjusted to the maximum
+    setting or at the setting that represents the most severe operating condition. Any accessories having an effect on the intended operation of entrapment protection functions that are intended for use
+    with the operator, are to be attached and the test is to be repeated for one additional cycle.
+
+    (5) For an operator that is to be adjusted (limit and force) according to instructions supplied with the operator, the operator is to be tested for 10 additional obstruction cycles using the solid object
+    described in paragraph (b)(3) of this section at the maximum setting or at the setting that represents the most severe operating condition.
+
+    (6) For an operator that is intended to be used with more than one type of door, one sample of the operator is to be tested on a sectional door with a curved track and one sample is to be tested on
+    a one-piece door with jamb hardware and no track. For an operator that is not intended for use on either or both types of doors, a one-piece door with track hardware or a one-piece door with pivot hardware
+    shall be used for the tests. For an operator that is intended for use with a specifically dedicated door or doors, a representative door or doors shall be used for the tests. See the marking requirements
+    at § 1211.18.
+
+    (7)(i) An operator, employing an inherent entrapment protection system that measures or monitors the actual position of the door, shall initiate reversal of the door and shall return the door to, and
+    stop the door at, the full upmost position in the event the inherent door operating “profile” of the door differs from the originally set parameters. The entrapment protection system shall measure or
+    monitor the position of the door at increments not greater than 1 inch (25.4 mm).
+
+    (ii) The door operator is not required to return the door to, and stop the door at, the full upmost position when an inherent entrapment circuit senses an obstruction during the upward travel.
+
+    (iii) The door operator is not required to return the door to, and stop the door at, the full upmost position when a control is actuated to stop the door during the upward travel—but the door can not
+    be moved downward until the operator reverses the door a minimum of 2 inches (50.8 mm).
+
+    (8)(i) An operator, using an inherent entrapment protection system that does not measure or monitor the actual position of the door, shall initiate reversal of the door and shall return the door, to
+    and stop the door at the full upmost position, when the lower limiting device is not actuated in 30 seconds or less following the initiation of the close cycle.
+
+    (ii) The door operator is not required to return the door to, and stop the door at, the full upmost position when an inherent entrapment circuit senses an obstruction during the upward travel. When
+    the door is stopped manually during its descent, the 30 seconds shall be measured from the resumption of the close cycle.
+
+    (iii) The door operator is not required to return the door to, and stop the door at, the full upmost position when a control is actuated to stop the door
+
+    during the upward travel—but the door can not be moved downward until the operator reverses the door a minimum of 2 inches (50.8 mm). When the door is stopped manually during its descent, the 30 seconds
+    shall be measured from the resumption of the close cycle.
+
+    (9) To determine compliance with paragraph (b)(7) or (8) of this section, an operator is to be subjected to 10 open-and-close cycles of operation while connected to the door or doors specified in paragraphs
+    (b)(4) and (6) of this section. The cycles are not required to be consecutive. Motor cooling-off periods during the test meet the intent of the requirement. The means supplied to comply with the requirement
+    in paragraph (b)(1) of this section and § 1211.8(a) or (b) are to be defeated during the test. An obstructing object is to be used so that the door is not capable of activating a lower limiting device.
+
+    (10) During the closing cycle referred to in paragraph (b)(9) of this section, the system providing compliance with paragraphs (b)(1) and (7) of this section or paragraphs (b)(1) and (8) of this section
+    shall function regardless of a short- or open-circuit anywhere in any low-voltage external wiring, any external entrapment devices, or any other external component.
+
+    (c)
+
+    Inherent primary entrapment protection, horizontally sliding doors.
+
+    (1)(i) For a horizontally sliding residential garage door operator system, other than for the first 1 foot (305mm) of door travel from the full closed position both with and without any external entrapment
+    protection device functional, the operator of a closing residential garage door shall initiate reversal of the door within 2 seconds of contact with the obstruction as specified in paragraph (c)(3)
+    of this section. After reversing the door, the operator shall open the door a minimum of 2 inches (50.8 mm) from the edge of the obstruction. Compliance shall be determined in accordance with paragraphs
+    (c)(2) through (10) of this section.
+
+    (ii) The door operator is not required to open the door a minimum 2 inches (50.8 mm) when the operator senses a second obstruction during the reversing travel.
+
+    (iii) The door operator is not required to open the door a minimum 2 inches (50.8 mm) when a control is actuated to stop the door during movement towards the open position—but the door can not be moved
+    towards the closed position until the operator reverses the door a minimum of 2 inches (50.8 mm).
+
+    (2) The test shall be performed on a representative operating system installed in accordance with the manufacturer''s installation instructions with the operator exerting a 25-lbf (111.21-N) pull or
+    its rated pull, whichever is greater.
+
+    (3)(i) A solid object is to be placed on the floor of the test installation and rigidly supported within the bottom track and then repeated with the solid object placed on the floor and rigidly supported
+    external to the track. The test shall then be repeated with the solid object rigidly supported at heights of 1 ft (305 mm), 3 ft (914 mm), 5 ft (1524 mm), and within 1 ft (305 mm) of the top edge. The
+    object shall be 1 inch (25.4 mm) in width.
+
+    (ii) For operators other than those attached to the door, a solid object is not required to be located in line with the driving point of the operator. The solid object is to be located at points at
+    the center and within 1 ft of each end of the door opening.
+
+    (iii) To test operators for compliance with paragraphs (c)(1)(iii), (c)(7)(iii), and (c)(8)(iii) of this section, and § 1211.13(c), a solid rectangular object measuring 4 inches (102 mm) high by 6 inches
+    (152 mm) wide by a minimum of 6 in (152 mm) long is to be placed on the floor of the test installation to provide a 4 in (102 mm) high obstruction when operated from a partially open position with the
+    test repeated with the bottom edge of the obstruction rigidly supported at heights of 1 ft (305 mm), 3ft (914 mm), 5ft (1524 mm), and within 1 ft (305 mm) of the top edge.
+
+    (4) An operator is to be tested for compliance with paragraph (c)(1) of this section for 50 open-and-close cycles of operation while the operator is connected to the type of residential garage door
+    with which it is intended to be used or with the doors specified in paragraph (c)(6) of this section. For an operator having a force adjustment on the operator, the force is to be adjusted
+
+    to the maximum setting or at the setting that represents the most severe operating condition. Any accessories having an effect on the intended operation of entrapment protection functions that are intended
+    for use with the operator, are to be attached and the test is to be repeated for one additional cycle.
+
+    (5) For an operator that is to be adjusted (limit and force) according to instructions supplied with the operator, the operator is to be tested for 10 additional obstruction cycles using the solid object
+    described in paragraph (c)(3) of this section at the maximum setting or at the setting that represents the most severe operating condition.
+
+    (6) For an operator that is intended to be used with more than one type of door, one sample of the operator is to be tested on a sectional door with a curved track and one sample is to be tested on
+    a one-piece door with jamb hardware and no track. For an operator that is not intended for use on either or both of these types of doors, a one-piece door with track hardware or a one-piece door with
+    pivot hardware shall be used for the tests. For an operator that is intended for use with a specifically dedicated door or doors, a representative door or doors shall be '
+- id: art-9
+  title: § 1211.8
+  text: '§ 1211.8
+
+    Secondary entrapment protection requirements.
+
+    (a)(1) For a vertically moving door operator, a secondary entrapment protection device supplied with, or as an accessory to, an operator shall consist of:
+
+    (i) An external photoelectric sensor that when activated results in an operator that is closing a door to reverse direction of the door, returns the door to, and stops the door at the fully open position,
+    and the sensor prevents an operator from closing an open door,
+
+    (ii) An external edge sensor installed on the edge of the door that, when activated as tested per § 1211.12(a)(4)(1) results in an operator that is closing a door to reverse direction of the door, returns
+    the door to, and stops the door at the fully open position, and the sensor prevents an operator from closing an open door,
+
+    (iii) An inherent door sensor independent of the system used to comply with § 1211.7 that, when activated, results in an operator that is closing a door to reverse direction of the door and the sensor
+    prevents an operator from closing an open door, or
+
+    (iv) Any other external or internal device that provides entrapment protection equivalent to paragraph (a)(1)(i), (ii), or (iii) of this section.
+
+    (2) The door operator is not required to return the door to, and stop the door at, the fully open position when an inherent entrapment circuit senses an obstruction during the opening travel.
+
+    (3) The door operator is not required to return the door to, and stop the door at, the fully open position when a control is actuated to stop the door during the opening travel—but the door cannot be
+    moved towards the closing direction until the operator has reversed the door a minimum of 2 inches (50.8 mm).
+
+    (b) For horizontal sliding garage door operators, a secondary entrapment protection device supplied with, or as an accessory to, an operator shall consist of:
+
+    (1) An external photoelectric sensor that, when activated, results in an operator that is closing or opening a door to reverse direction of the door for a minimum of 2 inches (50.8 mm); or
+
+    (2) An external edge sensor installed on the edge of the door that, when activated as tested per § 1211.12 (a)(4)(2), results in an operator that is closing or opening a door to reverse direction of
+    the door for a minimum of 2 inches (50.8 mm).
+
+    (c) With respect to paragraphs (a) and (b) of this section, the operator shall monitor for the presence and correct operation of the device at least once during each close cycle. Should the device not
+    be present or a fault condition occurs which precludes the sensing of an obstruction, including an interruption of the wireless signal to the wireless device or an open or short circuit in the wiring
+    that connects an external entrapment protection device to the operator and device''s supply source, the operator shall be constructed such that:
+
+    (1) For a vertically moving door, the closing door shall open and an open door shall not close more than 1 foot (305 mm) below the upmost position;
+
+    (2) For a horizontally sliding door, the door shall not move in the opening or closing direction; or
+
+    (3) The operator shall function as required by § 1211.6(b)(1).
+
+    (d) An external entrapment protection device or system, when employing a wireless control, shall comply with paragraph (e) of this section when installed at its farthest distance from the operator as
+    recommended in the installation instructions.
+
+    (e) An external entrapment protection device shall comply with the applicable requirements in §§ 1211.10, 1211.11, and 1211.12.
+
+    (f) An inherent secondary entrapment protection device described in § 1211.6(b)(3) shall comply with the applicable requirements in § 1211.13. Software used in an inherent entrapment protection device
+    shall comply with UL 1998 (incorporated by reference, see § 1211.40).
+
+    [81 FR 20230, Apr. 7, 2016, as amended at 83 FR 32569, July 13, 2018]'
+- id: art-10
+  title: § 1211.9
+  text: '§ 1211.9
+
+    Additional entrapment protection requirements.
+
+    (a) A means to manually detach the door operator from the door shall be supplied. The gripping surface (handle) shall be colored red and shall be easily
+
+    distinguishable from the rest of the operator. It shall be capable of being adjusted to a height of 6 feet (1.8 m) above the garage floor when the operator is installed according to the instructions
+    specified in § 1211.16(a)(2). The means shall be constructed so that a hand firmly gripping it and applying a maximum of 50 pounds (223 N) of force shall detach the operator with the door obstructed
+    in the down position. The obstructing object, as described in § 1211.7(b)(3)(i), is to be located in several different positions. A marking with instructions for detaching the operator shall be provided
+    as required by § 1211.17(a), (b), and (j), as applicable.
+
+    (b) A means to manually detach the door operator from the door is not required for a door operator that is not directly attached to the door and that controls movement of the door so that:
+
+    (1) The door is capable of being moved open from any position other than the last (closing) 2 inches (50.8 mm) of travel, and
+
+    (2) The door is capable of being moved to the 2-inch (50.8-mm) point from any position between closed and the 2-inch (50.8-mm) point.
+
+    (c) Actuation of a control that initiates movement of a door shall stop and may reverse the door on the closing cycle. On the opening cycle, actuation of a control shall stop the door but not reverse
+    it.
+
+    (d) An operator shall be constructed so that adjustment of limit, force or other user controls and connection of external entrapment protection devices can be accomplished without exposing normally
+    enclosed live parts or wiring.
+
+    [57 FR 60455, Dec. 21, 1992, as amended at 65 FR 70658, Nov. 27, 2000; 81 FR 20231, Apr. 7, 2016]'
+- id: art-11
+  title: § 1211.10
+  text: '§ 1211.10
+
+    Requirements for all entrapment protection devices.
+
+    (a)
+
+    General requirements.
+
+    (1) An external entrapment protection device shall perform its intended function when tested in accordance with paragraphs (a)(2) through (4) of this section.
+
+    (2) The device is to be installed in the intended manner and its terminals connected to circuits of the door operator as indicated by the installation instructions.
+
+    (3) The device is to be installed and tested at minimum and maximum heights and widths representative of recommended ranges specified in the installation instructions. For doors, if not specified, devices
+    are to be tested on a minimum 7 foot (2.1 m) wide door and maximum 20 foot (6.1 m) wide door.
+
+    (4) If powered by a separate source of power, the power-input supply terminals are to be connected to supply circuits of rated voltage and frequency.
+
+    (5) An external entrapment protection device requiring alignment, such as a photoelectric sensor, shall be provided with a means, such as a visual indicator, to show proper alignment and operation of
+    the device.
+
+    (b)
+
+    Current protection test.
+
+    (1) There shall be no damage to the entrapment protection circuitry if low voltage field-wiring terminals or leads are shortened or miswired to adjacent terminals.
+
+    (2) To determine compliance with paragraph (b)(1) of this section, an external entrapment protection device is to be connected to a door operator or other source of power in the intended manner, after
+    which all connections to low voltage terminals or leads are to be reversed as pairs, reversed individually, or connected to any low voltage lead or adjacent terminal.
+
+    (3) After restoring the connections in the intended manner:
+
+    (i) A photoelectric sensor shall comply with the Normal Operation tests per § 1211.11(a) through (c); and
+
+    (ii) An edge sensor shall comply with the applicable Normal Operation test, per § 1211.12(a).
+
+    (c)
+
+    Splash test.
+
+    (1) An external entrapment protection device intended to be installed inside a garage 3 feet or less above the floor shall withstand a water exposure as described in paragraph (c)(2) of this section
+    without resulting in a risk of electric shock and shall function as intended, per paragraph (c)(3) of this section. After exposure, the external surface of the device may be dried before determining
+    its functionality.
+
+    (2) External entrapment protection devices are to be indirectly sprayed using a hose having the free end fitted with a nozzle as illustrated in Figure 2 to subpart A and connected to a water
+
+    supply capable of maintaining a flow rate of 5 gallons (19 liters) per minute as measured at the outlet orifice of the nozzle. The water from the hose is to be played, from all sides and at any angle
+    against the floor under the device in such a manner most likely to cause water to splash the enclosure of electric components. However, the nozzle is not to be brought closer than 10 feet (3.05 m) horizontally
+    to the device. The water is to be sprayed for 1 minute.
+
+    (3) After drying the external surface of the device:
+
+    (i) A ph'
 doc_files:
 - us/raw/US-CFR-title16-part1211.xml
+- us/raw/US-CFR-title16-part1211.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1211.xml (xml, 109662 chars)，生成 11 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1211.xml (xml, 109662 chars)，生成 11 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1211.xml (xml, 109661 chars)，生成 11 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1211-4（US 16 CFR Part 1211）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1211-3（US 16 CFR Part 1211）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1211-2（US 16 CFR Part 1211）。'

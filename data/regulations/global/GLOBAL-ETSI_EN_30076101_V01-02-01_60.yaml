@@ -9,11 +9,496 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'ETSI EN 300 761-1
+
+    V1.2.1
+
+    (2001-06)
+
+    EuropeanStandard(Telecomm'
+  text: 'ETSI EN 300 761-1
+
+    V1.2.1
+
+    (2001-06)
+
+    EuropeanStandard(Telecommunicationsseries)
+
+    Electromagnetic compatibility
+
+    and Radio spectrum Matters (ERM);
+
+    Short Range Devices (SRD);
+
+    Automatic Vehicle Identification (AVI) for railways
+
+    operating in the 2,45 GHz frequency range;
+
+    Part 1: Technical characteristics and
+
+    methods of measurement
+
+    2 ETSIEN300761-1V1.2.1(2001-06)
+
+    Reference
+
+    REN/ERM-RP08-0411-1
+
+    Keywords
+
+    UIC,radio
+
+    ETSI
+
+    650RoutedesLucioles
+
+    F-06921SophiaAntipolisCedex-FRANCE
+
+    Tel.:+33492944200 Fax:+33493654716
+
+    SiretN°34862356200017-NAF742C
+
+    Associationàbutnonlucratifenregistréeàla
+
+    Sous-PréfecturedeGrasse(06)N°7803/88
+
+    Importantnotice
+
+    Individualcopiesofthepresentdocumentcanbedownloadedfrom:
+
+    http://www.etsi.org
+
+    Thepresentdocumentmaybemadeavailableinmorethanoneelectronicversionorinprint.Inanycaseofexistingor
+
+    perceiveddifferenceincontentsbetweensuchversions,thereferenceversionisthePortableDocumentFormat(PDF).
+
+    Incaseofdispute,thereferenceshallbetheprintingonETSIprintersofthePDFversionkeptonaspecificnetworkdrive
+
+    withinETSISecretariat.
+
+    Usersofthepresentdocumentshouldbeawarethatthedocumentmaybesubjecttorevisionorchangeofstatus.
+
+    InformationonthecurrentstatusofthisandotherETSIdocumentsisavailableathttp://www.etsi.org/tb/status/
+
+    Ifyoufinderrorsinthepresentdocument,sendyourcommentto:
+
+    editor@etsi.fr
+
+    CopyrightNotification
+
+    Nopartmaybereproducedexceptasauthorizedbywrittenpermission.
+
+    Thecopyrightandtheforegoingrestrictionextendtoreproductioninallmedia.
+
+    ©EuropeanTelecommunicationsStandardsInstitute2001.
+
+    Allrightsreserved.
+
+    ETSI
+
+    3 ETSIEN300761-1V1.2.1(2001-06)
+
+    Contents
+
+    IntellectualPropertyRights..........................................................................................................................7
+
+    Foreword......................................................................................................................................................7
+
+    Introduction..................................................................................................................................................8
+
+    1 Scope..................................................................................................................................................9
+
+    2 References..........................................................................................................................................9
+
+    3 Definitions,symbolsandabbreviations.............................................................................................10
+
+    3.1 Definitions................................................................................................................................................10
+
+    3.2 Symbols....................................................................................................................................................10
+
+    3.3 Abbreviations............................................................................................................................................10
+
+    4 Generalrequirements........................................................................................................................11
+
+    4.1 Generalrequirements.................................................................................................................................11
+
+    4.1.1 Equipmentclassification......................................................................................................................11
+
+    4.1.2 Generalperformancecriteria................................................................................................................11
+
+    4.2 Presentationofequipmentfortestingpurposes...........................................................................................11
+
+    4.2.1 Choiceofmodelfortesting..................................................................................................................12
+
+    4.2.2 Testingofequipmentwithalternativepowerlevels...............................................................................12
+
+    4.2.3 Testingofequipmentthatdoesnothaveanexternal50OhmRFconnector(integralantenna
+
+    equipment)...........................................................................................................................................12
+
+    4.2.3.1 Equipmentwithaninternalpermanentortemporaryantennaconnector...........................................12
+
+    4.2.3.2 Equipmentwithatemporaryantennaconnector...............................................................................12
+
+    4.3 Mechanicalandelectricaldesign................................................................................................................13
+
+    4.3.1 General................................................................................................................................................13
+
+    4.3.2 Controls...............................................................................................................................................13
+
+    4.3.3 Transmittershut-offfacility..................................................................................................................13
+
+    4.3.4 Receivermuteorsquelch.....................................................................................................................13
+
+    4.3.5 Marking(equipmentidentification)......................................................................................................13
+
+    4.3.5.1 Equipmentidentification.................................................................................................................13
+
+    4.3.5.2 Regulatorymarking........................................................................................................................13
+
+    4.4 Interpretationofthemeasurementresults...................................................................................................13
+
+    5 Testconditions,power sourcesandambienttemperatures.................................................................14
+
+    5.1 Normalandextremetestconditions...........................................................................................................14
+
+    5.2 Testpowersource......................................................................................................................................14
+
+    5.2.1 Externaltestpowersource....................................................................................................................14
+
+    5.2.2 Internaltestpowersource.....................................................................................................................14
+
+    5.3 Normaltestconditions...............................................................................................................................14
+
+    5.3.1 Normaltemperatureandhumidity........................................................................................................14
+
+    5.3.2 Normaltestpowersource.....................................................................................................................15
+
+    5.3.2.1 Mainsvoltage.................................................................................................................................15
+
+    5.3.2.2 Regulatedlead-acidbatterypowersources......................................................................................15
+
+    5.3.2.3 Otherpowersources.......................................................................................................................15
+
+    5.4 Extremetestconditions..............................................................................................................................15
+
+    5.4.1 Extremetemperatures...........................................................................................................................15
+
+    5.4.1.1 Procedurefortestsatextremetemperatures.....................................................................................15
+
+    5.4.1.1.1 Procedureforequipmentdesignedforcontinuoustransmitoperation..........................................15
+
+    5.4.1.1.2 Procedureforequipmentdesignedforintermittenttransmitoperation.........................................16
+
+    5.4.1.2 Extremetemperatureranges............................................................................................................16
+
+    5.4.2 Extremetestsourcevoltages................................................................................................................16
+
+    5.4.2.1 Mainsvoltage.................................................................................................................................16
+
+    5.4.2.2 Regulatedlead-acidbatterypowersources......................................................................................16
+
+    5.4.2.3 Powersourcesusingothertypesofbatteries....................................................................................17
+
+    5.4.2.4 Otherpowersources.......................................................................................................................17
+
+    6 Generalconditions............................................................................................................................17
+
+    ETSI
+
+    4 ETSIEN300761-1V1.2.1(2001-06)
+
+    6.1 Testsignalsandtestmodulation................................................................................................................17
+
+    6.1.1 Normaltestsignals(wantedandunwantedsignals)...............................................................................18
+
+    6.1.1.1 Signalsforbitstreammeasurements...............................................................................................18
+
+    6.1.1.2 Signalformessages........................................................................................................................18
+
+    6.2 Modesofoperationofthetransmitter.........................................................................................................18
+
+    6.3 Encoderforreceivermeasurements............................................................................................................18
+
+    6.4 Facilitiesforaccess...................................................................................................................................19
+
+    6.4.1 Analogueaccess...................................................................................................................................19
+
+    6.4.2 Accesspointsfordatastreammeasurement..........................................................................................19
+
+    6.4.3 Couplingarrangements........................................................................................................................19
+
+    6.4.3.1 Arrangementsformeasurementswithcontinuousbitstreams..........................................................19
+
+    6.4.3.2 Arrangementformeasurementswithmessages................................................................................20
+
+    6.4.4 Messagereceivedindicator..................................................................................................................20
+
+    6.5 Artificialantenna.......................................................................................................................................20
+
+    6.6 Testfixture................................................................................................................................................20
+
+    6.6.1 Calibration...........................................................................................................................................21
+
+    6.6.2 Modeofuse.........................................................................................................................................21
+
+    6.7 Testsitesandgeneralarrangementsforradiatedmeasurements..................................................................21
+
+    7 Methodsof measurementandlimitsfor interrogator transmitter parameters......................................22
+
+    7.1 Equivalentisotropicallyradiatedpower(e.i.r.p).........................................................................................22
+
+    7.1.1 Definition........................................'
+- id: art-2
+  title: 'Annex C (normative):'
+  text: 'Annex C (normative):
+
+    Receiver methods of measurements using messages
+
+    C.1 General
+
+    Theequipmentmaybetestedbyusingmessageswhenitisnotpossibletotestwithbitstreamsaccordingto
+
+    clause6.1.1.1.InthiscasethenormaltestsignalshallbetrainsofcorrectlycodedbitsormessagesmodulationD-M4.
+
+    Suchmessagescanalsobeusedforperformancetestofatotalinstalledsystem.
+
+    C.2 Test signals
+
+    Thenormaltestsignalsandmodulationsshallbeobtainedasfollows:
+
+    - D-M3correspondstosinglemessages,usedforreceivermeasurementsusingtheup-downmethodasdescribed
+
+    inclausesC.3andC.4,triggeredeithermanuallyorbyanautomatictestingsystem.Thisprovidesthe"normal
+
+    testsignal"asrequiredforreceivermeasurements(e.g.seeclauses8.1.2.4and8.3);
+
+    - D-M4consistsofcorrectlycodedsignals,messagestransmittedsequentially,onebyone,withoutgapsbetween
+
+    them;
+
+    - D-M4''consistsofincorrectlycodedsignals,messagestransmittedsequentially,onebyone,withoutgaps
+
+    betweenthem.
+
+    D-M3isusedforreceivermethodsofmeasurementwithmessageswherethereisaneedtotransmitsinglemessagesa
+
+    numberoftimes(e.g.20times,see"normaltestsignal"ofclauses8.3.3.2,8.3.4.2,8.3.5.2and8.3.6.2).The
+
+    correspondingnormaltestmodulationshallbeagreedbetweenthemanufacturerandthetestlaboratory.
+
+    ThetestsignalD-M4isusedfortransmittermethodsofmeasurementsuchasoutofbandpower(clause7.3.2),radiated
+
+    spuriousemissions(clauses7.6.4and7.6.5)andinterferencetestmodulationduringreceiverdegradationmeasurements
+
+    (clause8.3).ThetestsignalsD-M4andD-M4''shallbethat,asagreedbetweenthemanufacturerandthetestlaboratory,
+
+    whichproducesthegreatestradiofrequencyoccupiedbandwidth.
+
+    ThetestsignalD-M4''isusedfortestoftransponder.
+
+    Theencoder,whichisassociatedwiththetransmitter,shallbecapableofsupplyingthenormaltestmodulationfor
+
+    D-M3,andthetestsignalD-M4.ThedetailsofD-M3,D-M4andD-M4''shallbeincludedinthetestreport.
+
+    C.3 Method of measurement for receiver sensitivity
+
+    Theappropriatetestarrangementasshowninclause8.1.2,figure3,4or5shallbeusedwiththeexceptionthatthebit
+
+    streamgeneratorandbiterrorratiomeasuringdevicesarereplacedbyamessagegeneratorandamessagedetection
+
+    indicationdevice.
+
+    Thefollowingtestprocedureshallbeused:
+
+    a) thewantedsignal,signalgeneratorA,operatingatthenominalfrequencyofthereceivershallbemodulatedwith
+
+    normaltestsignalD-M3inaccordancewiththeinstructionsofthemanufacturerandshallbeapprovedbythe
+
+    testlaboratory;
+
+    b) thelevelofthesignalgeneratorAshallbesuchthatasuccessfulmessageratioislessthan10%;
+
+    c) thenominalmodulationtestsignalshallbetransmittedrepeatedlywhilstobservingineachcasewhetherornota
+
+    successfulresponseisobtained.ThelevelofsignalgeneratorAshallbeincreasedby2dBforeachoccasionthat
+
+    asuccessfulresponseisnotobtained.Theprocedureshallbecontinueduntilthreesuccessfulresponsesare
+
+    obtained.ThelevelofsignalgeneratorAshallberecorded;
+
+    ETSI
+
+    55 ETSIEN300761-1V1.2.1(2001-06)
+
+    d) thelevelofsignalgeneratorAshallbereducedby1dBandthenewvaluerecorded.Thenormalmodulationtest
+
+    signalshallberepeated20times.Ineachcase,ifaresponseisnotobtainedthesignalgeneratorlevelshallbe
+
+    increasedby1dBandthenewvaluerecorded.Ifasuccessfulresponseisobtained,thesignalgeneratorlevel
+
+    shallnotbechangeduntilthreeconsecutivesuccessfulresponseshavebeenobtained.Inthiscase,thesignal
+
+    generatorlevelshallbereducedby1dBandthenewvaluerecorded;
+
+    NOTE: Nosignalgeneratorlevelsshallberecordedunlessprecededbyachangeinlevel.
+
+    e) themaximumusablesensitivityistheaverageofthevaluesrecordedinstepc)andd);
+
+    f) themeasurementshallberepeatedunderextremetestconditions.
+
+    Thesensitivityshallbestatedinthetestreport.
+
+    Thelimitforsensitivityisthesameasforthecontinuousbitstreammethodofmeasurements,seeclause8.1.3.
+
+    C.4 Method of measurements for receiver degradation
+
+    Theappropriatetestarrangementasshowninfigure7,8,9or10,clause8.3shallbeusedwiththefollowingexception:
+
+    thebitstreamgeneratorandbiterrorratiomeasuringdevicesshallbereplacedbyamessagegeneratorandamessage
+
+    detectionindicationdevice.
+
+    Thetestprocedureisthesameasdefinedinclause8.3exceptforthefollowing:
+
+    a) themodulationtestsignalforthewantedsignal,signalgeneratorA,shallbemodulatedwithtestsignalD-M3;
+
+    b) theunwantedsignal,signalgeneratorB(andC,ifappropriate),ifmodulated,shallbemodulatedwithtestsignal
+
+    D-M4;
+
+    c) theleveloftheunwantedsignal,signalgeneratorB(andC,ifappropriate),shallbesuchthatasuccessful
+
+    messageratioislessthan10%;
+
+    d) thenominalmodulationtestsignalofthewantedsignal,signalgeneratorA,shallbetransmittedrepeatedly
+
+    whilstobservingineachcasewhetherornotasuccessfulresponseisobtained.Theleveloftheunwantedsignal,
+
+    signalgeneratorB(andC,ifappropriate),shallbereducedby2dBforeachoccasionthatasuccessfulresponse
+
+    isnotobtained.Theprocedureshallbecontinueduntilthreeconsecutivesuccessfulresponsesareobtained.The
+
+    levelofthesignalgeneratorB(andC,ifappropriate)shallberecorded;
+
+    e) thelevelofunwantedsignal,signalgeneratorB(andC,ifappropriate),shallbeincreasedby1dBandthenew
+
+    valuerecorded.Thenormaltestsignalshallberepeated20times.Ineachcase,ifaresponseisnotobtained,the
+
+    signalgeneratorlevelshallbereducedby1dBandthenewvaluerecorded.Ifasuccessfulresponseisobtained,
+
+    thesignalgeneratorlevelshallnotbechangeduntilthreeconsecutivesuccessfulresponseshavebeenobtained.
+
+    Inthiscase,thesignalgeneratorlevelshallbeincreasedby1dBandthenewvaluerecorded;
+
+    NOTE: Nosignalgeneratorlevelsshallberecordedunlessprecededbyachangeinlevel.
+
+    f) thedegradationlevelistheaveragevalueofthevaluesrecordedinstepd)ande).
+
+    Thedegradationlevelshallbestatedinthetestreport.
+
+    Thelimitvalueisidenticalwiththelimitforthecontinuousbitstreammethodofmeasurement,seeclauses8.3.3.3,
+
+    8.3.4.3,8.3.5.3and8.3.6.3.
+
+    ETSI
+
+    56 ETSIEN300761-1V1.2.1(2001-06)
+
+    Annex D (informative):
+
+    Clauses of the present document relevant for compliance
+
+    with the essential requirements EC Council Directives
+
+    D.1 Compliance with 1999/5/EC (R&TTE Directive)'
+- id: art-3
+  title: article 3.3e
+  text: 'article 3.3e
+
+    Theclausesnotedarenecessarytoensureaccesstoemergencyservices.Atthetimeofpublication,thishasnotbeen
+
+    invokedasanessentialrequirementoftheR&TTEDirectiveforequipmentcoveredbythepresentdocument.
+
+    TableD.1:Clausesofthepresentdocumentrelevanttoensureaccess
+
+    toemergencyservices
+
+    Clause/clausenumberandtitle Correspondingarticleofthe Qualifyingremarks
+
+    R&TTEDirective
+
+    8.3.3 Co-channelrejection 3.3e Appliestoreceivers
+
+    8.3.4 Adjacentchannelselectivity 3.3e Appliestoreceivers
+
+    8.3.5 Spuriousresponserejection 3.3e Appliestoreceivers
+
+    anddesensitization
+
+    8.3.6 Intermodulationresponserejection 3.3e Appliestoreceivers
+
+    ETSI
+
+    57 ETSIEN300761-1V1.2.1(2001-06)
+
+    Annex E (informative):
+
+    Bibliography
+
+    CEPT/ERCRecommendation01-06:"Procedureformutualrecognitionoftypetestingandtypeapprovalforradio
+
+    equipment".
+
+    UICSpecifications:
+
+    ERRI-A188/DT231(1991):"TechnicalspecificationforAutomaticVehicleIdentification(AVI)".
+
+    ERRI-A188/AHWG1/10.11.1994:"AutomaticVehicleIdentification,UIC-Standardproposal".
+
+    ERRIA188/1:"AutomaticVehicleIdentification-Operating",February1995.
+
+    UICleaflet:"AutomaticVehicleIdentification-AVIinstallationandMaintenanceoftheTransponders",February
+
+    1995.
+
+    ETSIEN301489-3(1.2.1):"ElectromagneticcompatibilityandRadiospectrumMatters(ERM);ElectroMagnetic
+
+    Compatibility(EMC)standardforradioequipmentandservices;Part3:SpecificconditionsforShort-RangeDevices
+
+    (SRD)operatingonfrequenciesbetween9kHzand40GHz".
+
+    CEPT/ERCRecommendation74-01(1999):"Spuriousemissions".
+
+    ETSI
+
+    58 ETSIEN300761-1V1.2.1(2001-06)
+
+    History
+
+    Document history
+
+    V1.1.1 January1998 PublicationasEN300761
+
+    V1.2.1 July2000 PublicEnquiry PE20001124:2000-07-26to2000-11-24
+
+    V1.2.1 April2001 Vote V200106015:2001-04-16to2001-06-15
+
+    V1.2.1 June2001 Publication
+
+    ETSI'
 doc_files:
 - global/raw/ETSI_EN_30076101_v01.02.01_60.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30076101_v01.02.01_60.pdf (pdf, 130991 chars)，生成 3 条共 19376 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30076101_v01.02.01_60.pdf (pdf, 130991 chars)，生成 3 条共 19376 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30076101_v01.02.01_60.pdf (pdf, 130991 chars)，生成 3 条共 19376 字符；解析文本未人工复核，引用以官方原件为准。'

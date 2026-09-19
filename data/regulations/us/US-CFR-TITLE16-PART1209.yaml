@@ -1,6 +1,6 @@
 id: US-CFR-TITLE16-PART1209
 official_citation: US 16 CFR Part 1209
-short_name: US 16 CFR Part 1209
+short_name: US 16 CFR Part 1209 — INTERIM SAFETY STANDARD FOR CELLULOSE INSULATION
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,795 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '16
+
+    Commercial Practices
+
+    2
+
+    2024-01-01
+
+    2024-01-01
+
+    false
+
+    INTERI'
+  text: '16
+
+    Commercial Practices
+
+    2
+
+    2024-01-01
+
+    2024-01-01
+
+    false
+
+    INTERIM SAFETY STANDARD FOR CELLULOSE INSULATION
+
+    1209
+
+    PART 1209
+
+    Commercial Practices
+
+    CONSUMER PRODUCT SAFETY COMMISSION
+
+    CONSUMER PRODUCT SAFETY ACT REGULATIONS
+
+    Pt. 1209
+
+    PART 1209—INTERIM SAFETY STANDARD FOR CELLULOSE INSULATION
+
+    Subpart A—The Standard
+
+    Sec.
+
+    1209.1
+
+    Scope and application.
+
+    1209.2
+
+    Definitions and measurements.
+
+    1209.3
+
+    General requirements.
+
+    1209.4
+
+    Test procedures for determining settled density.
+
+    1209.5
+
+    Test procedures for corrosiveness.
+
+    1209.6
+
+    Test procedures for critical radiant flux.
+
+    1209.7
+
+    Test procedures for smoldering combustion.
+
+    1209.8
+
+    Procedure for calibration of radiation instrumentation.
+
+    1209.9
+
+    Labeling requirement.
+
+    1209.10
+
+    Certification and enforcement.
+
+    1209.11
+
+    Effective date.
+
+    Figure 1 to Subpart A of Part 1209—Partial Insulation Preparation Apparatus
+
+    Figure 2 to Subpart A of Part 1209—Cyclone Receiver Weldment
+
+    Figure 3 to Subpart A of Part 1209—Flooring Radiant Tester Schematic Side Elevation
+
+    Figure 4 to Subpart A of Part 1209—Flooring Radiant Panel Tester Schematic Low Flux End, Elevation
+
+    Figure 5 to Subpart A of Part 1209—Zero Reference Point Related to Detecting Plane
+
+    Figure 6 to Subpart A of Part 1209—Dummy Specimen in Specimen Holder
+
+    Figure 7 to Subpart A of Part 1209—Specimen Tray
+
+    Figure 8 to Subpart A of Part 1209—Standard Radiant Heat Energy Flux Profile
+
+    Figure 9 to Subpart A of Part 1209—Flux Profile Data Log Format
+
+    Figure 10 to Subpart A of Part 1209—Insulation Radiant Panel Test Data Log Format
+
+    Subpart B—Certification
+
+    1209.31
+
+    Purpose and applicability.
+
+    1209.32
+
+    Definitions.
+
+    1209.33
+
+    Reasonable testing program.
+
+    1209.34
+
+    Qualification testing.
+
+    1209.35
+
+    Product specification.
+
+    1209.36
+
+    Production testing.
+
+    1209.37
+
+    Corrective actions.
+
+    1209.38
+
+    Records.
+
+    1209.39
+
+    Certification of compliance.
+
+    1209.40
+
+    Certification responsibility, multiple parties.
+
+    1209.41
+
+    Effective date.
+
+    Source:
+
+    44 FR 39966, July 6, 1979, unless otherwise noted.
+
+    Subpart A—The Standard
+
+    Authority:
+
+    Sec. 35(c)(2), Pub. L. 95-319, 92 Stat. 388-389 (15 U.S.C. 2082).'
+- id: art-2
+  title: § 1209.1
+  text: '§ 1209.1
+
+    Scope and application.
+
+    (a)
+
+    Scope.
+
+    This part 1209, an interim consumer product safety standard, prescribes flame resistance and corrosiveness requirements for cellulose insulation that is a consumer product. These requirements are intended
+    to reduce or eliminate an unreasonable risk of injury to consumers from flammable and corrosive cellulose insulation. The requirements are based upon the flame resistance and corrosiveness requirements
+    of General Services Administration Specification HH-I-515D.
+
+    (b)
+
+    Application.
+
+    This part 1209 shall apply to cellulose insulation that is a consumer product, that is, cellulose insulation produced or distributed for sale to, or for the personal use, consumption, or enjoyment of
+    consumers in or around a permanent or temporary household or residence, a school, in recreation, or otherwise. The interim standard applies to cellulose insulation that is produced or distributed for
+    sale to consumers for their direct installation or use, as well as cellulose insulation that is produced or distributed for installation by professionals. This part 1209 applies only to cellulose insulation
+    manufactured after October 15, 1979.'
+- id: art-3
+  title: § 1209.2
+  text: '§ 1209.2
+
+    Definitions and measurements.
+
+    (a) As used in this part 1209,
+
+    Cellulose insulation
+
+    means cellulosic fiber, loose fill, thermal insulation that is suitable for blowing or pouring applications.
+
+    (b) The definitions given in section 3 of the Consumer Product Safety Act are applicable to this part 1209.
+
+    (c) For the purposes of conformance with the technical requirements of this standard, the figures are given in the metric system of measurement. The inch-pound system approximations of these figures
+    are provided in parentheses for convenience and information only. For numerical quantities for which no specific tolerances are given, the tolerance shall be one half of the unit value of the last significant
+    digit given in the dimension. Where numerical quantities are given without tolerances in both the metric and inch-pound system of measurements, the tolerance shall be one half of the last significant
+    digit of the metric equivalent of the numerical quantity.
+
+    (d) The specifications and dimensions in the test methods below are given in metric units, with the English equivalents in parentheses. For enforcement purposes the Commission will use metric units.'
+- id: art-4
+  title: § 1209.3
+  text: '§ 1209.3
+
+    General requirements.
+
+    (a) All cellulose insulation to which this interim standard applies, as described in § 1209.1, shall be noncorrosive when tested in accordance with the test procedures at § 1209.5 and evaluated using
+    the criteria at § 1209.5(c). This means that after the product is tested, the six metal coupons used in the test shall not have any perforations (excluding notches extending into the coupon 3 mm or
+    less from any edge) when the coupons are observed over a 40-W appliance light bulb.
+
+    (b) All cellulose insulation to which this interim standard applies, as described in § 1209.1, shall have a critical radiant flux equal to or greater than 0.12 W/cm
+
+    2
+
+    for each of the three specimens when tested in accordance with the test procedures at § 1209.6.
+
+    (c) All cellulose insulation to which this interim standard applies, as described in § 1209.1, shall have no evidence of flaming combustion and shall also have weight loss of 15 percent or less of the
+    initial weight, for each of the three specimens, when tested in accordance with the test procedures at § 1209.7.
+
+    (d) All containers of cellulose insulation to which this interim standard applies, as described in § 1209.1, shall have a labeling statement in accordance with the labeling requirements at § 1209.9.'
+- id: art-5
+  title: § 1209.4
+  text: '§ 1209.4
+
+    Test procedures for determining settled density.
+
+    The settled density of lose fill insulation must be determined before the
+
+    corrosiveness test (§ 1209.5) and the smoldering combustion test (§ 1209.7) can be performed. This section describes the procedure for determining the settled density of loose fill insulation.
+
+    (a)
+
+    Apparatus and materials.
+
+    (1) An insulation specimen container with a flat bottom and an inside diameter of 15.0±1 cm, straight sides [without a flared lip or spout, (Apparatus #1)]. The height of the beaker shall be such that
+    the distance between the bottom of the cyclone and the top edge of the beaker is 8.5 cm±1.0 cm. (3.39 in±.39 in).
+
+    (2) A flat-rigid disc with a total weight of 75±5 g (2.65±0.18 oz) and of a suitable diameter to fit loosely into the specimen container. Weight may be added to the center of the disc to bring the total
+    weight to the required 75±5 g (Apparatus #2).
+
+    (3) A balance of 2 kg (4.4 lbs) capacity accurate at least to 0.2 g (0.007 oz) (Apparatus #3).
+
+    (4) Blower apparatus, two units (supply and overflow) meeting the following specifications: (The Commission staff has found that a Breuer Electric Manufacturing Co., Model 98805 blower is suitable for
+    this purpose, although other blowers may be suitable.) (Apparatus #4).
+
+    (i) Each blower apparatus shall be capable of blowing an average of 272.2 kg (600 lbs.) of insulation per hour.
+
+    (ii) Each blower apparatus shall have a nominal air flow of 2.1 cm
+
+    3
+
+    /min. (75 ft
+
+    3
+
+    /min.)
+
+    (iii) Each blower apparatus shall have a nominal motor speed of 16,450 revolutions per minute at 115 VAC.
+
+    (5) A shaker unit capable of shaking 4.5 kg (10 lb) of weight with a vertical motion of 0.5 g Root Mean Square (RMS) acceleration at an approximate frequency of 9 Hertz (Hz) and displacement of approximately
+    1.17 cm (
+
+    15/32
+
+    ±
+
+    1/32
+
+    in.) ±.08 cm peak to peak. (The Commission staff has found that a Tyler Industries, Portable Sieve Shaker Model Rx-24 is suitable for this purpose, although other shakers may be suitable.) (Apparatus
+    #5).
+
+    (6) Fill chamber with inside dimensions of 45.7 cm (18 in) high × 38.1 cm (15 in) wide × 38.1 cm (15 in) deep, with covered openings that will allow a radiant panel tray to be slid through the chamber,
+    (see Figure 1 for details) (Apparatus #6).
+
+    (7) A cyclone receiver (see Figure 2 for complete details). (Apparatus #7).
+
+    (8) Various lengths of nominally 2-inch diameter hose (see Figure 1 for details), as follows:
+
+    (i) A supply source hose, 274.3±5.1 cm (9 ft±2 in) (Apparatus #8(i)).
+
+    (ii) A cyclone receiver hose, 182.9±5.1 cm (6 ft±2 in) (Apparatus #8(ii)).
+
+    (iii) A fill chamber exit hose, 91,.4±5.1 cm (3 ft±2 in) (Apparatus #8(iii)).
+
+    (iv) An overflow exhaust hose, length as needed (Apparatus #8(iv)).
+
+    (9) Blower Control(s) capable of operating the two blowers at 40 volts RMS. As an example, a variac for each of the two blowers with sufficient rating to operate at 40 volts and 12 amperes RMS would
+    be acceptable (Apparatus #9).
+
+    (10) An insulation holding container to hold a sufficient quantity of insulation to fill the specimen container four times.
+
+    (11) A garden rake, 50.8 cm (20 in) wide (Apparatus #11).
+
+    (12) A shovel (Apparatus #12).
+
+    (b)
+
+    Conditioning.
+
+    Specimens shall be conditioned to equilibrium at 21±5 °C (69.8±9 °F) and 50±5 % relative humidity. A less than 1% change in net weight of the specimen in two consecutive weighings with two hours between
+    each weighing constitutes equilibrium.
+
+    (c)
+
+    Test specimen preparation
+
+    —(1)
+
+    Insulation intended for pneumatic applications.
+
+    If the insulation is intended for pneumatic applications, the test specimens shall be prepared in the following manner:
+
+    (i) If ambient laboratory conditions are different from the conditioning requirements specified in (b) above, begin testing the specimen for settled density within 10 minutes after it has been removed
+    from the conditioned area.
+
+    (ii) Pour the conditioned insulation into the holding box (Apparatus #10) in sufficient quantity to fill the specimen container (Apparatus #1 shown in Figure 1) four times. Manually break up any large
+    clumps of material that might cause feeding problems.
+
+    (2)
+
+    Insulation intended for pouring applications.
+
+    If the insulation is intended for pouring applications, the test specimens shall be prepared in the following manner:
+
+    (i) If ambient laboratory conditions are different from the conditioning requirements specified in (b) above, begin testing 10 minutes after it has been removed from the conditioned area.
+
+    (ii) Pour loose fill insulation into a simulated attic space until full. The attic space shall be formed by two nominal 2 × 6 (243 cm) (8 ft) long joists placed 40.6 cm (16 in) on center with 1.27 cm
+    (
+
+    1/2
+
+    in) plywood nailed to the ends and bottom. Fluff the material with a garden rake (Apparatus #11), applying a series of small amplitude strokes while moving the rake slowly along the joist. Repeat the
+    fluffing process six times.
+
+    (d)
+
+    Procedures
+
+    —(1)
+
+    Procedures for insulation intended for pneumatic applications.
+
+    If the insulation is intended for pneumatic applications, conduct the following procedures:
+
+    (i) The test shall be conducted in an area conditioned to the requirements of § 1209.4(b).
+
+    (ii) The apparatus shall be set up as shown in Figure 1. (Apparatus #9 and #10 are not shown in Figure 1, but are described at § 1209.4(a)). Connect one end of the supply source hose (Apparatus #8.i)
+    to the intake of the supply blower (Apparatus #4). The other end will be used to pick up insulation from the holding container (Apparatus #10). Connect one end of the cyclone receiver hose (Apparatus
+    #8.ii) to the outlet of the supply blower and the other end to the cyclone receiver (Apparatus #7). Connect one end of the fill chamber exit hose (Apparatus #8.iii) to the intake of the overflow blower
+    (Apparatus #4) and the other end to the fill chamber (Apparatus #6). The fill chamber shall be placed on a flat and level surface. Connect one end of the variable length overflow exhaust hose (Apparatus
+    #8.iv) to the outlet of the overflow blower. The other end should be conveniently placed to reduce insulation dust in the test area.
+
+    (iii) Weigh the empty insulation specimen container and record its weight.
+
+    (iv) Place the empty insulation specimen container in the fill chamber (Apparatus #6) centered under the cyclone receiver (Apparatus #7), and close the front cover.
+
+    (v) Adjust the blower control(s) (Apparatus #9) such that the supply and overflow blowers will operate at a no load voltage of 40 volts RMS.
+
+    (vi) Turn on the blowers simultaneously and proceed to fill the insulation specimen container by picking up material from the holding container using the supply source hose.
+
+    (vii) The container may fill unevenly, i.e. a void may tend to form off center in the container. If this occurs, stop the blowing process and rotate the container 180 degrees and continue the blowing
+    process until the container just begins to overflow. If, for any reason, the filling process is interrupted for more than one minute or for more than the one time allowed to rotate the container, begin
+    the process again.
+
+    (viii) Gently screed the excess material using a straight edge so as to leave a uniform surface of the insulation flush with the top of the container.
+
+    (ix) Weigh the filled and leveled container and record the weight. Take care not to bump or jar the container so as not to introduce any extraneous settling of the insulation.
+
+    (x) Cover the container to prevent spilling and secure the container to the shaker. Operate the shaker for a period of 5 minutes±15 seconds.
+
+    (xi) Remove the container from the shaker and uncover, taking care not to bump or jar it. Lower the disc (Apparatus #2) very slowly into the container until it starts to contact the insulation. At this
+    point, release the disc and allow it to settle onto the insulation under its own weight.
+
+    (xii) Measure the volume of the space occupied by the settled insulation using the bottom edge of the disc as the upper datum point. If the disc is not level, measure the high and low points of the
+    bottom of the disc and average the readings and use this as the height measurement in calculating the volume (V
+
+    s
+
+    ). This settled insulation volume and insulation weight (w) shall be used to calculate the settled density.
+
+    (xiii) Repeat this procedure [steps (i through xi)] using another specimen of the insulation until four settled densities are obtained for a given material. Then average these figures to arrive at a
+    final settled density.
+
+    (2)
+
+    Procedures for insulation intended for pouring applications.
+
+    If the insulation is intended for pouring applications, conduct the following procedures:
+
+    (i) Weigh the empty insulation specimen container and record its weight.
+
+    (ii) Using a shovel (Apparatus #12) remove insulation from the simulated attic space and place it into the specimen container until the container just begins to overflow.
+
+    (iii) Follow steps (vi) through (xii) as specified under
+
+    Procedures for insulation intended for pneumatic applications.
+
+    (iv) Repeat this procedure (steps (i) through (iii)) using another specimen of the insulation until four settled densities are obtained for a given material. Then average these figures to arrive at
+    a final settled density.
+
+    (e)
+
+    Insulation intended for pouring and pneumatic applications.
+
+    If the insulation is intended for both pouring and pneumatic applications, or if it is uncertain whether the insulation will be poured or installed pneumatically, the insulation shall be tested for
+    settled density using the test specimen preparation and test procedures at § 1209.4 (c) and (d) for each of the applications. The larger of the two settled density values shall be used in performing
+    the corrosiveness test at § 1209.5 and the smoldering combustion test at § 1209.7.
+
+    (f)
+
+    Calculations.
+
+    Calculate the settled density of each specimen using the following formula:
+
+    Settled Density in kg/m
+
+    3
+
+    = W/V
+
+    s
+
+    , where
+
+    W = combined weight of the container and insulation in grams, minus the weight of the container in grams.
+
+    V
+
+    s
+
+    = volume of insulation in liters after shaking.'
+- id: art-6
+  title: § 1209.5
+  text: '§ 1209.5
+
+    Test procedures for corrosiveness.
+
+    This section prescribes the procedures for determining the corrosiveness of cellulose insulation. Cellulose insulation shall be tested for corrosiveness using the measured settled density, obtained
+    by following the test procedure at § 1209.4, to calculate the amount of distilled or deionized water to add to the test specimens. Determination of corrosiveness shall be in accordance with the following
+    test procedure:
+
+    (a)
+
+    Apparatus and materials
+
+    —(1)
+
+    Humidity chamber.
+
+    A forced-air humidity chamber capable of maintaining 48.9±1.7 °C (120±3 °F) and 97 ±1.5 percent relative humidity.
+
+    (2)
+
+    Crystallizing dishes.
+
+    Six glass crystallizing dishes, 90 mm (3.54 in) diameter by 50 mm (1.9 in) height.
+
+    (3)
+
+    Test coupons.
+
+    (i) Two aluminum coupons. 3003 bare aluminum, zero temper.
+
+    (ii) Two copper coupons. ASTM B 152, type ETP, Cabra No. 110 soft copper.
+
+    (iii) Two steel coupons. Low carbon, commercial quality, cold rolled, less than 30 carbon content, shim steel.
+
+    Each coupon shall be 50.8 by 50.8 mm (2 by 2 in) by 0.076 mm (0.003 in) thick metal free of tears, punctures, or crimps.
+
+    (4) Test specimens: Six test specimens of insulation shall be used for one test. Each specimen shall weigh 20g (0.7 oz).
+
+    (b)
+
+    Procedure
+
+    —(1)
+
+    General procedures for cleaning all metal coupons.
+
+    The metal coupons shall be cleaned by the following method:
+
+    (i) At no time during the fabrication, cleaning or testing shall the metal coupons be touched by ungloved hands.
+
+    (ii) Gloves shall be clean and in good condition.
+
+    (iii) All chemicals used shall be of American Chemical Society reagent grade or better, free from oily residues and other contaminants.
+
+    (iv) Water shall be distilled or deionized water.
+
+    (v) Handle cleaned coupons only with clean forceps.
+
+    (vi) In order to avoid exposing laboratory personnel to toxic fumes, the commission recommends that all cleaning procedures be performed in a fume hood.
+
+    (vii) Clean the coupons by vapor degreasing with 1,1,1-trichloroethane for ten minutes. Following vapor degreasing, subject the coupons to caustic and/or detergent washing as appropriate. Following
+    caustic or detergent washing, rinse the coupons in flowing water to remove residues. Inspect each coupon for a water-break free surface. (A water-break is a break, separation, beading or retraction
+    of the water film as the coupon is held
+
+    vertically after wetting. As the coupons are cleaned, the water film should become gradually thinner at the top and heavier at the bottom.) Hot air dry the coupons at 105 °C (221 °F).
+
+    (2) Specimens of cellulose insulation submitted for testing shall be blown, combed, or otherwise mixed to reasonably assure homogeneity in the cellulose insulation test specimens.
+
+    (3) Before presaturating each 20g (0.7 oz) test specimen, subdivide it into two 10g (0.35 oz) portions. The quantity of distilled or deionized water to be used for each 10g (0.35 oz) portion shall be
+    determined using the following formula:
+
+    ml distilled water = 46 / (settled density, Kg/m
+
+    3
+
+    ) × 75
+
+    or
+
+    ml distilled water = 2.9 / (settled density, lb/ft
+
+    3
+
+    ) × 75
+
+    (4) Presaturate each 10g (0.35 oz) portion with the determined amount of water. Place one presaturated 10g (0.35 oz) portion into a crystallizing dish, tamp level using the bottom of a clean suitably
+    sized glass beaker. Place a metal coupon onto the presaturated insulation portion and center it in a horizontal plane. Place the other presaturated 10g (0.35 oz) portion into the crystallizing dish
+    on the metal coupon and tamp the composite specimen (metal coupon plus saturated insulation in the crystallizing dish) to assure an even distribution of this material and to assure good contact of the
+    insulation with the metal. Exercise care in preparing the composite specimens to eliminate air pockets from forming next to the metal coupons.
+
+    (5) Do not cover the crystallizing dish. (Care should be taken to avoid evaporation from the composite specimen while it is being prepared until it is placed in the humidity chamber.) If dripping occurs
+    in the chamber, position a drip guard in the chamber to divert condensation to the chamber floor. Repeat the above for the other metal coupons. Place all six composite specimens into the humidity chamber.
+    The chamber shall be preconditioned to 48.9 ±1.7 °C (120 ±3 °F) and 97 ±1.5 percent relative humidity. The specimens shall remain in the chamber for 336 ±4 hours. (Keep the chamber door open a minimum
+    of time while placing composite specimens in and removing them from the chamber.)
+
+    (6) Upon completion of the test disassemble the composite specimens. Thoroughly wash the metal coupons under running water and lightly brush them using a soft nylon bristle brush or equivalent to remove
+    loose corrosion products. Remove the remaining corrosion products from the metal coupons by cleaning them in accordance with the following practices:
+
+    1
+
+    1
+
+    These practices are the recommended practices in “ASTM G1—Standard Recommended Practice for Preparing, Cleaning, and Evaluating Corrosion Test Specimens,” published by American Society for Testing and
+    Materials, 1916 Race Street, Philadelphia, Pa. 19103.
+
+    (i) Technique #1—Electrolytic Cleaning. This technique can be used for post-cleaning the tested copper, steel and aluminum coupons.
+
+    Description: Electrolyze the coupons as follows: Make a solution containing 28 ml of sulfuric acid (specific gravity 1.84), 2 ml of organic inhibitor, e.g. aobut 0.5 g/liter of such inhibitors as diorthotolyl
+    thiourea, quinoline ethiodide, or betanaphthol quinoline may be used, and 970 ml of water. The solution shall be at 75 °C (167 °F). The anode shall be carbon or lead, and the cathode shall be one metal
+    coupon. The electrolyzing shall run for 3 minutes at a current density of 20 A/dm
+
+    2
+
+    .
+
+    Caution:
+
+    If lead anodes are used, lead may deposit on the coupon. If the coupon is resistant to nitric acid, the lead may be removed by a flash dip in 1 + 1 nitric acid (plus water). To avoid injury in this
+    and subsequent techniques when mixing acid and water, gradually pour the acid into the water with continuous stirring, provide cooling if necessary.
+
+    (ii) Technique #2—Copper. This technique or Technique #1 can be used for post-cleaning the tested copper coupons only.
+
+    Description: Make a solution containing 500 ml of hydrochloric acid (specific gravity 1.19), 100 ml of sulfuric acid (specific gravity 1.84), and 400 ml of water. To avoid injury, prepare the solution
+    by slowly adding the sulfuric
+
+    acid to the water with continuous stirring. Cool, then add the hydrochloric acid slowly with continuous stirring. The solution shall be at room temperature. Dip the coupons in the solution for 1 to
+    3 minutes.
+
+    (iii) Technique #3—Steel. This technique or technique #1 can be used for post-cleaning the tested steel coupons only.
+
+    Description: Use one of the following two solutions:
+
+    Solution #1. Add 100 ml of sulfuric acid (specific gravity 1.84), 1.5 ml organic inhibitor, and water to make a l liter solution. The solution shall be 50 °C (120 °F). Dip the coupons in this solution.
+
+    Solution #2 (also referred to as Clarke''s solution). Add 20 g of antimony trioxide and 50 g of stannous chloride to 1 liter of hydrochloric acid (specific gravity 1.19). The solution shall be stirred
+    and be used at room temperature. Dip the coupons in this solution stirring the solution at a rate such that deformation of the coupons does not occur. This dipping shall last for up to 25 minutes.
+
+    (iv) Technique #4—Aluminum. This technique or technique #1 can be used for post-cleaning the tested aluminum coupons only.
+
+    Description: Make a 1 liter solution by adding 20g of chromic acid, and 50 ml of phosphoric acid (specific gravity 1.69), to water. The solution shall be 80 °C (176 °F). Dip the coupons in this solution
+    for 5-10 minutes. If a film remains, dip the coupons in nitric acid (specific gravity 1.42) for 1 minute. Repeat the chromic acid dip. Nitric acid alone may be used if there are no deposits.
+
+    (7) After cleaning, examine the metal coupons over a 40-W appliance light bulb for perforation.
+
+    (c)
+
+    Noncorrosiveness.
+
+    Noncorrosiveness shall be determined by the absence of any perforations (excluding notches which extend into the coupon 3 mm or less from any edge) on each of the six test coupons when the coupons are
+    observed over a 40-W appliance light bulb.'
+- id: art-7
+  title: § 1209.6
+  text: '§ 1209.6
+
+    Test procedures for critical radiant flux.
+
+    This section provides the test procedure for determining the critical radiant flux of exposed attic floor insulation using a radiant heat energy source.
+
+    (a)
+
+    Apparatus and description of test procedure.
+
+    Test chamber (Figures 3 and 4 paragraph (b) of this section). An air-gas fueled radiant heat energy panel or equivalent panel inclined at 30° above and directed at a horizontally-mounted attic floor
+    insulation specimen. The radiant panel generates a radiant energy flux distribution ranging along the approximately 100-cm length of the test specimen from a nominal maximum of 1.0 W/cm.
+
+    2
+
+    to a minimum of 0.1 W/cm
+
+    2
+
+    . The test is initiated by open flame ignition from a pilot burner. The distance burned to flame-out is converted to W/cm
+
+    2
+
+    from the flux profile graph (Figure 8) and reported as critical radiant flux, W/cm
+
+    2
+
+    . Section 1209.8 provides a procedure for calibrating the radiation pyrometer used to standardize the thermal output of the panel.
+
+    (b)
+
+    Construction and instrumentation of the radiant panel test chamber.
+
+    The radiant panel test chamber shall be constructed and instrumented as follows:
+
+    (1) The radiant panel test chamber employed for this test shall be located in a draft protected area maintained at 21±3 °C (69.8±9 °F) and relative humidity of 50±20%. The radiant panel test chamber,
+    (Figures 3 and 4) shall consist of an enclosure 140 cm (55 in) long by 50 cm (19
+
+    1/2
+
+    in) deep by 71 cm (28 in) above the test specimen. The sides, ends, and top shall be of 1.3 cm nominal (
+
+    1/2
+
+    in) calcium silicate board, such as Marinite I, 0.74 g/cm
+
+    3
+
+    (46 lb/ft
+
+    3
+
+    ) nominal density, with a thermal conductivity at 177 °C (350 °F) of 1.11 cal (g)/hr cm
+
+    2
+
+    °C/cm [0.89 Btu/(hr) (ft
+
+    2
+
+    ) (°F/in)]. One side shall be provided with an approximately 10 cm × 110 cm (4 × 44 inches) draft tight fire resistant glass window so that the entire length of the test specimen may be observed from
+    ourside the fire test chamber. On the same side and below the observation window is a door which, when open, allows the specimen platform to be moved out for mounting or removal of test specimens. A
+    draft tight, fire resistant observation window may be installed at the low flux end of the chamber.
+
+    (2) The bottom of the test chamber shall consist of a sliding steel platform
+
+    which has provisions for rigidly securing the test specimen holder in a fixed and level position. The free, or air access, area around the platform shall be in the range of 1935-3225 cm
+
+    2
+
+    (300-500 square in). The top of the chamber shall have an exhaust stack with interior dimensions of 10.2 cm (4 in) wide by 38 cm (15 in) deep by 31.8 cm (12.5 in) high at the opposite end of the chamber
+    from the radiant energy source. The radiant heat energy source shall be a panel of porous refractory material mounted in a cast iron frame, with a radiation surface of 30.5 × 45.7 cm nominal (12 by
+    18 in). The panel fuel system shall consist of a venturi-type aspirator or equivalent system for mixing gas and air at approximately atmospheric pressure, a clean dry air supply capable of providing
+    28.3 NTP (Normal Temperature and Pressure m
+
+    3
+
+    per hr (1000 standard cubic feet per hour) at 7.6 cm (3.0 in) of water, and suitable instrumentation for monitoring and controlling the flow of fuel to the panel.
+
+    (3) The radiant heat energy panel shall be mounted in the chamber 30±0.5° to the horizontal specimen plane. The horizontal distance from the 0 mark on the specimen fixture to the bottom edge (projected)
+    of the radiating surface of the panel is 8.9 cm±0.1 (3
+
+    1/2
+
+    ±
+
+    1/32
+
+    in). The panel to specimen vertical distance is 14.0 cm±0.1 (5
+
+    1/2
+
+    ±
+
+    1/32
+
+    in) (see Figure 5). The angle and dimensions given above are critical in order to obtain the required radiant flux. The radiation pyrometer for standardizing the thermal output of the panel shall be
+    suitable for viewing a circular area 25.0 cm (10 in) in diameter at a range of about 1.37 m (54 in). It shall be calibrated over the black body temperature range of 490-510 °C (914-950 °F) in accordance
+    with the procedure described in § 1209.8. A high impedance voltmeter with a suitable millivolt range shall be used to monitor the output of the radiation pyrometer described. The dummy holder (see Figure
+    6), shall be constructed from 14 gauge heat-resistant stainless steel (AISI Type 300 (UNA-N08330)) or equivalent thickness 0.198 cm (0.078 in), having overall dimension of 114 cm (45 in) by 32 cm (12
+
+    3/4
+
+    in) with a specimen opening of 20 cm (7.9 inches) by 100 cm (39.4 in). Six slots are cut in the flange on either side of the holder to reduce warping. The holder is fastened to the platform with two
+    stud bolts at each end.
+
+    (4) The specimen tray (see Figure 7) shall be constructed from 14 gauge heat-resistant stainless steel (AISI Type 300 (UNA-N08330)) or equivalent, thickness 0.198 cm (0.078 in). The depth of the tray
+    is 5.0±0.2 cm (2±
+
+    5/64
+
+    in). The flanges of the specimen tray are drilled to accommodate two stud bolts at each end; the bottom surface of the flange is 2.1±0.1 cm (0.83±0.04 in) below the top edge of the specimen tray. The
+    overall dimensions of the tray and the width of the flanges are not critical and should be chosen so that the tray essentially fills the open space in the sliding platform. Tray must be adequate to
+    contain a specimen at least 100 cm long and 25 cm wide. It is important to note that the zero reference point on the dummy specimen coincides with the pilot burner flame impingement point (see Figure
+    5).
+
+    (5) The pilot burner used to ignite the specimen shall be a propane venturi torch with an axially sysmmetric burner tip having a propane supply tube with an orifice diameter of 0.0076±0.0013 cm (0.003±0.0005
+    in). In operation, the propane flow is adjusted to give a pencil flame blue inner cone length of 1.3 cm (
+
+    1/2
+
+    in). The pilot burner is positioned so that the flame generated will impinge on the centerline of the specimen at the zero reference point and at right angles to the specimen length (see Figures 3 and
+    4). The burner shall be capable of being swung out of the ignition position so that the flame is horizontal and at least 5 cm (2 in) above the specimen plane.
+
+    (6) Two 3.2 mm nominal (
+
+    1/8
+
+    in) diameter stainless steel sheathed, grounded junction chromel alumel thermocouples are located in the flooring radiant panel test chamber (see Figures 3 and 4). Thermocouples shall be kept clean
+    to ensure accuracy of readout. The chamber thermocouple is located in the longitudinal central vertical plane of the chamber 2.5 cm±0.1 (1±
+
+    1/32
+
+    in) down from the top and 10.2 cm±0.1 (4 in±
+
+    1/32
+
+    ) back from the inside of the exhaust stack. The exhaust stack thermocouple is centrally located 15.2±0.1 cm (6±
+
+    1/32
+
+    in) from the top. A temperature indicating device with a
+
+    range of 100-500 °C (212-932 °F) may be used to determine the chamber temperatures prior to a test.
+
+    (7) An exhaust duct with a capacity of 28.3-85 NTP m
+
+    3
+
+    per minute (1000-3000 standard cubic feet per minute) decoupled from the chamber stack by at least 7.6 cm (3 in) on all sides and with an effective area of the canopy slightly larger than the plane
+    area of the chamber with the specimen platform in the out position shall be used to remove combustion products from the chamber. With the panel turned on and dummy specimen in place, there shall be
+    no measurable difference in air flow through the chamber stack with the exhaust on or off.
+
+    (8) The dummy specimen which is used in the flux profile determination shall be made of 1.9±0.1 cm (
+
+    3/4
+
+    ±
+
+    1/32
+
+    in) 0.74 g/cm
+
+    3
+
+    (46 lb/ft
+
+    3
+
+    ) nominal density calcium silicate board, such as Marinite I (see Figure 6). It is 25 cm (10 in) wide by 107 cm (42 in) long with 2.7±0.1 cm (1
+
+    1/16
+
+    ±
+
+    1/32
+
+    in) diameter holes centered on and along the centerline at the 10, 20, 30, 40, 50, 60, 70, 80, 90 cm locations (within ±0.1 cm), measured from the zero reference point at the maximum flux end of the
+    specimen. The'
 doc_files:
 - us/raw/US-CFR-title16-part1209.xml
+- us/raw/US-CFR-title16-part1209.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1209.xml (xml, 69808 chars)，生成 7 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1209.xml (xml, 69808 chars)，生成 7 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1209.xml (xml, 69807 chars)，生成 7 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1209-4（US 16 CFR Part 1209）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1209-3（US 16 CFR Part 1209）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1209-2（US 16 CFR Part 1209）。'

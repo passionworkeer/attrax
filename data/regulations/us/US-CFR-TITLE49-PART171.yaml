@@ -1,6 +1,6 @@
 id: US-CFR-TITLE49-PART171
 official_citation: US 49 CFR Part 171
-short_name: US 49 CFR Part 171
+short_name: US 49 CFR Part 171 — GENERAL INFORMATION, REGULATIONS, AND DEFINITIONS
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,675 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '49
+
+    Transportation
+
+    2
+
+    2024-10-01
+
+    false
+
+    2024-10-01
+
+    GENERAL INFO'
+  text: '49
+
+    Transportation
+
+    2
+
+    2024-10-01
+
+    false
+
+    2024-10-01
+
+    GENERAL INFORMATION, REGULATIONS, AND DEFINITIONS
+
+    Transportation
+
+    Other Regulations Relating to Transportation
+
+    PIPELINE AND HAZARDOUS MATERIALS SAFETY ADMINISTRATION, DEPARTMENT OF TRANSPORTATION
+
+    HAZARDOUS MATERIALS REGULATIONS
+
+    Pt. 171
+
+    PART 171—GENERAL INFORMATION, REGULATIONS, AND DEFINITIONS
+
+    Subpart A—Applicability, General Requirements, and North American Shipments
+
+    Sec.
+
+    171.1
+
+    Applicability of Hazardous Materials Regulations (HMR) to persons and functions.
+
+    171.2
+
+    General requirements.
+
+    171.3
+
+    Hazardous waste.
+
+    171.4
+
+    Marine pollutants.
+
+    171.6
+
+    Control numbers under the Paperwork Reduction Act.
+
+    171.7
+
+    Reference material.
+
+    171.8
+
+    Definitions and abbreviations.
+
+    171.9
+
+    Rules of construction.
+
+    171.10
+
+    Units of measure.
+
+    171.11
+
+    [Reserved]
+
+    171.12
+
+    North American Shipments.
+
+    171.12a
+
+    [Reserved]
+
+    171.14
+
+    [Reserved]
+
+    Subpart B—Incident Reporting, Notification, BOE Approvals and Authorization
+
+    171.15
+
+    Immediate notice of certain hazardous materials incidents.
+
+    171.16
+
+    Detailed hazardous materials incident reports.
+
+    171.17-171.18
+
+    [Reserved]
+
+    171.19
+
+    Approvals or authorizations issued by the Bureau of Explosives.
+
+    171.20
+
+    Submission of Examination Reports.
+
+    171.21
+
+    Assistance in investigations and special studies.
+
+    Subpart C—Authorization and Requirements for the Use of International Transport Standards and Regulations
+
+    171.22
+
+    Authorization and conditions for the use of international standards and regulations.
+
+    171.23
+
+    Requirements for specific materials and packagings transported under the ICAO Technical Instructions, IMDG Code, Transport Canada TDG Regulations, or the IAEA Regulations.
+
+    171.24
+
+    Additional requirements for the use of the ICAO Technical Instructions.
+
+    171.25
+
+    Additional requirements for the use of the IMDG Code.
+
+    171.26
+
+    Additional requirements for the use of the IAEA Regulations.
+
+    Authority:
+
+    49 U.S.C. 5101-5128, 44701; Pub. L. 101-410 section 4; Pub. L. 104-134, section 31001; Pub. L. 114-74 section 701 (28 U.S.C. 2461 note); 49 CFR 1.81 and 1.97.
+
+    Editorial Note:
+
+    Nomenclature changes to part 171 appear at 70 FR 56090, Sept. 23, 2005.
+
+    Subpart A—Applicability, General Requirements, and North American Shipments'
+- id: art-2
+  title: § 171.1
+  text: '§ 171.1
+
+    Applicability of Hazardous Materials Regulations (HMR) to persons and functions.
+
+    Federal hazardous materials transportation law (49 U.S.C. 5101
+
+    et seq.
+
+    ) directs the Secretary of Transportation to establish regulations for the safe and secure transportation of hazardous materials in commerce, as the Secretary considers appropriate. The Secretary is
+    authorized to apply these regulations to persons who transport hazardous materials in commerce. In addition, the law authorizes the Secretary to apply these regulations to persons who cause hazardous
+    materials to be transported in commerce. The law also authorizes the Secretary to apply these regulations to persons who manufacture or maintain a packaging or a component of a packaging that is represented,
+    marked, certified, or sold as qualified for use in the transportation of a hazardous material in commerce. Federal hazardous material transportation law also applies to anyone who indicates by marking
+    or other means that a hazardous material being transported in commerce is present in a package or transport conveyance when it is not, and to anyone who tampers with a package or transport conveyance
+    used to transport hazardous materials in commerce or a required marking, label, placard, or shipping description. Regulations prescribed in accordance with Federal hazardous materials transportation
+    law shall govern safety aspects, including security, of the transportation of hazardous materials that the Secretary considers appropriate. In 49 CFR 1.53, the Secretary delegated authority to issue
+    regulations for the safe and secure transportation of hazardous materials in commerce to the Pipeline and Hazardous Materials Safety Administrator. The Administrator issues the Hazardous Materials Regulations
+    (HMR; 49 CFR
+
+    parts 171 through 180) under that delegated authority. This section addresses the applicability of the HMR to packagings represented as qualified for use in the transportation of hazardous materials
+    in commerce and to pre-transportation and transportation functions.
+
+    (a)
+
+    Packagings.
+
+    Requirements in the HMR apply to each person who manufactures, fabricates, marks, maintains, reconditions, repairs, or tests a packaging or a component of a packaging that is represented, marked, certified,
+    or sold as qualified for use in the transportation of a hazardous material in commerce, including each person under contract with any department, agency, or instrumentality of the executive, legislative,
+    or judicial branch of the Federal government who manufactures, fabricates, marks, maintains, reconditions, repairs, or tests a packaging or a component of a packaging that is represented, marked, certified,
+    or sold as qualified for use in the transportation of a hazardous material in commerce.
+
+    (b)
+
+    Pre-transportation functions.
+
+    Requirements in the HMR apply to each person who offers a hazardous material for transportation in commerce, causes a hazardous material to be transported in commerce, or transports a hazardous material
+    in commerce and who performs or is responsible for performing a pre-transportation function, including each person performing pre-transportation functions under contract with any department, agency,
+    or instrumentality of the executive, legislative, or judicial branch of the Federal government. Pre-transportation functions include, but are not limited to, the following:
+
+    (1) Determining the hazard class of a hazardous material.
+
+    (2) Selecting a hazardous materials packaging.
+
+    (3) Filling a hazardous materials packaging, including a bulk packaging.
+
+    (4) Securing a closure on a filled or partially filled hazardous materials package or container or on a package or container containing a residue of a hazardous material.
+
+    (5) Marking a package to indicate that it contains a hazardous material.
+
+    (6) Labeling a package to indicate that it contains a hazardous material.
+
+    (7) Preparing a shipping paper.
+
+    (8) Providing and maintaining emergency response information.
+
+    (9) Reviewing a shipping paper to verify compliance with the HMR or international equivalents.
+
+    (10) For each person importing a hazardous material into the United States, providing the shipper with timely and complete information as to the HMR requirements that will apply to the transportation
+    of the material within the United States.
+
+    (11) Certifying that a hazardous material is in proper condition for transportation in conformance with the requirements of the HMR.
+
+    (12) Loading, blocking, and bracing a hazardous materials package in a freight container or transport vehicle.
+
+    (13) Segregating a hazardous materials package in a freight container or transport vehicle from incompatible cargo.
+
+    (14) Selecting, providing, or affixing placards for a freight container or transport vehicle to indicate that it contains a hazardous material.
+
+    (c)
+
+    Transportation functions.
+
+    Requirements in the HMR apply to transportation of a hazardous material in commerce and to each person who transports a hazardous material in commerce, including each person under contract with any
+    department, agency, or instrumentality of the executive, legislative, or judicial branch of the Federal government who transports a hazardous material in commerce. Transportation of a hazardous material
+    in commerce begins when a carrier takes physical possession of the hazardous material for the purpose of transporting it and continues until the package containing the hazardous material is delivered
+    to the destination indicated on a shipping document, package marking, or other medium, or, in the case of a rail car, until the car is delivered to a private track or siding. For a private motor carrier,
+    transportation of a hazardous material in commerce begins when a motor vehicle driver takes possession of a hazardous
+
+    material for the purpose of transporting it and continues until the driver relinquishes possession of the package containing the hazardous material at its destination and is no longer responsible for
+    performing functions subject to the HMR with respect to that particular package. Transportation of a hazardous material in commerce includes the following:
+
+    (1)
+
+    Movement.
+
+    Movement of a hazardous material by rail car, aircraft, motor vehicle, or vessel (except as delegated by Department of Homeland Security Delegation No. 0170 at 2(103)).
+
+    (2)
+
+    Loading incidental to movement of a hazardous material.
+
+    Loading of packaged or containerized hazardous material onto a transport vehicle, aircraft, or vessel for the purpose of transporting it, including blocking and bracing a hazardous materials package
+    in a freight container or transport vehicle, and segregating a hazardous materials package in a freight container or transport vehicle from incompatible cargo, when performed by carrier personnel or
+    in the presence of carrier personnel. For a bulk packaging, loading incidental to movement is filling the packaging with a hazardous material for the purpose of transporting it when performed by carrier
+    personnel or in the presence of carrier personnel (except as delegated by Department of Homeland Security Delegation No. 0170 at 2(103)), including transloading.
+
+    (3)
+
+    Unloading incidental to movement of a hazardous material.
+
+    Removing a package or containerized hazardous material from a transport vehicle, aircraft, or vessel; or for a bulk packaging, emptying a hazardous material from the bulk packaging after the hazardous
+    material has been delivered to the consignee when performed by carrier personnel or in the presence of carrier personnel or, in the case of a private motor carrier, while the driver of the motor vehicle
+    from which the hazardous material is being unloaded immediately after movement is completed is present during the unloading operation. (Emptying a hazardous material from a bulk packaging while the
+    packaging is on board a vessel is subject to separate regulations as delegated by Department of Homeland Security Delegation No. 0170 at 2(103).) Unloading incidental to movement includes transloading.
+
+    (4)
+
+    Storage incidental to movement of a hazardous material.
+
+    Storage of a transport vehicle, freight container, or package containing a hazardous material by any person between the time that a carrier takes physical possession of the hazardous material for the
+    purpose of transporting it until the package containing the hazardous material has been delivered to the destination indicated on a shipping document, package marking, or other medium, or, in the case
+    of a private motor carrier, between the time that a motor vehicle driver takes physical possession of the hazardous material for the purpose of transporting it until the driver relinquishes possession
+    of the package at its destination and is no longer responsible for performing functions subject to the HMR with respect to that particular package.
+
+    (i) Storage incidental to movement includes—
+
+    (A) Storage at the destination shown on a shipping document, including storage at a transloading facility, provided the original shipping documentation identifies the shipment as a through-shipment
+    and identifies the final destination or destinations of the hazardous material; and
+
+    (B) A rail car containing a hazardous material that is stored on track that does not meet the definition of “private track or siding” in § 171.8, even if the car has been delivered to the destination
+    shown on the shipping document.
+
+    (ii) Storage incidental to movement does not include storage of a hazardous material at its final destination as shown on a shipping document.
+
+    (d)
+
+    Functions not subject to the requirements of the HMR.
+
+    The following are examples of activities to which the HMR do not apply:
+
+    (1) Storage of a freight container, transport vehicle, or package containing a hazardous material at an offeror facility prior to a carrier taking possession of the hazardous material for movement in
+    transportation in commerce or, for a private motor carrier, prior to a motor vehicle driver
+
+    taking physical possession of the hazardous material for movement in transportation in commerce.
+
+    (2) Unloading of a hazardous material from a transport vehicle or a bulk packaging performed by a person employed by or working under contract to the consignee following delivery of the hazardous material
+    by the carrier to its destination and departure from the consignee''s premises of the carrier''s personnel or, in the case of a private carrier, departure of the driver from the unloading area.
+
+    (3) Storage of a freight container, transport vehicle, or package containing a hazardous material after its delivery by a carrier to the destination indicated on a shipping document, package marking,
+    or other medium, or, in the case of a rail car, storage of a rail car on private track.
+
+    (4) Rail and motor vehicle movements of a hazardous material exclusively within a contiguous facility boundary where public access is restricted, except to the extent that the movement is on or crosses
+    a public road or is on track that is part of the general railroad system of transportation, unless access to the public road is restricted by signals, lights, gates, or similar controls.
+
+    (5) Transportation of a hazardous material in a motor vehicle, aircraft, or vessel operated by a Federal, state, or local government employee solely for noncommercial Federal, state, or local government
+    purposes.
+
+    (6) Transportation of a hazardous material by an individual for non-commercial purposes in a private motor vehicle, including a leased or rented motor vehicle.
+
+    (7) Any matter subject to the postal laws and regulations of the United States.
+
+    (e)
+
+    Requirements of other Federal agencies.
+
+    Each facility at which pre-transportation or transportation functions are performed in accordance with the HMR may be subject to applicable standards and regulations of other Federal agencies.
+
+    (f)
+
+    Requirements of state and local government agencies.
+
+    (1) Under 49 U.S.C. 5125, a requirement of a state, political subdivision of a state, or an Indian tribe is preempted, unless otherwise authorized by '
+- id: art-3
+  title: § 171.2
+  text: '§ 171.2
+
+    General requirements.
+
+    (a) Each person who performs a function covered by this subchapter must perform that function in accordance with this subchapter.
+
+    (b) Each person who offers a hazardous material for transportation in commerce must comply with all applicable requirements of this subchapter, or an exemption or special permit, approval, or registration
+    issued under this subchapter or under subchapter A of this chapter. There may be more than one offeror of a shipment of hazardous materials. Each offeror is responsible for complying with the requirements
+    of this subchapter, or an exemption or special permit, approval, or registration issued under this subchapter or subchapter A of this chapter, with respect to any pre-transportation function that it
+    performs or is required to perform; however, each offeror is responsible only for the specific pre-transportation functions that it performs or is required to perform, and each offeror may rely on information
+    provided by another offeror, unless that offeror knows or, a reasonable person, acting in the circumstances and exercising reasonable care, would have knowledge that the information provided by the
+    other offeror is incorrect.
+
+    (c) Each person who performs a function covered by or having an effect on a specification or activity prescribed in part 178, 179, or 180 of this subchapter, an approval issued under this subchapter,
+    or an exemption or special permit issued under subchapter A of this chapter, must perform the function in accordance with that specification, approval, an exemption or special permit, as appropriate.
+
+    (d) No person may offer or accept a hazardous material for transportation in commerce or transport a hazardous material in commerce unless that person is registered in conformance with subpart G of
+    part 107 of this chapter, if applicable.
+
+    (e) No person may offer or accept a hazardous material for transportation in commerce unless the hazardous material is properly classed, described, packaged, marked, labeled, and in condition for shipment
+    as required or authorized by applicable requirements of this subchapter or an exemption or special permit, approval, or registration issued under this subchapter or subchapter A of this chapter.
+
+    (f) No person may transport a hazardous material in commerce unless the hazardous material is transported in accordance with applicable requirements of this subchapter, or an exemption or special permit,
+    approval, or registration issued under this subchapter or subchapter A of this chapter. Each
+
+    carrier who transports a hazardous material in commerce may rely on information provided by the offeror of the hazardous material or a prior carrier, unless the carrier knows or, a reasonable person,
+    acting in the circumstances and exercising reasonable care, would have knowledge that the information provided by the offeror or prior carrier is incorrect.
+
+    (g) No person may represent, mark, certify, sell, or offer a packaging or container as meeting the requirements of this subchapter governing its use in the transportation of a hazardous material in
+    commerce unless the packaging or container is manufactured, fabricated, marked, maintained, reconditioned, repaired, and retested in accordance with the applicable requirements of this subchapter. No
+    person may represent, mark, certify, sell, or offer a packaging or container as meeting the requirements of an exemption, a special permit, approval, or registration issued under this subchapter or
+    subchapter A of this chapter unless the packaging or container is manufactured, fabricated, marked, maintained, reconditioned, repaired, and retested in accordance with the applicable requirements of
+    the exemption, special permit, approval, or registration issued under this subchapter or subchapter A of this chapter. The requirements of this paragraph apply whether or not the packaging or container
+    is used or to be used for the transportation of a hazardous material.
+
+    (h) The representations, markings, and certifications subject to the prohibitions of paragraph (g) of this section include:
+
+    (1) Specification identifications that include the letters “ICC”, “DOT”, “TC”, “CTC”, “CRC”, “BTC”, “MC”, or “UN”;
+
+    (2) Exemption, special permit, approval, and registration numbers that include the letters “DOT”, “EX”, “M”, or “R”; and
+
+    (3) Test dates associated with specification, registration, approval, retest, exemption, or special permit markings indicating compliance with a test or retest requirement of the HMR, or an exemption,
+    special permit, approval, or registration issued under the HMR or under subchapter A of this chapter.
+
+    (i) No person may certify that a hazardous material is offered for transportation in commerce in accordance with the requirements of this subchapter unless the hazardous material is properly classed,
+    described, packaged, marked, labeled, and in condition for shipment as required or authorized by applicable requirements of this subchapter or an exemption or special permit, approval, or registration
+    issued under this subchapter or subchapter A of this chapter. Each person who offers a package containing a hazardous material for transportation in commerce in accordance with the requirements of this
+    subchapter or an exemption or special permit, approval, or registration issued under this subchapter or subchapter A of this chapter, must assure that the package remains in condition for shipment until
+    it is in the possession of the carrier.
+
+    (j) No person may, by marking or otherwise, represent that a container or package for transportation of a hazardous material is safe, certified, or in compliance with the requirements of this chapter
+    unless it meets the requirements of all applicable regulations issued under Federal hazardous material transportation law.
+
+    (k) No person may, by marking or otherwise, represent that a hazardous material is present in a package, container, motor vehicle, rail car, aircraft, or vessel if the hazardous material is not present.
+
+    (l) No person may alter, remove, deface, destroy, or otherwise unlawfully tamper with any marking, label, placard, or description on a document required by Federal hazardous material transportation
+    law or the regulations issued under Federal hazardous material transportation law. No person may alter, deface, destroy, or otherwise unlawfully tamper with a package, container, motor vehicle, rail
+    car, aircraft, or vessel used for the transportation of hazardous materials.
+
+    (m) No person may falsify or alter an exemption or special permit, approval, registration, or other grant of authority issued under this subchapter or subchapter A of this chapter. No person may offer
+    a hazardous material for transportation or transport a hazardous material in commerce under an
+
+    exemption or special permit, approval, registration or other grant of authority issued under this subchapter or subchapter A of this chapter if such grant of authority has been altered without the consent
+    of the issuing authority. No person may represent, mark, certify, or sell a packaging or container under an exemption or special permit, approval, registration or other grant of authority issued under
+    this subchapter or subchapter A of this chapter if such grant of authority has been altered without the consent of the issuing authority.
+
+    [68 FR 61937, Oct. 30, 2003, as amended at 70 FR 43643, July 28, 2005; 70 FR 73162, Dec. 9, 2005; 82 FR 15833, Mar. 30, 2017]'
+- id: art-4
+  title: § 171.3
+  text: '§ 171.3
+
+    Hazardous waste.
+
+    (a) No person may offer for transportation or transport a hazardous waste (as defined in § 171.8 of this subchapter) in interstate or intrastate commerce except in accordance with the requirements of
+    this subchapter.
+
+    (b) No person may accept for transportation, transport, or deliver a hazardous waste for which a manifest is required unless that person:
+
+    (1) Has marked each motor vehicle used to transport hazardous waste in accordance with § 390.21 of this title even though placards may not be required;
+
+    (2) Complies with the requirements for manifests set forth in § 172.205 of this subchapter; and
+
+    (3) Delivers, as designated on the manifest by the generator, the entire quantity of the waste received from the generator or a transporter to:
+
+    (i) The designated facility or, if not possible, to the designated alternate facility;
+
+    (ii) The designated subsequent carrier; or
+
+    (iii) A designated place outside the United States.
+
+    Note:
+
+    Federal law specifies penalties up to $250,000 fine for an individual and $500,000 for a company and 5 years imprisonment for the willful discharge of hazardous waste at other than designated facilities.
+    49 U.S.C. 5124.
+
+    (c) If a discharge of hazardous waste or other hazardous material occurs during transportation, and an official of a State or local government or a Federal agency, acting within the scope of his official
+    responsibilities, determines that immediate removal of the waste is necessary to prevent further consequence, that official may authorize the removal of the waste without the preparation of a manifest.
+    [
+
+    Note:
+
+    In such cases, EPA does not require carriers to have EPA identification numbers.]
+
+    Note 1:
+
+    EPA requires shippers (generators) and carriers (transporters) of hazardous wastes to have identification numbers which must be displayed on hazardous waste manifests. See 40 CFR parts 262 and 263.
+    (Identification number application forms may be obtained from EPA regional offices.)
+
+    Note 2:
+
+    In 40 CFR part 263, the EPA sets forth requirements for the cleanup of releases of hazardous wastes.
+
+    [Amdt. 171-53, 45 FR 34586, May 22, 1980, as amended by Amdt. 171-53, 45 FR 74648, Nov. 10, 1980; Amdt. 171-78, 49 FR 10510, Mar. 20, 1984; Amdt. 171-107, 54 FR 40068, Sept. 29, 1989; Amdt. 171-111,
+    55 FR 52466, Dec. 21, 1990; 56 FR 66157, Dec. 20, 1991; Amdt. 171-2, 59 FR 49132, Sept. 26, 1994; Amdt. 171-141, 61 FR 21102, May 9, 1996; 73 FR 57004, Oct. 1, 2008]'
+- id: art-5
+  title: § 171.4
+  text: '§ 171.4
+
+    Marine pollutants.
+
+    (a) Except as provided in paragraph (c) of this section, no person may offer for transportation or transport a marine pollutant, as defined in § 171.8, in intrastate or interstate commerce except in
+    accordance with the requirements of this subchapter.
+
+    (b) The requirements of this subchapter for the transportation of marine pollutants are based on the provisions of Annex III of the 1973 International Convention for Prevention of Pollution from Ships,
+    as modified by the Protocol of 1978 (MARPOL 73/78).
+
+    (c)
+
+    Exceptions.
+
+    (1) Except when all or part of the transportation is by vessel, the requirements of this subchapter specific to marine pollutants do not apply to non-bulk packagings transported by motor vehicle, rail
+    car or aircraft.
+
+    (2) Single or combination packagings containing a net quantity per single or inner packaging of 5 L or less for liquids or having a net mass of 5 kg or less for solids, are not subject to any other
+    requirements of this subchapter provided the packagings meet the general requirements in §§ 173.24 and 173.24a. This exception does not apply
+
+    to marine pollutants that are a hazardous waste or a hazardous substance. In the case of marine pollutants also meeting the criteria for inclusion in another hazard class, all provisions of this subchapter
+    relevant to any additional hazards continue to apply.
+
+    [Amdt. 171-116, 57 FR 52934, Nov. 5, 1993, as amended by Amdt. 107-39, 61 FR 51337, Oct. 1, 1996; 80 FR 1114, Jan. 8, 2015]'
+- id: art-6
+  title: § 171.6
+  text: '§ 171.6
+
+    Control numbers under the Paperwork Reduction Act.
+
+    (a)
+
+    Purpose and scope.
+
+    This section collects and displays the control numbers assigned to the HMR collections of information by the Office of Management and Budget (OMB) under the Paperwork Reduction Act of 1995. This section
+    complies with the requirements of 5 CFR 1320.7(f), 1320.12, 1320.13 and 1320.14 (OMB regulations implementing the Paperwork Reduction Act of 1995) for the display of control numbers assigned by OMB
+    to collections of information of the HMR.
+
+    (b)
+
+    OMB control numbers.
+
+    The table in paragraph (b)(2) of this section sets forth the control numbers assigned to collection of information in the HMR by the Office of Management and Budget (OMB) under the Paperwork Reduction
+    Act of 1995.
+
+    (1) Column 1 lists the OMB control number assigned to the HMR collections of information. Column 2 contains the Report Title of the approved collection of information. Column 3 lists the part(s) or
+    section(s) in 49 CFR identified or described in the collection of information.
+
+    (2) Table 1 to paragraph (b)(2):
+
+    Current OMB
+
+    control No.
+
+    Title
+
+    Title 49 CFR part or section where identified and described
+
+    2137-0014
+
+    Cargo Tank Specification Requirements
+
+    §§ 107.503, 107.504, 178.320, 178.337, 178.338, 178.345, 180.407, 180.409, 180.413, 180.417.
+
+    2137-0018
+
+    Inspection and Testing of Portable Tanks and Intermediate Bulk Containers
+
+    §§ 173.24, 173.32, 178.3, 178.255, 178.273, 178.274, 178.703, 178.801, 180.352, 180.605.
+
+    2137-0022
+
+    Testing, Inspection, and Marking Requirements for Cylinders
+
+    §§ 173.5b, 173.302a, 173.303, 173.304, 173.309, 178.2, 178.3, 178.35, 178.44, 178.45, 178.46, 178.57, 178.59, 178.60, 178.61, 178.68, 180.205, 180.207, 180.209, 180.211, 180.213, 180.215, 180.217, appendix
+    C to part 180.
+
+    2137-0034
+
+    Hazardous Materials Shipping Papers and Emergency Response Information
+
+    §§ 172.200, 172.201, 172.202, 172.203, 172.204, 172.505, 172.600, 172.602, 172.604, 172.606, 173.6, 173.7, 173.22, 173.56, 174.24, 174.26, 174.114, 175.30, 175.31, 175.33, 176.24, 176.27, 176.30, 176.36,
+    176.89, 177.817.
+
+    2137-0039
+
+    Hazardous Materials Incidents Reports
+
+    §§ 171.15, 171.16, 171.21.
+
+    2137-0051
+
+    Rulemaking and Special Permit Petitions
+
+    §§ 105.30, 105.40, 106.95, 106.110, 107.105, 107.107, 107.109, 107.113, 107.117, 107.121, 107.123, 107.125, 107.205, 107.211, 107.215, 107.217, 107.219, 107.221, 107.223.
+
+    2137-0510
+
+    RAM Transportation Requirements
+
+    Part 173, subpart I, §§ 173.22, 173.411, 173.415, 173.416, 173.417, 173.457, 173.471, 173.472, 173.473, 173.476.
+
+    2137-0542
+
+    Flammable Cryogenic Liquids
+
+    §§ 173.318, 177.816, 177.840, 180.405.
+
+    2137-0557
+
+    Approvals for Hazardous Materials
+
+    §§ 107.402, 107.403, 107.405, 107.502, 107.503, 107.705, 107.713, 107.715, 107.717, 107.803, 107.805, 107.807, 110.30, 172.101, 172.102, Special Provisions 19, 26, 53, 55, 60, 105, 118, 121, 125, 129,
+    131, 133, 136, B45, B55, B61, B69, B77, B81, N10, N72, 173.2a, 173.4, 173.7, 173.21, 173.22, 173.24, 173.31, 173.38, 173.51, 173.56, 173.58, 173.59, 173.124, 173.128, 173.159, 173.166, 173.171, 173.214,
+    173.222, 173.224, 173.225, 173.245, 173.301, 173.305, 173.306, 173.314, 173.315, 173.316, 173.318, 173.334, 173.340, 173.411, 173.433, 173.457, 173.471, 173.472, 173.476, 174.50, 174.63, 175.8, 175.85,
+    175.701, 175.703, 176.168, 176.340, 176.704, 178.3, 178.35, 178.47, 178.53, 178.273, 178.274, 178.503, 178.509, 178.605, 178.606, 178.608, 178.801, 178.813, 180.213.
+
+    2137-0559
+
+    (Rail Carriers and Tank Car Tank Requirements) Requirements for Rail Tank Car Tanks—Transportation of Hazardous Materials by Rail.
+
+    §§ 172.102, Special provisions: B45, B46, B55, B61, B69, B77, B78, B81; 173.10, 173.31, 174.20, 174.50, 174.63, 174.104, 174.114, 174.204, 179.3, 179.4, 179.5, 179.6, 179.7, 179.11, 179.18, 179.22,
+    179.100-9, 179.100-12, 179.100-13, 179.100-16, 179.100-17, 179.102-4, 179.102-17, 179.103-1, 179.103-2, 179.103-3, 179.103-5, 179.200-10, 179.200-14, 179.200-15, 179.200-16, 179.200-17, 179.200-19,
+    179.201-3, 179.201-8, 179.201-9, 179.220-4, 179.220-7, 179.220-8, 179.220-13, 179.220-15, 179.220-17, 179.220-18, 179.220-20, 179.220-22, 179.300-3, 179.300-7, 179.300-9, 179.300-12, 179.300-13, 179.300-15,
+    179.300-20, 179.400-3, 179.400-4, 179.400-11, 179.400-13, 179.400-16, 179.400-17, 179.400-19, 179.400-20, 179.500-5, 179.500-8, 179.500-12, 179.500-18, 180.505, 180.509, 180.515, 180.517.
+
+    2137-0572
+
+    Testing requirements for non-bulk packages
+
+    §§ 173.168, 178.2, 178.601, appendix C to part 178, appendix D to part 178.
+
+    2137-0582
+
+    Container Certification Statement
+
+    §§ 176.27, 176.172.
+
+    2137-0586
+
+    Hazardous Materials Public Sector Training and Planning Grants
+
+    Part 110.
+
+    2137-0591
+
+    Response Plans for Shipments of Oil
+
+    Part 130.
+
+    2137-0595
+
+    Cargo Tank Motor Vehicles in Liquefied Compressed Gas Service
+
+    §§ 173.315, 178.337-8, 178.337-9, 180.405, 180.416.
+
+    2137-0612
+
+    Hazardous Materials Security Plans
+
+    Part 172, subpart I, §§ 172.800, 172.802, 172.804.
+
+    2137-0613
+
+    Subsidiary Hazard Class and Number/Type of Packagings
+
+    §§ 172.202, 172.203
+
+    2137-0620
+
+    Inspection and Testing of Meter Provers
+
+    Part 173, subpart A, § 173.5a.
+
+    2137-0621
+
+    Requirements for United Nations (UN) Cylinders
+
+    §§ 173.301, 173.304, 173.304b, 178.69, 178.70, 178.74, 178.75, 180.207, 180.209, 180.212, 180.215, 180.217.
+
+    2137-0628
+
+    Flammable Hazardous Materials by Rail Transportation
+
+    §§ 130.120, 171.16, 173.41, 173.145, 173.150, 174.310, 174.312.
+
+    [Amdt. 171-111, 56 FR 66157, Dec. 20, 1991]
+
+    Editorial Note:
+
+    For
+
+    Federal Register
+
+    citations affecting § 171.6, see the List of CFR Sections Affected, which appears in the Finding Aids section of the printed volume and at
+
+    www.govinfo.gov.'
+- id: art-7
+  title: § 171.7
+  text: '§ 171.7
+
+    Reference material.
+
+    (a) Certain material is incorporated by reference into subchapters A, B, and C with the approval of the Director of the Federal Register in accordance with 5 U.S.C. 552(a) and 1 CFR part 51. To enforce
+    any edition other than that
+
+    specified in this section, PHMSA must publish a document in the
+
+    Federal Register
+
+    and the material must be available to the public. All approved incorporation by reference (IBR) material is available for inspection at PHMSA and at the National Archives and Records Administration
+    (NARA). Contact PHMSA at: The Office of Hazardous Materials Safety, Office of Hazardous Materials Standards, East Building, PHH-10, 1200 New Jersey Avenue SE, Washington, DC 20590-0001. For information
+    on the availability of this material at PHH-10, call 1-800-467-4922, or go to:
+
+    www.phmsa.dot.gov.
+
+    For information on the availability of this m'
 doc_files:
 - us/raw/US-CFR-title49-part171.xml
+- us/raw/US-CFR-title49-part171.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title49-part171.xml (xml, 206203 chars)，生成 7 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title49-part171.xml (xml, 206203 chars)，生成 7 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title49-part171.xml (xml, 206200 chars)，生成 7 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE49-PART171-4（US 49 CFR Part 171）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE49-PART171-3（US 49 CFR Part 171）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE49-PART171-2（US 49 CFR Part 171）。'

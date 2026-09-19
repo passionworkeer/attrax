@@ -1,0 +1,27 @@
+id: KB-market-GLOBAL-GLOBAL-WIPO-MADRID
+regulation_id: GLOBAL-WIPO-MADRID
+doc_name: Madrid Agreement and Protocol Concerning the International Registration of Marks
+official_citation: Madrid Agreement and Protocol Concerning the International Registration of Marks
+short_name: 马德里协定与议定书 (商标国际注册)
+source: market
+primary_source: market
+domain: 知识产权
+applies_if:
+  category: []
+  features_any: []
+  markets:
+  - GLOBAL
+key_articles:
+- art-1
+- art-2
+key_points:
+- 马德里协定与议定书 (商标国际注册)：知识产权领域法规，适用于 GLOBAL 市场相关经营行为（库自动接入，按市场匹配）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://www.wipo.int/madrid/en/
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

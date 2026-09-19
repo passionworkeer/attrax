@@ -1,0 +1,25 @@
+id: KB-market-AU-AU-C2004A00039_TRADE_PRACTICES_ACT_LEGACY_TEXT
+regulation_id: AU-C2004A00039_TRADE_PRACTICES_ACT_LEGACY_TEXT
+doc_name: AU Trade Practices Act legacy text (legislation.gov.au)
+official_citation: AU Trade Practices Act legacy text (legislation.gov.au)
+short_name: AU Trade Practices Act legacy text (legislation.gov.au)
+source: market
+primary_source: market
+domain: 海关商贸
+applies_if:
+  category: []
+  features_any: []
+  markets:
+  - AU
+key_articles: []
+key_points:
+- AU Trade Practices Act legacy text (legislation.gov.au)：海关商贸领域法规，适用于 AU 市场相关经营行为（库自动接入，按市场匹配）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://www.legislation.gov.au/C2004A00039/latest/text
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

@@ -1,0 +1,26 @@
+id: KB-other-CN-CN-GB_9706-255-2022_-_-2-55-_
+regulation_id: CN-GB_9706-255-2022_-_-2-55-_
+doc_name: CN-GB GB 9706.255-2022 医用电气设备 第2-55部分：呼吸气体监护仪的基本安全和基本性能专用要求
+official_citation: CN-GB GB 9706.255-2022 医用电气设备 第2-55部分：呼吸气体监护仪的基本安全和基本性能专用要求
+short_name: CN-GB GB 9706.255-2022 医用电气设备 第2-55部分：呼吸气体监护仪的基本安全和基本性能专用要求
+source: category
+primary_source: other
+domain: other
+applies_if:
+  category:
+  - other
+  features_any: []
+  markets:
+  - CN
+key_articles: []
+key_points:
+- CN-GB GB 9706.255-2022 医用电气设备 第2-55部分：呼吸气体监护仪的基本安全和基本性能专用要求：其他品类领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=B5031A9635F8548CF48DB2BF66DF1B82
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

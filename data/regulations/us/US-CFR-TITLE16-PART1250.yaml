@@ -1,6 +1,6 @@
 id: US-CFR-TITLE16-PART1250
 official_citation: US 16 CFR Part 1250
-short_name: US 16 CFR Part 1250
+short_name: US 16 CFR Part 1250 — SAFETY STANDARD MANDATING ASTM F963 FOR TOYS
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,125 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '16
+
+    Commercial Practices
+
+    2
+
+    2024-01-01
+
+    2024-01-01
+
+    false
+
+    SAFETY'
+  text: '16
+
+    Commercial Practices
+
+    2
+
+    2024-01-01
+
+    2024-01-01
+
+    false
+
+    SAFETY STANDARD MANDATING ASTM F963 FOR TOYS
+
+    1250
+
+    PART 1250
+
+    Commercial Practices
+
+    CONSUMER PRODUCT SAFETY COMMISSION
+
+    CONSUMER PRODUCT SAFETY ACT REGULATIONS
+
+    Pt. 1250
+
+    PART 1250—SAFETY STANDARD MANDATING ASTM F963 FOR TOYS
+
+    Sec.
+
+    1250.1
+
+    Scope.
+
+    1250.2
+
+    Requirements for toy safety.
+
+    Authority:
+
+    Pub. L. 110-314, sec. 106, 122 Stat. 3016 (August 14, 2008); Pub. L. 112-28, 125 Stat. 273 (August 12, 2011).
+
+    Source:
+
+    82 FR 8993, Feb. 2, 2017, unless otherwise noted.'
+- id: art-2
+  title: § 1250.1
+  text: '§ 1250.1
+
+    Scope.
+
+    This part establishes a consumer product safety standard for toys that mandates provisions of ASTM F963.'
+- id: art-3
+  title: § 1250.2
+  text: '§ 1250.2
+
+    Requirements for toy safety.
+
+    (a) Except as provided for in paragraphs (b) and (c) of this section, toys must comply with the provisions of ASTM F963-17, Standard Consumer Safety Specification for Toy Safety, approved May 1, 2017.
+    The Director of the Federal Register approves the incorporation by reference listed in this section in accordance with 5 U.S.C. 552(a) and 1 CFR part 51. You may obtain a copy of this ASTM standard
+    from ASTM International, 100 Barr Harbor Drive, P.O. Box C700, West Conshohocken, PA 19428-2959 USA; phone: 610-832-9585;
+
+    http://www.astm.org/.
+
+    You may inspect a copy at the Office of the Secretary, U.S. Consumer Product Safety Commission, Room 820, 4330 East West Highway, Bethesda, MD 20814, telephone 301-504-7923, or at the National Archives
+    and Records Administration (NARA). For information on the availability of this material at NARA, call 202-741-6030, or go to:
+
+    http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html.
+
+    (b) Pursuant to section 106(a) of the Consumer Product Safety Improvement Act of 2008 section 4.2 and Annex 5 or any provision of ASTM F963 that restates or incorporates an existing mandatory standard
+    or ban promulgated by the Commission or by statute or any provision that restates or incorporates a regulation promulgated by the Food and Drug Administration or any statute administered by the Food
+    and Drug Administration are not part of the mandatory standard incorporated in paragraph (a) of this section.
+
+    (c) Instead of complying with section 8.20.1.5(5) of ASTM F963-17, comply with the following:
+
+    (1) Floor and tabletop toys that move, where the sound is caused as a result of the movement imparted on the toy (for example, a noise making mechanism attached to an axle of a toy vehicle) shall be
+    tested using the method for push and pull toys. In addition to the C-weighted peak measurement maximum A-weighted sound pressure level,
+
+    L
+
+    AFmax,
+
+    shall be made and compared to the requirements of 4.5.1.2.
+
+    (2) [Reserved]
+
+    [82 FR 8993, Feb. 2, 2017, as amended at 82 FR 57123, Dec. 4, 2017]'
 doc_files:
 - us/raw/US-CFR-title16-part1250.xml
+- us/raw/US-CFR-title16-part1250.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1250.xml (xml, 2714 chars)，生成 3 条共 2714 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1250.xml (xml, 2714 chars)，生成 3 条共 2714 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1250.xml (xml, 2714 chars)，生成 3 条共 2714 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1250-4（US 16 CFR Part 1250）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1250-3（US 16 CFR Part 1250）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1250-2（US 16 CFR Part 1250）。'

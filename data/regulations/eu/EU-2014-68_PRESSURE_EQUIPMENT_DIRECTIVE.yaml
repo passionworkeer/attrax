@@ -9,11 +9,1097 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'L_2014189EN.01016401.xml
+
+
+    27.6.2014
+
+
+    EN
+
+
+    Official Journal of'
+  text: 'L_2014189EN.01016401.xml
+
+
+    27.6.2014
+
+
+    EN
+
+
+    Official Journal of the European Union
+
+
+    L 189/164
+
+
+    DIRECTIVE 2014/68/EU OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL
+
+
+
+    of 15 May 2014
+
+
+
+    on the harmonisation of the laws of the Member States relating to the making available on the market of pressure equipment
+
+
+    (recast)
+
+
+    (Text with EEA relevance)
+
+
+    THE EUROPEAN PARLIAMENT AND THE COUNCIL OF THE EUROPEAN UNION,
+
+
+    Having regard to the Treaty on the Functioning of the European Union, and in particular Article 114 thereof,
+
+
+    Having regard to the proposal from the European Commission,
+
+
+    After transmission of the draft legislative act to the national parliaments,
+
+
+    Having regard to the opinion of the European Economic and Social Committee
+
+    (
+
+    1
+
+    )
+
+    ,
+
+
+    Acting in accordance with the ordinary legislative procedure
+
+    (
+
+    2
+
+    )
+
+    ,
+
+
+    Whereas:
+
+
+    (1)
+
+
+    Directive 97/23/EC of the European Parliament and of the Council
+
+    (
+
+    3
+
+    )
+
+    has been substantially amended
+
+    (
+
+    4
+
+    )
+
+    . Since further amendments are to be made, that Directive should be recast in the interests of clarity.
+
+
+    (2)
+
+
+    Regulation (EC) No 765/2008 of the European Parliament and of the Council
+
+    (
+
+    5
+
+    )
+
+    lays down rules on the accreditation of conformity assessment bodies, provides a framework for the market surveillance of products and for controls on products from third countries, and lays down the
+    general principles of the CE marking.
+
+
+    (3)
+
+
+    Decision No 768/2008/EC of the European Parliament and of the Council
+
+    (
+
+    6
+
+    )
+
+    lays down common principles and reference provisions intended to apply across sectoral legislation in order to provide a coherent basis for revision or recasts of that legislation. Directive 97/23/EC
+    should therefore be adapted to that Decision.
+
+
+    (4)
+
+
+    This Directive covers pressure equipment and assemblies which are new to the Union market when they are placed on the market; that is to say they are either new pressure equipment or assemblies made
+    by a manufacturer established in the Union or pressure equipment or assemblies, whether new or second-hand, imported from a third country.
+
+
+    (5)
+
+
+    This Directive should apply to all forms of supply, including distance selling.
+
+
+    (6)
+
+
+    This Directive should apply to pressure equipment subject to a maximum allowable pressure PS greater than 0,5 bar. Pressure equipment subject to a pressure of not more than 0,5 bar does not pose a significant
+    risk due to pressure. Therefore, there should not be any obstacle to its free movement within the Union.
+
+
+    (7)
+
+
+    This Directive should also apply to assemblies composed of several pieces of pressure equipment assembled to constitute an integrated and functional whole. Those assemblies may range from simple assemblies
+    such as pressure cookers to complex assemblies such as water tube boilers. If the manufacturer of an assembly intends to place it on the market and put it into service as an assembly — and not in the
+    form of its constituent non-assembled elements — that assembly should comply with this Directive. However, this Directive should not apply to the assembly of pressure equipment on the site and under
+    the responsibility of a user who is not the manufacturer, as in the case of industrial installations.
+
+
+    (8)
+
+
+    This Directive should harmonise national provisions on risks due to pressure. The other risks which this equipment may present may fall within the scope of other Directives dealing with those risks.
+
+
+    (9)
+
+
+    However, some pressure equipment is covered by other Directives based on Article 114 of the Treaty on the Functioning of the European Union (TFEU). The provisions laid down in some of those Directives
+    deal also with the risk due to pressure. Those Directives are considered adequate to provide appropriate protection where the risk due to pressure associated with such equipment remains small. Therefore,
+    such equipment should be excluded from the scope of this Directive.
+
+
+    (10)
+
+
+    For some pressure equipment covered by international agreements for its international transport, national transport and pressure hazards and risks are dealt with by Union Directives based on such agreements.
+    Those Directives extend the application of those agreements to national transport, in order to ensure the free movement of dangerous goods whilst enhancing transport safety. Such equipment which is
+    covered by Directive 2008/68/EC of the European Parliament and of the Council
+
+    (
+
+    7
+
+    )
+
+    and by Directive 2010/35/EU of the European Parliament and of the Council
+
+    (
+
+    8
+
+    )
+
+    should be excluded from the scope of this Directive.
+
+
+    (11)
+
+
+    Certain types of pressure equipment, although subject to a maximum allowable pressure PS greater than 0,5 bar, do not present any significant risk due to pressure, and therefore the free movement of
+    such equipment in the Union should not be hindered if it has been legally manufactured or placed on the market in a Member State. It is not necessary in order to ensure free movement of such equipment
+    to include it within the scope of this Directive. Consequently it should be expressly excluded from its scope.
+
+
+    (12)
+
+
+    Other pressure equipment subject to a maximum allowable pressure greater than 0,5 bar and presenting a significant risk due to pressure, but in respect of which free movement and an appropriate level
+    of safety are guaranteed, should be excluded from the scope of this Directive. Such exclusions should, however, be regularly reviewed in order to ascertain whether it is necessary to take action at
+    Union level.
+
+
+    (13)
+
+
+    The scope of this Directive should be based on a general definition of the term ‘pressure equipment’ so as to allow for the technical development of products.
+
+
+    (14)
+
+
+    Compliance with the essential safety requirements is necessary in order to ensure the safety of pressure equipment. Those requirements should be subdivided into general and specific requirements that
+    need to be met by pressure equipment. In particular the specific requirements should take account of particular types of pressure equipment. Certain types of pressure equipment in categories III and
+    IV should be subject to a final assessment comprising final inspection and proof tests.
+
+
+    (15)
+
+
+    Member States should be in a position to allow the showing at trade fairs of pressure equipment which is not yet in conformity with the requirements of this Directive. During demonstrations, appropriate
+    safety measures should be taken in accordance with the general safety rules of the Member State concerned to ensure the safety of persons.
+
+
+    (16)
+
+
+    Directive 97/23/EC provides for a classification of pressure equipment in categories, according to the ascending level of hazard. This includes the classification of the fluid contained in the pressure
+    equipment as dangerous or not, according to Council Directive 67/548/EEC
+
+    (
+
+    9
+
+    )
+
+    . On 1 June 2015 Directive 67/548/EEC is to be repealed and replaced by Regulation (EC) No 1272/2008 of the European Parliament and of the Council
+
+    (
+
+    10
+
+    )
+
+    , which implements in the Union the Globally Harmonised System of Classification and Labelling of Chemicals that has been adopted at international level, within the United Nations structure. Regulation
+    (EC) No 1272/2008 introduces new hazard classes and categories only partially corresponding to those provided for by Directive 67/548/EEC. Directive 97/23/EC should therefore be aligned to Regulation
+    (EC) No 1272/2008 while maintaining the existing levels of protection provided for in that Directive.
+
+
+    (17)
+
+
+    Economic operators should be responsible for the compliance of pressure equipment and assemblies with the requirements of this Directive, in relation to their respective roles in the supply chain, so
+    as to ensure a high level of protection of public interests, such as health and safety of persons, and the protection of domestic animals and of property, and to guarantee fair competition on the Union
+    market.
+
+
+    (18)
+
+
+    All economic operators intervening in the supply and distribution chain should take appropriate measures to ensure that they only make available on the market pressure equipment and assemblies which
+    are in conformity with this Directive. It is necessary to provide for a clear and proportionate distribution of obligations which correspond to the role of each economic operator in the supply and distribution
+    chain.
+
+
+    (19)
+
+
+    The manufacturer, having detailed knowledge of the design and production process, is best placed to carry out the conformity assessment procedure. Conformity assessment should therefore remain solely
+    the obligation of the manufacturer.
+
+
+    (20)
+
+
+    In order to facilitate the communication between economic operators, market surveillance authorities and consumers, Member States should encourage economic operators to include a website address in
+    addition to the postal address.
+
+
+    (21)
+
+
+    It is necessary to ensure that pressure equipment and assemblies from third countries entering the Union market comply with the requirements of this Directive, and in particular that appropriate conformity
+    assessment procedures have been carried out by manufacturers with regard to that pressure equipment or those assemblies. Provision should therefore be made for importers to make sure that the pressure
+    equipment or assembly they place on the market complies with the requirements of this Directive and that they do not place on the market pressure equipment or assemblies which do not comply with such
+    requirements or presents a risk. Provision should also be made for importers to make sure that the conformity assessment procedures have been carried out and that marking of pressure equipment or assemblies
+    and documentation drawn up by manufacturers are available for inspection by the competent national authorities.
+
+
+    (22)
+
+
+    When placing pressure equipment or assemblies on the market, every importer should indicate on the pressure equipment or assembly his name, registered trade name or registered trade mark and the postal
+    address at which he can be contacted. Exceptions should be provided for in cases where the size or nature of the pressure equipment or assembly does not allow it. This includes cases where the importer
+    would have to open the packaging to put his name and address on the pressure equipment or assembly.
+
+
+    (23)
+
+
+    The distributor makes pressure equipment or assemblies available on the market after they have been placed on the market by the manufacturer or the importer and should act with due care to ensure that
+    its handling of the pressure equipment or assembly does not adversely affect the compliance of the pressure equipment or assembly with the requirements of this Directive.
+
+
+    (24)
+
+
+    Any economic operator that either places pressure equipment or assemblies on the market under his own name or trademark or modifies pressure equipment or assemblies in such a way that compliance with
+    the requirements of this Directive may be affected should be considered to be the manufacturer and should assume the obligations of the manufacturer.
+
+
+    (25)
+
+
+    Distributors and importers, being close to the market place, should be involved in market surveillance tasks carried out by the competent national authorities, and should be prepared to participate
+    actively, providing those authorities with all necessary information relating to the pressure equipment or assembly concerned.
+
+
+    (26)
+
+
+    Ensuring traceability of pressure equipment and assemblies throughout the whole supply chain helps to make market surveillance simpler and more efficient. An efficient traceability system facilitates
+    market surveillance authorities’ task of tracing economic operators who made non-compliant pressure equipment or assemblies available on the market.
+
+
+    (27)
+
+
+    When keeping the information required under this Directive for the identification of other economic operators, economic operators should not be required to update such information in respect of other
+    economic operators who have either supplied them with pressure equipment or an assembly or to whom they have supplied pressure equipment or an assembly.
+
+
+    (28)
+
+
+    This Directive should be limited to the expression of the essential safety requirements. In '
+- id: art-2
+  title: CHAPTER 1
+  text: 'CHAPTER 1
+
+
+    GENERAL PROVISIONS'
+- id: art-3
+  title: Article 1
+  text: 'Article 1
+
+
+    Scope
+
+
+    1.   This Directive shall apply to the design, manufacture and conformity assessment of pressure equipment and assemblies with a maximum allowable pressure PS greater than 0,5 bar.
+
+
+    2.   This Directive shall not apply to:
+
+
+    (a)
+
+
+    pipelines comprising piping or a system of piping designed for the conveyance of any fluid or substance to or from an installation (onshore or offshore) starting from and including the last isolation
+    device located within the confines of the installation, including all the annexed equipment designed specifically for pipelines; this exclusion shall not apply to standard pressure equipment such as
+    may be found in pressure reduction stations or compression stations;
+
+
+    (b)
+
+
+    networks for the supply, distribution and discharge of water and associated equipment and headraces such as penstocks, pressure tunnels, pressure shafts for hydroelectric installations and their related
+    specific accessories;
+
+
+    (c)
+
+
+    simple pressure vessels covered by Directive 2014/29/EU of the European Parliament and of the Council
+
+    (
+
+    13
+
+    )
+
+    ;
+
+
+    (d)
+
+
+    aerosol dispensers covered by Council Directive 75/324/EEC
+
+    (
+
+    14
+
+    )
+
+    ;
+
+
+    (e)
+
+
+    equipment intended for the functioning of vehicles defined by the following legal acts:
+
+
+    (i)
+
+
+    Directive 2007/46/EC of the European Parliament and of the Council
+
+    (
+
+    15
+
+    )
+
+    ;
+
+
+    (ii)
+
+
+    Regulation (EU) No 167/2013 of the European Parliament and of the Council
+
+    (
+
+    16
+
+    )
+
+    ;
+
+
+    (iii)
+
+
+    Regulation (EU) No 168/2013 of the European Parliament and of the Council
+
+    (
+
+    17
+
+    )
+
+    ;
+
+
+    (f)
+
+
+    equipment classified as no higher than category I under Article 13 of this Directive and covered by one of the following Directives:
+
+
+    (i)
+
+
+    Directive 2006/42/EC of the European Parliament and of the Council
+
+    (
+
+    18
+
+    )
+
+    ;
+
+
+    (ii)
+
+
+    Directive 2014/33/EU of the European Parliament and of the Council
+
+    (
+
+    19
+
+    )
+
+    ;
+
+
+    (iii)
+
+
+    Directive 2014/35/EU of the European Parliament and of the Council
+
+    (
+
+    20
+
+    )
+
+    ;
+
+
+    (iv)
+
+
+    Council Directive 93/42/EEC
+
+    (
+
+    21
+
+    )
+
+    ;
+
+
+    (v)
+
+
+    Directive 2009/142/EC of the European Parliament and of the Council
+
+    (
+
+    22
+
+    )
+
+    ;
+
+
+    (vi)
+
+
+    Directive 2014/34/EU of the European Parliament and of the Council
+
+    (
+
+    23
+
+    )
+
+    ;
+
+
+    (g)
+
+
+    equipment covered by point (b) of Article 346(1) TFEU;
+
+
+    (h)
+
+
+    items specifically designed for nuclear use, failure of which may cause an emission of radioactivity;
+
+
+    (i)
+
+
+    well-control equipment used in the petroleum, gas or geothermal exploration and extraction industry and in underground storage which is intended to contain and/or control well pressure; this shall comprise
+    the wellhead (Christmas tree), the blow out preventers (BOP), the piping manifolds and all their equipment upstream;
+
+
+    (j)
+
+
+    equipment comprising casings or machinery where the dimensioning, choice of material and manufacturing rules are based primarily on requirements for sufficient strength, rigidity and stability to meet
+    the static and dynamic operational effects or other operational characteristics and for which pressure is not a significant design factor; such equipment may include:
+
+
+    (i)
+
+
+    engines including turbines and internal combustion engines;
+
+
+    (ii)
+
+
+    steam engines, gas/steam turbines, turbo-generators, compressors, pumps and actuating devices;
+
+
+    (k)
+
+
+    blast furnaces including the furnace cooling system, hot-blast recuperators, dust extractors and blast-furnace exhaust-gas scrubbers and direct reducing cupolas, including the furnace cooling, gas converters
+    and pans for melting, re-melting, de-gassing and casting of steel, iron and non-ferrous metals;
+
+
+    (l)
+
+
+    enclosures for high-voltage electrical equipment such as switchgear, control gear, transformers, and rotating machines;
+
+
+    (m)
+
+
+    pressurised pipes for the containment of transmission systems, e.g. for electrical power and telephone cables;
+
+
+    (n)
+
+
+    ships, rockets, aircraft and mobile off-shore units, as well as equipment specifically intended for installation on board or the propulsion thereof;
+
+
+    (o)
+
+
+    pressure equipment consisting of a flexible casing, e.g. tyres, air cushions, balls used for play, inflatable craft, and other similar pressure equipment;
+
+
+    (p)
+
+
+    exhaust and inlet silencers;
+
+
+    (q)
+
+
+    bottles or cans for carbonated drinks for final consumption;
+
+
+    (r)
+
+
+    vessels designed for the transport and distribution of drinks having a PS·V of not more than 500 bar·L and a maximum allowable pressure not exceeding 7 bar;
+
+
+    (s)
+
+
+    equipment covered by Directive 2008/68/EC and Directive 2010/35/EU and equipment covered by the International Maritime Dangerous Goods Code and the Convention on International Civil Aviation;
+
+
+    (t)
+
+
+    radiators and pipes in warm water heating systems;
+
+
+    (u)
+
+
+    vessels designed to contain liquids with a gas pressure above the liquid of not more than 0,5 bar.'
+- id: art-4
+  title: Article 2
+  text: 'Article 2
+
+
+    Definitions
+
+
+    For the purposes of this Directive, the following definitions shall apply:
+
+
+    (1)
+
+
+    ‘pressure equipment’ means vessels, piping, safety accessories and pressure accessories, including, where applicable, elements attached to pressurised parts, such as flanges, nozzles, couplings, supports,
+    lifting lugs;
+
+
+    (2)
+
+
+    ‘vessel’ means a housing designed and built to contain fluids under pressure including its direct attachments up to the coupling point connecting it to other equipment; a vessel may be composed of more
+    than one chamber;
+
+
+    (3)
+
+
+    ‘piping’ means piping components intended for the transport of fluids, when connected together for integration into a pressure system; piping includes in particular a pipe or system of pipes, tubing,
+    fittings, expansion joints, hoses, or other pressure-bearing components as appropriate; heat exchangers consisting of pipes for the purpose of cooling or heating air shall be considered as piping;
+
+
+    (4)
+
+
+    ‘safety accessories’ means devices designed to protect pressure equipment against the allowable limits being exceeded, including devices for direct pressure limitation, such as safety valves, bursting
+    disc safety devices, buckling rods, controlled safety pressure relief systems (CSPRS), and limiting devices, which either activate the means for correction or provide for shutdown or shutdown and lockout,
+    such as pressure switches or temperature switches or fluid level switches and safety related measurement control and regulation (SRMCR) devices;
+
+
+    (5)
+
+
+    ‘pressure accessories’ means devices with an operational function and having pressure-bearing housings;
+
+
+    (6)
+
+
+    ‘assemblies’ means several pieces of pressure equipment assembled by a manufacturer to constitute an integrated and functional whole;
+
+
+    (7)
+
+
+    ‘pressure’ means pressure relative to atmospheric pressure, i.e. gauge pressure. As a consequence, vacuum is designated by a negative value;
+
+
+    (8)
+
+
+    ‘maximum allowable pressure PS’ means the maximum pressure for which the equipment is designed, as specified by the manufacturer, and defined at a location specified by him, being either the connection
+    of protective and/or limiting devices, or the top of equipment or, if not appropriate, any point specified;
+
+
+    (9)
+
+
+    ‘maximum/minimum allowable temperature TS’ means the maximum/minimum temperatures for which the equipment is designed, as specified by the manufacturer;
+
+
+    (10)
+
+
+    ‘volume (V)’ means the internal volume of a chamber, including the volume of nozzles to the first connection or weld and excluding the volume of permanent internal parts;
+
+
+    (11)
+
+
+    ‘nominal size (DN)’ means a numerical designation of size which is common to all components in a piping system other than components indicated by outside diameters or by thread size; it is a convenient
+    round number for reference purposes and is only loosely related to manufacturing dimensions; the nominal size is designated by DN followed by a number;
+
+
+    (12)
+
+
+    ‘fluids’ means gases, liquids and vapours in pure phase as well as mixtures thereof; fluids may contain a suspension of solids;
+
+
+    (13)
+
+
+    ‘permanent joints’ means joints which cannot be disconnected except by destructive methods;
+
+
+    (14)
+
+
+    ‘European approval for materials’ means a technical document defining the characteristics of materials intended for repeated use in the manufacture of pressure equipment which are not covered by any
+    harmonised standard;
+
+
+    (15)
+
+
+    ‘making available on the market’ means any supply of pressure equipment or assemblies for distribution or use on the Union market in the course of a commercial activity, whether in return for payment
+    or free of charge;
+
+
+    (16)
+
+
+    ‘placing on the market’ means the first making available of pressure equipment or assemblies on the Union market;
+
+
+    (17)
+
+
+    ‘putting into service’ means the first use of pressure equipment or an assembly by its user;
+
+
+    (18)
+
+
+    ‘manufacturer’ means any natural or legal person who manufactures pressure equipment or an assembly or has such equipment or assembly designed or manufactured, and markets that pressure equipment or
+    assembly under his name or trademark or uses it for his own purposes;
+
+
+    (19)
+
+
+    ‘authorised representative’ means any natural or legal person established within the Union who has received a written mandate from a manufacturer to act on his behalf in relation to specified tasks;
+
+
+    (20)
+
+
+    ‘importer’ means any natural or legal person established within the Union who places pressure equipment or assemblies from a third country on the Union market;
+
+
+    (21)
+
+
+    ‘distributor’ means any natural or legal person in the supply chain, other than the manufacturer or the importer, who makes pressure equipment or assemblies available on the market;
+
+
+    (22)
+
+
+    ‘economic operators’ means the manufacturer, the authorised representative, the importer and the distributor;
+
+
+    (23)
+
+
+    ‘technical specification’ means a document that prescribes technical requirements to be fulfilled by pressure equipment or assemblies;
+
+
+    (24)
+
+
+    ‘harmonised standard’ means harmonised standard as defined in point (c) of Article 2(1) of Regulation (EU) No 1025/2012;
+
+
+    (25)
+
+
+    ‘accreditation’ means accreditation as defined in point 10 of Article 2 of Regulation (EC) No 765/2008;
+
+
+    (26)
+
+
+    ‘national accreditation body’ means national accreditation body as defined in point 11 of Article 2 of Regulation (EC) No 765/2008;
+
+
+    (27)
+
+
+    ‘conformity assessment’ means the process demonstrating whether the essential safety requirements of this Directive relating to pressure equipment or assemblies have been fulfilled;
+
+
+    (28)
+
+
+    ‘conformity assessment body’ means a body that performs conformity assessment activities including calibration, testing, certification and inspection;
+
+
+    (29)
+
+
+    ‘recall’ means any measure aimed at achieving the return of pressure equipment or assemblies that have already been made available to consumers or other users;
+
+
+    (30)
+
+
+    ‘withdrawal’ means any measure aimed at preventing pressure equipment or assemblies in the supply chain from being made available on the market;
+
+
+    (31)
+
+
+    ‘CE marking’ means a marking by which the manufacturer indicates that the pressure equipment or assembly is in conformity with the applicable requirements set out in Union harmonisation legislation
+    providing for its affixing;
+
+
+    (32)
+
+
+    ‘Union harmonisation legislation’ means any Union legislation harmonising the conditions for the marketing of products.'
+- id: art-5
+  title: Article 3
+  text: 'Article 3
+
+
+    Making available on the market and putting into service
+
+
+    1.   Member States shall take all appropriate measures to ensure that pressure equipment and assemblies may be made available on the market and put into service only if they satisfy the requirements
+    of this Directive when properly installed and maintained and used for the purposes for which they are intended.
+
+
+    2.   This Directive shall not affect Member States’ entitlement to lay down such requirements as they may deem necessary to ensure that persons and, in particular, workers are protected during use of
+    the pressure equipment or assembly in question provided that this does not mean modifications to such equipment or assembly in a way not specified in this Directive.
+
+
+    3.   At trade fairs, exhibitions, demonstrations and other similar events, Member States shall not prevent the showing of pressure equipment or assemblies which do not comply with this Directive, provided
+    that a visible sign clearly indicates that such pressure equipment or assemblies may not be made available on the market and/or put into service until they are brought into conformity. During demonstrations,
+    appropriate safety measures shall be taken in accordance with any requirements laid down by the competent authority of the Member State concerned in order to ensure the safety of persons.'
+- id: art-6
+  title: Article 4
+  text: 'Article 4
+
+
+    Technical requirements
+
+
+    1.   The following pressure equipment shall satisfy the essential safety requirements set out in Annex I:
+
+
+    (a)
+
+
+    vessels, except those referred to in point (b), for:
+
+
+    (i)
+
+
+    gases, liquefied gases, gases dissolved under pressure, vapours and also those liquids whose vapour pressure at the maximum allowable temperature is greater than 0,5 bar above normal atmospheric pressure
+    (1 013 mbar) within the following limits:
+
+
+    —
+
+
+    for fluids in Group 1 with a volume greater than 1 L and a product of PS and V greater than 25 bar·L, or with a pressure PS greater than 200 bar (Annex II, table 1),
+
+
+    —
+
+
+    for fluids in Group 2, with a volume greater than 1 L and a product of PS and V is greater than 50 bar·L, or with a pressure PS greater than 1 000 bar, and all portable extinguishers and bottles for
+    breathing apparatus (Annex II, table 2);
+
+
+    (ii)
+
+
+    liquids having a vapour pressure at the maximum allowable temperature of not more than 0,5 bar above normal atmospheric pressure (1 013 mbar) within the following limits:
+
+
+    —
+
+
+    for fluids in Group 1 with a volume greater than 1 L and a product of PS and V greater than 200 bar·L, or with a pressure PS greater than 500 bar (Annex II, table 3),
+
+
+    —
+
+
+    for fluids in Group 2 with a pressure PS greater than 10 bar and a product of PS and V greater than 10 000 bar·L, or with a pressure PS greater than 1 000 bar (Annex II, table 4);
+
+
+    (b)
+
+
+    fired or otherwise heated pressure equipment with the risk of overheating intended for generation of steam or super-heated water at temperatures higher than 110 °C having a volume greater than 2 L,
+    and all pressure cookers (Annex II, table 5);
+
+
+    (c)
+
+
+    piping intended for:
+
+
+    (i)
+
+
+    gases, liquefied gases, gases dissolved under pressure, vapours and those liquids whose vapour pressure at the maximum allowable temperature is greater than 0,5 bar above normal atmospheric pressure
+    (1 013 mbar) within the following limits:
+
+
+    —
+
+
+    for fluids in Group 1 with a DN greater than 25 (Annex II, table 6),
+
+
+    —
+
+
+    for fluids in Group 2 with a DN greater than 32 and a product of PS and DN greater than 1 000 bar (Annex II, table 7);
+
+
+    (ii)
+
+
+    liquids having a vapour pressure at the maximum allowable temperature of not more than 0,5 bar above normal atmospheric pressure (1 013 mbar) within the following limits:
+
+
+    —
+
+
+    for fluids in Group 1 with a DN greater than 25 and a product of PS and DN greater than 2 000 bar (Annex II, table 8),
+
+
+    —
+
+
+    for fluids in Group 2 with a PS greater than 10 bar, a DN greater than 200 and a product of PS and DN greater than 5 000 bar (Annex II, table 9).
+
+
+    (d)
+
+
+    safety and pressure accessories intended for equipment covered by points (a), (b), and (c) including where such equipment is incorporated into an assembly.
+
+
+    2.   The following assemblies which include at least one item of pressure equipment covered by paragraph 1 shall satisfy the essential safety requirements set out in Annex I:
+
+
+    (a)
+
+
+    assemblies intended for generating steam or superheated water at a temperature higher than 110 °C comprising at least one item of fired or otherwise heated pressure equipment presenting a risk of overheating;
+
+
+    (b)
+
+
+    assemblies other than those referred to in point (a), if the manufacturer intends them to be made available on the market and put into service as assemblies.
+
+
+    By way of derogation from the first subparagraph, assemblies intended for generating warm water at temperatures not greater than 110 °C which are manually fed with solid fuels and have a PS·V greater
+    than 50 bar·L shall comply with the essential safety requirements referred to in points 2.10, 2.11, 3.4, 5 (a) and 5 (d) of Annex I.
+
+
+    3.   Pressure equipment and assemblies below or equal to the limits set out in points (a), (b) and (c) of paragraph 1 and in paragraph 2 respectively shall be designed and manufactured in accordance
+    with the sound engineering practice of a Member State in order to ensure safe use. Pressure equipment and assemblies shall be accompanied by adequate instructions for use.
+
+
+    Without prejudice to other applicable Union harmonisation legislation providing for its affixing, such equipment or assemblies shall not bear the CE marking referred to in Article 18.'
+- id: art-7
+  title: Article 5
+  text: 'Article 5
+
+
+    Free movement
+
+
+    1.   Member States shall not, on grounds of the risks due to pressure, prohibit, restrict or impede the making available on the market or the putting into service under the conditions specified by the
+    manufacturer of pressure equipment or assemblies which comply with this Directive.
+
+
+    Member States shall not, on grounds of the risks due to pressure, prohibit, restrict or impede the making available on the market or the putting into service of pressure equipment or assemblies which
+    comply with Article 4(3).
+
+
+    2.   When a Member State has designated a user inspectorate in accordance with the requirements set out in Article 25, it may not, on grounds of the risks due to pressure, prohibit, restrict or impede
+    the placing on the market or putting into service under the conditions provided for in Article 16, of pressure equipment or assemblies the conformity of which has been assessed by a user inspectorate
+    designated by another Member State in accordance with the requirements set out in Article 25.
+
+
+    3.   Member States may require, to the extent that it is needed for safe and correct use of pressure equipment and assemblies, the information referred to in points 3.3 and 3.4 of Annex I to be provided
+    in the official language(s) of the Union which may be determined by the Member State in which the equipment or assembly is made available on the market.'
+- id: art-8
+  title: CHAPTER 2
+  text: 'CHAPTER 2
+
+
+    OBLIGATIONS OF ECONOMIC OPERATORS'
+- id: art-9
+  title: Article 6
+  text: 'Article 6
+
+
+    Obligations of manufacturers
+
+
+    1.   When placing their pressure equipment or assemblies referred to in Article 4(1) and (2) on the market or using them for their own purposes, manufacturers shall ensure that they have been designed
+    and manufactured in accordance with the essential safety requirements set out in Annex I.
+
+
+    When placing their pressure equipment or assemblies referred to in Article 4(3) on the market or using them for their own purposes, manufacturers shall ensure that they have been designed and manufactured
+    in accordance with the sound engineering practice of a Member State.
+
+
+    2.   For the pressure equipment or assemblies referred to in Article 4(1) and (2), manufacturers shall draw up the technical documentation referred to in Annex III and carry out the relevant conformity
+    assessment procedure referred to in Article 14 or have it carried out.
+
+
+    Where compliance of the pressure equipment or assemblies referred to in Article 4(1) and (2) with the applicable requirements has been demonstrated by the procedure referred to in the first subparagraph
+    of this paragraph, manufacturers shall draw up an EU declaration of conformity and affix the CE marking.
+
+
+    3.   Manufacturers shall keep the technical documentation and the EU declaration of conformity for 10 years after pressure equipment or assemblies have been placed on the market.
+
+
+    4.   Manufacturers shall ensure that procedures are in place for series production to remain in conformity with this Directive. Changes in design or characteristics of pressure equipment or assemblies
+    and changes in the harmonised standards or in other technical specifications by reference to which conformity of pressure equipment or assemblies is declared shall be adequately taken into account.
+
+
+    When deemed appropriate with regard to the risks presented by pressure equipment or assemblies, manufacturers shall, to protect the health and safety of consumers and other users, carry out sample testing
+    of pressure equipment or assemblies made available on the market, investigate, and, i'
 doc_files:
 - eu/raw/EU-2014-68_Pressure_Equipment_Directive.xhtml
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2014-68_Pressure_Equipment_Directive.xhtml (html, 267472 chars)，生成 7 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2014-68_Pressure_Equipment_Directive.xhtml (html, 267472 chars)，生成 7 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2014-68_Pressure_Equipment_Directive.xhtml (html, 267312 chars)，生成 9 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

@@ -1,0 +1,25 @@
+id: KB-market-AE-AE-VAT-EXEC-REG
+regulation_id: AE-VAT-EXEC-REG
+doc_name: Cabinet Decision No. 100 of 2024 (VAT Executive Regulations amendment)
+official_citation: Cabinet Decision No. 100 of 2024 (VAT Executive Regulations amendment)
+short_name: 阿联酋 VAT 执行条例 (第 100 号内阁决定)
+source: market
+primary_source: market
+domain: 税务
+applies_if:
+  category: []
+  features_any: []
+  markets:
+  - AE
+key_articles: []
+key_points:
+- 阿联酋 VAT 执行条例 (第 100 号内阁决定)：税务领域法规，适用于 AE 市场相关经营行为（库自动接入，按市场匹配）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://tax.gov.ae/en/legislation/vat.aspx
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

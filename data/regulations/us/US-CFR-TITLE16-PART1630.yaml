@@ -1,6 +1,6 @@
 id: US-CFR-TITLE16-PART1630
 official_citation: US 16 CFR Part 1630
-short_name: US 16 CFR Part 1630
+short_name: US 16 CFR Part 1630 — STANDARD FOR THE SURFACE FLAMMABILITY OF CARPETS AND RUGS (FF 1-70)
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,708 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '16
+
+    Commercial Practices
+
+    2
+
+    2024-01-01
+
+    2024-01-01
+
+    false
+
+    STANDA'
+  text: '16
+
+    Commercial Practices
+
+    2
+
+    2024-01-01
+
+    2024-01-01
+
+    false
+
+    STANDARD FOR THE SURFACE FLAMMABILITY OF CARPETS AND RUGS (FF 1-70)
+
+    1630
+
+    PART 1630
+
+    Commercial Practices
+
+    CONSUMER PRODUCT SAFETY COMMISSION
+
+    FLAMMABLE FABRICS ACT REGULATIONS
+
+    Pt. 1630
+
+    PART 1630—STANDARD FOR THE SURFACE FLAMMABILITY OF CARPETS AND RUGS (FF 1-70)
+
+    Subpart A—The Standard
+
+    Sec.
+
+    1630.1
+
+    Definitions.
+
+    1630.2
+
+    Scope and application.
+
+    1630.3
+
+    General requirements.
+
+    1630.4
+
+    Test procedure.
+
+    1630.5
+
+    Labeling.
+
+    Subpart B—Rules and Regulations
+
+    1630.31
+
+    Reasonable and representative tests and recordkeeping requirements.
+
+    1630.32
+
+    Carpets and rugs with fire-retardant treatment.
+
+    Subpart C—Washing Procedures
+
+    1630.61
+
+    Hide carpets and rugs—alternative washing procedure.
+
+    1630.62
+
+    Wool flokati carpets and rugs—alternative washing procedure.
+
+    1630.63
+
+    Suspension of washing requirements for carpets and rugs with alumina trihydrate in the backing.
+
+    Subpart D—Interpretations and Policies
+
+    1630.81
+
+    Policy on recall of noncomplying carpets and rugs.
+
+    Source:
+
+    40 FR 59931, Dec. 30, 1975, unless otherwise noted.
+
+    Subpart A—The Standard
+
+    Authority:
+
+    Sec. 4, 67 Stat. 112, as amended, 81 Stat. 569-70; 15 U.S.C. 1193.'
+- id: art-2
+  title: § 1630.1
+  text: '§ 1630.1
+
+    Definitions.
+
+    In addition to the definitions given in section 2 of the Flammable Fabrics Act, as amended (Sec. 1, 81 Stat. 568; 15 U.S.C. 1191), and the procedures under that act for setting standards (part 1607
+    of this chapter), the following definitions apply for the purposes of this Standard:
+
+    (a)
+
+    Acceptance Criterion
+
+    means that at least seven out of eight individual specimens of a given carpet or rug shall meet the test criterion as defined in this Standard.
+
+    (b)
+
+    Test Criterion
+
+    means the basis for judging whether or not a single specimen of carpet or rug has passed the test, i.e., the charred portion of a tested specimen shall not extend to within 2.54 cm. (1.0 in.) of the
+    edge of the hole in the flattening frame at any point.
+
+    (c)
+
+    Carpet
+
+    means any type of finished product made in whole or in part of fabric or related material and intended for use or which may reasonably be expected to be used as a floor covering which is exposed to
+    traffic in homes, offices, or other places of assembly or accommodation, and which may or may not be fastened to the floor by mechanical means such as nails, tacks, barbs, staples, adhesives, and which
+    has one dimension greater than 1.83 m. (6 ft.) and a surface area greater than 2.23 m.
+
+    2
+
+    (24 sq. ft.). Products such as “carpet squares”, with one dimension less than 1.83 m. (6 ft.) and a surface area less than 2.23 m.
+
+    2
+
+    (24 sq. ft.), but intended to be assembled upon installation into assemblies which may have one dimension greater than 1.83 m. (6 ft.) and a surface area greater than 2.23 m.
+
+    2
+
+    (24 sq. ft.), are included in this definition. Mats, hides with natural or synthetic fibers, and other similar products in the above, defined dimensions are included in this definition, but resilient
+    floor coverings such as linoleum, asphalt tile and vinyl tile are not.
+
+    (d)
+
+    Rug
+
+    means the same as carpet and shall be accepted as interchangeable with carpet.
+
+    (e)
+
+    Traffic Surface
+
+    means a surface of a carpet or rug which is intended to be walked upon.
+
+    (f)
+
+    Timed Burning Tablet
+
+    (pill) means a methenamine tablet, flat, with a nominal heat of combustion value of 7180 calories/gram, a mass of 150 mg ±5mg and a nominal diameter of 6mm.
+
+    (g)
+
+    Fire-Retardant Treatment
+
+    means any process to which a carpet or rug has been exposed which significantly
+
+    decreases the flammability of that carpet or rug and enables it to meet the acceptance criterion of this Standard.
+
+    [40 FR 59931, Dec. 30, 1975, as amended at 72 FR 60767, Oct. 26, 2007]'
+- id: art-3
+  title: § 1630.2
+  text: '§ 1630.2
+
+    Scope and application.
+
+    (a) This Standard provides a test method to determine the surface flammability of carpets and rugs when exposed to a standard small source of ignition under carefully prescribed draft-protected conditions.
+    It is applicable to all types of carpets and rugs used as floor covering materials regardless of their method of fabrication or whether they are made of natural or synthetic fibers or films, or combinations
+    of or substitutes for these.
+
+    (b) One of a kind, carpet or rug, such as an antique, an Oriental, or a hide, may be excluded from testing under this Standard pursuant to conditions established by the Consumer Product Safety Commission.'
+- id: art-4
+  title: § 1630.3
+  text: '§ 1630.3
+
+    General requirements.
+
+    (a)
+
+    Summary of test method.
+
+    This method involves the exposure of each of eight conditioned, replicate specimens of a given carpet or rug to a standard igniting source in a draft-protected environment, and measurement of the proximity
+    of the charred portion to the edge of the hole in the prescribed flattening frame.
+
+    (b)
+
+    Test criterion.
+
+    A specimen passes the test if the charred portion does not extend to within 2.54 cm. (1.0 in.) of the edge of the hole in the flattening frame at any point.
+
+    (c)
+
+    Acceptance criterion.
+
+    At least seven of the eight specimens shall meet the test criterion in order to conform with this Standard.'
+- id: art-5
+  title: § 1630.4
+  text: '§ 1630.4
+
+    Test procedure.
+
+    (a)
+
+    Apparatus
+
+    —(1)
+
+    Test chamber.
+
+    The test chamber shall consist of an open top hollow cube made of noncombustible material
+
+    1
+
+    with inside dimensions 30.48 × 40.48 × 30.48 cm. (12 × 12 × 12 in.) and a minimum of 6.35 (
+
+    1/4
+
+    in.) wall thickness. The flat bottom of the box shall be made of the same material as the sides and shall be easily removable. The sides shall be fastened together with screws or brackets and taped
+    to prevent air leakage into the box during use.
+
+    1
+
+    6.35 mm (
+
+    1/4
+
+    in.) cement asbestos board is a suitable material.
+
+    Note:
+
+    A minimum of two chambers and two extra bottoms is suggested for efficient operation.
+
+    (2)
+
+    Flattening frame.
+
+    A steel plate, 22.86 × 22.86 cm. (9 × 9 in.), 6.35 mm. (
+
+    1/4
+
+    in.) thick with a 20.32 cm. (8 in.) diameter hole in its center is required to hold the carpet or rug flat during the course of the test. It is recommended that one be provided for each test chamber.
+
+    (3)
+
+    Standard igniting source.
+
+    A methenamine tablet, flat, with a nominal heat of combustion value of 7180 calories/gram, a mass of 150 mg ±5 mg and a nominal diameter of 6mm. These tablets shall be stored in a desiccator over a
+    desiccant for 24 hours prior to use. (Small quantities of absorbed water may cause the tablets to fracture when first ignited. If a major fracture occurs, any results from that test shall be ignored,
+    and it shall be repeated.)
+
+    (4)
+
+    Test specimens.
+
+    Each test specimen shall be a 22.86 × 22.86 cm. (9 × 9 in.) section of the carpet or rug to be tested. Eight specimens are required.
+
+    (5)
+
+    Circulating air oven.
+
+    A forced circulation drying oven capable of removing the moisture from the specimens when maintained at 105 °C. (221 °F.) for 2 hours.
+
+    2
+
+    2
+
+    Option 1 of ASTM D 2654-67T, “Methods of Test for Amount of Moisture in Textile Materials,” describes a satisfactory oven. (“1969 Book of ASTM Standards,” part 24, published by the American Society
+    for Testing and Materials, 1916 Race Street, Philadelphia, Pa. 19103.)
+
+    (6)
+
+    Desiccating cabinet.
+
+    An airtight and moisture tight cabinet capable of holding the floor covering specimens horizontally without contacting each other during the cooling period following drying, and containing silica gel
+    desiccant.
+
+    (7)
+
+    Gloves.
+
+    Nonhygroscopic gloves (such as rubber polyethylene) for handling the sample after drying, and raising the pile on specimens prior to testing.
+
+    (8)
+
+    Hood.
+
+    A hood capable of being closed and having its draft turned off during each test and capable of rapidly removing the products of combustion
+
+    following each test. The front or sides of the hood should be transparent to permit observation of the tests in progress.
+
+    (9)
+
+    Mirror.
+
+    A small mirror mounted above each test chamber at an angle to permit observation of the specimen from outside of the hood.
+
+    (10)
+
+    Vacuum cleaner.
+
+    A vacuum cleaner to remove all loose material from each specimen prior to conditioning. All surfaces of the vacuum cleaner contacting the specimen shall be flat and smooth.
+
+    (b)
+
+    Sampling
+
+    —(1)(i)
+
+    Selection of samples.
+
+    Select a sample of the material representative of the lot and large enough to permit cutting eight test specimens 22.86 × 22.86 cm. (9 × 9 in.), free from creases, fold marks, delaminations, or other
+    distortions. The test specimens should contain the most flammable parts of the traffic surface at their centers. The most flammable area may be determined on the basis of experience or through pretesting.
+
+    (ii) If the carpet or rug has had a fire-retardant treatment, or is made of fibers which have had a fire-retardant treatment, the selected sample or over-sized specimens thereof shall be washed, prior
+    to cutting of test specimens after they have been washed and dried either 10 times in accordance with sections 8.2.2, 8.2.3, and 8.3.1(A) of AATCC Test Method 124-1996 “Appearance of Fabrics after Repeated
+    Home Laundering,” using wash temperature V (60° ±3 °C, 140° ±5 °F) specified in Table II of that method, and the water level, agitator speed, washing time, spin speed and final spin cycle specified
+    for “Normal/Cotton Sturdy” in Table III, and drying shall be performed in accordance with section 8.3.1(A) of that test method, Tumble Dry, maximum load 3.64 Kg (8 pounds), using the exhaust temperature
+    (66° ±5 °C, 150° ±10 °F) and cool down time of 10 minutes specified in the “Durable Press” conditions of Table IV; or such number of times by another washing and drying procedure which the Consumer
+    Product Safety Commission has determined to be equivalent of AATCC Test Method 124-1996. Alternatively, the selected sample or oversized specimens thereof may be washed, drycleaned, or shampooed 10
+    times, prior to cutting of test specimens, in such manner as the manufacturer or other interested party shall previously have established to the satisfaction of the Consumer Product Safety Commission
+    is normally used for that type of carpet or rug in service.
+
+    (iii) AATCC Test Method 124-1996 “Appearance of Fabrics after Repeated Home Laundering,” is found in Technical Manual of the American Association of Textile Chemists and Colorists, vol. 73, 1997, which
+    is incorporated by reference. Copies of this document are available from the American Association of Textile Chemists and Colorists, P.O. Box 12215, Research Triangle Park, North Carolina 27709. This
+    document is also available for inspection at the National Archives and Records Administration (NARA). For information on the availability of this material at NARA, call 202-741-6030, or go to:
+
+    http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html.
+
+    This incorporation by reference was approved by the Director of the Federal Register in accordance with 5 U.S.C. 552(a) and 1 CFR part 51.
+
+    (2)
+
+    Cutting.
+
+    Cut eight 22.86±0.64 cm. (9±
+
+    1/4
+
+    in.) square specimens of each carpet or rug to be tested to comply with paragraph (b)(1) of this section.
+
+    (c)
+
+    Conditioning.
+
+    (1) Clean each specimen with the vacuum cleaner until it is free of all loose ends left during the manufacturing process and from any material that may have been worked into the pile during handling.
+    Care must be exercised to avoid “fuzzing” of the pile yarn.
+
+    (2) Place the specimens in the drying oven in a manner that will permit free circulation of the air at 105 °C. (221 °F.) around them for 2 hours.
+
+    3
+
+    Remove the specimens from the oven with gloved hands and place them horizontally in
+
+    the desiccator with traffic surface up and free from contact with each other until cooled to room temperature, but in no instance less than 1 hour.
+
+    3
+
+    If the specimens are moist when received, permit them to air-dry at laboratory conditions prior to placement in the oven. A satisfactory preconditioning procedure may be found in ASTM D 1776-67, “Conditioning
+    Textiles and Textile Products for Testing.” (“1969 Book of ASTM Standards”, part 24, published by the American Society for Testing and Materials, 1916 Race Street, Philadelphia, Pa. 19103.)
+
+    (d)
+
+    Testing.
+
+    (1) Place the test chamber in the draft-protected environment (hood with draft off) with its bottom in place. Wearing gloves, remove a test specimen from the desiccator and brush its surface with a
+    gloved hand in such a manner as to raise its pile. Place the specimen on the center of the floor of the test chamber, traffic surface up, exercising care that the specimen is horizontal and flat. Place
+    the flattening frame on the specimen and position a methenamine tablet on one of its flat sides in the center of the 20.32 cm. (8 in.) hole.
+
+    (2) Ignite the tablet by touching a lighted match or an equivalent igniting source carefully to its top. If more than 2 minutes elapse between the removal of the specimen from the desiccator and the
+    ignition of the tablet, the conditioning must be repeated.
+
+    (3) Continue each test until one of the following conditions occurs:
+
+    (i) The last vestige of flame or glow disappears. (This is frequently accompanied by a final puff of smoke.)
+
+    (ii) The flaming or smoldering has approached within 2.54 cm. (1.0 in.) of the edge of the hole in the flattening frame at any point.
+
+    (4) When all combustion has ceased, ventilate the hood and measure the shortest distance between the edge of the hole in the flattening frame and the charred area. Record the distance measured for each
+    specimen.
+
+    (5) Remove the specimen from the chamber and remove any burn residue from the floor of the chamber. Before proceeding to the next test, the floor must be cooled to normal room temperature or replaced
+    with one that is at normal room temperature.
+
+    (e)
+
+    Report.
+
+    The number of specimens of the eight tested in which the charred area does not extend to within 2.54 cm. (1.0 in.) of the edge of the hole in the flattening frame shall be reported.
+
+    (f)
+
+    Interpretation of results.
+
+    If the charred area does not extend to within 2.54 cm. (1.0 in.) of the edge of the hole in the flattening frame at any point for at least seven of the eight specimens, the carpet or rug meets the acceptance
+    criterion.
+
+    [40 FR 59931, Dec. 30, 1975, as amended at 65 FR 12932, Mar. 10, 2000; 72 FR 60767, Oct. 26, 2007]'
+- id: art-6
+  title: § 1630.5
+  text: '§ 1630.5
+
+    Labeling.
+
+    If the carpet or rug has had a fire-retardant treatment or is made of fibers which have had a fire-retardant treatment, it shall be labeled with the letter “T” pursuant to conditions established by
+    the Consumer Product Safety Commission.
+
+    Subpart B—Rules and Regulations'
+- id: art-7
+  title: § 1630.31
+  text: '§ 1630.31
+
+    Reasonable and representative tests and recordkeeping requirements.
+
+    Explanation:'
+- id: art-8
+  title: Section 8 of the act, among other things, provides that no person shall be subject to criminal prosecution under section 7 of the act for a violation of section 3 of the act if such person establishes
+  text: 'Section 8 of the act, among other things, provides that no person shall be subject to criminal prosecution under section 7 of the act for a violation of section 3 of the act if such person establishes
+    a guaranty received in good faith signed by and containing the name and address of the person by whom the product, fabric, or related material guaranteed was manufactured, or from whom it was received;
+    to the effect that reasonable and representative tests made in accordance with applicable flammability standards show that the product, fabric, or related material covered by the guaranty conforms with
+    such standards.
+
+    While a person establishing a guaranty received in good faith would not be subject to criminal prosecution under section 7 of the act, he and/or the merchandise involved, would nevertheless remain subject
+    to the administrative processes of the Consumer Product Safety Commission under section 5 of the act as well as injunction and condemnation procedures under section 6 thereof. A guarantor derives no
+    immunity of any kind, civil or criminal, from the issuance of his own guaranty or performance of the reasonable and representative tests prescribed by this section.
+
+    The furnishing of guaranties is not mandatory under the act. The purpose of this section is to establish minimum requirements for reasonable and representative tests upon which guaranties may be based.
+    The section does not have any legal effect beyond that specified in section 8 of the act.
+
+    (a) For the purposes of this section the following definitions apply:
+
+    (1)
+
+    Standard
+
+    means the standards in subpart A of this part.
+
+    (2)
+
+    Test
+
+    means a test as prescribed by the Standard.
+
+    (3)
+
+    Acceptance criterion
+
+    means “acceptance criterion” as defined in the Standard.
+
+    (4)
+
+    Test criterion
+
+    means “test criterion” as defined in the Standard.
+
+    (5)
+
+    Carpet
+
+    and
+
+    rug
+
+    mean “carpet” and “rug” as defined in the Standard.
+
+    (6)
+
+    Quality of machine-made carpets or rugs
+
+    means any line of carpets or rugs, essentially machine-made, which are substantially alike in all respects, including, as applicable, constructional units (needles, pitch, rows, shot, stitches, and
+    weight), dye class, dyestuff, dyeing application method, gage, pile levels, pile height, average pile thickness, pile weight, pile yarn, total thickness, total weight, tufts, tuft length, tuft bind,
+    warp yarn, filler yarn, yarn ends per needle, loop length, backing, back coating, primary backing, secondary backing, backing thickness, backing fabric count, backing warp and filler yarns, including
+    stuffer and dead frame yards, backing weight, fiber and/or other materials content, and fire-retardant treatment received including the specifications and quantity of chemicals used.
+
+    (7)
+
+    Quality of handmade or hide carpets or rugs
+
+    means any line of carpets or rugs which are essentially handmade and/or are essentially hides and which are alike in all respects, including those specified in paragraph (a)(6) of this section, where
+    applicable, except that such carpets or rugs may vary where unavoidable and/or may vary because of natural variations in hides of the same type, so long as such variations do not affect flammability.
+
+    (b) The tests set forth in paragraphs (c), (d), (e), and (f) of this section are reasonable and representative tests with regard to any carpets or rugs or qualities thereof to which they apply, except,
+    however, that any test of any quality, whenever performed, which does not show a meeting of the acceptance criterion of the Standard shall be considered the reasonable and representative test for that
+    quality and no guaranty with respect thereto shall be issued after the performance of such test. Immediately before conditioning and testing, each carpet or rug specimen tested pursuant to this section
+    shall be in the form in which the carpet or rug or quality thereof which it represents is sold or offered for sale to the ultimate consumer.
+
+    (c) Reasonable and representative tests with respect to any quality of machine-made carpets or rugs are (1) at least one test performed upon commencement of production, importation, or other receipt
+    thereof, (2) at least one test performed after production, importation, or other receipt of the first 25,000 linear yards of the quality, and (3) at least one test after production, importation, or
+    other receipt of every 50,000 linear yards of the quality thereafter. Except, however, that tests need be performed only after production, importation, or receipt of each additional 100,000 linear yards
+    of the quality, so long as all 24 specimens required to be tested in a complete series of three required tests immediately preceding any given test (eight out of eight specimens in each of the three
+    preceding tests) meet the test criterion, rather than seven out of eight specimens, as permitted under the acceptance criterion of the Standard.
+
+    (d) Reasonable and representative tests with respect to any quality of handmade or hide carpets or rugs are at least one test performed upon the commencement of production, importation, or other receipt
+    thereof and at least one test after production, importation, or other receipt of every 10,000 square yards of the quality thereafter.
+
+    (e) Reasonable and representative tests of a one-of-a-kind carpet or rug, machine-made, handmade, or hide, is one test thereof or one test of an identical representative sample.
+
+    (f) Guaranties for carpets or rugs in inventory upon the effective date of the Standard may be issued in the same manner as other guaranties are issued. Reasonable and representative tests with respect
+    to qualities of such carpets or rugs are at least one test performed upon approximately the first linear yard and one test thereafter for each 25,000 linear yards of a quality of machine-made carpets
+    or rugs and at least one test performed upon approximately the first square yard and thereafter for each 10,000 square yards of a category of handmade or hide carpets or rugs, in the order of the production,
+    importation, or receipt by the guarantor of that quality.
+
+    (g) Any person issuing a guaranty for one or more carpets or rugs or qualities thereof based on reasonable and representative tests, shall maintain the following records for a period of 3 years from
+    the date the tests were performed, or in the case of paragraph (h) of this section, the date the guaranties were furnished. These records must be maintained in the United States by a person subject
+    to section 3 of the act:
+
+    (1) All identifying numbers, symbols, etc., manufacturing specifications including all other information described in paragraph (a)(6) of this section, as applicable, and source of products or raw materials
+    used therein.
+
+    (2) A physical sample of each carpet or rug or quality thereof covered by the guaranty at least 6 inches by 6 inches in size (36 square inches).
+
+    (3) The original or a copy of the report of each test performed for purposes of the guaranty (whether or not such report shows a meeting of the acceptance criterion) which shall disclose the date of
+    the test, the results, and sufficient information to clearly identify the carpet or rug tested.
+
+    (4) A record applicable to each test in paragraph (g)(3) of this section showing the approximate yardage at which it was performed. Records otherwise required to be maintained in linear yards may be
+    maintained in square yards on the basis of 4 square yards equals 1 linear yard.
+
+    (h) Persons furnishing guaranties based on guaranties received by them shall maintain records showing the guaranty received and identification of the carpet or rug or quality thereof guaranteed in turn
+    by them.
+
+    (i) Any person furnishing a carpet or rug guaranty under section 8(a) of the act who neglects or refuses to maintain and preserve the records prescribed in this section shall be deemed to have furnished
+    a false guaranty under the provisions of section 8(b) of the act.
+
+    (Sec. 5, 67 Stat. 112, as amended, 81 Stat. 570, 15 U.S.C. 1194; sec. 8, 67 Stat. 114, as amended, 81 Stat. 572, 15 U.S.C. 1197)'
+- id: art-9
+  title: § 1630.32
+  text: '§ 1630.32
+
+    Carpets and rugs with fire-retardant treatment.
+
+    (a) For the purposes of this section the following definitions apply:
+
+    (1)
+
+    Carpet
+
+    and
+
+    rug
+
+    mean “carpet” and “rug” as defined in § 1630.31(c).
+
+    (2)
+
+    Fire-retardant treatment
+
+    means “fire-retardant treatment” as defined in the standard of subpart A of this part.
+
+    (b) If a carpet or rug or small carpet or rug is manufactured, imported, or otherwise marketed or handled which has had a fire-retardant treatment or is made of fibers which have had a fire-retardant
+    treatment, the letter “T” shall be set forth legibly and conspicuously, and shall appear at all times, on each label and/or invoice relating thereto pursuant to the requirements of the Textile Fiber
+    Products Identification Act, 15 U.S.C. 70,
+
+    et seq.,
+
+    and the rules and regulations thereunder, whether or not such letter “T” appears elsewhere on said product. Samples, pieces, rolls, or squares used to promote or effect the sale of such carpet or rug
+    are subject to the aforementioned requirements. As provided in the applicable portions of the aforesaid act and the rules and regulations thereunder, where a carpet or rug or a small carpet or rug;
+    which has had a fire-retardant treatment or is made of fibers which have had a fire-retardant treatment, is sold to an ultimate consumer and was either custom made or commercially installed for such
+    consumer, the labeling required by this section shall not apply with respect to the carpet or rug if an invoice or other paper relating thereto, containing the letter “T”, legibly and conspicuously
+    written, is delivered to the consumer in due course of business.
+
+    (c) No person subject to the Flammable Fabrics Act shall manufacture, import, distribute, or otherwise market or handle any carpet or rug or small carpet or rug, including samples, swatches, or specimens
+    used to promote or effect the sale thereof, which is not in compliance with this section.
+
+    (Sec. 5 of the Act, 67 Stat. 112, as amended by 81 Stat. 570, 15 U.S.C. 1194)
+
+    Subpart C—Washing Procedures
+
+    Authority:
+
+    Secs. 4, 5, 67 Stat. 112, as amended, 81 Stat. 569-570; 15 U.S.C. 1193, 1194.'
+- id: art-10
+  title: § 1630.61
+  text: '§ 1630.61
+
+    Hide carpets and rugs—alternative washing procedure.
+
+    (a) The Standard for the Surface Flammability of Carpets and Rugs (FF 1-70) at § 1630.4(b)(1)(ii) provides that if a carpet or rug has had a fire-retardant treatment, or is made of fibers which have
+    had a fire-retardant treatment, the sample or oversized specimens thereof selected for testing under the standard shall be washed prior to the cutting of test specimens either 10 times under the washing
+    and drying procedure prescribed in Method 124-1996 of the American Association of Textile Chemists and Colorists or such number of times under such other washing and drying procedure as shall previously
+    have been found to be equivalent by the Consumer Product Safety Commission. AATCC Test Method 124-1996 “Appearance of Fabrics after Repeated Home Laundering,” is found in Technical Manual of the American
+    Association of Textile Chemists and Colorists, vol. 73, 1997, which is incorporated by reference. Copies of this document are available from the American Association of Textile Chemists and Colorists,
+    P.O. Box 12215, Research Triangle Park, North Carolina 27709. This document is also available for inspection at the National Archives and Records Administration (NARA). For information on the availability
+    of this material at NARA, call 202-741-6030, or go to:
+
+    http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html.
+
+    This incorporation by reference was approved by the Director of the Federal Register in accordance with 5 U.S.C. 552(a) and 1 CFR part 51. Alternatively the selected sample or oversized specimens thereof
+    may be washed, dry-cleaned, or shampooed 10 times, prior to the cutting of test specimens, in such manner as the manufacturer or other interested party has previously established to the satisfaction
+    of the Consumer Product Safety Commission is normally used for that type of carpet or rug in service.
+
+    (b) On February 10, 1972 (37 FR 3010) the Federal Trade Commission published in the
+
+    Federal Register
+
+    a notice of approval of an alternative washing procedure under FF 1-70 for testing the flammability of shearling and hide rugs that (1) consist of natural wool or hair attached to the hide with no synthetic
+    fibers and (2) have been treated with a fire-retardant finish. The notice of approval was corrected on March 17, 1972 (37 FR 5676). This approval is continued in effect by the Consumer Product Safety
+    Commission pursuant to section 30(e) of the Consumer Product Safety Act (15 U.S.C. 2079(e)).
+
+    (c) Any hide carpet or rug for which such alternative procedure is utilized must be labeled with a conspicuous, legible and permanent label containing the following statement:
+
+    DO NOT WASH OR DRY CLEAN
+
+    This rug has been treated with a flame retardant. To keep rug attractive and clean use the following methods:
+
+    To eliminate loose dirt or dust, vacuum or shake pelt outdoors.
+
+    For spot cleaning, use water dampened cloth and rub lightly in one direction.
+
+    DO NOT USE DETERGENTS OR OTHER STAIN REMOVERS
+
+    (d) The alternative procedure is as follows: The test specimens shall be cut to size 9″ × 9″ before the procedure is initiated.
+
+    (1) Shake specimen vigorously to remove any loose fibers, dust and possible accumulated debris.
+
+    (2) Place specimen on a solid flat surface and anchor or hold firmly while conducting the test.
+
+    (3) Select an operating applicator consisting of a rod at least 2″ in diameter and 9″ long composed of nonabsorbant material such as glass or plastic.
+
+    (4) Select sufficient cloth to form at least five layers when wrapped around the operating applicator. The cloth shall be of the type known as “Crockmeter Test Cloth” as specified in Note 8.3 of AATCC
+    Test Method 8-1969.
+
+    (5) Immerse cloth in water (100 °F.) until thoroughly wetted.
+
+    (6) Manually wring out the cloth to remove all excess water and wrap around the operating applicator.
+
+    (7) Immediately with light pressure, stroke entire surface of specimen with the wrapped operating applicator in one direction only along the natural “lay” of the hair structure for ten complete strokes.
+
+    (8) Place test specimen in a circulating drying oven maintained at 212 °F. until dry.
+
+    (9) Repeat the above procedure 10 times using a fresh or clean cloth each time.
+
+    (10) After 10 successive cycles of washing and drying the dried specimens shall be subjected to the testing procedures (pill test) as outlined in FF 1-70.
+
+    (e) This washing procedure and labeling provision are subject to revision or revocation should it be determined that such procedure is inadequate to fully protect the public.
+
+    [40 FR 59931, Dec. 30, 1975, as amended at 65 FR 12933, Mar. 10, 2000]'
+- id: art-11
+  title: § 1630.62
+  text: '§ 1630.62
+
+    Wool flokati carpets and rugs—alternative washing procedure.
+
+    (a) The Standard for the Surface Flammability of Carpets and Rugs (FF 1-70) at § 1630.4(b)(1)(ii) provides that if a carpet or rug has had a fire-retardant treatment, or is made of fibers which have
+    had a fire-retardant treatment, the sample or oversized specimens thereof selected for testing under the standard shall be washed prior to the cutting of test specimens either 10 times under the washing
+    and drying procedure prescribed in Method 124-1996 of the American Association of Textile Chemists and Colorists or such number of times under such other washing and drying procedure as shall previously
+    have been found to be equivalent by the Consumer Product Safety Commission. AATCC Test Method 124-1996 “Appearance of Fabrics after Repeated Home Laundering,” is found in Technical Manual of the American
+    Association of Textile Chemists and Colorists, vol. 73, 1997, which is incorporated by reference. Copies of this document are available from the American Association of Textile Chemists and Colorists,
+    P.O. Box 12215, Research Triangle Park, North Carolina 27709. This document is also available for inspection at the National Archives and Records Administration (NARA). For information on the availability
+    of this material at NARA, call 202-741-6030, or go to:
+
+    http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html.
+
+    This incorporation by reference was approved by the Director of the Federal Register in accordance with 5 U.S.C. 552(a) and 1 CFR part 51. Alternatively the selected sample or oversized specimens thereof
+    may be washed, dry-cleaned, or shampooed 10 times, prior to the cutting of test specimens, in such manner as the manufacturer or other interested party has previously established to the satisfaction
+    of the Consumer Product Safety Commission is normally used for that type of carpet or rug in service.
+
+    (b) On September 7, 1972 (37 FR 18122) the Federal Trade Commission published in the
+
+    Federal Register
+
+    a notice of approval of an alternative washing procedure under FF 1-70 for testing the flammability of wool flokati carpets and rugs. This approval is continued in effect by the Consumer Product Safety
+    Commission pursuant to section 30(e) of the Consumer Product Safety Act (15 U.S.C. 2079(e)).
+
+    (c) Any wool flokati carpet or rug for which such alternative procedure is utilized must be labeled with a conspicuous, legible and permanent label containing the following statement:
+
+    Do Not Wash in Home Machine or Dry Clean—Avoid Rubbing or Brushing While Damp
+
+    This flokati carpet or rug has been treated with a flame retardant. To maintain this flame retardant and to keep the carpet attractive and clean, use the following methods.
+
+    1. Vacuum (using suction head without rotating brush) or shake the rug (depending upo'
 doc_files:
 - us/raw/US-CFR-title16-part1630.xml
+- us/raw/US-CFR-title16-part1630.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1630.xml (xml, 40391 chars)，生成 11 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1630.xml (xml, 40391 chars)，生成 11 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1630.xml (xml, 40391 chars)，生成 11 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1630-4（US 16 CFR Part 1630）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1630-3（US 16 CFR Part 1630）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1630-2（US 16 CFR Part 1630）。'

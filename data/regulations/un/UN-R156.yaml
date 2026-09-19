@@ -9,12 +9,54 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'New cybersecurity regulations for vehicles 2022  '
+  text: "New cybersecurity regulations for vehicles 2022  \nSkip to main content\nHome\n    \t        \tNews\nPublications\nPublications\nUNECE WP.29 R155/R156: new cybersecurity regulations for vehicles\
+    \  \n                \t\t25/10/2022\nShare\nShare\nAs of July 2022, all automotive manufacturers looking to obtain EU type approval for new whole vehicle types must comply with the new WP.29 UN R155/R156\
+    \ regulations. Then, from July 2024, this requirement will be extended to all new vehicles sold in the EU, regardless of when the manufacturer obtained the type approval for that type of car. Older\
+    \ models still in production might also need to implement changes to comply. In this article, we will talk you through the basics. \nRegulatory Framework: UNECE WP.29 UN R155 and R156 \nThe UN R155\
+    \ and UN R156 regulations have been adopted as official regulations by the UNECE World Forum for Harmonization of Vehicle Regulations (UNECE WP.29), to set a common future framework for vehicle cybersecurity\
+    \ in different parts of the world. UNECE WP.29 \ncybersecurity regulations officially came into force in January 2021. \nUN R155 requires the operation of a certified Cybersecurity Management System\
+    \ (CSMS), while UN R156 requires a Software Update Management System (SUMS) as a future condition of type approval. Together, the UNECE regulations explicitly specify four disciplines: \nManaging cyber\
+    \ risks to vehicles \nSecuring vehicles “by design” to mitigate risks further down the supply chain \nDetecting and responding to security incidents across vehicle fleets \nSafely and securely updating\
+    \ vehicle software, including a legal basis for over-the-air updates \nAs you can see, we are not just talking about a matter of \ntesting for vulnerabilities present in vehicle components. \nIt is\
+    \ much more. \nThe UNECE WP.29 timeline: where and when \nWP.29 applies to the countries that participated in (or now adhere to) the 1958 UNECE Transportation Agreements and Conventions. This group\
+    \ of countries, which includes the nations of the EU, the UK, Japan and South Korea, produced one third of all the world’s vehicles in 2018.  \nFrom July 2022, compliance with the new regulations on\
+    \ cybersecurity (UNECE WP.29/R155) will be mandatory to obtain the EU’s Whole Vehicle Type Approval (WVTA). This certificate allows OEMs to sell vehicles that have the same essential elements of the\
+    \ approved prototype throughout \nthe EU, without requiring further testing or certification\n. If those essential elements are changed in some critical or significant way, a new WVTA is required. \n\
+    In July 2024, these requirements will be extended to all new vehicles sold in the European Union, including those models that were type-approved before 2022 and that are still in production. Japan and\
+    \ Korea are following similar timelines for vehicles to be sold there.  \nAll manufacturers (including those from the USA and Canada) selling into these markets need to consider the implications of\
+    \ the WP.29 cybersecurity regulations for both their products and processes. \nISO/SAE 21434, a key reference for regulatory compliance \nISO/SAE 21434 is a standard co-developed by the International\
+    \ Organization for Standardization (ISO) and the \nSociety of Automotive Engineers \n(SAE). ISO SAE 21434 “Road vehicles — Cybersecurity engineering” focuses on cybersecurity risks in the design and\
+    \ development of car electronics.  \nThe WP.29 cybersecurity regulations and ISO/SAE 21434 standard have been developed in parallel to ensure that regulatory requirements can be met by applying existing\
+    \ standards. They are complementary and non-contradictory. \nWhile the regulation is mandatory in some countries\n and indicates some specific requirements to be met, the standard represents the results\
+    \ of the industry consensus on the key cybersecurity practices that must be followed to achieve relative security throughout the automotive market.  \nCompliance throughout the vehicle supply chain "
+- id: art-2
+  title: 'The starting point to meet both regulations and comply with '
+  text: "The starting point to meet both regulations and comply with the standard is a cybersecurity risk assessment of the vehicle, including all of the integrated components from automotive industry suppliers.\
+    \ Through the so-called TARA (Threat Analysis and Risk Assessment), OEMs will need to prove that appropriate and efficient mitigations have been implemented to reduce the risk of cyberattacks.  \nOEMs\
+    \ will not be the only stakeholders affected by these new requirements, as Tier 1, Tier 2 and even Tier 3 vendors will also be included in the process of securing a vehicle’s cybersecurity ecosystem.\
+    \ What we are about to face\nis\n an integration of new cybersecurity requirements throughout the whole supply chain. \nSupporting the automotive supply chain to develop secure components and systems\
+    \  \nAt Applus+ Laboratories, we have a solid experience in \ncybersecurity evaluations and penetration testing for a wide range of industries. \nOur cybersecurity experts can help manufacturers to\
+    \ comply with ISO/SAE 21434 and UN R155/R156, supporting their TARA activities, the evaluation of their risk and threat mitigations, as well as conducting penetration testing when needed.  \n      \
+    \                  Back to Publications\nPrevious publication\nNext publication\nFollow us\n©2026 Applus+\nPrivacy Policy\nCookies Policy\nComplaint Procedure\nFollow us\nApplus+ uses first-party and\
+    \ third-party cookies for analytical purposes and to show you personalized advertising based on a profile drawn up based on your browsing habits (eg. visited websites). You can accept all cookies by\
+    \ pressing the \"Accept\" button or \nconfigure or reject their use\n. Consult our \nCookies Policy\n for more information.\nAccept\nReject\nSettings\n×\nCookie settings panel\nEssential cookies\nThey\
+    \ allow the operation of the website, loading media content and its security. See the cookies we store in our \nCookies Policy\n.\nAlways active\nAnalytics cookies\nThey allow us to know how you interact\
+    \ with the website, the number of visits in the different sections and to create statistics to improve our business practices. See the cookies we store in our \nCookies Policy\n.\nEnable\nDisable\n\
+    Advertising cookies\nBased on your behavior on the website (where you click, how long you browse, etc.) we establish parameters and a profile for you to display ads that correspond to your interests.\
+    \ See the cookies we store in our \nCookies Policy\n.\nEnable\nDisable\nSave configuration\nReject all cookies\nAccept all cookies"
 doc_files:
 - un/raw/联合国《UN R156软件升级管理体系法规》（UN R155_R156 合规指南）.html
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。 同 UN R155：unece.org 当前不可达，原文按钮指向英国 VCA
-  的 CSMS/SUMS 官方说明页。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。 同 UN R155：unece.org 当前不可达，原文按钮指向英国 VCA 的 CSMS/SUMS 官方说明页。
+
+  2026-09-19 机器解析原件入库：un/raw/联合国《UN R156软件升级管理体系法规》（UN R155_R156 合规指南）.html (html, 6386 chars)，生成 2 条共 6386 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：un/raw/联合国《UN R156软件升级管理体系法规》（UN R155_R156 合规指南）.html (html, 6386 chars)，生成 2 条共 6386 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：un/raw/联合国《UN R156软件升级管理体系法规》（UN R155_R156 合规指南）.html (html, 6386 chars)，生成 2 条共 6386 字符；解析文本未人工复核，引用以官方原件为准。'

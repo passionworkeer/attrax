@@ -9,11 +9,1269 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'PUBLIC LAW 109–347—OCT. 13, 2006
+
+    SECURITY AND ACCOUNTABILITY'
+  text: 'PUBLIC LAW 109–347—OCT. 13, 2006
+
+    SECURITY AND ACCOUNTABILITY FOR EVERY
+
+    PORT ACT OF 2006
+
+    VerDate 14-DEC-2004 09:29 Nov 15, 2006 Jkt 059139 PO 00347 Frm 00001 Fmt 6579 Sfmt 6579 E:\PUBLAW\PUBL347.109 APPS PsN: PUBL347
+
+    120 STAT. 1884 PUBLIC LAW 109–347—OCT. 13, 2006
+
+    Public Law 109–347
+
+    109th Congress
+
+    An Act
+
+    Oct. 13, 2006 To improve maritime and cargo security through enhanced layered defenses, and
+
+    [H.R. 4954] for other purposes.
+
+    Be it enacted by the Senate and House of Representatives of
+
+    Security and the United States of America in Congress assembled,
+
+    Accountability
+
+    For Every Port SECTION 1. SHORT TITLE; TABLE OF CONTENTS.
+
+    Act of 2006. (a) SHORT TITLE.—This Act may be cited as the ‘‘Security and
+
+    6 USC 901 note.
+
+    Accountability For Every Port Act of 2006’’ or the ‘‘SAFE Port
+
+    Act’’.
+
+    (b) TABLE OF CONTENTS.—The table of contents for this Act
+
+    is as follows:
+
+    Sec. 1. Short title; table of contents.
+
+    Sec. 2. Definitions.
+
+    TITLE I—SECURITY OF UNITED STATES SEAPORTS
+
+    Subtitle A—General Provisions
+
+    Sec. 101. Area Maritime Transportation Security Plan to include salvage response
+
+    plan.
+
+    Sec. 102. Requirements relating to maritime facility security plans.
+
+    Sec. 103. Unannounced inspections of maritime facilities.
+
+    Sec. 104. Transportation security card.
+
+    Sec. 105. Study to identify redundant background records checks.
+
+    Sec. 106. Prohibition of issuance of transportation security cards to persons con-
+
+    victed of certain felonies.
+
+    Sec. 107. Long-range vessel tracking.
+
+    Sec. 108. Establishment of interagency operational centers for port security.
+
+    Sec. 109. Notice of arrival for foreign vessels on the Outer Continental Shelf.
+
+    Sec. 110. Enhanced crewmember identification.
+
+    Subtitle B—Port Security Grants; Training and Exercise Programs
+
+    Sec. 111. Risk assessment tool.
+
+    Sec. 112. Port security grants.
+
+    Sec. 113. Port Security Training Program.
+
+    Sec. 114. Port Security Exercise Program.
+
+    Sec. 115. Facility exercise requirements.
+
+    Subtitle C—Port Operations
+
+    Sec. 121. Domestic radiation detection and imaging.
+
+    Sec. 122. Inspection of car ferries entering from abroad.
+
+    Sec. 123. Random searches of containers.
+
+    Sec. 124. Work stoppages and employee-employer disputes.
+
+    Sec. 125. Threat assessment screening of port truck drivers.
+
+    Sec. 126. Border Patrol unit for United States Virgin Islands.
+
+    Sec. 127. Report on arrival and departure manifests for certain commercial vessels
+
+    in the United States Virgin Islands.
+
+    Sec. 128. Center of Excellence for Maritime Domain Awareness.
+
+    TITLE II—SECURITY OF THE INTERNATIONAL SUPPLY CHAIN
+
+    Subtitle A—General Provisions
+
+    Sec. 201. Strategic plan to enhance the security of the international supply chain.
+
+    VerDate 14-DEC-2004 13:45 Nov 15, 2006 Jkt 059139 PO 00347 Frm 00002 Fmt 6580 Sfmt 6582 E:\PUBLAW\PUBL347.109 APPS PsN: PUBL347
+
+    PUBLIC LAW 109–347—OCT. 13, 2006 120 STAT. 1885
+
+    Sec. 202. Post-incident resumption of trade.
+
+    Sec. 203. Automated Targeting System.
+
+    Sec. 204. Container security standards and procedures.
+
+    Sec. 205. Container Security Initiative.
+
+    Subtitle B—Customs–Trade Partnership Against Terrorism
+
+    Sec. 211. Establishment.
+
+    Sec. 212. Eligible entities.
+
+    Sec. 213. Minimum requirements.
+
+    Sec. 214. Tier 1 participants in C–TPAT.
+
+    Sec. 215. Tier 2 participants in C–TPAT.
+
+    Sec. 216. Tier 3 participants in C–TPAT.
+
+    Sec. 217. Consequences for lack of compliance.
+
+    Sec. 218. Third party validations.
+
+    Sec. 219. Revalidation.
+
+    Sec. 220. Noncontainerized cargo.
+
+    Sec. 221. C–TPAT program management.
+
+    Sec. 222. Additional personnel.
+
+    Sec. 223. Authorization of appropriations.
+
+    Subtitle C—Miscellaneous Provisions
+
+    Sec. 231. Pilot integrated scanning system.
+
+    Sec. 232. Screening and scanning of cargo containers.
+
+    Sec. 233. International cooperation and coordination.
+
+    Sec. 234. Foreign port assessments.
+
+    Sec. 235. Pilot program to improve the security of empty containers.
+
+    Sec. 236. Information sharing relating to supply chain security cooperation.
+
+    TITLE III—ADMINISTRATION
+
+    Sec. 301. Office of Cargo Security Policy.
+
+    Sec. 302. Reauthorization of Homeland Security Science and Technology Advisory
+
+    Committee.
+
+    Sec. 303. Research, development, test, and evaluation efforts in furtherance of mar-
+
+    itime and cargo security.
+
+    TITLE IV—AGENCY RESOURCES AND OVERSIGHT
+
+    Sec. 401. Trade and customs revenue functions of the department.
+
+    Sec. 402. Office of international trade; oversight.
+
+    Sec. 403. Resources.
+
+    Sec. 404. Negotiations.
+
+    Sec. 405. International Trade Data System.
+
+    Sec. 406. In-bond cargo.
+
+    Sec. 407. Sense of the Senate.
+
+    TITLE V—DOMESTIC NUCLEAR DETECTION OFFICE
+
+    Sec. 501. Establishment of Domestic Nuclear Detection Office.
+
+    Sec. 502. Technology research and development investment strategy for nuclear
+
+    and radiological detection.
+
+    TITLE VI—COMMERCIAL MOBILE SERVICE ALERTS
+
+    Sec. 601. Short title.
+
+    Sec. 602. Federal Communications Commission duties.
+
+    Sec. 603. Commercial Mobile Service Alert Advisory Committee.
+
+    Sec. 604. Research and development.
+
+    Sec. 605. Grant program for remote community alert systems.
+
+    Sec. 606. Funding.
+
+    Sec. 607. Essential services disaster assistance.
+
+    Sec. 608. Community disaster loans.
+
+    Sec. 609. Public facilities.
+
+    Sec. 610. Expedited payments.
+
+    Sec. 611. Use of local contracting.
+
+    Sec. 612. FEMA programs.
+
+    Sec. 613. Homeland security definition.
+
+    TITLE VII—OTHER MATTERS
+
+    Sec. 701. Security plan for essential air service and small community airports.
+
+    Sec. 702. Disclosures regarding homeland security grants.
+
+    Sec. 703. Trucking security.
+
+    Sec. 704. Air and Marine Operations of the Northern Border Air Wing.
+
+    Sec. 705. Phaseout of vessels supporting oil and gas development.
+
+    VerDate 14-DEC-2004 09:29 Nov 15, 2006 Jkt 059139 PO 00347 Frm 00003 Fmt 6580 Sfmt 6582 E:\PUBLAW\PUBL347.109 APPS PsN: PUBL347
+
+    120 STAT. 1886 PUBLIC LAW 109–347—OCT. 13, 2006
+
+    Sec. 706. Coast Guard property in Portland, Maine.
+
+    Sec. 707. Methamphetamine and methamphetamine precursor chemicals.
+
+    Sec. 708. Aircraft charter customer and lessee prescreening program.
+
+    Sec. 709. Protection of health and safety during disasters.
+
+    TITLE VIII—UNLAWFUL INTERNET GAMBLING ENFORCEMENT
+
+    Sec. 801. Short title.
+
+    Sec. 802. Prohibition on acceptance of any payment instrument for unlawful Inter-
+
+    net gambling.
+
+    Sec. 803. Internet gambling in or through foreign jurisdictions.
+
+    6 USC 901. SEC. 2. DEFINITIONS.
+
+    In this Act:
+
+    (1) APPROPRIATE CONGRESSIONAL COMMITTEES.—Except as
+
+    otherwise provided, the term ‘‘appropriate congressional
+
+    committees’’ means—
+
+    (A) the Committee on Appropriations of the Senate;
+
+    (B) the Committee on Commerce, Science, and
+
+    Transportation of the Senate;
+
+    (C) the Committee on Finance of the Senate;
+
+    (D) the Committee on Homeland Security and Govern-
+
+    mental Affairs of the Senate;
+
+    (E) the Committee on Appropriations of the House
+
+    of Representatives;
+
+    (F) the Committee on Homeland Security of the House
+
+    of Representatives;
+
+    (G) the Committee on Transportation and Infrastruc-
+
+    ture of the House of Representatives;
+
+    (H) the Committee on Ways and Means of the House
+
+    of Representatives; and
+
+    (I) other congressional committees, as appropriate.
+
+    (2) COMMERCIAL OPERATIONS ADVISORY COMMITTEE.—The
+
+    term ‘‘Commercial Operations Advisory Committee’’ means the
+
+    Advisory Committee established pursuant to section 9503(c)
+
+    of the Omnibus Budget Reconciliation Act of 1987 (19 U.S.C.
+
+    2071 note) or any successor committee.
+
+    (3) COMMERCIAL SEAPORT PERSONNEL.—The term ‘‘commer-
+
+    cial seaport personnel’’ includes any person engaged in an
+
+    activity relating to the loading or unloading of cargo or pas-
+
+    sengers, the movement or tracking of cargo, the maintenance
+
+    and repair of intermodal equipment, the operation of cargo-
+
+    related equipment (whether or not integral to the vessel), and
+
+    the handling of mooring lines on the dock when a vessel is
+
+    made fast or let go in the United States.
+
+    (4) COMMISSIONER.—The term ‘‘Commissioner’’ means the
+
+    Commissioner responsible for the United States Customs and
+
+    Border Protection of the Department of Homeland Security.
+
+    (5) CONTAINER.—The term ‘‘container’’ has the meaning
+
+    given the term in the International Convention for Safe Con-
+
+    tainers, with annexes, done at Geneva, December 2, 1972 (29
+
+    UST 3707).
+
+    (6) CONTAINER SECURITY DEVICE.—The term ‘‘container
+
+    security device’’ means a device, or system, designed, at a
+
+    minimum, to identify positively a container, to detect and record
+
+    the unauthorized intrusion of a container, and to secure a
+
+    container against tampering throughout the supply chain. Such
+
+    a device, or system, shall have a low false alarm rate as
+
+    determined by the Secretary.
+
+    (7) DEPARTMENT.—The term ‘‘Department’’ means the
+
+    Department of Homeland Security.
+
+    VerDate 14-DEC-2004 09:29 Nov 15, 2006 Jkt 059139 PO 00347 Frm 00004 Fmt 6580 Sfmt 6581 E:\PUBLAW\PUBL347.109 APPS PsN: PUBL347
+
+    PUBLIC LAW 109–347—OCT. 13, 2006 120 STAT. 1887
+
+    (8) EXAMINATION.—The term ‘‘examination’’ means an
+
+    inspection of cargo to detect the presence of misdeclared,
+
+    restricted, or prohibited items that utilizes nonintrusive
+
+    imaging and detection technology.
+
+    (9) INSPECTION.—The term ‘‘inspection’’ means the com-
+
+    prehensive process used by the United States Customs and
+
+    Border Protection to assess goods entering the United States
+
+    to appraise them for duty purposes, to detect the presence
+
+    of restricted or prohibited items, and to ensure compliance
+
+    with all applicable laws. The process may include screening,
+
+    conducting an examination, or conducting a search.
+
+    (10) INTERNATIONAL SUPPLY CHAIN.—The term ‘‘inter-
+
+    national supply chain’’ means the end-to-end process for ship-
+
+    ping goods to or from the United States beginning at the
+
+    point of origin (including manufacturer, supplier, or vendor)
+
+    through a point of distribution to the destination.
+
+    (11) RADIATION DETECTION EQUIPMENT.—The term ‘‘radi-
+
+    ation detection equipment’’ means any technology that is
+
+    capable of detecting or identifying nuclear and radiological
+
+    material or nuclear and radiological explosive devices.
+
+    (12) SCAN.—The term ‘‘scan’’ means utilizing nonintrusive
+
+    imaging equipment, radiation detection equipment, or both,
+
+    to capture data, including images of a container.
+
+    (13) SCREENING.—The term ‘‘screening’’ means a visual
+
+    or automated review of information about goods, including
+
+    manifest or entry documentation accompanying a shipment
+
+    being imported into the United States, to determine the pres-
+
+    ence of misdeclared, restricted, or prohibited items and assess
+
+    the level of threat posed by such cargo.
+
+    (14) SEARCH.—The term ‘‘search’’ means an intrusive exam-
+
+    ination in which a container is opened and its contents are
+
+    devanned and visually inspected for the presence of
+
+    misdeclared, restricted, or prohibited items.
+
+    (15) SECRETARY.—The term ‘‘Secretary’’ means the Sec-
+
+    retary of Homeland Security.
+
+    (16) TRANSPORTATION DISRUPTION.—The term ‘‘transpor-
+
+    tation disruption’’ means any significant delay, interruption,
+
+    or stoppage in the flow of trade caused by a natural disaster,
+
+    heightened threat level, an act of terrorism, or any transpor-
+
+    tation security incident (as defined in section 70101(6) of title
+
+    46, United States Code).
+
+    (17) TRANSPORTATION SECURITY INCIDENT.—The term
+
+    ‘‘transportation security incident’’ has the meaning given the
+
+    term in section 70101(6) of title 46, United States Code.
+
+    TITLE I—SECURITY OF UNITED STATES
+
+    SEAPORTS
+
+    Subtitle A—General Provisions
+
+    SEC. 101. AREA MARITIME TRANSPORTATION SECURITY PLAN TO
+
+    INCLUDE SALVAGE RESPONSE PLAN.'
+- id: art-2
+  title: Section 70103(b)(2) of title 46, United States Code, is
+  text: 'Section 70103(b)(2) of title 46, United States Code, is
+
+    amended—
+
+    VerDate 14-DEC-2004 09:29 Nov 15, 2006 Jkt 059139 PO 00347 Frm 00005 Fmt 6580 Sfmt 6581 E:\PUBLAW\PUBL347.109 APPS PsN: PUBL347
+
+    120 STAT. 1888 PUBLIC LAW 109–347—OCT. 13, 2006
+
+    (1) in subparagraph (E), by striking ‘‘and’’ after the semi-
+
+    colon;
+
+    (2) by redesignating subparagraph (F) as subparagraph
+
+    (G); and
+
+    (3) by inserting after subparagraph (E) the following:
+
+    ‘‘(F) include a salvage response plan—
+
+    ‘‘(i) to identify salvage equipment capable of restoring
+
+    operational trade capacity; and
+
+    ‘‘(ii) to ensure that the waterways are cleared and
+
+    the flow of commerce through United States ports is
+
+    reestablished as efficiently and quickly as possible after
+
+    a maritime transportation security incident; and’’.
+
+    SEC. 102. REQUIREMENTS RELATING TO MARITIME FACILITY SECU-
+
+    RITY PLANS.'
+- id: art-3
+  title: Section 70103(c) of title 46, United States Code, is amended—
+  text: 'Section 70103(c) of title 46, United States Code, is amended—
+
+    (1) in paragraph (3)—
+
+    (A) in subparagraph (C)(ii), by striking ‘‘facility’’ and
+
+    inserting ‘‘facility, including access by persons engaged in
+
+    the surface transportation of intermodal containers in or
+
+    out of a port facility’’;
+
+    (B) in subparagraph (F), by striking ‘‘and’’ at the end;
+
+    (C) in subparagraph (G), by striking the period at
+
+    the end and inserting ‘‘; and’’; and
+
+    (D) by adding at the end the following:
+
+    ‘‘(H) in the case of a security plan for a facility, be resub-
+
+    mitted for approval of each change in the ownership or operator
+
+    of the facility that may substantially affect the security of
+
+    the facility.’’; and
+
+    (2) by adding at the end the following:
+
+    Citizenship. ‘‘(8)(A) The Secretary shall require that the qualified individual
+
+    having full authority to implement security actions for a facility
+
+    described in paragraph (2) shall be a citizen of the United States.
+
+    ‘‘(B) The Secretary may waive the requirement of subparagraph
+
+    (A) with respect to an individual if the Secretary determines that
+
+    it is appropriate to do so based on a complete background check
+
+    of the individual and a review of all terrorist watch lists to ensure
+
+    that the individual is not identified on any such terrorist watch
+
+    list.’’.
+
+    SEC. 103. UNANNOUNCED INSPECTIONS OF MARITIME FACILITIES.'
+- id: art-4
+  title: Section 70103(c)(4)(D) of title 46, United States Code, is
+  text: 'Section 70103(c)(4)(D) of title 46, United States Code, is
+
+    amended to read as follows:
+
+    ‘‘(D) subject to the availability of appropriations, verify
+
+    the effectiveness of each such facility security plan periodically,
+
+    but not less than 2 times per year, at least 1 of which shall
+
+    be an inspection of the facility that is conducted without notice
+
+    to the facility.’’.
+
+    SEC. 104. TRANSPORTATION SECURITY CARD.
+
+    (a) IN GENERAL.—Section 70105 of title 46, United States Code,
+
+    is amended by adding at the end the following:
+
+    ‘‘(g) APPLICATIONS FOR MERCHANT MARINERS’ DOCUMENTS.—
+
+    The Assistant Secretary of Homeland Security for the Transpor-
+
+    tation Security Administration and the Commandant of the Coast
+
+    Guard shall concurrently process an application from an individual
+
+    for merchant mariner’s documents under chapter 73 of title 46,
+
+    VerDate 14-DEC-2004 09:29 Nov 15, 2006 Jkt 059139 PO 00347 Frm 00006 Fmt 6580 Sfmt 6581 E:\PUBLAW\PUBL347.109 APPS PsN: PUBL347
+
+    PUBLIC LAW 109–347—OCT. 13, 2006 120 STAT. 1889
+
+    United States Code, and an application from that individual for
+
+    a transportation security card under this section.
+
+    ‘‘(h) FEES.—The Secretary shall ensure that the fees charged
+
+    each individual applying for a transportation security card under
+
+    this section who has passed a background check under section
+
+    5103a(d) of title 49, United States Code, and who has a current
+
+    hazardous materials endorsement in accordance with section 1572
+
+    of title 49, Code of Federal Regulations, and each individual with
+
+    a current merchant mariners’ document who has passed a criminal
+
+    background check under section 7302(d)—
+
+    ‘‘(1) are for costs associated with the issuance, production,
+
+    and management of the transportation security card, as deter-
+
+    mined by the Secretary; and
+
+    ‘‘(2) do not include costs associated with performing a back-
+
+    ground check for that individual, except for any incremental
+
+    costs in the event that the scope of such background checks
+
+    diverge.
+
+    ‘‘(i) IMPLEMENTATION SCHEDULE.—In implementing the
+
+    transportation security card program under this section, the Sec-
+
+    retary shall—
+
+    ‘‘(1) establish a priority for each United States port based
+
+    on risk, including vulnerabilities assessed under section 70102;
+
+    and
+
+    ‘‘(2) implement the program, based upon such risk and Deadlines.
+
+    other factors as determined by the Secretary, at all facilities
+
+    regulated under this chapter at—
+
+    ‘‘(A) the 10 United States ports that the Secretary
+
+    designates top priority not later than July 1, 2007;
+
+    ‘‘(B) the 40 United States ports that are next in order
+
+    of priority to the ports described in subparagraph (A) not
+
+    later than January 1, 2008; and
+
+    ‘‘(C) all other United States ports not later than
+
+    January 1, 2009.
+
+    ‘‘(j) TRANSPORTATION SECURITY CARD PROCESSING DEADLINE.—
+
+    Not later than January 1, 2009, the Secretary shall process and
+
+    issue or deny each application for a transportation security card
+
+    under this section for individuals with current and valid merchant
+
+    mariners’ documents on the date of the enactment of the SAFE
+
+    Port Act.
+
+    ‘‘(k) DEPLOYMENT OF TRANSPORTATION SECURITY CARD
+
+    READERS.—
+
+    ‘‘(1) PILOTPROGRAM.—
+
+    ‘‘(A) IN GENERAL.—The Secretary shall conduct a pilot
+
+    program to test the business processes, technology, and
+
+    operational impacts required to deploy transportation secu-
+
+    rity card readers at secure areas of the marine transpor-
+
+    tation system.
+
+    ‘‘(B) GEOGRAPHIC LOCATIONS.—The pilot program shall
+
+    take place at not fewer than 5 distinct geographic locations,
+
+    to include vessels and facilities in a variety of environ-
+
+    mental settings.
+
+    ‘‘(C) COMMENCEMENT.—The pilot program shall com-
+
+    mence not later than 180 days after the date of the enact-
+
+    ment of the SAFE Port Act.
+
+    ‘‘(2) CORRELATION WITH TRANSPORTATION SECURITY
+
+    CARDS.—
+
+    VerDate 14-DEC-2004 13:45 Nov 15, 2006 Jkt 059139 PO 00347 Frm 00007 Fmt 6580 Sfmt 6581 E:\PUBLAW\PUBL347.109 APPS PsN: PUBL347
+
+    120 STAT. 1890 PUBLIC LAW 109–347—OCT. 13, 2006
+
+    ‘‘(A) INGENERAL.—The pilot program described in para-
+
+    graph (1) shall be conducted concurrently with the issuance
+
+    of the transportation security cards described in subsection
+
+    (b) to ensure card and card reader interoperability.
+
+    ‘‘(B) FEE.—An individual charged a fee for a transpor-
+
+    tation security card issued under this section may not
+
+    be charged an additional fee if the Secretary determines
+
+    different transportation security cards are needed based
+
+    on the results of the pilot program described in paragraph
+
+    (1) or for other reasons related to the technology require-
+
+    ments for the transportation security card program.
+
+    Deadline. ‘‘(3) REGULATIONS.—Not later than 2 years after the
+
+    Notice. commencement of the pilot program under paragraph (1)(C),
+
+    Public comment. the Secretary, after a notice and comment period that includes
+
+    at least 1 public hearing, shall promulgate final regulations
+
+    that require the deployment of transportation security card
+
+    readers that are consistent with the findings of the pilot pro-
+
+    gram and build upon the regulations prescribed under sub-
+
+    section (a).
+
+    ‘‘(4) REPORT.—Not later than 120 days before the promulga-
+
+    tion of regulations under paragraph (3), the Secretary shall
+
+    submit a comprehensive report to the appropriate congressional
+
+    committees (as defined in section 2(1) of SAFE Port Act) that
+
+    includes—
+
+    ‘‘(A) the findings of the pilot program with respect
+
+    to technical and operational impacts of implementing a
+
+    transportation security card reader system;
+
+    ‘‘(B) any actions that may be necessary to ensure that
+
+    all vessels and facilities to which this section applies are
+
+    able to comply with such regulations; and
+
+    ‘‘(C) an analysis of the viability of equipment under
+
+    the extreme weather conditions of the marine environment.
+
+    ‘‘(l) PROGRESS REPORTS.—Not later than 6 months after the
+
+    date of the enactment of the SAFE Port Act, and every 6 months
+
+    thereafter until the requirements under this section are fully imple-
+
+    mented, the Secretary shall submit a report on progress being
+
+    made in implementing such requirements to the appropriate
+
+    congressional committees (as defined in section 2(1) of the SAFE
+
+    Port Act).
+
+    ‘‘(m) LIMITATION.—The Secretary may not require the place-
+
+    ment of an electronic reader for transportation security cards on
+
+    a vessel unless—
+
+    ‘‘(1) the vessel has more individuals on the crew that are
+
+    required to have a transportation security card than the number
+
+    the Secretary determines, by regulation issued under subsection
+
+    (k)(3), warrants such a reader; or
+
+    ‘‘(2) the Secretary determines that the vessel is at risk
+
+    of a severe transportation security incident.’’.
+
+    (b) CLARIFICATION OF ELIGIBILITY FOR TRANSPORTATION SECU-
+
+    RITY CARDS.—Section 70105 of title 46, United States Code, is
+
+    amended—
+
+    (1) in subsection (b)(2)—
+
+    (A) in subparagraph (E), by striking ‘‘and’’ at the end;
+
+    (B) in subparagraph (F), by striking the period at the
+
+    end and inserting ‘‘; and’’; and
+
+    (C) by adding at the end the following:
+
+    VerDate 14-DEC-2004 09:29 Nov 15, 2006 Jkt 059139 PO 00347 Frm 00008 Fmt 6580 Sfmt 6581 E:\PUBLAW\PUBL347.109 APPS PsN: PUBL347
+
+    PUBLIC LAW 109–347—OCT. 13, 2006 120 STAT. 1891
+
+    ‘‘(G) other individuals as determined appropriate by
+
+    the Secretary including individuals employed at a port
+
+    not otherwise covered by this subsection.’’; and
+
+    (2) in subsection (c)(2), by inserting ‘‘subparagraph (A),
+
+    (B), or (D)’’ before ‘‘paragraph (1)’’.
+
+    (c) DEADLINEFORSECTION70105 REGULATIONS.—Not later than 46 USC 70105
+
+    January 1, 2007, the Secretary shall promulgate final regulations note.
+
+    implementing the requirements for issuing transportation security
+
+    cards under section 70105 of title 46, United States Code. The
+
+    regulations shall include a background check process to enable
+
+    newly hired workers to begin working unless the Secretary makes
+
+    an initial determination that the worker poses a security risk.
+
+    Such process shall include a check against the consolidated and
+
+    integrated terrorist watch list maintained by the Federal Govern-
+
+    ment.
+
+    SEC. 105. STUDY TO IDENTIFY REDUNDANT BACKGROUND RECORDS
+
+    CHECKS.
+
+    (a) STUDY.—The Comptroller General of the United States shall
+
+    conduct a study of background records checks carried out for the
+
+    Department that are similar to the background records check
+
+    required under section 5103a of title 49, United States Code, to
+
+    identify redundancies and inefficiencies in connection with such
+
+    checks.
+
+    (b) REPORT.—Not later than 6 months after the date of the
+
+    enactment of this Act, the Comptroller General of the United States
+
+    shall submit a report to Congress on the results of the study,
+
+    including—
+
+    (1) an identification of redundancies and inefficiencies
+
+    referred to in subsection (a); and
+
+    (2) recommendations for eliminating such redundancies and
+
+    inefficiencies.
+
+    SEC. 106. PROHIBITION OF ISSUANCE OF TRANSPORTATION SECURITY 46 USC 70105
+
+    CARDS TO PERSONS CONVICTED OF CERTAIN FELONIES. note.
+
+    The Secretary, in issuing a final rule pursuant to section 70105
+
+    of title 46, United States Code, shall provide for the disqualification
+
+    of individuals who have been found guilty or have been found
+
+    not guilty by reason of insanity of a felony, involving—
+
+    (1) treason, or conspiracy to commit treason;
+
+    (2) espionage, or conspiracy to commit espionage;
+
+    (3) sedition, or conspiracy to commit sedition; or
+
+    (4) a crime listed in chapter 113B of title 18, United States
+
+    Code, a comparable State law, or conspiracy to commit such
+
+    crime.
+
+    SEC. 107. LONG-RANGE VESSEL TRACKING.
+
+    (a) REGULATIONS.—Section 70115 of title 46, United States
+
+    Code, is amended in the first sentence by striking ‘‘The Secretary’’
+
+    and inserting ‘‘Not later than April 1, 2007, the Secretary’’.
+
+    (b) VOLUNTARYPROGRAM.—The Secretary may issue regulations 46 USC 70105
+
+    to establish a voluntary long-range automated vessel tracking note.
+
+    system for vessels described in section 70115 of title 46, United
+
+    States Code, during the period before regulations are issued under
+
+    such section.
+
+    VerDate 14-DEC-2004 09:29 Nov 15, 2006 Jkt 059139 PO 00347 Frm 00009 Fmt 6580 Sfmt 6581 E:\PUBLAW\PUBL347.109 APPS PsN: PUBL347
+
+    120 STAT. 1892 PUBLIC LAW 109–347—OCT. 13, 2006
+
+    SEC. 108. ESTABLISHMENT OF INTERAGENCY OPERATIONAL CENTERS
+
+    FOR PORT SECURITY.
+
+    (a) IN GENERAL.—Chapter 701 of title 46, United States Code,
+
+    is amended by inserting after section 70107 the following:
+
+    ‘‘§70107A. Interagency operational centers for port security
+
+    Deadline. ‘‘(a) IN GENERAL.—The Secretary shall establish interagency
+
+    operational centers for port security at all high-priority ports not
+
+    later than 3 years after the date of the enactment of the SAFE
+
+    Port Act.
+
+    ‘‘(b) CHARACTERISTICS.—The interagency operational centers
+
+    established under this section shall—
+
+    ‘‘(1) utilize, as appropriate, the compositional and oper-
+
+    ational characteristics of existing centers, including—
+
+    ‘‘(A) the pilot project interagency operational centers
+
+    for port security in Miami, Florida; Norfolk/Hampton
+
+    Roads, Virginia; Charleston, South Carolina; and San
+
+    Diego, California; and
+
+    ‘‘(B) the virtual operation center of the Port of New
+
+    York and New Jersey;
+
+    ‘‘(2) be organized to fit the security needs, requirements,
+
+    and resources of the individual port area at which each is
+
+    operating;
+
+    ‘‘(3) in addition to the Coast Guard, provide, as the Sec-
+
+    retary determines appropriate, for participation by representa-
+
+    tives of the United States Customs and Border Protection,
+
+    the United States Immigration and Customs Enforcement, the
+
+    Transportation Security Administration, the Department of
+
+    Justice, the Department of Defense, and other Federal agencies,
+
+    State and local law enforcement or port security personnel,
+
+    members of the Area Maritime Security Committee, and other
+
+    public and private sector stakeholders adversely affected by
+
+    a transportation security incident or transportation disruption;
+
+    and
+
+    ‘‘(4) be incorporated in the implementation and administra-
+
+    tion of—
+
+    ‘‘(A) maritime transportation security plans developed
+
+    under section 70103;
+
+    ‘‘(B) maritime intelligence activities under section
+
+    70113 and information sharing activities consistent with'
+- id: art-5
+  title: section 1016 of the National Security Intelligence Reform
+  text: 'section 1016 of the National Security Intelligence Reform
+
+    Act of 2004 (6 U.S.C. 485) and the Homeland Security
+
+    Information Sharing Act (6 U.S.C. 481 et seq.);
+
+    ‘‘(C) short- and long-range vessel tracking under sec-
+
+    tions 70114 and 70115;
+
+    ‘‘(D) protocols under section 201(b)(10) of the SAFE
+
+    Port Act;
+
+    ‘‘(E) the transportation security incident response plans
+
+    required by section 70104; and
+
+    ‘‘(F) other activities, as determined by the Secretary.
+
+    ‘‘(c) SECURITY CLEARANCES.—The Secretary shall sponsor and
+
+    expedite individuals participating in interagency operational centers
+
+    in gaining or maintaining their security clearances. Through the
+
+    Captain of the Port, the Secretary may identify key individuals
+
+    who should participate. The port or other entities may appeal
+
+    to the Captain of the Port for sponsorship.
+
+    VerDate 14-DEC-2004 09:29 Nov 15, 2006 Jkt 059139 PO 00347 Frm 00010 Fmt 6580 Sfmt 6581 E:\PUBLAW\PUBL347.109 APPS PsN: PUBL347
+
+    PUBLIC LAW 109–347—OCT. 13, 2006 120 STAT. 1893
+
+    ‘‘(d) SECURITY INCIDENTS.—During a transportation security
+
+    incident on or adjacent to waters subject to the jurisdiction of
+
+    the United States, the Coast Guard Captain of the Port designated
+
+    by the Commandant of the Coast Guard in a maritime security
+
+    command center described in subsection (a) shall act as the incident
+
+    commander, unless otherwise directed by the President.
+
+    ‘‘(e) RULE OF CONSTRUCTION.—Nothing in this section shall
+
+    be construed to affect the normal command and control procedures
+
+    for operational entities in the Department, unless so directed by
+
+    the Secretary.
+
+    ‘‘(f) AUTHORIZATION OF APPROPRIATIONS.—There are authorized
+
+    to be appropriated $60,000,000 for each of the fiscal years 2007
+
+    through 2012 to carry out this section.’’.
+
+    (b) REPORT REQUIREMENT.—Nothing in this section or the 46 USC 70107A
+
+    amendments made by this section relieves the Commandant of note.
+
+    the Coast Guard from complying with the requirements of section
+
+    807 of the Coast Guard and Maritime Transportation Act of 2004
+
+    (Public Law 108–293; 118 Stat. 1082). The Commandant shall uti-
+
+    lize the information developed in making the report required by
+
+    that section in carrying out the requirements of this section.
+
+    (c) BUDGET AND COST-SHARING ANALYSIS.—Not later than 180 Deadline.
+
+    days after the date of the enactment of this Act, the Secretary
+
+    of the department in which the Coast Guard is operating shall
+
+    submit to the appropriate congressional committees a proposed
+
+    budget analysis for implementing section 70107A of title 46, United
+
+    States Code, as added by subsection (a), including cost-sharing
+
+    arrangements with other Federal departments and agencies
+
+    involved in the interagency operation of the centers to be established
+
+    under such section.
+
+    (d) CLERICAL AMENDMENT.—The chapter analysis for chapter
+
+    701 of title 46, United States Code, is amended by inserting after
+
+    the item relating to section 70107 the following:
+
+    ‘‘70107A. Interagency operational centers for port security’’.
+
+    SEC. 109. NOTICE OF ARRIVAL FOR FOREIGN VESSELS ON THE OUTER 33 USC 1223
+
+    CONTINENTAL SHELF. note.
+
+    (a) NOTICE OF ARRIVAL.—Not later than 180 days after the Deadline.
+
+    date of the enactment of this Act, the Secretary of the department Regulations.
+
+    in which the Coast Guard is operating shall update and finalize
+
+    the rulemaking on notice of arrival for foreign vessels on the Outer
+
+    Continental Shelf.
+
+    (b) CONTENT OF REGULATIONS.—The regulations promulgated
+
+    pursuant to subsection (a) shall be consistent with information
+
+    required under the Notice of Arrival under section 160.206 of title
+
+    33, Code of Federal Regulations, as in effect on the date of the
+
+    enactment of this Act.
+
+    SEC. 110. ENHANCED CREWMEMBER IDENTIFICATION.'
+- id: art-6
+  title: Section 70111 of title 46, United States Code, is amended—
+  text: 'Section 70111 of title 46, United States Code, is amended—
+
+    (1) in subsection (a) by striking ‘‘The’’ and inserting ‘‘Not
+
+    later than 1 year after the date of enactment of the SAFE
+
+    Port Act, the’’; and
+
+    (2) in subsection (b) by striking ‘‘The’’ and inserting ‘‘Not
+
+    later than 1 year after the date of enactment of the SAFE
+
+    Port Act, the’’.
+
+    VerDate 14-DEC-2004 09:29 Nov 15, 2006 Jkt 059139 PO 00347 Frm 00011 Fmt 6580 Sfmt 6581 E:\PUBLAW\PUBL347.109 APPS PsN: PUBL347
+
+    120 STAT. 1894 PUBLIC LAW 109–347—OCT. 13, 2006
+
+    Subtitle B—Port Security Grants; Training
+
+    and Exercise Programs
+
+    46 USC 70103 SEC. 111. RISK ASSESSMENT TOOL.
+
+    note.
+
+    In updating Area Maritime Security Plans required under sec-
+
+    tion 70103(b)(2)(F) of title 46, United States Code, and in applying
+
+    for grants under section 70107 of such title, the Secretary of the
+
+    Department in which the Coast Guard is operating shall make
+
+    available, and Area Maritime Security Committees may use a risk
+
+    assessment tool that uses standardized risk criteria, such as the
+
+    Maritime Security Risk Assessment Tool used by the Coast Guard.
+
+    SEC. 112. PORT SECURITY GRANTS.
+
+    (a) BASIS FOR GRANTS.—Section 70107(a) of title 46, United
+
+    States Code, is amended by striking ‘‘for making a fair and equitable
+
+    allocation of funds’’ and inserting ‘‘for the allocation of funds based
+
+    on risk’’.
+
+    (b) ELIGIBLE USES.—Section 70107(b) of title 46, United States
+
+    Code, is amended—
+
+    (1) in paragraph (2), by inserting after ‘‘crewmembers.’’
+
+    the following: ‘‘Grants awarded under this section may not
+
+    be used to construct buildings or other physical facilities, except
+
+    those which are constructed under terms and conditions con-
+
+    sistent with the requirements under section 611(j)(8) of the
+
+    Robert T. Stafford Disaster Relief and Emergency Assistance
+
+    Act (42 U.S.C. 5121(j)(8)), including those facilities in support
+
+    of this paragraph, and specifically approved by the Secretary.
+
+    Costs eligible for funding under this paragraph may not exceed
+
+    the greater of—
+
+    ‘‘(A) $1,000,000 per project; or
+
+    ‘‘(B) such greater amount as may be approved by the
+
+    Secretary, which may not exceed 10 percent of the total
+
+    amount of the grant.’’; and
+
+    (2) by adding at the end the following:
+
+    ‘‘(5) The cost of conducting exercises or training for preven-
+
+    tion and detection of, preparedness for, response to, or recovery
+
+    from terrorist attacks.
+
+    ‘‘(6) The cost of establishing or enhancing mechanisms for
+
+    sharing terrorism threat information and ensuring that the
+
+    mechanisms are interoperable with Federal, State, and local
+
+    agencies.
+
+    ‘‘(7) The cost of equipment (including software) required
+
+    to receive, transmit, handle, and store classified information.’’.
+
+    (c) MULTIPLE-YEAR PROJECTS, ETC.—Section 70107 of title 46,
+
+    United States Code, is amended—
+
+    (1) by redesignating subsections (e), (f), (g), (h), and (i)
+
+    as subsections (i), (j), (k), (l), and (m), respectively, and by
+
+    inserting after subsection (d) the following:
+
+    ‘‘(e) MULTIPLE-YEARPROJECTS.—
+
+    ‘‘(1) LETTERS OF INTEN'
 doc_files:
 - us/raw/PLAW-109publ347_Energy_Policy_Act_2005.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/PLAW-109publ347_Energy_Policy_Act_2005.pdf (pdf, 234498 chars)，生成 6 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/PLAW-109publ347_Energy_Policy_Act_2005.pdf (pdf, 234498 chars)，生成 6 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/PLAW-109publ347_Energy_Policy_Act_2005.pdf (pdf, 234498 chars)，生成 6 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

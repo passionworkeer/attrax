@@ -1,0 +1,27 @@
+id: KB-market-JP-JP-COMMERCE_ACT_ON_SPECIFIED_COMMERCIAL_TRANSACTIONS
+regulation_id: JP-COMMERCE_ACT_ON_SPECIFIED_COMMERCIAL_TRANSACTIONS
+doc_name: JP-COMMERCE Act on Specified Commercial Transactions
+official_citation: JP-COMMERCE Act on Specified Commercial Transactions
+short_name: JP-COMMERCE Act on Specified Commercial Transactions
+source: market
+primary_source: market
+domain: 海关商贸
+applies_if:
+  category: []
+  features_any: []
+  markets:
+  - JP
+key_articles:
+- art-1
+- art-2
+key_points:
+- JP-COMMERCE Act on Specified Commercial Transactions：海关商贸领域法规，适用于 JP 市场相关经营行为（库自动接入，按市场匹配）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://laws.e-gov.go.jp/api/1/lawdata/351AC0000000057
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

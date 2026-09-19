@@ -9,11 +9,190 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'Page 125 TITLE 47—TELECOMMUNICATIONS §302a
+
+    States over all t'
+  text: 'Page 125 TITLE 47—TELECOMMUNICATIONS §302a
+
+    States over all the channels of radio trans- make reasonable regulations (1) governing the
+
+    mission; and to provide for the use of such chan- interference potential of devices which in their
+
+    nels, but not the ownership thereof, by persons operation are capable of emitting radio fre-
+
+    for limited periods of time, under licenses grant- quency energy by radiation, conduction, or
+
+    ed by Federal authority, and no such license other means in sufficient degree to cause harm-
+
+    shall be construed to create any right, beyond ful interference to radio communications; and
+
+    the terms, conditions, and periods of the license. (2) establishing minimum performance stand-
+
+    No person shall use or operate any apparatus for ards for home electronic equipment and systems
+
+    the transmission of energy or communications to reduce their susceptibility to interference
+
+    or signals by radio (a) from one place in any from radio frequency energy. Such regulations
+
+    State, Territory, or possession of the United shall be applicable to the manufacture, import,
+
+    States or in the District of Columbia to another sale, offer for sale, or shipment of such devices
+
+    place in the same State, Territory, possession, and home electronic equipment and systems,
+
+    or District; or (b) from any State, Territory, or and to the use of such devices.
+
+    possession of the United States, or from the Dis- (b) Restrictions
+
+    trict of Columbia to any other State, Territory,
+
+    No person shall manufacture, import, sell,
+
+    or possession of the United States; or (c) from
+
+    offer for sale, or ship devices or home electronic
+
+    any place in any State, Territory, or possession
+
+    equipment and systems, or use devices, which
+
+    of the United States, or in the District of Co-
+
+    fail to comply with regulations promulgated
+
+    lumbia, to any place in any foreign country or
+
+    pursuant to this section.
+
+    to any vessel; or (d) within any State when the
+
+    effects of such use extend beyond the borders of (c) Exceptions
+
+    said State, or when interference is caused by The provisions of this section shall not be ap-
+
+    such use or operation with the transmission of plicable to carriers transporting such devices or
+
+    such energy, communications, or signals from home electronic equipment and systems without
+
+    within said State to any place beyond its bor- trading in them, to devices or home electronic
+
+    ders, or from any place beyond its borders to equipment and systems manufactured solely for
+
+    any place within said State, or with the trans- export, to the manufacture, assembly, or instal-
+
+    mission or reception of such energy, commu- lation of devices or home electronic equipment
+
+    nications, or signals from and/or to places be- and systems for its own use by a public utility
+
+    yond the borders of said State; or (e) upon any engaged in providing electric service, or to de-
+
+    vessel or aircraft of the United States (except as vices or home electronic equipment and systems
+
+    provided in section 303(t) of this title); or (f) for use by the Government of the United States
+
+    upon any other mobile stations within the juris- or any agency thereof. Devices and home elec-
+
+    diction of the United States, except under and in tronic equipment and systems for use by the
+
+    accordance with this chapter and with a license Government of the United States or any agency
+
+    in that behalf granted under the provisions of thereof shall be developed, procured, or other-
+
+    this chapter. wise acquired, including offshore procurement,
+
+    under United States Government criteria, stand-
+
+    (June 19, 1934, ch. 652, title III, §301, 48 Stat. 1081;
+
+    ards, or specifications designed to achieve the
+
+    Pub. L. 97–259, title I, §§107, 111(b), Sept. 13, 1982,
+
+    objectives of reducing interference to radio re-
+
+    96 Stat. 1091, 1093.)
+
+    ception and to home electronic equipment and
+
+    systems, taking into account the unique needs
+
+    Editorial Notes
+
+    of national defense and security.
+
+    REFERENCES IN TEXT (d) Cellular telecommunications receivers
+
+    This chapter, referred to in text, was in the original (1) Within 180 days after October 28, 1992, the
+
+    ‘‘this Act’’, meaning act June 19, 1934, ch. 652, 48 Stat.
+
+    Commission shall prescribe and make effective
+
+    1064, known as the Communications Act of 1934, which
+
+    regulations denying equipment authorization
+
+    is classified principally to this chapter. For complete
+
+    classification of this Act to the Code, see section 609 of (under part 15 of title 47, Code of Federal Regu-
+
+    this title and Tables. lations, or any other part of that title) for any
+
+    scanning receiver that is capable of—
+
+    AMENDMENTS (A) receiving transmissions in the fre-
+
+    1982—Pub. L. 97–259 struck out ‘‘interstate and for- quencies allocated to the domestic cellular
+
+    eign’’ after ‘‘channels of’’ in first sentence, substituted radio telecommunications service,
+
+    ‘‘State, Territory,’’ for ‘‘Territory’’ after ‘‘from one (B) readily being altered by the user to re-
+
+    place in any’’ and inserted ‘‘State,’’ after ‘‘to another ceive transmissions in such frequencies, or
+
+    place in the same’’ in cl. (a), and inserted ‘‘(except as
+
+    (C) being equipped with decoders that con-
+
+    provided in section 303(t) of this title)’’ in cl. (e).
+
+    vert digital cellular transmissions to analog'
+- id: art-2
+  title: §302. Repealed. June 5, 1936, ch. 511, §1, 49 Stat. voice audio.
+  text: '§302. Repealed. June 5, 1936, ch. 511, §1, 49 Stat. voice audio.
+
+    1475 (2) Beginning 1 year after the effective date of
+
+    Section, act June 19, 1934, ch. 652, title III, §302, 48 the regulations adopted pursuant to paragraph
+
+    Stat. 1081, divided United States into five zones for pur- (1), no receiver having the capabilities described
+
+    poses of this subchapter. in subparagraph (A), (B), or (C) of paragraph (1),
+
+    as such capabilities are defined in such regula-'
+- id: art-3
+  title: §302a. Devices which interfere with radio recep- tions, shall be manufactured in the United
+  text: '§302a. Devices which interfere with radio recep- tions, shall be manufactured in the United
+
+    tion States or imported for use in the United States.
+
+    (a) Regulations (e) Delegation of equipment testing and certifi-
+
+    The Commission may, consistent with the cation to private laboratories
+
+    public interest, convenience, and necessity, The Commission may—'
 doc_files:
 - us/raw/US-title47-USC-302_FCC_device_authorization.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-title47-USC-302_FCC_device_authorization.pdf (pdf, 5973 chars)，生成 3 条共 5973 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-title47-USC-302_FCC_device_authorization.pdf (pdf, 5973 chars)，生成 3 条共 5973 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-title47-USC-302_FCC_device_authorization.pdf (pdf, 5973 chars)，生成 3 条共 5973 字符；解析文本未人工复核，引用以官方原件为准。'

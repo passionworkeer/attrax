@@ -9,11 +9,779 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'ETSI EN 300 330-1
+
+    V1.8.1
+
+    (2015-03)
+
+    EUROPEAN STANDARD
+
+    Electro'
+  text: 'ETSI EN 300 330-1
+
+    V1.8.1
+
+    (2015-03)
+
+    EUROPEAN STANDARD
+
+    Electromagnetic compatibility
+
+    and Radio spectrum Matters (ERM);
+
+    Short Range Devices (SRD);
+
+    Radio equipment in the frequency range
+
+    9 kHz to 25 MHz and inductive loop systems
+
+    in the frequency range 9 kHz to 30 MHz;
+
+    Part 1: Technical characteristics and test methods
+
+    2 ETSI EN 300 330-1 V1.8.1 (2015-03)
+
+    Reference
+
+    REN/ERM-TG28-0436
+
+    Keywords
+
+    radio, RFID, SRD, testing
+
+    ETSI
+
+    650 Route des Lucioles
+
+    F-06921 Sophia Antipolis Cedex - FRANCE
+
+    Tel.: +33 4 92 94 42 00 Fax: +33 4 93 65 47 16
+
+    Siret N° 348 623 562 00017 - NAF 742 C
+
+    Association à but non lucratif enregistrée à la
+
+    Sous-Préfecture de Grasse (06) N° 7803/88
+
+    Important notice
+
+    The present document can be downloaded from:
+
+    http://www.etsi.org/standards-search
+
+    The present document may be made available in electronic versions and/or in print. The content of any electronic and/or
+
+    print versions of the present document shall not be modified without the prior written authorization of ETSI. In case of any
+
+    existing or perceived difference in contents between such versions and/or in print, the only prevailing document is the
+
+    print of the Portable Document Format (PDF) version kept on a specific network drive within ETSI Secretariat.
+
+    Users of the present document should be aware that the document may be subject to revision or change of status.
+
+    Information on the current status of this and other ETSI documents is available at
+
+    http://portal.etsi.org/tb/status/status.asp
+
+    If you find errors in the present document, please send your comment to one of the following services:
+
+    https://portal.etsi.org/People/CommiteeSupportStaff.aspx
+
+    Copyright Notification
+
+    No part may be reproduced or utilized in any form or by any means, electronic or mechanical, including photocopying
+
+    and microfilm except as authorized by written permission of ETSI.
+
+    The content of the PDF version shall not be modified without the written authorization of ETSI.
+
+    The copyright and the foregoing restriction extend to reproduction in all media.
+
+    © European Telecommunications Standards Institute 2015.
+
+    All rights reserved.
+
+    DECTTM, PLUGTESTSTM, UMTSTM and the ETSI logo are Trade Marks of ETSI registered for the benefit of its Members.
+
+    3GPPTM and LTE™ are Trade Marks of ETSI registered for the benefit of its Members and
+
+    of the 3GPP Organizational Partners.
+
+    GSM® and the GSM logo are Trade Marks registered and owned by the GSM Association.
+
+    ETSI
+
+    3 ETSI EN 300 330-1 V1.8.1 (2015-03)
+
+    Contents
+
+    Intellectual Property Rights ................................................................................................................................ 7
+
+    Foreword ............................................................................................................................................................. 7
+
+    Modal verbs terminology .................................................................................................................................... 7
+
+    Introduction ........................................................................................................................................................ 8
+
+    1 Scope ........................................................................................................................................................ 9
+
+    2 References .............................................................................................................................................. 10
+
+    2.1 Normative references ....................................................................................................................................... 10
+
+    2.2 Informative references ...................................................................................................................................... 11
+
+    3 Definitions, symbols and abbreviations ................................................................................................. 12
+
+    3.1 Definitions ........................................................................................................................................................ 12
+
+    3.2 Symbols ............................................................................................................................................................ 13
+
+    3.3 Abbreviations ................................................................................................................................................... 14
+
+    4 Technical requirements specifications ................................................................................................... 15
+
+    4.1 General requirements ....................................................................................................................................... 15
+
+    4.1.1 Receiver categorization ............................................................................................................................... 15
+
+    4.1.2 General performance criteria ...................................................................................................................... 15
+
+    4.1.3 General performance criteria for wireless power transfer (WPT) systems ................................................. 15
+
+    4.2 Presentation of equipment for testing purposes ................................................................................................ 17
+
+    4.2.1 Choice of model for testing ........................................................................................................................ 17
+
+    4.2.2 Testing of equipment with alternative radiated H-field strengths ............................................................... 18
+
+    4.2.3 Testing of equipment that does not have an external 50 Ω RF connector (integral antenna
+
+    equipment) .................................................................................................................................................. 18
+
+    4.2.3.1 Equipment with an internal permanent or temporary antenna connector .............................................. 18
+
+    4.2.3.2 Equipment with a temporary antenna connector ................................................................................... 18
+
+    4.2.3.3 Wireless Power Transfer systems ......................................................................................................... 18
+
+    4.2.4 On-site testing ............................................................................................................................................. 18
+
+    4.3 Mechanical and electrical design ...................................................................................................................... 18
+
+    4.3.1 General ........................................................................................................................................................ 18
+
+    4.3.1.1 WPT ...................................................................................................................................................... 18
+
+    4.3.2 Controls ...................................................................................................................................................... 18
+
+    4.3.3 Transmitter shut-off facility ........................................................................................................................ 19
+
+    4.3.4 Receiver mute or squelch ............................................................................................................................ 19
+
+    4.3.5 Marking (equipment identification) ............................................................................................................ 19
+
+    4.3.5.1 Equipment identification ....................................................................................................................... 19
+
+    4.3.5.2 Equipment marking ............................................................................................................................... 19
+
+    4.4 Declarations by the provider ............................................................................................................................ 19
+
+    4.5 Auxiliary test equipment .................................................................................................................................. 19
+
+    4.6 Interpretation of the measurement results ........................................................................................................ 19
+
+    5 Test conditions, power sources and ambient temperatures .................................................................... 20
+
+    5.1 Normal and extreme test conditions ................................................................................................................. 20
+
+    5.2 Test power source ............................................................................................................................................. 20
+
+    5.2.1 External test power source .......................................................................................................................... 20
+
+    5.2.2 Internal test power source ........................................................................................................................... 20
+
+    5.3 Normal test conditions ...................................................................................................................................... 20
+
+    5.3.1 Normal temperature and humidity .............................................................................................................. 20
+
+    5.3.2 Normal test power source ........................................................................................................................... 21
+
+    5.3.2.1 Mains voltage ........................................................................................................................................ 21
+
+    5.3.2.2 Regulated lead-acid battery power sources ........................................................................................... 21
+
+    5.3.2.3 Other power sources .............................................................................................................................. 21
+
+    5.4 Extreme test conditions .................................................................................................................................... 21
+
+    5.4.1 Extreme temperatures ................................................................................................................................. 21
+
+    5.4.1.1 Procedure for tests at extreme temperatures .......................................................................................... 21
+
+    5.4.1.1.1 Procedure for equipment designed for continuous operation .......................................................... 21
+
+    5.4.1.1.2 Procedure for equipment designed for intermittent operation ......................................................... 21
+
+    ETSI
+
+    4 ETSI EN 300 330-1 V1.8.1 (2015-03)
+
+    5.4.1.2 Extreme temperature ranges .................................................................................................................. 22
+
+    5.4.2 Extreme test source voltages ....................................................................................................................... 22
+
+    5.4.2.1 Mains voltage ........................................................................................................................................ 22
+
+    5.4.2.2 Regulated lead-acid battery power sources ........................................................................................... 22
+
+    5.4.2.3 Power sources using other types of batteries ......................................................................................... 22
+
+    5.4.2.4 Other power sources .............................................................................................................................. 23
+
+    6 General conditions .................................................................................................................................. 23
+
+    6.1 Normal test signals and test modulation ...'
+- id: art-2
+  title: 'Annex C (normative): Customized loop antennas ............................................................................. 55'
+  text: 'Annex C (normative): Customized loop antennas ............................................................................. 55
+
+    C.1 Product classes related to the antenna loop ............................................................................................ 55
+
+    C.1.1 Antenna loops below 1 MHz ............................................................................................................................ 55
+
+    C.1.2 Antenna loops above 1 MHz ............................................................................................................................ 56
+
+    Annex D (informative): Test fixture for measuring inductive transmitter carrier and
+
+    harmonic currents by use of an artificial antenna (Product Class 3
+
+    only) ................................................................................................................. 58
+
+    Annex E (informative): E-fields in the near field at low frequencies ................................................. 60
+
+    ETSI
+
+    6 ETSI EN 300 330-1 V1.8.1 (2015-03)
+
+    Annex F (normative): H-field measurements and limits at 3 m and 30 m ..................................... 61
+
+    F.1 Limits for measurements at 30 m distance ............................................................................................. 61
+
+    F.2 Limits for measurements at 3 m distance ............................................................................................... 62
+
+    Annex G (normative): Transmitter emission levels and spectrum mask measurements ............... 63
+
+    Annex H (normative): Generic inductive loop limits in the frequency range
+
+    148,5 kHz to 30 MHz ..................................................................................... 66
+
+    H.1 Introduction ............................................................................................................................................ 66
+
+    H.2 Radiated H-field strength ....................................................................................................................... 66
+
+    H.2.1 Methods of measurements ................................................................................................................................ 66
+
+    H.2.2 Radiated H-field strength limit ......................................................................................................................... 66
+
+    H.2.2.1 Radiated total H-field and H-field density limits according to the measurements in clause H.2.1
+
+    indent a) ...................................................................................................................................................... 66
+
+    H.2.2.2 Radiated bandwidth and H-field density limits according to the measurements in clause H.2.1
+
+    indent b) ...................................................................................................................................................... 67
+
+    H.3 Other requirements ................................................................................................................................. 67'
+- id: art-3
+  title: 'Annex I (informative): Determination and use of the measurement bandwidth ............................. 68'
+  text: 'Annex I (informative): Determination and use of the measurement bandwidth ............................. 68
+
+    Annex J (informative): Other limits ..................................................................................................... 69
+
+    Annex K (informative): Bibliography ................................................................................................... 70
+
+    History .............................................................................................................................................................. 71
+
+    ETSI
+
+    7 ETSI EN 300 330-1 V1.8.1 (2015-03)
+
+    Intellectual Property Rights
+
+    IPRs essential or potentially essential to the present document may have been declared to ETSI. The information
+
+    pertaining to these essential IPRs, if any, is publicly available for ETSI members and non-members, and can be found
+
+    in ETSI SR 000 314: "Intellectual Property Rights (IPRs); Essential, or potentially Essential, IPRs notified to ETSI in
+
+    respect of ETSI standards", which is available from the ETSI Secretariat. Latest updates are available on the ETSI Web
+
+    server (http://ipr.etsi.org).
+
+    Pursuant to the ETSI IPR Policy, no investigation, including IPR searches, has been carried out by ETSI. No guarantee
+
+    can be given as to the existence of other IPRs not referenced in ETSI SR 000 314 (or the updates on the ETSI Web
+
+    server) which are, or may be, or may become, essential to the present document.
+
+    Foreword
+
+    This European Standard (EN) has been produced by ETSI Technical Committee Electromagnetic compatibility and
+
+    Radio spectrum Matters (ERM).
+
+    The present document includes improvements to the previous version of the standard that take advantage of technical
+
+    developments within the SRD industry.
+
+    The present document is part 1 of a multi-part deliverable covering Electromagnetic compatibility and Radio spectrum
+
+    Matters (ERM); Short Range Devices (SRD); Radio equipment in the frequency range 9 kHz to 25 MHz and inductive
+
+    loop systems in the frequency range 9 kHz to 30 MHz, as identified below:
+
+    Part 1: "Technical characteristics and test methods";
+
+    Part 2: "Harmonized EN covering the essential requirements of article 3.2 of the R&TTE Directive".
+
+    National transposition dates
+
+    Date of adoption of this EN: 20 February 2015
+
+    Date of latest announcement of this EN (doa): 31 May 2015
+
+    Date of latest publication of new National Standard
+
+    or endorsement of this EN (dop/e): 30 November 2015
+
+    Date of withdrawal of any conflicting National Standard (dow): 30 November 2015
+
+    Modal verbs terminology
+
+    In the present document "shall", "shall not", "should", "should not", "may", "need not", "will", "will not", "can" and
+
+    "cannot" are to be interpreted as described in clause 3.2 of the ETSI Drafting Rules (Verbal forms for the expression of
+
+    provisions).
+
+    "must" and "must not" are NOT allowed in ETSI deliverables except when used in direct citation.
+
+    Introduction
+
+    The present document has been prepared to:
+
+    • Enhance operating conditions for RFIDs in the 13,56 MHz Band with regard to high datarate wideband low
+
+    level systems up to ±7 MHz for ISO 14443 [i.9] type applications including NFC and secondly for higher
+
+    operating range, narrowband high level modulation for ISO 15693 [i.10] and ISO 18000-3 [i.11] type systems.
+
+    • Include wireless inductive power transfer (WPT) systems.
+
+    ETSI
+
+    8 ETSI EN 300 330-1 V1.8.1 (2015-03)
+
+    1 Scope
+
+    The present document applies to the following Short Range Device major equipment types:
+
+    1) Generic Short range Devices including transmitters operating in the range from 9 kHz to 25 MHz; and
+
+    2) inductive loop transmitters operating from 9 kHz to 30 MHz including Radio Frequency Identification (RFID)
+
+    and EAS operating in LF and HF ranges and for radio equipment including wireless power transfer (WPT)
+
+    function in the same frequency range;
+
+    3) receivers of systems as defined by bullets 1 and 2.
+
+    These radio equipment types are capable of operating in the permitted frequency bands within the 9 kHz to 30 MHz
+
+    range as specified in table 1:
+
+    • either with a Radio Frequency (RF) output connection and dedicated antenna or with an integral antenna;
+
+    • for all types of modulation;
+
+    • receivers of systems as defined by bullets 1 and 2.
+
+    Table 1 shows a list of the frequency bands as designated to Short Range Devices and the CEPT/ERC/REC 70-03 [i.1]
+
+    as known at the date of publication of the present document.
+
+    When selecting parameters for new SRDs, which may have inherent safety of human life implications, manufacturers
+
+    and users should pay particular attention to the potential for interference from other systems operating in the same or
+
+    adjacent bands.
+
+    The present document covers fixed stations, mobile stations and portable stations. If a system includes transponders,
+
+    these are measured together with the transmitter.
+
+    All types of modulation for radio devices are covered by the present document, provided the requirements of clause 7.3
+
+    are met.
+
+    The radio equipment, covered by the classification SRD is divided into several classes based on the maximum radiated
+
+    magnetic field strength. The field strength designation in the present document is based on CEPT/ERC/REC 70-03 [i.1]
+
+    and National SRD-frequency designations.
+
+    Three types of measuring methods are defined in the present document due to the varied nature of the antenna types for
+
+    equipment used in this band. One method measures the RF carrier current, another measures the radiated H-field and
+
+    the third conducted power.
+
+    The present document covers requirements for radiated emissions below as well as above 30 MHz.
+
+    Additional standards or specifications may be required for equipment such as that intended for connection to the
+
+    Public Switched Telephone Network (PSTN).
+
+    Table 1: Short Range Devices within the 9 kHz to 30 MHz permitted frequency bands
+
+    Frequency Bands/frequencies Applications
+
+    Transmit and Receive 9 kHz to 90 kHz Inductive devices, Generic use
+
+    Transmit and Receive 90 kHz to 119 kHz Inductive devices, Generic use
+
+    Transmit and Receive 119 kHz to 140 kHz Inductive devices, Generic use
+
+    Transmit and Receive 140 kHz to 148,5 kHz Inductive devices, Generic use
+
+    Transmit and Receive 148,5 kHz to 5 MHz Inductive devices, Generic use
+
+    Transmit and Receive 400 kHz to 600 kHz RFID only
+
+    Transmit and Receive 5 kHz to 30 MHz Inductive devices, Generic use
+
+    Transmit and Receive 3 155 kHz to 3 400 kHz Inductive devices, Generic use
+
+    Transmit and Receive 4 234 kHz Inductive devices, Railway applications
+
+    Transmit and Receive 4 516 kHz Inductive devices, Railway applications
+
+    Transmit and Receive 6 765 kHz to 6 795 kHz Inductive devices, Generic use
+
+    Transmit and Receive 7 400 kHz to 8 800 kHz Inductive devices, Generic use
+
+    Transmit and Receive 10 200 kHz to 11,000 MHz Inductive devices, Generic use
+
+    Transmit and Receive 11,810 MHz to 15,310 MHz RFID only
+
+    Transmit and Receive 12,5 MHz to 20 MHz Inductive devices, Wireless healthcare
+
+    ETSI
+
+    9 ETSI EN 300 330-1 V1.8.1 (2015-03)
+
+    Frequency Bands/frequencies Applications
+
+    Transmit and Receive 13,553 MHz to 13,567 MHz Inductive devices, Generic use
+
+    Transmit and Receive 26,957 MHz to 27,283 MHz Inductive devices, Generic use
+
+    Transmit and Receive 27,095 MHz Inductive devices, Railway applications
+
+    NOTE 1: It should be noted that table 1 represents the most widely implemented position within the European
+
+    Union and the CEPT countries, but it should not be assumed that all designated bands are available in all
+
+    countries.
+
+    NOTE 2: In addition, it should be noted that other frequency bands may be available in a country within the
+
+    frequency range 9 kHz to 30 MHz covered by the present document.
+
+    NOTE 3: On non-harmonized parameters, national administrations may impose certain conditions such as the type
+
+    of modulation, frequency, channel/frequency separations, maximum transmitter radiated power, duty
+
+    cycle, and the inclusion of an automatic transmitter shut-off facility, as a condition for the issue of an
+
+    Individual Rights for use of spectrum or General Authorization, or as a condition for use under "licence
+
+    exemption" as it is in most cases for Short Range Devices.
+
+    The present document covers fixed stations, mobile stations and portable stations.
+
+    Applications using Ultra-WideBand (UWB) technology are not covered by the present document.
+
+    2 References
+
+    2.1 Normative references
+
+    References are either specific (identified by date of publication and/or edition number or version number) or
+
+    non-specific. For specific references, only the cited version applies. For non-specific references, the latest version of the
+
+    reference document (including any amendments) applies.
+
+    Referenced documents which are not found to be publicly available in the expected location might be found at
+
+    http://docbox.etsi.org/Reference.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    The following referenced documents are necessary for the application of the present document.
+
+    [1] ETSI TR 100 028 (all parts) (V1.4.1): "Electromagnetic compatibility and Radio spectrum Matters
+
+    (ERM); Uncertainties in the measurement of mobile radio equipment characteristics".
+
+    [2] CISPR 16-1-4: "Specification for radio disturbance and immunity measuring apparatus and
+
+    methods - Part 1-4: Radio disturbance and immunity measuring apparatus - Antennas and test sites
+
+    for radiated disturbance measurements".
+
+    2.2 Informative references
+
+    References are either specific (identified by date of publication and/or edition number or version number) or
+
+    non-specific. For specific references, only the cited version applies. For non-specific references, the latest version of the
+
+    reference document (including any amendments) applies.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    The following referenced documents are not necessary for the application of the present document but they assist the
+
+    user with regard to a particular subject area.
+
+    [i.1] CEPT/ERC/REC 70-03: "Relating to the use of Short Range Devices (SRD)".
+
+    [i.2] Recommendation ITU-T O.153: "Basic parameters for the measurement of error performance at
+
+    bit rates below the primary rate".
+
+    ETSI
+
+    10 ETSI EN 300 330-1 V1.8.1 (2015-03)
+
+    [i.3] ANSI C63.5: "American National Standard for Electromagnetic Compatibility-Radiated Emission
+
+    Measurements in Electromagnetic Interference (EMI) Control-Calibration of Antennas (9 kHz to
+
+    40 GHz)".
+
+    [i.4] Directive 1999/5/EC of the European Parliament and of the Council of 9 March 1999 on radio
+
+    equipment and telecommunications terminal equipment and the mutual recognition of their
+
+    conformity (R&TTE Directive).
+
+    [i.5] ETSI TR 102 273-2: "Electromagnetic compatibility and Radio spectrum Matters (ERM);
+
+    Improvement on Radiated Methods of Measurement (using test site) and evaluation of the
+
+    corresponding measurement uncertainties; Part 2: Anechoic chamber".
+
+    [i.6] ETSI TR 102 273-3: "Electromagnetic compatibility and Radio spectrum Matters (ERM);
+
+    Improvement on Radiated Methods of Measurement (using test site) and evaluation of the
+
+    corresponding measurement uncertainties; Part 3: Anechoic chamber with a ground plane".
+
+    [i.7] ETSI TR 102 273-4: "Electromagnetic compatibility and Radio spectrum Matters (ERM);
+
+    Improvement on Radiated Methods of Measurement (using test site) and evaluation of the
+
+    corresponding measurement uncertainties; Part 4: Open area test site".
+
+    [i.8] ECC report 208: "Impact of RFID devices on radio services in the band 13.56 MHz".
+
+    [i.9] ISO 14443: "Identification cards -- Contactless integrated circuit cards -- Proximity cards".
+
+    [i.10] ISO 15693: "Information technology -- Radio frequency identification for item management --
+
+    Unique identification for RF tags".
+
+    [i.11] ISO 18000-3: "Information technology -- Radio frequency identification for item management --
+
+    Part 3: Parameters for air interface communications at 13,56 MHz".
+
+    [i.12] Void.
+
+    [i.13] CENELEC EN 62311: "Assessment of electronic and electrical equipment related to human
+
+    expos'
+- id: art-4
+  title: article 3.2 of the R&TTE Directive".
+  text: 'article 3.2 of the R&TTE Directive".
+
+    [i.23] ETSI EN 300 330: "ElectroMagnetic Compatibility and Radio Spectrum Matters (ERM); Short
+
+    Range Devices (SRD); Radio equipment in the frequency range 9 kHz to 25 MHz and inductive
+
+    loop systems in the frequency range 9 kHz to 30 MHz".
+
+    [i.24] Recommendation ITU-T O.41: "Psophometer for use on telephone-type circuits".
+
+    [i.25] Directive 2006/95/EC of the European Parliament and of the Council of 12 December 2006 on the
+
+    harmonisation of the laws of Member States relating to Electrical Equipment designed for use
+
+    within certain voltage limits (LVD).
+
+    [i.26] ITU Radio Regulations.
+
+    [i.27] Directive 2004/108/EC of the European Parliament and of the Council of 15 December 2004 on
+
+    the approximation of the laws of the Member States relating to electromagnetic compatibility and
+
+    repealing Directive 89/336/EEC Text with EEA relevance (EMCD).
+
+    3 Definitions, symbols and abbreviations
+
+    3.1 Definitions
+
+    For the purposes of the present document, the following terms and definitions apply:
+
+    alarm: use of radio communication or a sensing device for indicating alert information at a distant location
+
+    artificial antenna: tuned reduced-radiating dummy load equal to the nominal impedance specified by the provider
+
+    assigned frequency band: frequency band within which the device is authorized to operate
+
+    battery: receiving part of a WPT system, a combination a receiving coil and battery in one housing
+
+    battery emulator: receiving part of a WPT systems, which emulates the battery and the receiving coil
+
+    charger: stationary part of the Wireless Power Transfer (WPT) system supplying energy to a receiving part
+
+    conducted measurements: measurements which are made using a direct connection to the equipment under test
+
+    customized antenna: antenna built according to manufacturers'' antenna design rules inside tested limits
+
+    dedicated antenna: removable antenna supplied and type tested with the radio equipment, designed as an indispensable
+
+    part of the equipment
+
+    NOTE: The antenna has been designed or developed for one or more specific types of equipment. It is the
+
+    combination of dedicated antenna and radio equipment that is expected to be compliant with the
+
+    regulations.
+
+    fixed station: equipment intended for use in a fixed location
+
+    H-field test antenna: electrically screened loop or equivalent antenna, with which the magnetic component of the field
+
+    can be measured
+
+    identification system: equipment consisting of a transmitter(s), receiver(s) (or a combination of the two) and an
+
+    antenna(s) to identify objects by means of a transponder
+
+    integral antenna: antenna designed as a fixed part of the equipment, without the use of an external connector and as
+
+    such which cannot be disconnected from the equipment by the user
+
+    magnetic dipole moment: product of (Number of coil turns) × (coil area) × (coil current)
+
+    NOTE: Air coils only.
+
+    ETSI
+
+    12 ETSI EN 300 330-1 V1.8.1 (2015-03)
+
+    medical device: any instrument, apparatus, appliance, software, material or other article, whether used alone or in
+
+    combination, together with any accessories, including the software intended by its manufacturer to be used specifically
+
+    for diagnostic and/or therapeutic purposes and necessary for its proper application, intended by the manufacturer to be
+
+    used for human beings for the purpose of:
+
+    • diagnosis, prevention, monitoring, treatment or alleviation of disease;
+
+    • diagnosis, monitoring, treatment, alleviation of or compensation for an injury or handicap;
+
+    • investigation, replacement or modification of the anatomy or of a physiological process;
+
+    • control of conception;
+
+    and which does not achieve its principal intended action in or on the human body by pharmacological, immunological
+
+    or metabolic means, but which may be assisted in its function by such means
+
+    mobile station: equipment normally installed in a vehicle
+
+    portable station: equipment intended to be carried, attached or implanted
+
+    radiated measurements: measurements which involve the absolute measurement of a radiated field
+
+    receiving part: receiving or second coil of a WPT system
+
+    spurious emissions: emissions on a frequency or frequencies which are outside the occupied bandwidth and the level of
+
+    which may be reduced without affecting the corresponding transmission of information
+
+    telecommand: use of radio communication for the transmission of signals to initiate, modify or terminate functions of
+
+    equipment at a distance
+
+    telemetry: use of radio communication for indicating or recording data at a distance
+
+    transponder: device that responds to an interrogation signal
+
+    type designation: providers'' marking of the equipment
+
+    3.2 Symbols
+
+    For the purposes of the present document, the following symbols apply:
+
+    Ω
+
+    ohm
+
+    A loop antenna area
+
+    C correction factor
+
+    E electrical field strength
+
+    f frequency
+
+    f carrier frequency in Hz
+
+    C
+
+    H magnetic field strength
+
+    Hef H field-strength generated by an e-field antenna
+
+    Hf H-field-strength limit
+
+    H carrier H-field strength
+
+    C
+
+    H H-field-strength limit for radi'
 doc_files:
 - global/raw/ETSI_EN_30033001_v01.08.01_60.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30033001_v01.08.01_60.pdf (pdf, 168813 chars)，生成 4 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30033001_v01.08.01_60.pdf (pdf, 168813 chars)，生成 4 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30033001_v01.08.01_60.pdf (pdf, 168813 chars)，生成 4 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

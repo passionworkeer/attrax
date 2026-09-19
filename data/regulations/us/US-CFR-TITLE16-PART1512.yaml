@@ -1,6 +1,6 @@
 id: US-CFR-TITLE16-PART1512
 official_citation: US 16 CFR Part 1512
-short_name: US 16 CFR Part 1512
+short_name: US 16 CFR Part 1512 — REQUIREMENTS FOR BICYCLES
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,888 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '16
+
+    Commercial Practices
+
+    2
+
+    2024-01-01
+
+    2024-01-01
+
+    false
+
+    REQUIR'
+  text: '16
+
+    Commercial Practices
+
+    2
+
+    2024-01-01
+
+    2024-01-01
+
+    false
+
+    REQUIREMENTS FOR BICYCLES
+
+    1512
+
+    PART 1512
+
+    Commercial Practices
+
+    CONSUMER PRODUCT SAFETY COMMISSION
+
+    FEDERAL HAZARDOUS SUBSTANCES ACT REGULATIONS
+
+    Pt. 1512
+
+    PART 1512—REQUIREMENTS FOR BICYCLES
+
+    Subpart A—Regulations
+
+    Sec.
+
+    1512.1
+
+    Scope.
+
+    1512.2
+
+    Definitions.
+
+    1512.3
+
+    Requirements in general.
+
+    1512.4
+
+    Mechanical requirements.
+
+    1512.5
+
+    Requirements for braking system.
+
+    1512.6
+
+    Requirements for steering system.
+
+    1512.7
+
+    Requirements for pedals.
+
+    1512.8
+
+    Requirements for drive chain.
+
+    1512.9
+
+    Requirements for protective guards.
+
+    1512.10
+
+    Requirements for tires.
+
+    1512.11
+
+    Requirements for wheels.
+
+    1512.12
+
+    Requirements for wheel hubs.
+
+    1512.13
+
+    Requirements for front fork.
+
+    1512.14
+
+    Requirements for fork and frame assembly.
+
+    1512.15
+
+    Requirements for seat.
+
+    1512.16
+
+    Requirements for reflectors.
+
+    1512.17
+
+    Other requirements.
+
+    1512.18
+
+    Tests and test procedures.
+
+    1512.19
+
+    Instructions and labeling.
+
+    1512.20
+
+    Separability.
+
+    Subpart B—Policies and Interpretations [Reserved]
+
+    Figure 1 to Part 1512—Bicycle Front Fork Cantilever Bending Test Rig
+
+    Figures 2-3 to Part 1512—Handlebar Stem Loading and Entrance 8 Observation Angles
+
+    Figure 5 to Part 1512—Typical Handbrake Actuator Showing Grip Dimension
+
+    Figures 6-7 to Part 1512—Toe Clearance and Chain Guard Requirements
+
+    Figure 8 to Part 1512—Reflectorized Bicycle Wheel Rim Abrasion Test Device
+
+    Table 1 to Part 1512—Minimum Candlepower per Incident Foot-Candle for Clear Reflector
+
+    1
+
+    Table 2 to Part 1512—Minimum Candlepower per Incident Foot-Candle for Clear Reflector
+
+    1
+
+    Table 3 to Part 1512—Minimum Acceptable Values for the Quantity A Defined in the Retroreflective Tire and Rim Test Procedure
+
+    Table 4 to Part 1512—Relative Energy Distribution of Sources
+
+    Authority:
+
+    Secs. 2(f)(1)(D), (q)(1)(A), (s), 3(e)(1), 74 Stat. 372, 374, 375, as amended, 80 Stat. 1304-05, 83 Stat. 187-89 (15 U.S.C. 1261, 1262); Pub. L. 107-319, 116 Stat. 2776.
+
+    Source:
+
+    43 FR 60034, Dec. 22, 1978, unless otherwise noted.
+
+    Subpart A—Regulations'
+- id: art-2
+  title: § 1512.1
+  text: '§ 1512.1
+
+    Scope.
+
+    This part sets forth the requirements for a bicycle as defined in § 1512.2(a) (except a bicycle that is a “track bicycle” or a “one-of-a-kind bicycle” as defined in § 1512.2 (d) and (e)) which is not
+    a banned article under § 1500.18(a)(12) of this chapter.'
+- id: art-3
+  title: § 1512.2
+  text: '§ 1512.2
+
+    Definitions.
+
+    For the purposes of this part:
+
+    (a) Bicycle means:
+
+    (1) A two-wheeled vehicle having a rear drive wheel that is solely human-powered;
+
+    (2) A two- or three-wheeled vehicle with fully operable pedals and an electric motor of less than 750 watts (1 h.p.), whose maximum speed on a paved level surface, when powered solely by such a motor
+    while ridden by an operator who weighs 170 pounds, is less than 20 mph.
+
+    (b)
+
+    Sidewalk bicycle
+
+    means a bicycle with a seat height of no more than 635 mm (25.0 in); the seat height is measured with the seat adjusted to its highest position. Recumbent bicycles are not included in this definition.
+
+    (c)
+
+    Seat height
+
+    means the dimension from the point on the seat surface intersected by the seat post center line (or the center of the seating area if no seat post exists) and the ground plane, as measured with the
+    wheels aligned and in a plane normal to the ground plane.
+
+    (d)
+
+    Track bicycle
+
+    means a bicycle designed and intended for sale as a competitive velodrome machine having no brake levers or calipers, single crank-to-wheel ratio, and no free-wheeling feature between the rear wheel
+    and the crank.
+
+    (e)
+
+    One-of-a-kind bicycle
+
+    means a bicycle that is uniquely constructed to the order of an individual consumer other than by assembly of stock or production parts.
+
+    (f)
+
+    Normal riding position
+
+    means that the rider is seated on the bicycle with both feet on the pedals and both hands on the handlegrips (and in a position that allows operation of handbrake levers if so equipped); the seat and
+    handlebars may be adjusted to positions judged by the rider to be comfortable.
+
+    (g)
+
+    Recumbent bicycle
+
+    means a bicycle in which the rider sits in a reclined position with the feet extended forward to the pedals.
+
+    [43 FR 60034, Dec. 22, 1978, as amended at 68 FR 7073, Feb. 12, 2003; 76 FR 27888, May 13, 2011]'
+- id: art-4
+  title: § 1512.3
+  text: '§ 1512.3
+
+    Requirements in general.
+
+    Any bicycle subject to the regulations in this part shall meet the requirements of this part in the condition to which it is offered for sale to consumers; any bicycle offered for sale to consumers
+    in disassembled or partially assembled condition shall meet these requirements after assembly according to the manufacturer''s instructions. For the purpose of compliance with this part, where the metric
+    and English units are not equal due to the conversion process the less stringent requirement will prevail.'
+- id: art-5
+  title: § 1512.4
+  text: '§ 1512.4
+
+    Mechanical requirements.
+
+    (a)
+
+    Assembly.
+
+    Bicycles shall be manufactured such that mechanical skills required of the consumer for assembly shall not exceed those possessed by an adult of normal intelligence and ability.
+
+    (b)
+
+    Sharp edges.
+
+    There shall be no unfinished sheared metal edges or other sharp parts on assembled bicycles that are, or may be, exposed to hands or legs; sheared metal edges that are not rolled shall be finished so
+    as to remove any feathering of edges, or any burrs or spurs caused during the shearing process.
+
+    (c)
+
+    Integrity.
+
+    There shall be no visible fracture of the frame or of any steering, wheel, pedal, crank, or brake system component resulting from testing in accordance with: The handbrake loading and performance test,
+    § 1512.18(d); the foot brake force and performance test, § 1512.18(e); and the road test, § 1512.18(p) (or the sidewalk bicycle proof test, § 1512.18(q)).
+
+    (d)
+
+    Attachment hardware.
+
+    All screws, bolts, or nuts used to attach or secure components shall not fracture, loosen, or otherwise fail their intended function during the tests required in this part. All threaded hardware shall
+    be of sufficient quality to allow adjustments and maintenance. Recommended quality thread form is specified in Handbook H28, “Screw Thread Standards for Federal Service,”
+
+    1
+
+    issued by the National Bureau of Standards, Department of Commerce; recommended mechanical properties are specified in ISO Recommendation R898, “Mechanical Properties of Fasteners,” and in ISO Recommendations
+    68, 262, and 263, “General Purpose Screw Threads.”
+
+    2
+
+    1
+
+    Copies may be obtained from: Superintendent of Documents, U.S. Government Printing Office, Washington, D.C. 20402.
+
+    2
+
+    Copies may be obtained from: American National Standards Institute, 1430 Broadway, New York, New York 10018.
+
+    (e)-(f) [Reserved]
+
+    (g)
+
+    Excluded area.
+
+    There shall be no protrusions located within the area bounded by (1) a line 89 mm (3
+
+    1/2
+
+    in) to the rear of and parallel to the handlebar stem; (2) a line tangent to the front tip of the seat and intersecting the seat mast at the top rear stay; (3) the top surface of the top tube; and (4)
+    a line connecting the front of the seat (when adjusted to its highest position) to the junction where the handlebar is attached to the handlebar stem. The top tube on a female bicycle model shall be
+    the seat mast and the down tube or tubes that are nearest the rider in the normal riding position. Control cables no greater than 6.4 mm (
+
+    1/4
+
+    in) in diameter and cable clamps made from material not thicker than 4.8 mm (
+
+    3/16
+
+    in) may be attached to the top tube.
+
+    (h) [Reserved]
+
+    (i)
+
+    Control cable ends.
+
+    Ends of all accessible control cables shall be provided with protective caps or otherwise treated to prevent unraveling. Protective caps shall be tested in accordance with the protective cap and end-mounted
+    devices test, § 1512.18(c), and shall withstand a pull of 8.9 N (2.0 lbf).
+
+    (j)
+
+    Control cable abrasion.
+
+    Control cables shall not abrade over fixed parts and shall enter and exit cable sheaths in a direction in line with the sheath entrance and exit so as to prevent abrading.
+
+    [43 FR 60034, Dec. 22, 1978, as amended at 76 FR 27888, May 13, 2011]'
+- id: art-6
+  title: § 1512.5
+  text: '§ 1512.5
+
+    Requirements for braking system.
+
+    (a)
+
+    Braking system.
+
+    Bicycles shall be equipped with front- and rear-wheel brakes or rear-wheel brakes only.
+
+    (b)
+
+    Handbrakes.
+
+    Handbrakes shall be tested at least ten times by applying a force sufficient to cause the handlever to contact the handlebar, or a maximum of 445 N (100 lbf), in accordance with the loading test, § 1512.18(d)(2),
+    and shall be rocked back and forth with the weight of a 68.1 kg (150 lb) rider on the seat with the same handbrake force applied in accordance with the rocking test, § 1512.18(d)(2)(iii); there shall
+    be no visible fractures, failures, movement of clamps, or misalignment of brake components.
+
+    (1)
+
+    Stopping distance.
+
+    A bicycle equipped with only handbrakes shall be tested for stopping distance by a rider of at least 68.1 kg (150 lb) weight in accordance with the performance test, § 1512.18(d)(2) (v) and (vi), and
+    shall have a stopping distance of no greater than 4.57 m (15 ft) from the actual test speed as determined by the equivalent ground speed specified in § 1512.18(d)(2)(vi).
+
+    (2)
+
+    Hand lever access.
+
+    Hand lever mechanisms shall be located on the handlebars in a position that is readily accessible to the rider when in a normal riding position.
+
+    (3)
+
+    Grip dimension.
+
+    The grip dimension (maximum outside dimension between the brake hand lever and the handlebars in the plane containing the centerlines of the handgrip and the hand brake lever) shall not exceed 89 mm
+    (3
+
+    1/2
+
+    in) at any point between the pivot point of the lever and lever midpoint; the grip dimension for sidewalk bicycles shall not exceed 76 mm (3 in). The grip dimension may increase toward the open end
+    of the lever but shall not increase by more than 12.7 mm (
+
+    1/2
+
+    in) except for the last 12.7 mm (
+
+    1/2
+
+    in) of the lever. (See figure 5 of this part 1512.)
+
+    (4)
+
+    Attachment.
+
+    Brake assemblies shall be securely attached to the frame by means of fasteners with locking devices such as a lock washer, locknut, or equivalent and shall not loosen during the rocking test, § 1512.18(d)-
+    (2)(iii). The cable anchor bolt shall not cut any of the cable strands.
+
+    (5)
+
+    Operating force.
+
+    A force of less than 44.5 N (10 lbf) shall cause the brake pads to contact the braking surface of the wheel when applied to the handlever at a point 25 mm (1.0 in) from the open end of the handlever.
+
+    (6)
+
+    Pad and pad holders.
+
+    Caliper brake pad shall be replaceable and adjustable to engage the braking surface without contacting the tire or spokes and the pad holders shall be securely attached to the caliper assembly. The
+    brake pad material shall be retained in its holder without movement when the bicycle is loaded with a rider of at least 68.1 kg (150 lb) weight and is rocked forward and backward as specified in the
+    rocking test, § 1512.18(d)(2)(iii).
+
+    (7) [Reserved]
+
+    (8)
+
+    Hand lever location.
+
+    The rear brake shall be actuated by a control located on the right handlebar and the front brake shall be actuated by a control located on the left handlebar. The left-hand/right-hand locations may
+    be reversed in accordance with an individual customer order. If a single hand lever is used to actuate both front and rear brakes, it shall meet all applicable requirements for hand levers and shall
+    be located on either the right or left handlebar in accordance with the customer''s preference.
+
+    (9)
+
+    Hand lever extensions.
+
+    Bicycles equipped with hand lever extensions shall be tested with the extension levers in place and the hand lever extensions shall also be considered to be hand levers.
+
+    (c)
+
+    Footbrakes.
+
+    All footbrakes shall be tested in accordance with the force test, § 1512.18(e)(2), and the measured braking force shall not be less than 178 N (40 lbf) for an applied pedal force of 310 N (70 lbf).
+
+    (1)
+
+    Stopping distance.
+
+    Bicycles equipped with footbrakes (except sidewalk bicycles) shall be tested in accordance with the performance test, § 1512.18(e)(3), by a rider of at least 68.1 kg (150 lb) weight and shall have a
+    stopping distance of no greater than 4.57 m (15 ft) from an actual test speed of at least 16 km/h (10 mph). If the bicycle has a footbrake only and the equivalent groundspeed of the bicycle is in excess
+    of 24 km/h (15 mph) (in its highest gear ratio at a pedal crank rate of 60 revolutions per minute),
+
+    3
+
+    the stopping distance shall be 4.57 m (15 ft) from an actual test speed of 24 km/h (15 mph) or greater.
+
+    3
+
+    This is proportional to a gear development greater than 6.67 m (21.9 ft) in the bicycle''s highest gear ratio. Gear development is the distance the bicycle travels in meters, in one crank revolution.
+
+    (2)
+
+    Operating force.
+
+    Footbrakes shall be actuated by a force applied to the pedal in a direction opposite to that of the drive force, except where brakes are separate from the drive pedals and the applied force is in the
+    same direction as the drive force.
+
+    (3)
+
+    Crank differential.
+
+    The differential between the drive and brake positions of the crank shall be not more than 60° with the crank held against each position under a torque of no less than 13.6 N-m (10 ft-lb).
+
+    (4)
+
+    Independent operation.
+
+    The brake mechanism shall function independently of any drive-gear positions or adjustments.
+
+    (d)
+
+    Footbrakes and handbrakes in combination.
+
+    Bicycles equipped with footbrakes and handbrakes shall meet all the requirements for footbrakes in § 1512.5(c), including the tests specified. In addition, if the equivalent ground speed of the bicycle
+    is 24 km/h (15 mph) or greater (in its highest gear ratio at a pedal crank rate of 60 revolutions per
+
+    minute),
+
+    3
+
+    the actual test speed specified in § 1512.18(e)(3) shall be increased to 24 km/h (15 mph) and both braking systems may be actuated to achieve the required stopping distance of 4.57 m (15 ft).
+
+    (e)
+
+    Sidewalk bicycles.
+
+    (1) Sidewalk bicycles shall not have handbrakes only.
+
+    (2) Sidewalk bicycles with a seat height of 560 mm (22 in) or greater (with seat height adjusted to its lowest position) shall be equipped with a footbrake meeting all the footbrake requirements of
+    § 1512.5(c), including the specified tests except that the braking force transmitted to the rear wheel shall be in accordance with the sidewalk bicycle footbrake force tests, § 1512.18(f).
+
+    (3) Sidewalk bicycles with a seat height less than 560 mm (22 in) (with seat height adjusted to its lowest position) and not equipped with a brake shall not have a freewheel feature. Such sidewalk bicycles
+    equipped with a footbrake shall be tested for brake force in accordance with the sidewalk bicycle footbrake force test, § 1512.18(f). Such sidewalk bicycles not equipped with brakes shall be identified
+    with a permanent label clearly visible from a distance of 3.1 m (10 ft) in daylight conditions and promotional display material and shipping cartons shall prominently display the words “No Brakes.”'
+- id: art-7
+  title: § 1512.6
+  text: '§ 1512.6
+
+    Requirements for steering system.
+
+    (a)
+
+    Handlebar stem insertion mark.
+
+    Quill-type handlebar stems shall contain a permanent ring or mark which clearly indicates the minimum insertion depth of the handlebar stem into the fork assembly. The insertion mark shall not affect
+    the structural integrity of the stem and shall not be less than 2
+
+    1/2
+
+    times the stem diameter from the lowest point of the stem. The stem strength shall be maintained for at least a length of one shaft diameter below the mark.
+
+    (b)
+
+    Handlebar stem strength.
+
+    The handlebar stem shall be tested for strength in accordance with the handlebar stem test, § 1512.18(g), and shall withstand a force of 2000 N (450 lbf) for bicycles and 1000 N (225 lbf) for sidewalk
+    bicycles.
+
+    (c)
+
+    Handlebar.
+
+    Handlebars shall allow comfortable and safe control of the bicycle. Handlebar ends shall be symmetrically located with respect to the longitudinal axis of the bicycle and no more than 406 mm (16 in)
+    above the seat surface when the seat is in its lowest position and the handlebar ends are in their highest position. This requirement does not apply to recumbent bicycles.
+
+    (d)
+
+    Handlebar ends.
+
+    The ends of the handlebars shall be capped or otherwise covered. Handgrips, end plugs, control shifters, or other end-mounted devices shall be secure against a removal force of no less than 66.8 N (15
+    lbf) in accordance with the protective cap and end-mounted devices test, § 1512.18(c).
+
+    (e)
+
+    Handlebar and clamps.
+
+    The handlebar and clamps shall be tested in accordance with the handlebar test, § 1512.18(h). Directions for assembly of the bicycle required in the instruction manual by § 1512.19(a)(2) shall include
+    an explicit warning about the danger of damaging the stem-to-fork assembly and the risk of injury to the rider that can result from overtightening the stem bolt or other clamping device. The directions
+    for assembly shall also contain a simple, clear, and precise statement of the procedure to be followed to avoid damaging the stem-to-fork assembly when tightening the stem bolt or other clamping device.
+
+    [43 FR 60034, Dec. 22, 1978, as amended at 76 FR 27888, May 13, 2011]'
+- id: art-8
+  title: § 1512.7
+  text: '§ 1512.7
+
+    Requirements for pedals.
+
+    (a)
+
+    Construction.
+
+    Pedals shall have right-hand/left-hand symmetry. The tread surface shall be present on both top and bottom surfaces of the pedal except that if the pedal has a definite preferred position, the tread
+    surface need only be on the surface presented to the rider''s foot.
+
+    (b)
+
+    Toe clips.
+
+    Pedals intended to be used only with toe clips shall have toe clips securely attached to them and need not have tread surfaces. Pedals designed for optional use of toe clips shall have tread surfaces.
+
+    (c)
+
+    Pedal reflectors.
+
+    Pedals for bicycles other than sidewalk bicycles shall have reflectors in accordance with § 1512.16(e). Pedals for sidewalk bicycles are not required to have reflectors.'
+- id: art-9
+  title: § 1512.8
+  text: '§ 1512.8
+
+    Requirements for drive chain.
+
+    The drive chain shall operate over the sprockets without catching or binding. The tensile stength of the drive chain shall be no less than 8010 N (1,800 lbf) or 6230 N (1,400 lbf) for sidewalk bicycles.'
+- id: art-10
+  title: § 1512.9
+  text: '§ 1512.9
+
+    Requirements for protective guards.
+
+    (a)
+
+    Chain guard.
+
+    Bicycles having a single front sprocket and a single rear sprocket shall have a chain guard that shall cover the top strand of the chain and at least 90° of the perimeter where the drive chain contacts
+    the drive sprocket as shown in figure 7. The chain guard shall extend rearward to a point at least 8 cm (3.2 in.) forward of the centerline of the rear axle. The minimum width of the top area of the
+    chain guard shall be twice the width of the chain in that portion forward of the rear wheel rim. The rear part of the top area may be tapered. The minimum width at the rear of the guard shall be one-half
+    the chain width. Such chain guard shall prevent a rod of 9.4 mm (
+
+    3/8
+
+    in.) diameter and 76 mm (3.0 in.) length from entrapment between the upper junction of the chain and the sprocket when introduced from the chain side of the bicycle in any direction within 45° from
+    a line normal to the sprocket.
+
+    (b)
+
+    Derailleur guard.
+
+    Derailleurs shall be guarded to prevent the drive chain from interfering with or stopping the rotation of the wheel through improper adjustments or damage.'
+- id: art-11
+  title: § 1512.10
+  text: '§ 1512.10
+
+    Requirements for tires.
+
+    The manufacturer''s recommended inflation pressure shall be molded into or onto the sidewall of the tire in lettering no less than 3.2 mm (
+
+    1/8
+
+    in.) in height. The statement of recommended inflation pressure shall be in the English language utilizing Arabic numerals. (The following language is suggested to indicate recommended inflation pressure:
+    “Inflate to __ PSI.”) After inflation to 110 percent of the recommended inflation pressure, the tire shall remain intact on the rim, including while being tested under a load of 2,000 N (450 lbf) in
+    accordance with the rim test, § 1512.18(j). Tubular sew-up tires, nonpneumatic tires, and nonmolded wired-on tires are exempt from this section.'
+- id: art-12
+  title: § 1512.11
+  text: '§ 1512.11
+
+    Requirements for wheels.
+
+    (a)
+
+    Spokes.
+
+    There shall be no missing spokes.
+
+    (b)
+
+    Alignment.
+
+    The wheel assembly shall be aligned such that no less than 1.6 mm (
+
+    1/16
+
+    in.) clearance exists between the tire and fork or any frame member when the wheel is rotated to any position.
+
+    (c)
+
+    Rims.
+
+    Rims shall retain the spokes and tire when side-loaded with 2000 N (450 lbf) and tested in accordance with the rim test, § 1512.18(j). Sidewalk bicycles need not meet this requirement.'
+- id: art-13
+  title: § 1512.12
+  text: '§ 1512.12
+
+    Requirements for wheel hubs.
+
+    All bicycles (other than sidewalk bicycles) shall meet the following requirements:
+
+    (a)
+
+    Locking devices.
+
+    Wheels shall be secured to the bicycle frame with a positive lock device. Locking devices on threaded axles shall be tightened to the manufacturer''s specifications.
+
+    (1)
+
+    Rear wheels.
+
+    There shall be no relative motion between the axle and the frame when a force of 1,780 N (400 lbf) is applied symmetrically to the axle for a period of 30 seconds in the direction of wheel removal.
+
+    (2)
+
+    Front wheels.
+
+    Locking devices, except quick-release devices, shall withstand application of a torque in the direction of removal of 17 N-m (12.5 ft-lb).
+
+    (b)
+
+    Quick-release devices.
+
+    Lever-operated, quick-release devices shall be adjustable to allow setting the lever position for tightness. Quick-release levers shall be clearly visible to the rider and shall indicate whether the
+    levers are in a locked or unlocked position. Quick-release clamp action shall emboss the frame or fork when locked, except on fiber reinforced plastics.
+
+    (c)
+
+    Front hubs.
+
+    Front hubs not equipped with lever-operated quick-release devices shall have a positive retention feature that shall be tested in accordance with the front hub retention test, § 1512.18(j)(3), to assure
+    that when the locking devices are released the wheel will not separate from the fork.
+
+    [43 FR 60034, Dec. 22, 1978, as amended at 76 FR 27888, May 13, 2011]'
+- id: art-14
+  title: § 1512.13
+  text: '§ 1512.13
+
+    Requirements for front fork.
+
+    The front fork shall be tested for strength by application of at least 39.5 J (350 in-lb) of energy in accordance with the fork test, § 1512.18(k)(1), without visible evidence of fracture. Sidewalk
+    bicycles need not meet this requirement.'
+- id: art-15
+  title: § 1512.14
+  text: '§ 1512.14
+
+    Requirements for fork and frame assembly.
+
+    The fork and frame assembly shall be tested for strength by application of a load of 890 N (200 lbf) or at least 39.5 J (350 in-lb) of energy, whichever results in the greater force, in accordance with
+    the frame test, § 1512.18(k)(2), without visible evidence of fracture or frame deformation that significantly limits the steering angle over which the wheel can be turned. Sidewalk bicycles are exempt
+    from this section.'
+- id: art-16
+  title: § 1512.15
+  text: '§ 1512.15
+
+    Requirements for seat.
+
+    (a)
+
+    Seat limitations.
+
+    No part of the seat, seat supports, or accessories attached to the seat shall be more than 125 mm (5.0 in) above the top of the seat surface at the point where the seat surface is intersected by the
+    seat post axis. This requirement does not apply to recumbent bicycles.
+
+    (b)
+
+    Seat post.
+
+    The seat post shall contain a permanent mark or ring that clearly indicates the minimum insertion depth (maximum seat-height adjustment); the mark shall not affect the structural integrity of the seat
+    post. This mark shall be located no less than two seat-post diameters from the lowest point on the post shaft, and the post strength shall be maintained for at least a length of one shaft diameter below
+    the mark. This requirement does not apply to bicycles with integrated seat masts, however, a permanent mark or other means to clearly indicate that the seat or seat posts is safely installed shall be
+    provided.
+
+    (c)
+
+    Adjustment clamps.
+
+    The seat adjustment clamps shall be capable of securing the seat in any position to which it can be adjusted and preventing movement of the seat in any direction under normal conditions of use. Following
+    the road test, § 1512.18(p) (or the sidewalk bicycle proof test, § 1512.18(q), as applicable), the seat clamps shall be tested in accordance with the seat adjustment clamps and load test, § 1512.18(l).
+
+    [43 FR 60034, Dec. 22, 1978, as amended at 76 FR 27888, May 13, 2011]'
+- id: art-17
+  title: § 1512.16
+  text: '§ 1512.16
+
+    Requirements for reflectors.
+
+    Bicycles shall be equipped with reflective devices to permit recognition and identification under illumination from motor vehicle headlamps. The use of reflector combinations off the center plane of
+    the bicycle (defined in § 1512.18(m)(2)) is acceptable if each reflector meets the requirements of this section and of § 1512.18 (m) and (n) and the combination of reflectors has a clear field of view
+    of ±10° vertically and ±50° horizontally. Sidewalk bicycles are not required to have reflectors.
+
+    (a)
+
+    Front, rear, and pedal reflectors.
+
+    There shall be an essentially colorless front-facing reflector, essentially colorless or amber pedal reflectors, and a red rear-facing reflector.
+
+    (b)
+
+    Side reflectors.
+
+    There shall be retroreflective tire sidewalls or, alternatively, reflectors mounted on the spokes of each wheel, or, for non-caliper rim brake bicycles, retroreflective wheel rims. The center of spoke-mounted
+    reflectors shall be within 76 mm (3.0 in.) of the inside of the rim. Side reflective devices shall be visible on each side of the wheel.
+
+    (c)
+
+    Front reflector.
+
+    The reflector or mount shall not contact the ground plane when the bicycle is resting on that plane in any orientation. The optical axis of the reflector shall be directed forward within 5° of the horizontal-vertical
+    alignment of the bicycle when the wheels are tracking in a straight line, as defined in § 1512.18(m)(2). The reflectors and/or mounts shall incorporate a distinct, preferred assembly method that shall
+    insure that the reflector meets the optical requirements of this paragraph (c) when the reflector is attached to the bicycle. The front reflector shall be tested in accordance with the reflector mount
+    and alignment test, § 1512.18(m).
+
+    (d)
+
+    Rear reflector.
+
+    The reflector or mount shall not contact the ground plane when the bicycle is resting on that plane in any orientation. The reflector shall be mounted such that it is to the rear of the seat mast with
+    the top of the reflector at least 76 mm (3.0
+
+    in) below the point on the seat surface that is intersected by the line of the seat post. The optical axis of the reflector shall be directed rearward within 5° of the horizontal-vertical alignment
+    of the bicycle when the wheels are traveling in a straight line, as defined in § 1512.18(m)(2). The reflectors and/or mounts shall incorporate a distinct, preferred assembly method that shall insure
+    that the reflector meets the optical requirements of this paragraph (d) when the reflector is attached to the bicycle. The rear reflector shall be tested in accordance with the reflector mount and alignment
+    test, § 1512.18(m).
+
+    (e)
+
+    Pedal reflectors.
+
+    Each pedal shall have reflectors located on the front and rear surfaces of the pedal. The reflector elements may be either integral with the construction of the pedal or mechanically attached, but shall
+    be sufficiently recessed from the edge of the pedal, or of the reflector housing, to prevent contact of the reflector element with a flat surface placed in contact with the edge of the pedal.
+
+    (f)
+
+    Side reflectors.
+
+    Reflectors affixed to the wheel spokes shall be mounted either flat on the spokes or within the spoke cage such that the angle between the optical axis and the normal to the plane of the wheel shall
+    not exceed the angle of the spokes with the plane of the wheel. The reflectors shall not interfere with any wheel adjustments. The side-mounted reflector devices shall be essentially colorless or amber
+    on the front wheel and essentially colorless or red on the rear wheel.
+
+    (g)
+
+    Reflector tests.
+
+    The pedal, front-mount, rear-mount, and side-mount reflectors shall be tested in accordance with the reflector test, § 1512.18(n), to assure the reflectance values over the angles given in tables 1
+    and 2.
+
+    (h)
+
+    Retroreflective tire sidewalls.
+
+    When retroreflective tire sidewalls are used in lieu of spoke-mounted reflectors, the reflecting material shall meet the following requirements:
+
+    (1) The retroreflective material shall form a continuous circle on the sidewall.
+
+    (2) The retroreflective material shall adhere to the tire such that after the tire has been subjected to a temperature of 50° ±3 °C (122° ±5.4 °F) for 30 minutes, the retroreflective material cannot
+    be peeled or scraped away without removal of tire material.
+
+    (3) The retroreflective material shall be as resistant to abrasion as is the adjacent sidewall material so that when retroreflective material is removed from the inflated tire by abrasion with a wet,
+    steel bristle brush, tire material will be removed along with the retroreflective material.
+
+    (4) The retroreflective material shall be tested for performance in accordance with the retroreflective tire test, § 1512.18(o), to assure the reflectance properties over the angles given in table 3.
+    When a portion of the retroreflective material is selected (and the remainder is masked as specified in § 1512.18(o)(2)(i)), the selected portion shall not contact the ground plane when the assembled
+    bicycle is resting on that plane in any orientation.
+
+    (i)
+
+    Retroreflective rims.
+
+    When retroreflective rims are used in lieu of spoke-mounted reflectors or retroreflective tire sidewalls, the reflecting material shall meet the following requirements:
+
+    (1) The retroreflective material shall form a continuous circle on the rim.
+
+    (2) If the retroreflective material is applied to the rim in the form of a self-adhesive tape, the following requirement must be met: Use a sharp knife, razor blade, or similar instrument to carefully
+    release an end of the tape material sufficient to be grasped between the thumb and finger. Grasp the freed tape end and gradually pull in a direction 90° to the plane of the rim. The tape material must
+    break before additional separation (peeling) from the rim is observed.
+
+    (3) After the retroreflective material is abraded in accordance with the abrasion test for retroreflective rims at § 1512.18(r), the rim must then be tested for performance in accordance with the retroreflective
+    tire and rim test at § 1512.18(o), to assure the reflectance properties over the angles given in table 3.
+
+    [43 FR 60034, Dec. 22, 1978, as amended at 45 FR 82627, 82628, Dec. 16, 1980]'
+- id: art-18
+  title: § 1512.17
+  text: '§ 1512.17
+
+    Other requirements.
+
+    (a)
+
+    Road test.
+
+    Bicycles, other than sidewalk bicycles, shall be ridden at
+
+    least 6.4 km (4.0 mi.) by a rider weighing at least 68.1kg (150 lb.) and travel five times over a 30.5 m (100 ft.) cleated course in accordance with the road test, § 1512.18(p), and shall exhibit stable
+    handling, turning, and steering characteristics without difficulty of operation. There shall be no system or component failure of the structure, brakes, or tires, and there shall be no loosening or
+    misalignment of the seat, handlebars, controls, or reflectors during or resulting from this test.
+
+    (b)
+
+    Sidewalk bicycle proof test.
+
+    Sidewalk bicycles shall be dropped a distance of at least 300 mm (1.0 ft.) three times onto a paved surface with weights attached in accordance with the sidewalk bicycle proof test, § 1512.18(q). There
+    shall be no fracture of wheels, frame, seat, handlebars, or fork during or resulting from this test.
+
+    (c)
+
+    Ground clearance.
+
+    With the pedal horizontal and the pedal crank in its lowest position and any training wheels removed, it shall be possible to tilt the bicycle at least 25° from the vertical without the pedal or any
+    other part (other than tires) contacting the ground plane.
+
+    (d)
+
+    Toe clearance.
+
+    Bicycles not equipped with positive foot-retaining devices (such as toe clips) shall have at least 89 mm (3
+
+    1/2
+
+    in) clearance between the pedal and the front tire or fender (when turned to any position). The clearance shall be measured forward and parallel to the longitudinal axis of the bicycle from the center
+    of either pedal to the arc swept by the tire or fender, whichever results in the least clearance. (See figure 6 of this part 1512.)'
+- id: art-19
+  title: § 1512.18
+  text: '§ 1512.18
+
+    Tests and test procedures.
+
+    (a)
+
+    Sharp edge test.
+
+    [Reserved]
+
+    (b) [Reserved]
+
+    (c)
+
+    Protective cap and end-mounted devices test.
+
+    (Ref. § 1512.4(i), § 1512.6(d).) Any device suitable for exerting a removal force of at least 67 N (15 lbf) for protective caps and 8.9 N (2.0 lbf) for end caps at any point and in any direction may
+    be used. All protective caps and end-mounted handlebar devices shall be tested to determine that they cannot be removed by '
 doc_files:
 - us/raw/US-CFR-title16-part1512.xml
+- us/raw/US-CFR-title16-part1512.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1512.xml (xml, 66471 chars)，生成 19 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1512.xml (xml, 66471 chars)，生成 19 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1512.xml (xml, 66471 chars)，生成 19 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1512-4（US 16 CFR Part 1512）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1512-3（US 16 CFR Part 1512）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1512-2（US 16 CFR Part 1512）。'

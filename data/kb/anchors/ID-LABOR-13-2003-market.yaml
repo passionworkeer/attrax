@@ -1,0 +1,27 @@
+id: KB-market-ID-ID-LABOR-13-2003
+regulation_id: ID-LABOR-13-2003
+doc_name: Law No. 13 of 2003 concerning Manpower
+official_citation: Law No. 13 of 2003 concerning Manpower
+short_name: 印尼人力法 (2003 年第 13 号)
+source: market
+primary_source: market
+domain: 劳动法
+applies_if:
+  category: []
+  features_any: []
+  markets:
+  - ID
+key_articles:
+- art-1
+- art-2
+key_points:
+- 印尼人力法 (2003 年第 13 号)：劳动法领域法规，适用于 ID 市场相关经营行为（库自动接入，按市场匹配）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://jdih.setneg.go.id/
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

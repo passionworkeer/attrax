@@ -12,7 +12,17 @@ articles: []
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: |
-  Manually created 2026-09-17 from official_sources.json entry ca-phthalates-regulations.
+notes: 'Manually created 2026-09-17 from official_sources.json entry ca-phthalates-regulations.
+
   Backed by Government of Canada Justice Laws Website (canada_justice_xml).
-  Authoring note: a KB anchor at data/kb/anchors/CA-SOR-2016-188-toy.yaml is required to surface this regulation in generator must-check output.
+
+  Authoring note: a KB anchor at data/kb/anchors/CA-SOR-2016-188-toy.yaml is required to surface this regulation in generator
+  must-check output.
+
+
+  2026-09-19 去重：合并同法规异名条目 CA-SOR-2016-188_PHTHALATES_REGULATIONS（CA SOR-2016-188 Phthalates Regulations）。
+
+  2026-09-19 去重：合并同法规异名条目 CA-SOR-2016-188_PHTHALATES_REGULATIONS-2（CA SOR-2016-188 Phthalates Regulations [html]）。'
+doc_files:
+- ca/raw/CA-SOR-2016-188_Phthalates_Regulations.xml
+- ca/raw/CA-SOR-2016-188_Phthalates_Regulations.html

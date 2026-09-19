@@ -1,0 +1,27 @@
+id: KB-other-GCC-GCC-GCC_GSO_-_GSO-ORG-SA
+regulation_id: GCC-GCC_GSO_-_GSO-ORG-SA
+doc_name: GCC GSO 标准化组织 (gso.org.sa)
+official_citation: GCC GSO 标准化组织 (gso.org.sa)
+short_name: GCC GSO 标准化组织 (gso.org.sa)
+source: category
+primary_source: other
+domain: other
+applies_if:
+  category:
+  - other
+  features_any: []
+  markets:
+  - SA
+  - AE
+key_articles: []
+key_points:
+- GCC GSO 标准化组织 (gso.org.sa)：其他品类领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://www.gso.org.sa/
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

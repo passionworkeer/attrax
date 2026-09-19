@@ -1,6 +1,6 @@
 id: US-CFR-TITLE16-PART1224
 official_citation: US 16 CFR Part 1224
-short_name: US 16 CFR Part 1224
+short_name: US 16 CFR Part 1224 — SAFETY STANDARD FOR PORTABLE BED RAILS
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,126 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '16
+
+    Commercial Practices
+
+    2
+
+    2024-01-01
+
+    2024-01-01
+
+    false
+
+    SAFETY'
+  text: '16
+
+    Commercial Practices
+
+    2
+
+    2024-01-01
+
+    2024-01-01
+
+    false
+
+    SAFETY STANDARD FOR PORTABLE BED RAILS
+
+    1224
+
+    PART 1224
+
+    Commercial Practices
+
+    CONSUMER PRODUCT SAFETY COMMISSION
+
+    CONSUMER PRODUCT SAFETY ACT REGULATIONS
+
+    Pt. 1224
+
+    PART 1224—SAFETY STANDARD FOR PORTABLE BED RAILS
+
+    Sec.
+
+    1224.1
+
+    Scope, application, and effective date.
+
+    1224.2
+
+    Requirements for portable bed rails.
+
+    Authority:
+
+    Sec. 104, Pub. L. 110-314, 122 Stat. 3016 (15 U.S.C. 2056a); Sec 3, Pub. L. 112-28, 125 Stat. 273.
+
+    Source:
+
+    77 FR 12197, Feb. 29, 2012, unless otherwise noted.'
+- id: art-2
+  title: § 1224.1
+  text: '§ 1224.1
+
+    Scope, application, and effective date.
+
+    This part establishes a consumer product safety standard for portable bed rails manufactured or imported on or after August 29, 2012.'
+- id: art-3
+  title: § 1224.2
+  text: '§ 1224.2
+
+    Requirements for portable bed rails.
+
+    Each portable bed rail as defined in ASTM F2085-19,
+
+    Standard Consumer Safety Specification for Portable Bed Rails,
+
+    approved on November 1, 2019, must comply with all applicable provisions of ASTM F2085-19. The Director of the Federal Register approves the incorporation by reference listed in this section in accordance
+    with 5 U.S.C. 552(a) and 1 CFR part 51. You may obtain a copy of this ASTM standard from ASTM International, 100 Barr Harbor Drive, PO Box C700, West Conshohocken, PA 19428-2959 USA; phone: 610-832-9585;
+
+    www.astm.org.
+
+    A read-only copy of the standard is available for viewing on the ASTM website
+
+    at
+
+    https://www.astm.org/READINGLIBRARY/.
+
+    You may inspect a copy at the Division of the Secretariat, U.S. Consumer Product Safety Commission, Room 820, 4330 East West Highway, Bethesda, MD 20814, telephone 301-504-7479, email:
+
+    cpsc-os@cpsc.gov,
+
+    or at the National Archives and Records Administration (NARA). For information on the availability of this material at NARA, email
+
+    fedreg.legal@nara.gov,
+
+    or go to:
+
+    www.archives.gov/federal-register/cfr/ibr-locations.html
+
+    .
+
+    [85 FR 10568, Feb. 25, 2020, as amended at 85 FR 40876, July 8, 2020]'
 doc_files:
 - us/raw/US-CFR-title16-part1224.xml
+- us/raw/US-CFR-title16-part1224.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1224.xml (xml, 1907 chars)，生成 3 条共 1907 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1224.xml (xml, 1907 chars)，生成 3 条共 1907 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1224.xml (xml, 1907 chars)，生成 3 条共 1907 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1224-4（US 16 CFR Part 1224）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1224-3（US 16 CFR Part 1224）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1224-2（US 16 CFR Part 1224）。'

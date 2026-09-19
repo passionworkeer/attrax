@@ -9,11 +9,234 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: Asia’s privacy laws are maturing | Freshfields
+  text: 'Asia’s privacy laws are maturing | Freshfields
+
+    Skip navigation
+
+    Find a lawyer
+
+    Our capabilities
+
+    Your career
+
+    Search
+
+    People
+
+    Locations
+
+    Our capabilities
+
+    Our thinking
+
+    About us
+
+    Your career
+
+    News
+
+    Search
+
+    Select language:
+
+    People
+
+    Locations
+
+    Our capabilities
+
+    Our thinking
+
+    About us
+
+    Your career
+
+    News
+
+    Search
+
+    Select language:
+
+    7. Asia’s privacy laws are maturing
+
+    2025 Data law trends
+
+    In brief
+
+    In recent years, many countries across Asia have either rolled out new comprehensive privacy laws or made significant amendments to existing regulations. Notable examples include China, India, Indonesia,
+    Japan, Malaysia, South Korea, Sri Lanka, Thailand, and Vietnam. Currently, Indonesia, India, and Malaysia are working toward the full implementation of their newly amended laws. Additionally, Australia
+    has announced the first phase of a comprehensive reform of its Privacy Act after a thorough government review.
+
+    Download report
+
+    Asia’s privacy laws are maturing
+
+    Common themes in Asian privacy laws
+
+    Consent remains the primary legal basis for processing personal data in China, India and Vietnam. In addition, Australia, China, Malaysia, Philippines, Taiwan and Thailand all require consent for the
+    collection of sensitive personal data (and this will require a separate reputational assessment to be made under Vietnam’s new Personal Data Protection Law). Deemed consent is also a permitted legal
+    basis in Singapore (subject to certain constraints), and to a more limited degree in India as well.
+
+    Indonesia, the Philippines, Singapore and Thailand permit data processing based on an organization’s legitimate interests. China, Indonesia, Korea, Malaysia, the Philippines, Singapore, Taiwan and Thailand
+    allow processing where necessary for the performance of a contract with the data subject. Clarification is needed whether Vietnam will also allow processing on this basis under the new law, in particular
+    for online services. Neither legal basis is available for the processing of sensitive personal data in those countries that require consent.
+
+    While South Korea also permits processing based on legitimate interests, the GDPR standard (and that adopted elsewhere in Asia) it flipped by instead requiring that the organization’s legitimate interests
+    clearly override an individual’s rights in order for this legal basis to be relied upon.
+
+    GDPR-style data subject rights have been widely adopted across Asia, particularly the rights to access and rectification, erasure and cessation of processing. The right to object to automated processing
+    (China, Indonesia, Philippines and Vietnam (pending)) and the rights of data portability are less well cemented at this point in time. Only China, the Philippines and South Korea grant both (the portability
+    right is not yet in force in Korea). Singapore and Malaysia have also recently extended their data subject rights to include a right of portability, although neither amendment is in effect yet.
+
+    Privacy impact assessments are either required or recommended in many Asian countries – although the specific triggers for these assessments vary.
+
+    Mandatory breach reporting obligations are the norm across the region (as discussed further below), with an additional annual security incident reporting requirement in the Philippines. Reporting timelines
+    typically follow the GDPR standard of 72 hours. Several countries require organizations to implement formal security incident management processes (eg China, Indonesia and Malaysia) as a specific organizational
+    measure to protect personal data, and this has been proposed in Australia as well.
+
+    Maximum penalties range quite considerably across the region, although with maximum penalties set as a percentage of revenue/turnover having recently been introduced in several countries (eg China,
+    India, Indonesia and Singapore) and proposed in Australia. Overall, both maximum and awarded penalties are trending markedly upwards.'
+- id: art-2
+  title: Varied rules on cross-border data transfers are also increas
+  text: "Varied rules on cross-border data transfers are also increasing compliance burdens on multinational companies (see Chapter 2 for recent developments in the related rules in Asia).\nNew privacy\
+    \ rules have been taking shape across Asia the past few years. While there is a good degree of conceptual alignment with the GDPR, no country has taken a copy and paste approach either, and in some\
+    \ areas there is significant departure.\nRichard Bird\n, Partner\nYet significant divergence in Asian privacy laws, too\nWhile Asia’s privacy laws reflect a relatively high degree of general consensus\
+    \ in approach (as outlined above), each has its unique requirements and idiosyncrasies. These points of difference can have significant practical impacts on compliance programs.\nThe absence of any\
+    \ true harmonization in the permitted legal basis for processing, and the greater reliance on consent as the primary and preferred basis for processing creates a significant impediment by itself to\
+    \ organizations taking a single regional approach to privacy compliance.\nIt is important that international companies maintain awareness of all important local requirements in those Asian jurisdictions\
+    \ in which they operate, given the significant penalties that attach to non-compliance in many, and the generally increasing levels of enforcement also.\nFor examples, while it was noted above that\
+    \ most countries in Asia have either introduced or are proposing (ie Malaysia) mandatory data breach reporting requirements, the basis for reporting may vary significantly from one jurisdiction to the\
+    \ next.\nThere are notable differences in data incident reporting thresholds across the region – harm or scale standards are often set up differently, for example, or with differing deeming criteria.\
+    \ In other jurisdictions, reporting requirements can be triggered depending on the nature of the incident, for example whether it involves unauthorized access from outside the organization. Specific\
+    \ sectoral reporting obligations may also apply.\nThe assessment of reporting requirements for data security incidents that implicate personal data that was either collected in or relates to the residents\
+    \ of multiple countries/territories is made more complex still by the large amount of variability in the jurisdictional basis for the application of local law to data that is processed in another country\
+    \ or for purposes related to activities in another country (eg an overseas purchase or booking). Mandatory (ie standard form) contractual mechanisms for cross-border data transfers may include their\
+    \ own reporting obligations on either transferor or transferee (or both).\nThese assessments also need to be made against relatively strict reporting deadlines, typically within a reporting window of\
+    \ 72 hours or less. The prevailing standard for reporting to privacy authorities and for notifying individuals can be different within a single jurisdiction.\nAn early report in one country – reflecting\
+    \ a more limited understanding of the incident available at the time – may impact the reporting strategy in another country where the report is due later. Reporting may precipitate a privacy authority\
+    \ to start an investigation before reports have been filed in other countries. Those earlier filed reports and regulatory submissions may also be discoverable in the context of investigatory processes\
+    \ and court proceedings in other countries around the world. Risk calculations may therefore need to be made.\nGiven the pace of change in privacy laws in Asia, international companies active in the\
+    \ region should make it a priority to stay updated.\nFan Li,\n Senior Associate\nPractical implications for businesses\nLooking Ahead\nExciting changes are on the horizon across several countries in\
+    \ Asia."
+- id: art-3
+  title: In India, the Digital Personal Data Protection Act (DPDP) pa
+  text: 'In India, the Digital Personal Data Protection Act (DPDP) passed in August 2023 and is set to be enforced soon now that the general elections have concluded. One key aspect to watch is how the
+    government will define ‘significant data fiduciaries.’ These organizations will face additional responsibilities, including conducting regular privacy impact assessments, undergoing external audits,
+    and appointing a DPO who must be based in India. This DPO will report directly to the board and act as the main contact for grievance redressal under the DPDP. The government will determine which data
+    fiduciaries are deemed ‘significant’ based on factors like the volume and sensitivity of personal data processed and the associated risks. Additionally, keep an eye out for the government’s forthcoming
+    ‘blacklist’ of countries where organizations won’t be allowed to transfer personal data.
+
+    Malaysia’s parliament approved substantial updates to the Personal Data Protection Act in July 2024. The government is also working on new rules regarding data breach reporting, DPO appointments, and
+    the right to data portability.
+
+    Vietnam has recently announced a draft Data Law. This law takes cues from China’s regulations, including stricter protections for ‘core’ and ‘important’ data, along with a security assessment process
+    for data exports. A new Personal Data Protection Law is also set to take effect on January 1, 2026, reinforcing most provisions from the existing Decree 13 while adding several new requirements.
+
+    In Japan, the Act on Protection of Personal Information is under a three-year review. The Personal Information Protection Commission shared an interim summary in June 2024, hinting at proposed reforms
+    concerning biometric and children’s data. They plan to ban certain improper uses of personal data and expand individuals’ rights to request the suspension of their data usage.
+
+    Australia has taken the first steps toward implementing a series of changes to its Privacy Act. The first round of amendments was introduced in mid-September 2024, and the government is expected to
+    roll out many of the 166 reforms suggested in the Attorney-General’s 2023 review of the law.
+
+    Our team
+
+    Hong Kong
+
+    Richard Bird
+
+    Partner
+
+    Singapore
+
+    Harshavardhan Ganesan
+
+    Associate
+
+    Shanghai
+
+    Fan Li
+
+    Senior Associate
+
+    2025 Data law trends
+
+    2025 Data law trends
+
+    2025 Data law trends
+
+    Nov 29 2024
+
+    1. AI governance takes center stage
+
+    With regulatory pressures, changing expectations from shareholders and customers, and the increasing risk of litigation, it’s clear that addressing AI governance is more important than ever.
+
+    Read More
+
+    2025 Data law trends
+
+    Nov 29 2024
+
+    2. International data transfers are under the spotlight
+
+    In 2025, questions around data transfers and localization requirements will still be front and center for businesses. Regulators across different jurisdictions – each with varying requirements – aren’t
+    holding back either; they’ve shown they’re ready to impose hefty fines for non-compliance.
+
+    Read More
+
+    Nov 29 2024
+
+    3. A new wave of cyber threats is here
+
+    As global cybersecurity threats continue to evolve, companies are navigating an increasingly complex risk landscape.
+
+    Read More
+
+    Nov 29 2024
+
+    4. New global regulations are changing our digital operations
+
+    Over the past year, a global push to regulate the safety, accountability, and transparency of online services have begun to crystalize. In late 2023, the EU Digital Services Act came into force alongside
+    the passage of the UK Online Safety Act, signaling a significant shift in how digital intermediaries are regulated.
+
+    Read More
+
+    Nov 29 2024
+
+    5. Tougher enforcement is reshaping data and privacy compliance
+
+    The spotlight on AI risks is intensifying, and with it comes a surge in data-related regulatory enforcement worldwide. Regulators are not only using existing laws but are also advocating for greater
+    powers to oversee AI development and deployment.
+
+    Read More
+
+    Nov 29 2024
+
+    6. US State consumer privacy laws are expanding'
+- id: art-4
+  title: Consumer privacy legislation in the US has reached a critica
+  text: "Consumer privacy legislation in the US has reached a critical turning point. With no comprehensive nationwide privacy law in place, individual states have begun enacting their own laws to safeguard\
+    \ consumer privacy. Currently, over 40 percent of US states have implemented consumer privacy laws, and momentum continues to grow as additional states propose and consider their own legislation.\n\
+    Read More\nNov 29 2024\n7. Asia’s privacy laws are maturing\nIn recent years, many countries across Asia have either rolled out new comprehensive privacy laws or made significant amendments to existing\
+    \ regulations. Notable examples include China, India, Indonesia, Japan, Malaysia, South Korea, Sri Lanka, Thailand, and Vietnam. Currently, Indonesia, India, and Malaysia are working toward the full\
+    \ implementation of their newly amended laws.\nRead More\nNov 29 2024\n8. New EU data access regulations are shaping the future\nThe European Commission’s Data Strategy 2020 has paved the way for new\
+    \ data access regulations that will significantly impact businesses across Europe. In this chapter, we dive into the data access rights established by the EU’s Data Act, along with two pivotal Common\
+    \ European Data Spaces: the European Health Data Space (EHDS) and the Financial Data Access (FIDA) framework.\nRead More\nNAVIGATE TO\nAbout us\nLocations and offices\nYour career\nOur thinking\nOur\
+    \ capabilities\nNews\nCONNECT\nFind a lawyer\nAlumni\nContact us\nNEED HELP\nFraud and scams\nComplaints\nTerms and conditions\nLEGAL\nAccessibility\nCookies\nLegal notices\nTransparency in supply chains\
+    \ statement\nResponsible procurement\nPrivacy\nNAVIGATE TO\nCONNECT\nNEED HELP\nLEGAL\nSelect language\n:\nSelect language\n:\n© \n2026\n Freshfields. \nAttorney Advertising: prior results do not guarantee\
+    \ a similar outcome"
 doc_files:
 - sg/raw/新加坡《个人数据保护法》（PDPA 2024修订，Freshfields解读）.html
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：sg/raw/新加坡《个人数据保护法》（PDPA 2024修订，Freshfields解读）.html (html, 13389 chars)，生成 4 条共 13389 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：sg/raw/新加坡《个人数据保护法》（PDPA 2024修订，Freshfields解读）.html (html, 13389 chars)，生成 4 条共 13389 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：sg/raw/新加坡《个人数据保护法》（PDPA 2024修订，Freshfields解读）.html (html, 13389 chars)，生成 4 条共 13389 字符；解析文本未人工复核，引用以官方原件为准。'

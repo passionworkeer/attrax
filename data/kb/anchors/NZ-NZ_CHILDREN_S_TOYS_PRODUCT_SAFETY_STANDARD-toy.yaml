@@ -1,0 +1,26 @@
+id: KB-toy-NZ-NZ-NZ_CHILDREN_S_TOYS_PRODUCT_SAFETY_STANDARD
+regulation_id: NZ-NZ_CHILDREN_S_TOYS_PRODUCT_SAFETY_STANDARD
+doc_name: NZ Children's Toys Product Safety Standard
+official_citation: NZ Children's Toys Product Safety Standard
+short_name: NZ Children's Toys Product Safety Standard
+source: category
+primary_source: toy
+domain: toy
+applies_if:
+  category:
+  - toy
+  features_any: []
+  markets:
+  - NZ
+key_articles: []
+key_points:
+- NZ Children's Toys Product Safety Standard：玩具领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/childrens-toy-standard/
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

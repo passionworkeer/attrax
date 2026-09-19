@@ -1,0 +1,28 @@
+id: KB-other-UN-UN-INTL_CODEX_ALIMENTARIUS_STANDARDS_LIST_FAO_WHO
+regulation_id: UN-INTL_CODEX_ALIMENTARIUS_STANDARDS_LIST_FAO_WHO
+doc_name: INTL Codex Alimentarius standards list (FAO/WHO)
+official_citation: INTL Codex Alimentarius standards list (FAO/WHO)
+short_name: INTL Codex Alimentarius standards list (FAO/WHO)
+source: category
+primary_source: other
+domain: other
+applies_if:
+  category:
+  - other
+  features_any: []
+  markets:
+  - UN
+key_articles:
+- art-1
+- art-2
+key_points:
+- INTL Codex Alimentarius standards list (FAO/WHO)：其他品类领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://www.fao.org/fao-who-codexalimentarius/codex-texts/list-standards/en/
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

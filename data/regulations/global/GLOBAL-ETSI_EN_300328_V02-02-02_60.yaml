@@ -9,11 +9,772 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'ETSI EN 300 328
+
+    V2.2.2
+
+    (2019-07)
+
+    HARMONISED EUROPEAN STANDAR'
+  text: 'ETSI EN 300 328
+
+    V2.2.2
+
+    (2019-07)
+
+    HARMONISED EUROPEAN STANDARD
+
+    Wideband transmission systems;
+
+    Data transmission equipment operating in the 2,4 GHz band;
+
+    Harmonised Standard for access to radio spectrum
+
+    2 ETSI EN 300 328 V2.2.2 (2019-07)
+
+    Reference
+
+    REN/ERM-TG11-12
+
+    Keywords
+
+    broadband, data, harmonised standard, LAN,
+
+    mobile, radio, regulation, spread spectrum, SRD,
+
+    testing, transmission, UHF
+
+    ETSI
+
+    650 Route des Lucioles
+
+    F-06921 Sophia Antipolis Cedex - FRANCE
+
+    Tel.: +33 4 92 94 42 00 Fax: +33 4 93 65 47 16
+
+    Siret N° 348 623 562 00017 - NAF 742 C
+
+    Association à but non lucratif enregistrée à la
+
+    Sous-Préfecture de Grasse (06) N° 7803/88
+
+    Important notice
+
+    The present document can be downloaded from:
+
+    http://www.etsi.org/standards-search
+
+    The present document may be made available in electronic versions and/or in print. The content of any electronic and/or
+
+    print versions of the present document shall not be modified without the prior written authorization of ETSI. In case of any
+
+    existing or perceived difference in contents between such versions and/or in print, the prevailing version of an ETSI
+
+    deliverable is the one made publicly available in PDF format at www.etsi.org/deliver.
+
+    Users of the present document should be aware that the document may be subject to revision or change of status.
+
+    Information on the current status of this and other ETSI documents is available at
+
+    https://portal.etsi.org/TB/ETSIDeliverableStatus.aspx
+
+    If you find errors in the present document, please send your comment to one of the following services:
+
+    https://portal.etsi.org/People/CommiteeSupportStaff.aspx
+
+    Copyright Notification
+
+    No part may be reproduced or utilized in any form or by any means, electronic or mechanical, including photocopying
+
+    and microfilm except as authorized by written permission of ETSI.
+
+    The content of the PDF version shall not be modified without the written authorization of ETSI.
+
+    The copyright and the foregoing restriction extend to reproduction in all media.
+
+    © ETSI 2019.
+
+    All rights reserved.
+
+    DECT™, PLUGTESTS™, UMTS™ and the ETSI logo are trademarks of ETSI registered for the benefit of its Members.
+
+    3GPP™ and LTE™ are trademarks of ETSI registered for the benefit of its Members and
+
+    of the 3GPP Organizational Partners.
+
+    oneM2M™ logo is a trademark of ETSI registered for the benefit of its Members and
+
+    of the oneM2M Partners.
+
+    GSM® and the GSM logo are trademarks registered and owned by the GSM Association.
+
+    ETSI
+
+    3 ETSI EN 300 328 V2.2.2 (2019-07)
+
+    Contents
+
+    Intellectual Property Rights ................................................................................................................................ 8
+
+    Foreword ............................................................................................................................................................. 8
+
+    Modal verbs terminology .................................................................................................................................... 8
+
+    Introduction ........................................................................................................................................................ 9
+
+    1 Scope ...................................................................................................................................................... 10
+
+    2 References .............................................................................................................................................. 10
+
+    2.1 Normative references ....................................................................................................................................... 10
+
+    2.2 Informative references ...................................................................................................................................... 10
+
+    3 Definition of terms, symbols and abbreviations ..................................................................................... 11
+
+    3.1 Terms ................................................................................................................................................................ 11
+
+    3.2 Symbols ............................................................................................................................................................ 13
+
+    3.3 Abbreviations ................................................................................................................................................... 14
+
+    4 Technical requirements specifications ................................................................................................... 14
+
+    4.1 Environmental profile ....................................................................................................................................... 14
+
+    4.2 Equipment types ............................................................................................................................................... 15
+
+    4.2.1 Wideband Data Transmission equipment types .......................................................................................... 15
+
+    4.2.2 Adaptive and non-adaptive equipment ....................................................................................................... 15
+
+    4.2.3 Receiver categories ..................................................................................................................................... 15
+
+    4.2.3.1 Introduction ........................................................................................................................................... 15
+
+    4.2.3.2 Categorization ....................................................................................................................................... 15
+
+    4.2.3.2.1 Receiver category 1 ......................................................................................................................... 15
+
+    4.2.3.2.2 Receiver category 2 ......................................................................................................................... 16
+
+    4.2.3.2.3 Receiver category 3 ......................................................................................................................... 16
+
+    4.2.4 Antenna types ............................................................................................................................................. 16
+
+    4.3 Conformance requirements .............................................................................................................................. 16
+
+    4.3.1 Requirements for Frequency Hopping (FHSS) equipment ......................................................................... 16
+
+    4.3.1.1 Introduction ........................................................................................................................................... 16
+
+    4.3.1.2 RF output power .................................................................................................................................... 16
+
+    4.3.1.2.1 Applicability .................................................................................................................................... 16
+
+    4.3.1.2.2 Definition......................................................................................................................................... 16
+
+    4.3.1.2.3 Limit ................................................................................................................................................ 16
+
+    4.3.1.2.4 Conformance ................................................................................................................................... 17
+
+    4.3.1.3 Duty Cycle, Tx-sequence, Tx-gap ......................................................................................................... 17
+
+    4.3.1.3.1 Applicability .................................................................................................................................... 17
+
+    4.3.1.3.2 Definition......................................................................................................................................... 17
+
+    4.3.1.3.3 Limit ................................................................................................................................................ 17
+
+    4.3.1.3.4 Conformance ................................................................................................................................... 17
+
+    4.3.1.4 Accumulated Transmit Time, Frequency Occupation and Hopping Sequence ..................................... 17
+
+    4.3.1.4.1 Applicability .................................................................................................................................... 17
+
+    4.3.1.4.2 Definition......................................................................................................................................... 18
+
+    4.3.1.4.3 Limit ................................................................................................................................................ 18
+
+    4.3.1.4.4 Conformance ................................................................................................................................... 19
+
+    4.3.1.5 Hopping Frequency Separation ............................................................................................................. 19
+
+    4.3.1.5.1 Applicability .................................................................................................................................... 19
+
+    4.3.1.5.2 Definition......................................................................................................................................... 19
+
+    4.3.1.5.3 Limit ................................................................................................................................................ 19
+
+    4.3.1.5.4 Conformance ................................................................................................................................... 20
+
+    4.3.1.6 Medium Utilization (MU) factor ........................................................................................................... 20
+
+    4.3.1.6.1 Applicability .................................................................................................................................... 20
+
+    4.3.1.6.2 Definition......................................................................................................................................... 20
+
+    4.3.1.6.3 Limit ................................................................................................................................................ 20
+
+    4.3.1.6.4 Conformance ................................................................................................................................... 20
+
+    4.3.1.7 Adaptivity (Adaptive FHSS) ................................................................................................................. 20
+
+    4.3.1.7.1 Applicability .................................................................................................................................... 20
+
+    ETSI
+
+    4 ETSI EN 300 328 V2.2.2 (2019-07)
+
+    4.3.1.7.2 Adaptive FHSS using LBT .............................................................................................................. 21
+
+    4.3.1.7.3 Adaptive FHSS using DAA ............................................................................................................. 22
+
+    4.3.1.7.4 Short Control Signalling Transmissions .......................................................................................... 23
+
+    4.3.1.8 Occupied Channel Bandwidth ............................................................................................................... 24
+
+    4.3.1.8.1 Applicability .................................................................................................................................... 24
+
+    4.3.1.8.2 Definition......................................................................................................................................... 24
+
+    4.3.1.8.3 Limits ........'
+- id: art-2
+  title: 'Annex C (normative): Measurement procedures for radiated measurement ................................ 85'
+  text: 'Annex C (normative): Measurement procedures for radiated measurement ................................ 85
+
+    C.1 Introduction ............................................................................................................................................ 85
+
+    C.2 Radiated measurements in an OATS or SAR ......................................................................................... 85
+
+    C.3 Radiated measurements in a FAR .......................................................................................................... 85
+
+    C.4 Substitution measurement ...................................................................................................................... 86
+
+    C.5 Guidance for testing technical requirements .......................................................................................... 86
+
+    C.5.1 Introduction ...................................................................................................................................................... 86
+
+    C.5.2 Test procedures and corresponding test sites ................................................................................................... 86
+
+    C.5.3 Guidance for testing Adaptivity (Channel Access Mechanism) ....................................................................... 87
+
+    C.5.3.1 Introduction................................................................................................................................................. 87
+
+    C.5.3.2 Measurement Set-up ................................................................................................................................... 87
+
+    C.5.3.3 Calibration of the measurement Set-up ....................................................................................................... 87
+
+    C.5.3.4 Test method ................................................................................................................................................ 88
+
+    C.5.4 Guidance for testing Receiver Blocking ........................................................................................................... 88
+
+    C.5.4.1 Introduction................................................................................................................................................. 88
+
+    C.5.4.2 Measurement Set-up ................................................................................................................................... 88
+
+    C.5.4.3 Calibration of the measurement Set-up ....................................................................................................... 89
+
+    C.5.4.4 Test method ................................................................................................................................................ 89
+
+    Annex D (informative): Guidance for testing 2,4 GHz IEEE 802.11™ Equipment ......................... 90
+
+    D.1 Introduction ............................................................................................................................................ 90
+
+    D.2 Possible Modulations ............................................................................................................................. 90
+
+    D.2.1 Introduction ...................................................................................................................................................... 90
+
+    D.2.2 Guidance for Testing ........................................................................................................................................ 90
+
+    D.2.2.1 Introduction................................................................................................................................................. 90
+
+    D.2.2.2 Modulation Used for Conformance Testing ............................................................................................... 90
+
+    D.3 Possible Operating Modes ...................................................................................................................... 91
+
+    D.3.1 Introduction ...................................................................................................................................................... 91
+
+    D.3.2 Guidance for Testing ........................................................................................................................................ 91
+
+    Annex E (informative): Application form for testing .......................................................................... 93
+
+    E.1 Introduction ............................................................................................................................................ 93
+
+    E.2 Information as required by ETSI EN 300 328 V2.2.2, clause 5.4.1 ....................................................... 93
+
+    E.3 Configuration for testing (see clause 5.3.2.3 of ETSI EN 300 328 V2.2.2) ........................................... 98
+
+    E.4 Additional information provided by the manufacturer ........................................................................... 98
+
+    E.4.1 Modulation ....................................................................................................................................................... 98
+
+    E.4.2 Duty Cycle........................................................................................................................................................ 98
+
+    E.4.3 About the UUT ................................................................................................................................................. 98
+
+    E.4.4 Additional items and/or supporting equipment provided ................................................................................. 99
+
+    Annex F (informative): Change History ............................................................................................ 100
+
+    History ............................................................................................................................................................ 101
+
+    ETSI
+
+    8 ETSI EN 300 328 V2.2.2 (2019-07)
+
+    Intellectual Property Rights
+
+    Essential patents
+
+    IPRs essential or potentially essential to normative deliverables may have been declared to ETSI. The information
+
+    pertaining to these essential IPRs, if any, is publicly available for ETSI members and non-members, and can be found
+
+    in ETSI SR 000 314: "Intellectual Property Rights (IPRs); Essential, or potentially Essential, IPRs notified to ETSI in
+
+    respect of ETSI standards", which is available from the ETSI Secretariat. Latest updates are available on the ETSI Web
+
+    server (https://ipr.etsi.org/).
+
+    Pursuant to the ETSI IPR Policy, no investigation, including IPR searches, has been carried out by ETSI. No guarantee
+
+    can be given as to the existence of other IPRs not referenced in ETSI SR 000 314 (or the updates on the ETSI Web
+
+    server) which are, or may be, or may become, essential to the present document.
+
+    Trademarks
+
+    The present document may include trademarks and/or tradenames which are asserted and/or registered by their owners.
+
+    ETSI claims no ownership of these except for any which are indicated as being the property of ETSI, and conveys no
+
+    right to use or reproduce any trademark and/or tradename. Mention of those trademarks in the present document does
+
+    not constitute an endorsement by ETSI of products, services or organizations associated with those trademarks.
+
+    Foreword
+
+    This Harmonised European Standard (EN) has been produced by ETSI Technical Committee Electromagnetic
+
+    compatibility and Radio spectrum Matters (ERM).
+
+    The present document has been prepared under the Commission''s standardisation request C(2015) 5376 final [i.14] to
+
+    provide one voluntary means of conforming to the essential requirements of Directive 2014/53/EU on the harmonisation
+
+    of the laws of the Member States relating to the making available on the market of radio equipment and repealing
+
+    Directive 1999/5/EC [i.1].
+
+    Once the present document is cited in the Official Journal of the European Union under that Directive, compliance with
+
+    the normative clauses of the present document given in table A.1 confers, within the limits of the scope of the present
+
+    document, a presumption of conformity with the corresponding essential requirements of that Directive, and associated
+
+    EFTA regulations.
+
+    National transposition dates
+
+    Date of adoption of this EN: 1 July 2019
+
+    Date of latest announcement of this EN (doa): 31 October 2019
+
+    Date of latest publication of new National Standard
+
+    or endorsement of this EN (dop/e): 30 April 2020
+
+    Date of withdrawal of any conflicting National Standard (dow): 31 October 2021
+
+    Modal verbs terminology
+
+    In the present document "shall", "shall not", "should", "should not", "may", "need not", "will", "will not", "can" and
+
+    "cannot" are to be interpreted as described in clause 3.2 of the ETSI Drafting Rules (Verbal forms for the expression of
+
+    provisions).
+
+    "must" and "must not" are NOT allowed in ETSI deliverables except when used in direct citation.
+
+    ETSI
+
+    9 ETSI EN 300 328 V2.2.2 (2019-07)
+
+    Introduction
+
+    The present document covers Wideband Data Transmission equipment.
+
+    Examples of Wideband Data Transmission equipment are equipments such as IEEE 802.11™ RLANs [i.3], Bluetooth®
+
+    wireless technologies, Zigbee™, etc.
+
+    ETSI
+
+    10 ETSI EN 300 328 V2.2.2 (2019-07)
+
+    1 Scope
+
+    The present document applies to Wideband Data Transmission equipment.
+
+    The present document also describes spectrum access requirements to facilitate spectrum sharing with other equipment.
+
+    Wideband Data Transmission equipment covered by the present document is operated in accordance with the ERC
+
+    Recommendation 70-03 [i.6], annex 3 or Commission Decision 2006/771/EC [i.7] (and its amendments).
+
+    This radio equipment is capable of operating in the band provided in table 1.
+
+    Table 1: Service frequency bands
+
+    Service frequency bands
+
+    Transmit 2 400 MHz to 2 483,5 MHz
+
+    Receive 2 400 MHz to 2 483,5 MHz
+
+    Equipment using Ultra Wide Band (UWB) technology is not covered by the present document.
+
+    NOTE: The relationship between the present document and essential requirements of article 3.2 of
+
+    Directive 2014/53/EU [i.1] is given in annex A.
+
+    2 References
+
+    2.1 Normative references
+
+    References are specific, identified by date of publication and/or edition number or version number. Only the cited
+
+    version applies.
+
+    Referenced documents which are not found to be publicly available in the expected location might be found at
+
+    https://docbox.etsi.org/Reference/.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    The following referenced documents are necessary for the application of the present document.
+
+    Not applicable.
+
+    2.2 Informative references
+
+    References are either specific (identified by date of publication and/or edition number or version number) or
+
+    non-specific. For specific references, only the cited version applies. For non-specific references, the latest version of the
+
+    referenced document (including any amendments) applies.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    The following referenced documents are not necessary for the application of the present document but they assist the
+
+    user with regard to a particular subject area.
+
+    [i.1] Directive 2014/53/EU of the European Parliament and of the Council of 16 April 2014 on the
+
+    harmonisation of the laws of the Member States relating to the making available on the market of
+
+    radio equipment and repealing Directive 1999/5/EC.
+
+    [i.2] Void.
+
+    ETSI
+
+    11 ETSI EN 300 328 V2.2.2 (2019-07)
+
+    [i.3] IEEE 802.11™-2016: "IEEE Standard for Information Technology - Telecommunications and
+
+    information exchange between systems - Local and metropolitan area networks - Specific
+
+    requirements. Part 11: Wireless LAN Medium Access Control (MAC) and Physical Layer (PHY)
+
+    Specifications".
+
+    [i.4] IEEE 802.15.4™-2015: "IEEE Standard for Information technology - Telecommunications and
+
+    information exchange between systems - Local and metropolitan a'
+- id: art-3
+  title: 'Annex C (normative):'
+  text: 'Annex C (normative):
+
+    Measurement procedures for radiated measurement
+
+    C.1 Introduction
+
+    This annex gives the general procedures for radiated measurements using the test sites and arrangements described in
+
+    annex B.
+
+    Preferably, radiated measurements shall be performed in a FAR, see clause C.3. Radiated measurements in an OATS or
+
+    SAR are described in clause C.2.
+
+    C.2 Radiated measurements in an OATS or SAR
+
+    Radiated measurements shall be performed with the aid of a measurement antenna and a substitution antenna in test
+
+    sites described in annex B. The measurement set-up shall be calibrated according to the procedure defined in this annex.
+
+    The UUT and the measurement antenna shall be oriented such as to obtain the maximum emitted power level. This
+
+    position shall be recorded in the test report:
+
+    a) The measurement antenna (device 2 in figure C.1) shall be oriented initially for vertical antenna polarization
+
+    unless otherwise stated and the UUT (device 1 in figure C.1) shall be placed on the support in its normal
+
+    position and switched on.
+
+    b) The measurement equipment (device 3 in figure C.1) shall be connected to the measurement antenna (device 2
+
+    in figure C.1) as shown in figure C.1.
+
+    2
+
+    specified height
+
+    1 range 1 m to 4 m
+
+    1,5 m
+
+    ground
+
+    plane
+
+    3
+
+    1) UUT
+
+    2) Measurement antenna
+
+    3) Measurement equipment
+
+    Figure C.1: Measurement arrangement No.1
+
+    c) The UUT shall be rotated through 360° around its azimuth until the maximum signal level is received.
+
+    d) The measurement antenna shall be raised or lowered over the specified height range until the maximum signal
+
+    level is received. This level shall be recorded.
+
+    e) This measurement shall be repeated for horizontal measurement antenna polarization.
+
+    C.3 Radiated measurements in a FAR
+
+    For radiated measurements using a FAR, the procedure is identical to the one described in clause C.2, except that the
+
+    height scan is omitted.
+
+    ETSI
+
+    86 ETSI EN 300 328 V2.2.2 (2019-07)
+
+    C.4 Substitution measurement
+
+    To determine the absolute measurement value, a substitution measurement, as described in step 1 to step 6 below, has to
+
+    be performed:
+
+    1) Replace the UUT with the substitution antenna as shown as device 1 in figure C.1. The substitution and the
+
+    measurement antenna shall be vertically polarized.
+
+    2) Connect a signal generator to the substitution antenna and set it to the frequency being investigated.
+
+    3) If an OATS or an SAR is used, the measurement antenna shall be raised or lowered, to ensure that the
+
+    maximum signal is received.
+
+    4) Subsequently, the power of the signal generator is adjusted until the same level is obtained as recorded from
+
+    the UUT (see clause C.2).
+
+    5) The radiated power is equal to the power supplied by the signal generator, plus the gain of the substitution
+
+    antenna, minus the cable loss.
+
+    6) This measurement shall be repeated in horizontal polarization.
+
+    For test sites with a fixed setup of the measurement antenna(s) and a reproducible positioning of the UUT, correction
+
+    values from a verified site calibration may be used alternatively.
+
+    C.5 Guidance for testing technical requirements
+
+    C.5.1 Introduction
+
+    This clause provides guidance on how the various technical requirements can be verified using radiated measurements.
+
+    C.5.2 Test procedures and corresponding test sites
+
+    Table C.1 provides guidance on the test site to be used for each of the test procedures when performing radiated
+
+    measurements on integral antenna equipment.
+
+    Table C.1: Test procedures and corresponding test sites
+
+    Test procedures for essential radio test suites Clause Corresponding test site - Clause number(s)
+
+    RF output power 5.4.2 B.2.1, B.2.2, B.2.3
+
+    Duty Cycle, Tx-sequence, Tx-gap 5.4.2 B.4.3 or B.2.1, B.2.2, B.2.3
+
+    Medium Utilization 5.4.2 B.4.3 in conjunction with the results from RF
+
+    output power or B.2.1, B.2.2, B.2.3
+
+    Power Spectral Density 5.4.3 B.4.3 in conjunction with the results from RF
+
+    output power or B.2.1, B.2.2, B.2.3
+
+    Accumulated Transmit time, Frequency Occupation and 5.4.4 B.4.3 or B.2.1, B.2.2, B.2.3
+
+    Hopping Sequence
+
+    Hopping Frequency Separation 5.4.5 B.4.3 or B.2.1, B.2.2, B.2.3
+
+    Adaptivity 5.4.6 C.5.3
+
+    Occupied Channel Bandwidth 5.4.7 B.4.3
+
+    Transmitter unwanted emissions in the out-of-band domain 5.4.8 B.2.1, B.2.2, B.2.3
+
+    Transmitter unwanted emissions in the spurious domain 5.4.9 B.2.1, B.2.2, B.2.3
+
+    Receiver spurious emissions 5.4.10 B.2.1, B.2.2, B.2.3
+
+    Receiver Blocking 5.4.11 C.5.4
+
+    ETSI
+
+    87 ETSI EN 300 328 V2.2.2 (2019-07)
+
+    C.5.3 Guidance for testing Adaptivity (Channel Access
+
+    Mechanism)
+
+    C.5.3.1 Introduction
+
+    This clause provides guidance on how the Adaptivity (see clause 4.3.1.7 or clause 4.3.2.6) requirement can be verified
+
+    on integral antenna equipment using radiated measurements.
+
+    C.5.3.2 Measurement Set-up
+
+    Figure C.2 describes an example of a set-up that can be used to perform radiated adaptivity tests. In order to ensure that
+
+    the signals going into the UUT are at the correct level, it is necessary to consider field strength, polarization and
+
+    direction of arrival (relative to the antenna pattern of the UUT) of each signal. Other configurations are possible, for
+
+    example with the wanted signal routed through the measurement antenna using a combiner.
+
+    Figure C.2: Measurement Set-up
+
+    C.5.3.3 Calibration of the measurement Set-up
+
+    Before starting the actual measurement, the setup shall be calibrated. Figure C.3 shows an example of a set-up that can
+
+    be used for calibrating the set-up given in figure C.2 using a substitution antenna and a spectrum analyser. It shall be
+
+    verified that the levels of the interference and unwanted signals at the input of the substitution antenna correspond with
+
+    the levels used for conducted measurements (see clause 5.4.6).
+
+    For test sites with a fixed setup of the measurement antenna(s) and a reproducible positioning of the UUT, correction
+
+    values from a verified site calibration may be used alternatively.
+
+    ETSI
+
+    88 ETSI EN 300 328 V2.2.2 (2019-07)
+
+    Figure C.3: Measurement Set-up - Calibration
+
+    C.5.3.4 Test method
+
+    The test procedure shall be as follows:
+
+    • Replace the substitution antenna with the UUT once the calibration is performed.
+
+    • The UUT shall be positioned for maximum e.i.r.p. towards the horn antenna. See clause 5.4.3.2.2.
+
+    The test method is further as described under clause 5.4.6.2.1.
+
+    C.5.4 Guidance for testing Receiver Blocking
+
+    C.5.4.1 Introduction
+
+    This clause provides guidance on how the Receiver Blocking (see clause 4.3.1.12 or clause 4.3.2.11) requirement can be
+
+    verified on integral antenna equipment using radiated measurements.
+
+    C.5.4.2 Measurement Set-up
+
+    Figure C.4 describes an example of a set-up that can be used to perform radiated receiver blocking tests.
+
+    Figure C.4: Measurement Set-up
+
+    ETSI
+
+    89 ETSI EN 300 328 V2.2.2 (2019-07)
+
+    C.5.4.3 Calibration of the measurement Set-up
+
+    Before starting the actual measurement, the setup shall be calibrated. Figure C.5 shows an example of a set-up that can
+
+    be used for calibrating the set-up given in figure C.4 using a substitution antenna and a spectrum analyser. It shall be
+
+    verified that the level of the blocking signal at the input of the substitution antenna corresponds with the levels used for
+
+    conducted measurements (see clause 5.4.11).
+
+    For test sites with a fixed setup of the measurement antenna(s) and a reproducible positioning of the UUT, correction
+
+    values from a verified site calibration may be used alternatively.
+
+    Figure C.5: Measurement Set-up - Calibration
+
+    C.5.4.4 Test method
+
+    The test procedure shall be as follows:
+
+    • Replace the substitution antenna with the UUT once the calibration is performed.
+
+    • The UUT shall be positioned for maximum e.i.r.p. towards the horn antenna. See clause 5.4.3.2.2.
+
+    The test method is further as described under clause 5.4.11.2.1.
+
+    ETSI
+
+    90 ETSI EN 300 328 V2.2.2 (2019-07)
+
+    Annex D (informative):
+
+    Guidance for testing 2,4 GHz IEEE 802.11™ Equipment
+
+    D.1 Introduction
+
+    The following guidance may be used by test labs and manufacturers when evaluating compliance of 2,4 GHz
+
+    IEEE 802.11™ [i.3] radio equipment to the present document. The technology-specific inf'
 doc_files:
 - global/raw/ETSI_EN_300328_v02.02.02_60.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_300328_v02.02.02_60.pdf (pdf, 266681 chars)，生成 3 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_300328_v02.02.02_60.pdf (pdf, 266681 chars)，生成 3 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_300328_v02.02.02_60.pdf (pdf, 266681 chars)，生成 3 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

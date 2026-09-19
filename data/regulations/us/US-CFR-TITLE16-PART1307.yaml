@@ -1,6 +1,6 @@
 id: US-CFR-TITLE16-PART1307
 official_citation: US 16 CFR Part 1307
-short_name: US 16 CFR Part 1307
+short_name: US 16 CFR Part 1307 — PROHIBITION OF CHILDREN'S TOYS AND CHILD CARE ARTICLES CONTAINING SPECIFIED PHTHALATES
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,141 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '16
+
+    Commercial Practices
+
+    2
+
+    2024-01-01
+
+    2024-01-01
+
+    false
+
+    PROHIB'
+  text: '16
+
+    Commercial Practices
+
+    2
+
+    2024-01-01
+
+    2024-01-01
+
+    false
+
+    PROHIBITION OF CHILDREN''S TOYS AND CHILD CARE ARTICLES CONTAINING SPECIFIED PHTHALATES
+
+    1307
+
+    PART 1307
+
+    Commercial Practices
+
+    CONSUMER PRODUCT SAFETY COMMISSION
+
+    CONSUMER PRODUCT SAFETY ACT REGULATIONS
+
+    Pt. 1307
+
+    PART 1307—PROHIBITION OF CHILDREN''S TOYS AND CHILD CARE ARTICLES CONTAINING SPECIFIED PHTHALATES
+
+    Sec.
+
+    1307.1
+
+    Scope and application.
+
+    1307.2
+
+    Definitions.
+
+    1307.3
+
+    Prohibition on children''s toys and child care articles containing specified phthalates.
+
+    Authority:
+
+    Sec. 108, Pub. L. 110-314, 122 Stat. 3016 (August 14, 2008); Pub. L. 112-28, 125 Stat. 273 (August 12, 2011).
+
+    Source:
+
+    82 FR 49982, Oct. 27, 2017, unless otherwise noted.'
+- id: art-2
+  title: § 1307.1
+  text: '§ 1307.1
+
+    Scope and application.
+
+    This part prohibits the manufacture for sale, offer for sale, distribution in commerce or importation into the United States of any children''s toy or child care article containing any of the phthalates
+    specified in § 1307.3.'
+- id: art-3
+  title: § 1307.2
+  text: '§ 1307.2
+
+    Definitions.
+
+    The definitions of the Consumer Product Safety Act (CPSA) (15 U.S.C. 2052(a)) and the Consumer Product Safety Improvement Act of 2008 (CPSIA) (Pub. L. 110-314, sec. 108(g)) apply to this part. Specifically,
+    as defined in the CPSIA:
+
+    (a)
+
+    Children''s toy
+
+    means a consumer product designed or intended by the manufacturer for a child 12 years of age or younger for use by the child when the child plays.
+
+    (b)
+
+    Child care article
+
+    means a consumer product designed or intended by the manufacturer to facilitate sleep or the feeding of children age 3 and younger, or to help such children with sucking or teething.'
+- id: art-4
+  title: § 1307.3
+  text: '§ 1307.3
+
+    Prohibition of children''s toys and child care articles containing specified phthalates.
+
+    (a) As provided in section 108(a) of the CPSIA, the manufacture for sale,
+
+    offer for sale, distribution in commerce, or importation into the United States of any children''s toy or child care article that contains concentrations of more than 0.1 percent of di-(2-ethylhexyl)
+    phthalate (DEHP) , dibutyl phthalate (DBP), or benzyl butyl phthalate (BBP) is prohibited.
+
+    (b) In accordance with section 108(b)(3) of the CPSIA, the manufacture for sale, offer for sale, distribution in commerce, or importation into the United States of any children''s toy or child care
+    article that contains concentrations of more than 0.1 percent of diisononyl phthalate (DINP), diisobutyl phthalate (DIBP), di-
+
+    n
+
+    -pentyl phthalate (DPENP), di-
+
+    n
+
+    -hexyl phthalate (DHEXP), or dicyclohexyl phthalate (DCHP) is prohibited.
+
+    (c) In accordance with section 108(c) of the CPSIA, the restrictions stated in paragraphs (a) and (b) of this section apply to any plasticized component part of a children''s toy or child care article
+    or any other component part of a children''s toy or child care article that is made of other materials that may contain phthalates.
+
+    [82 FR 49982, Oct. 27, 2017, as amended at 83 FR 34764, July 23, 2018]'
 doc_files:
 - us/raw/US-CFR-title16-part1307.xml
+- us/raw/US-CFR-title16-part1307.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1307.xml (xml, 2865 chars)，生成 4 条共 2865 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1307.xml (xml, 2865 chars)，生成 4 条共 2865 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1307.xml (xml, 2865 chars)，生成 4 条共 2865 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1307-4（US 16 CFR Part 1307）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1307-3（US 16 CFR Part 1307）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1307-2（US 16 CFR Part 1307）。'

@@ -1,6 +1,6 @@
 id: US-CFR-TITLE19-PART134
 official_citation: US 19 CFR Part 134
-short_name: US 19 CFR Part 134
+short_name: US 19 CFR Part 134 — COUNTRY OF ORIGIN MARKING
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,791 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '19
+
+    Customs Duties
+
+    1
+
+    2024-04-01
+
+    2024-04-01
+
+    false
+
+    COUNTRY OF O'
+  text: '19
+
+    Customs Duties
+
+    1
+
+    2024-04-01
+
+    2024-04-01
+
+    false
+
+    COUNTRY OF ORIGIN MARKING
+
+    134
+
+    PART 134
+
+    Customs Duties
+
+    U.S. CUSTOMS AND BORDER PROTECTION, DEPARTMENT OF HOMELAND SECURITY; DEPARTMENT OF THE TREASURY
+
+    Pt. 134
+
+    PART 134—COUNTRY OF ORIGIN MARKING
+
+    Sec.
+
+    134.0
+
+    Scope.
+
+    Subpart A—General Provisions
+
+    134.1
+
+    Definitions.
+
+    134.2
+
+    Additional duties.
+
+    134.3
+
+    Delivery withheld until marked and redelivery ordered.
+
+    134.4
+
+    Penalties for removal, defacement, or alteration of marking.
+
+    Subpart B—Articles Subject to Marking
+
+    134.11
+
+    Country of origin marking required.
+
+    134.12
+
+    Foreign articles reshipped from a U.S. possession.
+
+    134.13
+
+    Imported articles repacked or manipulated.
+
+    134.14
+
+    Articles usually combined.
+
+    Subpart C—Marking of Containers or Holders
+
+    134.21
+
+    Special marking.
+
+    134.22
+
+    General rules for marking of containers or holders.
+
+    134.23
+
+    Containers or holders designed for or capable of reuse.
+
+    134.24
+
+    Containers or holders not designed for or capable of reuse.
+
+    134.25
+
+    Containers or holders for repacked J-list articles and articles incapable of being marked.
+
+    134.26
+
+    Imported articles repacked or manipulated.
+
+    Subpart D—Exceptions to Marking Requirements
+
+    134.31
+
+    Requirements of other agencies.
+
+    134.32
+
+    General exceptions to marking requirements.
+
+    134.33
+
+    J-List exceptions.
+
+    134.34
+
+    Certain repacked articles.
+
+    134.35
+
+    Articles substantially changed by manufacture.
+
+    134.36
+
+    Inapplicability of marking exception for articles processed by importer.
+
+    Subpart E—Method and Location of Marking Imported Articles
+
+    134.41
+
+    Methods and manner of marking.
+
+    134.42
+
+    Specific method may be required.
+
+    134.43
+
+    Methods of marking specific articles.
+
+    134.44
+
+    Location and other acceptable methods of marking.
+
+    134.45
+
+    Approved markings of country name.
+
+    134.46
+
+    Marking when name of country or locality other than country of origin appears.
+
+    134.47
+
+    Souvenirs and articles marked with trademarks or trade names.
+
+    Subpart F—Articles Found Not Legally Marked
+
+    134.51
+
+    Procedure when importation found not legally marked.
+
+    134.52
+
+    Certificate of marking.
+
+    134.53
+
+    Examination packages.
+
+    134.54
+
+    Articles released from Customs custody.
+
+    134.55
+
+    Compensation of Customs officers and employees.
+
+    Authority:
+
+    5 U.S.C. 301; 19 U.S.C. 66, 1202 (General Note 3(i), Harmonized Tariff Schedule of the United States), 1304, 1624.
+
+    Source:
+
+    T.D. 72-262, 37 FR 20318, Sept. 29, 1972, unless otherwise noted.
+
+    Editorial Note:
+
+    Nomenclature changes to part 134 appear by CBP Dec. 16-26, 81 FR 93018, Dec. 20, 2016.'
+- id: art-2
+  title: § 134.0
+  text: '§ 134.0
+
+    Scope.
+
+    This part sets forth regulations implementing the country of origin marking requirements and exceptions of section 304 of the Tariff Act of 1930, as amended (19 U.S.C. 1304), together with certain marking
+    provisions of the Harmonized Tariff Schedule of the United
+
+    States (19 U.S.C. 1202). The consequences and procedures to be followed when articles are not legally marked are set forth in this part. The consequences and procedures to be followed when articles
+    are falsely marked are set forth in § 11.13 of this chapter. Special marking and labeling requirements are covered elsewhere. Provisions regarding the review and appeal rights of exporters and producers
+    resulting from adverse North American Free Trade Agreement marking decisions are contained in subpart J of part 181 of this chapter.
+
+    [T.D. 81-290, 46 FR 58070, Nov. 30, 1981, as amended by T.D. 89-1, 53 FR 51255, Dec. 21, 1988; T.D. 94-1, 58 FR 69471, Dec. 30, 1993]
+
+    Subpart A—General Provisions'
+- id: art-3
+  title: § 134.1
+  text: '§ 134.1
+
+    Definitions.
+
+    When used in this part, the following terms shall have the meaning indicated:
+
+    (a)
+
+    Country.
+
+    “Country” means the political entity known as a nation. Colonies, possessions, or protectorates outside the boundaries of the mother country are considered separate countries.
+
+    (b)
+
+    Country of origin.
+
+    “Country of origin” means the country of manufacture, production, or growth of any article of foreign origin entering the United States. Further work or material added to an article in another country
+    must effect a substantial transformation in order to render such other country the “country of origin” within the meaning of this part; however, for a good of a NAFTA or USMCA country, the marking rules
+    set forth in part 102 of this chapter (hereinafter referred to as the part 102 Rules) will determine the country of origin.
+
+    (c)
+
+    Foreign origin.
+
+    “Foreign origin” refers to a country of origin other than the United States, as defined in paragraph (e) of this section, or its possessions and territories.
+
+    (d)
+
+    Ultimate purchaser.
+
+    The “ultimate purchaser” is generally the last person in the United States who will receive the article in the form in which it was imported; however, for a good of a NAFTA or USMCA country, the “ultimate
+    purchaser” is the last person in the United States who purchases the good in the form in which it was imported. It is not feasible to state who will be the “ultimate purchaser” in every circumstance.
+    The following examples may be helpful:
+
+    (1) If an imported article will be used in manufacture, the manufacturer may be the “ultimate purchaser” if he subjects the imported article to a process which results in a substantial transformation
+    of the article, even though the process may not result in a new or different article, or for a good of a NAFTA or USMCA country, a process which results in one of the changes prescribed in the part
+    102 Rules as effecting a change in the article''s country of origin.
+
+    (2) If the manufacturing process is merely a minor one which leaves the identity of the imported article intact, the consumer or user of the article, who obtains the article after the processing, will
+    be regarded as the “ultimate purchaser.” With respect to a good of a NAFTA or USMCA country, if the manufacturing process does not result in one of the changes prescribed in the part 102 Rules as effecting
+    a change in the article''s country of origin, the consumer who purchases the article after processing will be regarded as the ultimate purchaser.
+
+    (3) If an article is to be sold at retail in its imported form, the purchaser at retail is the “ultimate purchaser.”
+
+    (4) If the imported article is distributed as a gift the recipient is the “ultimate purchaser”, unless the good is a good of a NAFTA or USMCA country. In that case, the purchaser of the gift is the
+    ultimate purchaser.
+
+    (e)
+
+    United States.
+
+    “United States” includes all territories and possessions of the United States, except the Virgin Islands, American Samoa, Wake Island, Midway Islands, Kingman Reef, Johnston Island, and the island of
+    Guam.
+
+    (f)
+
+    Customs territory of the United States.
+
+    “Customs territory of the United States,” as used in this chapter includes the States, the District of Columbia, and the Commonwealth of Puerto Rico.
+
+    (g)
+
+    Good of a NAFTA or USMCA country.
+
+    A “good of a NAFTA or USMCA country” is an article for which the country of origin is Canada, Mexico or
+
+    the United States as determined under the part 102 Rules.
+
+    (h)
+
+    NAFTA.
+
+    “NAFTA” means the North American Free Trade Agreement entered into by the United States, Canada and Mexico on August 13, 1992. NAFTA is not applicable to goods entered for consumption, or withdrawn
+    from warehouse for consumption, on or after July 1, 2020.
+
+    (i)
+
+    NAFTA or USMCA country.
+
+    “NAFTA or USMCA country” means the territory of the United States, Canada or Mexico, as defined in Annex 201.1 of NAFTA and Chapter 1, Section C of the USMCA.
+
+    (j)
+
+    Part 102 Rules.
+
+    “Part 102 Rules” are the rules promulgated for purposes of determining whether a good is a good of a NAFTA country, as set forth in part 102 of this chapter. The rules also apply to determine the country
+    of origin for marking purposes for goods imported under the USMCA.
+
+    (k)
+
+    Conspicuous.
+
+    “Conspicuous” means capable of being easily seen with normal handling of the article or container.
+
+    (l)
+
+    USMCA.
+
+    “USMCA” means the Agreement Between the United States of America, the United Mexican States, and Canada (USMCA), entered into force by the United States, Canada and Mexico on July 1, 2020.
+
+    [T.D. 72-262, 37 FR 20318, Sept. 29, 1972, as amended by T.D. 94-1, 58 FR 69471, Dec. 30, 1993; T.D. 95-68, 60 FR 46362, Sept. 6, 1995; CBP Dec. 21-10, 86 FR 35582, July 6, 2021]'
+- id: art-4
+  title: § 134.2
+  text: '§ 134.2
+
+    Additional duties.
+
+    Articles not marked as required by this part shall be subject to additional duties of 10 percent of the final appraised value unless exported or destroyed under Customs supervision prior to liquidation
+    of the entry, as provided in 19 U.S.C. 1304(f). The 10 percent additional duty is assessable for failure either to mark the article (or container) to indicate the English name of the country of origin
+    of the article or to include words or symbols required to prevent deception or mistake.
+
+    [T.D. 72-262, 37 FR 20318, Sept. 29, 1972, as amended by T.D. 90-51, 55 FR 28190, July 10, 1990]'
+- id: art-5
+  title: § 134.3
+  text: '§ 134.3
+
+    Delivery withheld until marked and redelivery ordered.
+
+    (a) Any imported article (or its container) held in CBP custody for inspection, examination, or appraisement will not be delivered until marked with its country of origin, or until estimated duties
+    payable under 19 U.S.C. 1304(f), or adequate security for those duties (see § 134.53(a)(2)), are deposited.
+
+    (b) An authorized CBP official may demand redelivery to CBP custody of any article (or its container) previously released which is found to be not marked legally with its country of origin for the purpose
+    of requiring the article (or its container) to be properly marked. A demand for redelivery will be made, as required under § 141.113(a) of this chapter, not later than 30 days after—
+
+    (1) The date of entry, in the case of merchandise examined in public stores and places of arrival, such as docks, wharfs, or piers; or
+
+    (2) The date of examination, in the case of merchandise examined at the importer''s premises or such other appropriate places as determined by the port director.
+
+    (c) Nothing in this part shall be construed as excepting any article (or its container) from the particular requirements of marking provided for in any other provision of law.
+
+    [T.D. 80-88, 45 FR 18921, Mar. 24, 1980, as amended by T.D. 90-51, 55 FR 28190, July 10, 1990; CBP Dec. 08-25, 73 FR 40726, July 16, 2008]'
+- id: art-6
+  title: § 134.4
+  text: '§ 134.4
+
+    Penalties for removal, defacement, or alteration of marking.
+
+    Any intentional removal, defacement, destruction, or alteration of a marking of the country of origin required by section 304, Tariff Act of 1930, as amended (19 U.S.C. 1304), and this part in order
+    to conceal this information may result in criminal penalties of up to $5,000 and/or imprisonment for 1 year, as provided in 19 U.S.C. 1304(h).
+
+    [T.D. 72-262, 37 FR 20318, Sept. 29, 1972, as amended by T.D. 90-51, 55 FR 28191, July 10, 1990]
+
+    Subpart B—Articles Subject to Marking'
+- id: art-7
+  title: § 134.11
+  text: '§ 134.11
+
+    Country of origin marking required.
+
+    Unless excepted by law, section 304, Tariff Act of 1930, as amended (19 U.S.C. 1304), requires that every article of foreign origin (or its container) imported into the United States shall be marked
+    in a conspicuous place as legibly, indelibly, and permanently as the nature of the article (or container) will permit, in such manner as to indicate to an ultimate purchaser in the United States the
+    English name of the country of origin of the article, at the time of importation into the Customs territory of the United States. Containers of articles excepted from marking shall be marked with the
+    name of the country of origin of the article unless the container is also excepted from marking.'
+- id: art-8
+  title: § 134.12
+  text: '§ 134.12
+
+    Foreign articles reshipped from a U.S. possession.
+
+    Articles of foreign origin imported into any possession of the United States outside its Customs territory and reshipped to the United States are subject to all marking requirements applicable to like
+    articles of foreign origin imported directly from a foreign country to the United States.'
+- id: art-9
+  title: § 134.13
+  text: '§ 134.13
+
+    Imported articles repacked or manipulated.
+
+    (a)
+
+    Marking requirement.
+
+    An article within the provisions of this section shall be marked with the name of the country of origin at the time the article is withdrawn for consumption unless the article and its container are
+    exempted from marking under provisions of subpart D of this part at the time of importation.
+
+    (b)
+
+    Applicability.
+
+    The provisions of this section are applicable to the following articles:
+
+    (1) Articles repacked in a bonded warehouse under § 19.8 of this chapter;
+
+    (2) Articles manipulated under section 562, Tariff Act of 1930, as amended (19 U.S.C. 1562), and § 19.11 of this chapter;
+
+    (3) Articles manipulated, but not manufactured, in a foreign-trade zone under § 146.32 of this chapter.'
+- id: art-10
+  title: § 134.14
+  text: '§ 134.14
+
+    Articles usually combined.
+
+    (a)
+
+    Articles combined before delivery to purchaser.
+
+    When an imported article is of a kind which is usually combined with another article after importation but before delivery to an ultimate purchaser and the name indicating the country of origin of the
+    article appears in a place on the article so that the name will be visible after such combining, the marking shall include, in addition to the name of the country of origin, words or symbols which shall
+    clearly show that the origin indicated is that of the imported article only and not that of any other article with which the imported article may be combined after importation.
+
+    (b)
+
+    Example.
+
+    Labels and similar articles so marked that the name of the country of origin of the label or article is visible after it is affixed to another article in this country shall be marked with additional
+    descriptive words such as “Label made (or printed) in (name of country)” or words of similar meaning. See subpart C of this part for marking of bottles, drums, or other containers.
+
+    (c)
+
+    Applicability.
+
+    This section shall not apply to articles of a kind which are ordinarily so substantially changed in the United States that the articles in their changed condition become products of the United States.
+    An article excepted from marking under subpart D of this part is not within the scope of section 304(a)(2), Tariff Act of 1930, as amended (19 U.S.C. 1304(a)(2)), and is not subject to the requirements
+    of this section.
+
+    Subpart C—Marking of Containers or Holders'
+- id: art-11
+  title: § 134.21
+  text: '§ 134.21
+
+    Special marking.
+
+    This subpart includes only country of origin marking requirements and exceptions under section 304(b), Tariff Act of 1930, as amended (19 U.S.C. 1304(b)), for containers or holders. Special marking
+    may be required by the Internal Revenue Service on alcoholic beverage bottles and other requirements may be imposed by reason of the nature of the contents by other Government agencies.'
+- id: art-12
+  title: § 134.22
+  text: '§ 134.22
+
+    General rules for marking of containers or holders.
+
+    (a)
+
+    Contents excepted from marking.
+
+    When an article is excepted from the marking requirements by subpart D of this part, the outermost container or holder in which the article ordinarily reaches the ultimate purchaser shall be marked
+    to indicate the country of origin of the article whether or not the article is marked to indicate its country of origin.
+
+    (b)
+
+    Containers or holders treated as imported articles.
+
+    Containers or holders for imported merchandise which are subject to treatment as imported articles under the Harmonized Tariff Schedule of the United States (19 U.S.C. 1202), shall be marked to indicate
+    clearly the country of their own origin in addition to any marking which may be required to show the country of origin of their contents; however, no marking is required for any good of a NAFTA or USMCA
+    country which is a usual container.
+
+    (c)
+
+    Containers or holders bearing a U.S. address.
+
+    Containers or holders of imported merchandise bearing the name and address of an importer, distributor, or other person or company in the United States shall be marked in close proximity to the U.S.
+    address to indicate clearly the country of origin of the contents with a marking such as “Contents made in France” or “Contents Product of Spain.”
+
+    (d)
+
+    Usual containers
+
+    —(1)
+
+    “Usual container” defined.
+
+    For purposes of this subpart, a usual container means the container in which a good will ordinarily reach its ultimate purchaser. Containers which are not included in the price of the goods with which
+    they are sold, or which impart the essential character to the whole, or which have significant uses, or lasting value independent of the contents, will generally not be regarded as usual containers.
+    However, the fact that a container is sturdy and capable of repeated use with its contents does not preclude it from being considered a usual container so long as it is the type of container in which
+    its contents are ordinarily sold. A usual container may be any type of container, including one which is specially shaped or fitted to contain a specific good or set of goods such as a camera case or
+    an eyeglass case, or packing, storage and transportation materials.
+
+    (2)
+
+    A good of a NAFTA or USMCA country which is a usual container.
+
+    A good of a NAFTA or USMCA country which is a usual container, whether or not disposable and whether or not imported empty or filled, is not required to be marked with its own country of origin. If
+    imported empty, the importer must be able to provide satisfactory evidence to Customs at the time of importation that it will be used only as a usual container (that it is to be filled with goods after
+    importation and that such container is of a type in which these goods ordinarily reach the ultimate purchaser).
+
+    (e)
+
+    Exceptions.
+
+    Containers or holders of imported articles are not required to be marked if:
+
+    (1)
+
+    Excepted articles.
+
+    They are containers or holders of articles within the exceptions set forth in paragraph (f), (g), or (h) in § 134.32 or they are containers of a good of a NAFTA or USMCA country within the exceptions
+    set forth in paragraph (e), (f), (g), (h), (i), (p) or (q) of § 134.32.
+
+    (2)
+
+    Excepted containers or holders.
+
+    The container or holder itself is within an exception set forth in subpart D of this part.
+
+    (3)
+
+    To be filled by the importer.
+
+    The container or holder is within the exception set forth in § 134.24(c).
+
+    [T.D. 72-262, 37 FR 20318, Sept. 29, 1972, as amended by T.D. 94-1, 58 FR 69471, Dec. 30, 1993; CBP Dec. 21-10, 86 FR 35582, July 6, 2021]'
+- id: art-13
+  title: § 134.23
+  text: '§ 134.23
+
+    Containers or holders designed for or capable of reuse.
+
+    (a)
+
+    Usual and ordinary reusable containers or holders.
+
+    Except for goods of a NAFTA or USMCA country which are usual containers, containers or holders designed for or capable of reuse after the contents have been consumed, whether imported full or empty,
+    must be individually marked to indicate the country of their own origin with a marking such as, “Container Made in (name of country).” Examples of the containers or holders contemplated are heavy duty
+    steel drums, tanks, and other similar shipping, storage, transportation containers or holders capable of reuse. These containers or holders
+
+    are subject to the treatment specified in General Rule of Interpretation 5(b), Harmonized Tariff Schedule of the United States (19 U.S.C. 1202).
+
+    (b)
+
+    Other reusable containers or holders.
+
+    Containers or holders which give the whole importation its essential character, as described in General Rule of Interpretation 5(a) (19 U.S.C. 1202), must be individually marked to clearly indicate
+    their own origin with a marking such as, “Container made in (name of country).” Examples of the containers contemplated are mustard jars reusable as beer mugs; shaving soap containers reusable as shaving
+    mugs; fancy cologne bottles reusable as flower vases, and other containers which have a lasting value or decorative use.
+
+    [T.D. 72-262, 37 FR 20318, Sept. 29, 1972, as amended by T.D. 89-1, 53 FR 51256, Dec. 21, 1988; T.D. 94-1, 58 FR 69471, Dec. 30, 1993; CBP Dec. 21-10, 86 FR 35582, July 6, 2021]'
+- id: art-14
+  title: § 134.24
+  text: '§ 134.24
+
+    Containers or holders not designed for or capable of reuse.
+
+    (a)
+
+    Containers ordinarily discarded after use.
+
+    Disposable containers or holders subject to the provisions of this section are the usual ordinary types of containers or holders, including cans, bottles, paper or polyethylene bags, paperboard boxes,
+    and similar containers or holders which are ordinarily discarded after the contents have been consumed.
+
+    (b)
+
+    Imported empty.
+
+    Disposable containers or holders imported for distribution or sale are subject to treatment as imported articles in accordance with the Harmonized Tariff Schedule of the United States (19 U.S.C. 1202),
+    and shall be marked to indicate clearly the country of their own origin. However, when the containers are packed and sold in multiple units (dozens, gross, etc.), this requirement ordinarily may be
+    met by marking the outermost container which reaches the ultimate purchaser.
+
+    (c)
+
+    Imported to be filled
+
+    —(1)
+
+    If unmarked.
+
+    When disposable containers or holders or usual containers which are goods of a NAFTA or USMCA country are imported by persons or firms who fill or package them with various products which they sell,
+    these persons or firms are the “ultimate purchasers” of these containers or holders or usual containers which are goods of a NAFTA or USMCA country and they may be excepted from individual marking pursuant
+    to 19 U.S.C. 1304(a)(3)(D). The outside wrappings or packages containing the containers shall be clearly marked to indicate the country of origin.
+
+    (2)
+
+    If marked.
+
+    If the disposable containers or holders or the usual containers which are goods of a NAFTA or USMCA country are marked with the country of origin at the time of importation and the marking will be visible
+    after they are filled, the marking shall clearly indicate that the container only and not the contents were made in the named country. For example, bottles, drums, or other containers imported empty,
+    to be filled in the United States, shall be marked with such words as “Bottle (or container) made in (name of country).”
+
+    (d)
+
+    Imported full
+
+    —(1)
+
+    When contents are excepted from marking.
+
+    Usual disposable containers in use as such at the time of importation shall not be required to be marked to show the country of their own origin, but shall be marked to indicate the origin of their
+    contents regardless of the fact that the contents are excepted from marking requirements; however, such marking is not required if the contents are excepted from marking requirements under paragraph
+    (f), (g), or (h) of § 134.32 or, in the case of a good of a NAFTA or USMCA country, under paragraph (e), (f), (g), (h), (i), (p) or (q) of that section.
+
+    (2)
+
+    Sealed containers or holders.
+
+    Disposable containers or holders of imported merchandise, which are sold without normally being opened by the ultimate purchaser (e.g., individually wrapped soap bars or tennis balls in a vacuum sealed
+    can), shall be marked to indicate the country of origin of their contents.
+
+    (3)
+
+    Unsealed containers.
+
+    Unsealed disposable containers of imported merchandise normally unopened by the ultimate purchaser, may be excepted from marking if the article is so marked that the country of origin is clearly visible
+    without unpacking the container. However, if the container is
+
+    normally opened by the ultimate purchaser prior to purchase, only the article need be marked.
+
+    [T.D. 72-262, 37 FR 20318, Sept. 29, 1972, as amended by T.D. 89-1, 53 FR 51255, Dec. 21, 1988; T.D. 94-1, 58 FR 69471, Dec. 30, 1993; CBP Dec. 21-10, 86 FR 35582, July 6, 2021]'
+- id: art-15
+  title: § 134.25
+  text: '§ 134.25
+
+    Containers or holders for repacked J-list articles and articles incapable of being marked.
+
+    (a)
+
+    Certification requirements.
+
+    If an article subject to these requirements is intended to be repacked in new containers for sale to an ultimate purchaser after its release from Customs custody, or if the Center director has reason
+    to believe such article will be repacked after its release, the importer shall certify to the Center director that: (1) If the importer does the repacking, the new container shall be marked to indicate
+    the country of origin of the article in accordance with the requirements of this part; or (2) if the article is intended to be sold or transferred to a subsequent purchaser or repacker, the importer
+    shall notify such purchaser or transferee, in writing, at the time of sale or transfer, that any repacking of the article must conform to these requirements. The importer, or his authorized agent, shall
+    sign the following statement.
+
+    Certificate of Marking—Repacked J-List Articles and Articles Incapable of Being Marked
+
+    (Port of entry)
+
+    I,    of    , certify that if the article(s) covered by this entry (entry no.(s)   dated   ), is (are) repacked in a new container(s), while still in my possession, the new containers, unless excepted,
+    shall be marked in a conspicuous place as legibly, indelibly, and permanently as the nature of the container(s) will permit, in such manner as to indicate the country of origin of the article(s) to
+    the ultimate purchaser(s) in accordance with the requirements of 19 U.S.C. 1304 and 19 CFR part 134. I further certify that if the article(s) is (are) intended to be sold or transferred by me to a subsequent
+    purchaser or repacker, I will notify such purchaser or transferee, in writing, at the time of sale or transfer, of the marking requirements.
+
+    Date
+
+    Importer
+
+    The certification statement may appear as a typed or stamped statement on an appropriate entry document or commercial invoice, or on a preprinted attachment to such entry or invoice; or it may be submitted
+    in blanket form to cover all importations of a particular product for a given period (e.g., calendar year). If the blanket procedure is used, a certification must be filed with CBP, either at the port
+    of entry or electronically.
+
+    (b)
+
+    Facsimile signatures.
+
+    The certification statement may be signed by means of an authorized facsimile signature.
+
+    (c)
+
+    Time of filing.
+
+    The certification statement shall be filed with the Center director at the time of entry summary. If the certification is not available at that time, a bond shall be given for its production in accordance
+    with § 141.66, Customs Regulations (19 CFR 141.66). In case of repeated failure to timely file the certification required under this section, the Center director may decline to accept a bond for the
+    missing document and demand redelivery of the merchandise under § 134.51, Customs Regulations (19 CFR 134.51).
+
+    (d)
+
+    Notice to subsequent purchaser or repacker.
+
+    If the article is sold or transferred to a subsequent purchaser or repacker the following notice shall be given to the purchaser or repacker:
+
+    Notice to Subsequent Purchaser or Repacker
+
+    These articles are imported. The requirements of 19 U.S.C. 1304 and 19 CFR part 134 provide that the articles or their containers must be marked in a conspicuous place as legibly, indelibly and permanently
+    as the nature of the article or container will permit, in such a manner as to indicate to an ultimate purchaser in the United States, the English name of the country of origin of the article.
+
+    (e)
+
+    Duties and penalties.
+
+    Failure to comply with the certification requirements in paragraph (a) may subject the importer to a demand for liquidated damages under § 134.54(a) and for the additional duty under 19 U.S.C. 1304.
+    Fraud or negligence by any person in furnishing the required certification may also result in a penalty under 19 U.S.C. 1592.
+
+    [T.D. 83-155, 48 FR 33863, July 26, 1983, as amended by CBP Dec. 16-26, 81 FR 93018, Dec. 20, 2016]'
+- id: art-16
+  title: § 134.26
+  text: '§ 134.26
+
+    Imported articles repacked or manipulated.
+
+    (a)
+
+    Certification requirements.
+
+    If an article subject to these requirements is intended to be repacked in retail containers (e.g., blister packs) after its release from Customs custody, or if the Center director has reason to believe
+    such article will be repacked after its release, the importer shall certify to the Center director that: (1) If the importer does the repacking, he shall not obscure or conceal the country of origin
+    marking appearing on the article, or else the new container shall be marked to indicate the country of origin of the article in accordance with the requirements of this part; or (2) if the article is
+    intended to be sold or transferred to a subsequent purchaser or repacker, the importer shall notify such purchaser or transferee, in writing, at the time of sale or transfer, that any repacking of the
+    article must conform to these requirements. The importer, or his authorized agent, shall sign the following statement.
+
+    Certificate of Marking by Importer—Repacked Articles Subject to Marking
+
+    (Port of entry)
+
+    I, ________ of ________, certify that if the article(s) covered by this entry (entry no.(s) ____ dated ____), is (are) repacked in retail container(s) e.g., blister packs), while still in my possession,
+    the new container(s) will not conceal or obscure the country of origin marking appearing on the article(s), or else the new container(s), unless excepted, shall be marked in a conspicuous place as legibly,
+    indelibly, and permanently as the nature of the container(s) will permit, in such manner as to indicate the country of origin of the article(s) to the ultimate purchaser(s) in accordance with the requirements
+    of 19 U.S.C. 1304 and 19 CFR part 134. I further certify that if the article(s) is (are) intended to be sold or transferred by me to a subsequent purchaser or repacker, I will notify such purchaser
+    or transferee, in writing, at the time of sale or transfer, of the marking requirements.
+
+    Date
+
+    Importer
+
+    The certification statement may appear as a typed or stamped statement on an appropriate entry document or commercial invoice, or on a preprinted attachment to such entry or invoice; or it may be submitted
+    in blanket form to cover all importations of a particular product for a given period (e.g., calendar year). If the blanket procedure is used, a certification must be filed with CBP, either at the port
+    of entry or electronically.
+
+    (b)
+
+    Facsimile signatures.
+
+    The certification statement may be signed by means of an authorized facsimile signature.
+
+    (c)
+
+    Time of filing.
+
+    The certification statement shall be filed with the Center director at the time of entry summary. If the certification is not available at that time, a bond shall be given for its production in accordance
+    with § 141.66, Customs Regulations (19 CFR 141.66). In case of repeated failure to timely file the certification required under this subsection, the Center director may decline to accept a bond for
+    the missing document and demand redelivery of the merchandise under § 134.51, Customs Regulations (19 CFR 134.51).
+
+    (d)
+
+    Notice to subsequent purchaser or repacker.
+
+    If the article is sold or transferred to a subsequent purchaser or repacker the following notice shall be given to the purchaser or repacker:
+
+    Notice to Subsequent Purchaser or Repacker
+
+    These articles are imported. The requirements of 19 U.S.C. 1304 and 19 CFR part 134 provide that the articles in their containers must be marked in a conspicuous place as legibly, indelibly and permanently
+    as the nature of the article or container will permit, in such a manner as to indicate to an ultimate purchaser in the United States, the English name of the country of origin of the article.
+
+    (e)
+
+    Duties and penalties.
+
+    Failure to comply with the certification requirements in paragraph (a) may subject the importer to a demand for liquidated damages under § 134.54(a) and for the additional duty under 19 U.S.C. 1304.
+    Fraud or negligence by any person in furnishing the required certification may also result in a penalty under 19 U.S.C. 1592.
+
+    (f)
+
+    Exceptions.
+
+    The requirements of this section do not apply to repackaging in a container that can readily be opened for inspection by the ultimate purchaser in the United States,
+
+    unless such container bears a U.S. address or other potentially misleading marking.
+
+    [T.D. 84-127, 49 FR 22795, June 1, 1984, as amended by CBP Dec. 16-26, 81 FR 93018, Dec. 20, 2016]
+
+    Subpart D—Exceptions to Marking Requirements'
+- id: art-17
+  title: § 134.31
+  text: '§ 134.31
+
+    Requirements of other agencies.
+
+    Nothing in this subpart shall be construed as excepting any article (or its container) from the particular requirements of marking provided for in any other provision of any law, such as those of the
+    Federal Trade Commission, Food and Drug Administration, and other agencies.'
+- id: art-18
+  title: § 134.32
+  text: '§ 134.32
+
+    General exceptions to marking requirements.
+
+    The articles described or meeting the specified conditions set for'
 doc_files:
 - us/raw/US-CFR-title19-part134.xml
+- us/raw/US-CFR-title19-part134.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title19-part134.xml (xml, 61475 chars)，生成 18 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title19-part134.xml (xml, 61475 chars)，生成 18 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title19-part134.xml (xml, 61474 chars)，生成 18 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE19-PART134-4（US 19 CFR Part 134）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE19-PART134-3（US 19 CFR Part 134）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE19-PART134-2（US 19 CFR Part 134）。'

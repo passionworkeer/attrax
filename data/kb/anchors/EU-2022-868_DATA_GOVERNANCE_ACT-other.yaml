@@ -1,0 +1,28 @@
+id: KB-other-EU-EU-2022-868_DATA_GOVERNANCE_ACT
+regulation_id: EU-2022-868_DATA_GOVERNANCE_ACT
+doc_name: EU-2022-868 Data Governance Act
+official_citation: EU-2022-868 Data Governance Act
+short_name: EU-2022-868 Data Governance Act
+source: category
+primary_source: other
+domain: other
+applies_if:
+  category:
+  - other
+  features_any: []
+  markets:
+  - EU
+key_articles:
+- art-1
+- art-2
+key_points:
+- EU-2022-868 Data Governance Act：其他品类领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://publications.europa.eu/resource/celex/32022R0868?language=eng
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

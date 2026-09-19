@@ -58,7 +58,9 @@ class TestBuildAnchorList:
     def test_category_only_market_filtered(self):
         anchors = build_anchor_list("electronics", markets=["EU"])
         regions = {a["region"] for a in anchors}
-        assert regions == {"EU"}
+        # 2026-09-19 全库接入后 GLOBAL（IEC/ISO 等国际标准）随 UN 一起 ALWAYS_INCLUDE
+        assert "EU" in regions
+        assert regions <= {"EU", "UN", "GLOBAL"}
         names = {a["doc_name"] for a in anchors}
         assert "RoHS Directive 2011/65/EU" in names
 
@@ -66,7 +68,7 @@ class TestBuildAnchorList:
         anchors = build_anchor_list("battery", markets=["CN"])
         regions = {a["region"] for a in anchors}
         assert "UN" in regions  # UN 38.3 applies regardless of target market
-        assert regions <= {"CN", "UN"}
+        assert regions <= {"CN", "UN", "GLOBAL"}
 
     def test_feature_merge_and_dedup(self):
         # "3c" category already carries RED for EU; wireless feature also
@@ -85,12 +87,16 @@ class TestBuildAnchorList:
     def test_source_field(self):
         anchors = build_anchor_list("toy", markets=["EU"], features=["battery"])
         sources = {a["source"] for a in anchors}
-        assert sources == {"category", "feature"}
+        # market = 市场级横切锚点（数据保护等领域），随目标市场注入
+        assert sources <= {"category", "feature", "market"}
+        assert "category" in sources
 
     def test_unknown_category_returns_feature_only(self):
         anchors = build_anchor_list("nonexistent", markets=["EU"], features=["wireless"])
         assert anchors, "feature anchors must survive an unknown category"
-        assert all(a["source"] == "feature" for a in anchors)
+        sources = {a["source"] for a in anchors}
+        assert sources <= {"feature", "market"}
+        assert any(a["source"] == "feature" for a in anchors)
 
     def test_empty_markets_keeps_everything(self):
         anchors = build_anchor_list("electronics", markets=[])
@@ -131,8 +137,8 @@ class TestMatrixIntegrity:
         missing = frontend - set(CATEGORY_REGULATIONS)
         assert not missing, f"frontend categories without matrix rows: {missing}"
 
-    def test_always_include_regions_is_un_only(self):
-        assert ALWAYS_INCLUDE_REGIONS == {"UN"}
+    def test_always_include_regions_is_un_and_global(self):
+        assert ALWAYS_INCLUDE_REGIONS == {"UN", "GLOBAL"}
 
 
 if __name__ == "__main__":

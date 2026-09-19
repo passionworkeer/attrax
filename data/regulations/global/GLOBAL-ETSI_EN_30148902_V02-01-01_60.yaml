@@ -9,11 +9,600 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'ETSI EN 301 489-2
+
+    V2.1.1
+
+    (2019-04)
+
+    HARMONISED EUROPEAN STAND'
+  text: 'ETSI EN 301 489-2
+
+    V2.1.1
+
+    (2019-04)
+
+    HARMONISED EUROPEAN STANDARD
+
+    ElectroMagnetic Compatibility (EMC)
+
+    standard for radio equipment and services;
+
+    Part 2: Specific conditions for radio paging equipment;
+
+    Harmonised Standard covering the essential requirements
+
+    of article 3.1(b) of Directive 2014/53/EU
+
+    2 ETSI EN 301 489-2 V2.1.1 (2019-04)
+
+    Reference
+
+    REN/ERM-EMC-359
+
+    Keywords
+
+    EMC, harmonised standard, paging, radio
+
+    ETSI
+
+    650 Route des Lucioles
+
+    F-06921 Sophia Antipolis Cedex - FRANCE
+
+    Tel.: +33 4 92 94 42 00 Fax: +33 4 93 65 47 16
+
+    Siret N° 348 623 562 00017 - NAF 742 C
+
+    Association à but non lucratif enregistrée à la
+
+    Sous-Préfecture de Grasse (06) N° 7803/88
+
+    Important notice
+
+    The present document can be downloaded from:
+
+    http://www.etsi.org/standards-search
+
+    The present document may be made available in electronic versions and/or in print. The content of any electronic and/or
+
+    print versions of the present document shall not be modified without the prior written authorization of ETSI. In case of any
+
+    existing or perceived difference in contents between such versions and/or in print, the prevailing version of an ETSI
+
+    deliverable is the one made publicly available in PDF format at www.etsi.org/deliver.
+
+    Users of the present document should be aware that the document may be subject to revision or change of status.
+
+    Information on the current status of this and other ETSI documents is available at
+
+    https://portal.etsi.org/TB/ETSIDeliverableStatus.aspx
+
+    If you find errors in the present document, please send your comment to one of the following services:
+
+    https://portal.etsi.org/People/CommiteeSupportStaff.aspx
+
+    Copyright Notification
+
+    No part may be reproduced or utilized in any form or by any means, electronic or mechanical, including photocopying
+
+    and microfilm except as authorized by written permission of ETSI.
+
+    The content of the PDF version shall not be modified without the written authorization of ETSI.
+
+    The copyright and the foregoing restriction extend to reproduction in all media.
+
+    © ETSI 2019.
+
+    All rights reserved.
+
+    DECTTM, PLUGTESTSTM, UMTSTM and the ETSI logo are trademarks of ETSI registered for the benefit of its Members.
+
+    3GPPTM and LTETM are trademarks of ETSI registered for the benefit of its Members and
+
+    of the 3GPP Organizational Partners.
+
+    oneM2M™ logo is a trademark of ETSI registered for the benefit of its Members and
+
+    of the oneM2M Partners.
+
+    GSM® and the GSM logo are trademarks registered and owned by the GSM Association.
+
+    ETSI
+
+    3 ETSI EN 301 489-2 V2.1.1 (2019-04)
+
+    Contents
+
+    Intellectual Property Rights ................................................................................................................................ 5
+
+    Foreword ............................................................................................................................................................. 5
+
+    Modal verbs terminology .................................................................................................................................... 5
+
+    1 Scope ........................................................................................................................................................ 6
+
+    2 References ................................................................................................................................................ 6
+
+    2.1 Normative references ......................................................................................................................................... 6
+
+    2.2 Informative references ........................................................................................................................................ 6
+
+    3 Definitions and abbreviations ................................................................................................................... 7
+
+    3.1 Definitions .......................................................................................................................................................... 7
+
+    3.2 Abbreviations ..................................................................................................................................................... 7
+
+    4 Test conditions ......................................................................................................................................... 8
+
+    4.1 General ............................................................................................................................................................... 8
+
+    4.1.1 Introduction................................................................................................................................................... 8
+
+    4.1.2 Receivers ...................................................................................................................................................... 8
+
+    4.1.3 Transmitters .................................................................................................................................................. 8
+
+    4.2 Arrangements for test signals .............................................................................................................................. 9
+
+    4.2.1 General .......................................................................................................................................................... 9
+
+    4.2.2 Arrangements for test signals at the input of transmitters ............................................................................. 9
+
+    4.2.3 Arrangements for test signals at the output of transmitters ........................................................................... 9
+
+    4.2.4 Arrangements for test signals at the input of receivers ................................................................................. 9
+
+    4.2.5 Arrangements for test signals at the output of receivers ............................................................................. 10
+
+    4.3 Exclusion bands ................................................................................................................................................ 10
+
+    4.3.1 General ........................................................................................................................................................ 10
+
+    4.3.2 Receiver exclusion bands ............................................................................................................................ 10
+
+    4.3.3 Transmitter exclusion band ......................................................................................................................... 10
+
+    4.4 Narrow band responses of receivers .................................................................................................................. 10
+
+    4.5 Normal test modulation ..................................................................................................................................... 11
+
+    4.5.1 General ........................................................................................................................................................ 11
+
+    4.5.2 Fixed, mobile and pocket paging receivers ................................................................................................. 11
+
+    4.5.3 Base receivers ............................................................................................................................................. 11
+
+    4.5.4 Mobile and pocket transmitters ................................................................................................................... 11
+
+    4.5.5 Base transmitters ......................................................................................................................................... 11
+
+    5 Performance assessment ......................................................................................................................... 11
+
+    5.1 General ............................................................................................................................................................. 11
+
+    5.2 Standard paging equipment .............................................................................................................................. 11
+
+    5.3 Ancillary equipment .......................................................................................................................................... 12
+
+    5.4 Equipment classification ................................................................................................................................... 12
+
+    6 Performance criteria ............................................................................................................................... 12
+
+    6.1 General ............................................................................................................................................................. 12
+
+    6.2 Performance criteria for Continuous phenomena applied to Transmitters (CT) ................................................ 13
+
+    6.3 Performance criteria for Transient phenomena applied to Transmitters (TT).................................................... 13
+
+    6.4 Performance criteria for Continuous phenomena applied to Receivers (CR) .................................................... 14
+
+    6.5 Performance criteria for Transient phenomena applied to Receivers (TR) ........................................................ 14
+
+    6.6 Performance criteria for ancillary equipment tested on a stand-alone basis ...................................................... 14
+
+    7 Applicability overview ........................................................................................................................... 15
+
+    7.1 Emission ........................................................................................................................................................... 15
+
+    7.1.1 General ........................................................................................................................................................ 15
+
+    7.1.2 Special conditions ....................................................................................................................................... 15
+
+    7.2 Immunity .......................................................................................................................................................... 15
+
+    7.2.1 General ........................................................................................................................................................ 15
+
+    7.2.2 Special conditions ....................................................................................................................................... 15
+
+    ETSI
+
+    4 ETSI EN 301 489-2 V2.1.1 (2019-04)
+
+    Annex A (informative): Relationship between the present document and the essential
+
+    requirements of Directive 2014/53/EU ......................................................... 16
+
+    Annex B (normative): Examples of Paging equipment in the scope of the present document ..... 18
+
+    B.1 Introduction ............................................................................................................................................ 18
+
+    B.2 On-site paging equipment ...................................................................................................................... 18
+
+    B.3 Wide-area paging equipment .................................................................................................................. 18'
+- id: art-2
+  title: 'Annex C (informative): Change history ............................................................................................... 19'
+  text: 'Annex C (informative): Change history ............................................................................................... 19
+
+    History .............................................................................................................................................................. 20
+
+    ETSI
+
+    5 ETSI EN 301 489-2 V2.1.1 (2019-04)
+
+    Intellectual Property Rights
+
+    Essential patents
+
+    IPRs essential or potentially essential to normative deliverables may have been declared to ETSI. The information
+
+    pertaining to these essential IPRs, if any, is publicly available for ETSI members and non-members, and can be found
+
+    in ETSI SR 000 314: "Intellectual Property Rights (IPRs); Essential, or potentially Essential, IPRs notified to ETSI in
+
+    respect of ETSI standards", which is available from the ETSI Secretariat. Latest updates are available on the ETSI Web
+
+    server (https://ipr.etsi.org/).
+
+    Pursuant to the ETSI IPR Policy, no investigation, including IPR searches, has been carried out by ETSI. No guarantee
+
+    can be given as to the existence of other IPRs not referenced in ETSI SR 000 314 (or the updates on the ETSI Web
+
+    server) which are, or may be, or may become, essential to the present document.
+
+    Trademarks
+
+    The present document may include trademarks and/or tradenames which are asserted and/or registered by their owners.
+
+    ETSI claims no ownership of these except for any which are indicated as being the property of ETSI, and conveys no
+
+    right to use or reproduce any trademark and/or tradename. Mention of those trademarks in the present document does
+
+    not constitute an endorsement by ETSI of products, services or organizations associated with those trademarks.
+
+    Foreword
+
+    This Harmonised European Standard (EN) has been produced by ETSI Technical Committee Electromagnetic
+
+    compatibility and Radio spectrum Matters (ERM).
+
+    The present document has been prepared under the Commission''s standardisation request C(2015) 5376 final [i.2] to
+
+    provide one voluntary means of conforming to the essential requirements of Directive 2014/53/EU on the harmonisation
+
+    of the laws of the Member States relating to making available on the market of radio equipment and repealing Directive
+
+    1999/5/EC [i.1].
+
+    Once the present document is cited in the Official Journal of the European Union under that Directive, compliance with
+
+    the normative clauses of the present document given in table A.1 confers, within the limits of the scope of the present
+
+    document, a presumption of conformity with the corresponding essential requirements of that Directive and associated
+
+    EFTA regulations.
+
+    The present document is part 2 of a multi-part deliverable. Full details of the entire series can be found in part 1 [1].
+
+    National transposition dates
+
+    Date of adoption of this EN: 26 June 2017
+
+    Date of latest announcement of this EN (doa): 31 July 2019
+
+    Date of latest publication of new National Standard
+
+    or endorsement of this EN (dop/e): 31 January 2020
+
+    Date of withdrawal of any conflicting National Standard (dow): 31 January 2021
+
+    Modal verbs terminology
+
+    In the present document "shall", "shall not", "should", "should not", "may", "need not", "will", "will not", "can" and
+
+    "cannot" are to be interpreted as described in clause 3.2 of the ETSI Drafting Rules (Verbal forms for the expression of
+
+    provisions).
+
+    "must" and "must not" are NOT allowed in ETSI deliverables except when used in direct citation.
+
+    ETSI
+
+    6 ETSI EN 301 489-2 V2.1.1 (2019-04)
+
+    1 Scope
+
+    The present document, together with ETSI EN 301 489-1 [1], specifies technical characteristics and methods of
+
+    measurements for radio paging equipment (receivers, transmitters and combined equipment) and associated ancillary
+
+    equipment.
+
+    NOTE 1: Examples of paging equipment are given in annex B.
+
+    The present document covers the essential requirements of article 3.1(b) of Directive 2014/53/EU [i.1] under the
+
+    conditions identified in annex A.
+
+    Technical specifications related to the antenna ports and emissions from the enclosure ports of paging equipment, are not
+
+    included in the present document.
+
+    NOTE 2: Such technical specifications are found in the relevant product standard for the effective use of the radio
+
+    spectrum.
+
+    In case of differences (for instance concerning special conditions, definitions, abbreviations) between the present
+
+    document and ETSI EN 301 489-1 [1], the provisions of the present document take precedence.
+
+    2 References
+
+    2.1 Normative references
+
+    References are specific, identified by date of publication and/or edition number or version number. Only the cited
+
+    version applies.
+
+    Referenced documents which are not found to be publicly available in the expected location might be found at
+
+    http://docbox.etsi.org/Reference.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long- term validity.
+
+    The following referenced documents are necessary for the application of the present document.
+
+    [1] ETSI EN 301 489-1 (V2.2.0) (03-2017): "ElectroMagnetic Compatibility (EMC) standard for
+
+    radio equipment and services; Part 1: Common technical requirements; Harmonised Standard
+
+    covering the essential requirements of article 3.1(b) of Directive 2014/53/EU and the essential
+
+    requirements of article 6 of Directive 2014/30/EU".
+
+    [2] ETSI EN 300 224 (V2.0.0) (03-2017): "Land Mobile Service; Radio Equipment for use in a
+
+    Paging Service operating within the frequency range 25 MHz - 470 MHz; Harmonised Standard
+
+    covering the essential requirements of article 3.2 of Directive 2014/53/EU".
+
+    2.2 Informative references
+
+    References are either specific (identified by date of publication and/or edition number or version number) or non-
+
+    specific. For specific references, only the cited version applies. For non-specific references, the latest version of the
+
+    referenced document (including any amendments) applies.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long-term validity.
+
+    The following referenced documents are not necessary for the application of the present document, but they assist the
+
+    user with regard to a particular subject area.
+
+    [i.1] Directive 2014/53/EU of the European Parliament and of the council of 16 April 2014 on the
+
+    harmonisation of the laws of the Member States relating to the making available on the market of
+
+    radio equipment and repealing Directive 1999/5/EC.
+
+    ETSI
+
+    7 ETSI EN 301 489-2 V2.1.1 (2019-04)
+
+    [i.2] Commission Implementing Decision C (2015) 5376 final of 4.8.2015 on a standardisation request
+
+    to the European Committee for Electro-technical Standardisation and to the European
+
+    Telecommunications Standards Institute as regards radio equipment in support of Directive
+
+    2014/53/EU of the European Parliament and of the Council.
+
+    3 Definitions and abbreviations
+
+    3.1 Definitions
+
+    For the purposes of the present document, the terms and definitions given in ETSI EN 301 489-1 [1], clause 3 and the
+
+    following apply:
+
+    alignment range: frequency range over which the receiver or transmitter can be programmed and/or re-aligned to
+
+    operate without any physical change of components other than programmable and frequency controlling devices
+
+    base receiver: receiver at a fixed location
+
+    base transmitter: transmitter at a fixed location
+
+    calling function: transmission of a message via the base transmitter to the paging receiver in order to alert and/or
+
+    inform the carrier of the paging receiver
+
+    paging receiver: equipment for the reception and decoding of paging transmissions; either fixed, or portable
+
+    pocket receiver: stand-alone pocket paging receiver, or a receiver being part of a pocket paging transceiver, typically for
+
+    portable use (portable equipment)
+
+    pocket transmitter: stand-alone pocket paging transmitter using the return channel, or a transmitter being part of a
+
+    pocket paging transceiver, typically for portable use (portable equipment)
+
+    standby mode (base transmitter): mode of operation in which the transmitter is ready to transmit, waiting for a start
+
+    control signal to actual start transmitting
+
+    standby mode (pocket transmitter): mode of operation in which the transmitter is ready to transmit, waiting for a
+
+    control signal to start the transmitting sequence
+
+    standby mode (receiver): mode of operation in which the receiver is capable of receiving calls
+
+    talk-back function: transmitting of a message from the pocket transmitter (normally combined in a transceiver) which is
+
+    sent to a central receiver (base receiver) and further processed by the central processing unit
+
+    3.2 Abbreviations
+
+    For the purposes of the present document, the abbreviations given in ETSI EN 301 489-1 [1], clause 3 and the following
+
+    apply:
+
+    CR Continuous phenomena applied to Receivers
+
+    CT Continuous phenomena applied to Transmitters
+
+    EUT Equipment Under Test
+
+    RF Radio Frequency
+
+    TR Transient phenomena applied to Receivers
+
+    TT Transient phenomena applied to Transmitters
+
+    ETSI
+
+    8 ETSI EN 301 489-2 V2.1.1 (2019-04)
+
+    4 Test conditions
+
+    4.1 General
+
+    4.1.1 Introduction
+
+    For the purposes of the present document, the test conditions of ETSI EN 301 489-1 [1], clause 4 shall apply as
+
+    appropriate. Further product related test conditions for PMR equipment are specified in the present document.
+
+    For emission and immunity tests, the test modulation, test arrangements, etc., as specified in the present document
+
+    clauses 4.1 to 4.5, shall apply.
+
+    4.1.2 Receivers
+
+    Whenever a receiver is provided with a detachable antenna, the EUT shall be tested with the antenna fitted in a manner
+
+    typical of normal intended use.
+
+    The individual immunity tests shall be performed with the receiver in the standby mode.
+
+    Fixed, mobile or pocket paging receivers:
+
+    • before the individual tests the receiver shall be set into the standby mode, a communications link shall be
+
+    established and the message memory of the receiver shall be loaded with recognizable messages, if applicable
+
+    (performance check);
+
+    • during the individual tests the wanted RF input signal shall not be applied to the receiver, except for the spot
+
+    frequency test as part of the radio frequency electromagnetic field immunity test;
+
+    • after the individual tests and the termination of the required performance assessment (e.g. by means of the
+
+    stored messages in the message memory of the receiver, see clauses 6.3 and 6.4) the communications link shall
+
+    be re-established and another performance check shall be carried out to verify that the EUT is still operational.
+
+    Base receivers:
+
+    • base receivers are not subject to the spot frequency test as part of the radio frequency electromagnetic field
+
+    immunity test;
+
+    • before the individual tests the base receiver shall be set into the standby mode, a communications link shall be
+
+    established and the output of the receiver shall be monitored (performance check);
+
+    • during the individual tests the wanted RF input signal (the unmodulated carrier, see clause 4.2) remains applied
+
+    to the base receiver;
+
+    • after the individual tests of the base receiver (see clauses 6.3 and 6.4) and the termination of the required
+
+    performance assessment (e.g. by means of audio breakthrough measurements at the output of the base receiver,
+
+    see clauses 6.3 and 6.4) the maintained communications link is switched off and re-established to ensure that the
+
+    base receiver is still able to receive new incoming requests.
+
+    4.1.3 Transmitters
+
+    Mobile and pocket transmitters:
+
+    • the mobile or pocket transmitter is not subject to the spot frequency test as part of the radio frequency
+
+    electromagnetic field immunity test;
+
+    • the mobile or pocket transmitter shall operate in transmit mode with an unmodulated carrier, at its maximum
+
+    rated output power. If unmodulated operation is not possible, the manufacturer shall specify the method of
+
+    performance assessment and the acceptable degradation of performance.
+
+    ETSI
+
+    9 ETSI EN 301 489-2 V2.1.1 (2019-04)
+
+    Base transmitters:
+
+    • the base transmitter shall operate in the standby mode, except for the spot frequency test as part of the radio
+
+    frequency electromagnetic field immunity test (see clause 7.2.2, table 1),'
+- id: art-3
+  title: 'Annex C (informative):'
+  text: 'Annex C (informative):
+
+    Change history
+
+    Version Information about changes
+
+    2.1.0 Revision under RE-D.
+
+    ETSI
+
+    20 ETSI EN 301 489-2 V2.1.1 (2019-04)
+
+    History
+
+    Document history
+
+    V1.2.1 August 2000 Publication
+
+    V1.3.1 August 2002 Publication
+
+    V2.1.0 March 2017 EN Approval Procedure AP 20170625: 2017-03-27 to 2017-06-26
+
+    V2.1.1 April 2019 Publication
+
+    ETSI'
 doc_files:
 - global/raw/ETSI_EN_30148902_v02.01.01_60.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30148902_v02.01.01_60.pdf (pdf, 46766 chars)，生成 3 条共 23758 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30148902_v02.01.01_60.pdf (pdf, 46766 chars)，生成 3 条共 23758 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30148902_v02.01.01_60.pdf (pdf, 46766 chars)，生成 3 条共 23758 字符；解析文本未人工复核，引用以官方原件为准。'

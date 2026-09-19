@@ -9,11 +9,56 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: BVL  -  Startseite
+  text: "BVL  -  Startseite\nWebseite des Bundesamts für Verbraucherschutz und Lebensmittelsicherheit\nMenü\nSuche\nAktuelle Meldungen\nAndrii Zastrozhnov - stock.adobe.com\nCereulid in Säuglingsnahrung\
+    \ zeigt Bedeutung des Schnellwarnsystems\nBVL veröffentlicht aktuellen Bericht zum RASFF\nMehr erfahren\nTorpix - stock.adobe.com\nEinnahme von Lithium nur unter ärztlicher Aufsicht\nLithiumhaltige\
+    \ Nahrungsergänzungsmittel sind verboten\nMehr erfahren\nMehr Übersicht bei Rückrufen in der App lebensmittelwarnung.de\nNeue Funktionen können ab sofort per Update installiert werden\nMehr erfahren\n\
+    Themen im Fokus\nPilzsaison: Sicher sammeln und genießen\nWildpilze bereichern den Speiseplan – doch bei der Auswahl und Verwendung ist Vorsicht geboten\n18.09.2026\nAnna - stock.adobe.com\nRegelungen\
+    \ zum Reisen mit Hunden, Katzen und Frettchen\nSeit dem 22. April 2026 gelten strengere EU-Regeln für Reisen mit Hunden, Katzen und Frettchen. Sie verbessern die Kontrolle und Rückverfolgbarkeit, um\
+    \ illegalen Handel zu verhindern. Bei Besitzerwechsel oder Verkauf gelten die EU-Handelsbedingungen.\n03.09.2026\npinuu - pixabay.com\nVorsicht vor illegalen Unkrautvernichtern im Internet\nNicht zugelassene\
+    \ Pflanzenschutzmittel werden online als wirksame Unkrautvernichter beworben.\n28.08.2026\nmomius/Fotolia\n                                Weitere Themen im Fokus\nAktuelle Pressemitteilungen\nKategorie\
+    \ der Nachricht: \nPressemitteilung\nDatum: \n17.09.2026\nCereulid in Säuglingsnahrung zeigt Bedeutung des Schnellwarnsystems\nBVL\n veröffentlicht aktuellen Bericht zum \nRASFF\nÜber das Europäische\
+    \ Schnellwarnsystem für Lebens- und Futtermittel (\nRASFF\n) wurden im Jahr 2025 erneut mehr als 5.300 Original- und rund 18.000 Folgemeldungen übermittelt. Die Cereulid-Kontamination in Säuglingsnahrung,\
+    \ die im Dezember 2025 …\nWeiterlesen\nKategorie der Nachricht: \nPressemitteilung\nDatum: \n31.08.2026\nEinnahme von Lithium nur unter ärztlicher Aufsicht\nLithiumhaltige Nahrungsergänzungsmittel sind\
+    \ verboten\n„Neuronale Gesundheit“, „mentale Klarheit“, „innere Ruhe“ oder „kraftvolle kognitive Präsenz“: mit solchen oder ähnlichen Wirkversprechen werden als Nahrungsergänzungsmittel angebotene lithiumhaltige\
+    \ Erzeugnisse im Onlinehandel beworben. Allerdings …\nWeiterlesen\n                                Alle Pressemitteilungen\nViele Themen, ein Ziel\nSichere Lebensmittel und der Schutz Ihrer Gesundheit\
+    \ - als Verbraucherin und Verbraucher! Dafür erfüllen wir ein breites Spektrum an Aufgaben in den Bereichen…\nLebensmittel\nFuttermittel\nVerbraucherprodukte\nPflanzenschutzmittel\nTierarzneimittel\n\
+    Gentechnik\nUntersuchungen\nTermine\n02 -\n06\nNov\n 2026\n45. Sitzung des FAO/WHO Codex Alimentarius Komitees für Ernährung und Lebensmittel für besondere Ernährungszwecke (CCNFSDU) 2026 \nAdresse:\
+    \ \nFrauentorgraben 11, 90443 Nürnberg\n11 -\n12\nNov\n 2026\nWorkshop Aufklärung lebensmittelbedingter Krankheitsausbrüche\nFortbildung für Mitarbeiterinnen und Mitarbeiter aus Lebensmittel- und Veterinärüberwachungsbehörden\n\
+    Uhrzeit: \n10:00 - 17:00 Uhr\nAdresse: \nGerichtstr. 49, 13347 Berlin\n                                Zu allen Terminen\nHäufig gesucht\nFarknot Architect - stock.adobe.com\nlebensmittelwarnung.de\n\
+    G@ZIELT: Sicher im Internet einkaufen\nGeschichte des BVL - Zeitstrahl\nDas neue Datenportal des BVL\nHäufige Fragen (FAQ)\nGiftnotrufzentralen DE, AUT, CH\nZuständige Landesministerien und Senatsverwaltungen\n\
+    OPAC der Bibliothek des BVL\nOffene Stellen beim BVL\ncanva.com\nKategorie: \nLebensmittelsicherheit\nLeitung der Abteilung Lebensmittelsicherheit im BVL (m/w/d)\nOrt:\nBerlin Mitte\nFristende:\n4.\
+    \ Oktober 2026\nZum Stellenangebot\nNDABCREATIVITY - stock.adobe.com\nKategorie: \nWarn- und Informationssysteme des BVL\neine/n Mitarbeiterin / Mitarbeiter (m/w/d)\nOrt:\nBerlin\nFristende:\n4. Oktober\
+    \ 2026\nZum Stellenangebot\n                                Zu allen Stellenangeboten\nBerichte\nBericht zur Resistenzmonitoringstudie 2024\nResistenzsituation bei klinisch wichtigen tierpathogenen\
+    \ Bakterien\nPDF Download\n(PDF, 6MB, barrierearm; Deutsch)"
+- id: art-2
+  title: Jahresbericht 2025 des Pflanzenschutz-Kontrollprogramms
+  text: "Jahresbericht 2025 des Pflanzenschutz-Kontrollprogramms\nJahresbericht 2025\nPDF Download\n(PDF, 739KB, barrierearm; Deutsch)\nG@ZIELT-Jahresbericht 2024 - Leichte Sprache\nLeichte Sprache: Gemeinsame\
+    \ Zentralstelle „Kontrolle der im Internet gehandelten Erzeugnisse des LFGB und Tabakerzeugnisse“ (\"G@ZIELT\") - Jahresbericht 2024\nPDF Download\n(PDF, 218KB, nicht barrierefrei; Deutsch)\nTrendbericht\
+    \ Zoonosen 2024\nBerichtsjahr 2024\nPDF Download\n(PDF, 1MB, nicht barrierefrei; Deutsch)\nNationale Berichterstattung „Pflanzenschutzmittelrückstände in Lebensmitteln 2024“\nZusammenfassung der Ergebnisse\
+    \ des Jahres 2024 aus der Bundesrepublik Deutschland\nPDF Download\n(PDF, 1MB, nicht barrierefrei; Deutsch)\nKurzfassung: Nationale Berichterstattung \n„Pflanzenschutzmittelrückstände in Lebensmitteln\
+    \ 2024“\nNationale Berichterstattung 2024 der Bundesrepublik Deutschland – Kurzfassung\nPDF Download\n(PDF, 821KB, nicht barrierefrei; Deutsch)\nGemeinsamer nationaler Bericht des BVL und RKI zu lebensmittelbedingten\
+    \ Krankheitsausbrüchen in Deutschland 2024\nJahresbericht 2024\nPDF Download\n(PDF, 6MB, barrierearm; Deutsch)\nJahresbericht 2024 des Pflanzenschutz-Kontrollprogramms\nJahresbericht 2024\nPDF Download\n\
+    (PDF, 3MB, barrierearm; Deutsch)\nG@ZIELT-Jahresbericht 2024\nGemeinsame Zentralstelle „Kontrolle der im Internet gehandelten Erzeugnisse des LFGB und Tabakerzeugnisse“ (\"G@ZIELT\") - Jahresbericht\
+    \ 2024\nPDF Download\n(PDF, 3MB, nicht barrierefrei; Deutsch)\nBerichte zur Lebensmittelsicherheit 2024 - Bundesweiter Überwachungsplan\nBerichte zur Lebensmittelsicherheit 2024 - Bundesweiter Überwachungsplan\n\
+    PDF Download\n(PDF, 1MB, barrierearm; Deutsch)\n                                Alle Berichte anzeigen\nSeiteninformation und -funktionen\nSeite drucken\nSuchen Sie etwas Bestimmtes?\nSuchtext  \n*\n\
+    Fragen und Antworten im Überblick.\nZu den FAQ\nNehmen Sie Kontakt mit uns auf\nKontakt\nFolgen Sie uns auf\n Newsletter – Aktuellste Informationen aus dem BVL!\nAbonnieren Sie passend zu Ihren Interessen\
+    \ einen oder mehrere unserer Newsletter: Lebensmittelsicherheit, Tierarzneimittel, Verbraucherprodukte, Pflanzenschutzmittel, Gentechnik, Exportangelegenheiten, BVL-Events.\nDer Newsletter kann jederzeit\
+    \ wieder abbestellt werden.\nNewsletter Registrierung\nSchließen<\nHinweise zum Datenschutz\nWir verwenden Cookies, um Ihnen die optimale Nutzung unserer Webseite zu ermöglichen. Es werden für den technischen\
+    \ Betrieb der Seite notwendige Session-Cookies gesetzt. Darüber hinaus können Sie Cookies für Statistikzwecke zulassen. Sie können die Datenschutzeinstellungen anpassen oder allen Cookies direkt zustimmen.\
+    \ Zur \nDatenschutzerklärung\n in der Sie jederzeit Ihre gewählten Cookie-Einstellungen anpassen können.\n            EINVERSTANDEN"
 doc_files:
 - de/raw/DE_消费者保护与食品安全局_BVL.html
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：de/raw/DE_消费者保护与食品安全局_BVL.html (html, 6686 chars)，生成 2 条共 6686 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：de/raw/DE_消费者保护与食品安全局_BVL.html (html, 6686 chars)，生成 2 条共 6686 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：de/raw/DE_消费者保护与食品安全局_BVL.html (html, 6686 chars)，生成 2 条共 6686 字符；解析文本未人工复核，引用以官方原件为准。'

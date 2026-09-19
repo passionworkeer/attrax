@@ -60,8 +60,10 @@ logger = logging.getLogger(__name__)
 _DEFAULT_ANCHORS_DIR = Path(__file__).resolve().parents[2] / "data" / "kb" / "anchors"
 
 
-# Transport regimes that apply to every market.
-ALWAYS_INCLUDE_REGIONS: set[str] = {"UN"}
+# Transport regimes that apply to every market, plus GLOBAL standards
+# (IEC/ISO/ETSI...) that no single market owns. Both are subject to the
+# per-scan generated-anchor caps in retrieval.anchor_selection.
+ALWAYS_INCLUDE_REGIONS: set[str] = {"UN", "GLOBAL"}
 
 
 # ── cache ──────────────────────────────────────────────────────────────────
@@ -181,8 +183,6 @@ def _to_legacy_shape(payload: dict) -> dict:
     applies = payload.get("applies_if") or {}
     markets = applies.get("markets") or []
     region = markets[0] if markets else ""
-    if region == "GLOBAL":
-        region = ""
     key_points = payload.get("key_points") or []
     risk_hint = payload.get("risk_hint") or ""
     reason = risk_hint or (key_points[0] if key_points else "")
@@ -234,10 +234,29 @@ def get_anchors_by_feature(feature: str) -> list[dict]:
     return out
 
 
+def get_anchors_by_market(market: str) -> list[dict]:
+    """Return market-level anchors: no category and no feature trigger.
+
+    These are cross-cutting regimes (data protection, consumer protection,
+    export control, ...) generated for regulations whose domain does not map
+    to a product category — they apply whenever their market is scanned.
+    """
+    market_code = (market or "").strip().upper()
+    out: list[dict] = []
+    for payload in _load_all().values():
+        applies = payload.get("applies_if") or {}
+        if applies.get("category") or applies.get("features_any"):
+            continue
+        if market_code and market_code in [m.upper() for m in applies.get("markets") or []]:
+            out.append(_to_legacy_shape(payload))
+    return out
+
+
 __all__ = [
     "ALWAYS_INCLUDE_REGIONS",
     "get_anchors_by_category",
     "get_anchors_by_feature",
+    "get_anchors_by_market",
     "get_anchor_by_regulation_id",
     "get_anchors_dir",
     "invalidate_cache",
