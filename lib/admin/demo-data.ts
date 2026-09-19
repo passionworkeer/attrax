@@ -9,7 +9,7 @@
 // - 扫描量近 30 天约 280 次、90 天约 680 次（几百次量级），失败率 3–8%。
 // - 法规存量/市场/来源数量沿用生产真实规模（1052 条 / 25 市场 / 37 源），
 //   演示时与公开页面可对得上。
-import type { AdminCountry, AdminDay, AdminOverview, AdminRole } from "./types";
+import type { AdminCountry, AdminDay, AdminOverview } from "./types";
 
 const WINDOW_MAX = 90;
 const RNG_SEED = 20260919;
@@ -94,19 +94,6 @@ const COUNTRY_NAMES: Readonly<Record<string, string>> = {
   AE: "阿联酋", MX: "墨西哥", ID: "印尼", TH: "泰国", MY: "马来西亚",
 };
 
-// 演示用「用户角色」权重池 —— 平台主要面向跨境合规团队，采购 / 合规
-// / 法务三类核心角色占到 7 成以上，其余产品/管理层角色分摊。
-const ROLE_WEIGHTS: ReadonlyArray<readonly [string, number]> = [
-  ["compliance_manager", 0.28], ["procurement_lead", 0.24], ["legal_counsel", 0.18],
-  ["product_manager", 0.12], ["sales_manager", 0.07], ["founder", 0.04],
-  ["engineering", 0.03], ["operations", 0.02], ["other", 0.02],
-];
-const ROLE_LABELS: Readonly<Record<string, string>> = {
-  compliance_manager: "合规经理", procurement_lead: "采购负责人", legal_counsel: "法务顾问",
-  product_manager: "产品经理", sales_manager: "销售经理", founder: "创始人/CEO",
-  engineering: "技术研发", operations: "运营专员", other: "其他",
-};
-
 function pickWeighted(random: () => number, table: ReadonlyArray<readonly [string, number]>): string {
   let roll = random();
   for (const [name, weight] of table) {
@@ -119,7 +106,7 @@ function pickWeighted(random: () => number, table: ReadonlyArray<readonly [strin
 const beijingDay = (date: Date) =>
   new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Shanghai", year: "numeric", month: "2-digit", day: "2-digit" }).format(date);
 
-function simulate(days: number): { series: AdminDay[]; identities: { active: boolean[]; country: string; role: string }[] } {
+function simulate(days: number): { series: AdminDay[]; identities: { active: boolean[]; country: string }[] } {
   const random = mulberry32(RNG_SEED);
   const today = new Date();
   const dates = Array.from({ length: WINDOW_MAX }, (_, index) => {
@@ -136,7 +123,7 @@ function simulate(days: number): { series: AdminDay[]; identities: { active: boo
   // 新增一次 pickWeighted 调用就会改掉整棵树的随机序列，把国家级数据全
   // 改成种子序列靠后的低权重国家（实测 30 天窗口出现「41 个访客全是 MY」
   // 的退化）。挑了若干候选种子比对，最终用 seed+41 的中国占多数分布。
-  type Identity = { active: boolean[]; country: string; role: string };
+  type Identity = { active: boolean[]; country: string };
   const identityRng = mulberry32(RNG_SEED + 41);
   for (let i = 0; i < 5; i++) identityRng();
   const identities: Identity[] = [];
@@ -153,7 +140,6 @@ function simulate(days: number): { series: AdminDay[]; identities: { active: boo
       identities.push({
         active: dates.map(other => other.index === day.index || (returning && other.index > day.index && random() < activity * weekend(other.weekday))),
         country: pickWeighted(identityRng, COUNTRY_WEIGHTS),
-        role: pickWeighted(identityRng, ROLE_WEIGHTS),
       });
     }
   }
@@ -218,12 +204,10 @@ export function buildDemoOverview(days: 7 | 30 | 90): AdminOverview {
   for (const [name, weight] of SCAN_CATEGORY_WEIGHTS) {
     categoryCounts.set(name, (categoryCounts.get(name) ?? 0) + Math.round(sum("scans") * weight * 0.85));
   }
-  // 国家 / 角色：按窗口内身份聚合去重（一个身份算一个用户，不管活跃几天）。
+  // 国家：按窗口内身份聚合去重（一个身份算一个用户，不管活跃几天）。
   const countryCounts = new Map<string, number>();
-  const roleCounts = new Map<string, number>();
   for (const identity of inWindow) {
     countryCounts.set(identity.country, (countryCounts.get(identity.country) ?? 0) + 1);
-    roleCounts.set(identity.role, (roleCounts.get(identity.role) ?? 0) + 1);
   }
   const countries: AdminCountry[] = [...countryCounts]
     .map(([code, visitors]) => ({
@@ -232,13 +216,6 @@ export function buildDemoOverview(days: 7 | 30 | 90): AdminOverview {
       visitors,
     }))
     .sort((a, b) => b.visitors - a.visitors || a.code.localeCompare(b.code));
-  const roles: AdminRole[] = [...roleCounts]
-    .map(([name, visitors]) => ({
-      name,
-      label: ROLE_LABELS[name] ?? name,
-      visitors,
-    }))
-    .sort((a, b) => b.visitors - a.visitors || a.name.localeCompare(b.name));
   return {
     generatedAt: now.toISOString(),
     timezone: "Asia/Shanghai",
@@ -266,7 +243,6 @@ export function buildDemoOverview(days: 7 | 30 | 90): AdminOverview {
     markets: DEMO_MARKETS.map(([name, count]) => ({ name, count })).sort((a, b) => b.count - a.count),
     categories: [...categoryCounts].map(([name, count]) => ({ name, count })).sort((a, b) => b.count - a.count),
     countries,
-    roles,
     recentScans,
     sources: DEMO_SOURCES.map(([id, title, market], index) => ({
       id, title, market,
