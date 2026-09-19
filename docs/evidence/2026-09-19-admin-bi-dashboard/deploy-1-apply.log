@@ -1,0 +1,45 @@
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+[2026-09-19T17:13:58+08:00] === [4] verify .next/static symlink ===
+lrwxrwxrwx 1 root root 41 Sep 19 17:13 /opt/attrax/.next/static -> /opt/attrax/.next/standalone/.next/static
+[2026-09-19T17:13:58+08:00] === [5] BUILD_ID ===
+[2026-09-19T17:13:58+08:00]   BUILD_ID: i-24Q0OTH4e-zGoW3fQK6
+[2026-09-19T17:13:58+08:00] === [6] deploy marker ===
+# Attrax 部署标识 — 由 build-deploy-tarball.sh 写入,/tmp/attrax-apply-deploy.sh 解包后落地
+# 对账: ssh aliyun-sz 'cat /opt/attrax/.next/standalone/.deployed'
+commit=063090d
+commit_full=063090d8e8531b91c8a6f16ae41473afafeae624
+build_id=i-24Q0OTH4e-zGoW3fQK6
+branch=codex/admin-bi-dashboard
+ref=unknown
+built_at=2026-09-19T17:12:09+08:00
+[2026-09-19T17:13:58+08:00]   .build_sha: 063090d
+[2026-09-19T17:13:58+08:00] === [6.5] install ops files (ports / render / healthcheck) ===
+[2026-09-19T17:13:58+08:00]   healthcheck timer enabled
+[2026-09-19T17:13:58+08:00]   ops installed; render 校验: 
+[2026-09-19T17:13:58+08:00] === [7] cleanup tarball ===
+[2026-09-19T17:13:58+08:00] === [8] restart pm2 nextjs ===
+[PM2] Applying action restartProcessId on app [nextjs](ids: [ 5 ])
+[PM2] [nextjs](5) ✓
+┌────┬────────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+│ id │ name           │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+├────┼────────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
+│ 5  │ nextjs         │ default     │ 0.1.0   │ fork    │ 58452    │ 0s     │ 24   │ online    │ 0%       │ 28.1mb   │ root     │ disabled │
+│ 6  │ rag-service    │ default     │ 0.1.0   │ fork    │ 45911    │ 4h     │ 1    │ online    │ 0%       │ 81.5mb   │ root     │ disabled │
+│ 2  │ regwatch       │ default     │ 0.1.0   │ fork    │ 45927    │ 4h     │ 2    │ online    │ 0%       │ 48.2mb   │ root     │ disabled │
+└────┴────────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
+host metrics | cpu: 1.5% | ram usage: 40.7% | eth0: ⇓ 0mb/s ⇑ 0.001mb/s | disk: ⇓ 0mb/s ⇑ 0.037mb/s
+[2026-09-19T17:13:59+08:00] === [8.5] render + reload nginx vhost ===
+wrote /etc/nginx/sites-enabled/attrax (upstream -> 127.0.0.1:3000)
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+2026/09/19 17:13:59 [notice] 58472#58472: signal process started
+[2026-09-19T17:13:59+08:00]   nginx reloaded (upstream = ports.env.NEXTJS_PORT)
+[2026-09-19T17:13:59+08:00] === [9] health gate (http://127.0.0.1:3000/api/health) ===
+[2026-09-19T17:13:59+08:00]   attempt 1: http=000000
+[2026-09-19T17:14:02+08:00] health OK after 2 attempt(s)
+[2026-09-19T17:14:02+08:00] === DONE (BUILD_ID i-24Q0OTH4e-zGoW3fQK6) ===
