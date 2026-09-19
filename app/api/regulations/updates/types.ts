@@ -26,4 +26,8 @@ export interface RegulationUpdate {
   recommendedActions: string[];
   recommendedActionsEn: string[];
   lastVerifiedAt: string;
+  // Added by the route via `enrichRegulation`. Optional on the type so
+  // the watchdog pipeline (which synthesises an effectiveDate but does
+  // not compute the window) can omit it without lying about the field.
+  daysUntilEffective?: number;
 }

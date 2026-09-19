@@ -1,499 +1,245 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useDeferredValue, useState, useEffect } from "react";
-import {
-  AlertTriangle,
-  ArrowLeft,
-  Building2,
-  Calendar,
-  CheckCircle2,
-  ChevronDown,
-  Clock3,
-  ExternalLink,
-  Filter,
-  Globe2,
-  ListChecks,
-  Search,
-  ShieldCheck,
-} from "lucide-react";
+import { Search, FileText, Radio, Activity, Filter, AlertTriangle } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
 import styles from "./regulations.module.css";
+import { ArchiveTab } from "./ArchiveTab";
+import { SourcesTab } from "./SourcesTab";
+import { UpdatesTab } from "./UpdatesTab";
 
-type RiskLevel = "critical" | "high" | "medium" | "low";
-type ChangeType = "new" | "revision" | "enforcement" | "consultation";
+type TabKey = "archive" | "sources" | "updates";
 
-export interface RegulationUpdate {
-  id: string;
-  market: string;
-  title: string;
-  titleEn: string;
-  publishDate: string;
-  effectiveDate: string;
-  affectedCategories: string[];
-  affectedCategoriesEn: string[];
-  summary: string;
-  summaryEn: string;
-  sourceAgency: string;
-  sourceAgencyEn: string;
-  sourceUrl: string;
-  riskLevel: RiskLevel;
-  changeType: ChangeType;
-  status: string;
-  statusEn: string;
-  businessImpact: string;
-  businessImpactEn: string;
-  requirements: string[];
-  requirementsEn: string[];
-  recommendedActions: string[];
-  recommendedActionsEn: string[];
-  lastVerifiedAt: string;
-  daysUntilEffective?: number;
+interface TopStats {
+  archive: { total: number; markets: number; withArticles: number; generatedAt: string | null } | null;
+  sources: { total: number; markets: number; healthy: number; protected: number } | null;
+  updates: { total: number; matching: number; returned: number; markets: number; highRisk: number; effectiveSoon: number; lastVerifiedAt: string | null; dataset: string | null } | null;
 }
 
-interface RegulationsMeta {
-  total: number;
-  matching: number;
-  returned: number;
-  markets: number;
-  highRisk: number;
-  effectiveSoon: number;
-  lastVerifiedAt?: string;
-  dataset?: string;
-}
+const TAB_KEYS: TabKey[] = ["archive", "sources", "updates"];
 
-const marketLabelKeys: Record<string, string> = {
-  EU: "markets.EU",
-  US: "markets.US",
-  UK: "markets.UK",
-  CN: "markets.CN",
-  AU: "markets.AU",
-  SA: "markets.SA",
-  AE: "markets.UAE",
-  JP: "markets.JP",
-  BR: "markets.BR",
-  CA: "markets.CA",
-  KR: "markets.KR",
-  IN: "markets.IN",
-};
-
-const marketFilterKeys: Record<string, string> = {
-  all: "regulations.allMarkets",
-  ...marketLabelKeys,
-};
-
-const marketCodes = ["all", "EU", "US", "UK", "CN", "AU", "SA", "AE", "JP", "BR", "CA", "KR", "IN"] as const;
-
-const riskClasses: Record<RiskLevel, string> = {
-  critical: "bg-red-50 text-red-700 ring-red-200",
-  high: "bg-orange-50 text-orange-700 ring-orange-200",
-  medium: "bg-amber-50 text-amber-700 ring-amber-200",
-  low: "bg-emerald-50 text-emerald-700 ring-emerald-200",
-};
-
-const riskBorderClasses: Record<RiskLevel, string> = {
-  critical: "border-l-red-500",
-  high: "border-l-orange-500",
-  medium: "border-l-amber-500",
-  low: "border-l-emerald-500",
-};
-
-const changeTypeClasses: Record<ChangeType, string> = {
-  new: "bg-cyan-50 text-cyan-700 ring-cyan-200",
-  revision: "bg-violet-50 text-violet-700 ring-violet-200",
-  enforcement: "bg-rose-50 text-rose-700 ring-rose-200",
-  consultation: "bg-sky-50 text-sky-700 ring-sky-200",
-};
-
-const fallbackMeta: RegulationsMeta = {
-  total: 0,
-  matching: 0,
-  returned: 0,
-  markets: 0,
-  highRisk: 0,
-  effectiveSoon: 0,
+const fallbackStats: TopStats = {
+  archive: null,
+  sources: null,
+  updates: null,
 };
 
 export default function RegulationsPage() {
   const { t, locale } = useTranslation();
-  const [regulations, setRegulations] = useState<RegulationUpdate[]>([]);
-  const [meta, setMeta] = useState<RegulationsMeta>(fallbackMeta);
-  const [loading, setLoading] = useState(true);
-  // B-2: distinguish "no results for this filter" from "API failed". Without
-  // this the user saw an empty Filter icon and assumed nothing matched.
-  const [loadFailed, setLoadFailed] = useState(false);
-  const [search, setSearch] = useState("");
-  // Defer the search so that fast typing does not block the input or the
-  // server filter. useEffect below watches `deferredSearch` and the fetch
-  // runs against the trailing value. The input itself stays bound to `search`
-  // so the user sees each keystroke immediately.
-  const deferredSearch = useDeferredValue(search);
-  const [selectedMarket, setSelectedMarket] = useState("all");
-  const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set());
+  const [tab, setTab] = useState<TabKey>("archive");
+  const [stats, setStats] = useState<TopStats>(fallbackStats);
+  const [statsFailed, setStatsFailed] = useState(false);
 
+  // Preload all three datasets on mount so tab switching is instant and the
+  // top stat row reflects the real catalog size. The per-tab components
+  // reuse the same data and only re-fetch when their own filter changes.
   useEffect(() => {
     const controller = new AbortController();
-
-    const fetchRegulations = async () => {
-      setLoading(true);
-      setLoadFailed(false);
+    const fetchAll = async () => {
       try {
-        const params = new URLSearchParams({ limit: "50" });
-        if (deferredSearch) params.set("search", deferredSearch);
-        if (selectedMarket !== "all") params.set("market", selectedMarket);
-
-        const response = await fetch(`/api/regulations/updates?${params.toString()}`, {
-          signal: controller.signal,
+        const [archiveRes, sourcesRes, updatesRes] = await Promise.all([
+          fetch("/api/regulations/archive?limit=200", { signal: controller.signal }),
+          fetch("/api/regulations/sources?limit=200", { signal: controller.signal }),
+          fetch("/api/regulations/updates?limit=50", { signal: controller.signal }),
+        ]);
+        const [archiveJson, sourcesJson, updatesJson] = await Promise.all([
+          archiveRes.ok ? archiveRes.json() : null,
+          sourcesRes.ok ? sourcesRes.json() : null,
+          updatesRes.ok ? updatesRes.json() : null,
+        ]);
+        setStats({
+          archive: archiveJson?.success
+            ? {
+                total: archiveJson.meta?.total ?? 0,
+                markets: archiveJson.meta?.markets ?? 0,
+                withArticles: archiveJson.meta?.withArticles ?? 0,
+                generatedAt: archiveJson.meta?.generatedAt ?? null,
+              }
+            : null,
+          sources: sourcesJson?.success
+            ? {
+                total: sourcesJson.meta?.total ?? 0,
+                markets: sourcesJson.meta?.markets ?? 0,
+                healthy: sourcesJson.meta?.healthy ?? 0,
+                protected: sourcesJson.meta?.protected ?? 0,
+              }
+            : null,
+          updates: updatesJson?.success
+            ? {
+                total: updatesJson.meta?.total ?? 0,
+                matching: updatesJson.meta?.matching ?? 0,
+                returned: updatesJson.meta?.returned ?? 0,
+                markets: updatesJson.meta?.markets ?? 0,
+                highRisk: updatesJson.meta?.highRisk ?? 0,
+                effectiveSoon: updatesJson.meta?.effectiveSoon ?? 0,
+                lastVerifiedAt: updatesJson.meta?.lastVerifiedAt ?? null,
+                dataset: updatesJson.meta?.dataset ?? null,
+              }
+            : null,
         });
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}`);
-        }
-        const data = await response.json();
-
-        if (data.success) {
-          setRegulations(data.data);
-          setMeta(data.meta ?? fallbackMeta);
-        } else {
-          // 200 OK but envelope success=false — surface as failure rather
-          // than silently keeping the previous list (or empty list).
-          setLoadFailed(true);
-        }
       } catch (error) {
         if (error instanceof DOMException && error.name === "AbortError") return;
-        console.error("Failed to fetch regulations:", error);
-        setLoadFailed(true);
-      } finally {
-        if (!controller.signal.aborted) {
-          setLoading(false);
-        }
+        console.error("Failed to load regulations stats:", error);
+        setStatsFailed(true);
       }
     };
+    fetchAll();
+    return () => controller.abort();
+  }, []);
 
-    const timer = setTimeout(fetchRegulations, 300);
-    return () => {
-      clearTimeout(timer);
-      controller.abort();
-    };
-  }, [deferredSearch, selectedMarket]);
-
-  const formatDate = (dateStr: string) => {
-    const date = new Date(dateStr);
-    return date.toLocaleDateString(locale === "en" ? "en-US" : "zh-CN", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    });
-  };
-
-  const getDaysUntilEffective = (effectiveDate: string) => {
-    const effective = new Date(effectiveDate);
-    const now = new Date();
-    const diffTime = effective.getTime() - now.getTime();
-    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-  };
-
-  const toggleExpand = (id: string) => {
-    setExpandedIds((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) {
-        next.delete(id);
-      } else {
-        next.add(id);
-      }
-      return next;
-    });
-  };
+  const tabLabel = (key: TabKey) => t(`regulations.tabs.${key}`);
 
   return (
     <div className={`${styles.page} min-h-[calc(100vh-5rem)] px-4 py-8 sm:px-6 lg:px-8`}>
       <div className="mx-auto max-w-7xl">
         <Link href="/" className={styles.backLink}>
-          <ArrowLeft className="h-4 w-4" />
-          <span>{locale === "zh" ? "返回首页" : "Back to home"}</span>
+          ← {locale === "zh" ? "返回首页" : "Back to home"}
         </Link>
-        <section className="glass-panel rounded-3xl p-8 shadow-[0_30px_120px_rgba(0,0,0,0.5)]">
-        <div className="mb-6 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-          <div>
-            <p className="label-caps mb-3 text-xs text-blaze-red/80">
-              <ShieldCheck className="mr-2 inline h-3.5 w-3.5" />
-              {t("regulations.demoBadge")}
-            </p>
-            <h1 className="mb-2 text-3xl font-bold tracking-tight text-white">
-              {t("regulations.title")}
-            </h1>
-            <p className="max-w-3xl text-sm leading-6 text-slate-400 sm:text-base">
-              {t("regulations.subtitle")}
-            </p>
-          </div>
 
-          {meta.lastVerifiedAt && (
-            <div className="flex items-center gap-2 rounded-2xl border border-white/10 bg-slate-900/50 px-4 py-3 text-sm text-slate-300 backdrop-blur">
-              <Clock3 className="h-4 w-4 text-slate-400" />
-              <span>{t("regulations.lastVerified")}: {formatDate(meta.lastVerifiedAt)}</span>
+        <section className="glass-panel mb-6 rounded-3xl p-8 shadow-[0_30px_120px_rgba(0,0,0,0.5)]">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <p className="label-caps mb-3 text-xs text-blaze-red/80">
+                <Filter className="mr-2 inline h-3.5 w-3.5" />
+                {t("regulations.demoBadge")}
+              </p>
+              <h1 className="mb-2 text-3xl font-bold tracking-tight text-white">
+                {t("regulations.title")}
+              </h1>
+              <p className="max-w-3xl text-sm leading-6 text-slate-400 sm:text-base">
+                {t("regulations.subtitle")}
+              </p>
             </div>
-          )}
-        </div>
-
+            <div className="flex items-center gap-2 rounded-2xl border border-white/10 bg-slate-900/50 px-4 py-3 text-sm text-slate-300 backdrop-blur">
+              <Activity className="h-4 w-4 text-slate-400" />
+              <span>
+                {locale === "zh" ? "数据源" : "Sources"}:{" "}
+                <span className="font-medium text-white">regulations_index.json</span> +{" "}
+                <span className="font-medium text-white">official_sources.json</span>
+              </span>
+            </div>
+          </div>
         </section>
+
+        {statsFailed ? (
+          <div role="alert" className="mb-6 flex items-center gap-3 rounded-2xl border border-amber-200/40 bg-amber-50/10 p-4 text-amber-100">
+            <AlertTriangle className="h-5 w-5 text-amber-300" />
+            <span className="text-sm">
+              {locale === "zh"
+                ? "法规元数据加载失败，部分统计可能缺失。"
+                : "Failed to load regulation metadata; some stats may be missing."}
+            </span>
+          </div>
+        ) : null}
 
         <div className="mb-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           <div className="glass-panel rounded-2xl p-4">
             <div className="mb-3 flex items-center justify-between">
-              <span className="text-sm text-slate-400">{t("regulations.total")}</span>
-              <ListChecks className="h-4 w-4 text-slate-400" />
+              <span className="text-sm text-slate-400">{t("regulations.archive.totalLabel")}</span>
+              <FileText className="h-4 w-4 text-slate-400" />
             </div>
-            <p className="text-2xl font-bold text-white">{meta.total || regulations.length}</p>
+            <p className="text-2xl font-bold text-white">
+              {stats.archive?.total ?? <span className="text-slate-500">—</span>}
+            </p>
+            <p className="mt-1 text-xs text-slate-500">
+              {stats.archive
+                ? `${stats.archive.markets} ${locale === "zh" ? "市场" : "markets"} · ${stats.archive.withArticles} ${
+                    locale === "zh" ? "已结构化" : "with articles"
+                  }`
+                : ""}
+            </p>
           </div>
           <div className="glass-panel rounded-2xl p-4">
             <div className="mb-3 flex items-center justify-between">
-              <span className="text-sm text-slate-400">{t("regulations.trackedMarkets")}</span>
-              <Globe2 className="h-4 w-4 text-slate-400" />
+              <span className="text-sm text-slate-400">{t("regulations.sources.totalLabel")}</span>
+              <Radio className="h-4 w-4 text-slate-400" />
             </div>
-            <p className="text-2xl font-bold text-white">{meta.markets || "-"}</p>
+            <p className="text-2xl font-bold text-white">
+              {stats.sources?.total ?? <span className="text-slate-500">—</span>}
+            </p>
+            <p className="mt-1 text-xs text-slate-500">
+              {stats.sources
+                ? `${stats.sources.healthy} ${locale === "zh" ? "可达" : "reachable"} · ${
+                    stats.sources.protected
+                  } ${locale === "zh" ? "受限" : "restricted"}`
+                : ""}
+            </p>
           </div>
           <div className="glass-panel rounded-2xl p-4">
             <div className="mb-3 flex items-center justify-between">
               <span className="text-sm text-slate-400">{t("regulations.highPriority")}</span>
               <AlertTriangle className="h-4 w-4 text-orange-500" />
             </div>
-            <p className="text-2xl font-bold text-orange-400">{meta.highRisk || 0}</p>
+            <p className="text-2xl font-bold text-orange-400">{stats.updates?.highRisk ?? 0}</p>
+            <p className="mt-1 text-xs text-slate-500">
+              {stats.updates
+                ? `${stats.updates.effectiveSoon} ${locale === "zh" ? "45 天内生效" : "effective within 45d"}`
+                : ""}
+            </p>
           </div>
           <div className="glass-panel rounded-2xl p-4">
             <div className="mb-3 flex items-center justify-between">
-              <span className="text-sm text-slate-400">{t("regulations.effectiveSoon")}</span>
-              <Calendar className="h-4 w-4 text-blaze-red" />
+              <span className="text-sm text-slate-400">{t("regulations.trackedMarkets")}</span>
+              <Search className="h-4 w-4 text-blaze-red" />
             </div>
-            <p className="text-2xl font-bold text-blaze-red">{meta.effectiveSoon || 0}</p>
+            <p className="text-2xl font-bold text-blaze-red">
+              {new Set([
+                ...(stats.archive?.markets ? [stats.archive.markets] : []),
+                ...(stats.sources?.markets ? [stats.sources.markets] : []),
+                ...(stats.updates?.markets ? [stats.updates.markets] : []),
+              ]).size > 0
+                ? Math.max(stats.archive?.markets ?? 0, stats.sources?.markets ?? 0, stats.updates?.markets ?? 0)
+                : "—"}
+            </p>
+            <p className="mt-1 text-xs text-slate-500">
+              {stats.updates?.dataset
+                ? `updates · ${stats.updates.dataset}`
+                : locale === "zh"
+                  ? "updates · pending watchdog"
+                  : "updates · pending watchdog"}
+            </p>
           </div>
         </div>
 
-        <div className="mb-6 flex flex-col gap-4 glass-panel rounded-2xl p-4 lg:flex-row lg:items-center">
-          <div className="relative flex-1">
-            <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
-            <input
-              type="text"
-              placeholder={t("regulations.search")}
-              value={search}
-              onChange={(event) => setSearch(event.target.value)}
-              className="w-full rounded-lg border border-white/10 bg-slate-900/60 py-3 pl-12 pr-4 text-white placeholder:text-slate-500 focus:border-blaze-red focus:outline-none focus:ring-2 focus:ring-blaze-red/30"
-            />
-          </div>
-
-          <div className="flex items-center gap-2 overflow-x-auto pb-1 lg:max-w-3xl lg:pb-0">
-            {marketCodes.map((code) => (
+        <div className="mb-6 flex gap-2 overflow-x-auto rounded-2xl border border-white/10 bg-slate-900/40 p-1 backdrop-blur">
+          {TAB_KEYS.map((key) => {
+            const count =
+              key === "archive"
+                ? stats.archive?.total
+                : key === "sources"
+                  ? stats.sources?.total
+                  : stats.updates?.matching;
+            const isActive = tab === key;
+            return (
               <button
-                key={code}
-                onClick={() => setSelectedMarket(code)}
-                className={`whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
-                  selectedMarket === code
+                key={key}
+                type="button"
+                onClick={() => setTab(key)}
+                className={`flex-1 whitespace-nowrap rounded-xl px-4 py-2.5 text-sm font-medium transition-colors ${
+                  isActive
                     ? "bg-blaze-red text-white shadow-[0_0_15px_rgba(217,58,26,0.4)]"
-                    : "bg-slate-800/60 text-slate-300 hover:bg-slate-700/60"
+                    : "text-slate-300 hover:bg-slate-800/60"
                 }`}
               >
-                {t(marketFilterKeys[code])}
+                {tabLabel(key)}
+                {typeof count === "number" && count > 0 ? (
+                  <span
+                    className={`ml-2 inline-flex min-w-[1.5rem] justify-center rounded-full px-1.5 text-xs ${
+                      isActive ? "bg-white/20 text-white" : "bg-slate-700/60 text-slate-300"
+                    }`}
+                  >
+                    {count}
+                  </span>
+                ) : null}
               </button>
-            ))}
-          </div>
+            );
+          })}
         </div>
 
-        {loading ? (
-          <div className="flex items-center justify-center py-20">
-            <div className="h-8 w-8 animate-spin rounded-full border-4 border-blaze-red border-t-transparent" />
-          </div>
-        ) : loadFailed ? (
-          // B-2: distinguish from "no results" empty state — API truly failed.
-          <div role="alert" className="flex flex-col items-center justify-center glass-panel rounded-2xl py-16 text-center">
-            <AlertTriangle className="mb-4 h-12 w-12 text-red-400" />
-            <p className="mb-2 text-lg font-medium text-white">
-              {locale === "zh" ? "法规加载失败" : "Failed to load regulations"}
-            </p>
-            <p className="max-w-md text-sm text-slate-400">
-              {locale === "zh"
-                ? "无法从服务器获取最新法规列表，请稍后重试或刷新页面。"
-                : "Could not reach the regulation updates service. Try again or refresh the page."}
-            </p>
-          </div>
-        ) : regulations.length > 0 ? (
-          <div className="space-y-4">
-            {regulations.map((regulation) => {
-              const isExpanded = expandedIds.has(regulation.id);
-              const daysUntil = regulation.daysUntilEffective ?? getDaysUntilEffective(regulation.effectiveDate);
-              const isUrgent = daysUntil >= 0 && daysUntil <= 45;
-              const marketLabel = t(marketLabelKeys[regulation.market] || regulation.market);
-              const title = locale === "en" ? regulation.titleEn : regulation.title;
-              const summary = locale === "en" ? regulation.summaryEn : regulation.summary;
-              const sourceAgency = locale === "en" ? regulation.sourceAgencyEn : regulation.sourceAgency;
-              const status = locale === "en" ? regulation.statusEn : regulation.status;
-              const businessImpact = locale === "en" ? regulation.businessImpactEn : regulation.businessImpact;
-              const categories = locale === "en" ? regulation.affectedCategoriesEn : regulation.affectedCategories;
-              const requirements = locale === "en" ? regulation.requirementsEn : regulation.requirements;
-              const actions = locale === "en" ? regulation.recommendedActionsEn : regulation.recommendedActions;
-
-              return (
-                <article
-                  key={regulation.id}
-                  className={`glass-panel rounded-2xl border-l-4 p-5 transition-all hover:border-blaze-red/40 hover:shadow-[0_0_25px_rgba(217,58,26,0.15)] ${riskBorderClasses[regulation.riskLevel]}`}
-                >
-                  <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-                    <div className="min-w-0 flex-1">
-                      <div className="mb-3 flex flex-wrap items-center gap-2">
-                          <span className="inline-flex items-center rounded-full bg-sky-50 px-3 py-1 text-xs font-medium text-sky-800 ring-1 ring-sky-200">
-                          {marketLabel}
-                        </span>
-                        <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ring-1 ${riskClasses[regulation.riskLevel]}`}>
-                          {t(`regulations.riskLevels.${regulation.riskLevel}`)}
-                        </span>
-                        <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ring-1 ${changeTypeClasses[regulation.changeType]}`}>
-                          {t(`regulations.changeTypes.${regulation.changeType}`)}
-                        </span>
-                        {isUrgent && (
-                          <span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-3 py-1 text-xs font-medium text-orange-700 ring-1 ring-orange-200">
-                            <AlertTriangle className="h-3 w-3" />
-                            {t("regulations.comingSoon")}
-                          </span>
-                        )}
-                      </div>
-
-                      <h3 className="mb-2 text-lg font-semibold leading-7 text-white">
-                        {title}
-                      </h3>
-                      <p className="mb-4 line-clamp-2 text-sm leading-6 text-slate-400">
-                        {summary}
-                      </p>
-
-                      <div className="grid gap-2 text-sm text-slate-400 sm:grid-cols-2 xl:grid-cols-4">
-                        <div className="flex items-center gap-2">
-                          <Calendar className="h-4 w-4 text-slate-500" />
-                          <span>{t("regulations.published")}: {formatDate(regulation.publishDate)}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <Calendar className="h-4 w-4 text-slate-500" />
-                          <span>{t("regulations.effective")}: {formatDate(regulation.effectiveDate)}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <Building2 className="h-4 w-4 text-slate-500" />
-                          <span>{sourceAgency}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <CheckCircle2 className="h-4 w-4 text-slate-500" />
-                          <span>{status}</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <button
-                      onClick={() => toggleExpand(regulation.id)}
-                      className="inline-flex items-center justify-center gap-1 rounded-lg border border-white/10 bg-slate-800/60 px-3 py-2 text-sm font-medium text-slate-200 transition-colors hover:bg-slate-700/60 hover:border-blaze-red/40 hover:text-white lg:shrink-0"
-                    >
-                      {isExpanded ? t("regulations.collapse") : t("regulations.viewDetails")}
-                      <ChevronDown className={`h-4 w-4 transition-transform ${isExpanded ? "rotate-180" : ""}`} />
-                    </button>
-                  </div>
-
-                  {isExpanded && (
-                    <div className="mt-5 border-t border-white/10 pt-5">
-                      <div className="mb-5 grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
-                        <div>
-                          <h4 className="mb-2 text-sm font-semibold text-white">
-                            {t("regulations.businessImpact")}
-                          </h4>
-                          <p className="text-sm leading-6 text-slate-300">{businessImpact}</p>
-                        </div>
-                        <div>
-                          <h4 className="mb-2 text-sm font-semibold text-white">
-                            {t("regulations.affectedCategories")}
-                          </h4>
-                          <div className="flex flex-wrap gap-2">
-                            {categories.map((category) => (
-                              <span
-                                key={category}
-                                className="inline-flex items-center rounded-full bg-sky-50 px-3 py-1 text-xs font-medium text-sky-800 ring-1 ring-sky-200"
-                              >
-                                {category}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="grid gap-5 lg:grid-cols-2">
-                        <div>
-                          <h4 className="mb-3 text-sm font-semibold text-white">
-                            {t("regulations.keyRequirements")}
-                          </h4>
-                          <ul className="space-y-2">
-                            {requirements.map((requirement) => (
-                              <li key={requirement} className="flex gap-2 text-sm leading-6 text-slate-300">
-                                <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-emerald-400" />
-                                <span>{requirement}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                        <div>
-                          <h4 className="mb-3 text-sm font-semibold text-white">
-                            {t("regulations.recommendedActions")}
-                          </h4>
-                          <ul className="space-y-2">
-                            {actions.map((action) => (
-                              <li key={action} className="flex gap-2 text-sm leading-6 text-slate-300">
-                                <ListChecks className="mt-1 h-4 w-4 shrink-0 text-blaze-red" />
-                                <span>{action}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-
-                      <div className="mt-5 flex flex-col gap-3 border-t border-white/10 pt-4 sm:flex-row sm:items-center sm:justify-between">
-                        <div className="text-sm text-slate-400">
-                          {daysUntil > 0
-                            ? t("regulations.daysLeft", { days: daysUntil })
-                            : t("regulations.inForce")}
-                          <span className="mx-2 text-slate-600">/</span>
-                          {t("regulations.lastChecked")}: {formatDate(regulation.lastVerifiedAt)}
-                        </div>
-                        <a
-                          href={regulation.sourceUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 text-sm font-medium text-blaze-cyan hover:text-blaze-cyan/80"
-                        >
-                          {t("regulations.viewSource")}
-                          <ExternalLink className="h-4 w-4" />
-                        </a>
-                      </div>
-                    </div>
-                  )}
-                </article>
-              );
-            })}
-          </div>
-        ) : (
-          <div className="flex flex-col items-center justify-center glass-panel rounded-2xl py-20 text-center">
-            <Filter className="mb-4 h-12 w-12 text-slate-500" />
-            <p className="mb-2 text-lg font-medium text-white">
-              {t("regulations.noResults")}
-            </p>
-          </div>
-        )}
-
-        {!loading && regulations.length > 0 && (
-          <div className="mt-6 glass-panel rounded-2xl p-5">
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <p className="text-sm text-slate-400">
-                {t("regulations.showing", {
-                  from: 1,
-                  to: regulations.length,
-                  total: meta.matching || regulations.length,
-                })}
-              </p>
-              <p className="text-sm text-slate-400">
-                {t("regulations.dataset")}: <span className="font-medium text-white">{meta.dataset ?? "static-demo"}</span>
-              </p>
-            </div>
-          </div>
-        )}
+        {tab === "archive" ? <ArchiveTab /> : null}
+        {tab === "sources" ? <SourcesTab /> : null}
+        {tab === "updates" ? <UpdatesTab /> : null}
       </div>
     </div>
   );
