@@ -63,6 +63,7 @@ export function regulationsProjectRoot(): string {
   // 2. Standalone build — the project root is two levels up.
   if (cwdIsStandaloneBuild(cwd)) {
     const sibling = siblingOfStandalone(cwd);
+    console.log(`[data-root] standalone detected; sibling=${sibling} readable=${sibling ? existsAndIsReadable(sibling) : false}`);
     if (sibling && existsAndIsReadable(sibling)) {
       resolvedRoot = sibling;
       console.log(`[data-root] standalone build detected; using sibling: ${resolvedRoot}`);
