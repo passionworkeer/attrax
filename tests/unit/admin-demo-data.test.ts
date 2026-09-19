@@ -54,7 +54,9 @@ describe("buildDemoOverview", () => {
       expect(overview.totals.sources).toBe(overview.sources.length);
       expect(overview.totals.scans).toBe(overview.series.reduce((sum, day) => sum + (day.scans ?? 0), 0));
       expect(overview.totals.completed + overview.totals.failed).toBeLessThanOrEqual(overview.totals.scans + days);
-      expect(overview.coverage.notes.join("")).toContain("演示");
+      // 演示数据与真实面板共用同一渲染：coverage.notes 不带任何
+      // 「演示 / mock」字样，避免未来接入真实数据时被旧字串混入 UI。
+      expect(overview.coverage.notes.join("")).not.toMatch(/演示|mock|非真实/);
       // 国家与角色：每个维度的去重人数之和 ≤ 窗口去重访客总数
       // （一个身份同时绑定一个国家 + 一个角色，所以两边求和都应等于访客总数）。
       const countryTotal = overview.countries.reduce((sum, row) => sum + row.visitors, 0);
