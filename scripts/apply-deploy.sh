@@ -176,6 +176,26 @@ pm2 startOrRestart "${REPO_DIR}/scripts/ecosystem.config.cjs" --only nextjs 2>&1
 # upstream 一律被覆盖回单一来源的值。
 log "=== [8.5] render + reload nginx vhost ==="
 if [ -w "$(dirname "${LIVE_VHOST}")" ]; then
+  # The rendered vhost references the `attrax_conn` shared memory zone.
+  # The directive that defines it (`limit_conn_zone`) must live in the
+  # main `/etc/nginx/nginx.conf` `http {}` block, not in the vhost. If a
+  # previous deploy missed it, `nginx -t` below fails before reload —
+  # inject the canonical one-liner in place (idempotent; same string as
+  # docs/infra/nginx-nginx.conf keeps in source).
+  NGINX_MAIN="/etc/nginx/nginx.conf"
+  if ! grep -q "limit_conn_zone .* zone=attrax_conn:10m" "${NGINX_MAIN}"; then
+    if grep -q "^[[:space:]]*keepalive_requests 100;" "${NGINX_MAIN}"; then
+      log "  injecting limit_conn_zone into ${NGINX_MAIN} (http {} — required by vhost)"
+      sed -i.bak-attrax "/^[[:space:]]*keepalive_requests 100;$/a\\
+    # 2026-09-18 concurrency hardening (H10): per-IP concurrent-connection cap.\\
+    limit_conn_zone \$binary_remote_addr zone=attrax_conn:10m;" "${NGINX_MAIN}"
+    nginx -t || { log "ERROR: nginx -t still fails after zone injection"; exit 1; }
+    else
+      log "ERROR: cannot inject limit_conn_zone — keepalive_requests 100 marker not found in ${NGINX_MAIN}"
+      log "       add 'limit_conn_zone \$binary_remote_addr zone=attrax_conn:10m;' manually inside http {}"
+      exit 1
+    fi
+  fi
   bash "${RENDER_SCRIPT}" --out "${LIVE_VHOST}"
   # 清掉旧手工流程遗留的 /etc/nginx/sites-available/attrax（2026-09-18 生产实测
   # 发现它仍写着 3001——任何"从 sites-available 恢复"的标准 Debian 操作都会把
