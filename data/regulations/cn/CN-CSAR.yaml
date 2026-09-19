@@ -3,7 +3,7 @@ official_citation: 国务院令第727号《化妆品监督管理条例》
 short_name: 化妆品监督管理条例 (CSAR)
 region: CN
 license: public
-last_verified: '2026-09-11'
+last_verified: '2026-09-19'
 last_verified_by: llm-assisted
 language: en
 source_kind: unverified
@@ -27,6 +27,7 @@ articles:
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-source_url: https://www.gov.cn/zhengce/content/2020-06/29/content_5524019.htm
-notes: 'Initial seed: article text condensed from KB key_points and marked needs_human_review. Top-cited articles (e.g. EU-2023-1542,
-  EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.'
+source_url: https://www.gov.cn/gongbao/content/2020/content_5525087.htm
+notes: |
+  Initial seed: article text condensed from KB key_points and marked needs_human_review. Top-cited articles (e.g. EU-2023-1542, EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.
+  2026-09-19 验证修复：旧 source_url (gov.cn/zhengce/content/2020-06/29/content_5524019.htm) 及邻近 ID 5524018/5524020-22 全部 404，改指国务院公报 2020 年第 19 号正版 content_5525087.htm（实测 200）——国务院令第 727 号《化妆品监督管理条例》权威原文。

@@ -3,8 +3,8 @@ official_citation: Emirates Conformity Assessment Scheme (ECAS) — Ministerial 
 short_name: UAE ECAS (合格评定)
 region: AE
 license: public
-source_url: https://moiat.gov.ae/en/services/standardization-and-conformity/ecas
-last_verified: '2026-09-17'
+source_url: https://moiat.gov.ae/en/services
+last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
 source_kind: official_summary
@@ -16,3 +16,4 @@ notes: |
   Manually created 2026-09-17 from official_sources.json entry ae-moiat-ecas.
   Backed by Ministry of Industry and Advanced Technology (MoIAT).
   Authoring note: a KB anchor at data/kb/anchors/AE-MoIAT-ECAS-electronics.yaml is required to surface this regulation in generator must-check output.
+  2026-09-19 验证修复：旧 source_url (/en/services/standardization-and-conformity/ecas) 子路径 404，改指 /en/services 服务列表页（实测 200）。

@@ -16,4 +16,6 @@ doc_files:
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: |
+  目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+  2026-09-19 验证复核：URL 有效——外部网络实测打开的是 SABER 官方平台（SASO 监管、沙特数字政府局注册号 20250414462）。本机 DNS 对 saber.sa 解析失败属本地解析器问题，不代表域名失效。

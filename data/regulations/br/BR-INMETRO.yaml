@@ -3,8 +3,8 @@ official_citation: Avaliação da Conformidade — Compulsório INMETRO / Portar
 short_name: BR Compulsory Certification Scope
 region: BR
 license: public
-source_url: https://www.gov.br/inmetro/pt-br/assuntos/noticias
-last_verified: '2026-09-17'
+source_url: https://www.gov.br/inmetro/pt-br
+last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
 source_kind: official_summary
@@ -16,3 +16,4 @@ notes: |
   Manually created 2026-09-17 from official_sources.json entry br-inmetro-novidades.
   Backed by Instituto Nacional de Metrologia, Qualidade e Tecnologia (INMETRO).
   Authoring note: a KB anchor at data/kb/anchors/BR-INMETRO-electronics.yaml is required to surface this regulation in generator must-check output.
+  2026-09-19 验证修复：旧 source_url (/assuntos/noticias 新闻子路径) 已下线，改指 INMETRO 官方门户（外部网络实测为官方首页「Instituto Nacional de Metrologia...」）。注意：gov.br 对无浏览器指纹的请求一律 403（强 WAF），curl 探测不可达不代表链接失效。
