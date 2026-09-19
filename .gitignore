@@ -231,3 +231,4 @@ verify-*.js
 demo-after-hydrate.png
 scripts/check-react-418.mjs
 .review-tmp/
+.deploy/
