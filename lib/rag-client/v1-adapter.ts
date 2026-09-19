@@ -433,38 +433,10 @@ export interface SessionResourceInput extends UpstreamForward {
 
 // ── Evidence supplementation + revision re-run (plan 2026-09-14 §5.3, J10) ──
 
-export interface AppendEvidenceInput extends SessionResourceInput {
-  files: Array<{ buffer: Buffer; originalName: string; mimeType: string }>;
-  idempotencyKey?: string;
-}
-
 export interface AppendEvidenceData {
   status: "stored" | "already_applied";
   storedCount: number;
   uploads?: Array<{ uploadId: string; kind: string; name: string; size: number }>;
-}
-
-export async function appendEvidence(input: AppendEvidenceInput): Promise<AppendEvidenceData> {
-  const formData = new FormData();
-  formData.set("idempotency_key", input.idempotencyKey ?? "");
-  for (const file of input.files) {
-    const field = file.mimeType.startsWith("image/") ? "images" : "documents";
-    formData.append(
-      field,
-      new Blob([new Uint8Array(file.buffer)], { type: file.mimeType }),
-      file.originalName,
-    );
-  }
-  return requestEnvelope<AppendEvidenceData>(
-    `${V1_SCAN_CREATE_PATH}/${encodeURIComponent(input.sessionId)}/evidence`,
-    {
-      method: "POST",
-      body: formData,
-      headers: buildAuthHeaders(input.accessToken, input),
-    },
-    RAG_SERVICE_TIMEOUT_MS,
-    "SCAN_SERVICE_UNAVAILABLE",
-  );
 }
 
 export interface AppendEvidenceStreamInput extends SessionResourceInput {
@@ -518,7 +490,7 @@ export async function requestRevision(input: RequestRevisionInput): Promise<Revi
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        idempotencyKey: input.idempotencyKey ?? `${input.sessionId}:revision`,
+        idempotency_key: input.idempotencyKey ?? `${input.sessionId}:revision`,
       }),
     },
     RAG_SERVICE_TIMEOUT_MS,

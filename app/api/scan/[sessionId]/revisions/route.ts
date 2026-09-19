@@ -11,6 +11,7 @@
  */
 import { requestRevision, upstreamForwardFrom, V1EnvelopeError } from "@/lib/rag-client/v1-adapter";
 import { fail, ok } from "@/lib/api-response";
+import { checkRateLimit, resolveClientId } from "@/lib/rate-limit";
 import { backendAccessTokenFromRequest, withClearedSessionCookie } from "@/app/api/backend-session-access";
 
 export const runtime = "nodejs";
@@ -19,6 +20,10 @@ export const runtime = "nodejs";
 // this is not a legitimate revision request.
 const MAX_BODY_BYTES = 2 * 1024;
 const MAX_KEY_LENGTH = 200;
+// Each accepted revision queues a full LLM re-run, so the budget is half
+// the scan-create one — a user fixes a report a few times, not ten.
+const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_WINDOW_MS = 60_000;
 
 async function readIntentKey(request: Request): Promise<string | undefined> {
   const raw = await request.text().catch(() => "");
@@ -45,6 +50,16 @@ export async function POST(
     return withClearedSessionCookie(
       fail({ code: "UNAUTHORIZED", message: "Missing access token" }, { status: 401 }),
       sessionId,
+    );
+  }
+
+  // Same ordering as the scan/evidence routes: authenticate first, then
+  // spend the caller's rate budget.
+  const clientId = resolveClientId(request);
+  if (!checkRateLimit(`revision:${clientId}`, RATE_LIMIT_MAX, RATE_LIMIT_WINDOW_MS)) {
+    return fail(
+      { code: "RATE_LIMITED", message: "Too many revision requests. Try again shortly." },
+      { status: 429 },
     );
   }
 

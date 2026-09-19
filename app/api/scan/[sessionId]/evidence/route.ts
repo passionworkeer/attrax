@@ -9,11 +9,17 @@
  */
 import { appendEvidenceStream, upstreamForwardFrom, V1EnvelopeError } from "@/lib/rag-client/v1-adapter";
 import { fail, ok } from "@/lib/api-response";
+import { checkRateLimit, resolveClientId } from "@/lib/rate-limit";
 import { backendAccessTokenFromRequest, withClearedSessionCookie } from "@/app/api/backend-session-access";
 
 export const runtime = "nodejs";
 
 const MAX_REQUEST_BYTES = 50 * 1024 * 1024;
+// Same budget as the scan-create route: an evidence upload is the same
+// class of write (up to 50MB of files) and must not be a cheaper way to
+// hammer the RAG service than POST /api/scan.
+const RATE_LIMIT_MAX = 10;
+const RATE_LIMIT_WINDOW_MS = 60_000;
 
 const MULTIPART_CONTENT_TYPE = /^multipart\/form-data\s*;\s*boundary=(?:"([^"]+)"|([^;]+))/i;
 
@@ -27,6 +33,16 @@ export async function POST(
     return withClearedSessionCookie(
       fail({ code: "UNAUTHORIZED", message: "Missing access token" }, { status: 401 }),
       sessionId,
+    );
+  }
+
+  // Rate-limit AFTER auth so anonymous traffic cannot exhaust the bucket of
+  // the session owner (same ordering as POST /api/scan).
+  const clientId = resolveClientId(request);
+  if (!checkRateLimit(`evidence:${clientId}`, RATE_LIMIT_MAX, RATE_LIMIT_WINDOW_MS)) {
+    return fail(
+      { code: "RATE_LIMITED", message: "Too many evidence uploads. Try again shortly." },
+      { status: 429 },
     );
   }
 

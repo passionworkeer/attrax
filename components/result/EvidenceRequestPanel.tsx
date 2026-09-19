@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import { useRef, useState, useTransition } from "react";
 import { Button } from "@/components/ui/button";
 import { appendEvidence, requestRevision } from "@/lib/rag-client/evidence-api";
+import { validateUploadFile, type UploadValidationError } from "@/lib/upload-validation";
 import { cn } from "@/lib/utils";
 
 export interface EvidenceRequestPanelProps {
@@ -51,6 +52,39 @@ export function EvidenceRequestPanel({
   const resolvedCount = new Set(
     requests.flatMap((request) => request.resolvesCheckIds),
   ).size;
+
+  const describeRejection = (code: UploadValidationError, fileName: string): string => {
+    if (code === "IMAGE_TOO_LARGE" || code === "DOCUMENT_TOO_LARGE") {
+      return zh
+        ? `${fileName} 超出单文件大小上限（图片 10MB / 文档 15MB），请压缩后重试。`
+        : `${fileName} exceeds the per-file size limit (10MB images / 15MB documents).`;
+    }
+    if (code === "INVALID_FILE_SIGNATURE") {
+      return zh
+        ? `${fileName} 的内容与扩展名不符，请确认文件未损坏。`
+        : `${fileName} does not look like its declared type — the file may be corrupt.`;
+    }
+    return zh
+      ? `${fileName} 的类型不受支持，请上传 PNG/JPEG/WebP、PDF、DOCX 或 TXT。`
+      : `${fileName} has an unsupported type. Use PNG/JPEG/WebP, PDF, DOCX or TXT.`;
+  };
+
+  /**
+   * Validate the pick with the SAME helper the upload page and the BFF use
+   * before spending a network round-trip: an oversized or mistyped file
+   * otherwise comes back as a bare HTTP 413/400 the user cannot act on.
+   */
+  const handleFiles = async (files: File[]) => {
+    for (const file of files) {
+      const kind = file.type.startsWith("image/") ? "image" : "document";
+      const code = await validateUploadFile(file, kind);
+      if (code) {
+        setState({ phase: "error", message: describeRejection(code, file.name) });
+        return;
+      }
+    }
+    await handleSubmit(files);
+  };
 
   const handleSubmit = async (files: File[]) => {
     if (files.length === 0) return;
@@ -140,7 +174,7 @@ export function EvidenceRequestPanel({
           className="hidden"
           onChange={(event) => {
             const files = Array.from(event.target.files ?? []);
-            void handleSubmit(files);
+            void handleFiles(files);
             event.target.value = "";
           }}
         />
