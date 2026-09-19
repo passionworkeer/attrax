@@ -1,6 +1,6 @@
 id: US-CFR-TITLE21-PART740
 official_citation: US 21 CFR Part 740
-short_name: US 21 CFR Part 740
+short_name: US 21 CFR Part 740 — COSMETIC PRODUCT WARNING STATEMENTS
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,303 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '21
+
+    Food and Drugs
+
+    7
+
+    2024-04-01
+
+    2024-04-01
+
+    false
+
+    COSMETIC PRO'
+  text: '21
+
+    Food and Drugs
+
+    7
+
+    2024-04-01
+
+    2024-04-01
+
+    false
+
+    COSMETIC PRODUCT WARNING STATEMENTS
+
+    740
+
+    PART 740
+
+    Food and Drugs
+
+    FOOD AND DRUG ADMINISTRATION, DEPARTMENT OF HEALTH AND HUMAN SERVICES (CONTINUED)
+
+    COSMETICS
+
+    Pt. 740
+
+    PART 740—COSMETIC PRODUCT WARNING STATEMENTS
+
+    Subpart A—General
+
+    Sec.
+
+    740.1
+
+    Establishment of warning statements.
+
+    740.2
+
+    Conspicuousness of warning statements.
+
+    Subpart B—Warning Statements
+
+    740.10
+
+    Labeling of cosmetic products for which adequate substantiation of safety has not been obtained.
+
+    740.11
+
+    Cosmetics in self-pressurized containers.
+
+    740.12
+
+    Feminine deodorant sprays.
+
+    740.17
+
+    Foaming detergent bath products.
+
+    740.18
+
+    Coal tar hair dyes posing a risk of cancer.
+
+    740.19
+
+    Suntanning preparations.
+
+    Authority:
+
+    15 U.S.C. 1451-1561; 21 U.S.C. 321, 351, 352, 353, 355, 356b, 360, 360c-360f, 360h-360j, 371, 374, 379e, 381; 42 U.S.C. 216, 241, 262, 263, 264; sec. 122, Pub. L. 105-115, 111 Stat. 2322 (21 U.S.C.
+    355 note).
+
+    Subpart A—General'
+- id: art-2
+  title: § 740.1
+  text: '§ 740.1
+
+    Establishment of warning statements.
+
+    (a) The label of a cosmetic product shall bear a warning statement whenever necessary or appropriate to prevent a health hazard that may be associated with the product.
+
+    (b) The Commissioner of Food and Drugs, either on his own initiative or on behalf of any interested person who has submitted a petition, may publish a proposal to establish or amend, under subpart B
+    of this part, a regulation prescribing a warning for a cosmetic. Any such petition shall include an adequate factual basis to support the petition, shall be in the form set forth in part 10 of this
+    chapter, and will be published for comment if it contains reasonable grounds for the proposed regulation.
+
+    [40 FR 8917, Mar. 3, 1975, as amended at 42 FR 15676, Mar. 22, 1977]'
+- id: art-3
+  title: § 740.2
+  text: '§ 740.2
+
+    Conspicuousness of warning statements.
+
+    (a) A warning statement shall appear on the label prominently and conspicuously as compared to other words, statements, designs, or devices and in bold type on contrasting background to
+
+    render it likely to be read and understood by the ordinary individual under customary conditions of purchase and use, but in no case may the letters and/or numbers be less than
+
+    1/16
+
+    inch in height, unless an exemption pursuant to paragraph (b) of this section is established.
+
+    (b) If the label of any cosmetic package is too small to accommodate the information as required by this section, the Commissioner may establish by regulation an acceptable alternative method, e.g.,
+    type size smaller than
+
+    1/16
+
+    inch in height. A petition requesting such a regulation, as an amendment to this section, shall be submitted to the Dockets Management Staff in the form established in part 10 of this chapter.
+
+    [40 FR 8917, Mar. 3, 1975, as amended at 42 FR 15676, Mar. 22, 1977; 69 FR 13717, Mar. 24, 2004; 88 FR 45067, July 14, 2023]
+
+    Subpart B—Warning Statements'
+- id: art-4
+  title: § 740.10
+  text: '§ 740.10
+
+    Labeling of cosmetic products for which adequate substantiation of safety has not been obtained.
+
+    (a) Each ingredient used in a cosmetic product and each finished cosmetic product shall be adequately substantiated for safety prior to marketing. Any such ingredient or product whose safety is not
+    adequately substantiated prior to marketing is misbranded unless it contains the following conspicuous statement on the principal display panel:
+
+    Warning
+
+    —The safety of this product has not been determined.
+
+    (b) An ingredient or product having a history of use in or as a cosmetic may at any time have its safety brought into question by new information that in itself is not conclusive. The warning required
+    by paragraph (a) of this section is not required for such an ingredient or product if:
+
+    (1) The safety of the ingredient or product had been adequately substantiated prior to development of the new information;
+
+    (2) The new information does not demonstrate a hazard to human health; and
+
+    (3) Adequate studies are being conducted to determine expeditiously the safety of the ingredient or product.
+
+    (c) Paragraph (b) of this section does not constitute an exemption to the adulteration provisions of the Act or to any other requirement in the Act or this chapter.
+
+    [40 FR 8917, Mar. 3, 1975]'
+- id: art-5
+  title: § 740.11
+  text: '§ 740.11
+
+    Cosmetics in self-pressurized containers.
+
+    (a)(1) The label of a cosmetic packaged in a self-pressurized container and intended to be expelled from the package under pressure shall bear the following warning:
+
+    Warning
+
+    —Avoid spraying in eyes. Contents under pressure. Do not puncture or incinerate. Do not store at temperature above 120 °F. Keep out of reach of children.
+
+    (2) In the case of products intended for use by children, the phrase “except under adult supervision” may be added at the end of the last sentence in the warning required by paragraph (a)(1) of this
+    section.
+
+    (3) In the case of products packaged in glass containers, the word “break” may be substituted for the word “puncture” in the warning required by paragraph (a)(1) of this section.
+
+    (4) The words “Avoid spraying in eyes” may be deleted from the warning required by paragraph (a)(1) of this section in the case of a product not expelled as a spray.
+
+    (b)(1) In addition to the warning required by paragraph (a)(1) of this section, the label of a cosmetic packaged in a self-pressurized container in which the propellant consists in whole or in part
+    of a halocarbon or a hydrocarbon shall bear the following warning:
+
+    Warning
+
+    —Use only as directed. Intentional misuse by deliberately concentrating and inhaling the contents can be harmful or fatal.
+
+    (2) The warning required by paragraph (b)(1) of this section is not required for the following products:
+
+    (i) Products expelled in the form of a foam or cream, which contain less than 10 percent propellant in the container.
+
+    (ii) Products in a container with a physical barrier that prevents escape of the propellant at the time of use.
+
+    (iii) Products of a net quantity of contents of less than 2 ozs. that are designed to release a measured amount of product with each valve actuation.
+
+    (iv) Products of a net quantity of contents of less than
+
+    1/2
+
+    oz.
+
+    (c) Labeling requirements for cosmetics packaged in a self- pressurized container containing or manufactured with a chlorofluorocarbon propellant or other ozone-depleting substance designated by the
+    Environmental Protection Agency (EPA) are set forth in 40 CFR part 82.
+
+    [40 FR 8917, Mar. 3, 1975, as amended at 42 FR 22033, Apr. 29, 1977; 54 FR 39640, Sept. 27, 1989; 61 FR 20101, May 3, 1996]'
+- id: art-6
+  title: § 740.12
+  text: '§ 740.12
+
+    Feminine deodorant sprays.
+
+    (a) For the purpose of this section, the term “feminine deodorant spray” means any spray deodorant product whose labeling represents or suggests that the product is for use in the female genital area
+    or for use all over the body.
+
+    (b) The label of a feminine deodorant spray shall bear the following statement:
+
+    Caution
+
+    —For external use only. Spray at least 8 inches from skin. Do not apply to broken, irritated, or itching skin. Persistent, unusual odor or discharge may indicate conditions for which a physician should
+    be consulted. Discontinue use immediately if rash, irritation, or discomfort develops.
+
+    The sentence “Spray at least 8 inches from skin” need not be included in the cautionary statement for products whose expelled contents do not contain a liquified gas propellant such as a halocarbon
+    or hydrocarbon propellant.
+
+    (c) Use of the word “hygiene” or “hygienic” or a similar word or words renders any such product misbranded under section 602(a) of the Federal Food, Drug, and Cosmetic Act. The use of any word or words
+    which represent or suggest that such products have a medical usefulness renders such products misbranded under section 502(a) of the Act and illegal new drugs marketed in violation of section 505 of
+    the Act.
+
+    [40 FR 8929, Mar. 3, 1975]'
+- id: art-7
+  title: § 740.17
+  text: '§ 740.17
+
+    Foaming detergent bath products.
+
+    (a) For the purpose of this section, a foaming detergent bath product is any product intended to be added to a bath for the purpose of producing foam that contains a surface-active agent serving as
+    a detergent or foaming ingredient.
+
+    (b) The label of foaming detergent bath products within the meaning of paragraph (a) of this section, except for those products that are labeled as intended for use exclusively by adults, shall bear
+    adequate directions for safe use and the following caution:
+
+    Caution
+
+    —Use only as directed. Excessive use or prolonged exposure may cause irritation to skin and urinary tract. Discontinue use if rash, redness, or itching occurs. Consult your physician if irritation persists.
+    Keep out of reach of children.
+
+    (c) In the case of products intended for use by children, the phrase “except under adult supervision” may be added at the end of the last sentence in the caution required by paragraph (b) of this section.
+
+    [51 FR 20475, June 5, 1986]'
+- id: art-8
+  title: § 740.18
+  text: '§ 740.18
+
+    Coal tar hair dyes posing a risk of cancer.
+
+    (a) The principal display panel of the label and any labeling accompanying a coal tar hair dye containing any ingredient listed in paragraph (b) of this section shall bear, in accordance with the requirements
+    of § 740.2, the following:
+
+    Warning
+
+    —Contains an ingredient that can penetrate your skin and has been determined to cause cancer in laboratory animals.
+
+    (b) Hair dyes containing any of the following ingredients shall comply with the requirements of this section: (1) 4-methoxy-
+
+    m
+
+    -phenylenediamine (2,4-diaminoanisole) and (2) 4-methoxy-
+
+    m
+
+    -phenylenediamine sulfate (2,4-diaminoanisole sulfate).
+
+    [44 FR 59522, Oct. 16, 1979]
+
+    Effective Date Note:
+
+    At 47 FR 7829, Feb. 23, 1982, § 740.18 was stayed until further notice, effective Sept. 18, 1980.'
+- id: art-9
+  title: § 740.19
+  text: '§ 740.19
+
+    Suntanning preparations.
+
+    The labeling of suntanning preparations that do not contain a sunscreen ingredient must display the following warning: “Warning—This product does not contain a sunscreen and does not protect against
+    sunburn. Repeated exposure of unprotected skin while tanning may increase the risk of skin aging, skin cancer, and other harmful effects to the skin even if you do not
+
+    burn.” For purposes of this section, the term “suntanning preparations” includes gels, creams, liquids, and other topical products that are intended to provide cosmetic effects on the skin while tanning
+    through exposure to UV radiation (e.g., moisturizing or conditioning products), or to give the appearance of a tan by imparting color to the skin through the application of approved color additives
+    (e.g., dihydroxyacetone) without the need for exposure to UV radiation. The term “suntanning preparations” does not include products intended to provide sun protection or otherwise intended to affect
+    the structure or any function of the body.
+
+    [64 FR 27693, May 21, 1999]'
 doc_files:
 - us/raw/US-CFR-title21-part740.xml
+- us/raw/US-CFR-title21-part740.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part740.xml (xml, 10569 chars)，生成 9 条共 10569 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part740.xml (xml, 10569 chars)，生成 9 条共 10569 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part740.xml (xml, 10569 chars)，生成 9 条共 10569 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART740-4（US 21 CFR Part 740）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART740-3（US 21 CFR Part 740）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART740-2（US 21 CFR Part 740）。'

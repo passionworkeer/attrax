@@ -1,0 +1,26 @@
+id: KB-other-CN-CN-FLK_-_FLK-NPC-GOV-CN
+regulation_id: CN-FLK_-_FLK-NPC-GOV-CN
+doc_name: CN-FLK 国家法律法规数据库 (flk.npc.gov.cn)
+official_citation: CN-FLK 国家法律法规数据库 (flk.npc.gov.cn)
+short_name: CN-FLK 国家法律法规数据库 (flk.npc.gov.cn)
+source: category
+primary_source: other
+domain: other
+applies_if:
+  category:
+  - other
+  features_any: []
+  markets:
+  - CN
+key_articles: []
+key_points:
+- CN-FLK 国家法律法规数据库 (flk.npc.gov.cn)：其他品类领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://flk.npc.gov.cn/
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

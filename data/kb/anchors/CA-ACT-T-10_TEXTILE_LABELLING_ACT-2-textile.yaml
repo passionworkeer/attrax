@@ -1,0 +1,26 @@
+id: KB-textile-CA-CA-ACT-T-10_TEXTILE_LABELLING_ACT-2
+regulation_id: CA-ACT-T-10_TEXTILE_LABELLING_ACT-2
+doc_name: CA T-10 Textile Labelling Act [html]
+official_citation: CA T-10 Textile Labelling Act [html]
+short_name: CA T-10 Textile Labelling Act [html]
+source: category
+primary_source: textile
+domain: textile
+applies_if:
+  category:
+  - textile
+  features_any: []
+  markets:
+  - CA
+key_articles: []
+key_points:
+- CA T-10 Textile Labelling Act [html]：纺织领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://laws-lois.justice.gc.ca/eng/acts/T-10/
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

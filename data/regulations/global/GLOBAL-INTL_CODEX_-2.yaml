@@ -9,11 +9,205 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: Standards | CODEXALIMENTARIUS FAO-WHO
+  text: "Standards | CODEXALIMENTARIUS FAO-WHO\nالعربية\n\uFEFF中文\nenglish\nfrançais\nРусский\nEspañol\nAR\n\uFEFFZH\nEN\nFR\nRU\nES\nPage tools\ncodexalimentarius\n > \nCodex Texts\n > Standards\nStandards\n\
+    Click on any column to order the list of standards. Use the yellow arrow to order the data ascending or descending. \nType any criteria in the search box to filter the data (e.g. a year, a committee\
+    \ code or a keyword). Download a standard by clicking on the green symbol in the available languages indicated.\nReference\nTitle\nCommittee\nLast modified\nEN\nFR\nES\nAR\nZH\nRU\nCXS 107-1981\nGeneral\
+    \ Standard for the Labelling of Food Additives when sold as such\nCCFA\n2016\nCXS 150-1985\nStandard for Food Grade Salt\nCCFA\n2025\nCXS 106-1983\nGeneral Standard for Irradiated Foods\nCCFH\n2003\n\
+    CXS 193-1995\nGeneral Standard for Contaminants and Toxins in Food and Feed\nCCCF\n2025\nCXS 1-1985\nGeneral Standard for the Labelling of Pre-packaged Foods\nCCFL\n2026\nCXS 151-1985\nStandard for\
+    \ Gari\nCCCPL\n2023\nCXS 152-1985\nStandard for Wheat Flour\nCCCPL\n2023\nCXS 153-1985\nStandard for Maize (Corn)\nCCCPL\n2026\nCXS 155-1985\nStandard for Degermed Maize (Corn) Meal and Maize (Corn)\
+    \ Grits\nCCCPL\n2026\nCXS 169-1989\nStandard for Whole and Decorticated Pearl Millet Grains\nCCCPL\n2023\nCXS 171-1989\nStandard for Certain Pulses\nCCCPL\n1995\nCXS 172-1989\nStandard for Sorghum Grains\n\
+    CCCPL\n2026\nCXS 173-1989\nStandard for Sorghum Flour\nCCCPL\n2023\nCXS 176-1989\nStandard for Edible Cassava Flour\nCCCPL\n2025\nCXS 178-1991\nStandard for Durum Wheat Semolina and Durum Wheat Flour\n\
+    CCCPL\n2023\nCXS 198-1995\nStandard for Rice\nCCCPL\n2026\nCXS 199-1995\nStandard for Wheat and Durum Wheat\nCCCPL\n2026\nCXS 200-1995\nStandard for Peanuts\nCCCPL\n2026\nCXS 201-1995\nStandard for\
+    \ Oats\nCCCPL\n2019\nCXS 202-1995\nStandard for Couscous\nCCCPL\n1995\nCXS 86-1981\nStandard for Cocoa Butter\nCCCPC\n2026\nCXS 87-1981\nStandard for Chocolate and Chocolate Products\nCCCPC\n2025\n\
+    CXS 105-1981\nStandard for Cocoa powders (cocoas) and dry mixtures of cocoa and sugars\nCCCPC\n2025\nCXS 3-1981\nStandard for Canned Salmon\nCCFFP\n2026\nCXS 36-1981\nStandard for Quick Frozen Finfish,\
+    \ Uneviscerated and Eviscerated \nCCFFP\n2026\nCXS 37-1991\nStandard for Canned Shrimps or Prawns\nCCFFP\n2026\nCXS 90-1981\nStandard for Canned Crab Meat\nCCFFP\n2026\nCXS 92-1981\nStandard for Quick\
+    \ Frozen Shrimps or Prawns\nCCFFP\n2024\nCXS 95-1981\nStandard for Quick Frozen Lobsters\nCCFFP\n2026\nCXS 119-1981\nStandard for Canned Finfish\nCCFFP\n2024\nCXS 165-1989\nStandard for Quick Frozen\
+    \ Blocks of Fish Fillets, Minced Fish Flesh and Mixtures of Fillets and Minced Fish Flesh\nCCFFP\n2024\nCXS 166-1989\nStandard for Quick Frozen Fish Sticks (Fish Fingers), Fish Portions and Fish Fillets\
+    \ - Breaded or in Batter\nCCFFP\n2024\nCXS 167-1989\nStandard for Salted Fish and Dried Salted Fish of the Gadidae Family of Fishes\nCCFFP\n2024\nCXS 189-1993\nStandard for Dried Shark Fins\nCCFFP\n\
+    2025\nCXS 190-1995\nStandard for Quick Frozen Fish Fillets\nCCFFP\n2024\nCXS 191-1995\nStandard for Quick Frozen Raw Squid\nCCFFP\n2024\nCXS 141-1983\nStandard for Cocoa (Cacao) Mass (Cocoa/Chocolate\
+    \ Liquor) and Cocoa Cake\nCCCPC\n2025\nCXS 19-1981\nStandard for Edible Fats and Oils not Covered by Individual Standards\nCCFO\n2024\nCXS 33-1981\nStandard for Olive Oils and Olive Pomace Oils\nCCFO\n\
+    2024\nCXS 17-1981\nStandard for Canned Applesauce\nCCPFV\n2022\nCXS 38-1981\nStandard for Edible Fungi and Fungus Products\nCCPFV\n2023\nCXS 39-1981\nStandard for Dried Edible Fungi\nCCPFV\n2023\nCXS\
+    \ 40R-1981\nRegional Standard for Chanterelles (Europe)\nCCEURO\n2022\nCXS 60-1981\nStandard for Canned Raspberries\nCCPFV\n2026\nCXS 62-1981\nStandard for Canned Strawberries\nCCPFV\n2022\nCXS 66-1981\n\
+    Standard for Table Olives\nCCPFV\n2024\nCXS 115-1981\nStandard for Pickled Cucumbers (Cucumber Pickles)\nCCPFV\n2025\nCXS 131-1981\nStandard for Unshelled Pistachio Nuts\nCCPFV\n2023\nCXS 88-1981\n\
+    Standard for Corned Beef\nCCPMPP\n2022\nCXS 89-1981\nStandard for Luncheon Meat\nCCPMPP\n2022\nCXS 96-1981\nStandard for Cooked Cured Ham\nCCPMPP\n2022\nCXS 97-1981\nStandard for Cooked Cured Pork Shoulder\n\
+    CCPMPP\n2022\nCXS 98-1981"
+- id: art-2
+  title: Standard for Cooked Cured Chopped Meat
+  text: "Standard for Cooked Cured Chopped Meat\nCCPMPP\n2022\nCXS 145-1985\nStandard for Canned Chestnuts and Canned Chestnut Purée\nCCPFV\n2022\nCXS 160-1987\nStandard for Mango Chutney\nCCPFV\n2023\n\
+    CXS 52-1981\nStandard for Quick Frozen Strawberries\nCCPFV\n2022\nCXS 69-1981\nStandard for Quick Frozen Raspberries\nCCPFV\n2022\nCXS 75-1981\nStandard for Quick Frozen Peaches\nCCPFV\n2022\nCXS 76-1981\n\
+    Standard for Quick Frozen Bilberries\nCCPFV\n2022\nCXS 103-1981\nStandard for Quick Frozen Blueberries\nCCPFV\n2022\nCXS 279-1971\nStandard for Butter\nCCMMP\n2022\nCXS 280-1973\nStandard for Milkfat\
+    \ Products\nCCMMP\n2022\nCXS 281-1971\nStandard for Evaporated Milks\nCCMMP\n2023\nCXS 282-1971\nStandard for Sweetened Condensed Milks\nCCMMP\n2023\nCXS 283-1978\nGeneral Standard for Cheese\nCCMMP\n\
+    2024\nCXS 284-1971\nStandard for Whey Cheeses\nCCMMP\n2022\nCXS 288-1976\nStandard for Cream and Prepared Creams\nCCMMP\n2024\nCXS 289-1995\nStandard for Whey Powders\nCCMMP\n2022\nCXS 290-1995\nStandard\
+    \ for Edible Casein Products\nCCMMP\n2023\nCXS 263-1966\nStandard for Cheddar\nCCMMP\n2022\nCXS 266-1966\nStandard for Gouda\nCCMMP\n2022\nCXS 270-1968\nStandard for Tilsiter\nCCMMP\n2022\nCXS 271-1968\n\
+    Standard for Saint-Paulin\nCCMMP\n2022\nCXS 272-1968\nStandard for Provolone\nCCMMP\n2022\nCXS 276-1973\nStandard for Camembert\nCCMMP\n2022\nCXS 278-1978\nStandard for Extra Hard Grating Cheese\nCCMMP\n\
+    2022\nCXS 108-1981\nStandard for Natural Mineral Waters\nCCNMW\n2019\nCXS 13-1981\nStandard for Preserved Tomatoes\nCCPFV\n2023\nCXS 117-1981\nStandard for Bouillons and Consommés\nCCSB\n2021\nCXS 53-1981\n\
+    Standard for Special Dietary Foods with Low-Sodium Content (Including Salt Substitutes)\nCCNFSDU\n2019\nCXS 73-1981\nStandard for Canned Baby Foods\nCCNFSDU\n2023\nCXS 74-1981\nStandard for Processed\
+    \ Cereal-Based Foods for Infants and Young Children\nCCNFSDU\n2023\nCXS 118-1979\nStandard for Foods for Special Dietary Use for Persons Intolerant to Gluten\nCCNFSDU\n2015\nCXS 156-1987\nStandard for\
+    \ Follow-up formula for Older Infants and Product for Young Children\nCCNFSDU\n2023\nCXS 180-1991\nStandard for Labelling of and Claims for Foods for Special Medical Purposes\nCCNFSDU\n1991\nCXS 181-1991\n\
+    Standard for Formula Foods for Use in Weight Control Diets\nCCNFSDU\n2023\nCXS 203-1995\nStandard for Formula Foods for Use in Very Low Energy Diets for Weight Reduction\nCCNFSDU\n2023\nCXS 12-1981\n\
+    Standard for Honey\nCCS\n2022\nCXS 182-1993\nStandard for Pineapples\nCCFFV\n2011\nCXS 183-1993\nStandard for Papaya\nCCFFV\n2011\nCXS 184-1993\nStandard for Mangoes\nCCFFV\n2005\nCXS 185-1993\nStandard\
+    \ for Nopal\nCCFFV\n2005\nCXS 186-1993\nStandard for Prickly Pear\nCCFFV\n2005\nCXS 187-1993\nStandard for Carambola\nCCFFV\n2005\nCXS 188-1993\nStandard for Baby Corn\nCCFFV\n2005\nCXS 196-1995\nStandard\
+    \ for Litchi\nCCFFV\n2011\nCXS 197-1995\nStandard for Avocado\nCCFFV\n2013\nCXS 163-1987\nStandard for Wheat Protein Products Including Wheat Gluten\nCCVP\n2022\nCXS 174-1989\nGeneral Standard for Vegetable\
+    \ Protein Products (VPP)\nCCVP\n2022\nCXS 205-1997\nStandard for Bananas\nCCFFV\n2022\nCXS 204-1997\nStandard for Mangosteens\nCCFFV\n2005\nCXS 246-2005\nStandard for Rambutan\nCCFFV\n2005\nCXS 242-2003\n\
+    Standard for Canned Stone Fruits\nCCPFV\n2025\nCXS 236-2003\nStandard for Boiled Dried Salted Anchovies\nCCFFP\n2024\nCXS 244-2004\nStandard for Salted Atlantic Herring and Salted Sprat\nCCFFP\n2024\n\
+    CXS 298R-2009\nRegional Standard for Fermented Soybean Paste (Asia)\nCCASIA\n2026\nCXS 316-2014\nStandard for Passion Fruit\nCCFFV\n2014\nCXS 206-1999\nGeneral Standard for the Use of Dairy Terms\n\
+    CCMMP\n2022\nCXS 207-1999\nStandard for Milk Powders and Cream Powder\nCCMMP\n2023\nCXS 208-1999\nGroup Standard for Cheeses in Brine\nCCMMP\n2022\nCXS 210-1999\nStandard for Named Vegetable Oils\n\
+    CCFO\n2024\nCXS 211-1999\nStandard for Named Animal Fats\nCCFO\n2024\nCXS 213-1999\nStandard for Limes\nCCFFV\n2011\nCXS 214-1999\nStandard for Pummelos \nCCFFV\n2011\nCXS 215-1999\nStandard for Guavas\n\
+    CCFFV\n2011\nCXS 216-1999\nStandard for Chayotes\nCCFFV\n2011\nCXS 217-1999\nStandard for Mexican Limes\nCCFFV\n2011\nCXS 218-1999\nStandard for Ginger\nCCFFV\n2005\nCXS 219-1999\nStandard for Grapefruits\
+    \ \nCCFFV\n2011\nCXS 220-1999"
+- id: art-3
+  title: Standard for Longans
+  text: "Standard for Longans\nCCFFV\n2011\nCXS 237-2003\nStandard for Pitahayas\nCCFFV\n2011\nCXS 238-2003\nStandard for Sweet Cassava\nCCFFV\n2013\nCXS 245-2004\nStandard for Oranges\nCCFFV\n2011\nCXS\
+    \ 241-2003\nStandard for Canned Bamboo Shoots\nCCPFV\n2023\nCXS 240-2003\nStandard for Aqueous Coconut Products - Coconut Milk and Coconut Cream\nCCPFV\n2024\nCXS 154-1985\nStandard for Whole Maize\
+    \ (Corn) Meal\nCCCPL\n2023\nCXS 250-2006\nStandard for a Blend of Evaporated Skimmed Milk and Vegetable Fat\nCCMMP\n2022\nCXS 251-2006\nStandard for a Blend of Skimmed Milk and Vegetable Fat in Powdered\
+    \ Form\nCCMMP\n2022\nCXS 252-2006\nStandard for a Blend of Sweetened Condensed Skimmed Milk and Vegetable Fat\nCCMMP\n2022\nCXS 253-2006\nStandard for Dairy Fat Spreads\nCCMMP\n2023\nCXS 249-2006\n\
+    Standard for Instant Noodles\nCCCPL\n2023\nCXS 239-2003\nGeneral Methods of Analysis for Food Additives\nCCMAS\n2004\nCXS 192-1995\nGeneral Standard for Food Additives\nCCFA\n2026\nCXS 255-2007\nStandard\
+    \ for Table Grapes\nCCFFV\n2011\nCXS 256-1999\nStandard for Fat Spreads and Blended Spreads\nCCFO\n2024\nCXS 257R-2007\nRegional Standard for Canned Humus with Tehena (Near East)\nCCNE\n2025\nCXS 258R-2007\n\
+    Regional Standard for Canned Foul Medames (Near East)\nCCNE\n2025\nCXS 259R-2007\nRegional Standard for Tehena (Near East)\nCCNE\n2025\nCXS 72-1981\nStandard for Infant Formula and Formulas for Special\
+    \ Medical Purposes Intended for Infants\nCCNFSDU\n2024\nCXS 260-2007\nStandard for Pickled Fruits and Vegetables\nCCPFV\n2023\nCXS 57-1981\nStandard for Processed Tomato Concentrates\nCCPFV\n2023\n\
+    CXS 307-2011\nStandard for Chilli Peppers\nCCFFV\n2011\nCXS 304R-2011\nRegional Standard for Culantro Coyote (Latin America and the Caribbean)\nCCLAC\n2023\nCXS 305R-2011\nRegional Standard for Lucuma\
+    \ (Latin America and the Caribbean)\nCCLAC\n2023\nCXS 301R-2011\nRegional Standard for Edible Sago Flour (Asia)\nCCASIA\n2026\nCXS 306-2023\nStandard for Chilli Sauce\nCCPFV\n2023\nCXS 221-2001\nGroup\
+    \ Standard for Unripened Cheese including Fresh Cheese\nCCMMP\n2022\nCXS 222-2001\nStandard for Crackers from Marine and Freshwater Fish, Crustaceans and Molluscan Shellfish\nCCFFP\n2024\nCXS 223-2001\n\
+    Standard for Kimchi\nCCPFV\n2022\nCXS 224-2001\nStandard for Tannia\nCCFFV\n2011\nCXS 226-2001\nStandard for Cape Gooseberry\nCCFFV\n2011\nCXS 227-2001\nGeneral Standard for Bottled/Packaged Drinking\
+    \ Waters (Other Than Natural Mineral Waters)\nCCNMW\n2019\nCXS 234-1999\nRecommended Methods of Analysis and Sampling\nCCMAS\n2026\nCXS 243-2003\nStandard for Fermented Milks\nCCMMP\n2024\nCXS 311-2013\n\
+    Standard for Smoked Fish, Smoke-Flavoured Fish and Smoke-Dried Fish\nCCFFP\n2024\nCXS 312-2013\nStandard for Live Abalone and for Raw Fresh Chilled or Frozen Abalone for Direct Consumption or for further\
+    \ Processing\nCCFFP\n2016\nCXS 310-2013\nStandard for Pomegranate\nCCFFV\n2013\nCXS 297-2009\nStandard for Certain Canned Vegetables\nCCPFV\n2023\nCXS 296-2009\nStandard for Jams, Jellies and Marmalades\n\
+    CCPFV\n2025\nCXS 294-2023\nStandard for Gochujang \nCCPFV\n2023\nCXS 146-1985\nGeneral Standard for the Labelling of and Claims for Prepackaged Foods for Special Dietary Uses\nCCFL\n2009\nCXS 300-2010\n\
+    Standard for Bitter Cassava\nCCFFV\n2013\nCXS 299-2010\nStandard for Apples\nCCFFV\n2010\nCXS 291-2010\nStandard for Sturgeon Caviar\nCCFFP\n2024\nCXS 302-2011\nStandard for Fish Sauce\nCCFFP\n2024\n\
+    CXS 308R-2011\nRegional Standard for Harissa (Red Hot Pepper Paste) (Near East)\nCCNE\n2025\nCXS 309R-2011\nRegional Standard for Halwa Tehenia (Near East)\nCCNE\n2025\nCXS 303-2011\nStandard for Tree\
+    \ Tomatoes\nCCFFV\n2011\nCXS 177-1991\nStandard for Desiccated Coconut\nCCPFV\n2023\nCXS 70-1981\nStandard for Canned Tuna and Bonito\nCCFFP\n2026\nCXS 94-1981\nStandard for Canned Sardines and Sardine-Type\
+    \ Products\nCCFFP\n2026\nCXS 254-2007\nStandard for Certain Canned Citrus Fruits\nCCPFV\n2023\nCXS 262-2006\nStandard for Mozzarella\nCCMMP\n2023\nCXS 264-1966\nStandard for Danbo\nCCMMP\n2022\nCXS\
+    \ 265-1966\nStandard for Edam\nCCMMP\n2022\nCXS 267-1966\nStandard for Havarti\nCCMMP\n2022\nCXS 268-1966\nStandard for Samsø\nCCMMP\n2022\nCXS 269-1967\nStandard for Emmental\nCCMMP\n2022\nCXS 273-1968\n\
+    Standard for Cottage Cheese"
+- id: art-4
+  title: CCMMP
+  text: "CCMMP\n2022\nCXS 274-1969\nStandard for Coulommiers\nCCMMP\n2022\nCXS 275-1973\nStandard for Cream Cheese\nCCMMP\n2022\nCXS 277-1973\nStandard for Brie\nCCMMP\n2022\nCXS 247-2005\nGeneral Standard\
+    \ for Fruit Juices and Nectars\nCCPFV\n2026\nCXS 175-1989\nStandard for Soy Protein Products\nCCVP\n2022\nCXS 170-1989\nStandard for Pearl Millet Flour\nCCCPL\n2023\nCXS 212-1999\nStandard for Sugars\n\
+    CCS\n2022\nCXS 225-2001\nStandard for Asparagus\nCCFFV\n2005\nCXS 293-2008\nStandard for Tomatoes\nCCFFV\n2008\nCXS 292-2008\nStandard for Live and Raw Bivalve Molluscs\nCCFFP\n2026\nCXS 313R-2013\n\
+    Regional Standard for Tempe (Asia)\nCCASIA\n2026\nCXS 314R-2013\nRegional Standard for Date Paste (Near East)\nCCNE\n2025\nCXS 315-2014\nStandard for Fresh and Quick-Frozen Raw Scallop Products\nCCFFP\n\
+    2024\nCXS 320-2015\nStandard for Quick Frozen Vegetables\nCCPFV\n2022\nCXS 321-2015\nStandard for Ginseng Products\nCCPFV\n2022\nCXS 319-2015\nStandard for Certain Canned Fruits\nCCPFV\n2023\nCXS 317-2014\n\
+    Standard for Durian\nCCFFV\n2014\nCXS 318-2014\nStandard for Okra\nCCFFV\n2014\nCXS 322R-2015\nRegional Standard for Non-Fermented Soybean Products (Asia)\nCCASIA\n2026\nCXS 329-2017\nStandard for Fish\
+    \ Oils\nCCFO\n2024\nCXS 325R-2017\nRegional Standard for Unrefined Shea Butter (Africa)\nCCAFRICA\n2022\nCXS 323R-2017\nRegional Standard for Laver Products (Asia)\nCCASIA\n2026\nCXS 326-2017\nStandard\
+    \ for Black, White and Green Peppers\nCCSCH\n2022\nCXS 327-2017\nStandard for Cumin\nCCSCH\n2022\nCXS 328-2017\nStandard for Dried Thyme\nCCSCH\n2022\nCXS 331-2017\nStandard for Dairy Permeate Powders\n\
+    CCMMP\n2023\nCXS 324R-2017\nRegional Standard for Yacon (Latin America and the Caribbean)\nCCLAC\n2024\nCXS 330-2018\nStandard for Aubergines\nCCFFV\n2018\nCXS 332R-2018\nRegional Standard for Doogh\
+    \ (Near East)\nCCNE\n2025\nCXS 333-2019\nStandard for Quinoa\nCCCPL\n2020\nCXS 334R-2020\nRegional Standard for fermented cooked Cassava-based products (Africa)\nCCAFRICA\n2022\nCXS 335R-2020\nRegional\
+    \ Standard for fresh leaves of Gnetum spp. (Africa)\nCCAFRICA\n2022\nCXS 336R-2020\nRegional Standard for kava products for use as a beverage when mixed with water (North America and South West Pacific)\n\
+    CCNASWP\n2026\nCXS 337-2020\nStandard for fresh garlic\nCCFFV\n2020\nCXS 338-2020\nStandard for kiwifruit\nCCFFV\n2020\nCXS 339-2020\nStandard for ware potatoes\nCCFFV\n2020\nCXS 340-2020\nStandard\
+    \ for yam\nCCFFV\n2020\nCXS 341R-2020\nRegional Standard for mixed zaatar (Near East)\nCCNE\n2025\nCXS 342-2021\nStandard for Dried Oregano \nCCSCH\n2025\nCXS 343-2021\nStandard for dried roots, rhizomes\
+    \ and bulbs: Dried or dehydrated ginger\nCCSCH\n2025\nCXS 344-2021\nStandard for dried floral parts: Cloves \nCCSCH\n2025\nCXS 345-2021\nStandard for Dried Basil\nCCSCH\n2025\nCXS 346-2021\nGeneral\
+    \ Standard for the labelling of non-retail containers of foods\nCCFL\n2021\nCXS 347-2019\nStandard for dried or dehydrated garlic\nCCSCH\n2025\nCXS 348-2022\nStandard for Onions and Shallots\nCCFFV\n\
+    2022\nCXS 349-2022\nStandard for Berry Fruits\nCCFFV\n2022\nCXS 352-2022\nStandard for Dried Seeds – Nutmeg\nCCSCH\n2025\nCXS 350R-2022\nRegional Standard for Dried Meat (Africa)\nCCAFRICA\n2022\nCXS\
+    \ 353-2022\nStandard for Dried or Dehydrated Chilli Pepper and Paprika\nCCSCH\n2025\nCXS 356R-2023\nRegional Standard for Fermented Noni Fruit Juice (North America and South West Pacific)\nCCNASWP\n\
+    2026\nCXS 354R-2023\nRegional Standard for Soybean Products Fermented with Bacillus Species (Asia)\nCCASIA\n2026\nCXS 355R-2023\nRegional Standard for Cooked Rice Wrapped in Plant Leaves (Asia)\nCCASIA\n\
+    2026\nCXS 360-2020\nGeneral standard for dried fruits\nCCPFV\n2020\nCXS 359-2024\nStandard for dried or dehydrated roots, rhizomes and bulbs – Turmeric\nCCSCH\n2024\nCXS 358-2024\nStandard for spices\
+    \ derived from dried or dehydrated fruits and berries - Allspice, juniper berry and star anise\nCCSCH\n2024\nCXS 357-2024\nStandard for spices derived from dried or dehydrated fruits and berries – Small\
+    \ cardamom\nCCSCH\n2024\nCXS 351-2022\nStandard for dried floral parts –saffron\nCCSCH\n2026\nCXS 361-2020\nGeneral standard for canned mixed fruits\nCCPFV\n2020\nCXS 362R-2025"
+- id: art-5
+  title: Regional standard for Castilla lulo (naranjilla) – Latin Ame
+  text: 'Regional standard for Castilla lulo (naranjilla) – Latin America and the Caribbean
+
+    CCLAC
+
+    2025
+
+    CXS 363-2025
+
+    Standard for fresh dates
+
+    CCFFV
+
+    2025
+
+    CXS 364R-2026
+
+    Regional standard for quick-frozen dumplings (Asia)
+
+    CCASIA
+
+    2026
+
+    CXS 368-2026
+
+    Standard for spices in the form of dried fruits and berries – requirements for large cardamom
+
+    CCSCH
+
+    2026
+
+    CXS 369-2026
+
+    Standard for spices in the form of dried seeds – requirements for coriander
+
+    CCSCH
+
+    2026
+
+    CXS 370-2026
+
+    Standard for baker’s yeast
+
+    CCFA
+
+    2026
+
+    CXS 367-2026
+
+    Standard for spices derived from dried or dehydrated fruits and berries – requirements for vanilla
+
+    CCSCH
+
+    2026
+
+    CXS 365R-2026
+
+    Regional standard for maamoul (Near East)
+
+    CCNE
+
+    2026
+
+    CXS 366-2026
+
+    Standard for fresh curry leaves
+
+    CCFFV
+
+    2026
+
+    About us
+
+    Contact us
+
+    FAQs
+
+    Circular Letters
+
+    Sitemap
+
+    Help
+
+    Data Protection and Privacy Notice
+
+    Copyright / Disclaimer
+
+    Login
+
+    Follow us on
+
+    © FAO/WHO, 2026'
 doc_files:
 - global/raw/INTL_Codex_商品标准列表.html
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/INTL_Codex_商品标准列表.html (html, 16763 chars)，生成 5 条共 16763 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/INTL_Codex_商品标准列表.html (html, 16763 chars)，生成 5 条共 16763 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/INTL_Codex_商品标准列表.html (html, 16763 chars)，生成 5 条共 16763 字符；解析文本未人工复核，引用以官方原件为准。'

@@ -1,0 +1,28 @@
+id: KB-other-GLOBAL-GLOBAL-ETSI_EN_303980_V01-03-01_60
+regulation_id: GLOBAL-ETSI_EN_303980_V01-03-01_60
+doc_name: ETSI EN 303980 v01.03.01_60
+official_citation: ETSI EN 303980 v01.03.01_60
+short_name: ETSI EN 303980 v01.03.01_60
+source: category
+primary_source: other
+domain: other
+applies_if:
+  category:
+  - other
+  features_any: []
+  markets:
+  - GLOBAL
+key_articles:
+- art-1
+- art-2
+key_points:
+- ETSI EN 303980 v01.03.01_60：其他品类领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://www.etsi.org/deliver/etsi_en/303900_303999/303980/01.03.01_60/en_303980v010301p.pdf
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

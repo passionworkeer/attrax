@@ -1,6 +1,6 @@
 id: US-CFR-TITLE47-PART68
 official_citation: US 47 CFR Part 68
-short_name: US 47 CFR Part 68
+short_name: US 47 CFR Part 68 — CONNECTION OF TERMINAL EQUIPMENT TO THE TELEPHONE NETWORK
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,755 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '47
+
+    Telecommunication
+
+    3
+
+    2024-10-01
+
+    false
+
+    2024-10-01
+
+    CONNECTIO'
+  text: '47
+
+    Telecommunication
+
+    3
+
+    2024-10-01
+
+    false
+
+    2024-10-01
+
+    CONNECTION OF TERMINAL EQUIPMENT TO THE TELEPHONE NETWORK
+
+    Telecommunication
+
+    FEDERAL COMMUNICATIONS COMMISSION (CONTINUED)
+
+    COMMON CARRIER SERVICES (CONTINUED)
+
+    Pt. 68
+
+    PART 68—CONNECTION OF TERMINAL EQUIPMENT TO THE TELEPHONE NETWORK
+
+    Subpart A—General
+
+    Sec.
+
+    68.1
+
+    Purpose.
+
+    68.2
+
+    Scope.
+
+    68.3
+
+    Definitions.
+
+    68.4
+
+    Hearing aid-compatible telephones.
+
+    68.5
+
+    Waivers.
+
+    68.6
+
+    Telephones with volume control.
+
+    68.7
+
+    Technical criteria for terminal equipment.
+
+    Subpart B—Conditions on Use of Terminal Equipment
+
+    68.100
+
+    General.
+
+    68.102
+
+    Terminal equipment approval requirement.
+
+    68.105
+
+    Minimum point of entry (MPOE) and demarcation point.
+
+    68.106
+
+    Notification to provider of wireline telecommunications.
+
+    68.108
+
+    Incidence of harm.
+
+    68.110
+
+    Compatibility of the public switched telephone network and terminal equipment.
+
+    68.112
+
+    Hearing aid-compatibility.
+
+    68.160
+
+    Designation of Telecommunication Certification Bodies (TCBs).
+
+    68.162
+
+    Requirements for Telecommunication Certification Bodies.
+
+    Subpart C—Terminal Equipment Approval Procedures
+
+    68.201
+
+    Connection to the public switched telephone network.
+
+    68.211
+
+    Terminal equipment approval revocation procedures.
+
+    68.213
+
+    Installation of other than “fully protected” non-system simple customer premises wiring.
+
+    68.214
+
+    Changes in other than “fully protected” premises wiring that serves fewer than four subscriber access lines.
+
+    68.215
+
+    Installation of other than “fully-protected” system premises wiring that serves more than four subscriber access lines.
+
+    68.218
+
+    Responsibility of the party acquiring equipment authorization.
+
+    68.224
+
+    Notice of non-hearing aid compatibility.
+
+    Subpart D—Conditions for Terminal Equipment Approval
+
+    68.300
+
+    Labeling requirements.
+
+    68.316
+
+    Hearing aid compatibility: Technical requirements.
+
+    68.317
+
+    Hearing aid compatibility volume control: technical standards.
+
+    68.318
+
+    Additional limitations.
+
+    68.320
+
+    Supplier''s Declaration of Conformity.
+
+    68.321
+
+    Location of responsible party.
+
+    68.322
+
+    Changes in name, address, ownership or control of responsible party.
+
+    68.324
+
+    Supplier''s Declaration of Conformity requirements.
+
+    68.326
+
+    Retention of records.
+
+    68.346
+
+    Description of testing facilities.
+
+    68.348
+
+    Changes in equipment and circuitry subject to a Supplier''s Declaration of Conformity.
+
+    68.350
+
+    Revocation of Supplier''s Declaration of Conformity.
+
+    68.354
+
+    Numbering and labeling requirements for terminal equipment.
+
+    Subpart E—Complaint Procedures
+
+    68.400-68.412
+
+    [Reserved]
+
+    68.414
+
+    Hearing aid-compatibility: Enforcement.
+
+    68.415
+
+    Hearing aid-compatibility and volume control informal complaints.
+
+    68.417
+
+    Informal complaints; form and content.
+
+    68.418
+
+    Procedure; designation of agents for service.
+
+    68.419
+
+    Answers to informal complaints.
+
+    68.420
+
+    Review and disposition of informal complaints.
+
+    68.423
+
+    Actions by the Commission on its own motion.
+
+    Subpart F—ACS Telephonic CPE
+
+    68.501
+
+    Authorization procedures.
+
+    68.502
+
+    Labeling, warranty, instructions, and notice of revocation of approval.
+
+    68.503
+
+    Complaint procedures.
+
+    68.504
+
+    Administrative Council on Terminal
+
+    Subpart G—Administrative Council for Terminal Attachments
+
+    68.602
+
+    Sponsor of the Administrative Council for Terminal Attachments.
+
+    68.604
+
+    Requirements for submitting technical criteria.
+
+    68.608
+
+    Publication of technical criteria.
+
+    68.610
+
+    Database of terminal equipment.
+
+    68.612
+
+    Labels on terminal equipment.
+
+    68.614
+
+    Oppositions and appeals.
+
+    Authority:
+
+    47 U.S.C. 154, 303, 610.
+
+    Subpart A—General
+
+    Authority:
+
+    Secs. 4, 5, 303, 710, 48 Stat., as amended, 1066, 1068, 1082 (47 U.S.C. 154, 155, 303, 610).
+
+    Source:
+
+    45 FR 20841, Mar. 31, 1980, unless otherwise noted.'
+- id: art-2
+  title: § 68.1
+  text: '§ 68.1
+
+    Purpose.
+
+    The purpose of the rules and regulations in this part is to provide for uniform standards for the protection of the telephone network from harms caused by the connection of terminal equipment and associated
+    wiring thereto, and for the compatibility of hearing aids and telephones so as to ensure that, to the fullest extent made possible by technology and medical science, people with hearing loss have equal
+    access to the national telecommunications network, including advanced communications services.
+
+    [83 FR 8632, Feb. 28, 2018]'
+- id: art-3
+  title: § 68.2
+  text: '§ 68.2
+
+    Scope.
+
+    (a) Except as provided in paragraphs (b) and (c) of this section, and excluding subpart F, which applies only to ACS telephonic CPE, the rules and regulations of this part apply to direct connection
+    of all terminal equipment to the public switched telephone network for use in conjunction with all services other than party line services. Sections 68.4, 68.5, 68.6, 68.112, 68.160, 68.162, 68.316,
+    and 68.317, and other sections to the extent they are made applicable by subpart F of this part, also apply to ACS and ACS telephonic CPE that is manufactured in the United States or imported for use
+    in the United States on or after February 28, 2020.
+
+    (b)
+
+    National defense and security.
+
+    Where the Secretary of Defense or authorized agent or the head of any other governmental department, agency, or administration (approved in writing by the Commission to act pursuant to this rule) or
+    authorized representative, certifies in writing to the appropriate common carrier that compliance with the provisions of part 68 could result in the disclosure of communications equipment or security
+    devices, locations, uses, personnel, or activity which would adversely affect the national defense and security, such equipment or security devices may be connected to the telephone company provided
+    communications network without compliance with this part, provided that each written certification states that:
+
+    (1) The connection is required in the interest of national defense and security;
+
+    (2) The equipment or device to be connected either complies with the technical criteria pertaining thereto or will not cause harm to the nationwide telephone network or to employees of any provider
+    of wireline telecommunications; and
+
+    (3) The installation is performed by well-trained, qualified employees under the responsible supervision and control of a person who is a licensed professional engineer in the jurisdiction in which
+    the installation is performed.
+
+    (c) Governmental departments, agencies, or administrations that wish to qualify for interconnection of equipment or security devices pursuant to this section shall file a request with the Secretary
+    of this Commission stating the reasons why the exemption is requested. A list of these departments,
+
+    agencies, or administrations that have filed requests shall be published in the
+
+    Federal Register.
+
+    The Commission may take action with respect to those requests 30 days after publication. The Commission action shall be published in the
+
+    Federal Register.
+
+    However, the Commission may grant, on less than the normal notice period or without notice, special temporary authority, not to exceed 90 days, for governmental departments, agencies, or administrations
+    that wish to qualify for interconnection of equipment or security devices pursuant to this section. Requests for such authority shall state the particular fact and circumstances why authority should
+    be granted on less than the normal notice period or without notice. In such cases, the Commission shall endeavor to publish its disposition as promptly as possible in the
+
+    Federal Register.
+
+    [66 FR 7580, Jan. 24, 2001, as amended at 83 FR 8632, Feb. 28, 2018]'
+- id: art-4
+  title: § 68.3
+  text: '§ 68.3
+
+    Definitions.
+
+    As used in this part:
+
+    ACS telephonic CPE.
+
+    Customer premises equipment used with advanced communications services that is designed to provide 2-way voice communication via a built-in speaker intended to be held to the ear in a manner functionally
+    equivalent to a telephone, except for mobile handsets.
+
+    Advanced communications services.
+
+    Interconnected VoIP service, non-interconnected VoIP service, electronic messaging service, and interoperable video conferencing service.
+
+    Demarcation point (also point of interconnection).
+
+    As used in this part, the point of demarcation and/or interconnection between the communications facilities of a provider of wireline telecommunications, and terminal equipment, protective apparatus
+    or wiring at a subscriber''s premises.
+
+    Essential telephones.
+
+    Only coin-operated telephones, telephones provided for emergency use, and other telephones frequently needed for use by persons using such hearing aids.
+
+    Harm.
+
+    Electrical hazards to the personnel of providers of wireline telecommunications, damage to the equipment of providers of wireline telecommunications, malfunction of the billing equipment of providers
+    of wireline telecommunications, and degradation of service to persons other than the user of the subject terminal equipment, his calling or called party.
+
+    Hearing aid compatible.
+
+    Except as used at §§ 68.4(a)(3) and 68.414, and subpart F of this part the terms hearing aid compatible or hearing aid compatibility are used as defined in § 68.316, unless it is specifically stated
+    that hearing aid compatibility volume control, as defined in § 68.317, is intended or is included in the definition.
+
+    Inside wiring or premises wiring.
+
+    Customer-owned or controlled wire on the subscriber''s side of the demarcation point.
+
+    Premises.
+
+    As used herein, generally a dwelling unit, other building or a legal unit of real property such as a lot on which a dwelling unit is located, as determined by the provider of telecommunications service''s
+    reasonable and nondiscriminatory standard operating practices.
+
+    Private radio services.
+
+    Private land mobile radio services and other communications services characterized by the Commission in its rules as private radio services.
+
+    Public mobile services.
+
+    Air-to-ground radiotelephone services, cellular radio telecommunications services, offshore radio, rural radio service, public land mobile telephone service, and other common carrier radio communications
+    services covered by part 22 of Title 47 of the Code of Federal Regulations.
+
+    Responsible party.
+
+    The party or parties responsible for the compliance of terminal equipment or protective circuitry intended for connection directly to the public switched telephone network, or of ACS telephonic CPE,
+    with the applicable rules and regulations in this part and with any applicable technical criteria published by the Administrative Council for Terminal Attachments. If a Telecommunications Certification
+    Body certifies the terminal equipment or ACS telephonic CPE, the responsible party is the holder of the certificate for that equipment. If the terminal equipment or ACS telephonic CPE is the subject
+    of a Supplier''s Declaration of Conformity, the responsible party shall be: The manufacturer of the
+
+    equipment, or the manufacturer of protective circuitry that is marketed for use with terminal equipment that is not to be connected directly to the network, or if the equipment is imported, the importer,
+    or if the equipment is assembled from individual component parts, the assembler. If the equipment is modified by any party not working under the authority of the responsible party, the party performing
+    the modifications, if located within the U.S., or the importer, if the equipment is imported subsequent to the modifications, becomes the new responsible party. Retailers or original equipment manufacturers
+    may enter into an agreement with the assembler or importer to assume the responsibilities to ensure compliance of the terminal equipment or ACS telephonic CPE and to become the responsible party.
+
+    Secure telephones.
+
+    Telephones that are approved by the United States Government for the transmission of classified or sensitive voice communications.
+
+    Terminal equipment.
+
+    As used in this part, communications equipment located on customer premises at the end of a communications link, used to permit the stations involved to accomplish the provision of telecommunications
+    or information services.
+
+    [66 FR 7581, Jan. 24, 2001, as amended at 83 FR 8632, Feb. 28, 2018]'
+- id: art-5
+  title: § 68.4
+  text: '§ 68.4
+
+    Hearing aid-compatible telephones.
+
+    (a)(1) Except for telephones used with public mobile services, telephones used with private radio services, and cordless and secure telephones, every telephone manufactured in the United States (other
+    than for export) or imported for use in the United States after August 16, 1989, must be hearing aid compatible, as defined in § 68.316. Every cordless telephone manufactured in the United States (other
+    than for export) or imported into the United States after August 16, 1991, must be hearing aid compatible, as defined in § 68.316.
+
+    (2) Unless otherwise stated and except for telephones used with public mobile services, telephones used with private radio services and secure telephones, every telephone listed in § 68.112 must be
+    hearing aid compatible, as defined in § 68.316.
+
+    (3) A telephone is hearing aid-compatible if it provides internal means for effective use with hearing aids that are designed to be compatible with telephones which meet established technical standards
+    for hearing aid compatibility.
+
+    (4) The Commission shall revoke or otherwise limit the exemptions of paragraph (a)((1) of this section for telephones used with public mobile services or telephones used with private radio services
+    if it determines that (i) such revocation or limitation is in the public interest; (ii) continuation of the exemption without such revocation or limitation would have an adverse effect on hearing-impaired
+    individuals; (iii) compliance with the requirements of § 68.4(a)(1) is technologically feasible for the telephones to which the exemption applies; and (iv) compliance with the requirements of § 68.4(a)(1)
+    would not increase costs to such an extent that the telephones to which the exemption applies could not be successfully marketed.
+
+    [54 FR 21430, May 18, 1989, as amended at 55 FR 28763, July 13, 1990; 57 FR 27183, June 18, 1992; 61 FR 42186, Aug. 14, 1996]'
+- id: art-6
+  title: § 68.5
+  text: '§ 68.5
+
+    Waivers.
+
+    The Commission may, upon the application of any interested person, initiate a proceeding to waive the requirements of § 68.4(a)(1) with respect to new telephones, or telephones associated with a new
+    technology or service. The Commission shall not grant such a waiver unless it determines, on the basis of evidence in the record of such proceeding, that such telephones, or such technology or service,
+    are in the public interest, and that (a) compliance with the requirements of § 68.4(a)(1) is technologically infeasible, or (b) compliance with such requirements would increase the costs of the telephones,
+    or of the technology or service, to such an extent that such telephones, technology, or service could not be successfully marketed. In any proceeding under this section to grant a waiver from the requirements
+    of § 68.4(a)(1), the Commission shall consider the effect on hearing-impaired individuals of granting the waiver. The
+
+    Commission shall periodically review and determine the continuing need for any waiver granted pursuant to this section.
+
+    [54 FR 21430, May 18, 1989]'
+- id: art-7
+  title: § 68.6
+  text: '§ 68.6
+
+    Telephones with volume control.
+
+    As of January 1, 2000, all telephones, including cordless telephones, as defined in § 15.3(j) of this chapter, manufactured in the United States (other than for export) or imported for use in the United
+    States, must have volume control in accordance with § 68.317. Secure telephones, as defined by § 68.3 are exempt from this section, as are telephones used with public mobile services or private radio
+    services.
+
+    [62 FR 43484, Aug. 14, 1997]'
+- id: art-8
+  title: § 68.7
+  text: '§ 68.7
+
+    Technical criteria for terminal equipment.
+
+    (a) Terminal equipment shall not cause harm, as defined in § 68.3, to the public switched telephone network.
+
+    (b) Technical criteria published by the Administrative Council for Terminal Attachments are the presumptively valid technical criteria for the protection of the public switched telephone network from
+    harms caused by the connection of terminal equipment, subject to the appeal procedures in § 68.614 of this part.
+
+    [66 FR 7581, Jan. 24, 2001]
+
+    Subpart B—Conditions on Use of Terminal Equipment'
+- id: art-9
+  title: § 68.100
+  text: '§ 68.100
+
+    General.
+
+    In accordance with the rules and regulations in this part, terminal equipment may be directly connected to the public switched telephone network, including private line services provided over wireline
+    facilities that are owned by providers of wireline telecommunications.
+
+    [66 FR 7581, Jan. 24, 2001]'
+- id: art-10
+  title: § 68.102
+  text: '§ 68.102
+
+    Terminal equipment approval requirement.
+
+    Terminal equipment must be approved in accordance with the rules and regulations in subpart C of this part, or connected through protective circuitry that is approved in accordance with the rules and
+    regulations in subpart C.
+
+    [66 FR 7582, Jan. 24, 2001]'
+- id: art-11
+  title: § 68.105
+  text: '§ 68.105
+
+    Minimum point of entry (MPOE) and demarcation point.
+
+    (a)
+
+    Facilities at the demarcation point.
+
+    Carrier-installed facilities at, or constituting, the demarcation point shall consist of wire or a jack conforming to the technical criteria published by the Administrative Council for Terminal Attachments.
+
+    (b)
+
+    Minimum point of entry.
+
+    The “minimum point of entry” (MPOE) as used herein shall be either the closest practicable point to where the wiring crosses a property line or the closest practicable point to where the wiring enters
+    a multiunit building or buildings. The reasonable and nondiscriminatory standard operating practices of the provider of wireline telecommunications services shall determine which shall apply. The provider
+    of wireline telecommunications services is not precluded from establishing reasonable classifications of multiunit premises for purposes of determining which shall apply. Multiunit premises include,
+    but are not limited to, residential, commercial, shopping center and campus situations.
+
+    (c)
+
+    Single unit installations.
+
+    For single unit installations existing as of August 13, 1990, and installations installed after that date the demarcation point shall be a point within 30 cm (12 in) of the protector or, where there
+    is no protector, within 30 cm (12 in) of where the telephone wire enters the customer''s premises, or as close thereto as practicable.
+
+    (d)
+
+    Multiunit installations.
+
+    (1) In multiunit premises existing as of August 13, 1990, the demarcation point shall be determined in accordance with the local carrier''s reasonable and non-discriminatory standard operating practices.
+    Provided, however, that where there are multiple demarcation points within the multiunit premises, a demarcation point for a customer shall not be further inside the customer''s premises than a point
+    twelve inches from where the wiring enters the customer''s premises, or as close thereto as practicable.
+
+    (2) In multiunit premises in which wiring is installed, including major additions or rearrangements of wiring existing prior to that date, the provider of wireline telecommunications may place the demarcation
+    point at the minimum point of entry (MPOE). If the provider of wireline telecommunications services does not elect to establish a practice of placing the demarcation point at the minimum point of entry,
+    the multiunit premises owner shall determine the location of the demarcation point or points. The multiunit premises owner shall determine whether there shall be a single demarcation point location
+    for all customers or separate such locations for each customer. Provided, however, that where there are multiple demarcation points within the multiunit premises, a demarcation point for a customer
+    shall not be further inside the customer''s premises than a point 30 cm (12 in) from where the wiring enters the customer''s premises, or as close thereto as practicable. At the time of installation,
+    the provider of wireline telecommunications services shall fully inform the premises owner of its options and rights regarding the placement of the demarcation point or points and shall not attempt
+    to unduly influence that decision for the purpose of obstructing competitive entry.
+
+    (3) In any multiunit premises where the demarcation point is not already at the MPOE, the provider of wireline telecommunications services must comply with a request from the premises owner to relocate
+    the demarcation point to the MPOE. The provider of wireline telecommunications services must negotiate terms in good faith and complete the negotiations within forty-five days from said request. Premises
+    owners may file complaints with the Commission for resolution of allegations of bad faith bargaining by provider of wireline telecommunications services.
+
+    See
+
+    47 U.S.C. 208, 47 CFR 1.720 through 1.740.
+
+    (4) The provider of wireline telecommunications services shall make available information on the location of the demarcation point within ten business days of a request from the premises owner. If the
+    provider of wireline telecommunications services does not provide the information within that time, the premises owner may presume the demarcation point to be at the MPOE. Notwithstanding the provisions
+    of § 68.110(b), provider of wireline telecommunications services must make this information freely available to the requesting premises owner.
+
+    (5) In multiunit premises with more than one customer, the premises owner may adopt a policy restricting a customer''s access to wiring on the premises to only that wiring located in the customer''s
+    individual unit that serves only that particular customer.
+
+    [66 FR 7582, Jan. 24, 2001; 67 FR 60167, Sept. 25, 2002; 83 FR 31677, July 9, 2018; 83 FR 44843, Sept. 4, 2018]'
+- id: art-12
+  title: § 68.106
+  text: '§ 68.106
+
+    Notification to provider of wireline telecommunications.
+
+    (a)
+
+    General.
+
+    Customers connecting terminal equipment or protective circuitry to the public switched telephone network shall, upon request of the provider of wireline telecommunications, inform the provider of wireline
+    telecommunications of the particular line(s) to which such connection is made, and any other information required to be placed on the terminal equipment pursuant to § 68.354 of this part by the Administrative
+    Council for Terminal Attachments.
+
+    (b)
+
+    Systems assembled of combinations of individually-approved terminal equipment and protective circuitry.
+
+    Customers connecting such assemblages to the public switched telephone network shall, upon the request of the provider of wireline telecommunications, provide to the provider of wireline telecommunications
+    the following information:
+
+    For each line:
+
+    (1) Information required for compatible operation of the equipment with the communications facilities of the provider of wireline telecommunications;
+
+    (2) The identifying information required to be placed on terminal equipment pursuant to § 68.354 for all equipment dedicated to that line; and
+
+    (3) Any other information regarding equipment dedicated to that line required to be placed on the terminal equipment by the Administrative Council for Terminal Attachments.
+
+    (4) A list of identifying numbers required to be placed on terminal equipment, if any, by the Administrative Council for Terminal Attachments, pursuant to § 68.354 of this part, for equipment to be
+    used in the system.
+
+    (c)
+
+    Systems using other than “fully protected” premises wiring.
+
+    Customers who intend to connect premises wiring other than “fully protected” premises wiring to the public switched telephone network shall, in addition to the foregoing, give notice to the provider
+    of wireline telecommunications in accordance with § 68.215(e).
+
+    [66 FR 7582, Jan. 24, 2001]'
+- id: art-13
+  title: § 68.108
+  text: '§ 68.108
+
+    Incidence of harm.
+
+    Should terminal equipment, inside wiring, plugs and jacks, or protective circuitry cause harm to the public switched telephone network, or should the provider of wireline telecommunications reasonably
+    determine that such harm is imminent, the provider of wireline telecommunications shall, where practicable, notify the customer that temporary discontinuance of service may be required; however, wherever
+    prior notice is not practicable, the provider of wireline telecommunications may temporarily discontinue service forthwith, if such action is reasonable under the circumstances. In case of such temporary
+    discontinuance, the provider of wireline telecommunications shall:
+
+    (a) Promptly notify the customer of such temporary discontinuance;
+
+    (b) Afford the customer the opportunity to correct the situation which gave rise to the temporary discontinuance; and
+
+    (c) Inform the customer of his right to bring a complaint to the Commission pursuant to the procedures set forth in subpart E of this part.
+
+    [55 FR 28630, July 12, 1990, as amended at 66 FR 7583, Jan. 24, 2001]'
+- id: art-14
+  title: § 68.110
+  text: '§ 68.110
+
+    Compatibility of the public switched telephone network and terminal equipment.
+
+    (a)
+
+    Availability of interface information.
+
+    Technical information concerning interface parameters not specified by the technical criteria published by the Administrative Council for Terminal Attachments, that are needed to permit terminal equipment
+    to operate in a manner compatible with the communications facilities of a provider of wireline telecommunications, shall be provided by the provider of wireline telecommunications upon request.
+
+    (b)
+
+    Availability of inside wiring information.
+
+    Any available technical information concerning wiring on the customer side of the demarcation point, including copies of existing schematic diagrams and service records, shall be provided by the provider
+    of wireline telecommunications upon request of the building owner or agent thereof. The provider of wireline telecommunications may charge the building owner a reasonable fee for this service, which
+    shall not exceed the cost involved in locating and copying the documents. In the alternative, the provider of wireline telecommunications may make these documents available for review and copying by
+    the building owner. In this case, the provider of wireline telecommunications may charge a reasonable fee, which shall not exceed the cost involved in making the documents available, and may also require
+    the building owner to pay a deposit to guarantee the documents'' return.
+
+    [66 FR 7583, Jan. 24, 2001, as amended at 83 FR 31677, July 9, 2018]'
+- id: art-15
+  title: § 68.112
+  text: '§ 68.112
+
+    Hearing aid-compatibility.
+
+    (a)
+
+    Coin telephones.
+
+    All new and existing coin-operated telephones, whether located on public property or in a semi-public location (e.g., drugstore, gas station, private club).
+
+    (b)
+
+    Emergency use telephones.
+
+    Telephones “provided for emergency use” include the following:
+
+    (1) Telephones, except headsets, in places where a person with a hearing disability might be isolated in an emergency, including, but not limited to, elevators, highways, and tunnels for automobile,
+    railway or subway, and workplace common areas.
+
+    Note to paragraph (
+
+    b
+
+    )(1):
+
+    Examples of workplace common areas include libraries, reception areas and similar locations where employees are reasonably expected to congregate.
+
+    (2) Telephones specifically installed to alert emergency authorities, including, but not limited to, police or fire departments or medical assistance personnel.
+
+    (3) Telephones, except headsets, in workplace non-common areas. Note: Examples of workplace non-common areas include private enclosed offices, open area individual work stations and mail rooms. Such
+    non-common area telephones are required to be hearing aid compatible, as defined in § 68.316, by January 1, 2000, except for those telephones located in establishments with fewer than fifteen employees;
+    and those telephones purchased between January 1, 1985 through December 31, 1989, which are not required to be hearing aid compatible, as defined in § 68.316, until January 1, 2005.
+
+    (i) Telephones, including headsets, made available to an employee with a hearing disability for use by that employee in his or her employment duty, shall, however, be hearing aid compatible, as defined
+    in § 68.316.
+
+    (ii) As of January 1, 2000 or January 1, 2005, whichever date is applicable, there shall be a rebuttable presumption that all telephones located in the workplace are hearing aid compatible, as defined
+    in § 68.316. Any person who identifies a telephone as non-hearing aid-compatible, as defined in § 68.316, may rebut this presumption. Such telephone must be replaced within fifteen working days with
+    a hearing aid compatible telephone, as defined in § 68.316, including, on or after January 1, 2000, with volume control, as defined in § 68.317.
+
+    (iii) Telephones, not including headsets, except those headsets furnished under paragraph (b)(3)(i) of this section, that are purchased, or replaced with newly acquired telephones, must be:
+
+    (A) Hearing aid compatible, as defined in § 68.316, after October 23, 1996; and
+
+    (B) Include volume control, as defined in § 68.317, on or after January 1, 2000.
+
+    (iv) When a telephone under paragraph (b)(3)(iii) of this section is replaced with a telephone from inventory existing before October 23, 1996, any person may make a bona fide request that such telephone
+    be hearing aid compatible, as defined in § 68.316. If the replacement occurs on or after January 1, 2000, the telephone must have volume control, as defined in § 68.317. The telephone shall be provided
+    within fifteen working days.
+
+    (v) During the period from October 23, 1996, until the applicable date of January 1, 2000 or January 1, 2005, workplaces of fifteen or more employees also must provide and designate telephones for emergency
+    use by employees with hearing disabilities through one or more of the following means:
+
+    (A) By having at least one coin-operated telephone, one common area telephone or one other designated hearing aid compatible telephone within a reasonable and accessible distance for an individual searching
+    for a telephone from any point in the workplace; or
+
+    (B) By providing wireless telephones that meet the definition for hearing aid compatible for wireline telephones, as defined in § 68.316, for use by employees in their employment duty outside common
+    areas and outside the offices of employees with hearing disabilities.
+
+    (4) All credit card operated telephones, whether located on public property or in a semipublic location (e.g., drugstore, gas station, private club), unless a hearing aid compatible (as defined in § 68.316)
+    coin-operated telephone providing similar services is nearby and readily available. However, regardless of coin-operated telephone availability, all credit card operated telephones must be made hearing
+    aid-compatible, as defined in § 68.316, when replaced, or by May 1, 1991, which ever comes sooner.
+
+    (5) Telephones needed to signal life threatening or emergency situations in confined settings, including but not limited to, rooms in hospitals, residential health care facilities for senior citizens,
+    and convalescent homes:
+
+    (i) A telephone that is hearing aid compatible, as defined in § 68.316, is not required until:
+
+    (A) November 1, 1997, for establishments with fifty or more beds, unless replaced before that time; and
+
+    (B) November 1, 1998, for all other establishments with fewer than fifty beds, unless replaced before that time.
+
+    (ii) Telephones that are purchased, or replaced with newly acquired telephones, must be:
+
+    (A) Hearing aid compatible, as defined in § 68.116, after October 23, 1996; and
+
+    (B) Include volume control, as defined in § 68.317, on or after January 1, 2000.
+
+    (iii) Unless a telephone in a confined setting is replaced pursuant to paragraph (b)(5)(ii) of this section, a hearing aid compatible telephone shall not be required if:
+
+    (A) A telephone is both purchased and maintained by a resident for use in that resident''s room in the establishment; or
+
+    (B) The confined setting has an alternative means of signalling life-threatening or emergency situations that is available, working and monitored.
+
+    (6) Telephones in hotel and motel guest rooms, and in any other establishment open to the general public for the purpose of overnight accommodation for a fee. Such telephones are required to be hearing
+    aid compatible, as defined in § 68.316, except that, for establishments with eighty or more guest rooms, the telephones are not required to be hearing aid compatible, as defined in § 68.316, until November
+    1, 1998; and for establishments with fewer than eighty guest rooms, the telephones are not required to be hearing aid compatible, as defined in § 68.316, until November 1, 1999.
+
+    (i) Anytime after October 23, 1996, if a hotel or motel room is renovated or newly constructed, or the telephone i'
 doc_files:
 - us/raw/US-CFR-title47-part68.xml
+- us/raw/US-CFR-title47-part68.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title47-part68.xml (xml, 134185 chars)，生成 15 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title47-part68.xml (xml, 134185 chars)，生成 15 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title47-part68.xml (xml, 134185 chars)，生成 15 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE47-PART68-4（US 47 CFR Part 68）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE47-PART68-3（US 47 CFR Part 68）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE47-PART68-2（US 47 CFR Part 68）。'

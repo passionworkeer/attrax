@@ -1,6 +1,6 @@
 id: US-CFR-TITLE21-PART180
 official_citation: US 21 CFR Part 180
-short_name: US 21 CFR Part 180
+short_name: US 21 CFR Part 180 — FOOD ADDITIVES PERMITTED IN FOOD OR IN CONTACT WITH FOOD ON AN INTERIM BASIS PENDING ADDITIONAL STUDY
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,437 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '21
+
+    Food and Drugs
+
+    3
+
+    2024-04-01
+
+    2024-04-01
+
+    false
+
+    FOOD ADDITIV'
+  text: '21
+
+    Food and Drugs
+
+    3
+
+    2024-04-01
+
+    2024-04-01
+
+    false
+
+    FOOD ADDITIVES PERMITTED IN FOOD OR IN CONTACT WITH FOOD ON AN INTERIM BASIS PENDING ADDITIONAL STUDY
+
+    180
+
+    PART 180
+
+    Food and Drugs
+
+    FOOD AND DRUG ADMINISTRATION, DEPARTMENT OF HEALTH AND HUMAN SERVICES (CONTINUED)
+
+    FOOD FOR HUMAN CONSUMPTION (CONTINUED)
+
+    Pt. 180
+
+    PART 180—FOOD ADDITIVES PERMITTED IN FOOD OR IN CONTACT WITH FOOD ON AN INTERIM BASIS PENDING ADDITIONAL STUDY
+
+    Subpart A—General Provisions
+
+    Sec.
+
+    180.1
+
+    General.
+
+    Subpart B—Specific Requirements for Certain Food Additives
+
+    180.22
+
+    Acrylonitrile copolymers.
+
+    180.25
+
+    Mannitol.
+
+    180.30
+
+    Brominated vegetable oil.
+
+    180.37
+
+    Saccharin, ammonium saccharin, calcium saccharin, and sodium saccharin.
+
+    Authority:
+
+    21 U.S.C. 321, 342, 343, 348, 371; 42 U.S.C. 241.
+
+    Source:
+
+    42 FR 14636, Mar. 15, 1977, unless otherwise noted.
+
+    Editorial Note:
+
+    Nomenclature changes to part 180 appear at 61 FR 14482, Apr. 2, 1996; 66 FR 56035, Nov. 6, 2001; and 81 FR 49896, July 29, 2016.
+
+    Subpart A—General Provisions'
+- id: art-2
+  title: § 180.1
+  text: '§ 180.1
+
+    General.
+
+    (a) Substances having a history of use in food for human consumption or in food contact surfaces may at any time have their safety or functionality brought into question by new information that in itself
+    is not conclusive. An interim food additive regulation for the use of any such substance may be promulgated in this subpart when new information raises a substantial question about the safety or functionality
+    of the substance but there is a reasonable certainty that the substance is not harmful and that no harm to the
+
+    public health will result from the continued use of the substance for a limited period of time while the question raised is being resolved by further study.
+
+    (b) No interim food additive regulation may be promulgated if the new information is conclusive with respect to the question raised or if there is a reasonable likelihood that the substance is harmful
+    or that continued use of the substance will result in harm to the public health.
+
+    (c) The Commissioner, on his own initiative or on the petition of any interested person, pursuant to part 10 of this chapter, may propose an interim food additive regulation. A final order promulgating
+    an interim food additive regulation shall provide that continued use of the substance in food is subject to each of the following conditions:
+
+    (1) Use of the substance in food or food contact surfaces must comply with whatever limitations the Commissioner deems to be appropriate under the circumstances.
+
+    (2) Within 60 days following the effective date of the regulation, an interested person shall satisfy the Commissioner in writing that studies adequate and appropriate to resolve the questions raised
+    about the substance have been undertaken, or the Food and Drug Administration may undertake the studies. The Commissioner may extend this 60-day period if necessary to review and act on proposed protocols.
+    If no such commitment is made, or adequate and appropriate studies are not undertaken, an order shall immediately be published in the
+
+    Federal Register
+
+    revoking the interim food additive regulation effective upon publication.
+
+    (3) A progress report shall be filed on the studies every January 1 and July 1 until completion. If the progress report is inadequate or if the Commissioner concludes that the studies are not being
+    pursued promptly and diligently or if interim results indicate a reasonable likelihood that a health hazard exists, an order will promptly be published in the
+
+    Federal Register
+
+    revoking the interim food additive regulation effective upon publication.
+
+    (4) If nonclinical laboratory studies are involved, studies filed with the Commissioner shall include, with respect to each study, either a statement that the study has been or will be conducted in
+    compliance with the good laboratory practice regulations as set forth in part 58 of this chapter, or, if any such study was not conducted in compliance with such regulations, a brief statement of the
+    reason for the noncompliance.
+
+    (5) [Reserved]
+
+    (6) If clinical investigations involving human subjects are involved, such investigations filed with the Commissioner shall include, with respect to each investigation, a statement that the investigation
+    either was conducted in compliance with the requirements for institutional review set forth in part 56 of this chapter, or was not subject to such requirements in accordance with §§ 56.104 or 56.105,
+    and that it has been or will be conducted in compliance with the requirements for informed consent set forth in part 50 of this chapter.
+
+    (d) Promptly upon completion of the studies undertaken on the substance, the Commissioner will review all available data, will terminate the interim food additive regulation, and will either issue a
+    food additive regulation or will require elimination of the substance from the food supply.
+
+    (e) The Commissioner may consult with advisory committees, professional organizations, or other experts in the field, in evaluating:
+
+    (1) Whether an interim food additive regulation is justified,
+
+    (2) The type of studies necessary and appropriate to resolve questions raised about a substance,
+
+    (3) Whether interim results indicate the reasonable likelihood that a health hazard exists, or
+
+    (4) Whether the data available at the conclusion of those studies justify a food additive regulation.
+
+    (f) Where appropriate, an emergency action level may be issued for a substance subject to paragraph (a) of this section that is not an approved food additive, pending the issuance of a final interim
+    food additive regulation. Such an action level shall be issued pursuant to sections 306 and 402(a) of the act to identify, based upon available data, a safe level of use for the substance.
+
+    Such an action level shall be issued in a notice published in the
+
+    Federal Register
+
+    and shall be followed as soon as practicable by a proposed interim food additive regulation. Where the available data do not permit establishing an action level for the safe use of a substance, use
+    of the substance may be prohibited. The identification of a prohibited substance may be made in part 189 of this chapter when appropriate.
+
+    [42 FR 14636, Mar. 15, 1977, as amended at 42 FR 15674, Mar. 22, 1977; 42 FR 52821, Sept. 30, 1977; 46 FR 8952, Jan. 27, 1981; 46 FR 14340, Feb. 27, 1981; 50 FR 7492, Feb. 22, 1985; 54 FR 39634, Sept.
+    27, 1989]
+
+    Subpart B—Specific Requirements for Certain Food Additives'
+- id: art-3
+  title: § 180.22
+  text: '§ 180.22
+
+    Acrylonitrile copolymers.
+
+    Acrylonitrile copolymers may be safely used on an interim basis as articles or components of articles intended for use in contact with food, in accordance with the following prescribed conditions:
+
+    (a) Limitations for acrylonitrile monomer extraction for finished food-contact articles, determined by a method of analysis titled “Gas-Solid Chromatographic Procedure for Determining Acrylonitrile
+    Monomer in Acrylonitrile-Containing Polymers and Food Simulating Solvents,” which is incorporated by reference. Copies are available from the Center for Food Safety and Applied Nutrition (HFS-200),
+    Food and Drug Administration, 5001 Campus Dr., College Park, MD 20740, or available for inspection at the National Archives and Records Administration (NARA). For information on the availability of
+    this material at NARA, call 202-741-6030, or go to:
+
+    http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html.
+
+    (1) In the case of single-use articles having a volume to surface ratio of 10 milliliters or more per square inch of food contact surface—0.003 milligram/square inch when extracted to equilibrium at
+    120 °F with food-simulating solvents appropriate to the intended conditions of use.
+
+    (2) In the case of single-use articles having a volume to surface ratio of less than 10 milliliters per square inch of food contact surface—0.3 part per million calculated on the basis of the volume
+    of the container when extracted to equilibrium at 120 °F with food-simulating solvents appropriate to the intended conditions of use.
+
+    (3) In the case of repeated-use articles—0.003 milligram/square inch when extracted at a time equivalent to initial batch usage utilizing food-simulating solvents and temperatures appropriate to the
+    intended conditions of use.
+
+    The food-simulating solvents shall include, where applicable, distilled water, 8 percent or 50 percent ethanol, 3 percent acetic acid, and either
+
+    n
+
+    -heptane or an appropriate oil or fat.
+
+    (b) Where necessary, current regulations permitting the use of acrylonitrile copolymers shall be revised to specify limitations on acrylonitrile/mercaptan complexes utilized in the production of acrylonitrile
+    copolymers. Such copolymers, if they contain reversible acrylonitrile/mercaptan complexes and are used in other than repeated-use conditions, shall be tested to determine the identity of the complex
+    and the level of the complex present in the food-contact article. Such testing shall include determination of the rate of decomposition of the complex at temperatures of 100 °F, 160 °F, and 212 °F using
+    3 percent acetic acid as the hydrolic agent. Acrylonitrile monomer levels, acrylonitrile/mercaptan complex levels, acrylonitrile oligomer levels, descriptions of the analytical methods used to determine
+    the complex and the acrylonitrile migration, and validation studies of these analytical methods shall be submitted by June 9, 1977, to the Center for Food Safety and Applied Nutrition (HFS-200), Food
+    and Drug Administration, 5001 Campus Dr., College Park, MD 20740, unless an extension is granted by the Food and Drug Administration for good cause shown. Analytical methods for the determination of
+    acrylonitrile complexes with
+
+    n
+
+    -dodecyl-mercaptan, n-octyl mercaptan, and 2-mercaptoethanol, titled “Determination of β-Dodecyl-mercaptopropionitrile in NR-16R Aqueous Extracts” and “Measurement of β-(2-Hdroxyethylmercapto) Propionitrile
+    in Heptane Food-Simulating Solvent,”
+
+    are incorporated by reference. Copies are available from the Center for Food Safety and Applied Nutrition (HFS-200), Food and Drug Administration, 5001 Campus Dr., College Park, MD 20740, or available
+    for inspection at the National Archives and Records Administration (NARA). For information on the availability of this material at NARA, call 202-741-6030, or go to:
+
+    http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html.
+
+    (c) The following data shall be provided for finished food-contact articles intended for repeated use:
+
+    (1) Qualitative and quantitative migration values at a time equivalent to initial batch usage, utilizing solvents and temperatures appropriate to the intended conditions of use.
+
+    (2) Qualitative and quantitative migration values at the time of equilibrium extractions, utilizing solvents and temperatures appropriate to the intended conditions of use.
+
+    (3) Data on the volume and/or weight of food handled during the initial batch time period(s), during the equilibrium test period, and over the estimated life of the food-contact surface.
+
+    (d) Where acrylonitrile copolymers represent only a minor component of a polymer system, calculations based on 100 percent migration of the acrylonitrile component may be submitted in lieu of the requirements
+    of paragraphs (a), (b), and (c) of this section in support of the continued safe use of acrylonitrile copolymers.
+
+    (e) On or before September 13, 1976, any interested person shall satisfy the Commissioner of Food and Drugs that toxicological feeding studies adequate and appropriate to establish safe conditions for
+    the use of acrylonitrile copolymers have been, or soon will be, undertaken. Toxicity studies of acrylonitrile monomer shall include: (1) Lifetime feeding studies with a mammalian species, preferably
+    with animals exposed in utero to the chemical, (2) studies of multigeneration reproduction with oral administration of the test material, (3) assessment of teratogenic and mutagenic potentials, (4)
+    subchronic oral administration in a nonrodent mammal, (5) tests to determine any synergistic toxic effects between acrylonitrile monomer and cyanide ion, and (6) a literature search on the effects of
+    chronic ingestion of hydrogen cyanide. Data on levels of acrylamide extractable from acrylonitrile copolymers shall also be submitted. Protocols of testing should be submitted for review to the Center
+    for Food Safety and Applied Nutrition (HFS-200), Food and Drug Administration, 5001 Campus Dr., College Park, MD 20740.
+
+    (f) Acrylonitrile copolymers may be used in contact with food only if authorized in parts 174 through 179 or § 181.32 of this chapter, except that other uses of acrylonitrile copolymers in use prior
+    to June 14, 1976, may continue under the following conditions:
+
+    (1) On or before August 13, 1976, each use of acrylonitrile copolymers in a manner not authorized by § 181.32 of this chapter or parts 174 through 179 of this chapter shall be the subject of a notice
+    to the Center for Food Safety and Applied Nutrition (HFS-200), Food and Drug Administration, 5001 Campus Dr., College Park, MD 20740. Such notice shall be accompanied by a statement of the basis, including
+    any articles and correspondence, on which the user in good faith believed the use to be prior-sanctioned. The Commissioner of Food and Drugs shall, by notice in the
+
+    Federal Register,
+
+    identify any use of acrylonitrile copolymers not in accordance with this paragraph. Those uses are thereafter unapproved food additives and consequently unlawful.
+
+    (2) Any use of acrylonitrile copolymers subject to paragraph (f)(1) of this section shall be the subject of a petition submitted on or before December 13, 1976, in accordance with § 171.1 of this chapter,
+    unless an extension of time is granted by the Food and Drug Administration for good cause shown. Any application for extension shall be by petition submitted in accordance with the requirements of part
+    10 of this chapter. If a petition is denied, in whole or in part, those uses subject to the denial are thereafter unapproved food additives and consequently unlawful.
+
+    (3) Any use of acrylonitrile copolymers subject to paragraph (f)(1) of this section shall meet the acrylonitrile monomer extraction limitation set
+
+    forth in paragraph (a) of this section and shall be subject to the requirements of paragraph (b) of this section.
+
+    (g) In addition to the requirements of this section, the use of acrylonitrile copolymers shall comply with all applicable requirements in other regulations in this part.
+
+    [42 FR 14636, Mar. 15, 1977, as amended at 47 FR 11850, Mar. 19, 1982; 54 FR 24899, June 12, 1989; 61 FR 14246, Apr. 1, 1996]'
+- id: art-4
+  title: § 180.25
+  text: '§ 180.25
+
+    Mannitol.
+
+    (a) Mannitol is the chemical 1,2,3,4,5,6,-hexanehexol (C
+
+    6
+
+    H
+
+    14
+
+    O
+
+    6
+
+    ) a hexahydric alcohol, differing from sorbitol principally by having a different optical rotation. Mannitol is produced by one of the following processes:
+
+    (1) The electrolytic reduction or transition metal catalytic hydrogenation of sugar solutions containing glucose or fructose.
+
+    (2) The fermentation of sugars or sugar alcohols such as glucose, sucrose, fructose, or sorbitol using the yeast
+
+    Zygosaccharomyces rouxii.
+
+    (3) A pure culture fermentation of sugars such as fructose, glucose, or maltose using the nonpathogenic, nontoxicogenic bacterium
+
+    Lactobacillus intermedius
+
+    (
+
+    fermentum
+
+    ).
+
+    (b) The ingredient meets the specifications of the “Food Chemicals Codex,” 3d Ed. (1981), pp. 188-190, which is incorporated by reference. Copies may be obtained from the National Academy Press, 2101
+    Constitution Ave. NW., Washington, DC 20418, or may be examined at the National Archives and Records Administration (NARA). For information on the availability of this material at NARA, call 202-741-6030,
+    or go to:
+
+    http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html.
+
+    (c) The ingredient is used as an anticaking agent and free-flow agent as defined in § 170.3(o)(1) of this chapter, formulation aid as defined in § 170.3(o)(14) of this chapter, firming agent as defined
+    in § 170.3(o)(10) of this chapter, flavoring agent and adjuvant as defined in § 170.3(o)(12) of this chapter, lubricant and release agent as defined in § 170.3(o)(18) of this chapter, nutritive sweetener
+    as defined in § 170.3(o)(21) of this chapter, processing aid as defined in § 170.3(o)(24) of this chapter, stabilizer and thickener as defined in § 170.3(o)(28) of this chapter, surface-finishing agent
+    as defined in § 170.3(o)(30) of this chapter, and texturizer as defined in § 170.3(o)(32) of this chapter.
+
+    (d) The ingredient is used in food at levels not to exceed 98 percent in pressed mints and 5 percent in all other hard candy and cough drops as defined in § 170.3(n)(25) of this chapter, 31 percent
+    in chewing gum as defined in § 170.3(n)(6) of this chapter, 40 percent in soft candy as defined in § 170.3(n)(38) of this chapter, 8 percent in confections and frostings as defined in § 170.3(n)(9)
+    of this chapter, 15 percent in nonstandardized jams and jellies, commercial, as defined in § 170.3(n)(28) of this chapter, and at levels less than 2.5 percent in all other foods.
+
+    (e) The label and labeling of food whose reasonably foreseeable consumption may result in a daily ingestion of 20 grams of mannitol shall bear the statement “Excess consumption may have a laxative effect”.
+
+    (f) In accordance with § 180.1, adequate and appropriate feeding studies have been undertaken for this substance. Continued uses of this ingredient are contingent upon timely and adequate progress reports
+    of such tests, and no indication of increased risk to public health during the test period.
+
+    (g) Prior sanctions for this ingredient different from the uses established in this regulation do not exist or have been waived.
+
+    [42 FR 14636, Mar. 15, 1977, as amended at 49 FR 5610, Feb. 14, 1984; 61 FR 7991, Mar. 1, 1996; 69 FR 65542, Nov. 15, 2004]'
+- id: art-5
+  title: § 180.30
+  text: '§ 180.30
+
+    Brominated vegetable oil.
+
+    The food additive brominated vegetable oil may be safely used in accordance with the following prescribed conditions:
+
+    (a) The additive complies with specifications prescribed in the “Food Chemicals Codex,” 3d Ed. (1981), pp. 40-41, which is incorporated by reference, except that free fatty acids (as oleic) shall not
+    exceed 2.5 percent and iodine value shall not exceed 16. Copies of the material incorporated by reference may be obtained from the National Academy Press, 2101 Constitution Ave. NW., Washington, DC
+    20418, or may be
+
+    examined at the National Archives and Records Administration (NARA). For information on the availability of this material at NARA, call 202-741-6030, or go to:
+
+    http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html.
+
+    (b) The additive is used on an interim basis as a stabilizer for flavoring oils used in fruit-flavored beverages, for which any applicable standards of identity do not preclude such use, in an amount
+    not to exceed 15 parts per million in the finished beverage, pending the outcome of additional toxicological studies on which periodic reports at 6-month intervals are to be furnished and final results
+    submitted to the Food and Drug Administration promptly after completion of the studies.
+
+    [42 FR 14636, Mar. 15, 1977, as amended at 49 FR 5610, Feb. 14, 1984]'
+- id: art-6
+  title: § 180.37
+  text: '§ 180.37
+
+    Saccharin, ammonium saccharin, calcium saccharin, and sodium saccharin.
+
+    The food additives saccharin, ammonium saccharin, calcium saccharin, and sodium saccharin may be safely used as sweetening agents in food in accordance with the following conditions, if the substitution
+    for nutritive sweeteners is for a valid special dietary purpose and is in accord with current special dietary food regulations and policies or if the use or intended use is for an authorized technological
+    purpose other than calorie reduction:
+
+    (a) Saccharin is the chemical, 1,2-benzisothiazolin-3-one - 1,1 - dioxide (C
+
+    7
+
+    H
+
+    5
+
+    NO
+
+    3
+
+    S). The named salts of saccharin are produced by the additional neutralization of saccharin with the proper base to yield the desired salt.
+
+    (b) The food additives meet the specifications of the Food Chemicals Codex, 7th ed. (2010), pp. 52-54, 153-154, 898-899, 961-962, which is incorporated by reference. The Director of the Office of the
+    Federal Register approves this incorporation by reference in accordance with 5 U.S.C. 552(a) and 1 CFR part 51. You may obtain copies from the United States Pharmacopeial Convention, 12601 Twinbrook
+    Pkwy., Rockville, MD 20852 (Internet address
+
+    http://www.usp.org
+
+    ). Copies may be examined at the Food and Drug Administration''s Main Library, 10903 New Hampshire Ave., Bldg. 2, Third Floor, Silver Spring, MD 20993, 301-796-2039, or at the National Archives and
+    Records Administration (NARA). For information on the availability of this material at NARA, call 202-741-6030 or go to:
+
+    http://www.archives.gov/federal-register/cfr/ibr-locations.html.
+
+    (c) Authority for such use shall expire when the Commissioner receives the final reports on the ongoing studies in Canada and publishes an order on the safety of saccharin and its salts based on those
+    reports and other available data.
+
+    (d) The additives are used or intended for use as a sweetening agent only in special dietary foods, as follows:
+
+    (1) In beverages, fruit juice drinks, and bases or mixes when prepared for consumption in accordance with directions, in amounts not to exceed 12 milligrams of the additive, calculated as saccharin,
+    per fluid ounce.
+
+    (2) As a sugar substitute for cooking or table use, in amounts not to exceed 20 milligrams of the additive, calculated as saccharin, for each expressed teaspoonful of sugar sweetening equivalency.
+
+    (3) In processed foods, in amounts not to exceed 30 milligrams of the additive, calculated as saccharin, per serving of designated size.
+
+    (e) The additives are used or intended for use only for the following technological purposes:
+
+    (1) To reduce bulk and enhance flavors in chewable vitamin tablets, chewable mineral tablets, or combinations thereof.
+
+    (2) To retain flavor and physical properties of chewing gum.
+
+    (3) To enhance flavor of flavor chips used in nonstandardized bakery products.
+
+    (f) To assure safe use of the additives, in addition to the other information required by the Act:
+
+    (1) The label of the additive and any intermediate mixes of the additive for manufacturing purposes shall bear:
+
+    (i) The name of the additive.
+
+    (ii) A statement of the concentration of the additive, expressed as saccharin, in any intermediate mix.
+
+    (iii) Adequate directions for use to provide a final food product that complies with the limitations prescribed in paragraphs (d) and (e) of this section.
+
+    (2) The label of any finished food product containing the additive shall bear:
+
+    (i) The name of the additive.
+
+    (ii) The amount of the additive, calculated as saccharin, as follows:
+
+    (
+
+    a
+
+    ) For beverages, in milligrams per fluid ounce;
+
+    (
+
+    b
+
+    ) For cooking or table use products, in milligrams per dispensing unit;
+
+    (
+
+    c
+
+    ) For processed foods, in terms of the weight or size of a serving which shall be that quantity of the food containing 30 milligrams or less of the additive.
+
+    (iii) When the additive is used for calorie reduction, such other labeling as is required by part 105 of this chapter.
+
+    [42 FR 14636, Mar. 15, 1977, as amended at 49 FR 5610, Feb. 14, 1984; 72 FR 10357, Mar. 8, 2007; 78 FR 71467, Nov. 29, 2013]'
 doc_files:
 - us/raw/US-CFR-title21-part180.xml
+- us/raw/US-CFR-title21-part180.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part180.xml (xml, 23223 chars)，生成 6 条共 23223 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part180.xml (xml, 23223 chars)，生成 6 条共 23223 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part180.xml (xml, 23223 chars)，生成 6 条共 23223 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART180-4（US 21 CFR Part 180）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART180-3（US 21 CFR Part 180）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART180-2（US 21 CFR Part 180）。'

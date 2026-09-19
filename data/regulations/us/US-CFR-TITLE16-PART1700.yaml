@@ -1,6 +1,6 @@
 id: US-CFR-TITLE16-PART1700
 official_citation: US 16 CFR Part 1700
-short_name: US 16 CFR Part 1700
+short_name: US 16 CFR Part 1700 — POISON PREVENTION PACKAGING
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,782 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '16
+
+    Commercial Practices
+
+    2
+
+    2024-01-01
+
+    2024-01-01
+
+    false
+
+    POISON'
+  text: '16
+
+    Commercial Practices
+
+    2
+
+    2024-01-01
+
+    2024-01-01
+
+    false
+
+    POISON PREVENTION PACKAGING
+
+    1700
+
+    PART 1700
+
+    Commercial Practices
+
+    CONSUMER PRODUCT SAFETY COMMISSION
+
+    POISON PREVENTION PACKAGING ACT OF 1970 REGULATIONS
+
+    Pt. 1700
+
+    PART 1700—POISON PREVENTION PACKAGING
+
+    Sec.
+
+    1700.1
+
+    Definitions.
+
+    1700.2
+
+    Authority.
+
+    1700.3
+
+    Establishment of standards for special packaging.
+
+    1700.4
+
+    Effective date of standards.
+
+    1700.5
+
+    Noncomplying package requirements.
+
+    1700.14
+
+    Substances requiring special packaging.
+
+    1700.15
+
+    Poison prevention packaging standards.
+
+    1700.20
+
+    Testing procedure for special packaging.
+
+    Authority:
+
+    15 U.S.C. 1471-76. Secs. 1700.1 and 1700.14 also issued under 15 U.S.C. 2079(a).
+
+    Source:
+
+    38 FR 21247, Aug. 7, 1973, unless otherwise noted.'
+- id: art-2
+  title: § 1700.1
+  text: '§ 1700.1
+
+    Definitions.
+
+    (a) As used in this part:
+
+    (1)
+
+    Act
+
+    means the Poison Prevention Packaging Act of 1970 (Pub. L. 91-601, 84 Stat. 1670-74; 15 U.S.C. 1471-75), enacted December 30, 1970.
+
+    (2)
+
+    Commission
+
+    means the Consumer Product Safety Commission established by section 4 of the Consumer Product Safety Act (86 Stat. 1210; 15 U.S.C. 2053).
+
+    (3)
+
+    Dietary supplement
+
+    means any vitamin and/or mineral preparation offered in tablet, capsule, wafer, or other similar uniform unit form; in powder, granule, flake, or liquid form; or in the physical form of a conventional
+    food but which is not a conventional food; and which purports or is represented to be for special dietary use by humans to supplement their diets by increasing the total dietary intake of one or more
+    of the essential vitamins and/or minerals.
+
+    (b) Except for the definition of “Secretary,” which is obsolete, the definitions given in section 2 of the act are applicable to this part and are repeated herein for convenience as follows:
+
+    (1) [Reserved]
+
+    (2)
+
+    Household substance
+
+    means any substance which is customarily produced or distributed for sale for consumption or use, or customarily stored, by individuals in or about the household and which is:
+
+    (i) A hazardous substance as that term is defined in section 2(f) of the Federal Hazardous Substances Act (15 U.S.C. 1261(f));
+
+    (ii) A food, drug, or cosmetic as those terms are defined in section 201 of the Federal Food, Drug, and Cosmetic Act (21 U.S.C. 321); or
+
+    (iii) A substance intended for use as fuel when stored in a portable container and used in the heating, cooking, or refrigeration system of a house.
+
+    (3)
+
+    Package
+
+    means the immediate container or wrapping in which any household substance is contained for consumption, use, or storage by individuals in or about the household and, for purposes of section 4(a)(2)
+    of the act, also means any outer container or wrapping used in the retail display of any such substance to consumers. “Package” does not include:
+
+    (i) Any shipping container or wrapping used solely for the transportation of any household substance in bulk or in quantity to manufacturers, packers, or processors, or to wholesale or retail distributors
+    thereof; or
+
+    (ii) Any shipping container or outer wrapping used by retailers to ship or deliver any household substance to consumers unless it is the only such container or wrapping.
+
+    (4)
+
+    Special packaging
+
+    means packaging that is designed or constructed to be significantly difficult for children under 5 years of age to open or obtain a toxic or harmful amount of the substance contained therein within
+    a reasonable time and not difficult for normal adults to use properly, but does not mean packaging which all such children cannot open or obtain a toxic or harmful amount within a reasonable time.
+
+    (5)
+
+    Labeling
+
+    means all labels and other written, printed, or graphic matter upon any household substance or
+
+    its package, or accompanying such substance.
+
+    (Pub. L. 92-573, sec. 30(a), 86 Stat. 1231; (15 U.S.C. 2079(a)))
+
+    [38 FR 21247, Aug. 7, 1973, as amended at 41 FR 22266, June 2, 1976; 48 FR 57480, Dec. 30, 1983]'
+- id: art-3
+  title: § 1700.2
+  text: '§ 1700.2
+
+    Authority.
+
+    Authority under the Poison Prevention Packaging Act of 1970 is vested in the Consumer Product Safety Commission by section 30(a) of the Consumer Product Safety Act (15 U.S.C. 2079(a)).'
+- id: art-4
+  title: § 1700.3
+  text: '§ 1700.3
+
+    Establishment of standards for special packaging.
+
+    (a) Pursuant to section 3 of the act, the Commission, after consultation with the technical advisory committee provided for by section 6 of the act, may establish by regulation standards for the special
+    packaging of any household substance if the Commission finds:
+
+    (1) That the degree or nature of the hazard to children in the availability of such substance, by reason of its packaging, is such that special packaging is required to protect children from serious
+    personal injury or serious illness resulting from handling, using, or ingesting such substance; and
+
+    (2) That the special packaging to be required by such standard is technically feasible, practicable, and appropriate for such substance.
+
+    (b) In establishing such a standard, the Commission shall consider:
+
+    (1) The reasonableness of such standard;
+
+    (2) Available scientific, medical, and engineering data concerning special packaging and concerning childhood accidental ingestions, illness, and injury caused by household substances;
+
+    (3) The manufacturing practices of industries affected by the act; and
+
+    (4) The nature and use of the household substance.
+
+    (c) In the process of establishing such a standard, the Commission shall publish its findings and reasons therefor and shall cite the sections of the act that authorize its action.
+
+    (d) In establishing such standards, the Commission shall not prescribe specific packaging designs, product content, package quantity, or labeling except for labeling under section 4(a)(2) of the act.
+    Regarding a household substance for which special packaging is required by regulation, the Commission can prohibit the packaging of such substance in a package which the Commission determines is unnecessarily
+    attractive to children.
+
+    (e) Promulgations pursuant to section 3 of the act shall be in accordance with section 5 of the act as to procedure.'
+- id: art-5
+  title: § 1700.4
+  text: '§ 1700.4
+
+    Effective date of standards.
+
+    (a) The FR document promulgating a regulation establishing a child protection packaging standard shall indicate the standard''s effective date. Section 9 of the act specifies that the effective date
+    shall not be sooner than 180 days or later than 1 year from the date the standard is promulgated in the
+
+    Federal Register
+
+    unless the Commission, for good cause found, determines that an earlier effective date is in the public interest and publishes in the
+
+    Federal Register
+
+    the reason for such finding, in which case such earlier effective date shall apply.
+
+    (b) Upon becoming effective, a child protection packaging standard shall apply only to household substances packaged on and after its effective date.'
+- id: art-6
+  title: § 1700.5
+  text: '§ 1700.5
+
+    Noncomplying package requirements.
+
+    To make household substances that are subject to requirements for special packaging readily available to elderly or handicapped persons who are unable to use those substances in special packaging, section
+    4(a) of the act authorizes manufacturers and packers to package such substances in noncomplying packaging of a single size provided that complying packaging is also supplied and the noncomplying packages
+    are conspicuously labeled to indicate that they should not be used in households where young children are present. The purpose of this § 1700.5 is to implement section 4(a) of the act by prescribing
+    requirements for the labeling of noncomplying packages.
+
+    (a)
+
+    Labeling statement.
+
+    (1) The statement “This Package for Households Without Young Children” shall appear conspicuously, and in accordance with all of the requirements of paragraph (a)
+
+    of this section, on the package of any household substance subject to the special packaging requirements of this part 1700 that is supplied in noncomplying packaging under section 4(a) of the act, unless
+    the package bears the substitute labeling statement in accordance with all of the requirements of paragraph (b) of this section.
+
+    (2) The statement required by paragraph (a)(1) of this section shall appear on the principal display panel of the immediate container as well as on the principal display panel of any outer container
+    or wrapping used in the retail display of the substance. If a package bears more than one principal display panel, the required statement shall appear on each principal display panel of the immediate
+    container as well as on each principal display panel of any outer container or wrapping used in the retail display of the substance. The principal display panel is the part of the labeling most likely
+    to be displayed, presented, shown, or examined.
+
+    (3) The required labeling statement shall appear within the borderline of a square or rectangle on the principal display panel in conspicuous and easily legible capital letters, shall be in distinct
+    contrast, by typography, layout, color, or embossing, to other matter on the package, and shall appear in lines generally parallel to the base on which the package rests as it is designed to be displayed.
+
+    (4) The declaration shall be in letters in type size established in relationship to the area of the principal display panel of the package and shall be uniform for all packages of substantially the
+    same size by complying with the following type-size specifications:
+
+    (i) Not less than
+
+    1/16
+
+    inch in height on packages the principal display panel of which has an area of 7 square inches or less.
+
+    (ii) Not less than
+
+    3/32
+
+    inch in height on packages the principal display panel of which has an area of more than 7 but not more than 15 square inches.
+
+    (iii) Not less than
+
+    1/8
+
+    inch in height on packages the principal display panel of which has an area of more than 15 but not more than 25 square inches.
+
+    (iv) Not less than
+
+    3/16
+
+    inch in height on packages the principal display panel of which has an area of more than 25 but not more than 100 square inches.
+
+    (v) Not less than
+
+    1/4
+
+    inch in height on packages the principal display panel of which has an area of more than 100 square inches.
+
+    (5)(i) For the purpose of obtaining uniform type size for the required statement for all packages of substantially the same size, the area of the principal display panel is the area of the side or surface
+    that bears the principal display panel, which shall be:
+
+    (A) In the case of a rectangular package where one entire side properly can be considered to be the principal display panel, the product of the height times the width of that side.
+
+    (B) In the case of a cylindrical or nearly cylindrical container, 40 percent of the product of the height of the container times the circumference.
+
+    (C) In the case of any other shape of container, 40 percent of the total surface of the container; however, if such container presents an obvious principal display (such as the top of a triangular or
+    circular package), the area shall consist of the entire area of such obvious principal display panel.
+
+    (ii) In determining the area of the principal display panel exclude tops, bottoms, flanges at the tops and bottoms of cans, and shoulders and necks of bottles or jars. In the case of cylindrical or
+    nearly cylindrical containers, the labeling statement required by this section to appear on the principal display panel shall appear within that 40 percent of the circumference most likely to be displayed,
+    presented, shown, or examined.
+
+    (b)
+
+    Substitute labeling statement.
+
+    If the area of the principal display panel, as determined in accordance with paragraph (a)(5) of this section, is too small to accommodate the statement required by paragraph (a)(1) using the type size
+    required by paragraph (a)(4), the substitute statement “Package Not Child-Resistant” may be used. This substitute statement must comply with all of the requirements for size, placement, and conspicuousness
+    prescribed by paragraph (a) of this section.
+
+    [40 FR 4650, Jan. 31, 1975]'
+- id: art-7
+  title: § 1700.14
+  text: '§ 1700.14
+
+    Substances requiring special packaging.
+
+    (a)
+
+    Substances.
+
+    The Commission has determined that the degree or nature of the hazard to children in the availability of the following substances, by reason of their packaging, is such that special packaging meeting
+    the requirements of § 1700.20(a) is required to protect children from serious personal injury or serious illness resulting from handling, using, or ingesting such substances, and the special packaging
+    herein required is technically feasible, practicable, and appropriate for these substances:
+
+    (1)
+
+    Aspirin.
+
+    Any aspirin-containing preparation for human use in a dosage form intended for oral administration shall be packaged in accordance with the provisions of § 1700.15 (a), (b), and (c), except the following:
+
+    (i) Effervescent tablets containing aspirin, other than those intended for pediatric use, provided the dry tablet contains not more than 15 percent aspirin and has an oral LD-50 in rats of 5 grams or
+    more per kilogram of body weight.
+
+    (ii) Unflavored aspirin-containing preparations in powder form (other than those intended for pediatric use) that are packaged in unit doses providing not more than 15.4 grains of aspirin per unit dose
+    and that contain no other substance subject to the provisions of this section.
+
+    (2)
+
+    Furniture polish.
+
+    Nonemulsion type liquid furniture polishes containing 10 percent or more of mineral seal oil and/or other petroleum distillates and having a viscosity of less than 100 Saybolt universal seconds at 100
+    °F., other than those packaged in pressurized spray containers, shall be packaged in accordance with the provisions of § 1700.15 (a), (b), and (d).
+
+    (3)
+
+    Methyl salicylate.
+
+    Liquid preparations containing more than 5 percent by weight of methyl salicylate, other than those packaged in pressurized spray containers, shall be packaged in accordance with the provisions of § 1700.15
+    (a), (b), and (c).
+
+    (4)
+
+    Controlled drugs.
+
+    Any preparation for human use that consists in whole or in part of any substance subject to control under the Comprehensive Drug Abuse Prevention and Control Act of 1970 (21 U.S.C. 801
+
+    et seq.
+
+    ) and that is in a dosage form intended for oral administration shall be packaged in accordance with the provisions of § 1700.15 (a), (b), and (c).
+
+    (5)
+
+    Sodium and/or potassium hydroxide.
+
+    Household substances in dry forms such as granules, powder, and flakes, containing 10 percent or more by weight of free or chemically unneutralized sodium and/or potassium hydroxide, and all other household
+    substances containing 2 percent or more by weight of free or chemically unneutralized sodium and/or potassium hydroxide, shall be packaged in accordance with the provisions of § 1700.15 (a) and (b).
+
+    (6)
+
+    Turpentine.
+
+    Household substances in liquid form containing 10 percent or more by weight of turpentine shall be packaged in accordance with the provisions of § 1700.15 (a) and (b).
+
+    (7)
+
+    Kindling and/or illuminating preparations.
+
+    Prepackaged liquid kindling and/or illuminating preparations, such as cigarette lighter fuel, charcoal lighter fuel, camping equipment fuel, torch fuel, and fuel for decorative or functional lanterns,
+    which contain 10 percent or more by weight of petroleum distillates and have a viscosity of less than 100 Saybolt universal seconds at 100 °F., shall be packaged in accordance with the provisions of
+    § 1700.15 (a) and (b).
+
+    (8)
+
+    Methyl alcohol
+
+    (
+
+    methanol
+
+    ). Household substances in liquid form containing 4 percent or more by weight of methyl alcohol (methanol), other than those packaged in pressurized spray containers, shall be packaged in accordance
+    with the provisions of § 1700.15 (a) and (b).
+
+    (9)
+
+    Sulfuric acid.
+
+    Household substances containing 10 percent or more by weight of sulfuric acid, except such substances in wet-cell storage batteries, shall be packaged in accordance with the provisions of § 1700.15
+    (a) and (b).
+
+    (10)
+
+    Prescription drugs.
+
+    Any drug for human use that is in a dosage form intended for oral administration and that is required by Federal law to be dispensed only by or upon an oral or written prescription of a practitioner
+    licensed by law to administer such drug shall be packaged in accordance with
+
+    the provisions of § 1700.15 (a), (b), and (c), except for the following:
+
+    (i) Sublingual dosage forms of nitroglycerin.
+
+    (ii) Sublingual and chewable forms of isosorbide dinitrate in dosage strengths of 10 milligrams or less.
+
+    (iii) Erythromycin ethylsuccinate granules for oral suspension and oral suspensions in packages containing not more than 8 grams of the equivalent of erythromycin.
+
+    (iv) Cyclically administered oral contraceptives in manufacturers'' mnemonic (memory-aid) dispenser packages that rely solely upon the activity of one or more progestogen or estrogen substances.
+
+    (v) Anhydrous cholestyramine in powder form.
+
+    (vi) All unit dose forms of potassium supplements, including individually-wrapped effervescent tablets, unit dose vials of liquid potassium, and powdered potassium in unit-dose packets, containing not
+    more than 50 milliequivalents of potassium per unit dose.
+
+    (vii) Sodium fluoride drug preparations including liquid and tablet forms, containing not more than 110 milligrams of sodium fluoride (the equivalent of 50 mg of elemental fluoride) per package or not
+    more than a concentration of 0.5 percent elemental fluoride on a weight-to-volume basis for liquids or a weight-to-weight basis for non-liquids and containing no other substances subject to this § 1700.14(a)(10).
+
+    (viii) Betamethasone tablets packaged in manufacturers'' dispenser packages, containing no more than 12.6 milligrams betamethasone.
+
+    (ix) Pancrelipase preparations in tablet, capsule, or powder form and containing no other substances subject to this § 1700.14(a)(10).
+
+    (x) Prednisone in tablet form, when dispensed in packages containing no more than 105 mg. of the drug, and containing no other substances subject to this § 1700.14(a)(10).
+
+    (xi)-(xii) [Reserved]
+
+    (xiii) Mebendazole in tablet form in packages containing not more than 600 mg. of the drug, and containing no other substance subject to the provisions of this section.
+
+    (xiv) Methylprednisolone in tablet form in packages containing not more than 84 mg of the drug and containing no other substance subject to the provisions of this section.
+
+    (xv) Colestipol in powder form in packages containing not more than 5 grams of the drug and containing no other substance subject to the provisions of this section.
+
+    (xvi) Erythromycin ethylsuccinate tablets in packages containing no more than the equivalent of 16 grams erythromycin.
+
+    (xvii) Conjugated Estrogens Tablets, U.S.P., when dispensed in mnemonic packages containing not more than 32.0 mg of the drug and containing no other substances subject to this § 1700.14(a)(10).
+
+    (xviii) Norethindrone Acetate Tablets, U.S.P., when dispensed in mnemonic packages containing not more than 50 mg of the drug and containing no other substances subject to this § 1700.14(a)(10).
+
+    (xix) Medroxyprogesterone acetate tablets.
+
+    (xx) Sacrosidase (sucrase) preparations in a solution of glycerol and water.
+
+    (xxi) Hormone Replacement Therapy Products that rely solely upon the activity of one or more progestogen or estrogen substances.
+
+    (xxii) Colesevelam hydrochloride in powder form in packages containing not more than 3.75 grams of the drug.
+
+    (xxiii) Sevelamer carbonate in powder form in packages containing not more than 2.4 grams of the drug.
+
+    (11)
+
+    Ethylene glycol.
+
+    Household substances in liquid form containing 10 percent or more by weight of ethylene glycol packaged on or after June 1, 1974, except those articles exempted by 16 CFR 1500.83, shall be packaged
+    in accordance with the provisions of § 1700.15 (a) and (b).
+
+    (12)
+
+    Iron-containing drugs.
+
+    With the exception of: (i) Animal feeds used as vehicles for the administration of drugs, and (ii) those preparations in which iron is present solely as a colorant, noninjectable animal and human drugs
+    providing iron for therapeutic or prophylactic purposes, and containing a total amount of elemental iron, from any source, in a single package, equivalent to 250 mg or more elemental iron in a concentration
+    of 0.025
+
+    percent or more on a weight to volume basis for liquids and 0.025 percent or more on a weight to volume basis for liquids and 0.05 percent or more on a weight-to-weight basis for nonliquids (e.g., powders,
+    granules, tablets, capsules, wafers, gels, viscous products, such as pastes and ointments, etc.) shall be packaged in accordance with the provisions of § 1700.15 (a), (b), and (c).
+
+    (13)
+
+    Dietary supplements containing iron.
+
+    Dietary supplements, as defined in § 1700.1(a)(3), that contain an equivalent of 250 mg or more of elemental iron, from any source, in a single package in concentrations of 0.025 percent or more on
+    a weight-to-volume basis for liquids and 0.05 percent or more on a weight-to-weight basis for nonliquids (e.g., powders, granules, tablets, capsules, wafers, gels, viscous products, such as pastes and
+    ointments, etc.) shall be packaged in accordance with the provisions of § 1700.15 (a), (b), and (c), except for the following:
+
+    (i) Preparations in which iron is present solely as a colorant; and
+
+    (ii) Powdered preparations with no more than the equivalent of 0.12 percent weight-to-weight elemental iron.
+
+    (14) [Reserved]
+
+    (15)
+
+    Solvents for paint or other similar surface-coating material.
+
+    Prepackaged liquid solvents (such as removers, thinners, brush cleaners, etc.) for paints or other similar surface-coating materials (such as varnishes and lacquers), that contain 10 percent or more
+    by weight of benzene (also known as benzol), toluene (also known as toluol), xylene (also known as xylol), petroleum distillates (such as gasoline, kerosene, mineral seal oil, mineral spirits, naphtha,
+    and Stoddard solvent, etc.), or combinations thereof, and that have a viscosity of less than 100 Saybolt universal seconds at 100 °F., shall be packaged in accordance with the provisions of § 1700.15
+    (a) and (b).
+
+    (16)
+
+    Acetaminophen.
+
+    Preparations for human use in a dosage form intended for oral administration and containing in a single package a total of more than one gram acetaminophen shall be packaged in accordance with the provisions
+    of § 1700.15 (a), (b), and (c), except the following—
+
+    (i) Effervescent tablets or granules containing acetaminophen, provided the dry tablet or granules contain less than 15 percent acetaminophen, the tablet or granules have an oral LD-50 of 5 grams or
+    greater per kilogram of body weight, and the tablet or granules contain no other substance subject to the provisions of this section.
+
+    (ii) Unflavored acetaminophen-containing preparations in powder form (other than those intended for pediatric use) that are packaged in unit doses providing not more than 13 grains of acetaminophen
+    per unit dose and that contain no other substance subject to this § 1700.14(a).
+
+    (17)
+
+    Diphenhydramine.
+
+    Preparations for human use in a dosage form intended for oral administration and containing more than the equivalent of 66 mg diphenhydramine base in a single package shall be packaged in accordance
+    with the provisions of § 1700.15 (a), (b), and (c), if packaged on or after February 11, 1985.
+
+    (18)
+
+    Glue removers containing acetonitrile.
+
+    Household glue removers in a liquid form containing more than 500 mg of acetonitrile in a single container.
+
+    (19)
+
+    Permanent wave neutralizers containing sodium bromate or potassium bromate.
+
+    Home permanent wave neutralizers, in a liquid form, containing in single container more than 600 mg of sodium bromate or more than 50 mg of potassium bromate.
+
+    (20)
+
+    Ibuprofen.
+
+    Ibuprofen preparations for human use in a dosage form intended for oral administration and containing one gram (1,000 mg) or more of ibuprofen in a single package shall be packaged in accordance with
+    the provisions of § 1700.15 (a), (b), and (c).
+
+    (21)
+
+    Loperamide.
+
+    Preparations for human use in a dosage form intended for oral administration and containing more than 0.045 mg of loperamide in a single package (i.'
+- id: art-8
+  title: § 1700.15
+  text: '§ 1700.15
+
+    Poison prevention packaging standards.
+
+    To protect children from serious personal injury or serious illness resulting from handling, using, or ingesting household substances, the Commission has determined that packaging designed and constructed
+    to meet the following standards shall be regarded as “special packaging” within the meaning of section 2(4) of the act. Specific application of these standards to substances requiring special packaging
+    is in accordance with § 1700.14.
+
+    (a)
+
+    General requirements.
+
+    The special packaging must continue to function with the effectiveness specifications set forth in paragraph (b) of this section when in actual contact with the substance contained therein. This requirement
+    may be satisfied by appropriate scientific evaluation of the compatibility of the substance with the special packaging to determine that the chemical and physical characteristics of the substance will
+    not compromise or interfere with the proper functioning of the special packaging. The special packaging must also continue to function with the effectiveness specifications set forth in paragraph (b)
+    of this section for the number of openings and closings customary for its size and contents. This requirement may be satisfied by appropriate technical evaluation based on physical wear and stress factors,
+    force required for activation, and other such relevant factors which establish that, for the duration of normal use, the effectiveness specifications of the packaging would not be expected to lessen.
+
+    (b)
+
+    Effectiveness specifications.
+
+    Special packaging, tested by the method described in § 1700.20, shall meet the following specifications:
+
+    (1) Child-resistant effectiveness of not less than 85 percent without a demonstration and not less than 80 percent after a demonstration of the proper means of opening such special packaging. In the
+    case of unit packaging, child-resistant effectiveness of not less than 80 percent.
+
+    (2)
+
+    Ease of adult opening
+
+    —(i)
+
+    Senior-adult test.
+
+    Except for products specified in paragraph (b)(2)(ii) of this section, special packaging shall have a senior adult use effectiveness (SAUE) of not less than 90% for the senior-adult panel test of § 1700.20(a)(3).
+
+    (ii)
+
+    Younger-adult test
+
+    —(A)
+
+    When applicable.
+
+    Products that must be in aerosol form and products that require metal containers, under the criteria specified below, shall have an effectiveness of not less than 90% for the younger-adult test of § 1700.20(a)(4).
+    The senior-adult panel test of § 1700.20(a)(3) does not apply to these products. For the purposes of this paragraph, metal containers are those that have both a metal package and a recloseable metal
+    closure, and aerosol products are self-contained pressurized products.
+
+    (B)
+
+    Determination of need for metal or aerosol container
+
+    —(
+
+    1
+
+    )
+
+    Criteria.
+
+    A product will be deemed to require metal containers or aerosol form only if:
+
+    (
+
+    i
+
+    ) No other packaging type would comply with other state or Federal regulations,
+
+    (
+
+    ii
+
+    ) No other packaging can reasonably be used for the product''s intended application,
+
+    (
+
+    iii
+
+    ) No other packaging or closure material would be compatible with the substance,
+
+    (
+
+    iv
+
+    ) No other suitable packaging type would provide adequate shelf-life for the product''s intended use, or
+
+    (
+
+    v
+
+    ) Any other reason clearly demonstrates that such packaging is required.
+
+    (
+
+    2
+
+    )
+
+    Presumption.
+
+    In the absence of convincing evidence to the contrary, a product shall be presumed not to require a metal container if the product,
+
+    or another product of identical composition, has previously been marketed in packaging using either a nonmetal package or a nonmetal closure.
+
+    (
+
+    3
+
+    )
+
+    Justification.
+
+    A manufacturer or packager of a product that is in a metal container or aerosol form that the manufacturer or packager contends is not required to comply with the SAUE requirements of § 1700.20(a)(3)
+    shall provide, if requested by the Commission''s staff, a written explanation of why the product must have a metal container or be an aerosol. Manufacturers and packagers who wish to do so voluntarily
+    may submit to the Commission''s Office of Compliance a rationale for why their product must be in metal containers or be an aerosol. In such cases, the staff will reply to the manufacturer or packager,
+    if requested, stating the staff''s views on the adequacy of the rationale.
+
+    (c)
+
+    Reuse of special packaging.
+
+    Special packaging for substances subject to the provisions of this paragraph shall not be reused.
+
+    (d)
+
+    Restricted flow.
+
+    Special packaging subject to the provisions of this paragraph shall be special packaging from which the flow of liquid is so restricted that not more than 2 milliliters of the contents can be obtained
+    when the inverted, opened container is taken or squeezed once or when the container is otherwise activated once.
+
+    (Secs. 2(4), 3, 5, 84 Stat. 1670-72; 15 U.S.C. 1471(4), 1472, 1474)
+
+    [38 FR 21247, Aug. 7, 1973, as amended at 60 FR 37734, July 21, 1995]'
+- id: art-9
+  title: § 1700.20
+  text: '§ 1700.20
+
+    Testing procedure for special packaging.
+
+    (a)
+
+    Test protocols
+
+    —(1)
+
+    General requirements
+
+    —(i)
+
+    Requirements for packaging.
+
+    As specified in § 1700.15(b), special packaging is required to meet the child test requirements and the applicable adult test requirements of this § 1700.20.
+
+    (ii)
+
+    Condition of packages to be tested
+
+    —(A)
+
+    Tamper-resistant feature.
+
+    Any tamper-resistant feature of the package to be tested shall be removed prior to testing unless it is part of the package''s child-resistant design. Where a package is supplied to the consumer in
+    an outer package that is not part of the package''s child-resistant design, one of the following situations applies:
+
+    (
+
+    1
+
+    ) In the child test, the package is removed from the outer package, and the outer package is not given to the child.
+
+    (
+
+    2
+
+    ) In both the adult tests, if the outer package bears instructions for how to open or properly resecure the package, the package shall be given to the test subject in the outer package. The time required
+    to remove the package from the outer package is not counted in the times allowed for attempting to open and, if appropriate, reclose the package.
+
+    (
+
+    3
+
+    ) In both the adult tests, if the outer package does not bear any instructions relevant to the test, the package will be removed from the outer package, and the outer package will not be given to the
+    test subject.
+
+    (B)
+
+    Reclosable packages—adult tests.
+
+    In both the adult tests, reclosable packages, if assembled by the testing agency, shall be properly secured at least 72 hours prior to beginning the test to allow the materials (e.g., the closure liner)
+    to “take a set.” If assembled by the testing agency, torque-dependent closures shall be secured at the same on-torque as applied on the packaging line. Application torques must be recorded in the test
+    report. All packages shall be handled so that no damage or jarring will occur during storage or transportation. The packages shall not be exposed to extreme conditions of heat or cold. The packages
+    shall be tested at room temperature.
+
+    (2)
+
+    Child test
+
+    —(i)
+
+    Test subjects
+
+    —(A)
+
+    Selection criteria.
+
+    Use from 1 to 4 groups of 50 children, as required under the sequential testing criteria in table 1. No more than 20% of the children in each group shall be tested at or obtained from any given site.
+    Each group of children shall be randomly selected as to age, subject to the limitations set forth below. Thirty percent of the children in each group shall be of age 42-44 months, 40% of the children
+    in each group shall be of age 45-48 months, and 30% of the children in each group shall be of age 49-51 months. The children''s ages in months shall be calculated as follows:
+
+    (
+
+    1
+
+    ) Arrange the birth date and test date by the numerical designations for month, day, and year (e.g., test date: 8/3/1990; birth date: 6/23/1986).
+
+    (
+
+    2
+
+    ) Subtract the month, day, and year numbers for the birth date from the respective numbers for the test date. This may result in negative numbers for the months or days. (e.g.,
+
+    EC14NO91.026
+
+    (
+
+    3
+
+    ) Multiply the difference in years by 12 to obtain the number of months in the difference in years, and add this value to the number of months that was obtained when the birth date was subtracted from
+    the test date (i.e., 4 × 12 = 48; 48 + 2 = 50). This figure either w'
 doc_files:
 - us/raw/US-CFR-title16-part1700.xml
+- us/raw/US-CFR-title16-part1700.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1700.xml (xml, 71263 chars)，生成 9 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1700.xml (xml, 71263 chars)，生成 9 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1700.xml (xml, 71263 chars)，生成 9 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1700-4（US 16 CFR Part 1700）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1700-3（US 16 CFR Part 1700）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1700-2（US 16 CFR Part 1700）。'

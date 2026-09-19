@@ -1,6 +1,6 @@
 id: US-CFR-TITLE21-PART179
 official_citation: US 21 CFR Part 179
-short_name: US 21 CFR Part 179
+short_name: US 21 CFR Part 179 — IRRADIATION IN THE PRODUCTION, PROCESSING AND HANDLING OF FOOD
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,560 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '21
+
+    Food and Drugs
+
+    3
+
+    2024-04-01
+
+    2024-04-01
+
+    false
+
+    IRRADIATION '
+  text: '21
+
+    Food and Drugs
+
+    3
+
+    2024-04-01
+
+    2024-04-01
+
+    false
+
+    IRRADIATION IN THE PRODUCTION, PROCESSING AND HANDLING OF FOOD
+
+    179
+
+    PART 179
+
+    Food and Drugs
+
+    FOOD AND DRUG ADMINISTRATION, DEPARTMENT OF HEALTH AND HUMAN SERVICES (CONTINUED)
+
+    FOOD FOR HUMAN CONSUMPTION (CONTINUED)
+
+    Pt. 179
+
+    PART 179—IRRADIATION IN THE PRODUCTION, PROCESSING AND HANDLING OF FOOD
+
+    Subpart A [Reserved]
+
+    Subpart B—Radiation and Radiation Sources
+
+    Sec.
+
+    179.21
+
+    Sources of radiation used for inspection of food, for inspection of packaged food, and for controlling food processing.
+
+    179.25
+
+    General provisions for food irradiation.
+
+    179.26
+
+    Ionizing radiation for the treatment of food.
+
+    179.30
+
+    Radiofrequency radiation for the heating of food, including microwave frequencies.
+
+    179.39
+
+    Ultraviolet radiation for the processing and treatment of food.
+
+    179.41
+
+    Pulsed light for the treatment of food.
+
+    179.43
+
+    Carbon dioxide laser for etching food.
+
+    Subpart C—Packaging Materials for Irradiated Foods
+
+    179.45
+
+    Packaging materials for use during the irradiation of prepackaged foods.
+
+    Authority:
+
+    21 U.S.C. 321, 342, 343, 348, 373, 374.
+
+    Source:
+
+    42 FR 14635, Mar. 15, 1977, unless otherwise noted.
+
+    Editorial Note:
+
+    Nomenclature changes to part 179 appear at 70 FR 72074, Dec. 1, 2005.
+
+    Subpart A [Reserved]
+
+    Subpart B—Radiation and Radiation Sources'
+- id: art-2
+  title: § 179.21
+  text: '§ 179.21
+
+    Sources of radiation used for inspection of food, for inspection of packaged food, and for controlling food processing.
+
+    Sources of radiation for the purposes of inspection of foods, for inspection of packaged food, and for controlling food processing may be safely used under the following conditions:
+
+    (a) The radiation source is one of the following:
+
+    (1) X-ray tubes producing X-radiation from operation of the tube source at a voltage of 500 kilovolt peak or lower.
+
+    (2) Sealed units producing radiations at energy levels of not more than 2.2 million electron volts from one of the following isotopes: Americium-241, cesium-137, cobalt-60, iodine-125, krypton-85, radium-226,
+    and strontium-90.
+
+    (3) Sealed units producing neutron radiation from the isotope Californium-252 (CAS Reg. No. 13981-17-4) to measure moisture in food.
+
+    (4) Machine sources producing X-radiation at energies no greater than 10 million electron volts (MeV).
+
+    (5) Monoenergetic neutron sources producing neutrons at energies not less than 1 MeV but no greater than 14 MeV.
+
+    (b) To assure safe use of these radiation sources:
+
+    (1) The label of the sources shall bear, in addition to the other information required by the Act:
+
+    (i) Appropriate and accurate information identifying the source of radiation.
+
+    (ii) The maximum energy of radiation emitted by X-ray tube sources.
+
+    (iii) The maximum energy of X-radiation emitted by machine source.
+
+    (iv) The minimum and maximum energy of radiation emitted by neutron source.
+
+    (2) The label or accompanying labeling shall bear:
+
+    (i) Adequate directions for installation and use.
+
+    (ii) A statement that no food shall be exposed to radiation sources listed in paragraph (a)(1) and (2) of this section so as to receive an absorbed dose in excess of 10 grays.
+
+    (iii) A statement that no food shall be exposed to a radiation source listed in paragraph (a)(3) of this section so as to receive an absorbed dose in excess of 2 milligrays.
+
+    (iv) A statement that no food shall be exposed to a radiation source listed in paragraph (a)(4) of this section so as to receive a dose in excess of 0.5 gray (Gy).
+
+    (v) A statement that no food shall be exposed to a radiation source listed in paragraph (a)(5) of this section so as to receive a dose in excess of 0.01 gray (Gy).
+
+    [42 FR 14635, Mar. 15, 1977, as amended at 48 FR 46022, Oct. 11, 1983; 61 FR 14246, Apr. 1, 1996; 64 FR 69191, Dec. 10, 1999; 66 FR 18539, Apr. 10, 2001; 69 FR 76404, Dec. 21, 2004]'
+- id: art-3
+  title: § 179.25
+  text: '§ 179.25
+
+    General provisions for food irradiation.
+
+    For the purposes of § 179.26, current good manufacturing practice is defined to include the following restrictions:
+
+    (a) Any firm that treats foods with ionizing radiation shall comply with the requirements of parts 110 and 117 of this chapter and other applicable regulations.
+
+    (b) Food treated with ionizing radiation shall receive the minimum radiation dose reasonably required to accomplish its intended technical effect and not more than the maximum dose specified by the
+    applicable regulation for that use.
+
+    (c) Packaging materials subjected to irradiation incidental to the radiation treatment and processing of prepackaged food shall be in compliance with § 179.45, shall be the subject of an exemption for
+    such use under § 170.39 of this chapter, or shall be the subject of an effective premarket notification for a food contact substance for such use submitted under § 170.100 of this chapter.
+
+    (d) Radiation treatment of food shall conform to a scheduled process. A scheduled process for food irradiation is a written procedure that ensures that the radiation dose range selected by the food
+    irradiation processor is adequate under commercial processing conditions (including atmosphere and temperature) for the radiation to achieve its intended effect on a specific product and in a specific
+    facility. A food irradiation processor shall operate with a scheduled process established by qualified persons having expert knowledge in radiation processing requirements of food and specific for that
+    food and for that irradiation processor''s treatment facility.
+
+    (e) A food irradiation processor shall maintain records as specified in this section for a period of time that exceeds the shelf life of the irradiated food product by 1 year, up to a maximum of 3 years,
+    whichever period is shorter, and shall make these records available for inspection and copy by authorized employees of the Food and Drug Administration. Such records shall include the food treated,
+    lot identification, scheduled process, evidence of compliance with the scheduled process, ionizing energy source, source calibration, dosimetry, dose distribution in the product, and the date of irradiation.
+
+    [51 FR 13399, Apr. 18, 1986, as amended at 67 FR 9585, Mar. 4, 2002; 67 FR 35731, May 21, 2002; 80 FR 56168, Sept. 17, 2015]'
+- id: art-4
+  title: § 179.26
+  text: '§ 179.26
+
+    Ionizing radiation for the treatment of food.
+
+    Ionizing radiation for treatment of foods may be safely used under the following conditions:
+
+    (a)
+
+    Energy sources.
+
+    Ionizing radiation is limited to:
+
+    (1) Gamma rays from sealed units of the radionuclides cobalt-60 or cesium-137.
+
+    (2) Electrons generated from machine sources at energies not to exceed 10 million electron volts.
+
+    (3) X rays generated from machine sources at energies not to exceed 5 million electron volts (MeV), except as permitted by paragraph (a)(4) of this section.
+
+    (4) X rays generated from machine sources using tantalum or gold as the target material and using energies not to exceed 7.5 (MeV).
+
+    (b)
+
+    Limitations.
+
+    Use
+
+    Limitations
+
+    1. For control of
+
+    Trichinella spiralis
+
+    in pork carcasses or fresh, non-heat-processed cuts of pork carcasses
+
+    Minimum dose 0.3 kiloGray (kGy) (30 kilorad (krad)); maximum dose not to exceed 1 kGy (100 krad).
+
+    2. For growth and maturation inhibition of fresh foods
+
+    Not to exceed 1 kGy (100 krad).
+
+    3. For disinfestation of arthropod pests in food
+
+    Do.
+
+    4. For microbial disinfection of dry or dehydrated enzyme preparations (including immobilized enzymes)
+
+    Not to exceed 10 kGy (1 megarad (Mrad)).
+
+    5. For microbial disinfection of the following dry or dehydrated aromatic vegetable substances when used as ingredients in small amounts solely for flavoring or aroma: culinary herbs, seeds, spices,
+    vegetable seasonings that are used to impart flavor but that are not either represented as, or appear to be, a vegetable that is eaten for its own sake, and blends of these aromatic vegetable substances.
+    Turmeric and paprika may also be irradiated when they are to be used as color additives. The blends may contain sodium chloride and minor amounts of dry food ingredients ordinarily used in such blends
+
+    Not to exceed 30 kGy (3 Mrad).
+
+    6. For control of food-borne pathogens in fresh (refrigerated or unrefrigerated) or frozen, uncooked poultry products that are: (1) Whole carcasses or disjointed portions (or other parts) of such carcasses
+    that are “ready-to-cook poultry” within the meaning of 9 CFR 381.l(b) (with or without nonfluid seasoning; includes, e.g., ground poultry), or (2) mechanically separated poultry product (a finely comminuted
+    ingredient produced by the mechanical deboning of poultry carcasses or parts of carcasses)
+
+    Not to exceed 4.5 kGy for non-frozen products; not to exceed 7.0 kGy for frozen products.
+
+    7. For the sterilization of frozen, packaged meats used solely in the National Aeronautics and Space Administration space flight programs
+
+    Minimum dose 44 kGy (4.4 Mrad). Packaging materials used need not comply with § 179.25(c) provided that their use is otherwise permitted by applicable regulations in parts 174 through 186 of this chapter.
+
+    8. For control of foodborne pathogens in, and extension of the shelf-life of, refrigerated or frozen, uncooked products that are meat within the meaning of 9 CFR 301.2(rr), meat byproducts within the
+    meaning of 9 CFR 301.2(tt), or meat food products within the meaning of 9 CFR 301.2(uu), with or without nonfluid seasoning, that are otherwise composed solely of intact or ground meat, meat byproducts,
+    or both meat and meat byproducts
+
+    Not to exceed 4.5 kGy maximum for refrigerated products; not to exceed 7.0 kGy maximum for frozen products.
+
+    9. For control of
+
+    Salmonella
+
+    in fresh shell eggs.
+
+    Not to exceed 3.0 kGy.
+
+    10. For control of microbial pathogens on seeds for sprouting.
+
+    Not to exceed 8.0 kGy.
+
+    11. For the control of Vibrio bacteria and other foodborne microorganisms in or on fresh or frozen molluscan shellfish.
+
+    Not to exceed 5.5 kGy.
+
+    12. For control of food-borne pathogens and extension of shelf-life in fresh iceberg lettuce and fresh spinach.
+
+    Not to exceed 4.0 kGy.
+
+    13. For control of foodborne pathogens, and extension of shelf-life, in unrefrigerated (as well as refrigerated) uncooked meat, meat byproducts, and certain meat food products
+
+    Not to exceed 4.5 kGy.
+
+    14. For control of food-borne pathogens in, and extension of the shelf-life of, chilled or frozen raw, cooked, or partially cooked crustaceans or dried crustaceans (water activity less than 0.85), with
+    or without spices, minerals, inorganic salts, citrates, citric acid, and/or calcium disodium EDTA
+
+    Not to exceed 6.0 kGy.
+
+    (c)
+
+    Labeling.
+
+    (1) The label and labeling of retail packages of foods irradiated in conformance with paragraph (b) of this section shall bear the following logo along with either the statement
+
+    ER01FE93.000
+
+    “Treated with radiation” or the statement “Treated by irradiation” in addition to information required by other regulations. The logo shall be placed prominently and conspicuously in conjunction with
+    the required statement. The radiation disclosure statement is not required to be more prominent than the declaration of ingredients required under § 101.4 of this chapter. As used in this provision,
+    the term “radiation disclosure statement” means the written statement that discloses that a food has been intentionally subject to irradiation.
+
+    (2) For irradiated foods not in package form, the required logo and phrase “Treated with radiation” or “Treated by irradiation” shall be displayed to the purchaser with either (i) the labeling of the
+    bulk container plainly in view or (ii) a counter sign, card, or other appropriate device bearing the information that the product has been treated with radiation. As an alternative, each item of food
+    may be individually labeled. In either case, the information must be prominently and conspicuously displayed to purchasers. The labeling requirement applies only to a food that has been irradiated,
+    not to a food that merely contains an irradiated ingredient but that has not itself been irradiated.
+
+    (3) For a food, any portion of which is irradiated in conformance with paragraph (b) of this section, the label and labeling and invoices or bills of lading shall bear either the statement “Treated
+    with radiation—do not irradiate again” or the statement “Treated by irradiation—do not irradiate again” when shipped to a food manufacturer or processor for further processing, labeling, or packing.
+
+    [51 FR 13399, Apr. 18, 1986]
+
+    Editorial Note:
+
+    For
+
+    Federal Register
+
+    citations affecting § 179.26, see the List of CFR Sections Affected, which appears in the Finding Aids section of the printed volume and at
+
+    www.govinfo.gov.'
+- id: art-5
+  title: § 179.30
+  text: '§ 179.30
+
+    Radiofrequency radiation for the heating of food, including microwave frequencies.
+
+    Radiofrequency radiation, including microwave frequencies, may be safely used for heating food under the following conditions:
+
+    (a) The radiation source consists of electronic equipment producing radio waves with specific frequencies for this purpose authorized by the Federal Communications Commission.
+
+    (b) The radiation is used or intended for use in the production of heat in food wherever heat is necessary and effective in the treatment or processing of food.'
+- id: art-6
+  title: § 179.39
+  text: '§ 179.39
+
+    Ultraviolet radiation for the processing and treatment of food.
+
+    Ultraviolet radiation for the processing and treatment of food may be safely used under the following conditions:
+
+    (a) The radiation sources consist of low pressure mercury lamps emitting 90 percent of the emission at a wavelength of 253.7 nanometers (2,537 Angstroms).
+
+    (b) The ultraviolet radiation is used or intended for use as follows:
+
+    Irradiated food
+
+    Limitations
+
+    Use
+
+    Food and food products
+
+    Without ozone production: high fat-content food irradiated in vacuum or in an inert atmosphere; intensity of radiation, 1 W (of 2,537 A. radiation) per 5 to 10 ft.
+
+    2
+
+    Surface microorganism control.
+
+    Potable water
+
+    Without ozone production; coefficient of absorption, 0.19 per cm or less; flow rate, 100 gal/h per watt of 2,537 A. radiation; water depth, 1 cm or less; lamp-operating temperature, 36 to 46 °C.
+
+    Sterilization of water used in food production.
+
+    Juice products
+
+    Turbulent flow through tubes with a minimum Reynolds number of 2,200.
+
+    Reduction of human pathogens and other microorganisms.
+
+    [42 FR 14635, Mar. 15, 1977, as amended at 65 FR 71057, Nov. 29, 2000]'
+- id: art-7
+  title: § 179.41
+  text: '§ 179.41
+
+    Pulsed light for the treatment of food.
+
+    Pulsed light may be safely used for treatment of foods under the following conditions:
+
+    (a) The radiation sources consist of xenon flashlamps designed to emit broadband radiation consisting of wavelengths covering the range of 200 to 1,100 nanometers (nm), and operated so that the pulse
+    duration is no longer than 2 milliseconds (msec);
+
+    (b) The treatment is used for surface microorganism control;
+
+    (c) Foods treated with pulsed light shall receive the minimum treatment reasonably required to accomplish the intended technical effect; and
+
+    (d) The total cumulative treatment shall not exceed 12.0 Joules/square centimeter (J/cm
+
+    2
+
+    .)
+
+    [61 FR 42383, Aug. 15, 1996]'
+- id: art-8
+  title: § 179.43
+  text: '§ 179.43
+
+    Carbon dioxide laser for etching food.
+
+    Carbon dioxide laser light may be safely used for etching information on the surface of food under the following conditions:
+
+    (a) The radiation source consists of a carbon dioxide laser designed to emit pulsed infrared radiation with a wavelength of 10.6 micrometers such that the maximum energy output of the laser does not
+    exceed 9.8 × 10
+
+    −3
+
+    joules per square centimeter (J/cm
+
+    2
+
+    );
+
+    (b) The carbon dioxide laser shall be used only for etching information on the skin of fresh, intact citrus fruit, providing the fruit has been adequately washed and waxed prior to laser etching, and
+    the etched area is immediately rewaxed after treatment; and
+
+    (c) The maximum total energy to which the etched citrus fruit is exposed from the use of the carbon dioxide laser shall not exceed 1.5 × 10
+
+    −3
+
+    J, and the maximum total etched surface area of the citrus fruit shall not exceed 0.122 cm
+
+    2
+
+    .
+
+    [77 FR 34215, June 11, 2012]
+
+    Subpart C—Packaging Materials for Irradiated Foods'
+- id: art-9
+  title: § 179.45
+  text: '§ 179.45
+
+    Packaging materials for use during the irradiation of prepackaged foods.
+
+    The packaging materials identified in this section may be safely subjected to irradiation incidental to the radiation treatment and processing of prepackaged foods, subject to the provisions of this
+    section and to the requirement that no induced radioactivity is detectable in the packaging material itself:
+
+    (a) The radiation of the food itself shall comply with regulations in this part.
+
+    (b) The following packaging materials may be subjected to a dose of radiation, not to exceed 10 kilograys, unless otherwise indicated, incidental to the use of gamma, electron beam, or X-radiation in
+    the radiation treatment of prepackaged foods:
+
+    (1) Nitrocellulose-coated or vinylidene chloride copolymer-coated cellophane complying with § 177.1200 of this chapter.
+
+    (2) Glassine paper complying with § 176.170 of this chapter.
+
+    (3) Wax-coated paperboard complying with § 176.170 of this chapter.
+
+    (4) Polyolefin film prepared from one or more of the basic olefin polymers complying with § 177.1520 of this chapter. The finished film may contain:
+
+    (i) Adjuvant substances used in compliance with §§ 178.3740 and 181.22 through 181.30 of this chapter, sodium citrate, sodium lauryl sulfate, polyvinyl chloride, and materials as listed in paragraph
+    (d)(2)(i) of this section.
+
+    (ii) Coatings comprising a vinylidene chloride copolymer containing a minimum of 85 percent vinylidene chloride with one or more of the following comonomers: Acrylic acid, acrylonitrile, itaconic acid,
+    methyl acrylate, and methyl methacrylate.
+
+    (5) Kraft paper prepared from unbleached sulfate pulp to which rosin, complying with § 178.3870 of this chapter, and alum may be added. The kraft paper is used only as a container for flour and is irradiated
+    with a dose not exceeding 500 grays.
+
+    (6) Polyethylene terephthalate film prepared from the basic polymer as described in § 177.1630(e)(4)(i) and (ii) of this chapter. The finished film may contain:
+
+    (i) Adjuvant substances used in compliance with §§ 178.3740 and 181.22 through 181.30 of this chapter, sodium citrate, sodium lauryl sulfate, polyvinyl chloride, and materials as listed in paragraph
+    (d)(2)(i) of this section.
+
+    (ii) Coatings comprising a vinylidene chloride copolymer containing a minimum of 85 percent vinylidene chloride with one or more of the following comonomers: Acrylic acid, acrylonitrile, itaconic acid,
+    methyl acrylate, and methyl methacrylate.
+
+    (iii) Coatings consisting of polyethylene conforming to § 177.1520 of this chapter.
+
+    (7) Polystyrene film prepared from styrene basic polymer. The finished film may contain adjuvant substances used in compliance with §§ 178.3740 and 181.22 through 181.30 of this chapter.
+
+    (8) Rubber hydrochloride film prepared from rubber hydrochloride basic polymer having a chlorine content of 30-32 weight percent and having a maximum extractable fraction of 2 weight percent when extracted
+    with
+
+    n
+
+    -hexane at reflux temperature for 2 hours. The finished film may contain adjuvant substances used in compliance with §§ 178.3740 and 181.22 through 181.30 of this chapter.
+
+    (9) Vinylidene chloride-vinyl chloride copolymer film prepared from vinylidene chloride-vinyl chloride basic copolymers containing not less than 70 weight percent of vinylidene chloride and having a
+    viscosity of 0.50-1.50 centipoises as determined by ASTM method D729-81, “Standard Specification for Vinylidene Chloride Molding Compounds,” which is incorporated by reference. Copies may be obtained
+    from the American Society for Testing Materials, 100 Barr Harbor Dr., West Conshohocken, Philadelphia, PA 19428-2959, or may be examined at the National Archives and Records Administration (NARA). For
+    information on the availability of this material at NARA, call 202-741-6030, or go to:
+
+    http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html.
+
+    The finished film may contain adjuvant substances used in compliance with §§ 178.3740 and 181.22 through 181.30 of this chapter.
+
+    (10) Nylon 11 conforming to § 177.1500 of this chapter.
+
+    (c) Ethylene-vinyl acetate copolymers complying with § 177.1350 of this chapter. The ethylene-vinyl acetate packaging materials may be subjected to a dose of radiation, not to exceed 30 kilogray (3
+    megarads), incidental to the use of gamma, electron beam, or X-radiation in the radiation treatment of packaged foods.
+
+    (d) The following packaging materials may be subjected to a dose of radiation, not to exceed 60 kilograys incidental to the use of gamma, electron beam, or X-radiation in the radiation processing of
+    prepackaged foods:
+
+    (1) Vegetable parchments, consisting of a cellulose material made from waterleaf paper (unsized) treated with concentrated sulfuric acid, neutralized, and thoroughly washed with distilled water.
+
+    (2) Films prepared from basic polymers and with or without adjuvants, as follows:
+
+    (i) Polyethylene film prepared from the basic polymer as described in § 177.1520(a) of this chapter. The finished film may contain one or more of the following added substances:
+
+    Substances
+
+    Limitations
+
+    Amides of erucic, linoleic, oleic, palmitic, and stearic acid
+
+    Not to exceed 1 pct by weight of the polymer.
+
+    BHA as described in § 172.110 of this chapter
+
+    Do.
+
+    BHT as described in § 172.115 of this chapter
+
+    Do.
+
+    Calcium and sodium propionates
+
+    Do.
+
+    Petroleum wax as described in § 178.3710 of this chapter
+
+    Do.
+
+    Polypropylene, noncrystalline, as described in § 177.1520(c) of this chapter
+
+    Not to exceed 2 pct by weight of the polymer.
+
+    Stearates of aluminum, calcium, magnesium, potassium, and sodium as described in § 172.863(a) of this chapter
+
+    Not to exceed 1 pct by weight of the polymer.
+
+    Triethylene glycol as described in § 178.3740(b) of this chapter
+
+    Do.
+
+    Mineral oil as described in § 178.3620 (a) or (b) of this chapter
+
+    Do.
+
+    (ii) Polyethylene terephthalate film prepared from the basic polymer as described in § 177.1630(e)(4)(ii) of this chapter. The finished film may contain one or more of the added substances listed in
+    paragraph (d)(2)(i) of this section.
+
+    (iii) Nylon 6 films prepared from the nylon 6 basic polymer as described in § 177.1500(a)(6) of this chapter and meeting the specifications of item 6.1 of the table in § 177.1500(b) of this chapter.
+    The finished film may contain one or more of the added substances listed in paragraph (d)(2)(i) of this section.
+
+    (iv) Vinyl chloride-vinyl acetate copolymer film prepared from the basic copolymer containing 88.5 to 90.0 weight percent of vinyl chloride with 10.0 to 11.5 weight percent of vinyl acetate and having
+    a maximum volatility of not over 3.0 percent (1 hour at 105 °C) and viscosity not less than 0.30 determined by ASTM method D1243-79, “Standard Test Method for Dilute Solution Viscosity of Vinyl Chloride
+    Polymers,” Method A, which is incorporated by reference. The availability of this incorporation by reference is given in paragraph (b)(9) of this section. The finished film may contain one or more of
+    the added substances listed in paragraph (d)(2)(i) of this section.
+
+    (e) Acrylonitrile copolymers identified in this section shall comply with the provisions of § 180.22 of this chapter.
+
+    [42 FR 14635, Mar. 15, 1977, as amended at 49 FR 10113, Mar. 19, 1984; 54 FR 7405, Feb. 21, 1989; 54 FR 24899, June 12, 1989; 59 FR 14551, Mar. 29, 1994; 61 FR 14246, Apr. 1, 1996; 66 FR 10575, Feb.
+    16, 2001]'
 doc_files:
 - us/raw/US-CFR-title21-part179.xml
+- us/raw/US-CFR-title21-part179.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part179.xml (xml, 23175 chars)，生成 9 条共 23175 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part179.xml (xml, 23175 chars)，生成 9 条共 23175 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part179.xml (xml, 23175 chars)，生成 9 条共 23175 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART179-4（US 21 CFR Part 179）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART179-3（US 21 CFR Part 179）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART179-2（US 21 CFR Part 179）。'

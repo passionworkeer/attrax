@@ -9,11 +9,982 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'ETSI EN 301 908-13
+
+    V13.4.1
+
+    (2026-09)
+
+    HARMONISED EUROPEAN STA'
+  text: 'ETSI EN 301 908-13
+
+    V13.4.1
+
+    (2026-09)
+
+    HARMONISED EUROPEAN STANDARD
+
+    IMT cellular networks;
+
+    Harmonised Standard for access to radio spectrum;
+
+    Part 13: Evolved Universal Terrestrial Radio Access (E-UTRA)
+
+    User Equipment (UE)
+
+    2 ETSI EN 301 908-13 V13.4.1 (2026-09)
+
+    Reference
+
+    REN/MSG-TFES-1512
+
+    Keywords
+
+    3G, 3GPP, cellular, digital, E-UTRA, IMT,
+
+    IMT-2000, IMT-Advanced, LTE, LTE-Advanced,
+
+    mobile, radio, regulation, UMTS
+
+    ETSI
+
+    650 Route des Lucioles
+
+    F-06921 Sophia Antipolis Cedex - FRANCE
+
+    Tel.: +33 4 92 94 42 00 Fax: +33 4 93 65 47 16
+
+    Siret N° 348 623 562 00017 - APE 7112B
+
+    Association à but non lucratif enregistrée à la
+
+    Sous-Préfecture de Grasse (06) N° w061004871
+
+    Important notice
+
+    The present document can be downloaded from the
+
+    ETSI Search & Browse Standards application.
+
+    The present document may be made available in electronic versions and/or in print. The content of any electronic and/or
+
+    print versions of the present document shall not be modified without the prior written authorization of ETSI. In case of any
+
+    existing or perceived difference in contents between such versions and/or in print, the prevailing version of an ETSI
+
+    deliverable is the one made publicly available in PDF format on ETSI deliver repository.
+
+    Users should be aware that the present document may be revised or have its status changed,
+
+    this information is available in the Milestones listing.
+
+    If you find errors in the present document, please send your comments to
+
+    the relevant service listed under Committee Support Staff.
+
+    If you find a security vulnerability in the present document, please report it through our
+
+    Coordinated Vulnerability Disclosure (CVD) program.
+
+    Notice of disclaimer & limitation of liability
+
+    The information provided in the present deliverable is directed solely to professionals who have the appropriate degree of
+
+    experience to understand and interpret its content in accordance with generally accepted engineering or
+
+    other professional standard and applicable regulations.
+
+    No recommendation as to products and services or vendors is made or should be implied.
+
+    In no event shall ETSI be held liable for loss of profits or any other incidental or consequential damages.
+
+    Any software contained in this deliverable is provided "AS IS" with no warranties, express or implied, including but not
+
+    limited to, the warranties of merchantability, fitness for a particular purpose and non-infringement of intellectual property
+
+    rights and ETSI shall not be held liable in any event for any damages whatsoever (including, without limitation, damages
+
+    for loss of profits, business interruption, loss of information, or any other pecuniary loss) arising out of or related to the use
+
+    of or inability to use the software.
+
+    Copyright Notification
+
+    No part of this document may be reproduced in any form, by any means and in any media, without the prior written
+
+    authorization of ETSI and except as expressly permitted below.
+
+    By way of exception and when the document is a normative deliverable (European Standard (EN),
+
+    Technical Specification (TS), Group Specification (GS) or ETSI Standard (ES)), ETSI authorizes to reproduce
+
+    and incorporate into products, services and technical documentation only those extracts (e.g. templates) that are strictly
+
+    necessary for the technical implementation of the normative deliverable, to ensure compliance with the latter.
+
+    Nothing in this notice shall be construed as limiting any mandatory exceptions to copyright provided by applicable law.
+
+    © ETSI 2026.
+
+    All rights reserved.
+
+    ETSI
+
+    3 ETSI EN 301 908-13 V13.4.1 (2026-09)
+
+    Contents
+
+    Intellectual Property Rights .............................................................................................................................. 11
+
+    Foreword ........................................................................................................................................................... 11
+
+    Modal verbs terminology .................................................................................................................................. 12
+
+    Introduction ...................................................................................................................................................... 12
+
+    1 Scope ...................................................................................................................................................... 13
+
+    2 References .............................................................................................................................................. 16
+
+    2.1 Normative references ....................................................................................................................................... 16
+
+    2.2 Informative references ...................................................................................................................................... 16
+
+    3 Definition of terms, symbols and abbreviations ..................................................................................... 18
+
+    3.1 Terms ................................................................................................................................................................ 18
+
+    3.2 Symbols ............................................................................................................................................................ 21
+
+    3.3 Abbreviations ................................................................................................................................................... 23
+
+    4 Technical requirements specifications ................................................................................................... 25
+
+    4.1 Environmental profile ....................................................................................................................................... 25
+
+    4.2 Conformance requirements .............................................................................................................................. 25
+
+    4.2.0 General ........................................................................................................................................................ 25
+
+    4.2.1 Introduction................................................................................................................................................. 25
+
+    4.2.2 Transmitter Maximum Output Power ......................................................................................................... 26
+
+    4.2.2.1 Transmitter maximum output power for Single Carrier ........................................................................ 26
+
+    4.2.2.1.1 Definition......................................................................................................................................... 26
+
+    4.2.2.1.2 Limits .............................................................................................................................................. 26
+
+    4.2.2.1.3 Conformance ................................................................................................................................... 26
+
+    4.2.2.2 Transmitter output power for Carrier Aggregation (DL CA and UL CA) ............................................ 26
+
+    4.2.2.2.1 Definition......................................................................................................................................... 26
+
+    4.2.2.2.2 Limits .............................................................................................................................................. 27
+
+    4.2.2.2.3 Conformance ................................................................................................................................... 28
+
+    4.2.2.3 Transmitter output power for UL-MIMO ............................................................................................. 28
+
+    4.2.2.3.1 Definition......................................................................................................................................... 28
+
+    4.2.2.3.2 Limits .............................................................................................................................................. 28
+
+    4.2.2.3.3 Conformance ................................................................................................................................... 28
+
+    4.2.2.4 Transmitter output power for category NB1 ......................................................................................... 29
+
+    4.2.2.4.1 Definition......................................................................................................................................... 29
+
+    4.2.2.4.2 Limits .............................................................................................................................................. 29
+
+    4.2.2.4.3 Conformance ................................................................................................................................... 29
+
+    4.2.2.5 Transmitter output power for UE category M1 ..................................................................................... 29
+
+    4.2.2.5.1 Definition......................................................................................................................................... 29
+
+    4.2.2.5.2 Limits .............................................................................................................................................. 29
+
+    4.2.2.5.3 Conformance ................................................................................................................................... 30
+
+    4.2.3 Transmitter Spectrum Emission Mask ........................................................................................................ 30
+
+    4.2.3.1 Transmitter spectrum emission mask for Single Carrier ....................................................................... 30
+
+    4.2.3.1.1 Definition......................................................................................................................................... 30
+
+    4.2.3.1.2 Limits .............................................................................................................................................. 30
+
+    4.2.3.1.3 Conformance ................................................................................................................................... 31
+
+    4.2.3.2 Transmitter spectrum emission mask for Carrier Aggregation (DL CA and UL CA) .......................... 31
+
+    4.2.3.2.1 Definition......................................................................................................................................... 31
+
+    4.2.3.2.2 Limits .............................................................................................................................................. 31
+
+    4.2.3.2.3 Conformance ................................................................................................................................... 33
+
+    4.2.3.3 Transmitter spectrum emission mask for UL-MIMO ........................................................................... 33
+
+    4.2.3.3.1 Definition......................................................................................................................................... 33
+
+    4.2.3.3.2 Limits .............................................................................................................................................. 34
+
+    4.2.3.3.3 Conformance ................................................................................................................................... 34
+
+    4.2.3.4 Transmitter spectrum emission mask for Multi-Cluster PUSCH within a component carrier .............. 34
+
+    4.2.3.4.1 Definition......................................................................................................................................... 34
+
+    4.2.3.4.2 Limits .............................................................................................................................................. 34
+
+    ETSI
+
+    4 ETSI EN 301 908-13 V13.4.1 (2026-09'
+- id: art-2
+  title: 'Annex C (informative): Selection of receiver parameters................................................................. 149'
+  text: 'Annex C (informative): Selection of receiver parameters................................................................. 149
+
+    C.0 Introduction .......................................................................................................................................... 149
+
+    C.1 Receiver sensitivity .............................................................................................................................. 149
+
+    C.2 Receiver co-channel rejection .............................................................................................................. 149
+
+    C.3 Receiver adjacent channel selectivity ................................................................................................... 149
+
+    C.4 Receiver spurious response rejection ................................................................................................... 149
+
+    C.5 Receiver blocking ................................................................................................................................. 149
+
+    C.6 Receiver radio-frequency intermodulation ........................................................................................... 150
+
+    C.7 Receiver dynamic range ....................................................................................................................... 150
+
+    C.8 Receiver unwanted emissions in the spurious domain ......................................................................... 150
+
+    Annex D (informative): Maximum measurement uncertainty ......................................................... 151
+
+    Annex E (informative): Bibliography ................................................................................................. 152
+
+    Annex F (informative): Change history ............................................................................................. 153
+
+    History ............................................................................................................................................................ 154
+
+    ETSI
+
+    11 ETSI EN 301 908-13 V13.4.1 (2026-09)
+
+    Intellectual Property Rights
+
+    Essential patents
+
+    IPRs essential or potentially essential to normative deliverables (European Standard (EN), Technical Specification (TS),
+
+    Group Specification (GS) or ETSI Standard (ES)) may have been declared to ETSI. The declarations pertaining to these
+
+    essential IPRs, if any, are publicly available for ETSI members and non-members, and can be found in
+
+    ETSI SR 000 314: "Intellectual Property Rights (IPRs); Essential, or potentially Essential, IPRs notified to ETSI in
+
+    respect of ETSI standards", which is available from the ETSI Secretariat. Latest updates are available on the
+
+    ETSI IPR online database.
+
+    Pursuant to the ETSI Directives including the ETSI IPR Policy, no investigation regarding the essentiality of IPRs,
+
+    including IPR searches, has been carried out by ETSI. No guarantee can be given as to the existence of other IPRs not
+
+    referenced in ETSI SR 000 314 (or the updates on the ETSI Web server) which are, or may be, or may become,
+
+    essential to the present document.
+
+    Trademarks
+
+    The present document may include trademarks and/or tradenames which are asserted and/or registered by their owners.
+
+    ETSI claims no ownership of these except for any which are indicated as being the property of ETSI, and conveys no
+
+    right to use or reproduce any trademark and/or tradename. Mention of those trademarks in the present document does
+
+    not constitute an endorsement by ETSI of products, services or organizations associated with those trademarks.
+
+    DECT™, PLUGTESTS™, UMTS™ and the ETSI logo are trademarks of ETSI registered for the benefit of its
+
+    Members. 3GPP™, LTE™ and 5G™ logo are trademarks of ETSI registered for the benefit of its Members and of the
+
+    3GPP Organizational Partners. oneM2M™ logo is a trademark of ETSI registered for the benefit of its Members and of
+
+    the oneM2M Partners. GSM® and the GSM logo are trademarks registered and owned by the GSM Association.
+
+    Foreword
+
+    This Harmonised European Standard (EN) has been produced by ETSI Technical Committee Mobile Standards Group
+
+    (MSG).
+
+    For non-EU countries the present document may be used for regulatory (Type Approval) purposes.
+
+    The present document has been prepared under the Commission''s standardisation request C(2015) 5376 final [i.9] to
+
+    provide one voluntary means of conforming to the essential requirements of Directive 2014/53/EU on the harmonisation
+
+    of the laws of the Member States relating to the making available on the market of radio equipment and repealing
+
+    Directive 1999/5/EC [i.2].
+
+    Once the present document is cited in the Official Journal of the European Union under that Directive, compliance with
+
+    the normative clauses of the present document given in table A-1 confers, within the limits of the scope of the present
+
+    document, a presumption of conformity with the corresponding essential requirements of that Directive and associated
+
+    EFTA regulations.
+
+    The present document is part 13 of a multi-part deliverable. Full details of the entire series can be found in part 1 [i.12].
+
+    This version of the harmonised standard includes the following revisions:
+
+    • Extension of Over The Air (OTA) antenna performance requirements in terms of Receiver Total Radiated
+
+    Sensitivity (TRS) and Total Radiated Power (TRP) for devices over 72 mm wide;
+
+    • The essential change applicable to 3GPP release 13:
+
+    - The power class 2 requirements for band 41.
+
+    ETSI
+
+    12 ETSI EN 301 908-13 V13.4.1 (2026-09)
+
+    National transposition dates
+
+    Date of adoption of this EN: 21 August 2026
+
+    Date of latest announcement of this EN (doa): 30 November 2026
+
+    Date of latest publication of new National Standard
+
+    or endorsement of this EN (dop/e): 31 May 2027
+
+    Date of withdrawal of any conflicting National Standard (dow): 31 May 2028
+
+    Modal verbs terminology
+
+    In the present document "shall", "shall not", "should", "should not", "may", "need not", "will", "will not", "can" and
+
+    "cannot" are to be interpreted as described in clause 3.2 of the ETSI Drafting Rules (Verbal forms for the expression of
+
+    provisions).
+
+    "must" and "must not" are NOT allowed in ETSI deliverables except when used in direct citation.
+
+    Introduction
+
+    The present document is part of a set of standards developed by ETSI and is designed to fit in a modular structure to
+
+    cover all radio and telecommunications terminal equipment within the scope of the Radio Equipment Directive [i.2].
+
+    The present document is produced following the guidance in ETSI EG 203 336 [i.3] as applicable.
+
+    ETSI
+
+    13 ETSI EN 301 908-13 V13.4.1 (2026-09)
+
+    1 Scope
+
+    The present document applies to the following radio equipment type:
+
+    • User Equipment for Evolved Universal Terrestrial Radio Access (E-UTRA).
+
+    This radio equipment type is capable of operating in all or any part of the frequency bands given in tables from 1-1
+
+    through 1-5.
+
+    Table 1-1: E-UTRA UE operating bands
+
+    Related EC/ECC
+
+    E-UTRA Band Direction of UE transmission E-UTRA operating bands
+
+    decision
+
+    Transmit 1 920 MHz to 1 980 MHz
+
+    1 [i.21] and [i.22]
+
+    Receive 2 110 MHz to 2 170 MHz
+
+    Transmit 1 710 MHz to 1 785 MHz
+
+    3 [i.19] and [i.20]
+
+    Receive 1 805 MHz to 1 880 MHz
+
+    Transmit 2 500 MHz to 2 570 MHz
+
+    7 [i.24] and [i.25]
+
+    Receive 2 620 MHz to 2 690 MHz
+
+    Transmit 880 MHz to 915 MHz
+
+    8 [i.19] and [i.20]
+
+    Receive 925 MHz to 960 MHz
+
+    Transmit 832 MHz to 862 MHz
+
+    20 [i.6] and [i.7]
+
+    Receive 791 MHz to 821 MHz
+
+    Transmit 3 410 MHz to 3 490 MHz
+
+    22 [i.26] and [i.27]
+
+    Receive 3 510 MHz to 3 590 MHz
+
+    28 Transmit 703 MHz to 748 MHz
+
+    [i.14] and [i.15]
+
+    (see note 6) Receive 758 MHz to 803 MHz
+
+    Transmit 452,5 MHz to 457,5 MHz
+
+    31 [i.16]
+
+    Receive 462,5 MHz to 467,5 MHz
+
+    32 Transmit N/A
+
+    (see note 1)
+
+    Receive 1 452 MHz to 1 496 MHz [i.17] and [i.18]
+
+    (see note 2)
+
+    33 Transmit and Receive 1 900 MHz to 1 920 MHz [i.22]
+
+    34 Transmit and Receive 2 010 MHz to 2 025 MHz [i.22]
+
+    38 Transmit and Receive 2 570 MHz to 2 620 MHz [i.24] and [i.25]
+
+    40 Transmit and Receive 2 300 MHz to 2 400 MHz [i.23]
+
+    41 (note 7) Transmit and Receive 2 496 MHz to 2 690 MHz [i.24] and [i.25]
+
+    42 Transmit and Receive 3 400 MHz to 3 600 MHz [i.26] and [i.27]
+
+    43 Transmit and Receive 3 600 MHz to 3 800 MHz [i.26] and [i.27]
+
+    46
+
+    (see note 3) Transmit and Receive 5 150 MHz to 5 925 MHz [i.29] and [i.30]
+
+    (see note 4)
+
+    65 Transmit 1 920 MHz to 2 010 MHz
+
+    [i.21], [i.22] and [i.28]
+
+    (see note 5) Receive 2 110 MHz to 2 200 MHz
+
+    Transmit N/A
+
+    67
+
+    Receive 738 MHz to 758 MHz [i.14] and [i.15]
+
+    Transmit 698 MHz to 728 MHz
+
+    68 [i.14], [i.15] and [i.31]
+
+    Receive 753 MHz to 783 MHz
+
+    69 Transmit N/A
+
+    (see note 1) Receive 2 570 MHz to 2 620 MHz [i.24] and [i.25]
+
+    72 Transmit 451 MHz to 456 MHz
+
+    [i.16]
+
+    Receive 461 MHz to 466 MHz
+
+    87 Transmit 410 MHz to 415 MHz
+
+    [i.16]
+
+    Receive 420 MHz to 425 MHz
+
+    88 Transmit 412 MHz to 417 MHz
+
+    [i.16]
+
+    Receive 422 MHz to 427 MHz
+
+    ETSI
+
+    14 ETSI EN 301 908-13 V13.4.1 (2026-09)
+
+    Related EC/ECC
+
+    E-UTRA Band Direction of UE transmission E-UTRA operating bands
+
+    decision
+
+    NOTE 1: Restricted to E-UTRA operation when carrier aggregation is configured. The downlink operating band is
+
+    paired with the uplink operating band (external) of the carrier aggregation configuration that is supporting the
+
+    configured Pcell.
+
+    NOTE 2: In Europe, according to [i.17] and [i.18], radio equipment in band 32 operates between 1 452 MHz and
+
+    1 492 MHz.
+
+    NOTE 3: This band is an unlicensed band restricted to licensed-assisted operation using Frame Structure Type 3. In
+
+    Europe according to [i.29] and [i.30], radio equipment in band 46 operates between 5 150 MHz and
+
+    5 725 MHz as in table 1-1A.
+
+    NOTE 4: In this version of the present document, restricted to E-UTRA DL operation when carrier aggregation is
+
+    configured.
+
+    NOTE 5: A UE that complies with the E-UTRA Band 65 minimum requirements in the present document also complies
+
+    with the E-UTRA Band 1 minimum requirements. This band includes two frequency ranges that are
+
+    harmonised in Europe:
+
+    a) According to [i.21] and [i.22], radio equipment in band n65 operates between 2 110 MHz and 2 170 MHz
+
+    for the transmitter (F = 2 110 MHz and F = 2 170 MHz), and between 1 920 MHz and
+
+    DL_low DL_high
+
+    1 980 MHz for the receiver (F = 1 920 MHz and F = 1 980 MHz).
+
+    UL_low UL_high
+
+    b) Based on [i.29], radio equipment in band n65 operates between 2 170 MHz and 2 200 MHz for the
+
+    transmitter (F = 2 170 MHz and F = 2 200 MHz) and between 1 980 MHz and 2 010 MHz for
+
+    DL_low DL_high
+
+    the receiver (F = 1 980 MHz and F = 2 010 MHz) as the Complementary Ground
+
+    UL_low UL_high
+
+    Component (CGC) of a Mobile-satellite service by reference to the present Harmonised Standard.
+
+    NOTE 6: In Europe, according to [i.14], [i.15] and [i.31], radio equipment in band 28 operates between 703 MHz to
+
+    736 MHz for the transmitter (F = 703 MHz and F = 736 MHz) and between 758 MHz to 791 MHz
+
+    UL_low UL_high
+
+    for the receiver (F = 758 MHz and F = 791 MHz).
+
+    DL_low DL_high
+
+    NOTE 7: In Europe according to [i.24] and [i.25], radio equipment in band 41 operates between 2 570 MHz and
+
+    2 620 MHz (F = 2 570 MHz and F = 2 620 MHz).
+
+    DL_low DL_high
+
+    NOTE 1: The relationship between the present document and essential requirements of article 3.2 of
+
+    Directive 2014/53/EU [i.2] is given in annex A.
+
+    Table 1-1A: Sub-bands for band 46
+
+    E-UTRA Band
+
+    46a
+
+    46b
+
+    46c
+
+    NOTE: The sub-bands 46a and 46b are restricted to indoor use only.
+
+    Table 1-2: E-UTRA UE Intra-band contiguous CA operating bands
+
+    E-UTRA CA Band
+
+    CA_1
+
+    CA_3
+
+    CA_7
+
+    CA_38
+
+    CA_40
+
+    CA_41
+
+    CA_42
+
+    ETSI
+
+    15 ETSI EN 301 908-13 V13.4.1 (2026-09)
+
+    Table 1-3: E-UTRA UE Inter-band CA operating bands (two bands)
+
+    E-UTRA CA Band
+
+    CA_1-3
+
+    CA_1-7
+
+    CA_1-8
+
+    CA_1-20
+
+    CA_1-41
+
+    CA_1-42
+
+    CA_1-46
+
+    CA_3-7
+
+    CA_3-8
+
+    CA_3-20
+
+    CA_3-28
+
+    CA_3-41
+
+    CA_3-42
+
+    CA_3-46
+
+    CA_7-20
+
+    CA_7-28
+
+    CA_7-46
+
+    CA_8-20
+
+    CA_8-40
+
+    CA_8-41
+
+    CA_20-32
+
+    CA_41-42
+
+    CA_41-46
+
+    CA_42-46
+
+    CA_20-67
+
+    Table 1-4: E-UTRA UE Inter-band CA operating bands (three bands)
+
+    E-UTRA CA Band
+
+    CA_1-3-8
+
+    CA_1-3-20
+
+    CA_1-7-20
+
+    CA_3-7-20
+
+    CA_3-41-42
+
+    Table 1-5: Intra-band non-contiguous CA operating bands (with two sub-blocks)
+
+    E-UTRA CA Band
+
+    CA_3-3
+
+    CA_7-7
+
+    CA 41-41
+
+    CA_42-42
+
+    E-UTRA NB-IoT is designed to operate in the E-UTRA operating bands 1, 3, 8, 20, 28 and 65 defined in table 1-1. The
+
+    pre'
+- id: art-3
+  title: 'Annex C (informative):'
+  text: 'Annex C (informative):
+
+    Selection of receiver parameters
+
+    C.0 Introduction
+
+    Receiver parameters under article 3.2 of Directive 2014/53/EU [i.2] listed in ETSI EG 203 336 [i.3] (V1.2.1) are
+
+    analysed and the parameters which are applicable to the present document are specified in respective clauses. In each
+
+    clause in Annex C the definition of the requirement is taken from the ETSI EG 203 336 [i.3].
+
+    C.1 Receiver sensitivity
+
+    Receiver sensitivity is the ability to receive a wanted signal at low input signal levels while providing a pre-determined
+
+    level of performance. Receiver sensitivity is specified in the present document in clauses 4.2.12.
+
+    C.2 Receiver co-channel rejection
+
+    Receiver co-channel rejection is a measure of the capability of a receiver to receive a wanted signal, without exceeding
+
+    a given degradation, due to the presence of an unwanted signal, both signals being at the nominal frequency of the
+
+    receiver.
+
+    In frequency bands covered by the present document, any modulation, channel width, centre frequency and data rate
+
+    may be used. A combination of many signals of widely different characteristics manifests itself primarily as an increase
+
+    in the noise floor.
+
+    Thus, a specific test for co-channel rejection is not included because the co-channel rejection performance of the
+
+    receiver combined with the receiver noise figure directly affects the sensitivity performance, which is tested. The
+
+    required limits for sensitivity ensure that products have the required co-channel rejection.
+
+    C.3 Receiver adjacent channel selectivity
+
+    Adjacent channel selectivity is a measure of the receiver capability to receive a wanted modulated signal without
+
+    exceeding the general performance criteria stated in the present document due to the presence of an unwanted input
+
+    signal in the adjacent channels. Adjacent channel selectivity is specified in the present document in clause 4.2.6.
+
+    C.4 Receiver spurious response rejection
+
+    The spurious response rejection is a measure of the capability of the receiver to receive a wanted signal without
+
+    exceeding a given degradation due to the presence of an unwanted signal at any frequency at which a response is
+
+    obtained. The frequencies of the adjacent signals (channels) are excluded.
+
+    Receiver spurious response rejection is specified in the present document in clause 4.2.8.
+
+    C.5 Receiver blocking
+
+    Blocking is a measure of the receiver capability to receive a wanted modulated signal without exceeding a given
+
+    degradation due to the presence of an unwanted input signal at any frequencies other than those of the spurious
+
+    responses or the adjacent channels or bands. Receiver Blocking is specified in the present document in clause 4.2.7.
+
+    ETSI
+
+    150 ETSI EN 301 908-13 V13.4.1 (2026-09)
+
+    C.6 Receiver radio-frequency intermodulation
+
+    Intermodulation rejection is a measure of the ability of a receiver to operate in the presence of two or more unwanted
+
+    signals the frequencies of which have a specific frequency relationship to the wanted signal. Receiver Intermodulation
+
+    is specified in the present document in clause 4.2.9.
+
+    C.7 Receiver dynamic range
+
+    Receiver dynamic range is defined as the range of the wanted input signal level over which a receiver functions at a
+
+    specified performance level. The lower end of this range is normally the sensitivity of the receiver. The upper end of a
+
+    receiver''s dynamic range determines how strong a received signal can be before producing degradation due to
+
+    overloading.
+
+    The UEs are normally deployed far away from BS and for a few UEs which are close to BS, sufficient coupling loss is
+
+    also guaranteed due to the antenna high difference between BS and UE. Such that UE will not receive a wanted signal
+
+    that is high enough to provide overloading effect. Thus, receiver dynamic range is not included in the present document.
+
+    C.8 Receiver unwanted emissions in the spurious domain
+
+    As a default, the limit for unwanted emissions in the spurious domain referenced at the antenna port should respect
+
+    those in ERC/REC 74-01 [i.32]. Receiver spurious emission is specified in the present document in clause 4.2.10.
+
+    ETSI
+
+    151 ETSI EN 301 908-13 V13.4.1 (2026-09)
+
+    Annex D (informative):
+
+    Maximum measurement uncertainty
+
+    The measurements described in the present document are based on the following assumptions:
+
+    • the measured value related to the corresponding limit is used to decide whether an equipment meets the
+
+    requirements of the present document;
+
+    • the value of the measurement uncertainty for the measurement of each parameter is included in the test report.
+
+    Table D-1 shows the recommended values for the maximum measurement uncertainty figures.
+
+    Table D-1: Maximum measurement uncertainty
+
+    Parameter Uncertainty
+
+    Transmitter maximum output power ±0,7 dB
+
+    Transmitter spectrum emissions mask ±1,5 dB
+
+    Transmitte≤r spurious emissions ±2,0 dB
+
+    9 kHz < f ≤ 4 GHz ±4,0 dB
+
+    4 GHz < f 12,75 GHz
+
+    Transmitter Minimum output power ±1,0 dB
+
+    Receiver Adjacent Channel Selectivity (ACS) ±1,1 dB
+
+    Receiver Blocking≤ characteristics ±1,3 dB
+
+    1 MHz < f 3 GHz ±3,2 dB
+
+    interferer≤
+
+    3 GHz < f 12,75 GHz
+
+    interferer
+
+    Receiver spurious≤ response ±1,3 dB
+
+    1 MHz < f 3 GHz ±3,2 dB
+
+    interferer≤
+
+    3 GHz < f 12,75 GHz
+
+    interferer
+
+    Receiver≤ int≤ermodulation characteristics ±1,4 dB
+
+    30 MHz f≤ 4,0 GHz ±2,0 dB
+
+    4 GHz < f 12,75 GHz ±4,0 dB
+
+    Transmitter adjacent channel leakage power ratio ±0,8 dB
+
+    R≤eceiver Reference Sensitivity Level ±0,7 dB
+
+    f 4,0 GH≤z ±1,0 dB
+
+    4 GHz < f 12,75 GHz
+
+    NOTE 1: For RF tests it should be noted that the uncertaintiesΩ in table D-1
+
+    apply to the test system operating into a nominal 50 load and
+
+    do not include system effects due to mismatch between the EUT
+
+    and the test system.
+
+    NOTE 2: If the test system for a test is known to have a measurement
+
+    uncertainty greater than that specified in table D-1, this
+
+    equipment can still be used provided that an adjustment is made
+
+    as follows:
+
+    any additional uncertainty in the test system over and above that
+
+    specified in table D-1 should be used to tighten the test
+
+    requirements - making the test harder to pass (for some tests,
+
+    e.g. receiver tests, this may require modification of stimulus
+
+    signals). This procedure will ensure that a test system not
+
+    compliant with table D-1 does not increase the probability of
+
+    passing an EUT that would otherwise have failed a test if a test
+
+    system compliant with table D-1 had been used.
+
+    ETSI
+
+    152 ETSI EN 301 908-13 V13.4.1 (2026-09)
+
+    Annex E (informative):
+
+    Bibliography
+
+    • Directive 2004/108/EC of the European Parliament and of the Council of 15 December 2004 on the
+
+    approximation of the laws of the Member States relating to electromagnetic compatibility and repealing
+
+    Directive 89/336/EEC (EMC Directive).
+
+    • CEPT/ERC/REC 74-01E (Siófok 1998, Nice 1999, Sesimbra 2002, Hradec Kralove 2005, Cardiff 2011):
+
+    "Unwanted Emissions in the Spurious Domain".
+
+    • Directive 2006/95/EC of the European Parliament and of the Council of 12 December 2006 on the
+
+    harmonisation of the laws of Member States relating to electrical equipment designed for use within certain
+
+    voltage limits (LV Directive).
+
+    • Commission Decision (EU) 2015/750 of 8 May 2015 on the harmonisation of the 1 452-1 492 MHz frequency
+
+    band for terrestrial systems capable of providing electronic communications services in the Union.
+
+    • Directive 98/34/EC of the European Parliament and of the Council of 22 June 1998 laying down a procedure
+
+    for the provision of information in the field of technical standards and regulations.
+
+    • Directive 98/48/EC of the European Parliament and of the Council of 20 July 1998 amending Directive
+
+    98/34/EC laying down a procedure for the provision of information in the field of technical standards and
+
+    regulations.
+
+    • Commission Decision 2005/513/EC of 11 July 2005 on the harmonised use of radio spectrum in the 5 GHz
+
+    frequency band for the implementation of wireless access systems including radio local area networks
+
+    (WAS/RLANs).
+
+    • Commission Decision 2007/90/EC of 12 February 2007 amending Decision 2005/513/EC on the harmonised
+
+    use of radio spectrum in the 5 GHz frequ'
 doc_files:
 - global/raw/ETSI_EN_30190813_v13.04.01_60.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30190813_v13.04.01_60.pdf (pdf, 456096 chars)，生成 3 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30190813_v13.04.01_60.pdf (pdf, 456096 chars)，生成 3 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30190813_v13.04.01_60.pdf (pdf, 456096 chars)，生成 3 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

@@ -9,11 +9,359 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'Page 2243 TITLE 15—COMMERCE AND TRADE §6501
+
+    (b) Authority to'
+  text: 'Page 2243 TITLE 15—COMMERCE AND TRADE §6501
+
+    (b) Authority to restrict activities the report demonstrates that there has been an
+
+    If in any year the 5-year average rolling price adverse effect, the Secretary of Commerce shall
+
+    index of consumer grade propane exceeds the 5- include recommendations for correcting the sit-
+
+    year rolling average price composite index of uation. Upon petition by affected parties or
+
+    residential electricity, residential natural gas, upon request by the Secretary of Energy, the
+
+    and refiner price to end users of No. 2 fuel oil in Secretary of Commerce may prepare and submit
+
+    an amount greater than 10.1 percent, the activi- the report required by this section at less than
+
+    ties of the Council shall be restricted to re- 2-year intervals.
+
+    search and development, training, and safety (Pub. L. 104–284, §12, Oct. 11, 1996, 110 Stat. 3375.)
+
+    matters. The Council shall inform the Secretary
+
+    of Energy and the Congress of any restriction of CHAPTER 91—CHILDREN’S ONLINE PRIVACY
+
+    activities under this subsection. Upon expira- PROTECTION
+
+    tion of 180 days after the beginning of any such
+
+    Sec.
+
+    restriction of activities, the Secretary of Com-
+
+    6501. Definitions.
+
+    merce shall again conduct the propane price 6502. Regulation of unfair and deceptive acts and
+
+    analysis described in subsection (a). Activities practices in connection with collection and
+
+    of the Council shall continue to be restricted use of personal information from and about
+
+    under this subsection until the price index ex- children on the Internet.
+
+    cess is 10.1 percent or less. 6503. Safe harbors.
+
+    6504. Actions by States.
+
+    (Pub. L. 104–284, §9, Oct. 11, 1996, 110 Stat. 3375; 6505. Administration and applicability.
+
+    Pub. L. 113–269, §2(b), Dec. 18, 2014, 128 Stat. 6506. Review.
+
+    2947.)'
+- id: art-2
+  title: §6501. Definitions
+  text: '§6501. Definitions
+
+    Editorial Notes In this chapter:
+
+    AMENDMENTS (1) Child
+
+    2014—Subsec. (a). Pub. L. 113–269 substituted ‘‘the re- The term ‘‘child’’ means an individual under
+
+    finer price to end users of consumer grade propane, as the age of 13.
+
+    published by the Energy Information Administration’’
+
+    for ‘‘only data provided by the Energy Information Ad- (2) Operator
+
+    ministration’’. The term ‘‘operator’’—
+
+    (A) means any person who operates a'
+- id: art-3
+  title: §6409. Pricing
+  text: '§6409. Pricing
+
+    website located on the Internet or an online
+
+    In all cases, the price of propane shall be de- service and who collects or maintains per-
+
+    termined by market forces. Consistent with the sonal information from or about the users of
+
+    antitrust laws, the Council may take no action, or visitors to such website or online service,
+
+    nor may any provision of this chapter be inter- or on whose behalf such information is col-
+
+    preted as establishing an agreement to pass lected or maintained, where such website or
+
+    along to consumers the cost of the assessment online service is operated for commercial
+
+    provided for in section 6405 of this title. purposes, including any person offering prod-
+
+    (Pub. L. 104–284, §10, Oct. 11, 1996, 110 Stat. 3375.) ucts or services for sale through that
+
+    website or online service, involving com-'
+- id: art-4
+  title: §6410. Relation to other programs merce—
+  text: '§6410. Relation to other programs merce—
+
+    (i) among the several States or with 1 or
+
+    Nothing in this chapter may be construed to
+
+    more foreign nations;
+
+    preempt or supersede any other program relat-
+
+    (ii) in any territory of the United States
+
+    ing to propane education and research organized
+
+    or in the District of Columbia, or between
+
+    and operated under the laws of the United
+
+    any such territory and—
+
+    States or any State.
+
+    (I) another such territory; or
+
+    (Pub. L. 104–284, §11, Oct. 11, 1996, 110 Stat. 3375.) (II) any State or foreign nation; or'
+- id: art-5
+  title: §6411. Reports (iii) between the District of Columbia
+  text: '§6411. Reports (iii) between the District of Columbia
+
+    and any State, territory, or foreign nation;
+
+    Within 2 years after October 11, 1996, and at but
+
+    least once every 2 years thereafter, the Sec-
+
+    retary of Commerce shall prepare and submit to (B) does not include any nonprofit entity
+
+    the Congress and the Secretary a report exam- that would otherwise be exempt from cov-
+
+    ining whether operation of the Council, in con- erage under section 45 of this title.
+
+    junction with the cumulative effects of market (3) Commission
+
+    changes and Federal programs, has had an effect
+
+    The term ‘‘Commission’’ means the Federal
+
+    on propane consumers, including residential, ag-
+
+    Trade Commission.
+
+    riculture, process, and nonfuel users of propane.
+
+    The Secretary of Commerce shall consider and, (4) Disclosure
+
+    to the extent practicable, shall include in the re- The term ‘‘disclosure’’ means, with respect
+
+    port submissions by propane consumers, and to personal information—
+
+    shall consider whether there have been long- (A) the release of personal information col-
+
+    term and short-term effects on propane prices as lected from a child in identifiable form by an
+
+    a result of Council activities and Federal pro- operator for any purpose, except where such
+
+    grams, and whether there have been changes in information is provided to a person other
+
+    the proportion of propane demand attributable than the operator who provides support for
+
+    to various market segments. To the extent that the internal operations of the website and'
+- id: art-6
+  title: §6502 TITLE 15—COMMERCE AND TRADE Page 2244
+  text: '§6502 TITLE 15—COMMERCE AND TRADE Page 2244
+
+    does not disclose or use that information for (i) a commercial website or online serv-
+
+    any other purpose; and ice that is targeted to children; or
+
+    (B) making personal information collected (ii) that portion of a commercial website
+
+    from a child by a website or online service or online service that is targeted to chil-
+
+    directed to children or with actual knowl- dren.
+
+    edge that such information was collected
+
+    (B) Limitation
+
+    from a child, publicly available in identifi-
+
+    able form, by any means including by a pub- A commercial website or online service, or
+
+    lic posting, through the Internet, or a portion of a commercial website or online
+
+    through— service, shall not be deemed directed to chil-
+
+    (i) a home page of a website; dren solely for referring or linking to a com-
+
+    (ii) a pen pal service; mercial website or online service directed to
+
+    (iii) an electronic mail service; children by using information location tools,
+
+    (iv) a message board; or including a directory, index, reference,
+
+    (v) a chat room. pointer, or hypertext link.
+
+    (5) Federal agency (11) Person
+
+    The term ‘‘Federal agency’’ means an agen- The term ‘‘person’’ means any individual,
+
+    cy, as that term is defined in section 551(1) of partnership, corporation, trust, estate, cooper-
+
+    title 5. ative, association, or other entity.
+
+    (6) Internet
+
+    (12) Online contact information
+
+    The term ‘‘Internet’’ means collectively the
+
+    The term ‘‘online contact information’’
+
+    myriad of computer and telecommunications
+
+    means an e-mail address or another substan-
+
+    facilities, including equipment and operating
+
+    tially similar identifier that permits direct
+
+    software, which comprise the interconnected
+
+    contact with a person online.
+
+    world-wide network of networks that employ
+
+    the Transmission Control Protocol/Internet (Pub. L. 105–277, div. C, title XIII, §1302, Oct. 21,
+
+    Protocol, or any predecessor or successor pro- 1998, 112 Stat. 2681–728.)
+
+    tocols to such protocol, to communicate infor-
+
+    mation of all kinds by wire or radio. Statutory Notes and Related Subsidiaries
+
+    (7) Parent EFFECTIVE DATE
+
+    The term ‘‘parent’’ includes a legal guard-
+
+    Pub. L. 105–277, div. C, title XIII, §1308, Oct. 21, 1998,
+
+    ian. 112 Stat. 2681–735, provided that: ‘‘Sections 1303(a), 1305,
+
+    (8) Personal information and 1306 of this title [enacting sections 6502(a), 6504, and
+
+    6505 of this title] take effect on the later of—
+
+    The term ‘‘personal information’’ means in-
+
+    ‘‘(1) the date that is 18 months after the date of en-
+
+    dividually identifiable information about an
+
+    actment of this Act [Oct. 21, 1998]; or
+
+    individual collected online, including— ‘‘(2) the date on which the Commission rules on the
+
+    (A) a first and last name; first application filed for safe harbor treatment under
+
+    (B) a home or other physical address in- section 1304 [enacting section 6503 of this title] if the
+
+    cluding street name and name of a city or Commission does not rule on the first such applica-
+
+    town; tion within one year after the date of enactment of
+
+    (C) an e-mail address; this Act, but in no case later than the date that is 30
+
+    (D) a telephone number; months after the date of enactment of this Act.’’
+
+    (E) a Social Security number;
+
+    (F) any other identifier that the Commis-
+
+    SHORT TITLE
+
+    sion determines permits the physical or on- Pub. L. 105–277, div. C, title XIII, §1301, Oct. 21, 1998,
+
+    line contacting of a specific individual; or 112 Stat. 2681–728, provided that: ‘‘This title [enacting
+
+    (G) information concerning the child or this chapter] may be cited as the ‘Children’s Online
+
+    the parents of that child that the website Privacy Protection Act of 1998’.’’
+
+    collects online from the child and combines §6502. Regulation of unfair and deceptive acts
+
+    with an identifier described in this para- and practices in connection with collection
+
+    graph. and use of personal information from and
+
+    (9) Verifiable parental consent about children on the Internet
+
+    The term ‘‘verifiable parental consent’’
+
+    (a) Acts prohibited
+
+    means any reasonable effort (taking into con-
+
+    (1) In general
+
+    sideration available technology), including a
+
+    request for authorization for future collection, It is unlawful for an operator of a website or
+
+    use, and disclosure described in the notice, to online service directed to children, or any op-
+
+    ensure that a parent of a child receives notice erator that has actual knowledge that it is
+
+    of the operator’s personal information collec- collecting personal information from a child,
+
+    tion, use, and disclosure practices, and author- to collect personal information from a child in
+
+    izes the collection, use, and disclosure, as ap- a manner that violates the regulations pre-
+
+    plicable, of personal information and the sub- scribed under subsection (b).
+
+    sequent use of that information before that in- (2) Disclosure to parent protected
+
+    formation is collected from that child.
+
+    Notwithstanding paragraph (1), neither an
+
+    (10) Website or online service directed to chil-
+
+    operator of such a website or online service
+
+    dren
+
+    nor the operator’s agent shall be held to be
+
+    (A) In general liable under any Federal or State law for any
+
+    The term ‘‘website or online service di- disclosure made in good faith and following
+
+    rected to children’’ means— reasonable procedures in responding to a re-'
 doc_files:
 - us/raw/US-title15-USC-6501_COPPA.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-title15-USC-6501_COPPA.pdf (pdf, 10311 chars)，生成 6 条共 10311 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-title15-USC-6501_COPPA.pdf (pdf, 10311 chars)，生成 6 条共 10311 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-title15-USC-6501_COPPA.pdf (pdf, 10311 chars)，生成 6 条共 10311 字符；解析文本未人工复核，引用以官方原件为准。'

@@ -1,0 +1,26 @@
+id: KB-market-GCC-GCC-GMARK
+regulation_id: GCC-GMARK
+doc_name: GCC Conformity Marking (G-Mark) — GSO technical regulation
+official_citation: GCC Conformity Marking (G-Mark) — GSO technical regulation
+short_name: 中东海湾 G-Mark 认证体系
+source: market
+primary_source: market
+domain: 产品认证
+applies_if:
+  category: []
+  features_any: []
+  markets:
+  - SA
+  - AE
+key_articles: []
+key_points:
+- 中东海湾 G-Mark 认证体系：产品认证领域法规，适用于 SA/AE 市场相关经营行为（库自动接入，按市场匹配）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://www.gso.org.sa/
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

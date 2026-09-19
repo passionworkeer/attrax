@@ -296,6 +296,10 @@ raw_file: data/regulation_sources/red-20260530.html
 checksum_sha256: 1a8081f332e22a82f010f7e237821661ae1bc78cb8300e03456217c6a16ceb15
 schema_version: 1
 source_url: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:02014L0053-20260530
-notes: Selected sections from EUR-Lex consolidated text of 2026-05-30. Whitespace normalized. Consolidated text is a documentation
+notes: 'Selected sections from EUR-Lex consolidated text of 2026-05-30. Whitespace normalized. Consolidated text is a documentation
   tool; authentic legal acts are in the Official Journal linked by EUR-Lex. Replaces unverified repeated summaries and incorrect
   section titles.
+
+  2026-09-19 去重：合并同法规异名条目 EU-2014-53_RADIO_EQUIPMENT_DIRECTIVE_RED（EU-2014-53 Radio Equipment Directive RED [xhtml]）。'
+doc_files:
+- eu/raw/EU-2014-53_Radio_Equipment_Directive_RED.xhtml

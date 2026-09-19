@@ -9,11 +9,766 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: zh
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'L_2021206EN.01000101.xml
+
+
+    11.6.2021
+
+
+    EN
+
+
+    Official Journal of'
+  text: 'L_2021206EN.01000101.xml
+
+
+    11.6.2021
+
+
+    EN
+
+
+    Official Journal of the European Union
+
+
+    L 206/1
+
+
+    REGULATION (EU) 2021/821 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL
+
+
+    of 20 May 2021
+
+
+    setting up a Union regime for the control of exports, brokering, technical assistance, transit and transfer of dual-use items (recast)
+
+
+    THE EUROPEAN PARLIAMENT AND THE COUNCIL OF THE EUROPEAN UNION,
+
+
+    Having regard to the Treaty on the Functioning of the European Union, and in particular Article 207(2) thereof,
+
+
+    Having regard to the proposal from the European Commission,
+
+
+    After transmission of the draft legislative act to the national parliaments,
+
+
+    Acting in accordance with the ordinary legislative procedure
+
+    (
+
+    1
+
+    )
+
+    ,
+
+
+    Whereas:
+
+
+    (1)
+
+
+    Council Regulation (EC) No 428/2009
+
+    (
+
+    2
+
+    )
+
+    has been substantially amended several times. Since further amendments are to be made, that Regulation should be recast in the interests of clarity, effectiveness and efficiency.
+
+
+    (2)
+
+
+    This Regulation aims to ensure that in the area of dual-use items, the Union and its Member States fully take into account all relevant considerations. Relevant considerations include international
+    obligations and commitments, obligations under relevant sanctions, considerations of national foreign and security policy including those contained in the Council Common Position 2008/944/CFSP
+
+    (
+
+    3
+
+    )
+
+    , among them human rights, and considerations about intended end-use and the risk of diversion. Through this Regulation, the Union demonstrates its commitment to maintaining robust legal requirements
+    with regard to dual-use items, as well as to strengthening the exchange of relevant information and greater transparency. With regard to cyber-surveillance items, the competent authorities of the Member States
+    should consider in particular the risk of them being used in connection with internal repression or the commission of serious violations of human rights and international humanitarian law.
+
+
+    (3)
+
+
+    This Regulation also aims to strengthen the guidance to be given to exporters, in particular to small and medium-sized enterprises (SMEs), regarding responsible practices, yet without impairing the
+    global competitiveness of exporters of dual-use items or other associated industry or academia which are resident or established in a Member State.
+
+
+    (4)
+
+
+    United Nations Security Council Resolution 1540 (2004), adopted on 28 April 2004, decided that all States are to take and enforce effective measures to establish domestic controls to prevent the proliferation
+    of nuclear, chemical or biological weapons and their means of delivery, including by establishing appropriate controls over related materials, equipment and technology. Controls are also required under
+    relevant international agreements, such as the Convention on the Prohibition of the Development, Production, Stockpiling and use of Chemical Weapons and on their Destruction (the ‘Chemical Weapons Convention’
+    or ‘CWC’) and the Convention on the Prohibition of the Development, Production and Stockpiling of Bacteriological (Biological) and Toxin Weapons and On Their Destruction (the ‘Biological and Toxin Weapons
+    Convention’ or ‘BWC’), and in line with commitments agreed upon in multilateral export control regimes.
+
+
+    (5)
+
+
+    An effective common system of export controls on dual-use items is therefore necessary to ensure that the international commitments and responsibilities of the Member States and of the Union, in particular
+    regarding non-proliferation, regional peace, security and stability and respect for human rights and international humanitarian law, are complied with.
+
+
+    (6)
+
+
+    The EU Strategy against proliferation of Weapons of Mass Destruction of 12 December 2003 (‘EU WMD Strategy’) emphasises the Union’s commitment to strong national and internationally coordinated export
+    controls.
+
+
+    (7)
+
+
+    The contribution of exporters, brokers, providers of technical assistance or other relevant stakeholders to the overall aim of trade controls is crucial. In order for them to be able to act in conformity
+    with this Regulation, the assessment of risks related to transactions concerned by this Regulation is to be carried out through transaction-screening measures, also known as the due diligence principle,
+    as a part of an Internal Compliance Programme (ICP). In that regard, in particular the size and organisational structure of exporters have to be taken into account when developing and implementing ICPs.
+
+
+    (8)
+
+
+    In order to address the risk that certain non-listed cyber-surveillance items exported from the customs territory of the Union might be misused by persons complicit in or responsible for directing or
+    committing serious violations of human rights or international humanitarian law, it is appropriate to place the export of such items under control. Associated risks relate, in particular, to cases where
+    cyber-surveillance items are specially designed to enable intrusion or deep packet inspection into information and telecommunications systems in order to conduct covert surveillance of natural persons
+    by monitoring, extracting, collecting or analysing data, including biometrics data, from those systems. Items used for purely commercial applications such as billing, marketing, quality services, user
+    satisfaction or network security are generally considered not to entail such risks.
+
+
+    (9)
+
+
+    With a view to strengthening the effective control of exports of non-listed cyber-surveillance items, it is essential to further harmonise the application of catch-all controls in that area. To that
+    end, Member States are committed to supporting such controls by sharing information amongst themselves and with the Commission, in particular regarding technological developments of cyber-surveillance
+    items, and by exercising vigilance in the application of such controls to promote an exchange at Union level.
+
+
+    (10)
+
+
+    In order to enable the Union to react rapidly to the serious misuse of existing technologies or to new risks associated with emerging technologies, a mechanism should be introduced to enable Member States
+    to coordinate their responses when a new risk is identified. Such coordination should be followed by initiatives to introduce equivalent controls at the multilateral level in order to broaden the response
+    to the identified risk.
+
+
+    (11)
+
+
+    Transmission of dual-use software and technology by means of electronic media, fax or telephone to destinations outside the customs territory of the Union should also be controlled. In order to limit
+    the administrative burden for exporters and the competent authorities of the Member States, general or global licenses or harmonised interpretations of provisions should be provided for certain transmissions,
+    such as transmissions to a cloud.
+
+
+    (12)
+
+
+    Considering the important role of customs authorities in the enforcement of export controls, the terms used in this Regulation should, to the extent possible, be consistent with the definitions set
+    out in Regulation (EU) No 952/2013 of the European Parliament and of the Council
+
+    (
+
+    4
+
+    )
+
+    (the ‘Union Customs Code’).
+
+
+    (13)
+
+
+    Various categories of persons can be involved in the export of dual-use items, including natural persons such as service providers, researchers, consultants and persons transmitting dual-use items electronically.
+    It is essential that all such persons are aware of the risks associated with the export and the provision of technical assistance regarding sensitive items. In particular, academic and research institutions
+    face distinct challenges in export control due to, inter alia, their general commitment to the free exchange of ideas, the fact that their research work often involves cutting edge technologies, their
+    organisational structures and the international nature of their scientific exchanges. Member States and the Commission should, where necessary, raise awareness among the academic and research community
+    and provide them with tailored guidance to address those distinct challenges. In alignment with multilateral export control regimes, the implementation of controls should provide, to the extent possible,
+    for a common approach with respect to certain provisions, in particular regarding the academia related de-control notes ‘basic scientific research’ and ‘public domain’.
+
+
+    (14)
+
+
+    The definition of the term ‘broker’ should be revised to include legal persons and partnerships not resident or established in a Member State and that provide brokering services from the customs territory
+    of the Union.
+
+
+    (15)
+
+
+    The Lisbon Treaty clarifies that the provision of technical assistance involving a cross-border movement falls under Union competence. It is therefore appropriate to introduce a definition of technical
+    assistance and to specify the controls applicable to its provision. In addition, for reasons of effectiveness and consistency, controls on the provision of technical assistance should be harmonised.
+
+
+    (16)
+
+
+    As in Regulation (EC) No 428/2009, it should be possible for Member States’ authorities to prohibit the transit of non-Union dual-use items under certain circumstances where, through intelligence or
+    other sources, they have reasonable grounds for suspecting that the items are or might be intended, in their entirety or in part, for a military end-use in a country that is subject to an arms embargo,
+    or for the proliferation of weapons of mass destruction or their means of delivery.
+
+
+    (17)
+
+
+    Licensing conditions and requirements should be harmonised, where appropriate, in order to avoid distortions of competition and to ensure the consistent and effective application of controls throughout
+    the customs territory of the Union. To that effect, it is also necessary that the competent authorities of the Member States are clearly identified in all control situations. The responsibility for
+    deciding on individual, global or national general export authorisations, on authorisations for the provision of brokering services and technical assistance, on transits of non-Union dual-use items
+    and on authorisations for the transfer within the customs territory of the Union of dual-use items listed in Annex IV, lies with national authorities.
+
+
+    (18)
+
+
+    Guidelines for Internal Compliance Programmes should be introduced in order to contribute to achieving the level-playing field between exporters and to enhance the effective application of controls.
+    Such guidelines should take into account the differences in sizes, resources, fields of activity and other features and conditions of exporters and their subsidiaries, such as intra-group compliance
+    structures and standards, thereby avoiding a ‘one model for all’ approach and helping each exporter to find its own solutions for compliance and competitiveness. Exporters using global export authorisations
+    should implement an ICP unless the competent authority considers it unnecessary due to other circumstances it has taken into account when processing the application for a global export authorisation
+    submitted by the exporter.
+
+
+    (19)
+
+
+    Additional Union general export authorisations should be introduced in order to reduce the administrative burden on companies, in particular SMEs, and authorities, while ensuring an appropriate level
+    of control of the relevant items to the relevant destinations. Where necessary, Member States can provide guidance to exporters regarding the application of general authorisations. Member States can
+    also introduce national general export authorisations for low-risk exports where they consider it necessary. An authorisation for large projects should also be introduced to adapt licensing conditions
+    to the particular needs of industry.
+
+
+    (20)
+
+
+    The Commission, in close consultation with Member States and stakeholders, should develop guidelines and/or recommendations for best practices to support practical application of controls. When preparing
+    the guidelines and/or recommendations, the Commission should have due regard to the information needs of SMEs.
+
+
+    (21)
+
+
+    Common lists of dual-use items, destinations and guidelines '
+- id: art-2
+  title: CHAPTER I
+  text: 'CHAPTER I
+
+
+    SUBJECT AND DEFINITIONS'
+- id: art-3
+  title: Article 1
+  text: 'Article 1
+
+
+    This Regulation establishes a Union regime for the control of exports, brokering, technical assistance, transit and transfer of dual-use items.'
+- id: art-4
+  title: Article 2
+  text: 'Article 2
+
+
+    For the purposes of this Regulation, the following definitions apply:
+
+
+    (1)
+
+
+    ‘dual-use items’ means items, including software and technology, which can be used for both civil and military purposes, and includes items which can be used for the design, development, production
+    or use of nuclear, chemical or biological weapons or their means of delivery, including all items which can be used for both non-explosive uses and assisting in any way in the manufacture of nuclear
+    weapons or other nuclear explosive devices;
+
+
+    (2)
+
+
+    ‘export’ means:
+
+
+    (a)
+
+
+    an export procedure within the meaning of Article 269 of the Union Customs Code;
+
+
+    (b)
+
+
+    a re-export within the meaning of Article 270 of the Union Customs Code; a re-export also occurs if, during a transit through the customs territory of the Union according to point (11) of this Article,
+    an exit summary declaration has to be lodged because the final destination of the items has been changed;
+
+
+    (c)
+
+
+    an outward processing procedure within the meaning of Article 259 of the Union Customs Code; or
+
+
+    (d)
+
+
+    transmission of software or technology by electronic media, including by fax, telephone, electronic mail or any other electronic means to a destination outside the customs territory of the Union; it
+    includes making available in an electronic form such software and technology to natural or legal persons or to partnerships outside the customs territory of the Union; it also includes the oral transmission
+    of technology when the technology is described over a voice transmission medium;
+
+
+    (3)
+
+
+    ‘exporter’ means:
+
+
+    (a)
+
+
+    any natural or legal person or any partnership that, at the time when the export declaration or the re-export declaration or an exit summary declaration is accepted, holds the contract with the consignee
+    in the third country and has the power to determine the sending of the items out of the customs territory of the Union; where no export contract has been concluded or if the holder of the contract does
+    not act on its own behalf, exporter means the person who has the power to determine the sending of the items out of the customs territory of the Union; or
+
+
+    (b)
+
+
+    any natural or legal person or any partnership that decides to transmit software or technology by electronic media, including by fax, telephone, electronic mail or by any other electronic means to a
+    destination outside the customs territory of the Union or to make available in an electronic form such software and technology to natural or legal persons or to partnerships outside the customs territory
+    of the Union.
+
+
+    Where the benefit of a right to dispose of the dual-use item belongs to a person resident or established outside the customs territory of the Union pursuant to the contract on which the export is based,
+    the exporter shall be considered to be the contracting party resident or established in the customs territory of the Union;
+
+
+    (c)
+
+
+    where point (a) or (b) is not applicable, any natural person carrying the dual-use items to be exported where these dual-use items are contained in the person’s personal baggage within the meaning of
+    point (a) of Article 1(19) of Commission Delegated Regulation (EU) 2015/2446
+
+    (
+
+    13
+
+    )
+
+    ;
+
+
+    (4)
+
+
+    ‘export declaration’ means an act whereby any natural or legal person or any partnership indicates, in the prescribed form and manner, the wish to place dual-use items specified in point (1) under an
+    export procedure;
+
+
+    (5)
+
+
+    ‘re-export declaration’ means an act within the meaning of Article 5(13) of the Union Customs Code;
+
+
+    (6)
+
+
+    ‘exit summary declaration’ means an act within the meaning of Article 5(10) of the Union Customs Code;
+
+
+    (7)
+
+
+    ‘brokering services’ means:
+
+
+    (a)
+
+
+    the negotiation or arrangement of transactions for the purchase, sale or supply of dual-use items from a third country to any other third country; or
+
+
+    (b)
+
+
+    the selling or buying of dual-use items that are located in third countries for their transfer to another third country.
+
+
+    For the purposes of this Regulation, the sole provision of ancillary services is excluded from this definition. Ancillary services are transportation, financial services, insurance or re-insurance,
+    or general advertising or promotion;
+
+
+    (8)
+
+
+    ‘broker’ means any natural or legal person or any partnership that provides brokering services from the customs territory of the Union into the territory of a third country;
+
+
+    (9)
+
+
+    ‘technical assistance’ means any technical support related to repairs, development, manufacture, assembly, testing, maintenance, or any other technical service, and may take forms such as instruction,
+    advice, training, transmission of working knowledge or skills or consulting services, including by electronic means as well as by telephone or any other verbal forms of assistance;
+
+
+    (10)
+
+
+    ‘provider of technical assistance’ means:
+
+
+    (a)
+
+
+    any natural or legal person or any partnership that provides technical assistance from the customs territory of the Union into the territory of a third country;
+
+
+    (b)
+
+
+    any natural or legal person or any partnership resident or established in a Member State that provides technical assistance within the territory of a third country; or
+
+
+    (c)
+
+
+    any natural or legal person or any partnership resident or established in a Member State that provides technical assistance to a resident of a third country temporarily present in the customs territory
+    of the Union;
+
+
+    (11)
+
+
+    ‘transit’ means a transport of non-Union dual-use items entering and passing through the customs territory of the Union with a destination outside the customs territory of the Union where those items:
+
+
+    (a)
+
+
+    are placed under an external transit procedure according to Article 226 of the Union Customs Code and only pass through the customs territory of the Union;
+
+
+    (b)
+
+
+    are trans-shipped within, or directly re-exported from, a free zone;
+
+
+    (c)
+
+
+    are in temporary storage and are directly re-exported from a temporary storage facility; or
+
+
+    (d)
+
+
+    were brought into the customs territory of the Union on the same vessel or aircraft that will take them out of that territory without unloading;
+
+
+    (12)
+
+
+    ‘individual export authorisation’ means an authorisation granted to one specific exporter for one end-user or consignee in a third country and covering one or more dual-use items;
+
+
+    (13)
+
+
+    ‘global export authorisation’ means an authorisation granted to one specific exporter in respect of a type or category of dual-use items which may be valid for exports to one or more specified end-users
+    and/or in one or more specified third countries;
+
+
+    (14)
+
+
+    ‘large project authorisation’ means an individual export authorisation or a global export authorisation granted to one specific exporter, in respect of a type or category of dual-use items which may
+    be valid for exports to one or more specified end-users in one or more specified third countries for the purpose of a specified large-scale project;
+
+
+    (15)
+
+
+    ‘Union general export authorisation’ means an export authorisation for exports to certain countries of destination that is available to all exporters who respect the conditions and requirements listed
+    in Sections A to H of Annex II;
+
+
+    (16)
+
+
+    ‘national general export authorisation’ means an export authorisation defined by national legislation in accordance with Article 12(6) and Section C of Annex III;
+
+
+    (17)
+
+
+    ‘customs territory of the Union’ means the customs territory of the Union within the meaning of Article 4 of the Union Customs Code;
+
+
+    (18)
+
+
+    ‘non-Union dual-use items’ means items that have the status of non-Union goods within the meaning of Article 5(24) of the Union Customs Code;
+
+
+    (19)
+
+
+    ‘arms embargo’ means an arms embargo imposed by a decision or a common position adopted by the Council or a decision of the Organisation for Security and Cooperation in Europe (OSCE) or an arms embargo
+    imposed by a binding resolution of the Security Council of the United Nations;
+
+
+    (20)
+
+
+    ‘cyber-surveillance items’ means dual-use items specially designed to enable the covert surveillance of natural persons by monitoring, extracting, collecting or analysing data from information and telecommunication
+    systems;
+
+
+    (21)
+
+
+    ‘internal compliance programme’ or ‘ICP’ means ongoing effective, appropriate and proportionate policies and procedures adopted by exporters to facilitate compliance with the provisions and objectives
+    of this Regulation and with the terms and conditions of the authorisations implemented under this Regulation, including, inter alia, due diligence measures assessing risks related to the export of the
+    items to end-users and end-uses;
+
+
+    (22)
+
+
+    ‘essentially identical transaction’ means a transaction concerning items with essentially identical parameters or technical characteristics and involving the same end-user or consignee as another transaction.'
+- id: art-5
+  title: CHAPTER II
+  text: 'CHAPTER II
+
+
+    SCOPE'
+- id: art-6
+  title: Article 3
+  text: 'Article 3
+
+
+    1.   An authorisation shall be required for the export of dual-use items listed in Annex I.
+
+
+    2.   Pursuant to Article 4, 5, 9 or 10, an authorisation may also be required for the export to all or certain destinations of certain dual-use items not listed in Annex I.'
+- id: art-7
+  title: Article 4
+  text: 'Article 4
+
+
+    1.   An authorisation shall be required for the export of dual-use items not listed in Annex I if the exporter has been informed by the competent authority that the items in question are or may be intended,
+    in their entirety or in part:
+
+
+    (a)
+
+
+    for use in connection with the development, production, handling, operation, maintenance, storage, detection, identification or dissemination of chemical, biological or nuclear weapons or other nuclear
+    explosive devices or the development, production, maintenance or storage of missiles capable of delivering such weapons;
+
+
+    (b)
+
+
+    for a military end-use if the purchasing country or country of destination is subject to an arms embargo; for the purposes of this point, ‘military end-use’ means:
+
+
+    (i)
+
+
+    incorporation into military items listed in the military list of Member States;
+
+
+    (ii)
+
+
+    use of production, test or analytical equipment and components therefor, for the development, production or maintenance of military items listed in the military list of Member States; or
+
+
+    (iii)
+
+
+    use of any unfinished products in a plant for the production of military items listed in the military list of Member States;
+
+
+    (c)
+
+
+    for use as parts or components of military items listed in the national military list that have been exported from the territory of a Member State without authorisation or in violation of an authorisation
+    prescribed by the national legislation of that Member State.
+
+
+    2.   Where an exporter is aware that dual-use items which he proposes to export, not listed in Annex I, are intended, in their entirety or in part, for any of the uses referred to in paragraph 1 of
+    this Article, the exporter shall notify the competent authority. That competent authority shall decide whether or not to make the export concerned subject to authorisation.
+
+
+    3.   A Member State may adopt or maintain national legislation imposing an authorisation requirement on the export of dual-use items not listed in Annex I if the exporter has grounds for suspecting
+    that those items are or may be intended, in their entirety or in part, for any of the uses referred to in paragraph 1 of this Article.
+
+
+    4.   A Member State which imposes an authorisation requirement pursuant to paragraph 1, 2, or 3 shall immediately inform its customs authorities and other relevant national authorities and provide the
+    other Member States and the Commission with relevant information on the authorisation requirement in question, in particular as regards the items and end-users concerned, unless it considers that it
+    is not appropriate to do so in light of the nature of the transaction or the sensitivity of the information concerned.
+
+
+    5.   Member States shall give due consideration to information received pursuant to paragraph 4 and shall inform their customs authorities and other relevant national authorities thereof.
+
+
+    6.   In order to allow for an examination of all valid denials by the Member States, Article 16(1), (2) and (5) to (7) shall apply to cases concerning dual-use items not listed in Annex I.
+
+
+    7.   All exchanges of information required pursuant to this Article shall take place in accordance with the legal requirements concerning the protection of personal information, commercially sensitive
+    information or protected defence, foreign policy or national security information. Such exchanges of information shall be made via secure electronic means, including through the system referred to in
+    Article 23(6).
+
+
+    8.   This Regulation is without prejudice to the right of Member States to take national measures under Article 10 of Regulation (EU) 2015/479.'
+- id: art-8
+  title: Article 5
+  text: 'Article 5
+
+
+    1.   An authorisation shall be required for the export of cyber-surveillance items not listed in Annex I if the exporter has been informed by the competent authority that the items in question are or
+    may be intended, in their entirety or in part, for use in connection with internal repression and/or the commission of serious violations of human rights and international humanitarian law.
+
+
+    2.   Where an exporter is aware, according to its due diligence findings, that cyber-surveillance items which the exporter proposes to export, not listed in Annex I, are intended, in their entirety
+    or in part, for any of the uses referred to in paragraph 1 of this Article, the exporter shall notify the competent authority. That competent authority shall decide whether or not to make the export
+    concerned subject to authorisation. The Commission and the Council shall make available guidelines for exporters, as referred to in Article 26(1).
+
+
+    3.   A Member State may adopt or maintain national legislation imposing an authorisation requirement on the export of cyber-surveillance items not listed in Annex I if the exporter has grounds for suspecting
+    that those items are or may be intended, in their entirety or in part, for any of the uses referred to in paragraph 1 of this Article.
+
+
+    4.   A Member State which imposes an authorisation requirement pursuant to paragraph 1, 2 or 3 shall immediately inform its customs authorities and other relevant national authorities and shall provide
+    the other Member States and the Commission with relevant information on the authorisation requirement in question, in particular as regards the items and entities concerned, unless it considers that
+    it is not appropriate to do so in light of the nature of the transaction or the sensitivity of the information concerned.
+
+
+    5.   Member States shall give due consideration to information received pursuant to paragraph 4 and shall review it in light of the criteria set out in paragraph 1 within 30 working days. They shall
+    inform their customs authorities and other relevant national authorities. In exceptional cases, any Member State may request the extension of that 30-day period. However, the extension shall not exceed 30
+    working days.
+
+
+    6.   Where all Member States notify each other and the Commission that an authorisation requirement should be imposed for essentially identical transactions, the Commission shall publish in the C series
+    of the
+
+    Official Journal of the European Union
+
+    information regarding the cyber-surveillance items and, where appropriate, destinations subject to authorisation requirements as notified by Member States for that purpose.
+
+
+    7.   Member States shall review the information published pursuant to paragraph 6 at least annually, on the basis of relevant information and analyses provided by the Commission. Where all Member States
+    notify each other and the Commission that the publication of an authorisation requirement should be amended or renewed, the Commission shall promptly and accordingly amend or renew the information published
+    pursuant to paragraph 6 in the C series of the
+
+    Official Journal of the European Union
+
+    .
+
+
+    8.   In order to allow for an examination of all valid denials by the Member States, Article 16(1), (2) and (5) to (7) shall apply to cases concerning cyber-surveillance items not listed in Annex I.
+
+
+    9.   All exchanges of information required pursuant to this Article shall take place in accordance with the legal requirements concerning the protection of personal information, commercially sensitive
+    information or protected defence, foreign policy or national security information. Such exchanges of information shall be made via secure electronic means, including through the system referred to in
+    Article 23(6).
+
+
+    10.   Member States shall consider supporting the inclusion of items published pursuant to paragraph 6 of this Article in the appropriate international non-proliferation regimes or export control arrangements
+    with a view to extending controls. The Commission shall provide analyses of the relevant data gathered pursuant to Article 23(2) and to Article 26(2).
+
+
+    11.   This Regulation is without prejudice to the right of Member States to take national measures under Article 10 of Regulation (EU) 2015/479.'
+- id: art-9
+  title: Article 6
+  text: 'Article 6
+
+
+    1.   An authorisation shall be required for the provision of brokering services of dual-use items listed in Annex I if the broker has been informed by the competent authority that the items in question
+    are or may be intended, in their entirety or in part, for any of the uses referred to in Article 4(1).
+
+
+    2.   Where a broker proposes to provide brokering services of dual-use items listed in Annex I and is aware that those items are intended, in their entirety or in part, for any of the uses referred
+    to in Article 4(1), the broker shall notify the competent authority. That competent authority shall decide whether or not to make such brokering services subject to authorisation.
+
+
+    3.   A Member State may extend the application of paragraph 1 to non-listed dual-use items.
+
+
+    4.   A Member State may adopt or maintain national legislation imposing an authorisation requirement on the provision of brokering services of dual-use items if the broker has grounds for suspecting
+    that those items are or may be intended for any of the uses referred to in Article 4(1).
+
+
+    5.   Article 9(2), (3) and (4) shall apply to the national measures referred to in paragraphs 3 and 4 of this Article.'
+- id: art-10
+  title: Article 7
+  text: 'Article 7
+
+
+    1.   The transit of non-Union dual-use items listed in Annex I may be prohibited at any time by the competent authority of the Member State where the items are situated if the items are or may be intended,
+    in their entirety or in part, for any of the uses referred to in Article 4(1).
+
+
+    2.   Before deciding whether or not to prohibit a transit the competent authority may, in individual cases, impose an authorisation requirement for the specific transit of dual-use items listed in Annex
+    I if the items are or may be intended, in their entirety or in part, for any of the uses referred to in Article 4(1). If the transit takes place through the territory of multiple Member States, the
+    competent authority of each affected Member State shall be able to prohibit such transit through its territory.
+
+
+    The competent authority may impose the authorisation requirement on the natural or legal person or the partnership that holds the contract with the consignee in the third country and has the power to
+    determine the sending of the items passing through the customs territory of the Union.
+
+
+    If the natural or legal person or the partnership is not resident or established in the customs territory of the Union, the competent authority may impose the authorisation requirement on:
+
+
+    (a)
+
+
+    the declarant within the meaning of Article 5(15) of the Union Customs Code;
+
+
+    (b)
+
+
+    the carrier within the meaning of Article 5(40) of the Union Customs Code; or
+
+
+    (c)
+
+
+    the natural person carrying the dual-use items in transit where those dual-use items are contained in the personal baggage of that person.
+
+
+    3.   A Member State may extend the application of paragraph 1 to non-listed dual-use items.
+
+
+    4.   Article 9(2), (3) and (4) '
 doc_files:
 - eu/raw/欧盟外资审查框架（Regulation EU 2021_821）.html
+- eu/raw/EU-2021-821_FDI_Screening_Framework_Amendment.pdf
+- eu/raw/EU-2021-821_FDI_Screening_Framework_Amendment.xhtml
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 去重：合并同法规异名条目 EU-2021-821_FDI_SCREENING_FRAMEWORK_AMENDMENT（EU-2021-821 FDI Screening Framework Amendment）。
+
+  2026-09-19 去重：合并同法规异名条目 EU-2021-821_FDI_SCREENING_FRAMEWORK_AMENDMENT-2（EU-2021-821 FDI Screening Framework Amendment [xhtml]）。
+
+  2026-09-19 机器解析原件入库：eu/raw/欧盟外资审查框架（Regulation EU 2021_821）.html (html, 33642 chars)，生成 9 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2021-821_FDI_Screening_Framework_Amendment.xhtml (html, 712215 chars)，生成 8 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2021-821_FDI_Screening_Framework_Amendment.xhtml (html, 711955 chars)，生成 10 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

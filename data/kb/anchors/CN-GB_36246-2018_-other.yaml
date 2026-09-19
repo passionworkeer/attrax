@@ -1,0 +1,26 @@
+id: KB-other-CN-CN-GB_36246-2018_
+regulation_id: CN-GB_36246-2018_
+doc_name: CN-GB GB 36246-2018 中小学合成材料面层运动场地
+official_citation: CN-GB GB 36246-2018 中小学合成材料面层运动场地
+short_name: CN-GB GB 36246-2018 中小学合成材料面层运动场地
+source: category
+primary_source: other
+domain: other
+applies_if:
+  category:
+  - other
+  features_any: []
+  markets:
+  - CN
+key_articles: []
+key_points:
+- CN-GB GB 36246-2018 中小学合成材料面层运动场地：其他品类领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=4582A6129CD00E3D737BE27C49328062
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

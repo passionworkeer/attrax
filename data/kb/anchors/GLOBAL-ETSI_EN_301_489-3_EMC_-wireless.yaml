@@ -1,0 +1,28 @@
+id: KB-wireless-GLOBAL-GLOBAL-ETSI_EN_301_489-3_EMC_
+regulation_id: GLOBAL-ETSI_EN_301_489-3_EMC_
+doc_name: ETSI EN 301 489-3 EMC 短距离设备
+official_citation: ETSI EN 301 489-3 EMC 短距离设备
+short_name: ETSI EN 301 489-3 EMC 短距离设备
+source: feature
+primary_source: wireless
+domain: wireless
+applies_if:
+  category: []
+  features_any:
+  - wireless
+  markets:
+  - GLOBAL
+key_articles:
+- art-1
+- art-2
+key_points:
+- ETSI EN 301 489-3 EMC 短距离设备：无线功能领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://www.etsi.org/deliver/etsi_en/301400_301499/30148903/02.01.01_60/en_30148903v020101p.pdf
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

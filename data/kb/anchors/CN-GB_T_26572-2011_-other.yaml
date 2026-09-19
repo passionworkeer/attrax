@@ -1,0 +1,26 @@
+id: KB-other-CN-CN-GB_T_26572-2011_
+regulation_id: CN-GB_T_26572-2011_
+doc_name: CN-GB GB/T 26572-2011 电子电气产品中限用物质的限量要求
+official_citation: CN-GB GB/T 26572-2011 电子电气产品中限用物质的限量要求
+short_name: CN-GB GB/T 26572-2011 电子电气产品中限用物质的限量要求
+source: category
+primary_source: other
+domain: other
+applies_if:
+  category:
+  - other
+  features_any: []
+  markets:
+  - CN
+key_articles: []
+key_points:
+- CN-GB GB/T 26572-2011 电子电气产品中限用物质的限量要求：其他品类领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=709EEDE5BF49ACDD34DB85F466D715E8
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

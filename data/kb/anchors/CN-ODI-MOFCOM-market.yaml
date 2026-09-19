@@ -1,0 +1,25 @@
+id: KB-market-CN-CN-ODI-MOFCOM
+regulation_id: CN-ODI-MOFCOM
+doc_name: 商务部令2014年第3号《境外投资管理办法》
+official_citation: 商务部令2014年第3号《境外投资管理办法》
+short_name: 境外投资管理办法 (商务部 3 号令)
+source: market
+primary_source: market
+domain: 投资准入
+applies_if:
+  category: []
+  features_any: []
+  markets:
+  - CN
+key_articles: []
+key_points:
+- 境外投资管理办法 (商务部 3 号令)：投资准入领域法规，适用于 CN 市场相关经营行为（库自动接入，按市场匹配）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://policy.mofcom.gov.cn/claw/clawContent.shtml?id=6145
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

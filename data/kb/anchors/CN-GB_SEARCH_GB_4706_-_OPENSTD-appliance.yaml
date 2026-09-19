@@ -1,0 +1,26 @@
+id: KB-appliance-CN-CN-GB_SEARCH_GB_4706_-_OPENSTD
+regulation_id: CN-GB_SEARCH_GB_4706_-_OPENSTD
+doc_name: CN-GB search GB 4706 家用电器安全 (openstd)
+official_citation: CN-GB search GB 4706 家用电器安全 (openstd)
+short_name: CN-GB search GB 4706 家用电器安全 (openstd)
+source: category
+primary_source: appliance
+domain: appliance
+applies_if:
+  category:
+  - appliance
+  features_any: []
+  markets:
+  - CN
+key_articles: []
+key_points:
+- CN-GB search GB 4706 家用电器安全 (openstd)：家用电器领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/std_list?p.p1=0&p.p90=circulation_date&p.p91=desc&p.p2=GB%204706
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

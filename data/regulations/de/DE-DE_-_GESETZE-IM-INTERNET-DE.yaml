@@ -9,11 +9,602 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: Gesetze im Internet - Translations
+  text: "Gesetze im Internet - Translations\nStartseite\nGesetze /                                Verordnungen\nAktualitätendienst\nTitelsuche\nVolltextsuche\nTranslations\nHinweise\nTastenkombinationen\n\
+    Landesrecht\nRechtsprechung im Internet\nVerwaltungsvorschriften im Internet\nN-Lex\nStatutes/Ordinances\nTranslations of these materials into languages other than German                           \
+    \         are intended solely as a convenience to the non-German-reading                                    public. Any discrepancies or differences that may arise in                               \
+    \     translations of the official German versions of these materials                                    are not binding and have no legal effect for compliance or                                  \
+    \  enforcement purposes. \nNutzungshinweis:\nDie im Bereich \"Translations\" veröffentlichten Übersetzungen                                    können innerhalb der Schranken des jeweils geltenden  \
+    \                                  Urheberrechts genutzt werden. Zulässig sind insbesondere                                    einzelne Vervielfältigungen wie Downloads oder Ausdrucke zum          \
+    \                          privaten, nicht kommerziellen Gebrauch. Die Vervielfältigung,                                    Bearbeitung und Verbreitung sowie jede andere Art der Nutzung            \
+    \                        der Übersetzungen außerhalb der Schranken des jeweils geltenden                                    Urheberrechts bedarf der vorherigen Zustimmung des Urhebers oder         \
+    \                           sonstigen Rechteinhabers. Entsprechende Anfragen richten Sie                                    bitte an das Kompetenzzentrum Rechtsinformationssystem des               \
+    \                     Bundes. Sie erreichen das Kompetenzzentrum unter folgender                                    E-Mail-Adresse: \nkompetenzzentrum-ris@bfj.bund.de.\nUser notice:\nThe translations\
+    \ published on this website may be used in                                    accordance with the applicable copyright exceptions. In                                    particular, single copies may\
+    \ be made including in the form of                                    downloads or printouts for private, non-commercial use. Any                                    reproduction, processing, distribution\
+    \ or other type of use of                                    these translations that does not fall within the relevant                                    copyright exceptions requires the prior consent\
+    \ of the author or                                    other rights holder. For inquiries in this regard, please                                    contact the Competence Centre for the Federal Legal\
+    \ Information                                    System. You can reach the Competence Centre via the following                                    email address: \nkompetenzzentrum-ris@bfj.bund.de.\n\
+    AbgG\nMembers of the Bundestag Act\nÜbersetzung durch den Sprachendienst des Deutschen Bundestages in Zusammenarbeit mit Raymond Kerr.\nTranslation provided by the Language Service of the German Bundestag\
+    \ in cooperation with Raymond Kerr.\nAdVermiG\nAct on Adoption Placement and Support and on the Prohibition of Surrogacy Placement\nÜbersetzung durch Ute Reusch für das Bundesministerium für Familie,\
+    \ Senioren, Frauen und Jugend.\nTranslation provided by Ute Reusch for the Federal Ministry for Family Affairs, Senior Citizens, Women and Youth.\nAEntG\nAct on Mandatory Working Conditions for Workers\
+    \ Posted Across Borders and for Workers Regularly Employed in Germany\nÜbersetzung durch das Bundesministerium für Arbeit und Soziales.\nTranslation provided by the Federal Ministry of Labour and Social\
+    \ Affairs.\nAGG\nGeneral Act on Equal Treatment\nÜbersetzung durch Ute Reusch für die Antidiskriminierungsstelle des Bundes.\nTranslation provided by Ute Reusch for the Federal Anti-Discrimination Agency.\n\
+    AktG\nStock Corporation Act (Aktiengesetz - AktG)"
+- id: art-2
+  title: 'Übersetzung durch Samson-Übersetzungen GmbH, Dr. Carmen von '
+  text: 'Übersetzung durch Samson-Übersetzungen GmbH, Dr. Carmen von Schöning.
+
+    Translation provided by Samson-Übersetzungen GmbH, Dr. Carmen von Schöning.
+
+    EGAktG
+
+    Introductory Act to the Stock Corporation Act (Einführungsgesetz zum Aktiengesetz - EGAktG)
+
+    Übersetzung durch Samson-Übersetzungen GmbH, Dr. Carmen von Schöning.
+
+    Translation provided by Samson-Übersetzungen GmbH, Dr. Carmen von Schöning.
+
+    AMG
+
+    Medicinal Products Act (Arzneimittelgesetz - AMG)
+
+    Übersetzung durch den Sprachendienst des Bundesministeriums für Gesundheit.
+
+    Translation provided by the Language Service of the Federal Ministry of Health.
+
+    AntiDopG
+
+    Act against doping in sport (Anti-Doping Act - AntiDopG)
+
+    Übersetzung durch den Sprachendienst des Bundesministeriums des Innern.
+
+    Translation provided by the Language Service of the Federal Ministry of the Interior.
+
+    AO
+
+    The Fiscal Code of Germany
+
+    Übersetzung durch den Sprachendienst des Bundesministeriums der Finanzen.
+
+    Translation provided by the Language Service of the Federal Ministry of Finance.
+
+    ArbMedVV
+
+    Ordinance on Preventive Occupational Health Care (ArbMedVV)
+
+    Übersetzung durch das Bundesministerium für Arbeit und Soziales.
+
+    Translation provided by the Federal Ministry of Labour and Social Affairs.
+
+    ArbSchG
+
+    Act on the Implementation of Measures of Occupational Safety and Health to Encourage Improvements in the Safety and Health Protection of Workers at Work (Arbeitsschutzgesetz, ArbSchG)
+
+    Übersetzung durch den Sprachendienst des Bundesministeriums für Arbeit und Soziales.
+
+    Translation provided by the Language Service of the Federal Ministry of Labour and Social Affairs.
+
+    ArbStättV
+
+    Ordinance on Workplaces
+
+    Übersetzung durch Peter McKenna, Eurolingua UND Interlingua Übersetzungen GmbH & Co. KG. Aktualisierung durch den Sprachendienst des Bundesministeriums für Arbeit und Soziales.
+
+    Translation provided by Peter McKenna, Eurolingua UND Interlingua Übersetzungen GmbH & Co. KG. Translation updated by the Language Service of the Federal Ministry of Labour and Social Affairs.
+
+    ASiG
+
+    Act on Occupational Physicians, Safety Engineers and Other Occupational Safety Specialists
+
+    Übersetzung durch den Sprachendienst des Bundesministeriums für Arbeit und Soziales.
+
+    Translation provided by the Language Service of the Federal Ministry of Labour and Social Affairs.
+
+    AsylG
+
+    Asylum Act
+
+    Übersetzung durch den Sprachendienst des Bundesministeriums des Innern.
+
+    Translation provided by the Language Service of the Federal Ministry of the Interior.
+
+    AufenthG
+
+    Act on the Residence, Economic Activity and Integration of Foreigners in the Federal Territory - Residence Act
+
+    Übersetzung durch den Sprachendienst des Bundesministeriums des Innern.
+
+    Translation provided by the Language Service of the Federal Ministry of the Interior.
+
+    AufenthV
+
+    Ordinance Governing Residence
+
+    Übersetzung durch den Sprachendienst des Bundesministeriums des Innern und für Heimat.
+
+    Translation provided by the Language Service of the Federal Ministry of the Interior and Community.
+
+    AUG
+
+    Act on the Recovery of Maintenance in Relations with Foreign States - Foreign Maintenance Act
+
+    Übersetzung durch Eileen Flügel.
+
+    Translation provided by Eileen Flügel.
+
+    AÜG
+
+    Act on Temporary Agency Work (Arbeitnehmerüberlassungsgesetz - AÜG)
+
+    Übersetzung durch den Sprachendienst des Bundesministeriums für Arbeit und Soziales.
+
+    Translation provided by the Language Service of the Federal Ministry of Labour and Social Affairs.
+
+    AWaffV
+
+    General Ordinance on the Weapons Act
+
+    Übersetzung durch den Sprachendienst des Bundesministeriums des Innern.
+
+    Translation provided by the Language Service of the Federal Ministry of the Interior.
+
+    AWG
+
+    Foreign Trade and Payments Act
+
+    Übersetzung durch den Sprachendienst des Bundesministeriums für Wirtschaft und Klimaschutz.
+
+    Translation provided by the Language Service of the Federal Ministry for Economic Affairs and Climate Action.
+
+    AWV
+
+    Foreign Trade and Payments Ordinance (Außenwirtschaftsverordnung - AWV)
+
+    Übersetzung durch den Sprachendienst des Bundesministeriums für Wirtschaft und Klimaschutz.'
+- id: art-3
+  title: 'Translation provided by the Language Service of the Federal '
+  text: 'Translation provided by the Language Service of the Federal Ministry for Economic Affairs and Climate Action.
+
+    BBergG
+
+    Federal Mining Act (Bundesberggesetz - BBergG)
+
+    Übersetzung durch den Sprachendienst des Bundesministeriums für Wirtschaft und Klimaschutz.
+
+    Translation provided by the Language Service of the Federal Ministry for Economic Affairs and Climate Action.
+
+    BDSG
+
+    Federal Data Protection Act (BDSG)
+
+    Übersetzung durch den Sprachendienst des Bundesministeriums des Innern.
+
+    Translation provided by the Language Service of the Federal Ministry of the Interior.
+
+    BerHG
+
+    Act on Advisory Assistance and Representation for Citizens with a Low Income (Beratungshilfegesetz - BerHG)
+
+    Übersetzung durch Eileen Flügel.
+
+    Translation provided by Eileen Flügel.
+
+    BeschG
+
+    Act on the Testing and Licensing of Firearms, Saluting Devices, Devices Using Ammunition for Propulsion, Ammunition and Other Weapons (Beschussgesetz - BeschG)
+
+    Übersetzung durch Ute Reusch in Zusammenarbeit mit dem Sprachendienst des Bundesministeriums des Innern.
+
+    Translation provided by Ute Reusch in cooperation with the Language Service of the Federal Ministry of the Interior.
+
+    BeschV
+
+    Ordinance on the Employment of Foreigners (Beschäftigungsverordnung - BeschV)
+
+    Übersetzung durch den Sprachendienst des Bundesministeriums für Arbeit und Soziales.
+
+    Translation provided by the Language Service of the Federal Ministry of Labour and Social Affairs.
+
+    BetrVG
+
+    Works Constitution Act (Betriebsverfassungsgesetz - BetrVG)
+
+    Übersetzung durch den Sprachendienst des Bundesministeriums für Arbeit und Soziales.
+
+    Translation provided by the Language Service of the Federal Ministry of Labour and Social Affairs.
+
+    BFStrMG
+
+    Act on the Levying of Distance-Related Charges for the Use of Federal Motorways and Federal Highways (Bundesfernstraßenmautgesetz - BFStrMG)
+
+    Übersetzung durch den Sprachendienst des Bundesministeriums für Verkehr.
+
+    Translation provided by the Language Service of the Federal Ministry of Transport.
+
+    BGB
+
+    German Civil Code
+
+    Übersetzung durch den Langenscheidt Übersetzungsservice, aktualisiert durch Neil Mussett. Zuletzt aktualisiert und bearbeitet durch Samson Übersetzungen GmbH, Dr. Carmen v. Schöning.
+
+    Translation provided by Langenscheidt Übersetzungsservice, updated by Neil Mussett. The translation has most recently been revised and updated by Samson Übersetzungen GmbH, Dr. Carmen v. Schöning.
+
+    EGBGB
+
+    Introductory Act to the Civil Code (IACC)
+
+    Übersetzung durch Prof. Dr. Juliana Mörsdorf, LL.M. (Berkeley) und Ute Reusch.
+
+    Translation provided by Prof. Dr. Juliana Mörsdorf, LL.M. (Berkeley) and Ute Reusch.
+
+    BioStoffV
+
+    Ordinance on Safety and Health Protection at Workplaces Involving Biological Agents (Biological Agents Ordinance - BioStoffV)
+
+    Übersetzung durch Dorothee Bringewatt in Zusammenarbeit mit dem Sprachendienst des Bundesministeriums für Arbeit und Soziales.
+
+    Translation provided by Dorothee Bringewatt in cooperation with the Language Service of the Federal Ministry of Labour and Social Affairs.
+
+    BMG
+
+    Federal Act on Registration (Bundesmeldegesetz - BMG)
+
+    Übersetzung durch den Sprachendienst des Bundesministeriums des Innern.
+
+    Translation provided by the Language Service of the Federal Ministry of the Interior.
+
+    BNotO
+
+    Federal Code for Notaries (Bundesnotarordnung - BNotO)
+
+    Übersetzung durch Ute Reusch.
+
+    Translation provided by Ute Reusch.
+
+    BRAO
+
+    Federal Code for Lawyers (Bundesrechtsanwaltsordnung - BRAO)
+
+    Übersetzung durch Ute Reusch.
+
+    Translation provided by Ute Reusch.
+
+    BVerfGG
+
+    Act on the Federal Constitutional Court (Bundesverfassungsgerichtsgesetz - BVerfGG)
+
+    Übersetzung durch das Bundesverfassungsgericht und, im Auftrag des Bundesministeriums der Justiz, Iyamide Mahdi und Ute Reusch.
+
+    Laufende Aktualisierung der Übersetzung durch das Bundesverfassungsgericht
+
+    Translation provided by the Federal Constitutional Court and, on behalf of the Federal Ministry of Justice, by Iyamide Mahdi and Ute Reusch.
+
+    Translation regularly updated by the Federal Constitutional Court.
+
+    BVerfGGO'
+- id: art-4
+  title: Rules of Procedure of the Federal Constitutional Court
+  text: "Rules of Procedure of the Federal Constitutional Court\nÜbersetzung durch das Bundesverfassungsgericht.\nTranslation provided by the Federal Constitutional Court.\nBZRG\nAct on the Central Criminal\
+    \ Register and the Educative Measures Register (Bundeszentralregistergesetz - BZRG)\nÜbersetzung durch Ute Reusch.\nTranslation provided by Ute Reusch.\nCOVInsAG\nAct to Temporarily Suspend the Obligation\
+    \ to File for Insolvency and to Limit Directors’ Liability in the Case of Insolvency Caused by the COVID-19 Pandemic (COVID-19-Insolvenzaussetzungsgesetz - COVInsAG)\nÜbersetzung durch Ute Reusch.\n\
+    Translation provided by Ute Reusch.\nDesignG\nAct on the Legal Protection of Designs (Designgesetz - DesignG)\nÜbersetzung durch Ute Reusch in Zusammenarbeit mit dem Deutschen Patent- und Markenamt.\n\
+    Translation provided by Ute Reusch in cooperation with the German Patent and Trade Mark Office.\nDNG\nAct governing the use of public sector data (Data Use Act - DUA)\nÜbersetzung durch den Sprachendienst\
+    \ des Bundesministeriums für Wirtschaft und Klimaschutz.\nTranslation provided by the Language Service of the Federal Ministry for Economic Affairs and Climate Action.\nDRiG\nGerman Judiciary Act (Deutsches\
+    \ Richtergesetz - DRiG)\nÜbersetzung durch Brian Duffett und Ute Reusch. Laufende Aktualisierung durch Ute Reusch.\nTranslation provided by Brian Duffett and Ute Reusch. Translation regularly updated\
+    \ by Ute Reusch.\nEGovG\nAct to promote electronic government (E-Government Act - EGovG)\nÜbersetzung durch Gary Cox für das Bundesministerium des Innern.\nTranslation provided by Gary Cox for the Federal\
+    \ Ministry of the Interior.\neIDKG\nAct on a Card with an Electronic Identification Function for Citizens of the European Union and the European Economic Area\nÜbersetzung durch den Sprachendienst des\
+    \ Bundesministeriums des Innern.\nTranslation provided by the Language Service of the Federal Ministry of the Interior.\nEntgTranspG\nThe Act to promote Transparency in Wage Structures among Women and\
+    \ Men (Transparency in Wage Structures Act)\nÜbersetzung durch den Sprachendienst des Bundesministeriums für Gesundheit.\nTranslation provided by the Language Service of the Federal Ministry of Health.\n\
+    ErwSÜAG\nAct to Implement the Hague Convention of 13 January 2000 on the International Protection of Adults (Protection of Adults Convention Implementation Act  -  ErwSÜAG)\nÜbersetzung durch den Sprachendienst\
+    \ des Bundesministeriums der Justiz.\nTranslation provided by the Language Service of the Federal Ministry of Justice.\nEuAbgG\nMembers of the European Parliament Act\nÜbersetzung durch den Sprachendienst\
+    \ des Deutschen Bundestages in Zusammenarbeit mit Raymond Kerr.\nTranslation provided by the Language Service of the German Bundestag in cooperation with Raymond Kerr.\nEU-VSchDG\nAct to Implement Regulation\
+    \ (EU) 2017/2394 of the European Parliament and of the Council on Cooperation between National Authorities Responsible for the Enforcement of Consumer Protection Laws and Repealing Regulation (EC) No.\
+    \ 2006/2004 (EU Consumer Protection Implementing Act) \nÜbersetzung durch den Sprachendienst des Bundesministeriums der Justiz und für Verbraucherschutz.\nTranslation provided by the Language Service\
+    \ of the Federal Ministry of Justice and Consumer Protection.\nEUZBBG\nAct on Cooperation between the Federal Government and the German Bundestag in Matters concerning the European Union\nÜbersetzung\
+    \ durch den Sprachendienst des Deutschen Bundestages in Zusammenarbeit mit Raymond Kerr.\nTranslation provided by the Language Service of the German Bundestag in cooperation with Raymond Kerr.\nFamFG\n\
+    Act on Proceedings in Family Matters and in Matters of Non-contentious Jurisdiction (FamFG)\nÜbersetzung durch Karen Guida. Laufende Aktualisierung durch Eileen Flügel.\nTranslation provided by Karen\
+    \ Guida. Translation regularly updated by Eileen Flügel.\nFeuerschStG\nFire Protection Tax Act (Feuerschutzsteuergesetz - FeuerschStG)\nÜbersetzung durch den Sprachendienst des Bundesministeriums der\
+    \ Finanzen."
+- id: art-5
+  title: 'Translation provided by the Language Service of the Federal '
+  text: 'Translation provided by the Language Service of the Federal Ministry of Finance.
+
+    FlugDaG
+
+    Act on the Processing of Passenger Name Record (PNR) Data to Implement Directive (EU) 2016/681  (Passenger Name Record Act, FlugDaG)
+
+    Übersetzung durch den Sprachendienst des Bundesministeriums des Innern.
+
+    Translation provided by the Language Service of the Federal Ministry of the Interior.
+
+    FreizügG/EU
+
+    Act on the General Freedom of Movement for EU Citizens (Freedom of Movement Act/EU)
+
+    Übersetzung durch den Sprachendienst des Bundesministeriums des Innern.
+
+    Translation provided by the Language Service of the Federal Ministry of the Interior.
+
+    GenDV
+
+    Ordinance on the model project for comprehensive diagnostics and therapy identification through genome sequencing in cases of rare and oncological diseases (Genomic Data Ordinance - GenDV)
+
+    Übersetzung durch den Sprachendienst des Bundesministeriums für Gesundheit.
+
+    Translation provided by the Language Service of the Federal Ministry of Health.
+
+    GeschGehG
+
+    Act on the Protection of Trade Secrets
+
+    Übersetzung durch Eileen Flügel.
+
+    Translation provided by Eileen Flügel.
+
+    GG
+
+    Basic Law for the Federal Republic of Germany
+
+    Übersetzung durch Professor Christian Tomuschat, Professor David P. Currie, Professor Donald P. Kommers und Raymond Kerr
+
+    in Kooperation mit dem Sprachendienst des Deutschen Bundestages.
+
+    Translated by Professor Christian Tomuschat, Professor David P. Currie, Professor Donald P. Kommers and Raymond Kerr
+
+    in cooperation with the Language Service of the German Bundestag.
+
+    GmbHG
+
+    Act on Limited Liability Companies (Gesetz betreffend die Gesellschaften mit beschränkter Haftung - GmbHG)
+
+    Übersetzung durch Ute Reusch.
+
+    Translation provided by Ute Reusch.
+
+    EGGmbHG
+
+    Introductory Act to the Act on Limited Liability Companies (Einführungsgesetz zum Gesetz betreffend die Gesellschaften mit beschränkter Haftung - GmbHG-Einführungsgesetz)
+
+    Übersetzung durch Ute Reusch.
+
+    Translation provided by Ute Reusch.
+
+    GVG
+
+    Courts Constitution Act (Gerichtsverfassungsgesetz - GVG)
+
+    Übersetzung durch Kathleen Müller-Rostin. Laufende Aktualisierung der Übersetzung durch Eileen Flügel.
+
+    Translation provided by Kathleen Müller-Rostin. Translation regularly updated by Eileen Flügel.
+
+    GWB
+
+    Competition Act
+
+    Übersetzung durch den Sprachendienst des Bundeskartellamtes in Zusammenarbeit mit Renate Tietjen.
+
+    Translation provided by the Language Service of the Bundeskartellamt in cooperation with Renate Tietjen.
+
+    HaagÜbkAG
+
+    Act to Implement the Hague Convention of 15 November 1965 on the Service Abroad of Judicial and Extrajudicial Documents in Civil or Commercial Matters and the Hague Convention of 18 March 1970 on the
+    Taking of Evidence Abroad in Civil or Commercial Matters
+
+    Übersetzung durch Eileen Flügel.
+
+    Translation provided by Eileen Flügel.
+
+    HGB
+
+    Commercial Code (Handelsgesetzbuch - HGB)
+
+    Übersetzung (Buch 1) durch den Sprachendienst des Bundesministeriums der Justiz. Laufende Aktualisierung durch Samson-Übersetzungen GmbH, Dr. Carmen von Schöning.
+
+    Übersetzung (Buch 2) durch den Sprachendienst des Bundesministeriums der Justiz. Laufende Aktualisierung durch Samson-Übersetzungen GmbH, Dr. Carmen von Schöning.
+
+    Übersetzung (Buch 3) durch den Sprachendienst des Bundesministeriums der Justiz. Laufende Aktualisierung durch Samson-Übersetzungen GmbH, Dr. Carmen von Schöning.
+
+    Übersetzung (Buch 4) durch den Sprachendienst des Bundesministeriums der Justiz. Laufende Aktualisierung durch Samson-Übersetzungen GmbH, Dr. Carmen von Schöning.
+
+    Übersetzung (Buch 5) durch den Sprachendienst des Bundesministeriums der Justiz. Laufende Aktualisierung durch Samson-Übersetzungen GmbH, Dr. Carmen von Schöning.
+
+    Translation (Book 1) provided by the Language Service of the Federal Ministry of Justice. Translation regularly updated by Samson-Übersetzungen GmbH, Dr. Carmen von Schöning.
+
+    Translation (Book 2) provided by the Language Service of the Federal Ministry of Justice. Translation regularly updated by Samson-Übersetzungen GmbH, Dr. Carmen von Schöning.'
+- id: art-6
+  title: Translation (Book 3) provided by the Language Service of the
+  text: "Translation (Book 3) provided by the Language Service of the Federal Ministry of Justice. Translation regularly updated by Samson-Übersetzungen GmbH, Dr. Carmen von Schöning.\nTranslation (Book\
+    \ 4) provided by the Language Service of the Federal Ministry of Justice. Translation regularly updated by Samson-Übersetzungen GmbH, Dr. Carmen von Schöning.\nTranslation (Book 5) provided by the Language\
+    \ Service of the Federal Ministry of Justice. Translation regularly updated by Samson-Übersetzungen GmbH, Dr. Carmen von Schöning.\nHinSchG\nAct for the Better Protection of Whistleblowers (Hinweisgeberschutzgesetz\
+    \ - HinSchG)\nÜbersetzung durch den Sprachendienst des Bundesministeriums der Justiz.\nTranslation provided by the Language Service of the Federal Ministry of Justice.\nIFG\nFederal Act Governing Access\
+    \ to Information held by the Federal Government (Freedom of Information Act)\nÜbersetzung durch den Sprachendienst des Bundesministeriums des Innern.\nTranslation provided by the Language Service of\
+    \ the Federal Ministry of the Interior.\nInsO\nInsolvency Code\nÜbersetzung durch Ute Reusch.\nTranslation provided by Ute Reusch.\nEGInsO\nIntroductory Act to the Insolvency Code\nÜbersetzung durch\
+    \ Ute Reusch.\nTranslation provided by Ute Reusch.\nIntFamRVG\nAct to Implement Certain Legal Instruments in the Field of International Family Law (Internationales Familienrechtsverfahrensgesetz - IntFamRVG)\n\
+    Übersetzung durch Brian Duffett. Laufende Aktualisierung durch den Sprachendienst des Bundesministeriums der Justiz und für Verbraucherschutz.\nTranslation provided by Brian Duffett. Translation regularly\
+    \ updated by the Language Service of the Federal Ministry of Justice and Consumer Protection.\nIntVG\nAct on the Exercise by the Bundestag and by the Bundesrat of their Responsibility for Integration\
+    \ in Matters concerning the European Union (Responsibility for Integration Act)\nÜbersetzung durch den Sprachendienst des Deutschen Bundestages in Zusammenarbeit mit Raymond Kerr.\nTranslation provided\
+    \ by the Language Service of the German Bundestag in cooperation with Raymond Kerr.\nIRG\nAct on International Mutual Assistance in Criminal Matters\nÜbersetzung durch Ute Reusch.\nTranslation provided\
+    \ by Ute Reusch.\nIStGHG\nAct on International Cooperation with the International Criminal Court (Gesetz über die Zusammenarbeit mit dem Internationalen Strafgerichtshof - IStGHG)\nÜbersetzung durch\
+    \ Ute Reusch.\nTranslation provided by Ute Reusch.\nJGG\nYouth Courts Act (Jugendgerichtsgesetz - JGG)\nÜbersetzung durch Chris Pavis und Neil Mussett.\nTranslation provided by Chris Pavis and Neil\
+    \ Mussett.\nKapMuG\nAct on Model Case Proceedings in Disputes under Capital Markets Law (Kapitalanleger-Musterverfahrensgesetz - KapMuG)\nÜbersetzung durch Jane Yager. Laufende Aktualisierung der Übersetzung\
+    \ durch Samson-Übersetzungen GmbH, Dr. Carmen v. Schöning.\nTranslation provided by Jane Yager. Translation regularly updated by Samson Übersetzungen GmbH, Dr. Carmen v. Schöning.\nKassenSichV\nOrdinance\
+    \ Establishing the Technical Requirements for Electronic Record-Keeping and Security Systems in Business Transactions (Cash Register Anti-Tampering Ordinance) \nÜbersetzung durch den Sprachendienst\
+    \ des Bundesministeriums der Finanzen.\nTranslation provided by the Language Service of the Federal Ministry of Finance.\nKGSG\nAc‎t on the Protection of Cultural Property‏ (‎Cultural Property Protection\
+    \ Act - KGSG)\nÜbersetzung durch den Sprachendienst des Bundesministeriums des Innern.\nTranslation provided by the Language Service of the Federal Ministry of the Interior.\nKSG\nFederal Climate Action\
+    \ Act\nÜbersetzung durch den Sprachendienst des Bundesministeriums für Wirtschaft und Klimaschutz.\nTranslation provided by the Language Service of the Federal Ministry for Economic Affairs and Climate\
+    \ Action.\nLasthandhabV\nOrdinance on Health and Safety Requirements for the Manual Handling of Loads at Work (Lastenhandhabungsverordnung, LasthandhabV)"
+- id: art-7
+  title: Übersetzung durch Ute Reusch für das Bundesministerium für A
+  text: "Übersetzung durch Ute Reusch für das Bundesministerium für Arbeit und Soziales. Laufende Aktualisierung durch den Sprachendienst des Bundesministeriums für Arbeit und Soziales.\nTranslation provided\
+    \ by Ute Reusch for the Federal Ministry of Labour and Social Affairs. Translation regularly updated by the Language Service of the Federal Ministry of Labour and Social Affairs.\nLPartG\nAct on Registered\
+    \ Life Partnerships\nÜbersetzung durch den Sprachendienst des Bundesministeriums der Justiz und für Verbraucherschutz.\nTranslation provided by the Language Service of the Federal Ministry of Justice\
+    \ and Consumer Protection.\nLuftSchlichtV\nOrdinance pursuant to section 57c of the Aviation Act on Conciliation in the Aviation Sector (Luftverkehrsschlichtungsverordnung - LuftSchlichtV)\nÜbersetzung\
+    \ durch Ute Reusch.\nTranslation provided by Ute Reusch.\nLuftVG\nAviation Act (Luftverkehrsgesetz - LuftVG)\nÜbersetzung durch Ute Reusch.\nTranslation provided by Ute Reusch.\nLuKrFrühErkV\nOrdinance\
+    \ on the Permissibility of Using Low-Dose Computed Tomography for the Lung Cancer Screening of Smokers (Lungenkrebs-Früherkennungs-Verordnung - LuKrFrühErkV)\nÜbersetzung durch Paul Skidmore und den\
+    \ Sprachendienst des Bundesministeriums für Umwelt, Naturschutz, nukleare Sicherheit und Verbraucherschutz.\nTranslation provided by Paul Skidmore and the Language Services of the Federal Ministry for\
+    \ the Environment, Nature Conservation, Nuclear Safety and Consumer Protection.\nMariMedV\nOrdinance on Maritime Medicine Requirements on Merchant Vessels (Maritime Medicine Ordinance)\nÜbersetzung\
+    \ durch den Sprachendienst des Bundesministeriums für Digitales und Verkehr.\nTranslation provided by the Language Service of the Federal Ministry for Digital and Transport.\nMarkenG\nAct on the Protection\
+    \ of Trade Marks and other Signs. Trade Mark Act\nÜbersetzung durch Brian Duffett und Neil Mussett. Übersetzung überarbeitet durch den Sprachendienst des Deutschen Patent- und Markenamtes.\nTranslation\
+    \ provided by Brian Duffett und Neil Mussett. Translation revised by the Language Service of the German Patent and Trade Mark Office.\nMautSysG\nAct on the Operation of Electronic Road Toll Systems\
+    \ (Mautsystemgesetz - MautSysG)\nÜbersetzung durch den Sprachendienst des Bundesministeriums Verkehr.\nTranslation provided by the Language Service of the Federal Ministry of Transport.\nMediationsG\n\
+    Mediation Act\nÜbersetzung durch den Sprachendienst des Bundesministeriums der Justiz.\nTranslation provided by the Language Service of the Federal Ministry of Justice.\nMiLoG\nAct Regulating a General\
+    \ Minimum Wage (Mindestlohngesetz - MiLoG) \nÜbersetzung durch Ute Reusch in Zusammenarbeit mit dem Bundesministerium für Arbeit und Soziales.\nTranslation provided by Ute Reusch in cooperation with\
+    \ the Federal Ministry of Labour and Social Affairs.\nMuSchG\nAct on the Protection of Mothers at Work, in Training and at University (Maternity Protection Act - MuSchG)\nÜbersetzung durch die Sprachendienste\
+    \ des Bundesministeriums für Familie, Senioren, Frauen und Jugend sowie des Bundesministeriums für Gesundheit in Zusammenarbeit mit Proverb OHG, Stuttgart\nTranslation provided by the Language Services\
+    \ of the Federal Ministry for Family Affairs, Senior Citizens, Women and Youth and the Federal Ministry of Health in cooperation with Proverb OHG, Stuttgart\nNKRG\nAct Establishing a National Regulatory\
+    \ Control Council\nÜbersetzung durch den Sprachendienst des Bundesministeriums der Justiz.\nTranslation provided by the Language Service of the Federal Ministry of Justice.\nOffshore-ArbZV\nOrdinance\
+    \ on Working Time in relation to Offshore Work (Offshore Working Time Ordinance)\nÜbersetzung durch den Sprachendienst des Bundesministeriums für Arbeit und Soziales.\nTranslation provided by the Language\
+    \ Service of the Federal Ministry of Labour and Social Affairs.\nOWiG\nAct on Regulatory Offences (Gesetz über Ordnungswidrigkeiten - OWiG)\nÜbersetzung durch Neil Mussett.\nTranslation provided by\
+    \ Neil Mussett.\nPartGG"
+- id: art-8
+  title: Act on Partnership Companies of Members of Independent Profe
+  text: 'Act on Partnership Companies of Members of Independent Professions (Partnerschaftsgesellschaftsgesetz - PartGG)
+
+    Übersetzung durch Jane Yager. Laufende Aktualisierung durch den Sprachendienst des Bundesministeriums der Justiz und für Verbraucherschutz.
+
+    Translation provided by Jane Yager. Translation regularly updated by the Language Service of the Federal Ministry of Justice and Consumer Protection.
+
+    PaßG
+
+    Passport Act
+
+    Übersetzung durch Neil Mussett.
+
+    Translation provided by Neil Mussett.
+
+    PatG
+
+    Patent Act (Patentgesetz - PatG)
+
+    Übersetzung durch Ute Reusch in Zusammenarbeit mit dem Sprachendienst des Deutschen Patent- und Markenamts.
+
+    Translation provided by Ute Reusch in cooperation with the Language Service of the German Patent and Trade Mark Office.
+
+    PAuswG
+
+    Act on Identity Cards and Electronic Identification
+
+    Übersetzung durch den Sprachendienst des Bundesministeriums des Innern.
+
+    Translation provided by the Language Service of the Federal Ministry of the Interior.
+
+    ProdHaftG
+
+    Act on Liability for Defective Products (Produkthaftungsgesetz - ProdhaftG)
+
+    Übersetzung durch Eileen Flügel.
+
+    Translation provided by Eileen Flügel.
+
+    ProdSG
+
+    Act on Making Products Available on the Market (Produktsicherheitsgesetz - ProdSG)
+
+    Übersetzung durch den Sprachendienst des Bundesministeriums für Arbeit und Soziales.
+
+    Translation provided by the Language Service of the Federal Ministry of Labour and Social Affairs.
+
+    RDG
+
+    Act on Out-of-Court Legal Services (Rechtsdienstleistungsgesetz - RDG)
+
+    Übersetzung durch Ute Reusch.
+
+    Translation provided by Ute Reusch.
+
+    RPflG
+
+    Act on Senior Judicial Officers (Rechtspflegergesetz - RPflG)
+
+    Übersetzung durch Neil Mussett.
+
+    Translation provided by Neil Mussett.
+
+    RVG
+
+    Act on the Remuneration of Lawyers (Rechtsanwaltsvergütungsgesetz - RVG)
+
+    Übersetzung durch Eileen Flügel.
+
+    Translation provided by Eileen Flügel.
+
+    SBGG
+
+    Act on Self-Determination With Regard to Gender Markers (Gesetz über die Selbstbestimmung in Bezug auf den Geschlechtseintrag - SBGG)
+
+    Übersetzung durch Ute Reusch für das Bundesministerium für Bildung, Familie, Senioren, Frauen und Jugend.
+
+    Translation provided by Ute Reusch for the Federal Ministry of Education, Family Affairs, Senior Citizens, Women and Youth.
+
+    SchBesV
+
+    Safe Manning Ordinance (SchBesV)
+
+    Übersetzung durch den Sprachendienst des Bundesministeriums für Verkehr und digitale Infrastruktur.
+
+    Translation provided by the Language Service of the Federal Ministry of Transport and Digital Infrastructure.
+
+    SchwarzArbG
+
+    Act to Combat Undeclared Work and Unlawful Employment
+
+    Übersetzung durch den Sprachendienst des Bundesministeriums der Finanzen.
+
+    Translation provided by the Language Service of the Federal Ministry of Finance.
+
+    SeeArbG
+
+    Maritime Labour Act
+
+    Übersetzung durch das Bundesministerium für Arbeit und Soziales.
+
+    Translation provided by the Federal Ministry of Labour and Social Affairs.
+
+    SeeArbÜV
+
+    Ordinance on verification of compliance of working and living conditions on board ships (Maritime Working Verification Ordinance - MaritimeWorkO)
+
+    Übersetzung durch die Berufsgenossenschaft für Transport und Verkehrswirtschaft, Dienststelle Schiffssicherheit.
+
+    Translation provided by the BG for transport and traffic, Ship Safety Division.
+
+    See-ArbZNV
+
+    Ordinance on the table of shipboard working arrangements and records of hours of work in maritime shipping (See-Arbeitszeitnachweisverordnung - See-ArbZNV)
+
+    Übersetzung durch den Sprachendienst des Bundesministeriums für Arbeit und Soziales.
+
+    Translation provided by the Federal Ministry of Labour and Social Affairs.
+
+    SeeAufgG
+
+    Act on the Responsibilities of the Federal Government in the Field of Maritime Shipping (Maritime Shipping Responsibilities Act - SeeAufgG)
+
+    Übersetzung durch den Sprachendienst des Bundesministeriums für Digitales und Verkehr.
+
+    Translation provided by the Language Service of the Federal Ministry for Digital and Transport.
+
+    See-BAV
+
+    Ordinance Pursuant to Vocational Training in Maritime Shipping (Maritime Vocational Training Ordinance - See-BAV)'
+- id: art-9
+  title: Übersetzung durch den Profi-Schnelldienst-Fachübersetzungen,
+  text: 'Übersetzung durch den Profi-Schnelldienst-Fachübersetzungen, Bremen sowie durch die Berufsgenossenschaft Verkehrswirtschaft Post-Logistik Telekommunikation, Hamburg (Änderungen seit 2015).
+
+    Translation provided by the Profi-Schnelldienst-Fachübersetzungen, Bremen, and the Occup'
 doc_files:
 - de/raw/DE_英文翻译法规索引_gesetze-im-internet.de.html
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：de/raw/DE_英文翻译法规索引_gesetze-im-internet.de.html (html, 40216 chars)，生成 9 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：de/raw/DE_英文翻译法规索引_gesetze-im-internet.de.html (html, 40216 chars)，生成 9 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：de/raw/DE_英文翻译法规索引_gesetze-im-internet.de.html (html, 40216 chars)，生成 9 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

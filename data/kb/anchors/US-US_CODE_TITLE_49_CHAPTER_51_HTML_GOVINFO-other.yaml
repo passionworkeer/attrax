@@ -1,0 +1,26 @@
+id: KB-other-US-US-US_CODE_TITLE_49_CHAPTER_51_HTML_GOVINFO
+regulation_id: US-US_CODE_TITLE_49_CHAPTER_51_HTML_GOVINFO
+doc_name: US Code title 49 chapter 51 (HTML, govinfo)
+official_citation: US Code title 49 chapter 51 (HTML, govinfo)
+short_name: US Code title 49 chapter 51 (HTML, govinfo)
+source: category
+primary_source: other
+domain: other
+applies_if:
+  category:
+  - other
+  features_any: []
+  markets:
+  - US
+key_articles: []
+key_points:
+- US Code title 49 chapter 51 (HTML, govinfo)：其他品类领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://www.govinfo.gov/content/pkg/USCODE-2023-title49/html/USCODE-2023-title49-chap51.htm
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

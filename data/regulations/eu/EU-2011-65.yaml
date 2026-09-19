@@ -28,8 +28,12 @@ raw_file: null
 checksum_sha256: null
 schema_version: 1
 source_url: https://eur-lex.europa.eu/eli/dir/2011/65/oj
-notes: 'Governance pass 2026-09-14 (plan J08 / §4.4 layer 3): source_kind=unverified — all article texts are
-  KB-condensed summaries marked "full official text pending verification", not verbatim EUR-Lex text. The same
-  Annex II summary is currently attached to art-4/6/7 and annex-2 (article-content mismatch to be resolved in the
-  verbatim replacement pass via `parser/legal_parser.py`). Summaries must not enter the exact-quote flow or be
-  labeled 已对照原文.'
+notes: 'Governance pass 2026-09-14 (plan J08 / §4.4 layer 3): source_kind=unverified — all article texts are KB-condensed
+  summaries marked "full official text pending verification", not verbatim EUR-Lex text. The same Annex II summary is currently
+  attached to art-4/6/7 and annex-2 (article-content mismatch to be resolved in the verbatim replacement pass via `parser/legal_parser.py`).
+  Summaries must not enter the exact-quote flow or be labeled 已对照原文.
+
+  2026-09-19 去重：合并同法规异名条目 EU-2011-65_ROHS_RESTRICTION_OF_HAZARDOUS_SUBSTANCES（EU-2011-65 RoHS Restriction of Hazardous Substances
+  [xhtml]）。'
+doc_files:
+- eu/raw/EU-2011-65_RoHS_Restriction_of_Hazardous_Substances.xhtml

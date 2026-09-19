@@ -1,0 +1,25 @@
+id: KB-market-CN-CN-DSL
+regulation_id: CN-DSL
+doc_name: 《中华人民共和国数据安全法》(2021)
+official_citation: 《中华人民共和国数据安全法》(2021)
+short_name: 数据安全法 (DSL)
+source: market
+primary_source: market
+domain: 数据保护
+applies_if:
+  category: []
+  features_any: []
+  markets:
+  - CN
+key_articles: []
+key_points:
+- 数据安全法 (DSL)：数据保护领域法规，适用于 CN 市场相关经营行为（库自动接入，按市场匹配）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: http://www.npc.gov.cn/npc/c2/c30834/202106/t20210610_311888.html
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

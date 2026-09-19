@@ -1,6 +1,6 @@
 id: US-CFR-TITLE21-PART117
 official_citation: US 21 CFR Part 117
-short_name: US 21 CFR Part 117
+short_name: US 21 CFR Part 117 — CURRENT GOOD MANUFACTURING PRACTICE, HAZARD ANALYSIS, AND RISK-BASED PREVENTIVE CONTROLS FOR HUMAN FOOD
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,1222 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'Food and Drug Administration, HHS Pt. 117
+
+    FDA official shall'
+  text: 'Food and Drug Administration, HHS Pt. 117
+
+    FDA official shall render a decision on tion. Inspections may be made with or
+
+    the appeal affirming or revoking the without notice and will ordinarily be
+
+    detention within 5-working days after made during regular business hours.
+
+    the receipt of the appeal. (g) Preemption. No State or local gov-
+
+    (v) Presiding FDA official’s decision. If, erning entity shall establish or con-
+
+    based on the evidence presented at the tinue in effect any law, rule, regula-
+
+    hearing or by the appellant in a writ- tion, or other requirement allowing re-
+
+    ten appeal, the presiding FDA official frigeration of unpasteurized shell eggs
+
+    finds that the shell eggs were held in at retail establishments at any tem-
+
+    violation of this section, he shall af- perature greater than 7.2 °C (45 °F).
+
+    firm the order that they be diverted,
+
+    [65 FR 76112, Dec. 5, 2000, as amended at 82
+
+    under the supervision of an officer or
+
+    FR 14145, Mar. 17, 2017; 85 FR 16552, Mar. 24,
+
+    employee of FDA for processing under 2020]
+
+    the EPIA or destroyed by or under the
+
+    supervision of an officer or employee of PART 117—CURRENT GOOD MAN-
+
+    FDA; otherwise, the presiding FDA of- UFACTURING PRACTICE, HAZARD
+
+    ficial shall issue a written notice that
+
+    ANALYSIS, AND RISK–BASED PRE-
+
+    the prior order is withdrawn. If the pre-
+
+    VENTIVE CONTROLS FOR HUMAN
+
+    siding FDA official affirms the order,
+
+    FOOD
+
+    he shall order that the diversion or de-
+
+    struction be accomplished within 10-
+
+    working days from the date of the Subpart A—General Provisions
+
+    issuance of his decision. The presiding
+
+    Sec.
+
+    FDA official’s decision shall be accom- 117.1 Applicability and status.
+
+    panied by a statement of the reasons 117.3 Definitions.
+
+    for the decision. The decision of the 117.4 Qualifications of individuals who man-
+
+    presiding FDA official shall constitute ufacture, process, pack, or hold food.
+
+    final agency action, reviewable in the 117.5 Exemptions.
+
+    117.7 Applicability of subparts C, D, and G
+
+    courts.
+
+    of this part to a facility solely engaged
+
+    (vi) No appeal. If there is no appeal of
+
+    in the storage of unexposed packaged
+
+    the order and the person in possession food.
+
+    of the shell eggs that are subject to the 117.8 Applicability of subpart B of this part
+
+    order fails to divert or destroy them to the off-farm packing and holding of
+
+    within 10 working days, or if the de- raw agricultural commodities
+
+    mand is affirmed by the presiding FDA 117.9 Records required for this subpart.
+
+    official after an appeal and the person
+
+    Subpart B—Current Good Manufacturing
+
+    in possession of such eggs fails to di-
+
+    Practice
+
+    vert or destroy them within 10 working
+
+    days, FDA’s division office or appro- 117.10 Personnel.
+
+    priate State or local agency may des- 117.20 Plant and grounds.
+
+    ignate an officer or employee to divert 117.35 Sanitary operations.
+
+    or destroy such eggs. It shall be unlaw- 117.37 Sanitary facilities and controls.
+
+    117.40 Equipment and utensils.
+
+    ful to prevent or to attempt to prevent
+
+    117.80 Processes and controls.
+
+    such diversion or destruction of the 117.93 Warehousing and distribution.
+
+    shell eggs by the designated officer or 117.95 Holding and distribution of human
+
+    employee. food by-products for use as animal food.
+
+    (f) Inspection. Persons engaged in re- 117.110 Defect action levels.
+
+    tail distribution of shell eggs shall per-
+
+    Subpart C—Hazard Analysis and Risk-
+
+    mit authorized representatives of FDA
+
+    Based Preventive Controls
+
+    to make at any reasonable time such
+
+    inspection of the retail establishment 117.126 Food safety plan.
+
+    in which shell eggs are being held, in- 117.130 Hazard analysis.
+
+    cluding inspection and sampling of 117.135 Preventive controls.
+
+    such eggs and the equipment in which 117.136 Circumstances in which the owner,
+
+    shell eggs are held and any records re- operator, or agent in charge of a manu-
+
+    facturing/processing facility is not re-
+
+    lating to such equipment or eggs, as
+
+    quired to implement a preventive con-
+
+    may be necessary in the judgement of
+
+    trol.
+
+    such representatives to determine com- 117.137 Provision of assurances required
+
+    pliance with the provisions of this sec- under §117.136(a)(2), (3), and (4).
+
+    385'
+- id: art-2
+  title: §117.1 21 CFR Ch. I (4–1–24 Edition)
+  text: '§117.1 21 CFR Ch. I (4–1–24 Edition)
+
+    117.139 Recall plan. 117.335 Special requirements applicable to a
+
+    117.140 Preventive control management written assurance.
+
+    components.
+
+    117.145 Monitoring. Subpart G—Supply-Chain Program
+
+    117.150 Corrective actions and corrections.
+
+    117.405 Requirement to establish and imple-
+
+    117.155 Verification.
+
+    ment a supply-chain program.
+
+    117.160 Validation.
+
+    117.410 General requirements applicable to a
+
+    117.165 Verification of implementation and
+
+    supply-chain program.
+
+    effectiveness.
+
+    117.415 Responsibilities of the receiving fa-
+
+    117.170 Reanalysis.
+
+    cility.
+
+    117.180 Requirements applicable to a pre-
+
+    117.420 Using approved suppliers.
+
+    ventive controls qualified individual and
+
+    117.425 Determining appropriate supplier
+
+    a qualified auditor.
+
+    verification activities (including deter-
+
+    117.190 Implementation records required for
+
+    mining the frequency of conducting the
+
+    this subpart.
+
+    activity).
+
+    117.430 Conducting supplier verification ac-
+
+    Subpart D—Modified Requirements
+
+    tivities for raw materials and other in-
+
+    gredients.
+
+    117.201 Modified requirements that apply to
+
+    117.435 Onsite audit.
+
+    a qualified facility.
+
+    117.475 Records documenting the supply-
+
+    117.206 Modified requirements that apply to
+
+    chain program.
+
+    a facility solely engaged in the storage of
+
+    unexposed packaged food. AUTHORITY: 21 U.S.C. 331, 342, 343, 350d note,
+
+    350g, 350g note, 371, 374; 42 U.S.C. 243, 264, 271.
+
+    Subpart E—Withdrawal of a Qualified
+
+    SOURCE: 80 FR 56145, Sept. 17, 2015, unless
+
+    Facility Exemption otherwise noted.
+
+    117.251 Circumstances that may lead FDA EDITORIAL NOTE: Nomenclature changes to
+
+    to withdraw a qualified facility exemp- part 117 appear at 81 FR 49896, July 29, 2016.
+
+    tion.
+
+    117.254 Issuance of an order to withdraw a Subpart A—General Provisions
+
+    qualified facility exemption.
+
+    117.257 Contents of an order to withdraw a §117.1 Applicability and status.
+
+    qualified facility exemption.
+
+    117.260 Compliance with, or appeal of, an (a) The criteria and definitions in
+
+    order to withdraw a qualified facility ex- this part apply in determining whether
+
+    emption. a food is:
+
+    117.264 Procedure for submitting an appeal. (1) Adulterated within the meaning
+
+    117.267 Procedure for requesting an informal of:
+
+    hearing. (i) Section 402(a)(3) of the Federal
+
+    117.270 Requirements applicable to an infor-
+
+    Food, Drug, and Cosmetic Act in that
+
+    mal hearing.
+
+    the food has been manufactured under
+
+    117.274 Presiding officer for an appeal and
+
+    for an informal hearing. such conditions that it is unfit for
+
+    117.277 Timeframe for issuing a decision on food; or
+
+    an appeal. (ii) Section 402(a)(4) of the Federal
+
+    117.280 Revocation of an order to withdraw Food, Drug, and Cosmetic Act in that
+
+    a qualified facility exemption. the food has been prepared, packed, or
+
+    117.284 Final agency action. held under insanitary conditions
+
+    117.287 Reinstatement of a qualified facility whereby it may have become contami-
+
+    exemption that was withdrawn.
+
+    nated with filth, or whereby it may
+
+    have been rendered injurious to health;
+
+    Subpart F—Requirements Applying to
+
+    and
+
+    Records That Must Be Established and
+
+    (2) In violation of section 361 of the
+
+    Maintained
+
+    Public Health Service Act (42 U.S.C.
+
+    117.301 Records subject to the requirements 264).
+
+    of this subpart. (b) The operation of a facility that
+
+    117.305 General requirements applying to manufactures, processes, packs, or
+
+    records. holds food for sale in the United States
+
+    117.310 Additional requirements applying to
+
+    if the owner, operator, or agent in
+
+    the food safety plan.
+
+    charge of such facility is required to
+
+    117.315 Requirements for record retention.
+
+    117.320 Requirements for official review. comply with, and is not in compliance
+
+    117.325 Public disclosure. with, section 418 of the Federal Food,
+
+    117.330 Use of existing records. Drug, and Cosmetic Act or subpart C,
+
+    386
+
+    Food and Drug Administration, HHS §117.3
+
+    D, E, F, or G of this part is a prohibited the problem will recur, evaluate all af-
+
+    act under section 301(uu) of the Federal fected food for safety, and prevent af-
+
+    Food, Drug, and Cosmetic Act. fected food from entering commerce).
+
+    (c) Food covered by specific current Critical control point means a point,
+
+    good manufacturing practice regula- step, or procedure in a food process at
+
+    tions also is subject to the require- which control can be applied and is es-
+
+    ments of those regulations. sential to prevent or eliminate a food
+
+    [80 FR 56145, Sept. 17, 2015, as amended at 81 safety hazard or reduce such hazard to
+
+    FR 3715, Jan. 22, 2016] an acceptable level.
+
+    Defect action level means a level of a'
+- id: art-3
+  title: §117.3 Definitions.
+  text: '§117.3 Definitions.
+
+    non-hazardous, naturally occurring,
+
+    The definitions and interpretations unavoidable defect at which FDA may
+
+    of terms in section 201 of the Federal regard a food product ‘‘adulterated’’
+
+    Food, Drug, and Cosmetic Act apply to and subject to enforcement action
+
+    such terms when used in this part. The under section 402(a)(3) of the Federal
+
+    following definitions also apply:
+
+    Food, Drug, and Cosmetic Act.
+
+    Acid foods or acidified foods means
+
+    Environmental pathogen means a
+
+    foods that have an equilibrium pH of
+
+    pathogen capable of surviving and per-
+
+    4.6 or below.
+
+    sisting within the manufacturing, proc-
+
+    Adequate means that which is needed
+
+    essing, packing, or holding environ-
+
+    to accomplish the intended purpose in
+
+    ment such that food may be contami-
+
+    keeping with good public health prac-
+
+    nated and may result in foodborne ill-
+
+    tice.
+
+    Affiliate means any facility that con- ness if that food is consumed without
+
+    trols, is controlled by, or is under com- treatment to significantly minimize
+
+    mon control with another facility. the environmental pathogen. Examples
+
+    Allergen cross-contact means the unin- of environmental pathogens for the
+
+    tentional incorporation of a food aller- purposes of this part include Listeria
+
+    gen into a food. monocytogenes and Salmonella spp. but
+
+    Audit means the systematic, inde- do not include the spores of pathogenic
+
+    pendent, and documented examination sporeforming bacteria.
+
+    (through observation, investigation, Facility means a domestic facility or
+
+    records review, discussions with em- a foreign facility that is required to
+
+    ployees of the audited entity, and, as register under section 415 of the Fed-
+
+    appropriate, sampling and laboratory eral Food, Drug, and Cosmetic Act, in
+
+    analysis) to assess an audited entity’s accordance with the requirements of
+
+    food safety processes and procedures. part 1, subpart H of this chapter.
+
+    Batter means a semifluid substance, Farm means farm as defined in §1.227
+
+    usually composed of flour and other in- of this chapter.
+
+    gredients, into which principal compo- FDA means the Food and Drug Ad-
+
+    nents of food are dipped or with which
+
+    ministration.
+
+    they are coated, or which may be used
+
+    Food means food as defined in section
+
+    directly to form bakery foods.
+
+    201(f) of the Federal Food, Drug, and
+
+    Blanching, except for tree nuts and
+
+    Cosmetic Act and includes raw mate-
+
+    peanuts, means a prepackaging heat
+
+    rials and ingredients.
+
+    treatment of foodstuffs for an adequate
+
+    Food allergen means a major food al-
+
+    time and at an adequate temperature
+
+    lergen as defined in section 201(qq) of
+
+    to partially or completely inactivate
+
+    the Federal Food, Drug, and Cosmetic
+
+    the naturally occurring enzymes and to
+
+    effect other physical or biochemical Act.
+
+    changes in the food. Food-contact surfaces are those sur-
+
+    Calendar day means every day shown faces that contact human food and
+
+    on the calendar. those surfaces from which drainage, or
+
+    Correction means an action to iden- other transfer, onto the food or onto
+
+    tify and correct a problem that oc- surfaces that contact the food ordi-
+
+    curred during the production of food, narily occurs during the normal course
+
+    without other actions associated with of operations. ‘‘Food-contact surfaces’’
+
+    a corrective action procedure (such as includes utensils and food-contact sur-
+
+    actions to reduce the likelihood that faces of equipment.
+
+    387'
+- id: art-4
+  title: §117.3 21 CFR Ch. I (4–1–24 Edition)
+  text: '§117.3 21 CFR Ch. I (4–1–24 Edition)
+
+    Full-time equivalent employee is a term occur in the absence of preventive con-
+
+    used to represent the number of em- trols), establish one or more preventive
+
+    ployees of a business entity for the pur- controls to significantly minimize or
+
+    pose of determining whether the busi- prevent the hazard in a food and com-
+
+    ness qualifies for the small business ex- ponents to manage those controls (such
+
+    emption. The number of full-time as monitoring, corrections or correc-
+
+    equivalent employees is determined by tive actions, verification, and records)
+
+    dividing the total number of hours of as appropriate to the food, the facility,
+
+    salary or wages paid directly to em- and the nature of the preventive con-
+
+    ployees of the business entity and of all trol and its role in the facility’s food
+
+    of its affiliates and subsidiaries by the safety system.
+
+    number of hours of work in 1 year, 2,080 Holding means storage of food and
+
+    hours (i.e., 40 hours × 52 weeks). If the also includes activities performed inci-
+
+    result is not a whole number, round dental to storage of a food (e.g., activi-
+
+    down to the next lowest whole number. ties performed for the safe or effective
+
+    Harvesting applies to farms and farm storage of that food, such as fumigat-
+
+    mixed-type facilities and means activi- ing food during storage, and drying/de-
+
+    ties that are traditionally performed hydrating raw agricultural commod-
+
+    on farms for the purpose of removing ities when the drying/dehydrating does
+
+    raw agricultural commodities from the not create a distinct commodity (such
+
+    place they were grown or raised and as drying/dehydrating hay or alfalfa)).
+
+    preparing them for use as food. Har- Holding also includes activities per-
+
+    vesting is limited to activities per- formed as a practical necessity for the
+
+    formed on raw agricultural commod- distribution of that food (such as
+
+    ities, or on processed foods created by blending of the same raw agricultural
+
+    drying/dehydrating a raw agricultural commodity and breaking down pallets),
+
+    commodity without additional manu- but does not include activities that
+
+    facturing/processing, on a farm. Har- transform a raw agricultural com-
+
+    vesting does not include activities that modity into a processed food as defined
+
+    transform a raw agricultural com- in section 201(gg) of the Federal Food,
+
+    modity into a processed food as defined Drug, and Cosmetic Act. Holding facili-
+
+    in section 201(gg) of the Federal Food, ties could include warehouses, cold
+
+    Drug, and Cosmetic Act. Examples of storage facilities, storage silos, grain
+
+    harvesting include cutting (or other- elevators, and liquid storage tanks.
+
+    wise separating) the edible portion of Known or reasonably foreseeable haz-
+
+    the raw agricultural commodity from ard means a biological, chemical (in-
+
+    the crop plant and removing or trim- cluding radiological), or physical haz-
+
+    ming part of the raw agricultural com- ard that is known to be, or has the po-
+
+    modity (e.g., foliage, husks, roots or tential to be, associated with the facil-
+
+    stems). Examples of harvesting also in- ity or the food.
+
+    clude cooling, field coring, filtering, Lot means the food produced during a
+
+    gathering, hulling, shelling, sifting, period of time and identified by an es-
+
+    threshing, trimming of outer leaves of, tablishment’s specific code.
+
+    and washing raw agricultural commod- Manufacturing/processing means mak-
+
+    ities grown on a farm. ing food from one or more ingredients,
+
+    Hazard means any biological, chem- or synthesizing, preparing, treating,
+
+    ical (including radiological), or phys- modifying or manipulating food, in-
+
+    ical agent that has the potential to cluding food crops or ingredients. Ex-
+
+    cause illness or injury. amples of manufacturing/processing ac-
+
+    Hazard requiring a preventive control tivities include: Baking, boiling, bot-
+
+    means a known or reasonably foresee- tling, canning, cooking, cooling, cut-
+
+    able hazard for which a person knowl- ting, distilling, drying/dehydrating raw
+
+    edgeable about the safe manufacturing, agricultural commodities to create a
+
+    processing, packing, or holding of food distinct commodity (such as drying/de-
+
+    would, based on the outcome of a haz- hydrating grapes to produce raisins),
+
+    ard analysis (which includes an assess- evaporating, eviscerating, extracting
+
+    ment of the severity of the illness or juice, formulating, freezing, grinding,
+
+    injury if the hazard were to occur and homogenizing, irradiating, labeling,
+
+    the probability that the hazard will milling, mixing, packaging (including
+
+    388
+
+    Food and Drug Administration, HHS §117.3
+
+    modified atmosphere packaging), pas- Preventive controls means those risk-
+
+    teurizing, peeling, rendering, treating based, reasonably appropriate proce-
+
+    to manipulate ripening, trimming, dures, practices, and processes that a
+
+    washing, or waxing. For farms and person knowledgeable about the safe
+
+    farm mixed-type facilities, manufac- manufacturing, processing, packing, or
+
+    turing/processing does not include ac- holding of food would employ to sig-
+
+    tivities that are part of harvesting, nificantly minimize or prevent the haz-
+
+    packing, or holding. ards identified under the hazard anal-
+
+    Microorganisms means yeasts, molds,
+
+    ysis that are consistent with the cur-
+
+    bacteria, viruses, protozoa, and micro-
+
+    rent scientific understanding of safe
+
+    scopic parasites and includes species
+
+    food manufacturing, processing, pack-
+
+    that are pathogens. The term ‘‘unde-
+
+    ing, or holding at the time of the anal-
+
+    sirable microorganisms’’ includes those
+
+    ysis.
+
+    microorganisms that are pathogens,
+
+    Preventive controls qualified individual
+
+    that subject food to decomposition,
+
+    means a qualified individual who has
+
+    that indicate that food is contaminated
+
+    with filth, or that otherwise may cause successfully completed training in the
+
+    food to be adulterated. development and application of risk-
+
+    Mixed-type facility means an estab- based preventive controls at least
+
+    lishment that engages in both activi- equivalent to that received under a
+
+    ties that are exempt from registration standardized curriculum recognized as
+
+    under section 415 of the Federal Food, adequate by FDA or is otherwise quali-
+
+    Drug, and Cosmetic Act and activities fied through job experience to develop
+
+    that require the establishment to be and apply a food safety system.
+
+    registered. An example of such a facil- Qualified auditor means a person who
+
+    ity is a ‘‘farm mixed-type facility,’’ is a qualified individual as defined in
+
+    which is an establishment that is a this part and has technical expertise
+
+    farm, but also conducts activities out- obtained through education, training,
+
+    side the farm definition that require or experience (or a combination there-
+
+    the establishment to be registered. of) necessary to perform the auditing
+
+    Monitor means to conduct a planned
+
+    function as required by §117.180(c)(2).
+
+    sequence of observations or measure-
+
+    Examples of potential qualified audi-
+
+    ments to assess whether control meas-
+
+    tors include:
+
+    ures are operating as intended.
+
+    (1) A government employee, includ-
+
+    Packing means placing food into a
+
+    ing a foreign government employee;
+
+    container other than packaging the
+
+    and
+
+    food and also includes re-packing and
+
+    activities performed incidental to (2) An audit agent of a certification
+
+    packing or re-packing a food (e.g., ac- body that is accredited in accordance
+
+    tivities performed for the safe or effec- with regulations in part 1, subpart M of
+
+    tive packing or re-packing of that food this chapter.
+
+    (such as sorting, culling, grading, and Qualified end-user, with respect to a
+
+    weighing or conveying incidental to food, means the consumer of the food
+
+    packing or re-packing)), but does not (where the term consumer does not in-
+
+    include activities that transform a raw clude a business); or a restaurant or re-
+
+    agricultural commodity into a proc- tail food establishment (as those terms
+
+    essed food as defined in section 201(gg) are defined in §1.227 of this chapter)
+
+    of the Federal Food, Drug, and Cos- that:
+
+    metic Act. (1) Is located:
+
+    Pathogen means a microorganism of
+
+    (i) In the same State or the same In-
+
+    public health significance.
+
+    dian reservation as the qualified facil-
+
+    Pest refers to any objectionable ani-
+
+    ity that sold the food to such res-
+
+    mals or insects including birds, ro-
+
+    taurant or establishment; or
+
+    dents, flies, and larvae.
+
+    (ii) Not more than 275 miles from
+
+    Plant means the building or structure
+
+    such facility; and
+
+    or parts thereof, used for or in connec-
+
+    tion with the manufacturing, proc- (2) Is purchasing the food for sale di-
+
+    essing, packing, or holding of human rectly to consumers at such restaurant
+
+    food. or retail food establishment.
+
+    389'
+- id: art-5
+  title: §117.3 21 CFR Ch. I (4–1–24 Edition)
+  text: '§117.3 21 CFR Ch. I (4–1–24 Edition)
+
+    Qualified facility means (when includ- cessfully reconditioned by reprocessing
+
+    ing the sales by any subsidiary; affil- and that is suitable for use as food.
+
+    iate; or subsidiaries or affiliates, col- Safe-moisture level is a level of mois-
+
+    lectively, of any entity of which the fa- ture low enough to prevent the growth
+
+    cility is a subsidiary or affiliate) a fa- of undesirable microorganisms in the
+
+    cility that is a very small business as finished product under the intended
+
+    defined in this part, or a facility to conditions of manufacturing, proc-
+
+    which both of the following apply: essing, packing, and holding. The safe
+
+    (1) During the 3-year period preceding moisture level for a food is related to
+
+    the applicable calendar year, the aver- its water activity (a ). An a will be
+
+    w w
+
+    age annual monetary value of the food considered safe for a food if adequate
+
+    manufactured, processed, packed or data are available that demonstrate
+
+    held at such facility that is sold di- that the food at or below the given a
+
+    w
+
+    rectly to qualified end-users (as defined will not support the growth of undesir-
+
+    in this part) during such period exceed- able microorganisms.
+
+    ed the average annual monetary value Sanitize means to adequately treat
+
+    of the food sold by such facility to all
+
+    cleaned surfaces by a process that is ef-
+
+    other purchasers; and
+
+    fective in destroying vegetative cells of
+
+    (2) The average annual monetary
+
+    pathogens, and in substantially reduc-
+
+    value of all food sold during the 3-year
+
+    ing numbers of other undesirable
+
+    period preceding the applicable cal-
+
+    microorganisms, but without adversely
+
+    endar year was less than $500,000, ad-
+
+    affecting the product or its safety for
+
+    justed for inflation.
+
+    the consumer.
+
+    Qualified facility exemption means an
+
+    Significantly minimize means to reduce
+
+    exemption applicable to a qualified fa-
+
+    to an acceptable level, including to
+
+    cility under §117.5(a).
+
+    eliminate.
+
+    Qualified individual means a person
+
+    Small business means, for purposes of
+
+    who has the education, training, or ex-
+
+    this part, a business (including any
+
+    perience (or a combination thereof)
+
+    subsidiaries and affiliates) employing
+
+    necessary to manufacture, process,
+
+    fewer than 500 full-time equivalent em-
+
+    pack, or hold clean and safe food as ap-
+
+    ployees.
+
+    propriate to the individual’s assigned
+
+    Subsidiary means any company which
+
+    duties. A qualified individual may be,
+
+    is owned or controlled directly or indi-
+
+    but is not required to be, an employee
+
+    rectly by another company.
+
+    of the establishment.
+
+    Quality control operation means a Supplier means the establishment
+
+    planned and systematic procedure for that manufactures/processes the food,
+
+    taking all actions necessary to prevent raises the animal, or grows the food
+
+    food from being adulterated. that is provided to a receiving facility
+
+    Raw agricultural commodity has the without further manufacturing/proc-
+
+    meaning given in section 201(r) of the essing by another establishment, ex-
+
+    Federal Food, Drug, and Cosmetic Act. cept for further manufacturing/proc-
+
+    Ready-to-eat food (RTE food) means essing that consists solely of the addi-
+
+    any food that is normally eaten in its tion of labeling or similar activity of a
+
+    raw state or any other food, including de minimis nature.
+
+    a processed food, for which it is reason- Supply-chain-applied control means a
+
+    ably foreseeable that the food will be preventive control for a hazard in a
+
+    eaten without further processing that raw material or other ingredient when
+
+    would significantly minimize biologi- the hazard in the raw material or other
+
+    cal hazards. ingredient is controlled before its re-
+
+    Receiving facility means a facility ceipt.
+
+    that is subject to subparts C and G of Unexposed packaged food means pack-
+
+    this part and that manufactures/proc- aged food that is not exposed to the en-
+
+    esses a raw material or other ingre- vironment.
+
+    dient that it receives from a supplier. Validation means obtaining and eval-
+
+    Rework means clean, unadulterated uating scientific and technical evi-
+
+    food that has been removed from proc- dence that a control measure, combina-
+
+    essing for reasons other than insani- tion of control measures, or the food
+
+    tary conditions or that has been suc- safety plan as a whole, when properly
+
+    390
+
+    Food and Drug Administration, HHS §117.5
+
+    implemented, is capable of effectively (b) Qualifications of all individuals en-
+
+    controlling the identified hazards. gaged in manufacturing, processing,
+
+    Verification means the application of packing, or holding food. Each indi-
+
+    methods, procedures, tests and other vidual engaged in manufacturing, proc-
+
+    evaluations, in addition to monitoring, essing, packing, or holding food (in-
+
+    to determine whether a control meas- cluding temporary and seasonal per-
+
+    ure or combination of control measures sonnel) or in the supervision thereof
+
+    is or has been operating as intended must:
+
+    and to establish the validity of the food (1) Be a qualified individual as that
+
+    safety plan. term is defined in §117.3—i.e., have the
+
+    Very small business means, for pur- education, training, or experience (or a
+
+    poses of this part, a business (including combination thereof) necessary to
+
+    any subsidiaries and affiliates) aver- manufacture, process, pack, or hold
+
+    aging less than $1,000,000, adjusted for clean and safe food as appropriate to
+
+    inflation, per year, during the 3-year the individual’s assigned duties; and
+
+    period preceding the applicable cal-
+
+    (2) Receive training in the principles
+
+    endar year in sales of human food plus
+
+    of food hygiene and food safety, includ-
+
+    the market value of human food manu-
+
+    ing the importance of employee health
+
+    factured, processed, packed, or held
+
+    and personal hygiene, as appropriate to
+
+    without sale (e.g., held for a fee).
+
+    the food, the facility and the individ-
+
+    Water activity (a ) is a measure of the
+
+    w ual’s assigned duties.
+
+    free moisture in a food and is the
+
+    (c) Additional qualifications of super-
+
+    quotient of the water vapor pressure of
+
+    visory personnel. Responsibility for en-
+
+    the substance divided by the vapor
+
+    suring compliance by individuals with
+
+    pressure of pure water at the same
+
+    the requirements of this part must be
+
+    temperature.
+
+    clearly assigned to supervisory per-
+
+    Written procedures for receiving raw
+
+    sonnel who have the education, train-
+
+    materials and other ingredients means
+
+    ing, or experience (or a combination
+
+    written procedures to ensure that raw
+
+    thereof) necessary to supervise the pro-
+
+    materials and other ingredients are re-
+
+    duction of clean and safe food.
+
+    ceived only from suppliers approved by
+
+    (d) Records. Records that document
+
+    the receiving facility (or, when nec-
+
+    training required by paragraph (b)(2) of
+
+    essary and appropriate, on a temporary
+
+    this section must be established and
+
+    basis from unapproved suppliers whose
+
+    maintained.
+
+    raw materials or other ingredients are
+
+    subjected to adequate verification ac-'
+- id: art-6
+  title: §117.5 Exemptions.
+  text: '§117.5 Exemptions.
+
+    tivities before acceptance for use).
+
+    You means, for purposes of this part, (a) Except as provided by subpart E
+
+    the owner, operator, or agent in charge of this part, subparts C and G of this
+
+    of a facility. part do not apply to a qualified facil-
+
+    ity. Qualified facilities are subject to
+
+    [80 FR 56145, Sept. 17, 2015, as amended at 81
+
+    the modified requirements in §117.201.
+
+    FR 3715, Jan. 22, 2016]
+
+    (b) Subparts C and G of this part do'
+- id: art-7
+  title: §117.4 Qualifications of individuals not apply with respect to activities
+  text: '§117.4 Qualifications of individuals not apply with respect to activities
+
+    who manufacture, process, pack, or that are subject to part 123 of this
+
+    hold food. chapter (Fish and Fishery Products) at
+
+    (a) Applicability. (1) The management a facility if you are required to comply
+
+    of an establishment must ensure that with, and are in compliance with, part
+
+    all individuals who manufacture, proc- 123 of this chapter with respect to such
+
+    ess, pack, or hold food subject to sub- activities.
+
+    parts B and F of this part are qualified (c) Subparts C and G of this part do
+
+    to perform their assigned duties. not apply with respect to activities
+
+    (2) The owner, operator, or agent in that are subject to part 120 of this
+
+    charge of a facility must ensure that chapter (Hazard Analysis and Critical
+
+    all individuals who manufacture, proc- Control Point (HACCP) Systems) at a
+
+    ess, pack, or hold food subject to sub- facility if you are required to comply
+
+    part C, D, E, F, or G of this part are with, and are in compliance with, part
+
+    qualified to perform their assigned du- 120 of this chapter with respect to such
+
+    ties. activities.
+
+    391'
+- id: art-8
+  title: §117.5 21 CFR Ch. I (4–1–24 Edition)
+  text: '§117.5 21 CFR Ch. I (4–1–24 Edition)
+
+    (d)(1) Subparts C and G of this part vegetables are separately considered
+
+    do not apply with respect to activities for the purposes of these activity/food
+
+    that are subject to part 113 of this combinations (i.e., coffee beans, cocoa
+
+    chapter (Thermally Processed Low- beans, fresh herbs, peanuts, sugarcane,
+
+    Acid Foods Packaged in Hermetically sugar beets, tree nuts, seeds for direct
+
+    Sealed Containers) at a facility if you consumption) to appropriately address
+
+    are required to comply with, and are in specific hazards associated with these
+
+    compliance with, part 113 of this chap- foods and/or processing activities con-
+
+    ter with respect to such activities. ducted on these foods.
+
+    (2) The exemption in paragraph (d)(1) (i) Dried/dehydrated fruit and vegetable
+
+    of this section is applicable only with products includes only those processed
+
+    respect to the microbiological hazards food products such as raisins and dried
+
+    that are regulated under part 113 of legumes made without additional man-
+
+    this chapter. ufacturing/processing beyond drying/
+
+    (e) Subparts C and G do not apply to dehydrating, packaging, and/or label-
+
+    any facility with regard to the manu- ing.
+
+    facturing, processing, packaging, or (ii) Other fruit and vegetable products
+
+    holding of a dietary supplement that is includes those processed food products
+
+    in compliance with the requirements of that have undergone one or more of the
+
+    part 111 of this chapter (Current Good following processes: acidification, boil-
+
+    Manufacturing Practice in Manufac- ing, canning, coating with things other
+
+    turing, Packaging, Labeling, or Hold- than wax/oil/resin, cooking, cutting,
+
+    ing Operations for Dietary Supple- chopping, grinding, peeling, shredding,
+
+    ments) and section 761 of the Federal slicing, or trimming. Examples include
+
+    Food, Drug, and Cosmetic Act (Serious flours made from legumes (such as
+
+    Adverse Event Reporting for Dietary chickpea flour), pickles, and snack
+
+    Supplements). chips made from potatoes or plantains.
+
+    (f) Subparts C and G of this part do Examples also include dried fruit and
+
+    not apply to activities of a facility that vegetable products made with addi-
+
+    are subject to section 419 of the Federal tional manufacturing/processing (such
+
+    Food, Drug, and Cosmetic Act (Stand- as dried apple slices; pitted, dried
+
+    ards for Produce Safety). plums, cherries, and apricots; and
+
+    (g)(1) The exemption in paragraph sulfited raisins). This category does
+
+    (g)(3) of this section applies to packing not include dried/dehydrated fruit and
+
+    or holding of processed foods on a farm vegetable products made without addi-
+
+    mixed-type facility, except for proc- tional manufacturing/processing as de-
+
+    essed foods produced by drying/dehy- scribed in paragraph (g)(2)(i) of this
+
+    drating raw agricultural commodities section. This category also does not in-
+
+    to create a distinct commodity (such clude products that require time/tem-
+
+    as drying/dehydrating grapes to perature control for safety (such as
+
+    produce raisins, and drying/dehy- fresh-cut fruits and vegetables).
+
+    drating fres'
 doc_files:
 - us/raw/US-CFR-title21-part117.pdf
+- us/raw/US-CFR-title21-part117.xml
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part117.pdf (pdf, 166649 chars)，生成 8 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part117.pdf (pdf, 166649 chars)，生成 8 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part117.pdf (pdf, 166647 chars)，生成 8 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART117-4（US 21 CFR Part 117）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART117-3（US 21 CFR Part 117）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART117-2（US 21 CFR Part 117）。'

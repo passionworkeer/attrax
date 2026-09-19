@@ -1,0 +1,28 @@
+id: KB-electronics-US-US-CFR-TITLE16-PART1263
+regulation_id: US-CFR-TITLE16-PART1263
+doc_name: US 16 CFR Part 1263
+official_citation: US 16 CFR Part 1263
+short_name: US 16 CFR Part 1263 — SAFETY STANDARD FOR BUTTON CELL OR COIN BATTERIES AND CONSUMER PRODUCTS CONTAINING SUCH BATTERIES
+source: category
+primary_source: electronics
+domain: electronics
+applies_if:
+  category:
+  - electronics
+  features_any: []
+  markets:
+  - US
+key_articles:
+- art-1
+- art-2
+key_points:
+- US 16 CFR Part 1263 — SAFETY STANDARD FOR BUTTON CELL OR COIN BATTERIES AND CONSUMER PRODUCTS CONTAINING SUCH BATTERIES：电子产品领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1263.xml
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

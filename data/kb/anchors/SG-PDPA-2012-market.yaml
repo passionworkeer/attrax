@@ -1,0 +1,27 @@
+id: KB-market-SG-SG-PDPA-2012
+regulation_id: SG-PDPA-2012
+doc_name: Personal Data Protection Act 2012 (2024 amendment)
+official_citation: Personal Data Protection Act 2012 (2024 amendment)
+short_name: 新加坡 PDPA (2024 修订)
+source: market
+primary_source: market
+domain: 数据保护
+applies_if:
+  category: []
+  features_any: []
+  markets:
+  - SG
+key_articles:
+- art-1
+- art-2
+key_points:
+- 新加坡 PDPA (2024 修订)：数据保护领域法规，适用于 SG 市场相关经营行为（库自动接入，按市场匹配）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://www.pdpc.gov.sg/overview-of-pdpa/the-legislation/personal-data-protection-act
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

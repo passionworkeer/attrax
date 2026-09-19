@@ -1,6 +1,6 @@
 id: US-CFR-TITLE16-PART1102
 official_citation: US 16 CFR Part 1102
-short_name: US 16 CFR Part 1102
+short_name: US 16 CFR Part 1102 — PUBLICLY AVAILABLE CONSUMER PRODUCT SAFETY INFORMATION DATABASE
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,846 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '16
+
+    Commercial Practices
+
+    2
+
+    2024-01-01
+
+    2024-01-01
+
+    false
+
+    PUBLIC'
+  text: '16
+
+    Commercial Practices
+
+    2
+
+    2024-01-01
+
+    2024-01-01
+
+    false
+
+    PUBLICLY AVAILABLE CONSUMER PRODUCT SAFETY INFORMATION DATABASE
+
+    1102
+
+    PART 1102
+
+    Commercial Practices
+
+    CONSUMER PRODUCT SAFETY COMMISSION
+
+    CONSUMER PRODUCT SAFETY ACT REGULATIONS
+
+    Pt. 1102
+
+    PART 1102—PUBLICLY AVAILABLE CONSUMER PRODUCT SAFETY INFORMATION DATABASE
+
+    Subpart A—Background and Definitions
+
+    Sec.
+
+    1102.2
+
+    Purpose.
+
+    1102.4
+
+    Scope.
+
+    1102.6
+
+    Definitions.
+
+    Subpart B—Content Requirements
+
+    1102.10
+
+    Reports of harm.
+
+    1102.12
+
+    Manufacturer comments.
+
+    1102.14
+
+    Recall notices.
+
+    1102.16
+
+    Additional information.
+
+    Subpart C—Procedural Requirements
+
+    1102.20
+
+    Transmission of reports of harm to the identified manufacturer or private labeler.
+
+    1102.24
+
+    Designation of confidential information.
+
+    1102.26
+
+    Determination of materially inaccurate information.
+
+    1102.28
+
+    Publication of reports of harm.
+
+    1102.30
+
+    Publication of manufacturer comments.
+
+    Subpart D—Notice and Disclosure Requirements
+
+    1102.42
+
+    Disclaimers.
+
+    1102.44
+
+    Applicability of sections 6(a) and (b) of the CPSA.
+
+    Authority:
+
+    15 U.S.C. 2051, 2051 note, 2052, 2055, 2055a, 2065, 2068, 2070, 2071, 2072, 2076, 2078, 2080, 2087.
+
+    Source:
+
+    75 FR 76867, Dec. 9, 2010, unless otherwise noted.
+
+    Subpart A—Background and Definitions'
+- id: art-2
+  title: § 1102.2
+  text: '§ 1102.2
+
+    Purpose.
+
+    This part sets forth the Commission''s interpretation, policy, and procedures with regard to the establishment and maintenance of a Publicly Available Consumer Product Safety Information Database (also
+    referred to as the “Database”) on the safety of consumer products and other products or substances regulated by the Commission.'
+- id: art-3
+  title: § 1102.4
+  text: '§ 1102.4
+
+    Scope.
+
+    This part applies to the content, procedure, notice, and disclosure requirements of the Publicly Available Consumer Product Safety Information Database, including all information published therein.'
+- id: art-4
+  title: § 1102.6
+  text: '§ 1102.6
+
+    Definitions.
+
+    (a) Except as specified in paragraph (b) of this section, the definitions in section 3 of the Consumer Product Safety Act (CPSA) (15 U.S.C. 2052) apply to this part.
+
+    (b) For purposes of this part, the following definitions apply:
+
+    (1)
+
+    Additional information
+
+    means any information that the Commission determines is in the public interest to include in the Publicly Available Consumer Product Safety Information Database.
+
+    (2)
+
+    Commission or CPSC
+
+    means the Consumer Product Safety Commission.
+
+    (3)
+
+    Consumer product
+
+    means a consumer product as defined in section 3(a)(5) of the CPSA, and also includes any other products or substances regulated by the Commission under any other act it administers.
+
+    (4)
+
+    Harm
+
+    means injury, illness, or death; or risk of injury, illness, or death, as determined by the Commission.
+
+    (5)
+
+    Mandatory recall notice
+
+    means any notice to the public required of a firm pursuant to an order issued by the Commission under section 15(c) of the CPSA.
+
+    (6)
+
+    Manufacturer comment
+
+    means a comment made by a manufacturer or private labeler of a consumer product in response to a report of harm transmitted to such manufacturer or private labeler.
+
+    (7)
+
+    Publicly Available Consumer Product Safety Information Database,
+
+    also referred to as the Database, means the database on the safety of consumer products established and maintained by the CPSC as described in section 6A of the CPSA.
+
+    (8)
+
+    Report of harm
+
+    means any information submitted to the Commission through the manner described in § 1102.10(b), regarding any injury, illness, or death; or any risk of injury, illness, or death, as determined by the
+    Commission, relating to the use of a consumer product.
+
+    (9)
+
+    Submitter of a report of harm
+
+    means any person or entity that submits a report of harm.
+
+    (10)
+
+    Voluntary recall notice
+
+    means any notice to the public by the Commission relating to a voluntary corrective action, including a voluntary recall of a consumer product, taken by a manufacturer in consultation with the Commission.
+
+    Subpart B—Content Requirements'
+- id: art-5
+  title: § 1102.10
+  text: '§ 1102.10
+
+    Reports of harm.
+
+    (a)
+
+    Who may submit.
+
+    The following persons or entities may submit reports of harm:
+
+    (1)
+
+    Consumers
+
+    including, but not limited to, users of consumer products, family members, relatives, parents, guardians, friends, attorneys, investigators, professional engineers, agents of a user of a consumer product,
+    and observers of the consumer products being used;
+
+    (2)
+
+    Local, state, or federal government agencies
+
+    including, but not limited to, local government agencies, school systems, social services, child protective services, state attorneys general, state agencies, and all executive and independent federal
+    agencies as defined in Title 5 of the United States Code;
+
+    (3)
+
+    Health care professionals
+
+    including, but not limited to, medical examiners, coroners, physicians, nurses, physician''s assistants, hospitals, chiropractors, and acupuncturists;
+
+    (4)
+
+    Child service providers
+
+    including, but not limited to, child care centers, child care providers, and prekindergarten schools; and
+
+    (5)
+
+    Public safety entities
+
+    including, but not limited to, police, fire, ambulance, emergency medical services, federal, state, and local law enforcement entities, and other public safety officials and professionals, including
+    consumer advocates or individuals who work for nongovernmental organizations, consumer advocacy organizations, and trade associations, so long as they have a public safety purpose.
+
+    (b)
+
+    Manner of submission.
+
+    To be entered into the Database, reports of harm must be submitted to the CPSC using one of the following methods:
+
+    (1) Internet submissions through the CPSC''s Internet Web site on an electronic incident report form specifically developed to collect such information.
+
+    (2) Telephonic submissions through a CPSC call center, where the information is entered on the electronic incident form.
+
+    (3) Electronic mail directed to the Office of the Secretary at
+
+    info@cpsc.gov,
+
+    or by facsimile at 301-504-0127, provided that the submitter completes the incident report form available for download on the CPSC''s Internet Web site specifically developed to collect such information.
+
+    (4) Written submissions to the Office of the Secretary, Consumer Product Safety Commission, 4330 East West Highway, Bethesda, MD 20814-4408. The Commission will accept only those written reports of
+    harm that use the incident report form developed for the CPSC''s Internet Web site; or
+
+    (5) Other means the Commission subsequently makes available.
+
+    (c)
+
+    Size limit of reports of harm.
+
+    The Commission may, in its discretion, limit the data size of reports of harm, which may include attachments submitted, where such reports of harm and attachments may negatively impact the technological
+    or operational performance of the system.
+
+    (d)
+
+    Minimum requirements for publication.
+
+    Subject to §§ 1102.24 and 1102.26, the Commission will publish in the Publicly Available Consumer Product Safety Information Database reports of harm containing all of the following information:
+
+    (1)
+
+    Description of the consumer product.
+
+    The description of the consumer product must, at a minimum, include a word or phrase sufficient to distinguish the product as a consumer product, a component part of a consumer product, or a product
+    or substance regulated by the Commission. In addition to a word or phrase sufficient to distinguish the product as a consumer product, a description of a consumer product may include, but is not limited
+    to, the name, including the brand name of the consumer product, model, serial number, date of manufacture (if known) or date code, date of purchase, price paid, retailer, or any other descriptive information
+    about the product.
+
+    (2)
+
+    Identity of the manufacturer or private labeler.
+
+    The name of one or more manufacturers or private labelers of the consumer product. In addition to a firm name, identification of a manufacturer or private labeler may include, but is not limited to,
+    a mailing address, phone number, or electronic mail address.
+
+    (3)
+
+    Description of the harm.
+
+    A brief narrative description of illness, injury, or death; or risk of illness, injury, or death related to use of the consumer product. Examples of a description of harm or risk of harm include, but
+    are not limited to: Death, asphyxiation, lacerations, burns, abrasions, contusions, fractures, choking, poisoning, suffocation, amputation, or any other narrative description relating to a bodily harm
+    or risk of bodily harm. Incident reports that relate solely to the cost or quality of a consumer product, with no discernable bodily harm or risk of bodily harm, do not constitute “harm” for purposes
+    of this part. A description of harm may, but need not, include the severity of any injury and whether any medical treatment was received.
+
+    (4)
+
+    Incident date.
+
+    The date, or an approximate date, on which the incident occurred.
+
+    (5)
+
+    Category of submitter.
+
+    Indication of which category the submitter is in (
+
+    i.e.,
+
+    consumers, government agencies,
+
+    etc.
+
+    ) from § 1102.10(a).
+
+    (6)
+
+    Contact information.
+
+    The submitter''s first name, last name, and complete mailing address. Although this information will not be published in the Database, it is required information for the report of harm. Submitters also
+    may, but are not required to, provide an electronic mail address and a phone number to allow for efficient and timely contact regarding a report of harm, when necessary.
+
+    (7)
+
+    Verification.
+
+    A submitter of a report of harm must affirmatively verify that he or she has reviewed the report of harm, and that the information contained therein is true and accurate to the best of the submitter''s
+    knowledge, information, and belief. Verification procedures for each method of submission will be specified.
+
+    (8)
+
+    Consent.
+
+    A submitter of a report of harm must consent to publication of
+
+    the report of harm in the Database if he or she wants the information to be included in the Database.
+
+    (e)
+
+    Additional information requested on report of harm.
+
+    The minimum requirements (at § 1102.10(d)) for publication of a report of harm in the Database do not restrict the Commission from choosing to seek other categories of voluntary information in the future.
+
+    (f)
+
+    Information not published.
+
+    The Commission will exclude the following information provided on a report of harm from publication in the Database:
+
+    (1) Name and contact information of the submitter of a report of harm;
+
+    (2) Victim''s name and contact information, if the victim or the victim''s parent, guardian, or appropriate legally authorized representative, has not provided appropriate legal consent;
+
+    (3) Photographs that in the determination of the Commission are not in the public interest, including photographs that could be used to identify a person or photographs that would constitute an invasion
+    of personal privacy based on the Privacy Act of 1974, Public Law 93-579 as amended;
+
+    (4) Medical records without the consent of the person about whom such records pertain or without the consent of his or her parent, guardian, or appropriate legally authorized representative;
+
+    (5) Confidential information as set forth in § 1102.24;
+
+    (6) Information determined to be materially inaccurate as set forth in § 1102.26;
+
+    (7) Reports of harm retracted at any time by the submitters of those reports, if they indicate in writing to the Commission that they supplied materially inaccurate information;
+
+    (8) Consents and verifications associated with a report of harm; and
+
+    (9) Any other information submitted on or with a report of harm, the inclusion of which in the Database, the Commission determines is not in the public interest. The Commission shall consider whether
+    the information is related to a product safety purpose served by the Database, including whether or not the information helps Database users to:
+
+    (i) Identify a consumer product;
+
+    (ii) Identify a manufacturer or private labeler of a consumer product;
+
+    (iii) Understand a harm or risk of harm related to the use of a consumer product; or
+
+    (iv) Understand the relationship between a submitter of a report of harm and the victim.
+
+    (g)
+
+    Reports of harm from persons under the age of 18.
+
+    The Commission will not accept any report of harm when the report of harm is or was submitted by anyone under the age of 18 without consent of the parent or guardian of that person.
+
+    (h)
+
+    Incomplete reports of harm.
+
+    Any information received by the Commission related to a report of harm that does not meet the requirements for submission or publication will not be published, but will be maintained for internal use.
+
+    (i)
+
+    Official records of the Commission.
+
+    All reports of harm that are submitted to the Commission become official records of the Commission in accordance with 16 CFR 1015.1. Alteration (or disposition) of any such records will only be in accordance
+    with the procedures specified in this part.'
+- id: art-6
+  title: § 1102.12
+  text: '§ 1102.12
+
+    Manufacturer comments.
+
+    (a)
+
+    Who may submit.
+
+    A manufacturer or private labeler may submit a comment related to a report of harm if the report of harm identifies such manufacturer or private labeler.
+
+    (b)
+
+    How to submit.
+
+    A manufacturer or private labeler may submit comments to the CPSC using one of the following methods:
+
+    (1) A manufacturer or private labeler who registers with the Commission as described in § 1102.20(f) may submit comments through a manufacturer portal maintained on the CPSC''s Internet Web site;
+
+    (2) A manufacturer or private labeler may submit comments by electronic mail, directed to the Office of the Secretary at
+
+    info@cpsc.gov;
+
+    or
+
+    (3) A manufacturer or private labeler may submit written comments directed to the Office of the Secretary, Consumer Product Safety Commission, 4330 East West Highway, Bethesda, MD 20814-4408.
+
+    (c)
+
+    What must be submitted.
+
+    Subject to §§ 1102.24 and 1102.26, the Commission
+
+    will publish manufacturer comments related to a report of harm transmitted to a manufacturer or private labeler in the Database if such manufacturer comment meets the following requirements:
+
+    (1)
+
+    Manufacturer comment relates to report of harm.
+
+    The manufacturer or private labeler''s comment must relate to information contained in a specific report of harm that identifies such manufacturer or private labeler and that is submitted for publication
+    in the Database.
+
+    (2)
+
+    Unique identifier.
+
+    A manufacturer comment must state the unique identifier provided by the CPSC.
+
+    (3)
+
+    Verification.
+
+    A manufacturer or private labeler must verify that it has reviewed the report of harm and the comment related to the report of harm and that the information contained in the comment is true and accurate
+    to the best of the firm''s knowledge, information, and belief.
+
+    (4)
+
+    Request for publication.
+
+    When a manufacturer or private labeler submits a comment regarding a report of harm, it may request that the Commission publish such comment in the Database. A manufacturer or private labeler must affirmatively
+    request publication of the comment, and consent to such publication in the Database, for each comment submitted to the CPSC.
+
+    (d)
+
+    Information published.
+
+    Subject to §§ 1102.24 and 1102.26, the Commission will publish a manufacturer comment and the date of its submission to the CPSC in the Database if the comment meets the minimum requirements for publication
+    as described in paragraph (c) of this section.
+
+    (e)
+
+    Information not published.
+
+    The Commission will not publish in the Database consents and verifications associated with a manufacturer comment.'
+- id: art-7
+  title: § 1102.14
+  text: '§ 1102.14
+
+    Recall notices.
+
+    All information presented in a voluntary or mandatory recall notice that has been made available to the public shall be accessible and searchable in the Database.'
+- id: art-8
+  title: § 1102.16
+  text: '§ 1102.16
+
+    Additional information.
+
+    In addition to reports of harm, manufacturer comments, and recall notices, the CPSC shall include in the Database any additional information it determines to be in the public interest, consistent with
+    the requirements of section 6(a) and (b) of the CPSA.
+
+    Subpart C—Procedural Requirements'
+- id: art-9
+  title: § 1102.20
+  text: '§ 1102.20
+
+    Transmission of reports of harm to the identified manufacturer or private labeler.
+
+    (a)
+
+    Information transmitted.
+
+    Except as provided in paragraphs (a)(1) through (a)(3) of this section, the Commission will transmit all information provided in a report of harm, provided such report meets the minimum requirements
+    for publication in the Database, to the manufacturer or private labeler identified in a report of harm. The following information will not be transmitted to a manufacturer or private labeler:
+
+    (1) Name and contact information for the submitter of the report of harm, unless such submitter provides express written consent (for example, by checking a box on the report of harm) to provide such
+    information to the manufacturer or private labeler;
+
+    (2) Photographs that could be used to identify a person; and
+
+    (3) Medical records, unless the person about whom such records pertain, or his or her parent, guardian, or appropriate legally authorized representative, consents to providing such records to the manufacturer
+    or private labeler.
+
+    (b)
+
+    Limitation on use of contact information.
+
+    A manufacturer or private labeler who receives name and contact information for the submitter of a report of harm and/or a victim must not use or disseminate such information to any other party for
+    any other purpose other than verification of information contained in a report of harm. Verification of information contained in a report of harm must not include activities such as sales, promotion,
+    marketing, warranty, or any other commercial purpose. Verification of information contained in a report of harm may include verification of the:
+
+    (1) Identity of the submitter and/or the victim, including name, location, age, and gender;
+
+    (2) Consumer product, including serial or model number, date code, color, or size;
+
+    (3) Harm or risk of harm related to the use of the consumer product;
+
+    (4) Description of the incident related to use of the consumer product;
+
+    (5) Date or approximate date of the incident; and/or
+
+    (6) Category of submitter.
+
+    (c)
+
+    Timing.
+
+    To the extent practicable, the Commission will transmit a report of harm to the manufacturer or private labeler within five business days of submission of the completed report of harm. If the Commission
+    cannot determine whom the manufacturer or private labeler is from the report of harm, or otherwise, then it will not post the report of harm on the Database but will maintain the report for internal
+    agency use. Examples of circumstances that may arise that may make transmission of the report of harm impracticable within five business days include, but are not limited to:
+
+    (1) The manufacturer or private labeler is out of business with no identifiable successor;
+
+    (2) The submitter misidentified a manufacturer or private labeler;
+
+    (3) The report of harm contained inaccurate or insufficient contact information for a manufacturer or private labeler; or
+
+    (4) The Commission cannot locate valid contact information for a manufacturer or private labeler.
+
+    (d)
+
+    Method of transmission.
+
+    The Commission will use the method of transmission and contact information provided by the manufacturer or private labeler. The Commission will transmit reports of harm to a manufacturer or private
+    labeler who has registered with the Commission as described in paragraph (f) of this section. If a manufacturer or private labeler has not registered with the Commission, the Commission will send reports
+    of harm through the United States mail to the firm''s principal place of business, unless the Commission selects another equally effective method of transmission.
+
+    (e)
+
+    Size limits of manufacturer comments.
+
+    The Commission may, in its discretion, limit the data size of comments, which may include attachments submitted, where such comments and attachments may negatively impact the technological or operational
+    performance of the system.
+
+    (f)
+
+    Manufacturer registration.
+
+    Manufacturers and private labelers may register with the Commission to select a preferred method for receiving reports of harm that identify such firm as the manufacturer or private labeler. Manufacturers
+    and private labelers that choose to register with the Commission must:
+
+    (1) Register with the Commission through a process identified for such registration;
+
+    (2) Provide and maintain updated contact information for the firm, including the name of the firm, title of a person to whom reports of harm should be directed, complete mailing address, telephone number,
+    electronic mail address, and Web site address (if any); and
+
+    (3) Select a specified method to receive reports of harm that identify the firm as the manufacturer or private labeler of a consumer product.
+
+    (g)
+
+    Manufacturer comments.
+
+    A manufacturer or private labeler who receives a report of harm from the CPSC may comment on the information contained in such report of harm. The Commission, in its discretion, where it determines
+    it is in the public interest, may choose not to publish a manufacturer comment in the Database. For example, it may not be in the public interest for the Commission to publish comments that, in the
+    unlikely event, contain language reasonably described as lewd, lascivious, or obscene.'
+- id: art-10
+  title: § 1102.24
+  text: '§ 1102.24
+
+    Designation of confidential information.
+
+    (a) For purposes of this section, “confidential information” is considered to be information that contains or relates to a trade secret or other matter referred to in 18 U.S.C. 1905 or that is subject
+    to 5 U.S.C. 552(b)(4).
+
+    (b) A manufacturer or private labeler identified in a report of harm and who receives a report of harm from the CPSC may review such report of harm
+
+    for confidential information and request that portions of the report of harm be designated as confidential information. Each requester seeking such a designation of confidential information bears the
+    burden of proof and must:
+
+    (1) Specifically identify the exact portion(s) of the report of harm claimed to be confidential;
+
+    (2) State whether the information claimed to be confidential has ever been released in any manner to a person who was not an employee or in a confidential relationship with the company;
+
+    (3) State whether the information so specified is commonly known within the industry or is readily ascertainable by outside persons with a minimum of time and effort;
+
+    (4) If known, state the company''s relationship with the victim and/or submitter of the report of harm and how the victim and/or submitter of the report of harm came to be in possession of such allegedly
+    confidential information;
+
+    (5) State how the release of the information would be likely to cause substantial harm to the company''s competitive position; and
+
+    (6) State whether the person submitting the request for treatment as confidential information is authorized to make claims of confidentiality on behalf of the person or organization concerned.
+
+    (c)
+
+    Manner of submission.
+
+    Requests for designation of confidential information may be submitted in the same manner as manufacturer comments as described in § 1102.12(b). A request for designation of confidential treatment must
+    be conspicuously marked.
+
+    (d)
+
+    Timing of submission.
+
+    In order to ensure that the allegedly confidential information is not placed in the database, a request for designation of confidential information must be received by the Commission in a timely manner
+    prior to the 10th business day after the date on which the Commission transmits the report to the manufacturer or private labeler. If a request for confidential treatment is submitted in a timely fashion,
+    the Commission will either make a determination on the claim prior to posting on the 10th business day after transmittal to the manufacturer or, as a matter of policy, redact the allegedly confidential
+    information from a report of harm before publication in the Database until it makes a determination regarding confidential treatment.
+
+    (e)
+
+    Assistance with defense.
+
+    No request to redact confidential information from a report of harm pursuant to 5 U.S.C. 552(b)(4) should be made by any person who does not intend in good faith, and so certifies in writing, to assist
+    the Commission in the defense of any judicial proceeding that thereafter might be brought to compel the disclosure of information that the Commission has determined to be a trade secret or privileged
+    or confidential commercial or financial information.
+
+    (f)
+
+    Commission determination of confidentiality.
+
+    If the Commission determines that information in a report of harm is confidential, the Commission shall:
+
+    (1) Notify the manufacturer or private labeler;
+
+    (2) Redact such confidential information in the report of harm; and
+
+    (3) Publish the report of harm in the Database without such confidential information.
+
+    (g)
+
+    Commission determination of no confidentiality.
+
+    If the Commission determines that a report of harm does not contain confidential information, the Commission shall:
+
+    (1) Notify the manufacturer or private labeler; and
+
+    (2) Publish the report of harm, if not already published, in the Database.
+
+    (h)
+
+    Removal of confidential information.
+
+    As stated at 6A(c)(1)(C)(iii) of the CPSA, to seek removal of alleged confidential information that has been published in the Database, a manufacturer or private labeler may bring an action in the district
+    court of the United States in the district in which the complainant resides, or has its principal place of business, or in the U.S. District Court for the District of Columbia.'
+- id: art-11
+  title: § 1102.26
+  text: '§ 1102.26
+
+    Determination of materially inaccurate information.
+
+    (a) For purposes of this section, the following definitions apply:
+
+    (1)
+
+    Materially inaccurate information in a report of harm
+
+    means information that is false or misleading, and which is so substantial and important as to affect a reasonable consumer''s decision making about the product, including:
+
+    (i) The identification of a consumer product;
+
+    (ii) The identification of a manufacturer or private labeler;
+
+    (iii) The harm or risk of harm related to use of the consumer product; or
+
+    (iv) The date, or approximate date on which the incident occurred.
+
+    (2)
+
+    Materially inaccurate information in a manufacturer comment
+
+    means information that is false or misleading, and which is so substantial and important as to affect a reasonable consumer''s decision making about the product, including:
+
+    (i) The description of the consumer product;
+
+    (ii) The identity of the firm or firms responsible for the importation, manufacture, distribution, sale, or holding for sale of a consumer product;
+
+    (iii) The harm or risk of harm related to the use of a consumer product;
+
+    (iv) The status of a Commission, manufacturer, or private labeler investigation;
+
+    (v) Whether the manufacturer or private labeler is engaging in a corrective action and whether such action has not been approved by the Commission; or
+
+    (vi) Whether the manufacturer has taken, or promised to take, any other action with regard to the product.
+
+    (b)
+
+    Request for determination of materially inaccurate information.
+
+    Any person or entity reviewing a report of harm or manufacturer comment, either before or after publication in the Database, may request that the report of harm or manufacturer comment, or portions
+    of such report of harm or manufacturer comment, be excluded from the Database or corrected by the Commission because it contains materially inaccurate information. Each requester seeking an exclusion
+    or correction bears the burden of proof and must:
+
+    (1) State the unique identifier of the report of harm or manufacturer comment to which the request for a determination of materially inaccurate information pertains;
+
+    (2) Specifically identify the exact portion(s) of the report of harm or the manufacturer comment claimed to be materially inaccurate;
+
+    (3) State the basis for the allegation that such information is materially inaccurate;
+
+    (4) Provide evidence, which may include documents, statements, electronic mail, Internet links, photographs, or any other evidence, sufficient for the Commission to make a determination that the designated
+    information is materially inaccurate;
+
+    (5) State what relief the requester is seeking: Exclusion of the entire report of harm or manufacturer comment; redaction of specific information; correction of specific information; or the addition
+    of information to correct the material inaccuracy;
+
+    (6) State whether and how an alleged material inaccuracy may be corrected without removing or excluding an entire report of harm or manufacturer comment; and
+
+    (7) State whether the person submitting the allegation of material inaccuracy is authorized to make claims of material inaccuracy on behalf of the person or organization concerned.
+
+    (c)
+
+    Manner of submission
+
+    —(1)
+
+    Length of request and expedited review.
+
+    The Commission strongly recommends requesters seeking an expedited review of claims of materially inaccurate information to limit the length of the request described in § 1102.26(b) to no more than
+    five pages, including attachments, to allow for the expedited review of the request. Regardless of length, all submissions will be reviewed.
+
+    (2)
+
+    Manufacturers and private labelers.
+
+    A manufacturer or private labeler may request a Commission determination of materially inaccurate information related to a report of harm in the same manner as described in § 1102.12(b). Such requests
+    should be conspicuously marked.
+
+    (3)
+
+    All other requests.
+
+    All other requests for a Commission determination of materially inaccurate information contained in a report of harm or manufacturer comment made by any other person or firm must be submitted to the
+    CPSC using one of the methods listed below. The request seeking a
+
+    Commission determination of materially inaccurate information may be made through:
+
+    (i)
+
+    Electronic mail.
+
+    By electronic mail directed to the Office of the Secretary at
+
+    info@cpsc.gov;
+
+    or
+
+    (ii)
+
+    Paper-based.
+
+    Written submission directed to the Office of the Secretary, Consumer Product Safety Commission, 4330 East West Highway, Bethesda, MD 20814-4408.
+
+    (d)
+
+    Timing of submission.
+
+    A request for a Commission determination regarding materially inaccurate information may be submitted at any time. If a request for determination of materially inaccurate information is submitted prior
+    to publication of a report of harm in the Database, the Commission cannot withhold the report of harm from publication in the Database until it makes a determination. Absent a determination, the Commission
+    will publish reports of harm on the tenth business day after transmitting a report of harm to the manufacturer or private labeler.
+
+    (e)
+
+    Assistance with defense.
+
+    No request for a determination of materially inaccurate information should be made by any person who does not intend in good faith, and so certifies in writing, to assist the Commission in the defense
+    of any judicial proceeding that thereafter might be brought to compel the disclosure of information that the Commission has determined to be materially inaccurate information.
+
+    (f)
+
+    Notice.
+
+    The Commission shall notify the person or firm requesting a determination regarding materially inaccurate information of its determination and method of resolution after resolving such request.
+
+    (g)
+
+    Commission determination of material inaccuracy before publication.
+
+    If the Commission determines that information in a report of harm or manufacturer comment is materially inaccurate information before it is published in the Database, the Commission shall:
+
+    (1) Decline to add the materially inaccurate information to the Database;
+
+    (2) Correct the materially inaccurate information, and, if the minimum requirements for publication as set forth in §§ 1102.10(d) and 1102.12(c) are met, publish the report of harm or manufacturer comment
+    in the Database; or
+
+    (3) Add information to the report of harm or the manufacturer comment to correct the materially inaccurate information, and, if the minimum requirements for publication as set forth in §§ 1102.10(d)
+    and 1102.12(c) are met, publish the report of harm or manufacturer comment in the Database.
+
+    (h)
+
+    Commission determination of material inaccuracy after publication.
+
+    If the Commission determines, after an investigation, that the requested designated information in a report of harm or manufacturer comment contains materially inaccurate information after the report
+    of harm or manufacturer comment has been published in the Database, the Commission shall, no later than seven business days after such determination:
+
+    (1) '
 doc_files:
 - us/raw/US-CFR-title16-part1102.xml
+- us/raw/US-CFR-title16-part1102.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1102.xml (xml, 37723 chars)，生成 11 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1102.xml (xml, 37723 chars)，生成 11 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1102.xml (xml, 37723 chars)，生成 11 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1102-4（US 16 CFR Part 1102）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1102-3（US 16 CFR Part 1102）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1102-2（US 16 CFR Part 1102）。'

@@ -1,0 +1,25 @@
+id: KB-market-ID-ID-SNI-75-2024
+regulation_id: ID-SNI-75-2024
+doc_name: Regulation of the Minister of Industry No. 75/2024 (mandatory SNI for AV equipment)
+official_citation: Regulation of the Minister of Industry No. 75/2024 (mandatory SNI for AV equipment)
+short_name: 印尼 SNI 强制认证 (工业部 75/2024)
+source: market
+primary_source: market
+domain: 产品认证
+applies_if:
+  category: []
+  features_any: []
+  markets:
+  - ID
+key_articles: []
+key_points:
+- 印尼 SNI 强制认证 (工业部 75/2024)：产品认证领域法规，适用于 ID 市场相关经营行为（库自动接入，按市场匹配）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://jdih.setneg.go.id/
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

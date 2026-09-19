@@ -1,6 +1,6 @@
 id: US-CFR-TITLE19-PART102
 official_citation: US 19 CFR Part 102
-short_name: US 19 CFR Part 102
+short_name: US 19 CFR Part 102 — RULES OF ORIGIN
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,971 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '19
+
+    Customs Duties
+
+    1
+
+    2024-04-01
+
+    2024-04-01
+
+    false
+
+    RULES OF ORI'
+  text: '19
+
+    Customs Duties
+
+    1
+
+    2024-04-01
+
+    2024-04-01
+
+    false
+
+    RULES OF ORIGIN
+
+    102
+
+    PART 102
+
+    Customs Duties
+
+    U.S. CUSTOMS AND BORDER PROTECTION, DEPARTMENT OF HOMELAND SECURITY; DEPARTMENT OF THE TREASURY
+
+    Pt. 102
+
+    PART 102—RULES OF ORIGIN
+
+    Sec.
+
+    102.0
+
+    Scope.
+
+    Subpart A—General
+
+    102.1
+
+    Definitions.
+
+    Subpart B—Rules of Origin
+
+    102.11
+
+    General rules.
+
+    102.12
+
+    Fungible goods.
+
+    102.13
+
+    De Minimis.
+
+    102.15
+
+    Disregarded materials.
+
+    102.17
+
+    Non-qualifying operations.
+
+    102.18
+
+    Rules of interpretation.
+
+    102.19
+
+    NAFTA preference override.
+
+    102.20
+
+    Specific rules by tariff classification.
+
+    102.21
+
+    Textile and apparel products.
+
+    102.22
+
+    Rules of origin for textile and apparel products of Israel.
+
+    102.23
+
+    Origin and Manufacturer Identification.
+
+    102.24
+
+    Entry of textile or apparel products.
+
+    102.25
+
+    Textile or apparel products under the North American Free Trade Agreement.
+
+    Appendix to Part 102—Textile and Apparel Manufacturer Identification
+
+    Authority:
+
+    19 U.S.C. 66, 1202 (General Note 3(i), Harmonized Tariff Schedule of the United States), 1624, 3592, 4513.
+
+    Source:
+
+    T.D. 94-4, 59 FR 113, Jan. 3, 1994, unless otherwise noted.'
+- id: art-2
+  title: § 102.0
+  text: '§ 102.0
+
+    Scope.
+
+    With the exception of §§ 102.21 through 102.25, this part sets forth rules for determining the country of origin of imported goods for the purposes specified in paragraph 1 of Annex 311 of the North
+    American Free Trade Agreement (“NAFTA”). Under NAFTA, these specific purposes are: country of origin marking; determining the rate of duty and staging category applicable to originating textile and
+    apparel products as set out in Section 2 (Tariff Elimination) of Annex 300-B (Textile and Apparel Goods); and determining the rate of duty and staging category applicable to an originating good as set
+    out in Annex 302.2 (Tariff Elimination). The rules set forth in §§ 102.1 through 102.18 and 102.20 also determine the country of origin for marking purposes of imported goods under the Agreement Between
+    the United States of America, the United Mexican States, and Canada (USMCA). The rules set forth in §§ 102.1 through 102.21 of this part will also apply for purposes of determining whether an imported
+    good is a new or different article of commerce under § 10.769 of the United States-Morocco Free Trade Agreement regulations and § 10.809 of the United States-Bahrain Free Trade Agreement regulations.
+    The rules for determining the country of origin of textile and apparel products set forth in § 102.21 apply for the foregoing purposes and for the other purposes stated in that section. Section 102.22
+    sets forth rules for determining whether textile and apparel products are considered products of Israel for purposes of the customs laws and the administration of quantitative limitations. Sections
+    102.23 through 102.25 set forth certain procedural requirements relating to the importation of textile and apparel products.
+
+    [CBP Dec. 05-32; 70 FR 58013, Oct. 5, 2005, as amended by CBP Dec. 07-81, 72 FR 58522, Oct. 16, 2007; CBP Dec. 08-29, 73 FR 45354, Aug. 5, 2008; CBP Dec. 21-10, 86 FR 35581, July 6, 2021]
+
+    Subpart A—General'
+- id: art-3
+  title: § 102.1
+  text: '§ 102.1
+
+    Definitions.
+
+    (a)
+
+    Advanced in value.
+
+    “Advanced in value” means an increase in the value of a good as a result of production with respect to that good, other than by means of those “minor processing” operations described in paragraphs (n)(5),
+    (n)(6), and (n)(7) of this section.
+
+    (b)
+
+    Commingled.
+
+    “Commingled” means physically combined or mixed.
+
+    (c)
+
+    Direct physical identification.
+
+    “Direct physical identification” means identification by visual or other organoleptic examination.
+
+    (d)
+
+    Domestic material.
+
+    “Domestic material” means a material whose country of origin as determined under these rules is the same country as the country in which the good is produced.
+
+    (e)
+
+    Foreign material.
+
+    “Foreign material” means a material whose country of origin as determined under these rules is not the same country as the country in which the good is produced.
+
+    (f)
+
+    Fungible goods or fungible materials.
+
+    “Fungible goods or fungible materials” means goods or materials that are interchangeable for commercial purposes and whose properties are essentially identical.
+
+    (g)
+
+    A good wholly obtained or produced.
+
+    A good “wholly obtained or produced” in a country means:
+
+    (1) A mineral good extracted in that country;
+
+    (2) A vegetable or plant good harvested in that country;
+
+    (3) A live animal born and raised in that country;
+
+    (4) A good obtained from hunting, trapping or fishing in that country;
+
+    (5) A good (fish, shellfish and other marine life) taken from the sea by vessels registered or recorded with that country and flying its flag;
+
+    (6) A good produced on board factory ships from the goods referred to in paragraph (g)(5) of this section, provided such factory ships are registered or recorded with that country and fly its flag;
+
+    (7) A good taken by that country or a person of that country from the seabed or beneath the seabed outside territorial waters, provided that country has rights to exploit such seabed;
+
+    (8) A good taken from outer space, provided they are obtained by that country or a person of that country;
+
+    (9) Waste and scrap derived from:
+
+    (i) Production in a country, or
+
+    (ii) Used goods collected in that country provided such goods are fit only for the recovery of raw materials; and
+
+    (10) A good produced in that country exclusively from goods referred to in paragraphs (g)(1) through (10) of this section or from their derivatives, at any stage of production.
+
+    (h)
+
+    Harmonized System.
+
+    “Harmonized System” means the Harmonized Commodity Description and Coding System, including its general rules of Interpretation, Section Notes and Chapter Notes, as adopted and implemented by the United
+    States.
+
+    (i)
+
+    Improved in condition.
+
+    “Improved in condition” means the enhancement of the physical condition of a good as a result of production with respect to that good, other than by means of those “minor processing” operations described
+    in paragraphs (n)(5), (n)(6), and (n)(7) of this section.
+
+    (j)
+
+    Incorporated.
+
+    “Incorporated” means physically incorporated into a good as a result of production with respect to that good.
+
+    (k)
+
+    Indirect materials.
+
+    “Indirect materials” means a good used in the production, testing or inspection of another good but not physically incorporated into that other good, or a good used in the maintenance of buildings or
+    the operation of equipment associated with the production of that other good, including:
+
+    (1) Fuel and energy;
+
+    (2) Tools, dies and molds;
+
+    (3) Spare parts and materials used in the maintenance of equipment and buildings;
+
+    (4) Lubricants, greases, compounding materials and other materials used in production or used to operate equipment and buildings;
+
+    (5) Gloves, glasses, footwear, clothing, safety equipment and supplies;
+
+    (6) Equipment, devices, and supplies used for testing or inspecting the goods;
+
+    (7) Catalysts and solvents; and
+
+    (8) Any other goods that are not incorporated into the good but whose use in the production of the good can reasonably be demonstrated to be a part of that production.
+
+    (l)
+
+    Inventory management method.
+
+    “Inventory management method” means:
+
+    (1) Averaging;
+
+    (2) “Last-in, first-out;”
+
+    (3) “First-in, first-out;” or
+
+    (4) Any other method that is recognized in the Generally Accepted Accounting Principles (GAAP) of the country in which the production is performed or is otherwise accepted by that country.
+
+    (m)
+
+    Material.
+
+    “Material” means a good that is incorporated into another good as a result of production with respect to that other good, and includes parts, ingredients, subassemblies, and components.
+
+    (n)
+
+    Minor processing.
+
+    “Minor processing” means the following:
+
+    (1) Mere dilution with water or another substance that does not materially alter the characteristics of the good;
+
+    (2) Cleaning, including removal of rust, grease, paint, or other coatings;
+
+    (3) Application of preservative or decorative coatings, including lubricants, protective encapsulation, preservative or decorative paint, or metallic coatings;
+
+    (4) Trimming, filing or cutting off small amounts of excess materials;
+
+    (5) Unloading, reloading or any other operation necessary to maintain the good in good condition;
+
+    (6) Putting up in measured doses, packing, repacking, packaging, repackaging;
+
+    (7) Testing, marking, sorting, or grading;
+
+    (8) Ornamental or finishing operations incidental to textile good production designed to enhance the marketing appeal or the ease of care of the product, such as dyeing and printing, embroidery and
+    appliques, pleating, hemstitching, stone or acid washing, permanent pressing, or the attachment of accessories notions, findings and trimmings; or
+
+    (9) Repairs and alterations, washing, laundering, or sterilizing.
+
+    (o)
+
+    Production.
+
+    “Production” means growing, mining, harvesting, fishing, trapping, hunting, manufacturing, processing or assembling a good.
+
+    (p)
+
+    Simple assembly.
+
+    “Simple assembly” means the fitting together of five or fewer parts all of which are foreign (excluding fasteners such as screws, bolts, etc.) by bolting, gluing, soldering, sewing or by other means
+    without more than minor processing.
+
+    (q)
+
+    Value.
+
+    “Value” means, with respect to § 102.13:
+
+    (1) In the case of a good under NAFTA, its customs value or transaction value within the meaning of the appendix to part 181 of this chapter; or
+
+    (2) In the case of a material under NAFTA, its customs value or value within the meaning of the appendix to part 181 of this chapter.
+
+    (3) In the case of a good or material under the USMCA, its customs value or transaction value within the meaning of appendix A to part 182 of this chapter.
+
+    [T.D. 96-48, 61 FR 28955, June 6, 1996, as amended by CBP Dec. 21-10, 86 FR 35581, July 6, 2021]
+
+    Subpart B—Rules of Origin'
+- id: art-4
+  title: § 102.11
+  text: '§ 102.11
+
+    General rules.
+
+    The following rules shall apply for purposes of determining the country of origin of imported goods other than textile and apparel products covered by § 102.21.
+
+    (a) The country of origin of a good is the country in which:
+
+    (1) The good is wholly obtained or produced;
+
+    (2) The good is produced exclusively from domestic materials; or
+
+    (3) Each foreign material incorporated in that good undergoes an applicable change in tariff classification set out in § 102.20 and satisfies any other applicable requirements of that section, and all
+    other applicable requirements of these rules are satisfied.
+
+    (b) Except for a good that is specifically described in the Harmonized System as a set, or is classified as a set pursuant to General Rule of Interpretation 3, where the country of origin cannot be
+    determined under paragraph (a) of this section:
+
+    (1) The country of origin of the good is the country or countries of origin of the single material that imparts the essential character to the good, or
+
+    (2) If the material that imparts the essential character to the good is fungible, has been commingled, and direct physical identification of the origin of the commingled material is not practical, the
+    country or countries of origin may be determined on the basis of an inventory management method.
+
+    (c) Where the country of origin cannot be determined under paragraph (a) or (b) of this section and the good is specifically described in the Harmonized System as a set or mixture, or classified as
+    a set, mixture or composite good pursuant to General Rule of Interpretation 3, the country of origin of the good is the country or countries of origin of all materials that merit equal consideration
+    for determining the essential character of the good.
+
+    (d) Where the country of origin of a good cannot be determined under paragraph (a), (b) or (c) of this section, the country of origin of the good shall be determined as follows:
+
+    (1) If the good was produced only as a result of minor processing, the country of origin of the good is the country or countries of origin of each material that merits equal consideration for determining
+    the essential character of the good;
+
+    (2) If the good was produced by simple assembly and the assembled parts that merit equal consideration for determining the essential character of the good are from the same country, the country of origin
+    of the good is the country of origin of those parts; or
+
+    (3) If the country of origin of the good cannot be determined under paragraph (d)(1) or (d)(2) of this section, the country of origin of the good is the last country in which the good underwent production.
+
+    [T.D. 96-48, 61 FR 28956, June 6, 1996, as amended by CBP Dec. 21-10, 86 FR 35581, July 6, 2021]'
+- id: art-5
+  title: § 102.12
+  text: '§ 102.12
+
+    Fungible goods.
+
+    When fungible goods of different countries of origin are commingled the country of origin of the goods:
+
+    (a) Is the countries of origin of those commingled goods; or
+
+    (b) If the good is fungible, has been commingled, and direct physical identification of the origin of the commingled good is not practical, the country or countries of origin may be determined on the
+    basis of an inventory management method.
+
+    [T.D. 94-4, 59 FR 113, Jan. 3, 1994, as amended by CBP Dec. 21-10, 86 FR 35581, July 6, 2021]'
+- id: art-6
+  title: § 102.13
+  text: '§ 102.13
+
+    De Minimis.
+
+    (a) Except as otherwise provided in paragraphs (b) and (c) of this section, foreign materials that do not undergo the applicable change in tariff classification set out in § 102.20 or satisfy the other
+    applicable requirements of that section when incorporated into a good shall be disregarded in determining the country of origin of the good if the value of those materials is no more than 7 percent
+    of the value of the good or 10 percent of the value of a good of Chapter 22, Harmonized System.
+
+    (b) Paragraph (a) of this section does not apply to a foreign material incorporated in a good provided for in Chapter 1, 2, 3, 4, 7, 8, 11, 12, 15, 17, or 20 of the Harmonized System.
+
+    (c) Foreign components or materials that do not undergo the applicable change in tariff classification set out in § 102.21 or satisfy the other applicable requirements of that section when incorporated
+    into a textile or apparel product covered by that section shall be disregarded in determining the country of origin of the good if the total weight of those components or materials is not more than
+    7 percent of the total weight of the good.
+
+    [T.D. 96-48, 61 FR 28956, June 6, 1996]'
+- id: art-7
+  title: § 102.15
+  text: '§ 102.15
+
+    Disregarded materials.
+
+    (a) The following materials shall be disregarded when determining whether the good undergoes the applicable change in tariff classification set out in § 102.20 or § 102.21, or satisfies the other applicable
+    requirements of those sections:
+
+    (1) Packaging materials and containers in which a good is packaged for retail sale that are classified with the good;
+
+    (2) Accessories, spare parts or tools delivered with the good that are classified with the good and shipped with the good;
+
+    (3) Packing materials and containers in which a good is packed for shipment; and
+
+    (4) Indirect materials.
+
+    (b) [Reserved]
+
+    [T.D. 96-48, 61 FR 28956, June 6, 1996]'
+- id: art-8
+  title: § 102.17
+  text: '§ 102.17
+
+    Non-qualifying operations.
+
+    A foreign material shall not be considered to have undergone an applicable change in tariff classification specified in § 102.20 or § 102.21 or to have met any other applicable requirements of those
+    sections merely by reason of one or more of the following:
+
+    (a) A change in end-use;
+
+    (b) Dismantling or disassembly;
+
+    (c) Simple packing, repacking or retail packaging without more than minor processing;
+
+    (d) Mere dilution with water or another substance that does not materially alter the characteristics of the material; or
+
+    (e) Collecting parts that, as collected, are classifiable in the same tariff provision as an assembled good pursuant to General Rule of Interpretation 2(a), without any additional operation other than
+    minor processing.
+
+    [T.D. 96-48, 61 FR 28956, June 6, 1996]'
+- id: art-9
+  title: § 102.18
+  text: '§ 102.18
+
+    Rules of interpretation.
+
+    (a) When General Rule of Interpretation (GRI) 2(a) is referred to in § 102.20 as an exception to an allowed change in tariff classification, this means that such change will not be acceptable for purposes
+    of that section if the change results from the assembly of parts into an incomplete or unfinished good which is classifiable in the same manner as a complete or finished good pursuant to GRI 2(a).
+
+    (b) (1) For purposes of identifying the material that imparts the essential character to a good under § 102.11, the only materials that shall be taken into consideration are those domestic or foreign
+    materials that are classified in a tariff provision from which a change in tariff classification is not allowed under the § 102.20 specific rule or other requirements applicable to the good. For purposes
+    of this paragraph (b)(1):
+
+    (i) The materials to be considered must be classified in a tariff provision from which a change in tariff classification is not allowed under the specific rule or other requirements applicable to the
+    good under consideration. For example, in the case of a good classified in HTSUS subheading 8607.11 (the rule for which specifies a change to subheading 8607.11 from any other subheading, except from
+    subheading 8607.12, and except from subheading 8607.19 when that change is pursuant to GRI 2(a)), the only materials that may be considered for purposes of identifying the materials that impart the
+    essential character to the good are those that are classified in subheadings 8607.11, 8607.12 and, if the tariff shift is pursuant to GRI 2(a), 8607.19;
+
+    (ii) Materials that may be considered include materials produced by the producer of the good and incorporated in the good. For example, if a producer of a good purchases raw materials and converts those
+    raw materials into a component that is incorporated in the good, that component is a material that may be considered for purposes of identifying the materials that impart the essential character to
+    the good, provided that the component is classified in a tariff provision from which a change in tariff classification is not allowed under the specific rule or other requirements applicable to the
+    good; and
+
+    (iii) If there is only one material that is classified in a tariff provision from which a change in tariff classification is not allowed under the § 102.20 specific rule or other requirements applicable
+    to the good, then that material will represent the single material that imparts the essential character to the good under § 102.11.
+
+    (2) For purposes of determining which one of two or more materials described in paragraph (b)(1) of this section imparts the essential character to a good under § 102.11, various factors may be examined
+    depending upon the type of good involved. These factors include, but are not limited to, the following:
+
+    (i) The nature of each material, such as its bulk, quantity, weight or value; and
+
+    (ii) The role of each material in relation to the use of the good.
+
+    [T.D. 96-48, 61 FR 28957, June 6, 1996]'
+- id: art-10
+  title: § 102.19
+  text: '§ 102.19
+
+    NAFTA preference override.
+
+    (a) Except in the case of goods covered by paragraph (b) of this section, if a good which is originating within the meaning of § 181.1(q) of this chapter is not determined under § 102.11(a) or (b) or
+    § 102.21 to be a good of a single NAFTA country, the country of origin of such good is the last NAFTA country in which that good underwent production other than minor processing, provided that a Certificate
+    of Origin (see § 181.11 of this chapter) has been completed and signed for the good.
+
+    (b) If, under any other provision of this part, the country of origin of a good which is originating within the meaning of § 181.1(q) of this chapter is determined to be the United States and that good
+    has been exported from, and returned to, the United States after having been advanced in value or improved in condition in another NAFTA country, the country of origin of such good for Customs duty
+    purposes is the last NAFTA country in which that good was advanced in value or improved in condition before its return to the United States.
+
+    (c) Paragraphs (a) and (b) of this section apply only to goods entered for
+
+    consumption, or withdrawn from warehouse for consumption, prior to July 1, 2020.
+
+    [T.D. 96-48, 61 FR 28957, June 6, 1996, as amended by CBP Dec. 21-10, 86 FR 35582, July 6, 2021]'
+- id: art-11
+  title: § 102.20
+  text: '§ 102.20
+
+    Specific rules by tariff classification.
+
+    The following rules are the rules specified in § 102.11(a)(3) and other sections of this part. Where a rule under this section permits a change to a subheading from another subheading of the same heading,
+    the rule will be satisfied only if the change is from a subheading of the same level specified in the rule.
+
+    HTSUS
+
+    Tariff shift and/or other requirements
+
+    (a)
+
+    Section I: Chapters 1 through 5
+
+    0101-0106
+
+    A change to heading 0101 through 0106 from any other chapter.
+
+    0201-0209
+
+    A change to heading 0201 through 0209 from any other chapter.
+
+    0210.11-0210.20
+
+    A change to subheading 0210.11 through 0210.20 from any other chapter.
+
+    0210.91-0210.99
+
+    A change to subheading 0210.91 through 0210.99 from any other chapter; or
+
+    A change to edible meals and flours of subheading 0210.91 through 0210.99 from any product other than edible meals and flours of Chapter 2.
+
+    0301-0303
+
+    A change to heading 0301 through 0303 from any other chapter.
+
+    0304
+
+    A change to heading 0304 from any other chapter; or
+
+    A change to fillets of heading 0304 from any other heading.
+
+    0305.20
+
+    A change to subheading 0305.20 from any other chapter.
+
+    0305.31-0305.39
+
+    A change to subheading 0305.31 through 0305.39 from any other subheading outside that group, except from fillets of heading 0304.
+
+    0305.41-0305.79
+
+    A change to subheading 0305.41 through 0305.79 from any other chapter.
+
+    0306
+
+    A change to heading 0306, other than a change to smoked goods of heading 0306, from any other chapter; or A change to smoked goods of heading 0306 from other goods of chapter 3 or from any other chapter,
+    except from chapter 16; or A change to any good of heading 0306 from a smoked good of heading 0306.
+
+    0307
+
+    A change to heading 0307, other than a change to smoked goods of heading 0307, from any other chapter; or
+
+    A change to smoked goods of heading 0307 from other goods of chapter 3 or from any other chapter, except from chapter 16; or
+
+    A change to any good of heading 0307 from a smoked good of heading 0307.
+
+    0308
+
+    A change to heading 0308, other than a change to smoked goods of heading 0308, from any other chapter; or
+
+    A change to smoked goods of heading 0308 from any other good of chapter 3 or from any other chapter, except from chapter 16; or
+
+    A change to any good of heading 0308 from a smoked good of heading 0308.
+
+    0309.10
+
+    A change to subheading 0309.10 from any other subheading.
+
+    0309.90
+
+    A change to subheading 0309.90, from any other chapter; or
+
+    A change to edible meals and flours from within chapter 3; or
+
+    A change to a good of subheading 0309.90 from a smoked good of heading 0306, 0307 or 0308.
+
+    0401
+
+    A change to heading 0401 from any other chapter.
+
+    0402.10-0402.29
+
+    A change to subheading 0402.10 through 0402.29 from any other chapter.
+
+    0402.91-0402.99
+
+    A change to subheading 0402.91 through 0402.99 from any other chapter.
+
+    0403.20
+
+    A change to subheading 0403.20 from any other heading.
+
+    0403.90
+
+    A change to subheading 0403.90 from any other chapter; or
+
+    A change to sour cream or kephir from any other product of Chapter 4.
+
+    0404
+
+    A change to heading 0404 from any other heading.
+
+    0405.10
+
+    A change to subheading 0405.10 from any other heading.
+
+    0405.20
+
+    A change to subheading 0405.20 from any other chapter, except from subheading 1901.90; or
+
+    A change to subheading 0405.20 from any other subheading, provided that the good contains no more than 50 percent by weight of milk solids.
+
+    0405.90
+
+    A change to subheading 0405.90 from any other heading.
+
+    0406
+
+    A change to heading 0406 from any other heading.
+
+    0407-0409
+
+    A change to heading 0407 through 0409 from any other chapter.
+
+    0410.10
+
+    A change to subheading 0410.10 from any other chapter; or
+
+    A change to edible meals and flours of subheading 0410.10 from any product other than edible meals and flours of Chapter 2.
+
+    0410.90
+
+    A change to subheading 0410.90 from any other chapter.
+
+    0501-0511
+
+    A change to heading 0501 through 0511 from any other chapter.
+
+    (b)
+
+    Section II: Chapters 6 through 14
+
+    Note:
+
+    Notwithstanding the specific rules of this section, an agricultural or horticultural good grown in the territory of a country shall be treated as a good of that country even if grown from seed or bulbs,
+    root stock, cuttings, slips or other live parts of plants, or from whole plants, imported from a foreign country.
+
+    0601-0602
+
+    A change to heading 0601 through 0602 from any other heading, including another heading within that group.
+
+    0603-0604
+
+    A change to heading 0603 through 0604 from any other heading, including another heading within that group, except from heading 0602.
+
+    0701-0709
+
+    A change to heading 0701 through 0709 from any other chapter.
+
+    0710
+
+    A change to heading 0710 from any other chapter.
+
+    0711
+
+    A change to heading 0711 from any other chapter.
+
+    0712
+
+    A change to heading 0712 from any other chapter; or
+
+    A change to powdered vegetables of heading 0712 from any other product of Chapter 7, if put up for retail sale.
+
+    0713-0714
+
+    A change to heading 0713 through 0714 from any other chapter.
+
+    0801-0810
+
+    A change to heading 0801 through 0810 from any other chapter.
+
+    0811
+
+    A change to heading 0811 from any other chapter.
+
+    0812
+
+    A change to heading 0812 from any other chapter.
+
+    0813
+
+    A change to heading 0813 from any other chapter.
+
+    0814
+
+    A change to heading 0814 from any other chapter.
+
+    0901.11-0901.12
+
+    A change to subheading 0901.11 through 0901.12 from any other chapter.
+
+    0901.21-0901.22
+
+    A change to subheading 0901.21 through 0901.22 from any subheading outside that group.
+
+    0901.90
+
+    A change to subheading 0901.90 from any other chapter.
+
+    0902-0903
+
+    A change to heading 0902 through 0903 from any other chapter.
+
+    0904-0910
+
+    A change to heading 0904 through 0910 from any other chapter; or
+
+    A change to crushed, ground, or powdered products of heading 0904 through 0910 from within Chapter 9, if put up for retail sale; or
+
+    A change to subheading 0910.91 from any other subheading, provided that a single spice ingredient of foreign origin constitutes no more than 60 percent by weight of the good.
+
+    1001-1008
+
+    A change to heading 1001 through 1008 from any other chapter.
+
+    1101-1106
+
+    A change to heading 1101 through 1106 from any other chapter.
+
+    1107
+
+    A change to heading 1107 from any other chapter.
+
+    1108-1109
+
+    A change to heading 1108 through 1109 from any other heading, including another heading within that group.
+
+    1201-1207
+
+    A change to heading 1201 through 1207 from any other chapter.
+
+    1208
+
+    A change to heading 1208 from any other heading.
+
+    1209-1214
+
+    A change to heading 1209 through 1214 from any other chapter.
+
+    1301-1302
+
+    A change to heading 1301 through 1302 from any other chapter, except from concentrates of poppy straw of subheading 2939.11.
+
+    1401-1404
+
+    A change to heading 1401 through 1404 from any other chapter.
+
+    (c)
+
+    Section III: Chapter 15
+
+    1501-1516
+
+    A change to heading 1501 through 1516 from any other chapter.
+
+    1517.10
+
+    A change to subheading 1517.10 from any other heading.
+
+    1517.90
+
+    A change to subheading 1517.90 from any other chapter, except from heading 3823; or
+
+    A change to subheading 1517.90 from any other heading, provided that no single oil ingredient of foreign origin constitutes more than 60 percent by weight of the good.
+
+    1518
+
+    A change to heading 1518 from any other heading.
+
+    1520
+
+    A change to heading 1520 from any other heading, except from subheading 2905.45 and heading 3823.
+
+    1521-1522
+
+    A change to heading 1521 through 1522 from any other chapter, except from heading 3823.
+
+    (d)
+
+    Section IV: Chapters 16 through 24
+
+    1601-1602.50
+
+    A change to heading 1601 through 1602.50 from any other chapter, except from smoked products of heading 0306 through 0308.
+
+    1602.90
+
+    A change to subheading 1602.90 from any other chapter, except from smoked products of heading 0306 through 0308; or
+
+    A change to subheading 1602.90 from any other subheading, except from Chapter 4, Chapter 17, heading 1006, heading 2009, wild rice of subheading 1008.90, subheading 1901.90 or subheading 2202.91 through
+    2202.92; or
+
+    A change to subheading 1602.90 from Chapter 4 or subheading 1901.90, provided that the good contains no more than 50 percent by weight of milk solids; or
+
+    A change to subheading 1602.90 from Chapter 17, provided that the good contains less than 65 percent by dry weight of sugar; or
+
+    A change to subheading 1602.90 from heading 2009 or subheading 2202.91 through 2202.92, provided that a single juice ingredient of foreign origin, or juice ingredients from a single foreign country,
+    constitute in single strength form no more than 60 percent by volume of the good.
+
+    1603-1605
+
+    A change to heading 1603 through 1605 from any other chapter, except from smoked products of heading 0306 through 0308.
+
+    1701-1702
+
+    A change to heading 1701 through 1702 from any other chapter.
+
+    1703
+
+    A change to heading 1703 from any other chapter.
+
+    1704.10
+
+    A change to heading 1704.10 from any other heading.
+
+    1704.90
+
+    A change to subheading 1704.90 from any other heading, except from subheading 0306.93 or goods containing more than 20% by weight of edible insects of subheading 1602.90.
+
+    1801-1803
+
+    A change to heading 1801 through 1803 from any other chapter.
+
+    1804
+
+    A change to heading 1804 from any other heading, except from heading 1803.
+
+    1805
+
+    A change to heading 1805 from any other heading, except from subheading 1803.20.
+
+    1806.10
+
+    A change to subheading 1806.10 from any other heading, except from heading 1805 or from Chapter 17; or
+
+    A change to subheading 1806.10 from Chapter 17, provided that the good contains less than 65 percent by dry weight of sugar.
+
+    1806.20
+
+    A change to subheading 1806.20 from any other heading, except from Chapter 17; or
+
+    A change to subheading 1806.20 from Chapter 17, provided that the good contains less than 65 percent by dry weight of sugar.
+
+    1806.31
+
+    A change to subheading 1806.31 from any other subheading.
+
+    1806.32
+
+    A change to subheading 1806.32 from any other subheading.
+
+    1806.90
+
+    A change to subheading 1806.90 from any other subheading, except from goods containing more than 20% by weight of edible insects of subheading 1602.90.
+
+    1901.10
+
+    A change to subheading 1901.10 from any other subheading.
+
+    1901.20
+
+    A change to subheading 1901.20 from any other subheading.
+
+    1901.90
+
+    A change to subheading 1901.90 from any other heading, except from goods containing more than 20% by weight of edible insects of subheading 1602.90.
+
+    1902.11-1902.19
+
+    A change to subheading 1902.11 through 1902.19 from any other heading.
+
+    1902.20
+
+    A change to subheading 1902.20 from any other subheading.
+
+    1902.30-1902.40
+
+    A change to subheading 1902.30 through 1902.40 from any other heading.
+
+    1903
+
+    A change to heading 1903 from any other heading.
+
+    1904.10
+
+    A change to subheading 1904.10 from any other heading.
+
+    1904.20
+
+    A change to subheading 1904.20 from any other subheading.
+
+    1904.30
+
+    A change to subheading 1904.30 from any other heading.
+
+    1904.90
+
+    A change to subheading 1904.90 from any other heading, except from heading 1006, wild rice of subheading 1008.90, or goods containing more than 20% by weight of edible insects of subheading 1602.90.
+
+    1905
+
+    A change to heading 1905 from any other heading.'
+- id: art-12
+  title: 'Chapter 20 Note:'
+  text: 'Chapter 20 Note:
+
+    Notwithstanding the specific rules of this chapter, fruit, nut and vegetable preparations of Chapter 20 that have been prepared or preserved merely by freezing, by packing (including canning) in water,
+    brine or natural juices, or by roasting, either dry or in oil (including processing incidental to freezing, packing, or roasting), shall be treated as a good of the country in which the fresh good was
+    produced.
+
+    2001-2007
+
+    A change to heading 2001 through 2007 from any other chapter.
+
+    2008.11
+
+    A change to subheading 2008.11 from any other chapter, provided that the change is not the result of mere blanching of peanuts.
+
+    2008.19-2008.99
+
+    A change to subheading 2008.19 through 2008.99 from any other chapter, provided that the change is not the result of mere blanching of nuts.
+
+    2009.11-2009.39
+
+    A change to subheading 2009.11 through 2009.39 from any other chapter.
+
+    2009.41-2009.80
+
+    A change to subheading 2009.41 through 2009.89 from any other chapter.
+
+    2009.90
+
+    A change to subheading 2009.90 from any other chapter; or
+
+    A change to subheading 2009.90 from any other subheading, provided that a single juice ingredient of foreign origin,'
 doc_files:
 - us/raw/US-CFR-title19-part102.xml
+- us/raw/US-CFR-title19-part102.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title19-part102.xml (xml, 325939 chars)，生成 12 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title19-part102.xml (xml, 325939 chars)，生成 12 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title19-part102.xml (xml, 325939 chars)，生成 12 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE19-PART102-4（US 19 CFR Part 102）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE19-PART102-3（US 19 CFR Part 102）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE19-PART102-2（US 19 CFR Part 102）。'

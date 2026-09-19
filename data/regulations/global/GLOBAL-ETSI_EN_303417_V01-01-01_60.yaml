@@ -9,11 +9,635 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'ETSI EN 303 417
+
+    V1.1.1
+
+    (2017-09)
+
+    HARMONISED EUROPEAN STANDAR'
+  text: 'ETSI EN 303 417
+
+    V1.1.1
+
+    (2017-09)
+
+    HARMONISED EUROPEAN STANDARD
+
+    Wireless power transmission systems, using technologies
+
+    other than radio frequency beam in the 19 - 21 kHz,
+
+    59 - 61 kHz, 79 - 90 kHz, 100 - 300 kHz,
+
+    6 765 - 6 795 kHz ranges;
+
+    Harmonised Standard covering the essential requirements
+
+    of article 3.2 of Directive 2014/53/EU
+
+    2 ETSI EN 303 417 V1.1.1 (2017-09)
+
+    Reference
+
+    DEN/ERM-TG28-527
+
+    Keywords
+
+    harmonised standard, radio, testing, WPT
+
+    ETSI
+
+    650 Route des Lucioles
+
+    F-06921 Sophia Antipolis Cedex - FRANCE
+
+    Tel.: +33 4 92 94 42 00 Fax: +33 4 93 65 47 16
+
+    Siret N° 348 623 562 00017 - NAF 742 C
+
+    Association à but non lucratif enregistrée à la
+
+    Sous-Préfecture de Grasse (06) N° 7803/88
+
+    Important notice
+
+    The present document can be downloaded from:
+
+    http://www.etsi.org/standards-search
+
+    The present document may be made available in electronic versions and/or in print. The content of any electronic and/or
+
+    print versions of the present document shall not be modified without the prior written authorization of ETSI. In case of any
+
+    existing or perceived difference in contents between such versions and/or in print, the only prevailing document is the
+
+    print of the Portable Document Format (PDF) version kept on a specific network drive within ETSI Secretariat.
+
+    Users of the present document should be aware that the document may be subject to revision or change of status.
+
+    Information on the current status of this and other ETSI documents is available at
+
+    https://portal.etsi.org/TB/ETSIDeliverableStatus.aspx
+
+    If you find errors in the present document, please send your comment to one of the following services:
+
+    https://portal.etsi.org/People/CommiteeSupportStaff.aspx
+
+    Copyright Notification
+
+    No part may be reproduced or utilized in any form or by any means, electronic or mechanical, including photocopying
+
+    and microfilm except as authorized by written permission of ETSI.
+
+    The content of the PDF version shall not be modified without the written authorization of ETSI.
+
+    The copyright and the foregoing restriction extend to reproduction in all media.
+
+    © ETSI 2017.
+
+    All rights reserved.
+
+    DECTTM, PLUGTESTSTM, UMTSTM and the ETSI logo are trademarks of ETSI registered for the benefit of its Members.
+
+    3GPPTM and LTE™ are trademarks of ETSI registered for the benefit of its Members and
+
+    of the 3GPP Organizational Partners.
+
+    oneM2M logo is protected for the benefit of its Members.
+
+    GSM® and the GSM logo are trademarks registered and owned by the GSM Association.
+
+    ETSI
+
+    3 ETSI EN 303 417 V1.1.1 (2017-09)
+
+    Contents
+
+    Intellectual Property Rights ................................................................................................................................ 5
+
+    Foreword ............................................................................................................................................................. 5
+
+    Modal verbs terminology .................................................................................................................................... 5
+
+    Introduction ........................................................................................................................................................ 6
+
+    1 Scope ........................................................................................................................................................ 7
+
+    2 References ................................................................................................................................................ 7
+
+    2.1 Normative references ......................................................................................................................................... 7
+
+    2.2 Informative references ........................................................................................................................................ 8
+
+    3 Definitions, symbols and abbreviations ................................................................................................... 9
+
+    3.1 Definitions .......................................................................................................................................................... 9
+
+    3.2 Symbols ............................................................................................................................................................ 10
+
+    3.3 Abbreviations ................................................................................................................................................... 10
+
+    4 Technical requirements specifications ................................................................................................... 10
+
+    4.1 Environmental conditions ................................................................................................................................. 10
+
+    4.2 General ............................................................................................................................................................. 11
+
+    4.2.1 Background information ............................................................................................................................. 11
+
+    4.2.2 Wanted performance criteria....................................................................................................................... 11
+
+    4.2.3 WPT operational modes .............................................................................................................................. 11
+
+    4.2.4 Presentation of equipment for testing purposes .......................................................................................... 14
+
+    4.2.4.1 General .................................................................................................................................................. 14
+
+    4.2.4.2 Choice of model for testing ................................................................................................................... 14
+
+    4.2.4.3 Testing of WPT systems ....................................................................................................................... 14
+
+    4.2.4.4 On-site testing ....................................................................................................................................... 14
+
+    4.2.5 Mechanical and electrical design ................................................................................................................ 14
+
+    4.2.5.1 General .................................................................................................................................................. 14
+
+    4.2.5.2 Controls ................................................................................................................................................. 14
+
+    4.2.5.3 Shut-off facility ..................................................................................................................................... 15
+
+    4.3 Transmitter conformance requirements ............................................................................................................ 15
+
+    4.3.1 General ........................................................................................................................................................ 15
+
+    4.3.2 Permitted range of operating frequencies ................................................................................................... 15
+
+    4.3.2.1 Applicability.......................................................................................................................................... 15
+
+    4.3.2.2 Description ............................................................................................................................................ 15
+
+    4.3.2.3 Limits .................................................................................................................................................... 15
+
+    4.3.2.4 Conformance ......................................................................................................................................... 15
+
+    4.3.3 Operating frequency range(s) (OFR) .......................................................................................................... 15
+
+    4.3.3.1 Applicability.......................................................................................................................................... 15
+
+    4.3.3.2 Description ............................................................................................................................................ 15
+
+    4.3.3.3 Limits .................................................................................................................................................... 16
+
+    4.3.3.4 Conformance ......................................................................................................................................... 16
+
+    4.3.4 H-field requirements ................................................................................................................................... 17
+
+    4.3.4.1 Applicability.......................................................................................................................................... 17
+
+    4.3.4.2 Description ............................................................................................................................................ 17
+
+    4.3.4.3 Limits .................................................................................................................................................... 17
+
+    4.3.4.4 Conformance ......................................................................................................................................... 17
+
+    4.3.5 Transmitter spurious emissions ................................................................................................................... 17
+
+    4.3.5.1 Applicability.......................................................................................................................................... 17
+
+    4.3.5.2 Description ............................................................................................................................................ 17
+
+    4.3.5.3 Limits .................................................................................................................................................... 18
+
+    4.3.5.4 Conformance ......................................................................................................................................... 19
+
+    4.3.6 Transmitter out of band (OOB) emissions .................................................................................................. 19
+
+    4.3.6.1 Applicability.......................................................................................................................................... 19
+
+    4.3.6.2 Description ............................................................................................................................................ 19
+
+    4.3.6.3 Limits .................................................................................................................................................... 19
+
+    4.3.6.4 Conformance ......................................................................................................................................... 19
+
+    ETSI
+
+    4 ETSI EN 303 417 V1.1.1 (2017-09)
+
+    4.3.7 WPT system unwanted conducted emissions ............................................................................................. 20
+
+    4.3.7.1 Applicability.......................................................................................................................................... 20
+
+    4.3.7.2 Description ............................................................................................................................................ 20
+
+    4.3.7.3 Limits .................................................................................................................................................... 20
+
+    4.3.7.4 Conformance .............................................................................'
+- id: art-2
+  title: 'Annex C (informative): Bibliography ................................................................................................... 33'
+  text: 'Annex C (informative): Bibliography ................................................................................................... 33
+
+    History .............................................................................................................................................................. 34
+
+    ETSI
+
+    5 ETSI EN 303 417 V1.1.1 (2017-09)
+
+    Intellectual Property Rights
+
+    Essential patents
+
+    IPRs essential or potentially essential to the present document may have been declared to ETSI. The information
+
+    pertaining to these essential IPRs, if any, is publicly available for ETSI members and non-members, and can be found
+
+    in ETSI SR 000 314: "Intellectual Property Rights (IPRs); Essential, or potentially Essential, IPRs notified to ETSI in
+
+    respect of ETSI standards", which is available from the ETSI Secretariat. Latest updates are available on the ETSI Web
+
+    server (https://ipr.etsi.org/).
+
+    Pursuant to the ETSI IPR Policy, no investigation, including IPR searches, has been carried out by ETSI. No guarantee
+
+    can be given as to the existence of other IPRs not referenced in ETSI SR 000 314 (or the updates on the ETSI Web
+
+    server) which are, or may be, or may become, essential to the present document.
+
+    Trademarks
+
+    The present document may include trademarks and/or tradenames which are asserted and/or registered by their owners.
+
+    ETSI claims no ownership of these except for any which are indicated as being the property of ETSI, and conveys no
+
+    right to use or reproduce any trademark and/or tradename. Mention of those trademarks in the present document does
+
+    not constitute an endorsement by ETSI of products, services or organizations associated with those trademarks.
+
+    Foreword
+
+    This Harmonised European Standard (EN) has been produced by ETSI Technical Committee Electromagnetic
+
+    compatibility and Radio spectrum Matters (ERM).
+
+    The present document has been prepared under the Commission''s standardisation request C(2015) 5376 final [i.6] to
+
+    provide one voluntary means of conforming to the essential requirements of Directive 2014/53/EU on the harmonisation
+
+    of the laws of the Member States relating to the making available on the market of radio equipment and repealing
+
+    Directive 1999/5/EC [i.3].
+
+    Once the present document is cited in the Official Journal of the European Union under that Directive, compliance with
+
+    the normative clauses of the present document given in Table A.1 confers, within the limits of the scope of the present
+
+    document, a presumption of conformity with the corresponding essential requirements of that Directive, and associated
+
+    EFTA regulations.
+
+    National transposition dates
+
+    Date of adoption of this EN: 14 August 2017
+
+    Date of latest announcement of this EN (doa): 30 November 2017
+
+    Date of latest publication of new National Standard
+
+    or endorsement of this EN (dop/e): 31 May 2018
+
+    Date of withdrawal of any conflicting National Standard (dow): 31 May 2019
+
+    Modal verbs terminology
+
+    In the present document "shall", "shall not", "should", "should not", "may", "need not", "will", "will not", "can" and
+
+    "cannot" are to be interpreted as described in clause 3.2 of the ETSI Drafting Rules (Verbal forms for the expression of
+
+    provisions).
+
+    "must" and "must not" are NOT allowed in ETSI deliverables except when used in direct citation.
+
+    ETSI
+
+    6 ETSI EN 303 417 V1.1.1 (2017-09)
+
+    Introduction
+
+    The present document has been prepared to conform to the requirements of the new Radio Equipment Directive
+
+    2014/53/EU [i.3]. The present document covers wireless power transmission (WPT) systems using technologies other
+
+    than radio frequency beam in the frequency ranges 19 - 21 kHz, 59 - 61 kHz, 79 - 90 kHz, 100 - 300 kHz,
+
+    6 765 - 6 795 kHz.
+
+    In the context of the present document "power transmission via radio frequency beam" means power transmission by
+
+    radio waves.
+
+    For the clarification of open questions for high power wireless power transmission systems to charge vehicles a SRdoc
+
+    ETSI TR 103 409 [i.4] was prepared. New specific requirements for such systems (e.g. higher H-field emission limits in
+
+    the 79 - 90 kHz band) will be reflected within a future revision of the present document.
+
+    The present document is structured as follows:
+
+    Clauses 1 through 3 provide a general description on the types of equipment covered by the present document and the
+
+    definitions, symbols and abbreviations used.
+
+    Clause 4 provides the technical requirements specifications, limits and conformance relative to transmitter and receiver.
+
+    Clause 5 specifies the conditions for testing of the equipment and interpretation of the measurement results with the
+
+    maximum measurement uncertainty values.
+
+    Clause 6 specifies the required measurement methods.
+
+    Annex A (informative) provides the relationship between the present document and the essential requirements of
+
+    Directive 2014/53/EU [i.3].
+
+    Annex B (normative) provides the measurement setup specifically for Electric Vehicles.
+
+    ETSI
+
+    7 ETSI EN 303 417 V1.1.1 (2017-09)
+
+    1 Scope
+
+    The present document specifies technical characteristics and methods of measurements for wireless power transmission
+
+    (WPT) systems, using technologies other than radio frequency beam, in the 19 - 21 kHz, 59 - 61 kHz, 79 - 90 kHz,
+
+    100 - 300 kHz, 6 765 - 6 795 kHz ranges.
+
+    The present document covers wireless power transmission systems which are regarded as radio equipment since
+
+    including inherent radio communication functionality or radiodetermination via the WPT interface or port at the specific
+
+    WPT frequency ranges.
+
+    Such systems usually consist of:
+
+    1) A power transmitter, with additional communication capability to control the charge function, in conjunction
+
+    with the receiving part. The power transmitter could also be named as base station.
+
+    2) A power receiver, which supplies the received energy to a mobile device and performs a control/supervision
+
+    function for the mobile device status and charge operation.
+
+    Both parts in combination are able to transmit and receive data in addition to the power transmission mode e.g. to
+
+    control the mobile device status and to optimize the power transmission mode.
+
+    These radio equipment types are capable of operating in the permitted frequency bands below 30 MHz as specified in
+
+    Table 1.
+
+    The present document covers fixed systems, mobile and portable systems.
+
+    Table 1: WPT systems within the permitted frequency bands below 30 MHz
+
+    WPT frequency range Frequency Bands Applications
+
+    Transmit and Receive 1 19 kHz to 21 kHz WPT systems
+
+    Transmit and Receive 2 59 kHz to 61 kHz WPT systems
+
+    Transmit and Receive 3 79 kHz to 90 kHz WPT systems
+
+    Transmit and Receive 100 kHz to 119 kHz WPT systems
+
+    Transmit and Receive 119 kHz to 140 kHz WPT systems
+
+    4
+
+    Transmit and Receive 140 kHz to 148,5 kHz WPT systems
+
+    Transmit and Receive 148,5 kHz to 300 kHz WPT systems
+
+    Transmit and Receive 5 6 765 kHz to 6 795 kHz WPT systems
+
+    NOTE 1: The frequency ranges listed in Table 1 are also used for generic inductive short range devices, according
+
+    to ETSI EN 300 330 [1].
+
+    NOTE 2: The limits and the frequency ranges of the present document are EU wide harmonised according to
+
+    EC Decision 2013/752/EU [i.2] and CEPT/ERC/REC 70-03 [i.1].
+
+    NOTE 3: In addition, it should be noted that other frequency bands may be available in a country within the
+
+    frequency range below 30 MHz.
+
+    The present document covers the essential requirements of article 3.2 of Directive 2014/53/EU [i.3] under the
+
+    conditions identified in Annex A.
+
+    2 References
+
+    2.1 Normative references
+
+    References are specific, identified by date of publication and/or edition number or version number. Only the cited
+
+    version applies.
+
+    Referenced documents which are not found to be publicly available in the expected location might be found at
+
+    https://docbox.etsi.org/Reference/.
+
+    ETSI
+
+    8 ETSI EN 303 417 V1.1.1 (2017-09)
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    The following referenced documents are necessary for the application of the present document.
+
+    [1] ETSI EN 300 330 (V2.1.1) (02-2017): "Short Range Devices (SRD); Radio equipment in the
+
+    frequency range 9 kHz to 25 MHz and inductive loop systems in the frequency range 9 kHz to
+
+    30 MHz; Harmonised Standard covering the essential requirements of article 3.2 of Directive
+
+    2014/53/EU".
+
+    2.2 Informative references
+
+    References are either specific (identified by date of publication and/or edition number or version number) or
+
+    non-specific. For specific references, only the cited version applies. For non-specific references, the latest version of the
+
+    referenced document (including any amendments) applies.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    The following referenced documents are not necessary for the application of the present document but they assist the
+
+    user with regard to a particular subject area.
+
+    [i.1] CEPT/ERC/REC 70-03: "Relating to the use of Short Range Devices (SRD)".
+
+    [i.2] EC Decision 2013/752/EU: "Commission implementing Decision of 11 December 2013 amending
+
+    Decision 2006/771/EC on harmonisation of the radio spectrum for use by short-range devices and
+
+    repealing Decision 2005/928/EC".
+
+    [i.3] Directive 2014/53/EU of the European Parliament and of the Council of 16 April 2014 on the
+
+    harmonisation of the laws of the Member States relating to the making available on the market of
+
+    radio equipment and repealing Directive 1999/5/EC. Text with EEA relevance.
+
+    [i.4] ETSI TR 103 409: "System Reference document (SRdoc); Wireless Power Transmission (WPT)
+
+    systems for Electric Vehicles (EV) operating in the frequency band 79 - 90 kHz".
+
+    [i.5] Void.
+
+    [i.6] Commission Implementing Decision C(2015) 5376 final of 4.8.2015 on a standardisation request
+
+    to the European Committee for Electrotechnical Standardisation and to the European
+
+    Telecommunications Standards Institute as regards radio equipment in support of Directive
+
+    2014/53/EU of the European Parliament and of the Council.
+
+    [i.7] Void.
+
+    [i.8] Void.
+
+    [i.9] Void.
+
+    [i.10] CISPR document CIS/B/678/CD: "Amendment 2 Fragment 1 to CISPR 11 Ed. 6: Industrial,
+
+    scientific and medical equipment - Radio-frequency disturbance characteristics - Limits and
+
+    methods of measurement - Requirements for air-gap wireless power transfer (WPT)".
+
+    [i.11] Void.
+
+    [i.12] IEC 61980-1:2015: "Electric vehicle wireless power transfer (WPT) systems - Part 1: General
+
+    requirements".
+
+    ETSI
+
+    9 ETSI EN 303 417 V1.1.1 (2017-09)
+
+    3 Definitions, symbols and abbreviations
+
+    3.1 Definitions
+
+    For the purposes of the present document, the terms and definitions given in ETSI EN 300 330 [1] and the following
+
+    apply:
+
+    99% OBW function: measurement function of a spectrum analyser
+
+    alignment: process or mechanical implementation of finding the relative position of base station and mobile device
+
+    which allows a safe and efficient power transmission
+
+    NOTE: This alignment leads to the mechanical arrangement in which the WPT system is designed to operate.
+
+    base station: term used for the stationary part of the Wireless Power Transmission (WPT) system, a combination of a
+
+    coil, communication device and/or connection to an energy supply
+
+    NOTE: Other expressions: charger, charging pad or primary coil.
+
+    co-location: WPT systems are designed to work within an alignment
+
+    NOTE: All operation modes require such a close proximity between the parts of the WPT system compared to the
+
+    wave-length that all the parts of the WPT system can be seen as co-located.
+
+    Electric Vehicle (EV): vehicle using one or more electric motors for propulsion
+
+    mobile device: term used for the mobile part of the Wireless Power Transmission (WPT) system, comprising the
+
+    combination of a coil, communication device and/or energy storage in one housing
+
+    Occupied Bandwidth (OBW): width of a frequency band such that, below the lower and above the upper frequency
+
+    limits, the mean powers emitted are each equal to 0,5 % of the total mean power of a given emission
+
+    NOTE: See Figure 1.
+
+    Figure 1: Occupied bandwidth (OBW)
+
+    power transmission via radio frequency '
+- id: art-3
+  title: 'Annex C (informative):'
+  text: 'Annex C (informative):
+
+    Bibliography
+
+    • ETSI EG 203 367: "Guide to the application of harmonised standards covering articles 3.1b and 3.2 of the
+
+    Directive 2014/53/EU (RED) to multi-radio and combined radio and non-radio equipment".
+
+    • CENELEC EN 55011: "Industrial, scientific and medical equipment - Radio-frequency disturbance
+
+    characteristics - Limits and methods of measurement".
+
+    • ETSI EN 301 489-1: "ElectroMagnetic Compatibility (EMC) standard for radio equipment and services;
+
+    Part 1: Common technical requirements; Harmonised Standard covering the essential requirements of'
+- id: art-4
+  title: article 3.1(b) of Directive 2014/53/EU and the essential requirements of article 6 of Directive 2014/30/EU".
+  text: 'article 3.1(b) of Directive 2014/53/EU and the essential requirements of article 6 of Directive 2014/30/EU".
+
+    • ETSI EN 301 489-3: "ElectroMagnetic Compatibility (EMC) standard for radio equipment and services;
+
+    Part 3: Specific conditions for Short-Range Devices (SRD) operating on frequencies between 9 kHz and
+
+    246 GHz; Harmonised Standard covering the essential requirements of article 3.1(b) of Directive
+
+    2014/53/EU".
+
+    • Question ITU-R 210-3/1 and WRC 19 Agenda Item 9.1, Issue 9.1.6.
+
+    NOTE: Available at http://www.itu.int/pub/R-QUE-SG01.210.
+
+    ETSI
+
+    34 ETSI EN 303 417 V1.1.1 (2017-09)
+
+    History
+
+    Document history
+
+    V1.1.0 December 2016 EN Approval Procedure AP 20170315: 2016-12-15 to 2017-03-15
+
+    V1.1.1 June 2017 Vote V 20170812: 2017-06-13 to 2017-08-14
+
+    V1.1.1 September 2017 Publication
+
+    ETSI'
 doc_files:
 - global/raw/ETSI_EN_303417_v01.01.01_60.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_303417_v01.01.01_60.pdf (pdf, 74859 chars)，生成 4 条共 25366 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_303417_v01.01.01_60.pdf (pdf, 74859 chars)，生成 4 条共 25366 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_303417_v01.01.01_60.pdf (pdf, 74859 chars)，生成 4 条共 25366 字符；解析文本未人工复核，引用以官方原件为准。'

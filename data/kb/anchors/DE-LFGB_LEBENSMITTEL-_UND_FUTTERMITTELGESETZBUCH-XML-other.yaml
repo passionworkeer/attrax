@@ -1,0 +1,26 @@
+id: KB-other-DE-DE-LFGB_LEBENSMITTEL-_UND_FUTTERMITTELGESETZBUCH-XML
+regulation_id: DE-LFGB_LEBENSMITTEL-_UND_FUTTERMITTELGESETZBUCH-XML
+doc_name: DE LFGB Lebensmittel- und Futtermittelgesetzbuch [xml]
+official_citation: DE LFGB Lebensmittel- und Futtermittelgesetzbuch [xml]
+short_name: DE LFGB Lebensmittel- und Futtermittelgesetzbuch [xml]
+source: category
+primary_source: other
+domain: other
+applies_if:
+  category:
+  - other
+  features_any: []
+  markets:
+  - DE
+key_articles: []
+key_points:
+- DE LFGB Lebensmittel- und Futtermittelgesetzbuch [xml]：其他品类领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://www.gesetze-im-internet.de/lfgb/xml.zip
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

@@ -9,11 +9,295 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: Hệ thống văn bản
+  text: "Hệ thống văn bản\nEnglish\n中文\nTrang chủ\nChính phủ\nCông dân\nDoanh nghiệp\nKiều bào\nBáo điện tử chính phủ\nVăn phòng chính phủ\nNước CHXHCN\nViệt Nam\nGiới thiệu\nChính phủ\nThư điện tử\n công\
+    \ vụ Chính phủ\nHà Nội\n26° - 27°\nLai Châu\n21° - 22°\nĐiện Biên\n24° - 25°\nSơn La\n21° - 22°\nPhú Thọ\n25° - 26°\nLào Cai\n25° - 26°\nTuyên Quang\n24° - 25°\nThái Nguyên\n23° - 24°\nCao Bằng\n24°\
+    \ - 25°\nLạng Sơn\n23° - 24°\nQuảng Ninh\n25° - 26°\nBắc Ninh\n26° - 27°\nTp Hải Phòng\n25° - 26°\nHà Nội\n26° - 27°\nHưng Yên\n26° - 27°\nNinh Bình\n26° - 27°\nThanh Hóa\n26° - 27°\nNghệ An\n26° -\
+    \ 27°\nHà Tĩnh\n26° - 27°\nQuảng Trị\n26° - 27°\nTp Huế\n26° - 27°\nTp Đà Nẵng\n27° - 28°\nQuảng Ngãi\n26° - 27°\nGia Lai\n26° - 27°\nĐắk Lắk\n26° - 27°\nKhánh Hòa\n27° - 28°\nLâm Đồng\n26° - 27°\n\
+    Đồng Nai\n24° - 25°\nTây Ninh\n24° - 25°\nTp Hồ Chí Minh\n24° - 25°\nĐồng Tháp\n26° - 27°\nVĩnh Long\n27° - 28°\nAn Giang\n27° - 28°\nTp Cần Thơ\n27° - 28°\nCà Mau\n27° - 28°\n                     \
+    \   Thủ tướng Phạm Minh Chính dự Hội nghị Cấp cao Đặc biệt ASEAN-Hoa Kỳ, thăm và làm việc tại Hoa Kỳ, Liên Hợp Quốc\n                        SEA Games 31 - Việt Nam 2022\n                        Phục\
+    \ hồi và phát triển kinh tế: Những việc cần làm ngay\n                        Giải ngân vốn đầu tư công\n                        Chuyển đổi số\n                        Thích ứng an toàn, linh hoạt,\
+    \ kiểm soát hiệu quả dịch COVID-19\nTrang chủ\nTÌM KIẾM VĂN BẢN\nLĩnh vực:\n-- Tất cả các lĩnh vực --\nAn ninh trật tự\nBáo chí\nBáo chí, CNTT, điện tử\nBáo chí, Viễn thông\nBáo chí, Xuất bản, Bưu chính,\
+    \ Viễn thông, CNTT, điện tử\nBáo chí, Xuất bản, Bưu chính, Viễn thông, CNTT, điện tử, Lĩnh vực khác\nBưu chính\nBưu chính, Viễn thông\nBưu chính, Viễn thông, CNTT, điện tử\nChính sách\nChính sách xã\
+    \ hội\nChứng khoán\nChuyển đổi số\nCNTT, điện tử\nCNTT, điện tử, Lĩnh vực khác\nCơ cấu tổ chức\nCơ cấu tổ chức, Lĩnh vực khác\nCông an nhân dân\nCông nghệ thông tin\nCông nghiệp\nĐất đai - Nhà ở\nĐầu\
+    \ tư\nĐịa giới hành chính\nDoanh nghiệp\nĐối ngoại\nDu lịch\nĐường sắt \nGiáo dục - Đào tạo\nGiao thông\nHải quan\nHàng hải\nhàng không\nHành chính\nKhiếu nại tố cáo\nKhoa học - Công nghệ\nKinh tế xã\
+    \ hội\nLâm nghiệp\nLao động - Tiền lương\nLập pháp \nLĩnh vực khác\nLuật\nMôi trường\nNăng lượng\nNgân sách Nhà nước\nNgoại giao\nNội chính\nNông nghiệp\nQuản trị - Tài vụ\nQuốc phòng\nQuy hoạch\nSở\
+    \ hữu công nghiệp\nTài chính\nTài chính - Ngân hàng\nThể dục thể thao\nThi đua Khen thưởng\nThủ tục hành chính\nThuế - Lệ phí\nThương mại\nThủy sản\nTổ chức - Hành chính\nTòa án\nTổng hợp\nTư pháp\n\
+    Văn hóa - Thông tin\nVăn xã\nVi phạm hành chính\nViễn thông\nViễn thông, CNTT, điện tử\nViễn thông, CNTT, điện tử, Lĩnh vực khác\nViễn thông, Lĩnh vực khác\nXã hội\nXây dựng\nXuất - Nhập khẩu\nXuất\
+    \ bản\nXuất nhập cảnh\nY tế - Sức khỏe\nKhen thưởng - Kỷ luật\nThi đua khen thưởng\nCơ quan ban hành:\n-- Tất cả --\nBan Cải tạo công thương nghiệp tư doanh\nBan cán sự Đảng Chính phủ\nBan CĐĐMPTKTTTHTX\n\
+    BAN CĐTKCLQG PCTN\nBAN CĐTKTHLĐĐVXDDALĐĐSĐ\nBan Chấp hành Trung ương\nBan Chấp hành Trung ương Đảng Lao động Việt Nam\nBan chỉ  về đầu tư theo hình thức đối tác công tư (PPP)\nBan Chỉ đạo \"Quỹ vì biển\
+    \ đảo Việt Nam\"\nBan chỉ đạo 896\nBan Chỉ đạo an toàn giao thông Trung ương\nBan Chỉ đạo biên soạn và xuất bản Lịch sử Chính phủ Việt Nam\nBan Chỉ đạo biên soạn và xuất bản Lịch sử Chính phủ Việt Nam\
+    \ 1945 - 2015\nBan Chỉ đạo cải cách hành chính của Chính phủ\nBan Chỉ đạo cải cách hành chính của Chính phủ\nBan Chỉ đạo Cải cách HC của CP\nBan chỉ đạo cấp nhà nước về xác định hài cốt liệt sĩ còn\
+    \ thiếu thông tin\nBan Chỉ đạo Chiến lược công nghiệp hóa của Việt Nam trong khuôn khổ hợp tác Việt Nam - Nhật Bản hướng đến năm 2020, tầm nhìn 2030\nBan Chỉ đạo Chương trình quốc gia về sử dụng năng\
+    \ lượng tiết kiệm và hiệu quả\nBan Chỉ đạo của Chính phủ về phát triển khoa học, công nghệ, đổi mới sáng tạo, chuyển đổi số và Đề án 06\nBan Chỉ đạo của Chính phủ về RS và tổ chức thực hiện việc xử\
+    \ lý vướng mắc trong hệ thống pháp luật\nBan Chỉ đạo Đại hội đại biểu toàn quốc các dân tộc thiểu số Việt Nam lần thứ II năm 2020\nBan Chỉ đạo Đề án \"Phát triển Hệ tri thức việt số hóa\"\nBan Chỉ đạo\
+    \ điều hành giá\nBan Chỉ đạo điều hành giá"
+- id: art-2
+  title: Ban Chỉ đạo điều hành giá
+  text: 'Ban Chỉ đạo điều hành giá
+
+    Ban Chỉ đạo đổi mới và phát triển doanh nghiệp
+
+    Ban Chỉ đạo đổi mới và phát triển doanh nghiệp
+
+    Ban Chỉ đạo đổi mới, phát triển kinh tế tập thể, hợp tác xã
+
+    Ban Chỉ đạo KTTT
+
+    Ban Chỉ đạo liên ngành hội nhập quốc tế về kinh tế
+
+    Ban Chỉ đạo liên ngành hội nhập quốc tế về văn hóa, xã hội, khoa học, công nghệ và giáo dục, đào tạo
+
+    Ban chỉ đạo liên ngành triển khai đề án "Cơ cấu lại hệ thống các tổ chức tín dụng giai đoạn 2011 - 2015"
+
+    Ban Chỉ đạo liên ngành về tái cơ cấu ngành nông nghiệp
+
+    Ban Chỉ đạo Nhà nước các chương trình, công trình, dự án quan trọng quốc gia, trọng điểm ngành năng lượng
+
+    Ban Chỉ đạo Nhà nước các Công trình, dự án quan trọng Quốc gia, trọng điểm ngành GTVT
+
+    Ban Chỉ đạo Nhà nước các công trình, dự án trọng điểm ngành Giao thông vận tải
+
+    Ban chỉ đạo nhà nước các công trình, dự án trọng điểm ngành giao thông vận tải
+
+    Ban Chỉ đạo Nhà nước các dự án trọng điểm về dầu khí
+
+    Ban Chỉ đạo Nhà nước về đổi mới cơ chế hoạt động của các đơn vị sự nghiệp công lập
+
+    Ban Chỉ đạo phòng chống lụt, bão Trung ương
+
+    Ban Chỉ đạo phòng không nhân dân Trung ương
+
+    Ban Chỉ đạo phòng thủ Dân sự Quốc gia
+
+    Ban Chỉ đạo phòng, chống tội phạm của Chính phủ
+
+    Ban chỉ đạo PPP
+
+    Ban Chỉ đạo PPP
+
+    Ban Chỉ đạo quản lý thị trường Trung ương
+
+    Ban Chỉ đạo quốc  gia về cơ cấu lại nền kinh tế, đổi mới mô hình tăng trưởng
+
+    Ban Chỉ đạo quốc gia chống buôn lậu, gian lận thương mại và hàng giả
+
+    Ban Chỉ đạo quốc gia chống buôn lậu, gian lận thương mại và hàng giả
+
+    Ban Chỉ đạo Quốc gia Chương trình hành động "Không còn nạn đói" ở Việt Nam đến năm 2025
+
+    Ban chỉ đạo quốc gia hội nhập quốc tế về giáo dục và khoa học, công nghệ
+
+    Ban Chỉ đạo Quốc gia khắc phục hậu quả bom mìn và chất độc hóa học sau chiến tranh ở Việt Nam
+
+    Ban Chỉ đạo quốc gia phòng, chống dịch bệnh viêm đường hô hấp cấp do chủng mới của vi rút Corona gây ra
+
+    Ban chỉ đạo Quốc gia phòng, chống dịch COVID-19
+
+    Ban chỉ đạo quốc gia thực hiện quy hoạch phát triển nhân lực và đào tạo theo nhu cầu xã hội
+
+    Ban Chỉ đạo quốc gia triển khai Nghị quyết số 68-NQ/TW
+
+    Ban Chỉ dạo quốc gia về chống khai thác hải sản bất hợp pháp, không báo cáo và không theo quy định
+
+    Ban Chỉ đạo quốc gia về chống khai thác hải sản bất hợp pháp, không báo cáo và không theo quy định và phát triển bền vững ngành thủy sản
+
+    Ban chỉ đạo quốc gia về chương trình FSAB
+
+    Ban Chỉ đạo quốc gia về cơ cấu lại nền kinh tế, đổi mới mô hình tăng trưởng
+
+    Ban Chỉ đạo quốc gia về cơ chế một cửa ASEAN và cơ chế Hải quan một cửa quốc gia
+
+    Ban chỉ đạo quốc gia về đào tạo nguồn nhân lực trong lĩnh vực năng lượng nguyên tử
+
+    Ban Chỉ đạo quốc gia về kinh tế tập thể
+
+    Ban chỉ đạo quốc gia về ODA và vốn vay ưu đãi
+
+    Ban Chỉ đạo quốc gia về ODA và vốn vay ưu đãi
+
+    Ban Chỉ đạo quốc gia về phát triển điện lực
+
+    Ban Chỉ đạo Quốc gia về phát triển ngành công nghiệp bán dẫn
+
+    Ban Chỉ đạo Quốc gia về tài chính toàn diện
+
+    Ban chỉ đạo quốc gia về tìm kiếm, quy tập hài cốt liệt sĩ
+
+    Ban Chỉ đạo quốc gia về tìm kiếm, quy tập và xác định danh tính hài cốt liệt sĩ
+
+    BAN CHỈ ĐẠO RÀ SOÁT VÀ TỔ CHỨC THỰC HIỆN VIỆC XỬ LÝ VƯỚNG MẮC TRONG HỆ THỐNG PHÁP LUẬT
+
+    Ban Chỉ đạo rà soát, xử lý vướng mắc trong hệ thống VBQPPL
+
+    Ban Chỉ đạo thực hiện các Nghị quyết của QH về thí điểm một số cơ chế, chính sách đặc thù phát triển TPHCM
+
+    Ban Chỉ đạo thực hiện Đề án tiếp tục đổi mới và nâng cao hiệu quả hoạt động giám định tư pháp ở cấp Trung ương
+
+    Ban Chỉ đạo thực hiện Nghị quyết số 136/2024/QH15 của Quốc hội
+
+    Ban Chỉ đạo thực hiện sắp xếp đơn vị hành chính cấp huyện, cấp xã giai đoạn 2023-2030
+
+    Ban Chỉ đạo thực hiện thỏa thuận
+
+    Ban Chỉ đạo tổng kết 10 năm thực hiện luật PCTN
+
+    Ban Chỉ đạo Tổng kết 20 năm thực hiện mô hình tổ chức bộ máy của Chính phủ
+
+    Ban chỉ đạo tổng kết nghị quyết số 28-NQ/TW của Bộ Chính trị
+
+    Ban Chỉ đạo triển khai Nghị quyết số 98/2023/QH15 của Quốc hội
+
+    Ban Chỉ đạo triển khai thực hiện đề án cải cách chính sách tiền lương Nhà nước
+
+    Ban Chỉ đạo triển lãm thành tựu KTXH nhân dịp kỷ niệm 80 năm ngày Quốc khánh
+
+    Ban Chỉ đạo Trung tâm tài chính khu vực và quốc tế tại Việt Nam'
+- id: art-3
+  title: 'Ban Chỉ đạo Trung tâm tài chính quốc tế tại Việt Nam '
+  text: "Ban Chỉ đạo Trung tâm tài chính quốc tế tại Việt Nam \nBan Chỉ đạo Trung ương các chương trình mục tiêu quốc gia\nBan Chỉ đạo Trung ương các chương trình mục tiêu quốc gia giai đoạn 2016 - 2020\n\
+    Ban Chỉ đạo Trung ương các chương trình mực tiêu quốc gia giai đoạn 2016 - 2020\nBan Chỉ đạo Trung ương các chương trình mục tiêu quốc gia giai đoạn 2021 - 2025\nBan chỉ đạo trung ương chương trình\
+    \ MTQG xây dựng nông thôn mới\nBan Chỉ đạo Trung ương Chương trình mục tiêu quốc gia phát triển kinh tế - xã hội vùng đồng bào dân tộc thiểu số và miền núi giai đoạn 2021 - 2030\nBan Chỉ đạo Trung ương\
+    \ cổ phần hóa\nBan Chỉ đạo Trung ương CT MTQG xây dựng nông thôn mới, giảm nghèo bền vững và phát triển KTXH vùng đồng bào DTTS và miền núi giai đoạn 2026-2030\nBan chỉ đạo trung ương thực hiện nghị\
+    \ quyết số 70/NQ-CP của Chính phủ về chính sách xã hội\nBan Chỉ đạo Trung ương triển khai xóa nhà tạm, nhà dột nát trên phạm vi cả nước\nBan Chỉ đạo Trung ương về cải cách chính sách tiền lương, bảo\
+    \ hiểm xã hội và ưu đãi người có công\nBan chỉ đạo trung ương về cải cách chính sách tiền lương, bảo hiểm xã hội và ưu đãi người có công\nBan Chỉ đạo Trung ương về cải cách chính sách tiền lương, bảo\
+    \ hiểm xã hội và ưu đãi người có công\nBan Chỉ đạo Trung ương về chính sách nhà ở và thị trường bất động sản\nBan Chỉ đạo Trung ương về giảm nghèo bền vững\nBan chỉ đạo trung ương xây dựng đề án thí\
+    \ điểm mô hình tổ chức chính quyền đô thị\nBan Chỉ đạo về giải quyết các vấn đề khó khăn, vướng mắc các dự án tồn đọng\nBan chỉ đạo về rà soát, tháo gỡ khó khăn, vướng mắc liên quan đến các dự án\n\
+    Ban Chỉ đạo về triển khai Chương trình phục hồi và PT KT-XH\nBan chỉ đạo xây dựng các trường đại học xuất sắc\nBan Chỉ đạo xây dựng Dự án Luật Khoa học và Công nghệ (sửa đổi)\nBan Chỉ đạo xây dựng nhà\
+    \ máy điện hạt nhân\nBan Chỉ đạo xử lý các tồn tại, yếu kém của một số dự án và Doanh nghiệp chậm tiến độ, kém hiệu quả thuộc ngành Công thương\nBan Chỉ đạo xử lý các tồn tại, yếu kém của một số dự\
+    \ án, doanh nghiệp chậm tiến độ, kém hiệu quả thuộc ngành công thương\nBan Cơ yếu Chính phủ\nBan Thi đua Trung ương\nBan Tổ chức - Cán bộ Chính phủ\nBan Tôn giáo Chính phủ\nBan Vật giá Chính phủ\nBan\
+    \ Việt kiều Trung ương\nBCĐ  triển khai thực hiện DA XDCT đường bộ cao tốc Bắc - Nam phía Đông và DA CHKQT Long Thành\nBCĐ ĐỔI MỚI, PTKT TẬP THỂ, HTX\nBCĐ NN các chương trình, công trình, dự án quan\
+    \ trọng quốc gia, trọng điểm ngành năng lượng\nBCĐ Quốc gia Dân số và Phát triển\nBCĐ Tổng kết NQ 22-NQ/TW của Bộ Chính trị về Hội nhập quốc tế\nBCĐ XÂY DỰNG ĐỀ ÁN TRUNG TÂM TÀI CHÍNH KHU VỰC VÀ QUỐC\
+    \ TẾ\nBCĐ xây dựng, thực hiện Đề án chủ trương đầu tư đường sắt tốc độ cao trên trục Bắc - Nam và các dự án đường sắt quan trọng quốc gia\nBCĐQG chống buôn lậu, GL và TMHG\nBCĐTW THCT PHÁT TRIỂN LÂM\
+    \ NGHIỆP BỀN VỮNG GĐ NĂM 2021 - 2025\nBộ Bưu chính, Viễn thông\nBộ Chính tri\nBộ Chính trị\nBộ Công an\nBộ Công nghiệp\nBộ Công thương\nBộ Dân tộc và Tôn giáo\nBộ Giáo dục\nBộ Giáo dục và Đào tạo\n\
+    Bộ Giao thông vận tải\nBộ Kế hoạch và Đầu tư\nBộ Khoa học - Công nghệ\nBộ Khoa học và Công nghệ\nBộ Khoa học, Công nghệ và Môi trường\nBộ Kinh tế đối ngoại\nBộ Lâm nghiệp\nBộ Lao động\nBộ Lao động -\
+    \ Thương binh và Xã hội\nBộ Lao động, Thương binh và Xã hội\nBộ Mỏ và Than\nBộ Năng lượng\nBộ Ngoại giao\nBộ Ngoại thương\nBộ Nội vụ\nBộ Nông nghiệp & Phát triển nông thôn\nBộ Nông nghiệp và Công nghiệp\
+    \ thực phẩm\nBộ Nông nghiệp và Môi trường\nBộ Nông nghiệp và Phát triển nông thôn\nBộ Quốc phòng\nBộ Tài chính\nBộ Tài nguyên và Môi trường\nBộ Thông tin Truyền thông\nBộ Thông tin và Truyền thông\n\
+    Bộ Thương binh và Xã hội\nBộ Thương mại\nBộ Thương mại và Du lịch\nBộ Thương nghiệp\nBộ Thủy lợi\nBộ Thủy sản\nBộ trưởng Tổng thư ký\nBộ Tư pháp\nBộ Văn hóa - Thông tin\nBộ Văn hóa, Thể thao và Du lịch\n\
+    Bộ Văn hóa, Thông tin và Thể thao\nBộ Văn hóa, Thông tin, Thể thao và Du lịch\nBộ Vật tư\nBộ Xây dựng\nBộ Y tế\nChánh án, tòa án nhân dân tối cao\nChính phủ\nChính phủ - BCH Trung ương đoàn thanh niên\
+    \ cộng sản Hồ CHí Minh\nChính phủ - Đoàn Chỉ tịch Ủy ban Trung ương mặt trận Tổ quốc Việt Nam"
+- id: art-4
+  title: Chính phủ - Đoàn Chủ tịch Ủy ban Trung ương Mặt trận Tổ quốc
+  text: "Chính phủ - Đoàn Chủ tịch Ủy ban Trung ương Mặt trận Tổ quốc Việt Nam\nChính phủ - Đoàn CTUBTWMTTQVN\nChính phủ - Tòa án nhân dân tối cao - Viện kiểm sát nhân dân tối cao\nChính phủ -Ban chấp hành\
+    \ Trung ương Đoàn Thanh niên Cộng sản Hồ Chí Minh\nChủ tịch nước\nChủ tịch UBND tỉnh Phú Thọ\nCục Đo đạc và Bản đồ Nhà nước\nCục Dự trữ Quốc gia\nCục Hàng không dân dụng Việt Nam\nĐài Tiếng nói Việt\
+    \ Nam\nĐài Truyền hình Việt Nam\nĐoàn Chủ tịch Ủy ban Trung ương Mặt trận Tổ quốc Việt Nam\nĐoàn Kiểm tra Ban Chỉ đạo cải cách hành chính của Chính phủ\nHĐĐP vùng Trung Du và Miền núi Phía Bắc\nHĐND\
+    \  tỉnh Hà Nam\nHĐND Kiên Giang\nHĐND Nam Định\nHĐND tỉnh Bình Thuận\nHĐND tỉnh Đồng Nai\nHĐND tỉnh Hà Tĩnh\nHĐND Tỉnh Kon Tum\nHĐND tỉnh Lâm Đồng\nHĐND Tỉnh Lạng Sơn\nHĐND Tỉnh Nghệ An\nHĐND tỉnh Ninh\
+    \ Bình\nHĐND TỈNH PHÚ THỌ\nHĐND TP Hồ Chí Minh\nHĐND Trà Vinh\nHĐPHPB,GDPLTW\nHĐTĐ QH MẠNG LƯỚI CS Y TẾ\nHọc viện Chính trị Quốc gia Hồ Chí Minh\nHội đồng Chỉ đạo biên soạn Bách khoa toàn thư Việt Nam\n\
+    Hội đồng Chính phủ\nHội đồng điều hành Trung tâm Tài chính Quốc tế tại Việt Nam\nHội đồng điều phối vùng Bắc Trung Bộ và duyên hải Trung Bộ\nHội đồng điều phối vùng ĐBSCL\nHội đồng điều phối vùng đồng\
+    \ bằng sông Hồng\nHội đồng điều phối vùng Đông Nam Bộ\nHội đồng điều phối vùng Tây Nguyên\nHội đồng điều phối vùng trung du và miền núi phía bắc\nHội đồng Giáo dục quốc phòng và an ninh Trung ương\n\
+    Hội đồng Giáo dục quốc phòng và an ninh TW\nHội đồng Nhà nước\nHội đồng nhân dân thành phố Phan Rang - Tháp chàm\nHội đồng nhân dân tỉnh An Giang\nHội đồng nhân dân tỉnh Bình Định\nHội đồng nhân dân\
+    \ tỉnh Cà Mau\nHỘI ĐỒNG NHÂN DÂN TỈNH NINH THUẬN\nHội đồng Phát triển bền vững quốc gia\nHội đồng phối hợp phổ biến, giáo dục pháp luật Trung ương\nHội đồng quốc gia về phát triển bền vững\nHội đồng\
+    \ quốc gia về phát triển bền vững và nâng cao năng lực cạnh tranh\nHội đồng quốc gia về phát triển bền vững và nâng cao năng lực cạnh tranh\nHội đồng quốc gia về tài nguyên nước\nHội đồng Quốc gia về\
+    \ tài nguyên nước\nHội đồng quy hoạch quốc gia\nHội đồng thẩm định điều chỉnh Quy hoạch vùng thời kỳ 2021 - 2030,  tầm nhìn đến năm 2050\nHội đồng thẩm định Quy hoạch bảo tồn đa dạng sinh học quốc gia\n\
+    Hội đồng thẩm định Quy hoạch bảo vệ môi trường quốc gia\nHội đồng thẩm định Quy hoạch tổng thể khai thác, sử dụng bền vững tài nguyên vùng bờ\nHội đồng thẩm định quy hoạch vùng\nHội đồng Thẩm phán Tòa\
+    \ án nhân dân tối cao\nHội đồng Thẩm phán Tòa án nhân dân tối cao\nHội đồng thi đua khen thưởng Trung ương \nHội đồng trọng tài Kinh tế Nhà nước\nHội đồng Tư vấn Cải cách thủ tục hành chính\nHội đồng\
+    \ tư vấn đặc xá\nHội đồng Tư vấn đặc xá Trung ương\nHội Làm vườn Việt Nam\nKiểm toán Nhà nước\nNgân hàng Nhà nước\nNgân hàng Nhà nước Việt Nam\nPhân ban Việt Nam trong Ủy ban liên Chính phủ Việt Nam\
+    \ - Hà Lan về thích ứng với biến đổi khí hậu và quản lý nước\nPhủ Thủ tướng\nQuốc hội\nTCT CỦA TTCP VỀ KT, RS, GQ, TGKK, VMLQ ĐẾN CÁC DỰ ÁN, ĐẤT ĐAI TRONG CÁC KL TT, KT, BẢN ÁN TẠI MỘT SỐ TỈNH, TP\n\
+    TCT đường sắt đô thị TPHN và TPHCM\nThanh tra Chính phủ\nThanh tra Nhà nước\nThủ tướng Chính phủ\nTiểu ban Soạn thảo sửa đổi, bổ sung Luật đất đai của Chính phủ\nTổ công tác 1121\nTỔ CÔNG TÁC CẢI CÁCH\
+    \ TTHC\nTỔ CÔNG TÁC CỦA  THỦ TƯỚNG CHÍNH PHỦ VỀ RSHT VBQPPL\nTổ công tác của Thủ tướng Chính phủ theo Quyết định số 963/QĐ-TTg ngày 12 tháng 9 năm 2024\nTổ công tác của Thủ tướng Chính phủ về bảo đảm\
+    \ an ninh năng lượng \nTổ công tác của TTCP về KT, , RS, GQ, tháo gỡ khó khăn, vướng mắc liên quan đến các DA, ĐĐ trong các KL TT, KT, bản án tại một số Tỉnh, TP\nTổ công tác của TTgCP về triển khai\
+    \ đầu tư đường kết nối sân bay Gia Bình với thủ đô HN và xây dựng TT logistics tại khu vực SB Gia Bình\nTổ công tác đặc biệt của Thủ tướng Chính phủ về nghiên cứu và đề xuát các giải pháp liên quan\
+    \ đến thuế suất tối thiểu toàn cầu của OECD\nTổ Công tác ĐB của TTg CP về rà soát, tháo gỡ khó khăn, vướng mắc và thúc đẩy thực hiện Dự án Đầu tư\nTổ Công tác ĐB của TTg CP về tháo gỡ khó khăn cho DN\
+    \ và người dân bị ảnh hưởng bởi đại dịch COVID-19\nTỔ CÔNG TÁC LONG THÀNH"
+- id: art-5
+  title: TỔ CT CỦA TTCP VỀ KT, RS, GQ, THÁO GỠ KHÓ KHẮN, VƯỚNG MẮC LI
+  text: "TỔ CT CỦA TTCP VỀ KT, RS, GQ, THÁO GỠ KHÓ KHẮN, VƯỚNG MẮC LIÊN QUAN ĐẾN CÁ DỰ ÁN, ĐẤT ĐAI TRONG CÁC KL TT, KT, BẢN ÁN TẠI MỘT SỐ TỈNH, TP\nTòa án nhân dân tối cao\ntòa án nhân dân tối cao\nTổng\
+    \ Công đoàn Việt Nam\nTổng cục Địa chính\nTổng cục Du lịch\nTổng cục Hải quan\nTổng cục Khí tượng thủy văn\nTổng cục Quản lý ruộng đất\nTổng cục Thể dục thể thao\nTổng cục Thống kê\nTổng liên đoàn Lao\
+    \ động Việt Nam\nTrọng tài kinh tế Nhà nước\nTrung ương Đoàn Thanh niên Cộng sản HCM\nTrưởng Ban BCĐQG phòng, chống dịch COVID-19\nUBND THÀNH PHỐ  PHAN RANG - THÁP CHÀM\nUBND Tỉnh An Giang\nUBND Tỉnh\
+    \ Bà Rịa - Vũng Tàu\nUBND Tỉnh Bắc Giang\nUBND Tỉnh Bắc Kạn\nUBND Tỉnh Bạc Liêu\nUBND Tỉnh Bắc Ninh\nUBND Tỉnh Bến Tre\nUBND Tỉnh Bình Định\nUBND Tỉnh Bình Dương\nUBND Tỉnh Bình Phước\nUBND Tỉnh Bình\
+    \ Thuận\nUBND Tỉnh Cà Mau\nUBND Tỉnh Cao Bằng\nUBND Tỉnh Đăk Lăk\nUBND Tỉnh Đăk Nông\nUBND Tỉnh Điện Biên\nUBND Tỉnh Đồng Nai\nUBND Tỉnh Đồng Tháp\nUBND Tỉnh Gia Lai\nUBND Tỉnh Hà Giang\nUBND Tỉnh Hà\
+    \ Nam\nUBND Tỉnh Hà Tây\nUBND Tỉnh Hà Tĩnh\nUBND Tỉnh Hải Dương\nUBND Tỉnh Hậu Giang\nUBND Tỉnh Hòa Bình\nUBND Tỉnh Hưng Yên\nUBND Tỉnh Khánh Hòa\nUBND Tỉnh Kiên Giang\nUBND Tỉnh Kon Tum\nUBND Tỉnh\
+    \ Lai Châu\nUBND Tỉnh Lâm Đồng\nUBND Tỉnh Lạng Sơn\nUBND Tỉnh Lào Cai\nUBND Tỉnh Long An\nUBND Tỉnh Nam Định\nUBND Tỉnh Nghệ An\nUBND Tỉnh Ninh Bình\nUBND Tỉnh Ninh Thuận\nUBND Tỉnh Phú Thọ\nUBND Tỉnh\
+    \ Phú Yên\nUBND Tỉnh Quảng Bình\nUBND Tỉnh Quảng Nam\nUBND Tỉnh Quảng Ngãi\nUBND Tỉnh Quảng Ninh\nUBND Tỉnh Quảng Trị\nUBND Tỉnh Sóc Trăng\nUBND Tỉnh Sơn La\nUBND Tỉnh Tây Ninh\nUBND Tỉnh Thái Bình\n\
+    UBND Tỉnh Thái Nguyên\nUBND Tỉnh Thanh Hóa\nUBND Tỉnh Thừa Thiên - Huế\nUBND Tỉnh Tiền Giang\nUBND Tỉnh Trà Vinh\nUBND Tỉnh Tuyên Quang\nUBND Tỉnh Vĩnh Long\nUBND Tỉnh Vĩnh Phú\nUBND Tỉnh Vĩnh Phúc\n\
+    UBND Tỉnh Yên Bái\nUBND TP Cần Thơ\nUBND TP Đà Nẵng\nUBND TP Hà Nội\nUBND TP Hải Phòng\nUBND TP Hồ Chí Minh\nUBTVQH\nỦy ban An ninh hàng không dân dụng Quốc gia\nỦy ban an toàn giao thông quốc gia\n\
+    Ủy ban Bảo vệ bà mẹ trẻ em\nỦy ban Bảo vệ và Chăm sóc trẻ em Việt Nam\nỦy ban Chỉ đạo quốc gia về cơ chế một cửa ASEAN, cơ chế một cửa quốc gia và tạo thuận lợi thương mại\nỦy Ban Chứng Khoán Nhà Nước\n\
+    Ủy ban Dân tộc\nỦy ban dân tộc\nỦY BAN DÂN TỘC\nỦy ban Dân tộc và Miền núi\nỦy ban Hợp tác kinh tế văn hoá với Lào và Cam pu chia\nỦy ban Kế hoạch Nhà nước\nỦy ban Khoa học Nhà nước\nỦy ban Khoa học\
+    \ và Kỹ thuật Nhà nước\nỦy ban Nhà nước về Hợp tác và Đầu tư\nỦy ban Nông nghiệp Trung ương\nỦy ban Quốc gia APEC 2017\nỦy ban Quốc gia ASEAN 2020\nỦy ban quốc gia Đổi mới giáo dục và đào tạo\nỦy ban\
+    \ quốc gia phòng, chống AIDS và pc tệ nạn MT, MD\nỦy ban quốc gia phòng, chống AIDS và phòng, chống tệ nạn ma túy, mại dâm\nỦy ban Quốc gia phòng, chống AIDS, ma túy, mại dâm\nỦy ban Quốc gia ứng phó\
+    \ sự cố, thiên tai và tìm kiếm cứu nạn\nỦy ban quốc gia về ASEAN 2010\nỦy ban Quốc gia về biến đổi khí hậu\nỦy ban Quốc gia về chấm dứt bệnh lao\nỦy ban Quốc gia về Chính phủ điện tử\nỦy ban Quốc gia\
+    \ về Chính phủ điện tử\nỦy ban Quốc gia về Chuyển đổi số\nỦy ban quốc gia về hợp tác kinh tế quốc tế\nỦy ban Quốc gia về người cao tuổi Việt Nam\nỦy ban Quốc gia về người cao tuổi Việt Nam\nỦy ban Quốc\
+    \ gia về trẻ em \nỦy ban Quốc gia về Ứng dụng Công nghệ thông tin\nỦy ban Quốc gia về ứng dụng công nghệ thông tin\nỦy ban Quốc gia về ứng dụng Công nghệ Thông tin\nỦy ban quốc gia vì sự tiến bộ của\
+    \ phụ nữ Việt Nam\nỦy ban Thể dục Thể thao\nỦy ban Thường vụ Quốc hội\nỦY BAN THƯỜNG VỤ QUỐC HỘI\nỦy ban Trung ương Mặt trận Tổ quốc Việt Nạm\nỦy ban Vật giá Nhà nước\nVăn phòng Chính phủ\nVăn phòng\
+    \ Chính phủ\nVăn phòng Quốc hội\nVăn phòng Trung ương\nViện Kiểm sát nhân dân tối cao\nviện kiểm sát nhân dân tối cao\nViện kiểm sát nhân dân tối cao\nNăm ban hành:\n-- Tất cả --\n2026\n2025\n2024\n\
+    2023\n2022\n2021\n2020\n2019\n2018\n2017\n2016\n2015\n2014\n2013\n2012\n2011\n2010\n2009\n2008\n2007\n2006\n2005\n2004\n2003\n2002\n2001\n2000\n1999\n1998\n1997\n1996\n1995\n1994\n1993\n1992\n1991\n\
+    1990\n1989\n1988\n1987\n1986\n1985\n1984\n1983\n1982\n1981\n1980\n1979\n1978\n1977\n1976\n1975\n1974\n1972\n1971\n1970\n1969\n1968\n1967\n1966\n1965\n1964\n1963\n1962\n1961\n1960\n1959\n1958\n1957\n\
+    1956\n1955\n1954\n1953\n1952\n1951\n1950\n1949\n1948"
+- id: art-6
+  title: '1947'
+  text: "1947\n1946\n1945\nTìm kiếm:\nSố lượng kết quả:\n50\n100\n200\n500\nTẤT CẢ VĂN BẢN\n            Số ký hiệu / Ngày ban hành / Trích yếu\nSố ký hiệu\nNgày ban hành\nTrích yếu\n1805 /QĐ-TTg\n18/09/2026\n\
+    18/09/2026\nPhê duyệt sắp xếp các Học viện, trường Công an nhân dân\n18/09/2026\nTài liệu đính kèm\n1800/QĐ-TTg\n18/09/2026\n18/09/2026\nPhê chuẩn kết quả bầu chức vụ Phó Chủ tịch Ủy ban nhân dân tỉnh\
+    \ Tây Ninh nhiệm kỳ 2026 - 2031\n18/09/2026\nTài liệu đính kèm\n1799/QĐ-TTg\n18/09/2026\n18/09/2026\nPhê chuẩn kết quả bầu chức vụ Phó Chủ tịch Ủy ban nhân dân tỉnh Tây Ninh nhiệm kỳ 2026 - 2031\n18/09/2026\n\
+    Tài liệu đính kèm\n1798/QĐ-TTg\n18/09/2026\n18/09/2026\nPhê chuẩn kết quả miễn nhiệm chức vụ Phó Chủ tịch Ủy ban nhân dân tỉnh Tây Ninh nhiệm kỳ 2026 - 2031\n18/09/2026\nTài liệu đính kèm\n1796/QĐ-TTg\n\
+    17/09/2026\n17/09/2026\nBan hành Kế hoạch triển khai thi hành Luật Phát triển đô thị\n17/09/2026\nTài liệu đính kèm\n359/2026/NĐ-CP\n17/09/2026\n17/09/2026\nVề thành lập, tổ chức, hoạt động và cơ chế\
+    \ tài chính của Công ty Quản lý tài sản của các tổ chức tín dụng Việt Nam\n17/09/2026\nTài liệu đính kèm\n275/NQ-CP\n17/09/2026\n17/09/2026\nVề dự án Luật sửa đổi, bổ sung một số điều của Luật An toàn,\
+    \ vệ sinh lao động\n17/09/2026\nTài liệu đính kèm\n71/2026/TT-BXD\n17/09/2026\n17/09/2026\nQuy định thi, cấp, chuyển đổi giấy chứng nhận khả năng chuyên môn, chứng chỉ chuyên môn thuyền viên, người\
+    \ lái phương tiện thủy nội địa\n17/09/2026\nTài liệu đính kèm\nTài liệu đính kèm\n1792/QĐ-TTg\n16/09/2026\n16/09/2026\nBan hành Chương trình thúc đẩy quyền tham gia của trẻ em giai đoạn 2026 - 2030\n\
+    16/09/2026\nTài liệu đính kèm\n1790/QĐ-TTg\n16/09/2026\n16/09/2026\nBan hành Kế hoạch triển khai thi hành Luật Phổ biến, giáo dục pháp luật\n16/09/2026\nTài liệu đính kèm\n1129/TTg-KGVX\n16/09/2026\n\
+    16/09/2026\nV/v triển khai Chỉ thị số 17/CT-TTg của Thủ tướng Chính phủ về khám sức khỏe cho người dân\n16/09/2026\nTài liệu đính kèm\n87/2026/VBHN-TT-BNNMT\n16/09/2026\n16/09/2026\nQuy định trình tự,\
+    \ thủ tục cấp và thu hồi Giấy xác nhận thực vật biến đổi gen đủ điều kiện sử dụng làm thực phẩm, thức ăn chăn nuôi \n16/09/2026\nTài liệu đính kèm\n86/2026/VBHN-TT-BNNMT\n16/09/2026\n16/09/2026\nQuy\
+    \ định về Định mức kinh tế - kỹ thuật điều tra, đánh giá hiện trạng xả nước thải và khả năng tiếp nhận nước thải của nguồn nước\n16/09/2026\nTài liệu đính kèm\n85/2026/VBHN-TT-BNNMT\n16/09/2026\n16/09/2026\n\
+    Quy định kỹ thuật quy hoạch tổng hợp lưu vực sông liên tỉnh, nguồn nước liên tỉnh\n16/09/2026\nTài liệu đính kèm\n84/2026/VBHN-NĐ-BNNMT\n16/09/2026\n16/09/2026\nQuy định về xử phạt vi phạm hành chính\
+    \ trong lĩnh vực khoáng sản\n16/09/2026\nTài liệu đính kèm\n83/2026/VBHN-TT-BNNMT\n16/09/2026\n16/09/2026\nBan hành quy định kỹ thuật và định mức kinh tế - kỹ thuật khảo sát, đo đạc tài nguyên nước\
+    \ và đánh giá, dự báo tài nguyên nước bằng mô hình dòng chảy \n16/09/2026\nTài liệu đính kèm\n82/2026/VBHN-TT-BXD\n16/09/2026\n16/09/2026\nHướng dẫn quản lý cây xanh đô thị\n16/09/2026\nTài liệu đính\
+    \ kèm\n81/2026/VBHN-TT-BXD\n16/09/2026\n16/09/2026\nBan hành QCVN 07:2023/BXD Quy chuẩn kỹ thuật quốc gia về Hệ thống công trình hạ tầng kỹ thuật\n16/09/2026\nTài liệu đính kèm\n80/2026/VBHN-TT-BXD\n\
+    16/09/2026\n16/09/2026\nQuy định về trình tự, thủ tục chứng nhận chất lượng an toàn kỹ thuật và bảo vệ môi trường xe cơ giới, xe máy chuyên dùng, phụ tùng xe cơ giới trong nhập khẩu\n16/09/2026\nTài\
+    \ liệu đính kèm\n65/CĐ-TTg\n16/09/2026\n16/09/2026\nVề vụ cháy nhà dân tại số 2B ngách 264/2 phố Thụy Khuê, phường Tây Hồ, thành phố Hà Nội\n16/09/2026\nTài liệu đính kèm\n43/2026/QĐ-TTg\n16/09/2026\n\
+    16/09/2026\nBan hành Quy chế quản lý, vận hành, khai thác, sử dụng Trục liên thông văn bản quốc gia\n16/09/2026\nTài liệu đính kèm\n20/2026/TT-BNV\n16/09/2026\n16/09/2026\nQuy định chi tiết và hướng\
+    \ dẫn thi hành một số điều của Luật Thi đua, khen thưởng đối với ngành Nội vụ \n16/09/2026\nTài liệu đính kèm\nTài liệu đính kèm\n14464/BTC-PTHT\n15/09/2026\n15/09/2026\nV/v thực hiện chế độ báo cáo\
+    \ nhanh theo tuần tình hình phân bổ và giải ngân vốn đầu tư công nguồn ngân sách nhà nước năm 2026 - lũy kế đến hết ngày 10/9/2026\n15/09/2026\nTài liệu đính kèm"
+- id: art-7
+  title: 1788/QĐ-TTg
+  text: "1788/QĐ-TTg\n15/09/2026\n15/09/2026\nBan hành Kế hoạch triển khai thi hành Luật sửa đổi, bổ sung một số điều của Luật Trách nhiệm bồi thường của Nhà nước\n15/09/2026\nTài liệu đính kèm\n487/TB-VPCP\n\
+    15/09/2026\n15/09/2026\nKết luận của Phó Thủ tướng Thường trực Chính phủ Phạm Gia Túc tại chuyến kiểm tra và làm việc về tình hình triển khai các dự án trọng điểm về giao thông và năng lượng tại khu\
+    \ vực đồng bằng sông Cửu Long\n15/09/2026\nTài liệu đính kèm\n358/2026/NĐ-CP\n15/09/2026\n15/09/2026\nVề cơ chế hoạt động và quản lý tài chính của Công ty trách nhiệm hữu hạn một thành viên Mua bán\
+    \ nợ Việt Nam\n15/09/2026\nTài liệu đính kèm\n357/2026/NĐ-CР\n15/09/2026\n15/09/2026\nVề quản lý, sử dụng nguồn thu từ cơ cấu lại vốn nhà nước tại doanh nghiệp, chuyển đơn vị sự nghiệp công lập thành\
+    \ công ty cổ phần\n15/09/2026\nTài liệu đính kèm\n79/2026/VBHN-NĐ-BXD\n15/09/2026\n15/09/2026\nQuy định danh mục hàng hóa nguy hiểm, vận chuyển hàng hóa nguy hiểm và trình tự, thủ tục cấp giấy phép,\
+    \ cấp giấy chứng nhận hoàn thành chương trình tập huấn cho người lái xe hoặc người áp tải vận chuyển hàng hóa nguy hiểm trên đường bộ\n15/09/2026\nTài liệu đính kèm\n78/2026/VBHN-TT-BXD\n15/09/2026\n\
+    15/09/2026\nQuy định một số nội dung về lựa chọn nhà đầu tư thực hiện dự án đầu tư kinh doanh công trình trạm dừng nghỉ\n15/09/2026\nTài liệu đính kèm\n56/2026/VBHN-NĐ-BQP\n15/09/2026\n15/09/2026\n\
+    Quy định biện pháp thi hành chế độ, chính sách đối với quân nhân chuyên nghiệp, công nhân và viên chức quốc phòng chuyển ngành, công nhân và viên chức quốc phòng thôi việc theo quy định của Luật Quân\
+    \ nhân chuyên nghiệp, công nhân và viên chức quốc phòng\n15/09/2026\nTài liệu đính kèm\n55/2026/VBHN-NĐ-BQP\n15/09/2026\n15/09/2026\nQuy định chi tiết và hướng dẫn thi hành một số điều về chế độ, chính\
+    \ sách của Luật quân nhân chuyên nghiệp, công nhân và viên chức quốc phòng\n15/09/2026\nTài liệu đính kèm\n54/2026/VBHN-NĐ-BQP\n15/09/2026\n15/09/2026\nQuy định chi tiết và hướng dẫn thi hành một số\
+    \ điều của Luật Sĩ quan Quân đội nhân dân Việt Nam về chế độ, chính sách đối với sĩ quan thôi phục vụ tại ngũ; sĩ quan tại ngũ hy sinh, từ trần; sĩ quan tại ngũ chuyển sang quân nhân chuyên nghiệp hoặc\
+    \ công chức quốc phòng\n15/09/2026\nTài liệu đính kèm\n09/2026/TT-KTNN\n15/09/2026\n15/09/2026\nQuy định danh mục hồ sơ kiểm toán; chế độ nộp lưu, bảo quản, khai thác và huỷ hồ sơ kiểm toán của Kiểm\
+    \ toán nhà nước\n15/09/2026\nTài liệu đính kèm\n1780/QĐ-TTg\n14/09/2026\n14/09/2026\nVề việc thành lập Hội đồng thẩm định nhà nước thẩm định Báo cáo nghiên cứu tiền khả thi Dự án tuyến đường bộ cao\
+    \ tốc Quảng Ngãi - Kon Tum, đoạn Quảng Ngãi - Đăk Hà (Km0-Km136)\n14/09/2026\nTài liệu đính kèm\n1777/QĐ-TTg\n14/09/2026\n14/09/2026\nPhê chuẩn kết quả miễn nhiệm chức vụ Phó Chủ tịch Ủy ban nhân dân\
+    \ thành phố Cần Thơ nhiệm kỳ 2026- 2031\n14/09/2026\nTài liệu đính kèm\n1775/QĐ-TTg\n14/09/2026\n14/09/2026\nPhê duyệt Chương trình hành động thực hiện Kế hoạch chiến lược Kết nối ASEAN tại Việt Nam\
+    \ giai đoạn 2026 - 2030 và giai đoạn 2031 - 2035\n14/09/2026\nTài liệu đính kèm\n1774/QĐ-TTg\n14/09/2026\n14/09/2026\nBan hành Kế hoạch triển khai thi hành Luật Hòa giải ở cơ sở\n14/09/2026\nTài liệu\
+    \ đính kèm\n482/TB-VPCP\n14/09/2026\n14/09/2026\nKết luận của Phó Thủ tướng Thường trực Chính phủ Phạm Gia Túc tại cuộc họp rà soát quy định về khoảng cách an toàn đối với xe tham gia giao thông trên\
+    \ đường bộ\n14/09/2026\nTài liệu đính kèm\n136/2026/TT-BTC\n14/09/2026\n14/09/2026\nSửa đổi, bổ sung khoản 2 Điều 3 của Thông tư số 158/2025/TT-BTC ngày 31 tháng 12 năm 2025 của Bộ trưởng Bộ Tài chính\
+    \ quy định chi tiết một số điều của Nghị định số 360/2025/NĐ-CP ngày 31 tháng 12 năm 2025 của Chính phủ quy định chi tiết thi hành một số điều của Luật Thuế tiêu thụ đặc biệt\n14/09/2026\nTài liệu đính\
+    \ kèm\n82/2026/VBHN-QĐ-BNNMT\n14/09/2026\n14/09/2026\nQuy định tiêu chí xác định dự án, phương án sản xuất kinh doanh ứng dụng công nghệ cao trong nông nghiệp và bổ sung Danh mục công nghệ cao được\
+    \ ưu tiên đầu tư phát triển ban hành kèm theo Quyết định số 66/2014/QĐ-TTg ngày 25 tháng 11 năm 2014 của Thủ tướng Chính phủ \n14/09/2026"
+- id: art-8
+  title: Tài liệu đính kèm
+  text: "Tài liệu đính kèm\n79/2026/VBHN-TT-BCT\n14/09/2026\n14/09/2026\nQuy định việc khai báo, quản lý và sử dụng cơ sở dữ liệu môi trường ngành Công Thương\n14/09/2026\nTài liệu đính kèm\n78/2026/VBHN-TT-BCT\n\
+    14/09/2026\n14/09/2026\nQuy định về quản lý, thực hiện các nhiệm vụ sử dụng nguồn kinh phí sự nghiệp bảo vệ môi trường của Bộ Công Thương\n14/09/2026\nTài liệu đính kèm\n77/2026/VBHN-TT-BCT\n14/09/2026\n\
+    14/09/2026\nSửa đổi, bổ sung một số quy định về phân cấp, cắt giảm, đơn giản hóa thủ tục hành chính trong các lĩnh vực thuộc phạm vi quản lý của Bộ Công Thương\n14/09/2026\nTài liệu đính kèm\n76/2026/VBHN-TT-BCT\n\
+    14/09/2026\n14/09/2026\nSửa đổi, bổ sung một số quy định về phân cấp thực hiện thủ tục hành chính trong các lĩnh vực thuộc phạm vi quản lý của Bộ Công Thương\n14/09/2026\nTài liệu đính kèm\n75/2026/VBHN-TT-BCT\n\
+    14/09/2026\n14/09/2026\nSửa đổi, bổ sung một số quy định về chế độ báo cáo định kỳ tại các Thông tư do Bộ trưởng Bộ Công Thương ban hành hoặc liên tịch ban hành\n14/09/2026\nTài liệu đính kèm\n74/2026/VBHN-TT-BCT\n\
+    14/09/2026\n14/09/2026\nBổ sung Dạnh mục chi tiết theo mã số HS của hàng hóa xuất khẩu, nhập khẩu quy định tại một số Thông tư của Bộ Công Thương\n14/09/2026\nTài liệu đính kèm\n73/2026/VBHN-TT-BCT\n\
+    14/09/2026\n14/09/2026\nSửa đổi, bổ sung một số điều quy định Danh mục chi tiết theo mã số HS của hàng hóa xuất khẩu, nhập khẩu ban hành kèm theo một số Thông tư của Bộ trưởng Bộ Công Thương\n14/09/2026\n\
+    Tài liệu đính kèm\n73/2026/VBHN-TT-BXD\n14/09/2026\n14/09/2026\nQuy định về quản lý, khai thác vận tải đường sắt\n14/09/2026\nTài liệu đính kèm\n72/2026/VBHN-TT-BXD\n14/09/2026\n14/09/2026\nQuy định\
+    \ về quản lý, khai thác kết cấu hạ tầng đường sắt\n14/09/2026\nTài liệu đính kèm\n4/2026/VBHN-TT-BVHTTDL\n14/09/2026\n14/09/2026\nQuy định về hoạt động chuyên môn, nghiệp vụ của thư viện\n14/09/2026\n\
+    Tài liệu đính kèm\n1\n2\n3\n4\n...\n            1 - 50 | 99113\nTất cả văn bản\n                        Văn bản mới\n                        Văn bản quy phạm pháp luật\nCơ quan ban hành\nQuốc hội\n\
+    Chính phủ\nThủ tướng Chính phủ\nBộ/Cơ quan ngang bộ\nLiên bộ\nUBND tỉnh/thành phố\nLoại văn bản\nHiến pháp\nSắc lệnh - Sắc luật\nLuật - Pháp lệnh\nNghị định\nQuyết định\nThông tư\n                 \
+    \       Văn bản hợp nhất\n                        Văn bản chỉ đạo điều hành\n                        Nghị quyết của Chính phủ\n                        Nghị quyết phiên họp của Chính phủ\n          \
+    \              Báo cáo của Chính phủ\n                        Thủ tướng và thành viên Chính phủ trả lời chất vấn của ĐBQH\n© Cục Thông tin và Truyền thông Chính phủ\nCục trưởng:\n Nguyễn Hồng Sâm \n\
+    Trụ sở: 16 Lê Hồng Phong - Ba Đình - Hà Nội.\nĐiện thoại: Văn phòng: 080 43162; Fax: 080.48924\nEmail: thongtinchinhphu@chinhphu.vn\nGiới thiệu \nCục Thông tin \nvà Truyền thông Chính phủ\nThư điện\
+    \ tử công vụ Chính phủ\nLiên hệ\nSơ đồ\nCổng TTĐT\nChính phủ\nGhi rõ nguồn 'Cục Thông tin và Truyền thông Chính phủ' hoặc\n'www.chinhphu.vn'\nkhi phát hành lại thông tin từ các nguồn này."
 doc_files:
 - vn/raw/VN_政府法律文件库.html
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：vn/raw/VN_政府法律文件库.html (html, 30748 chars)，生成 8 条共 30748 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：vn/raw/VN_政府法律文件库.html (html, 30748 chars)，生成 8 条共 30748 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：vn/raw/VN_政府法律文件库.html (html, 30748 chars)，生成 8 条共 30748 字符；解析文本未人工复核，引用以官方原件为准。'

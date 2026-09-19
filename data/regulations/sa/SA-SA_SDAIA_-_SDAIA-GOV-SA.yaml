@@ -9,11 +9,112 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: SDAIA Laws & Regulations | Saudi Data & AI Authority
+  text: "SDAIA Laws & Regulations | Saudi Data & AI Authority\nSDAIA\n / \nSaudi Data and Artificial Intelligence Authority\n / \nSDAIA\n / \nAbout SDAIA\n / \nSaudi Data & AI Authority's Laws and Regulations\n\
+    \tSaudi Data & AI Authority's Laws and Regulations\nPage Content\nOn this page\n[Laws and Regulations]\nSDAIA Regulatory Arrangements\nPolicies & Regulations\nData classification Policy\nPersonal Data\
+    \ Protection Law\nRules of Procedure on Committees\nAppointing Personal Data Protection Officer\nData Sharing Policy\nFreedom of Information Policy\nOpen Data Policy\nData Monetization Policy\nRisk\
+    \ Assessment Guideline\nPrivacy Policy Guideline\nMinimum Personal Data Determination\nNational Register of Controllers\nSecondary Use of Data\nBinding Common Rules (BCR)\nStandard Contractual Clauses\n\
+    Data Destruction and Anonymization\nData Disclosure Cases Guideline\nProcessing Activities Records\nBreach Incidents Procedural Guide\nLicensing Accreditation Certificates\nIssuance of Accreditation\
+    \ Certificates\nPrinciples of AI Ethics\nNational Occupational Standard\nSaudi Academic Framework for AI\nGenerative Al Guideline\nDeepfakes Guidelines\nAI Adoption Framework\nSDAIA Regulatory Arrangements\n\
+    The regulatory arrangements of the Saudi Data & AI Authority were issued by Council of Ministers Resolution No. (292) dated 27/4/1441 AH, and were amended by Council of Ministers Resolution No. (195)\
+    \ dated 15/3/1444 AH.\nFor more:\nSDAIA Regulatory Arrangements \nPolicies & Regulations\nThe data produced, received, or dealt with by government and private entities is one of the most important national\
+    \ assets that contribute to improving performance and productivity and facilitating the provision of public services. As a result, Saudi Arabia aims to implement the best global practices for national\
+    \ data management and governance policies and controls, protect personal data, and increase the value learned from it in order to make strategic decisions, anticipate the future, and uphold the highest\
+    \ standards of accountability and transparency. The value of data as an economic resource that fosters innovation, supports economic transformations, and heightens national competitiveness is being\
+    \ sought after by nations all over the world. Governmental organizations on a national scale gather and process enormous amounts of data that can be used to support economic growth and elevate the Kingdom\
+    \ to pioneership in data-driven economies. In light of Vision 2030, the Kingdom seeks a new era that improves the efficiency of governmental entities, raises their standards of accountability and transparency,\
+    \ and promotes economic diversification and the use of data-driven services. This will play a significant part in the trust- and international partnership-based global economy.\nIn light of this, the\
+    \ Saudi Data & AI Authority and its legislative arm, the National Data Management Office, the national regulator and reference body for data management and governance, have created a data governance\
+    \ framework at the national level that outlines the laws and regulations for national data management and governance as well as the protection of personal data. This framework has been approved by the\
+    \ SDAIA Board of Directors.\nLearn More about the Policies and Regulations:\nData Management and Personal Data Protection Regulations and Standards \nData classification Policy and Regulations\nThe\
+    \ Policy & Regulations set the framework for classifying the data received, produced, or dealt with by public entities, regardless of their source, form, or nature.\nPolicies \nThe implementation regulation\
+    \ \nPersonal Data Protection Law and The implementing Regulation\nThe law and The implementing Regulation set out the bases for the protection of personal data, the rights of data subjects, and the\
+    \ obligations of controllers\nThe law \nThe implementing Regulation \nRegulation on Personal Data Transfer Outside the Kingdom "
+- id: art-2
+  title: Rules of Procedure on Committees for Reviewing Violations of
+  text: "Rules of Procedure on Committees for Reviewing Violations of the Provisions of the Personal Data Protection Law and Its Implementing Regulations\nThe Rules of Procedure on Committees for Reviewing\
+    \ Violations of the Provisions of the Personal Data Protection Law aim to regulate and govern the committees' procedures in accordance with the PDP Law and its Implementing Regulations.\nRules of Procedure\
+    \ on Committees for Reviewing Violations of the Provisions of the Personal Data Protection Law and Its Implementing Regulations \nRules for Appointing Personal Data Protection Officer\nThese rules clarify\
+    \ the cases in which a personal data protection officer must be appointed at controller to the application of the provisions of the personal data protection law and its implementing regulations, and\
+    \ the minimum requirements for appointment.\nRules for Appointing Personal Data Protection Officer \nData Sharing Policy and Regulations\nThe policy and regulations regulate the sharing of data produced\
+    \ by government entities with other government entities, private entities, and individuals.\nPolicies \nRegulations \nFreedom of Information Policy and Regulations\nThe policy and the regulations outlines\
+    \ the fundamentals and guiding principles of data freedom and applies to requests made by individuals to access or obtain unprotected public data generated by public entities.\nPolicies \nRegulations\
+    \ \nOpen Data Policy and Regulations\nThe policy and regulations set out the regulatory frameworks for open data, which is a subset of public information.\nPolicies \nRegulations \nData Monetization\
+    \ Policy\nThe policy establishes the rules and procedures governing the monetization of government entities data, supporting Saudi Arabia’s objectives to build a data-driven economy.\nData Monetization\
+    \ Policy \nRisk Assessment Guideline for Transferring Personal Data Outside the Kingdom\nThis guideline aims to clarify the main stages and practical steps to assess the risks of transferring personal\
+    \ data outside the Kingdom or disclosing it to entities outside the kingdom, while taking into consideration the main stages of assessing the negative impact and potential risks associated with processing\
+    \ personal data in general.\nRisk Assessment Guideline for Transferring Personal Data Outside the Kingdom \nElaboration and Developing Privacy Policy Guideline\nThis guideline aims to guide entities\
+    \ subject to the provisions of Personal Data Protection Law and its Implementing Regulations, through the preparation and development of their privacy policy.\nElaboration and Developing Privacy Policy\
+    \ Guideline \nMinimum Personal Data Determination Guideline\nThis guideline has been developed for entities subject to the PDPL and its Implementing Regulations to assists these entities in fulfilling\
+    \ the purpose of processing Personal Data while avoiding the collection of unnecessary Personal Data.\nMinimum Personal Data Determination Guideline \nThe Rules Governing the National Register of Controllers\
+    \ Within the Kingdom\nThese rules aim to determine and understand the extent to which Controllers are obligated to register in the National Data Governance Platform.\nThe Rules Governing the National\
+    \ Register of Controllers Within the Kingdom \nGeneral Rules for Secondary Use of Data\nThe document establishes the controls and procedures that govern data-sharing requests for the purpose of serving\
+    \ the public interest or advancing research, development, and innovation.\nGeneral Rules for Secondary Use of Data \nGuidelines for Binding Common Rules (BCR) For Personal Data Transfers\nThis guideline\
+    \ aims to specify the obligations of the parties involved in the transfer when personal data is transferred or disclosed to a country or international organization that does not have an adequate level\
+    \ of protection for personal data.\nGuidelines for Binding Common Rules (BCR) For Personal Data Transfers \nStandard Contractual Clauses For Personal Data Transfers"
+- id: art-3
+  title: These Clauses are one of the appropriate safeguards that Con
+  text: "These Clauses are one of the appropriate safeguards that Controllers and Processors may use in addition to the Binding Common Rules (BCR) and accreditation certificates from a body licensed by\
+    \ the Competent Authority.\nStandard Contractual Clauses For Personal Data Transfers \nPersonal Data Destruction, Anonymization, and Pseudonymisation Guideline\nThis guideline aims to assist entities\
+    \ in determining the cases where personal data should be destroyed or anonymized.\nPersonal Data Destruction, Anonymization, and Pseudonymisation Guideline \nPersonal Data Disclosure Cases Guideline\n\
+    This guideline aims to assist entities in determining the cases and restrictions of personal data disclosure.\nPersonal Data Disclosure Cases Guideline \nPersonal Data Processing Activities Records\
+    \ Guideline\nThis guideline aims to assist entities in preparing records of personal data processing activities.\nPersonal Data Processing Activities Records Guideline \nPersonal Data Breach Incidents\
+    \ Procedural Guide\nThis guide Aims to outline the necessary procedures to deal with personal data breaches and reduce the consequences and risks influencing Data Subjects in accordance with the Law\
+    \ and its Implementing Regulations.\nPersonal Data Breach Incidents Procedural Guide \nThe Rules Governing the Licensing to Issue Accreditation Certificates to Controllers and Processors, and the Auditing\
+    \ and Inspection of Personal Data Processing Activities\nThese Rules shall apply to entities that submit license applications to the Competent Authority for the issuance of accreditation certificates\
+    \ or for conducting audits or inspections of personal data processing activities, These Rules aim to define the licensing procedure followed by the Competent Authority for entities issuing accreditation\
+    \ certificates or conducting audits or inspections, Approve reliable entities to issue accreditation certificates or to conduct audits or inspections in accordance with the provisions of the Law and\
+    \ the Regulations and in line with the documents issued by the Competent Authority regarding compliance with the provisions of the Law and the Regulations, Promote transparency in the application of\
+    \ the provisions of the Law through the adoption and publication of procedures related to licensing entities to undertake the activities specified in the Law.\nThe Rules Governing the Licensing to Issue\
+    \ Accreditation Certificates to Controllers and Processors, and the Auditing and Inspection of Personal Data Processing Activities \nThe Rules Governing the Issuance of Accreditation Certificates for\
+    \ Controllers and Processors\nThese Rules shall apply to entities authorized to engage in the issuance of accreditation certificates, as well as to applicants for accreditation certificates, whether\
+    \ Controllers or Processors. The objectives of these Rules are enhancing the performance of entities subject to the Law in aspects related to practices and procedures for personal data protection, build\
+    \ trust among data subjects in the practices and procedures adopted by Controllers and Processors when handling personal data.\nThe Rules Governing the Issuance of Accreditation Certificates for Controllers\
+    \ and Processors \nPrinciples and Controls of AI Ethics\nGiven the rapid growth of practices and technologies in the field of AI and the diversity seen in the use of various applications in many fields,\
+    \ which has an effective role in accelerating the pace of decision-making and its optimal use, the principles and controls of AI ethics contribute to the application of ethics during the stages of the\
+    \ development lifecycle of AI systems. These principles also help support initiatives of research, development and innovation in the Kingdom, which is reflected in the quality of services provided by\
+    \ the Kingdom to individuals to ensure the responsible use of AI technologies.\nFor more, see the draft of Principles of AI Ethics:\ndraft of Principles of AI Ethics \nNational Occupational Standard\
+    \ Framework for Data & Artificial Intelligence"
+- id: art-4
+  title: This document highlights the role of the Saudi Data and AI A
+  text: "This document highlights the role of the Saudi Data and AI Authority (SDAIA) as the national reference body for regulating the data and AI sector, through the issuance of a national framework to\
+    \ unify practices and enhance human capabilities.\nFor more, see the National Occupational Standard Framework for Data & Artificial Intelligence:\nNational Occupational Standard Framework for Data &\
+    \ Artificial Intelligence \nSaudi Academic Framework for AI Qualifications (Education Intelligence)\nThis document presents the Saudi Academic Framework for Artificial Intelligence by SDAIA. It serves\
+    \ as the official guide for the development and accreditation of higher education programs and is a trusted and recognized reference in Saudi Arabia.\nFor more, see the Saudi Academic Framework for\
+    \ AI Qualifications (Education Intelligence):\nSaudi Academic Framework for AI Qualifications (Education Intelligence) \nGenerative Al Guideline\nThere are two versions of this guideline. The first\
+    \ version directed toward government employees. The second version is for the public. Both versions provide guidelines regarding adoption and use of generative artificial intelligence systems. It also\
+    \ include examples based on common scenarios that entities may address. It also highlights the challenges and considerations associated with the use of generative artificial intelligence, proposes principles\
+    \ for responsible use, and presents recommended practices\nFor more, see the Generative Al Guidelines:\nGenerative Al Guideline for Government \nGenerative Al Guideline for Public \nDeepfakes mitigating\
+    \ risks while fostering innovation​\nThis document outlines the challenges associated with deepfake technologies in artificial intelligence and the resulting risks related to misinformation and privacy\
+    \ violations, particularly amid the rapid expansion of AI applications and their diverse uses across various sectors. It also presents key response tools and recommendations to mitigate these risks,\
+    \ emphasizing the importance of raising awareness, building trust, and ensuring the responsible use of such technologies in a manner that supports innovation and contributes to a safe environment for\
+    \ these applications.\nFor more, see the Deepfakes Guidelines:\nDeepfakes mitigating risks while fostering innovation \nAI Adoption Framework\nThe AI adoption framework is a guiding reference that provides\
+    \ a comprehensive approach for AI adoption across all sectors. It aims to establish directions, guidelines, and identify key steps in according with best practices. The AI adoption framework helps ensure​\
+    \ achievement of desired goals through the optimal and responsible use of AI..\nFor more, see the AI Adoption Framework:\nAI Adoption Framework \nArchives Regulations And Policies \n​\n\t\tA comprehensive\
+    \ set of keywords related to the Personal Data Protection Law (PDPL) in Saudi Arabia. The keywords focus on the key legal and regulatory aspects established by SDAIA, including the executive regulations\
+    \ and organizational arrangements associ\n\t\tPersonal Data Protection Law (PDPL), executive regulations, PDPL regulations, data governance, SDAIA, Saudi Data and Artificial Intelligence Authority,\
+    \ AI law, organizational arrangements, National Data Management Office (NDMO), data protection, personal \n\t\t\t\t\t#6459a7\n\t\t\t\t\tSmall\n\t\t\t\t\tYes\n\t\t\t\t\tTheme1\n\t\t\t\t\tNo\nهل استفدت\
+    \ من المعلومات المقدمة في هذه الصفحة؟\nنعم\nلا\n0\n من الزوار أعجبهم محتوى الصفحة من أصل \n0\nشكرا لمشاركتك تم استلام ملاحظاتك بنجاح\nلقد قمت سابقا بتقديم ملاحظاتك\nنعم\nلا\nأضف السبب (اختر من خيار\
+    \ واحد إلى خياران)\nوجدت الصفحة مفيدة وواضحة\nتمكنت من الوصول للمعلومات بسهولة\nصياغة المحتوى متقن في هذه الصفحة\nتصفح الصفحة مريح وسهل\nسبب آخر\nهذا الحقل مطلوب\nالرجاء كتابة نص صحيح\nالملاحظات يجب\
+    \ ان تكون اقل من ٢٥٠ حرف\nإرسال التعليق\nإلغاء\nأضف السبب (اختر من خيار واحد إلى خياران)\nالمحتوى غير مفهوم\nلم أتمكن من إيجاد المعلومات المراد الحصول عليها\nواجهتني مشكلة تقنية\nوجدت صعوبة في القراءة\
+    \ عند تصفح هذه الصفحة\nسبب آخر\nهذا الحقل مطلوب\nالرجاء كتابة نص صحيح\nالملاحظات يجب ان تكون اقل من ٢٥٠ حرف"
+- id: art-5
+  title: إرسال التعليق
+  text: 'إرسال التعليق
+
+    إلغاء'
 doc_files:
 - sa/raw/SA_SDAIA_个人数据保护法_sdaia.gov.sa.html
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：sa/raw/SA_SDAIA_个人数据保护法_sdaia.gov.sa.html (html, 15806 chars)，生成 5 条共 15806 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：sa/raw/SA_SDAIA_个人数据保护法_sdaia.gov.sa.html (html, 15806 chars)，生成 5 条共 15806 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：sa/raw/SA_SDAIA_个人数据保护法_sdaia.gov.sa.html (html, 15806 chars)，生成 5 条共 15806 字符；解析文本未人工复核，引用以官方原件为准。'

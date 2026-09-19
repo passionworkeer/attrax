@@ -9,11 +9,592 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'ETSI EN 301 489-3
+
+    V2.1.1
+
+    (2019-03)
+
+    HARMONISED EUROPEAN STAND'
+  text: 'ETSI EN 301 489-3
+
+    V2.1.1
+
+    (2019-03)
+
+    HARMONISED EUROPEAN STANDARD
+
+    ElectroMagnetic Compatibility (EMC)
+
+    standard for radio equipment and services;
+
+    Part 3: Specific conditions for Short-Range Devices (SRD)
+
+    operating on frequencies between 9 kHz and 246 GHz;
+
+    Harmonised Standard covering the essential requirements
+
+    of article 3.1(b) of Directive 2014/53/EU
+
+    2 ETSI EN 301 489-3 V2.1.1 (2019-03)
+
+    Reference
+
+    REN/ERM-EMC-332
+
+    Keywords
+
+    EMC, harmonised standard, SRD
+
+    ETSI
+
+    650 Route des Lucioles
+
+    F-06921 Sophia Antipolis Cedex - FRANCE
+
+    Tel.: +33 4 92 94 42 00 Fax: +33 4 93 65 47 16
+
+    Siret N° 348 623 562 00017 - NAF 742 C
+
+    Association à but non lucratif enregistrée à la
+
+    Sous-Préfecture de Grasse (06) N° 7803/88
+
+    Important notice
+
+    The present document can be downloaded from:
+
+    http://www.etsi.org/standards-search
+
+    The present document may be made available in electronic versions and/or in print. The content of any electronic and/or
+
+    print versions of the present document shall not be modified without the prior written authorization of ETSI. In case of any
+
+    existing or perceived difference in contents between such versions and/or in print, the prevailing version of an ETSI
+
+    deliverable is the one made publicly available in PDF format at www.etsi.org/deliver.
+
+    Users of the present document should be aware that the document may be subject to revision or change of status.
+
+    Information on the current status of this and other ETSI documents is available at
+
+    https://portal.etsi.org/TB/ETSIDeliverableStatus.aspx
+
+    If you find errors in the present document, please send your comment to one of the following services:
+
+    https://portal.etsi.org/People/CommiteeSupportStaff.aspx
+
+    Copyright Notification
+
+    No part may be reproduced or utilized in any form or by any means, electronic or mechanical, including photocopying
+
+    and microfilm except as authorized by written permission of ETSI.
+
+    The content of the PDF version shall not be modified without the written authorization of ETSI.
+
+    The copyright and the foregoing restriction extend to reproduction in all media.
+
+    © ETSI 2019.
+
+    All rights reserved.
+
+    DECTTM, PLUGTESTSTM, UMTSTM and the ETSI logo are trademarks of ETSI registered for the benefit of its Members.
+
+    3GPPTM and LTETM are trademarks of ETSI registered for the benefit of its Members and
+
+    of the 3GPP Organizational Partners.
+
+    oneM2M™ logo is a trademark of ETSI registered for the benefit of its Members and
+
+    of the oneM2M Partners.
+
+    GSM® and the GSM logo are trademarks registered and owned by the GSM Association.
+
+    ETSI
+
+    3 ETSI EN 301 489-3 V2.1.1 (2019-03)
+
+    Contents
+
+    Intellectual Property Rights ................................................................................................................................ 5
+
+    Foreword ............................................................................................................................................................. 5
+
+    Modal verbs terminology .................................................................................................................................... 5
+
+    Introduction ........................................................................................................................................................ 6
+
+    1 Scope ........................................................................................................................................................ 7
+
+    2 References ................................................................................................................................................ 7
+
+    2.1 Normative references ......................................................................................................................................... 7
+
+    2.2 Informative references ........................................................................................................................................ 7
+
+    3 Definitions, symbols and abbreviations ................................................................................................... 8
+
+    3.1 Definitions .......................................................................................................................................................... 8
+
+    3.2 Symbols .............................................................................................................................................................. 8
+
+    3.3 Abbreviations ..................................................................................................................................................... 8
+
+    4 Test conditions ......................................................................................................................................... 8
+
+    4.1 General ............................................................................................................................................................... 8
+
+    4.2 Environmental profile ......................................................................................................................................... 8
+
+    4.3 Test signal connections ...................................................................................................................................... 9
+
+    4.3.1 General .......................................................................................................................................................... 9
+
+    4.3.2 Equipment with an external antenna connector ............................................................................................ 9
+
+    4.3.3 Equipment without an external antenna connector (integral antenna) .......................................................... 9
+
+    4.3.4 Equipment with more than one antenna ........................................................................................................ 9
+
+    4.4 Narrow band responses of receivers ................................................................................................................... 9
+
+    4.5 Arrangements for testing .................................................................................................................................... 9
+
+    4.5.1 Testing transmitter and receiver together (as a system) ................................................................................ 9
+
+    4.5.2 Operating modes ......................................................................................................................................... 10
+
+    4.6 RF Exclusion bands .......................................................................................................................................... 10
+
+    4.6.1 General ........................................................................................................................................................ 10
+
+    4.6.2 Exclusion bands for emissions testing ........................................................................................................ 10
+
+    4.6.2.1 Transmitters .......................................................................................................................................... 10
+
+    4.6.2.2 Receivers ............................................................................................................................................... 10
+
+    4.6.2.3 Duplex and multi-mode equipment ....................................................................................................... 10
+
+    4.6.3 Exclusion bands for immunity testing ........................................................................................................ 11
+
+    4.6.3.1 Transmitters .......................................................................................................................................... 11
+
+    4.6.3.2 Receivers ............................................................................................................................................... 11
+
+    4.6.3.3 Duplex and multi-mode equipment ....................................................................................................... 11
+
+    5 Performance assessment ......................................................................................................................... 11
+
+    5.1 General ............................................................................................................................................................. 11
+
+    5.2 Continuous and non-continuous communication links ..................................................................................... 12
+
+    5.3 Functions other than a communications link .................................................................................................... 12
+
+    5.4 Associated test equipment ................................................................................................................................ 12
+
+    5.5 Ancillary equipment ......................................................................................................................................... 12
+
+    5.6 Equipment classification .................................................................................................................................. 12
+
+    6 Performance Criteria .............................................................................................................................. 13
+
+    6.1 Introduction ...................................................................................................................................................... 13
+
+    6.2 Performance Criteria ........................................................................................................................................ 13
+
+    7 Applicability Overview .......................................................................................................................... 13
+
+    7.1 General ............................................................................................................................................................. 13
+
+    7.2 Special conditions for emissions ...................................................................................................................... 13
+
+    7.3 Special conditions for immunity ...................................................................................................................... 14
+
+    Annex A (informative): Relationship between the present document and the essential
+
+    requirements of Directive 2014/53/EU ......................................................... 15
+
+    ETSI
+
+    4 ETSI EN 301 489-3 V2.1.1 (2019-03)
+
+    Annex B (informative): Examples of Short Range Devices (SRD) in the scope of the present
+
+    document ........................................................................................................ 17'
+- id: art-2
+  title: 'Annex C (informative): Change History .............................................................................................. 18'
+  text: 'Annex C (informative): Change History .............................................................................................. 18
+
+    History .............................................................................................................................................................. 19
+
+    ETSI
+
+    5 ETSI EN 301 489-3 V2.1.1 (2019-03)
+
+    Intellectual Property Rights
+
+    Essential patents
+
+    IPRs essential or potentially essential to normative deliverables may have been declared to ETSI. The information
+
+    pertaining to these essential IPRs, if any, is publicly available for ETSI members and non-members, and can be found
+
+    in ETSI SR 000 314: "Intellectual Property Rights (IPRs); Essential, or potentially Essential, IPRs notified to ETSI in
+
+    respect of ETSI standards", which is available from the ETSI Secretariat. Latest updates are available on the ETSI Web
+
+    server (https://ipr.etsi.org/).
+
+    Pursuant to the ETSI IPR Policy, no investigation, including IPR searches, has been carried out by ETSI. No guarantee
+
+    can be given as to the existence of other IPRs not referenced in ETSI SR 000 314 (or the updates on the ETSI Web
+
+    server) which are, or may be, or may become, essential to the present document.
+
+    Trademarks
+
+    The present document may include trademarks and/or tradenames which are asserted and/or registered by their owners.
+
+    ETSI claims no ownership of these except for any which are indicated as being the property of ETSI, and conveys no
+
+    right to use or reproduce any trademark and/or tradename. Mention of those trademarks in the present document does
+
+    not constitute an endorsement by ETSI of products, services or organizations associated with those trademarks.
+
+    Foreword
+
+    This Harmonised European Standard (EN) has been produced by ETSI Technical Committee Electromagnetic
+
+    compatibility and Radio spectrum Matters (ERM).
+
+    The present document has been prepared under the Commission''s standardisation request C(2015) 5376 final [i.3] to
+
+    provide one voluntary means of conforming to the essential requirements of Directive 2014/53/EU on the harmonisation
+
+    of the laws of the Member States relating to the making available on the market of radio equipment and repealing
+
+    Directive 1999/5/EC [i.1].
+
+    Once the present document is cited in the Official Journal of the European Union under that Directive, compliance with
+
+    the normative clauses of the present document given in table A.1 confers, within the limits of the scope of the present
+
+    document, a presumption of conformity with the corresponding essential requirements of that Directive and associated
+
+    EFTA regulations.
+
+    The present document is part 3 of a multi-part deliverable. Full details of the entire series can be found in part 1 [1].
+
+    National transposition dates
+
+    Date of adoption of this EN: 8 May 2017
+
+    Date of latest announcement of this EN (doa): 30 June 2019
+
+    Date of latest publication of new National Standard
+
+    or endorsement of this EN (dop/e): 31 December 2019
+
+    Date of withdrawal of any conflicting National Standard (dow): 31 December 2020
+
+    Modal verbs terminology
+
+    In the present document "shall", "shall not", "should", "should not", "may", "need not", "will", "will not", "can" and
+
+    "cannot" are to be interpreted as described in clause 3.2 of the ETSI Drafting Rules (Verbal forms for the expression of
+
+    provisions).
+
+    "must" and "must not" are NOT allowed in ETSI deliverables except when used in direct citation.
+
+    ETSI
+
+    6 ETSI EN 301 489-3 V2.1.1 (2019-03)
+
+    Introduction
+
+    The product family of Short Range Devices covers a wide range of equipment types, which may have different sets of
+
+    performance criteria set out in the relevant radio standards and/or product standards.
+
+    The present document is intended for all SRD types and applies a standard set of performance criteria. This includes the
+
+    requirement that the equipment continues to operate as intended under certain standardised conditions of EMC stress.
+
+    The term "Short Range Device" (SRD) is intended to cover the radio equipment which provides either uni-directional or
+
+    bi-directional communication and which have low capability of causing interference to other radio equipment. SRDs
+
+    use either integral, dedicated or external antennas and all modes of modulation can be permitted subject to relevant
+
+    standards. For Short Range Devices individual licenses are normally not required.
+
+    ETSI
+
+    7 ETSI EN 301 489-3 V2.1.1 (2019-03)
+
+    1 Scope
+
+    The present document, together with ETSI EN 301 489-1 [1], covers the assessment of Short Range Devices (SRD) and
+
+    ancillary equipment in respect of ElectroMagnetic Compatibility (EMC).
+
+    The present document specifies the applicable test conditions, performance assessment, and performance criteria for
+
+    Short Range Devices (SRD) and the associated ancillary equipment.
+
+    In case of differences (for instance concerning special conditions, definitions, abbreviations) between the present
+
+    document and the ETSI EN 301 489-1 [1], the provisions of the present document take precedence.
+
+    The environmental classification and the emission and immunity requirements used in the present document are as
+
+    stated in the ETSI EN 301 489-1 [1], except for any special conditions included in the present document.
+
+    Technical specifications related to the antenna port of radio equipment and radiated emissions from the enclosure port
+
+    of radio equipment and combinations of radio and associated ancillary equipment are not included in the present
+
+    document. Such technical specifications are normally found in the relevant product standards for the effective use of the
+
+    radio spectrum.
+
+    The present document, together with ETSI EN 301 489-1 [1], are aimed to cover requirements to demonstrate an
+
+    adequate level of electromagnetic compatibility.
+
+    2 References
+
+    2.1 Normative references
+
+    References are specific, identified by date of publication and/or edition number or version number. Only the cited
+
+    version applies.
+
+    Referenced documents which are not found to be publicly available in the expected location might be found at
+
+    https://docbox.etsi.org/Reference/.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    The following referenced documents are necessary for the application of the present document.
+
+    [1] ETSI EN 301 489-1 (V2.2.0) (03-2017): "ElectroMagnetic Compatibility (EMC) standard for
+
+    radio equipment and services; Part 1: Common technical requirements; Harmonised Standard
+
+    covering the essential requirements of article 3.1(b) of Directive 2014/53/EU and the essential
+
+    requirements of article 6 of Directive 2014/30/EU".
+
+    [2] ETSI EN 300 220-1 (V3.1.1) (02-2017): "Short Range Devices (SRD) operating in the frequency
+
+    range 25 MHz to 1 000 MHz; Part 1: Technical characteristics and methods of measurement".
+
+    2.2 Informative references
+
+    References are either specific (identified by date of publication and/or edition number or version number) or
+
+    non-specific. For specific references, only the cited version applies. For non-specific references, the latest version of the
+
+    referenced document (including any amendments) applies.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    The following referenced documents are not necessary for the application of the present document but they assist the
+
+    user with regard to a particular subject area.
+
+    [i.1] Directive 2014/53/EU of the European Parliament and of the Council of 16 April 2014 on the
+
+    harmonisation of the laws of the Member States relating to the making available on the market of
+
+    radio equipment and repealing Directive 1999/5/EC.
+
+    ETSI
+
+    8 ETSI EN 301 489-3 V2.1.1 (2019-03)
+
+    [i.2] ETSI TR 103 088: "Electromagnetic compatibility and Radio spectrum Matters (ERM); Using the
+
+    ETSI EN 301 489 series of EMC standards".
+
+    [i.3] Commission Implementing Decision C(2015) 5376 final of 4.8.2015 on a standardisation request
+
+    to the European Committee for Electrotechnical Standardisation and to the European
+
+    Telecommunications Standards Institute as regards radio equipment in support of Directive
+
+    2014/53/EU of the European Parliament and of the Council.
+
+    3 Definitions, symbols and abbreviations
+
+    3.1 Definitions
+
+    For the purposes of the present document, the terms and definitions given in ETSI EN 301 489-1 [1], ETSI
+
+    EN 300 220-1 [2] and in the Directive 2014/53/EU [i.1] apply, unless otherwise specified below:
+
+    (relevant) radio standard: harmonised standard that is applied for the purposes of determining compliance of the EUT
+
+    with article 3.2 of the Directive 2014/53/EU [i.1]
+
+    receiver: stand alone receiver or receiver being part of a transceiver
+
+    transmitter: stand alone transmitter or transmitter being part of a transceiver
+
+    3.2 Symbols
+
+    For the purposes of the present document, the symbols given in ETSI EN 301 489-1 [1] and ETSI EN 300 220-1 [2]
+
+    apply.
+
+    3.3 Abbreviations
+
+    For the purposes of the present document, the abbreviations given in ETSI EN 301 489-1 [1] and ETSI
+
+    EN 300 220-1 [2] apply.
+
+    4 Test conditions
+
+    4.1 General
+
+    Clause 4 describes details of the configuration and connections for testing of the EUT.
+
+    For the purposes of the present document, the test conditions of ETSI EN 301 489-1 [1], clause 4, shall apply as
+
+    appropriate, except as varied and/or extended herein.
+
+    4.2 Environmental profile
+
+    The equipment shall be tested under normal test conditions according to the relevant radio standard.
+
+    NOTE: The technical requirements of the present document apply under the environmental profile for operation
+
+    of the EUT, which is declared by the manufacturer. The EUT should comply with all the technical
+
+    requirements of the present document at all times when operating within the boundary limits of the
+
+    declared operational environmental profile.
+
+    ETSI
+
+    9 ETSI EN 301 489-3 V2.1.1 (2019-03)
+
+    4.3 Test signal connections
+
+    4.3.1 General
+
+    For the purposes of the present document, the requirements of ETSI EN 301 489-1 [1], clause 4.2, shall apply as
+
+    appropriate, except as varied and/or extended herein.
+
+    The coupling mechanism for wanted RF signals between the EUT and the measuring and/or test equipment may include
+
+    attenuation to control the level of the signals. The coupling mechanism shall be entirely passive so that the reciprocal
+
+    path loss is the same.
+
+    4.3.2 Equipment with an external antenna connector
+
+    This clause applies to EUT with a conventional RF antenna connector. If access to the antenna connector involves
+
+    modification or dismantling of the EUT then this clause does not apply.
+
+    The EUT shall be tested with its antenna removed.
+
+    The wanted RF input and output signals shall be delivered between the EUT antenna connector and the measuring
+
+    and/or test equipment by a shielded transmission line, such as a coaxial cable. Adequate measures shall be taken to
+
+    minimize the effect of common mode currents on the transmission line at the point of entry to the EUT and at the
+
+    measuring/test equipment.
+
+    4.3.3 Equipment without an external antenna connector (integral antenna)
+
+    This clause applies to EUT to which clause 4.3.2 does not apply. Such EUT are generally known as integral antenna or
+
+    dedicated antenna equipment.
+
+    The EUT shall be tested with its antenna fitted in a manner typical of normal intended use.
+
+    4.3.4 Equipment with more than one antenna
+
+    If the EUT has more than one antenna port, e.g. separate antennas for Tx and Rx or separate antennas for different
+
+    operating frequencies, then:
+
+    • If clause 4.3.2 applies to all the antenna ports, then the EUT shall be tested according to clause 4.3.2.
+
+    • Otherwise it shall be tested according to clause 4.3.3.
+
+    NOTE: The reason is that replacing one antenna by a transmission line may affect the operation of any other
+
+    antennas.
+
+    4.4 Narrow band responses of receivers
+
+    The provisions of ETSI EN 301 489-1 [1], clause 4.4, shall apply.
+
+    4.5 Arrangements for testing
+
+    4.5.1 Testing transmitter and receiver together (as a system)
+
+    The provisions of ETSI EN 301 489-1 [1], clause 4.2.5, shall not apply. Stand alone receivers and transmitters shall be
+
+    tested sep'
+- id: art-3
+  title: 'Annex C (informative):'
+  text: 'Annex C (informative):
+
+    Change History
+
+    Version Information about changes
+
+    2.1.1 First publication of RED version
+
+    ETSI
+
+    19 ETSI EN 301 489-3 V2.1.1 (2019-03)
+
+    History
+
+    Document history
+
+    V1.2.1 August 2000 Publication
+
+    V1.3.1 November 2001 Publication
+
+    V1.4.1 August 2002 Publication
+
+    V1.6.1 August 2013 Publication
+
+    V2.1.0 September 2016 EN Approval Procedure AP 20161212: 2016-09-13 to 2016-12-12
+
+    V2.1.1 March 2017 Vote V 20170507: 2017-03-08 to 2017-05-08
+
+    V2.1.1 March 2019 Publication
+
+    ETSI'
 doc_files:
 - global/raw/ETSI_EN_301_489-3_EMC_短距离设备.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_301_489-3_EMC_短距离设备.pdf (pdf, 37100 chars)，生成 3 条共 23140 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_301_489-3_EMC_短距离设备.pdf (pdf, 37100 chars)，生成 3 条共 23140 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_301_489-3_EMC_短距离设备.pdf (pdf, 37100 chars)，生成 3 条共 23140 字符；解析文本未人工复核，引用以官方原件为准。'

@@ -1,0 +1,26 @@
+id: KB-other-CN-CN-GB_4943-23-2012_-_-_-23-_
+regulation_id: CN-GB_4943-23-2012_-_-_-23-_
+doc_name: CN-GB GB 4943.23-2012 信息技术设备  安全  第23部分：大型数据存储设备
+official_citation: CN-GB GB 4943.23-2012 信息技术设备  安全  第23部分：大型数据存储设备
+short_name: CN-GB GB 4943.23-2012 信息技术设备  安全  第23部分：大型数据存储设备
+source: category
+primary_source: other
+domain: other
+applies_if:
+  category:
+  - other
+  features_any: []
+  markets:
+  - CN
+key_articles: []
+key_points:
+- CN-GB GB 4943.23-2012 信息技术设备  安全  第23部分：大型数据存储设备：其他品类领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=1650B9738467AA86136B1FD706C17FC3
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

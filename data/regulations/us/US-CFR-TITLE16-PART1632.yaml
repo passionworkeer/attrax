@@ -1,6 +1,6 @@
 id: US-CFR-TITLE16-PART1632
 official_citation: US 16 CFR Part 1632
-short_name: US 16 CFR Part 1632
+short_name: US 16 CFR Part 1632 — STANDARD FOR THE FLAMMABILITY OF MATTRESSES AND MATTRESS PADS (FF 4-72, AMENDED)
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,684 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '16
+
+    Commercial Practices
+
+    2
+
+    2024-01-01
+
+    2024-01-01
+
+    false
+
+    STANDA'
+  text: '16
+
+    Commercial Practices
+
+    2
+
+    2024-01-01
+
+    2024-01-01
+
+    false
+
+    STANDARD FOR THE FLAMMABILITY OF MATTRESSES AND MATTRESS PADS (FF 4-72, AMENDED)
+
+    1632
+
+    PART 1632
+
+    Commercial Practices
+
+    CONSUMER PRODUCT SAFETY COMMISSION
+
+    FLAMMABLE FABRICS ACT REGULATIONS
+
+    Pt. 1632
+
+    PART 1632—STANDARD FOR THE FLAMMABILITY OF MATTRESSES AND MATTRESS PADS (FF 4-72, AMENDED)
+
+    Subpart A—The Standard
+
+    Sec.
+
+    1632.1
+
+    Definitions.
+
+    1632.2
+
+    Purpose, scope and applicability.
+
+    1632.3
+
+    General requirements.
+
+    1632.4
+
+    Mattress test procedure.
+
+    1632.5
+
+    Mattress pad test procedure.
+
+    1632.6
+
+    Ticking substitution procedure.
+
+    1632.7
+
+    Tape edge substitution procedure.
+
+    1632.8
+
+    Glossary of terms.
+
+    Subpart B—Rules and Regulations
+
+    1632.31
+
+    Mattresses/mattress pads—labeling, recordkeeping, guaranties and “one of a kind” exemption.
+
+    Subpart C—Interpretations and Policies
+
+    1632.61-1632.62
+
+    [Reserved]
+
+    1632.63
+
+    Policy clarification on renovation of mattress.
+
+    Authority:
+
+    15 U.S.C. 1193, 1194; 15 U.S.C. 2079(b).
+
+    Source:
+
+    49 FR 39796, Oct. 10, 1984, unless otherwise noted.
+
+    Subpart A—The Standard'
+- id: art-2
+  title: § 1632.1
+  text: '§ 1632.1
+
+    Definitions.
+
+    In addition to the definitions given in section 2 of the Flammable Fabrics Act as amended (15 U.S.C. 1191), the following definitions apply for the purpose of the standard.
+
+    (a)
+
+    Mattress
+
+    means a ticking filled with a resilient material used alone or in combination with other products intended or promoted for sleeping upon.
+
+    (1) This definition includes, but is not limited to, adult mattresses, youth mattresses, crib mattresses including portable crib mattresses, bunk bed mattresses, futons, water beds and air mattresses
+    which contain upholstery material between the ticking and the mattress core, and any detachable mattresses used in any item of upholstered furniture such as convertible sofa bed mattresses, corner group
+    mattresses, day bed mattresses, roll-a-way bed mattresses, high risers, and trundle bed mattresses. See § 1632.8 Glossary of terms, for definitions of these items.
+
+    (2) This definition excludes sleeping bags, pillows, mattress foundations, liquid and gaseous filled tickings such as water beds and air mattresses which do not contain upholstery material between the
+    ticking and the mattress core, upholstered furniture which does not contain a detachable mattress such as chaise lounges, drop-arm love seats, press-back lounges, push-back sofas, sleep lounges, sofa
+    beds (including jackknife sofa beds), sofa lounges (including glide-outs), studio couches and studio divans (including twin studio divans and studio beds), and juvenile product pads such as car bed
+    pads, carriage pads, basket pads, infant carrier and lounge pads, dressing table pads, stroller pads, crib bumpers, and playpen pads. See § 1632.8 Glossary of terms, for definitions of these items.
+
+    (b)
+
+    Mattress Pad
+
+    means a thin, flat mat or cushion, and/or ticking filled with resilient material for use on top of a mattress. This definition includes, but is not limited to, absorbent mattress pads, flat decubitus
+    pads, and convoluted foam pads which are totally enclosed in ticking. This definition excludes convoluted foam pads which are not totally encased in ticking.
+
+    (c)
+
+    Ticking
+
+    means the outermost layer of fabric or related material that encloses the core and upholstery materials of a mattress or mattress pad. A mattress ticking may consist of several layers of fabric or related
+    materials quilted together.
+
+    (d)
+
+    Core
+
+    means the main support system that may be present in a mattress, such as springs, foam, hair block, water bladder, air bladder, or resilient filling.
+
+    (e)
+
+    Upholstery material
+
+    means all material, either loose or attached, between the mattress or mattress pad ticking and the core of a mattress, if a core is present.
+
+    (f)
+
+    Tape edge
+
+    (edge) means the seam or border edge of a mattress or mattress pad.
+
+    (g)
+
+    Quilted
+
+    means stitched with thread or by fusion through the ticking and one or more layers of upholstery material.
+
+    (h)
+
+    Tufted
+
+    means buttoned or laced through the ticking and upholstery material and/or core, or having the ticking and upholstery material and/or core drawn together at intervals by any other method which produces
+    a series of depressions on the surface.
+
+    (i)
+
+    Manufacturer
+
+    means an individual plant or factory at which mattresses and/or mattress pads are produced or assembled.
+
+    (j)
+
+    Mattress prototype
+
+    means mattresses of a particular design, sharing all materials and methods of assembly, but excluding differences in mattress size. If it has been shown as a result of prototype qualification testing
+    that an upholstery material or core will not reduce the ignition resistance of the mattress prototype, substitution of another material for such material shall not be deemed a difference in materials
+    for prototype definition. (See § 1632.31(c)(4) for records required to demonstrate that a change of materials has not reduced ignition resistance of a mattress prototype.) If it is determined or suspected
+    that a material has influenced the ignition resistance of the mattress prototype, a change in that material, excluding an increase in thickness, shall be deemed a difference in materials for purposes
+    of prototype definition unless it is previously shown to the satisfaction of the Consumer Product Safety Commission that such change will not reduce the ignition resistance of the mattress prototype.
+    Ticking materials may be substituted in accordance with § 1632.6. Tape edge materials may be substituted in accordance with § 1632.7.
+
+    (k)
+
+    Mattress pad prototype
+
+    means mattress pads of a particular design, sharing all materials and methods of assembly, but excluding differences in mattress pad size. A change in existing material, except an increase in thickness,
+    shall be deemed a difference in materials for purposes of prototype definition unless it is previously shown to the satisfaction of the Consumer Product Safety Commission that such change will not reduce
+    the ignition resistance of the mattress pad prototype. Ticking materials may be substituted in accordance with § 1632.6. Tape edge materials may be substituted in accordance with § 1632.7.
+
+    (l)
+
+    Surface
+
+    means one side of a mattress or mattress pad which is intended for sleeping upon and which can be tested.'
+- id: art-3
+  title: § 1632.2
+  text: '§ 1632.2
+
+    Purpose, scope, and applicability.
+
+    (a)
+
+    Purpose.
+
+    (1) This standard prescribes requirements for testing of prototype designs of mattresses and mattress pads before the sale in commerce or the introduction in commerce of any mattress or mattress pad
+    which is subject to the standard. The standard prescribes a test to determine the ignition resistance of a mattress or a mattress pad when exposed to a lighted cigarette.
+
+    (2) The standard sets forth a test at § 1632.6 which may be used to classify ticking materials for resistance to cigarette ignition.
+
+    (3) The standard sets forth a test at § 1632.7 which may be used to demonstrate that the substitution of tape
+
+    edge materials will not reduce the ignition resistance of a mattress prototype or a mattress pad prototype.
+
+    (b)
+
+    Scope.
+
+    (1) All mattresses, as defined in § 1632.1(a), and all mattress pads, as defined in § 1632.1(b), manufactured or imported after the effective date of this amendment are subject to the requirements of
+    the standard as amended.
+
+    (2) All mattresses, as defined in § 1632.1(a), and all mattress pads, as defined in § 1632.1(b), manufactured or imported after June 22, 1973, and before the effective date of this amendment are subject
+    to those requirements of the Standard for the Flammability of Mattresses (and Mattress Pads) (16 CFR part 1632) which were in effect before the effective date of this amendment.
+
+    (3) Manufacturers or importers desiring to use the ticking substitution procedure provided in § 1632.6 may classify the ticking being used on each mattress prototype before or after the effective date
+    of this amendment using the test procedure set forth in that section.
+
+    (4) One-of-a-kind mattresses and mattress pads may be excluded from testing under this standard in accordance with rules established by the Consumer Product Safety Commission. (See § 1632.31(f): exemption
+    for mattresses and mattress pads prescribed by a physician.)
+
+    (c)
+
+    Applicability.
+
+    (1) The requirements for prototype testing prescribed by this standard are applicable to each “manufacturer” (as that term is defined in § 1632.1(i)) of mattresses or mattress pads subject to the standard
+    which are manufactured for sale in commerce. The requirements of this standard for prototype testing are also applicable to all other persons or firms initially introducing mattresses or mattress pads
+    into commerce, including importers; each such firm shall be deemed to be a “manufacturer” for purposes of this standard.
+
+    (2) The test at § 1632.6 for classification of ticking materials may be used by manufacturers of mattresses or mattress pads and by manufacturers of ticking materials. The test at § 1632.7 may be used
+    by manufacturers of mattresses to demonstrate that substitution of tape edge materials will not reduce ignition resistance of a mattress prototype or a mattress pad prototype. Use of the tests in §§ 1632.6
+    and 1632.7 is optional.'
+- id: art-4
+  title: § 1632.3
+  text: '§ 1632.3
+
+    General requirements.
+
+    (a)
+
+    Summary of test method.
+
+    The method measures the ignition resistance of a mattress or mattress pad by exposing the surface to lighted cigarettes in a draft-protected environment. The surfaces to be tested include smooth, tape
+    edge, and quilted or tufted locations, if they exist on the mattress or mattress pad surface. A two-sheet test is also conducted on similar surface locations. In the latter test, the burning cigarettes
+    are placed between the sheets.
+
+    (b)
+
+    Test criterion.
+
+    When testing the mattress or mattress pad surface in accordance with the testing procedure set forth in § 1632.4
+
+    Mattress test procedure,
+
+    individual cigarette test locations pass the test if the char length is not more than 2 inches (5.1 cm) in any direction from the nearest point of the cigarette. In the interest of safety, the test
+    operator should discontinue the test and record a failure before reaching the 2 inch char length if an obvious ignition has occurred.
+
+    (c)
+
+    Pre-market testing.
+
+    Each manufacturer required to perform prototype testing by the standard shall perform the testing required by the standard with acceptable results before selling in commerce or introducing in commerce
+    any mattress or mattress pad which is subject to the standard.
+
+    (d)
+
+    Specimen selection and qualification.
+
+    (1) Each manufacturer required to perform prototype testing by the standard shall construct or select enough units of each proposed mattress prototype or proposed mattress pad prototype to provide six
+    surfaces for testing. A minimum of three mattresses or mattress pads are required if both sides can be tested; six mattresses or mattress pads are required if only one side can be tested. Test each
+    of the six surfaces according to § 1632.4(d). If all the cigarette test locations on all six mattress surfaces yield passing results using the criterion specified in § 1632.3(b), accept the mattress
+    prototype. If all six surfaces of a mattress
+
+    pad yield passing results using the criterion in § 1632.3(b), and all other applicable requirements prescribed by § 1632.5 are met, accept the mattress pad prototype. If one or more of the cigarette
+    test locations on any of the six surfaces fail to meet the test criterion of § 1632.3(b), reject the mattress prototype or the mattress pad prototype.
+
+    (2) Prototype qualification testing may be repeated after action has been taken to improve the resistance of the mattress prototype or the mattress pad prototype to cigarette ignition by changes in
+    design, construction methods, materials selection, or other means. When prototype qualification is repeated after rejection of a prototype, such qualification testing shall be conducted in the same
+    manner as original qualification testing.
+
+    (3) Each mattress prototype and each mattress pad prototype must be accepted in prototype qualification before any mattress or mattress pad manufactured in accordance with such mattress prototype or
+    mattress pad prototype is sold in commerce or introduced in commerce. Any manufacturer required to perform testing by the standard may rely on prototype tests performed before the effective date of
+    this amended standard, provided that such tests were conducted in accordance with all requirements of §§ 1632.1(i), 1632.3(d), and 1632.4, and yield passing results when the test criterion of § 1632.3(b)
+    is applied. If the ticking classification test at § 1632.6 is to be used when relying on prototype tests performed before the effective date of the standard, the ticking currently used on that mattress
+    prototype must be classified before substitution of ticking using § 1632.6.
+
+    (4) Rejected prototype mattresses or prototype mattress pads shall not be retested, offered for sale, sold, or promoted for use as a mattress (as defined in § 1632.1(a)) or for use as a mattress pad
+    (as defined in § 1632.1(b)) except after reworking to improve the resistance to ignition by cigarettes, and subsequent retesting and acceptance of the mattress prototype (as defined in § 1632.1(j))
+    or the mattress pad prototype (as defined in § 1632.1(k)).'
+- id: art-5
+  title: § 1632.4
+  text: '§ 1632.4
+
+    Mattress test procedure.
+
+    (a)
+
+    Apparatus and test materials
+
+    —(1)
+
+    Testroom.
+
+    The testroom shall be large enough to accommodate a full-scale mattress in a horizontal position and to allow for free movement of personnel and air around the test mattress. The test area shall be
+    draft-protected and equipped with a suitable system for exhausting smoke and/or noxious gases produced by testing. The testroom atmospheric conditions shall be greater than 18 °C (65 °F) and at less
+    than 55 percent relative humidity.
+
+    (i) The room shall be equipped with a support system (e.g. platform, bench) upon which a mattress may be placed flat in a horizontal position at a reasonable height for making observations.
+
+    (ii) If thin flexible mattresses or mattress pads are being testing the room shall also be equipped with a glass fiberboard test surface. The glass fiberboard shall be approximately 1 inch (2.5 cm)
+    thick and have a thermal conductivity of 0.30±0.05 cal (g) / hr cm
+
+    2
+
+    °C/cm (0.24±0.04 Btu/hr ft
+
+    2
+
+    °F/in) at 23.9 °C (75 °F).
+
+    1
+
+    1
+
+    Glass fiberboard that meets Federal Specification HH-I-558B is acceptable. Under this specification, the board must be Form A, Class 1, and plain faced. Copies of the specifications may be obtained
+    from the Business Service Centers of the General Services Administration Regional Offices.
+
+    (2)
+
+    Ignition source.
+
+    The ignition source shall be a Standard Reference Material cigarette (SRM 1196a), available for purchase from the National Institute of Standards and Technology, 100 Bureau Drive, Gaithersburg, MD 20899.
+
+    (3)
+
+    Fire extinguisher.
+
+    A pressurized water fire extinguisher, or other suitable fire extinguishing equipment, shall be immediately available.
+
+    (4)
+
+    Water bottle.
+
+    A water bottle fitted with a spray nozzle shall be used to extinguish the ignited portions of the mattress.
+
+    (5)
+
+    Scale.
+
+    A linear scale graduated in millimeters, 0.1 inch, or
+
+    1/16
+
+    inch divisions shall be used to measure char length.
+
+    (6)
+
+    Sheets or sheeting material.
+
+    White, 100 percent cotton sheets or sheeting material shall be used. It shall not be
+
+    treated with a chemical finish which imparts a characteristic such as permanent press or flame resistance. It shall have 120-210 threads per square inch and fabric weight of 3.7±0.8 oz/yd
+
+    2
+
+    (125±28 gm/m
+
+    2
+
+    ). The size of the sheet or sheeting material shall be appropriate for the mattress being tested.
+
+    (7)
+
+    Other apparatus.
+
+    In addition to the above, a thermometer, a relative humidity measuring instrument, a thin rod, straight pins, a knife or scissors, and tongs are required to carry out the testing.
+
+    (b)
+
+    Test preparation
+
+    —(1)
+
+    Mattress samples.
+
+    The mattress shall be removed from any packaging prior to conditioning. The mattress surface shall be divided laterally into two sections (see fig. 1), one section for the bare mattress tests and the
+    other for the two-sheet tests.
+
+    (2)
+
+    Sheets or sheeting material.
+
+    The sheets or sheeting material shall be laundered once before use in an automatic home washer using the hot water setting and longest normal cycle with the manufacturer''s recommended quantity of a
+    commercial detergent, and dried in an automatic home tumble dryer.
+
+    (i) The sheet shall be cut across the width into two equal parts after washing.
+
+    (ii) Sheeting material shall be cut in lengths to cover
+
+    1/2
+
+    of a mattress as described in § 1632.4(d)(3).
+
+    (3)
+
+    Cigarettes.
+
+    Unopened packages of cigarettes shall be selected for each series of tests. The cigarettes shall be removed from packaging prior to conditioning.
+
+    (c)
+
+    Conditioning.
+
+    The mattresses, laundered sheets or sheeting material, and loose cigarettes shall be conditioned in air at a temperature greater than 18 °C (65 °F) and a relative humidity less than 55 percent for at
+    least 48 continuous hours prior to test. The mattresses, laundered sheets or sheeting material, and cigarettes shall be supported in a suitable manner to permit free movement of air around them during
+    conditioning. The mattress meets this conditioning requirement if the mattress and/or all its component materials, except the metallic core, if present, have been exposed only to the above temperature
+    and humidity conditions for at least 48 continuous hours prior to testing the mattress.
+
+    (d)
+
+    Testing
+
+    —(1)
+
+    General.
+
+    Mattress specimens shall be tested in a testroom with atmospheric conditions of a temperature greater than 18 °C (65 °F) and a relative humidity less than 55 percent. If the test is not performed in
+    the conditioning room, at least one lit cigarette shall be placed on the mattress surface within 10 minutes of removal from the conditioning room. The other side of the mattress shall be tested immediately
+    after completion of the first side.
+
+    (i) At least 18 cigarettes shall be burned on each mattress test surface, 9 in the bare mattress tests and 9 in the 2-sheet tests. If three or more mattress surface locations (smooth surface, tape edge,
+    quilted, or tufted areas) exist in the particular mattress surface under test, three cigarettes shall be burned on each different surface location. If only two mattress surface locations exist in the
+    particular mattress surface under test (tape edge and smooth surface), four cigarettes shall be burned on the smooth surface and five cigarettes shall be burned on the tape edge.
+
+    (ii) Light and place one cigarette at a time on the mattress surface. (If previous experience with a similar type of mattress has indicated that ignition is not likely, the number of cigarettes which
+    may be lighted and placed on the mattress at one time is left to the test operator''s judgment. The number of cigarettes must be carefully considered because a smoldering or burning mattress is extremely
+    hazardous and difficult to extinguish.) The cigarettes must be positioned no less than 6 inches apart on the mattress surface. Each cigarette used as an ignition source shall be well lighted but not
+    burned more than 4 mm (0.16 inch) when placed on the mattress. (Fire extinguishing equipment must be readily available at all times.)
+
+    (iii) If a cigarette extinguishes before burning its full length on any mattress surface location, pops out of position when tested on a tuft, or rolls off a test location, the test must be repeated
+    with a freshly lit cigarette on a different portion of the same type of location on the mattress surface until either: the number of cigarettes specified
+
+    in § 1632.4(d)(1)(i) have burned their full lengths; the number of cigarettes specified in § 1632.4(d)(1)(i) have extinguished before burning their full lengths; or failure has occurred according to
+    § 1632.3(b)
+
+    Test criterion.
+
+    (2)
+
+    Bare mattress tests
+
+    —(i)
+
+    Smooth surface.
+
+    Each burning cigarette shall be placed directly on a smooth surface location on the test surface on the half reserved for bare mattress tests. The cigarettes should burn their full lengths on a smooth
+    surface without burning across a tuft, or stitching of a quilted area. However, if this is not possible because of mattress design, then the cigarettes shall be positioned on the mattress in a manner
+    which will allow as much of the butt ends as possible to burn on smooth surfaces. Report results for each cigarette as pass or fail as defined in the test criterion (see § 1632.3(b)). CAUTION: Even
+    under the most carefully observed conditions, smoldering combustion can progress to the point where it cannot be readily extinguished. It is imperative that a test be discontinued as soon as ignition
+    has definitely occurred. Immediately wet the exposed area with a water spray (from water bottle), cut around the burning material with a knife or scissors and pull the material out of the mattress with
+    tongs. Make sure that all charred or burned material is removed. Ventilate the room.
+
+    (ii)
+
+    Tape edge.
+
+    Each burning cigarette shall be placed in the depression between the mattress top surface and the tape edge, parallel to the tape edge of the half of the test surface reserved for bare mattress tests.
+    If there is only a seam or no depression at the edge, support the cigarettes in place along the edge and parallel to the edge with straight pins. Three straight pins may be inserted through the edge
+    at a 45° angle such that one pin supports the cigarette at the burned end, one at the center, and one at the butt. The heads of the pins must be below the upper surface of the cigarette (see fig. 2).
+    Report results for each cigarette as pass or fail as defined in the test criterion (see § 1632.3(b)).
+
+    EC03OC91.097
+
+    EC03OC91.098
+
+    (iii)
+
+    Quilted location.
+
+    If quilting exists on the test surface, each burning cigarette shall be placed on quilted locations of the test surface. The cigarettes shall be positioned directly over the thread or in the depression
+    created by the quilting process on the half of the test surface reserved for bare mattress tests. If the quilt design is such that the cigarettes cannot burn their full lengths over the thread or depression,
+    then the cigarettes shall be positioned in a manner which will allow as much of the butt ends as possible to burn on the thread or depression. Report results for each cigarette as pass or fail as defined
+    in the test criterion (see § 1632.3(b)).
+
+    (iv)
+
+    Tufted location.
+
+    If tufting exists on the test surface, each burning cigarette shall be placed on tufted locations of the test surface. The cigarettes shall be positioned so that they burn down into the depression caused
+    by the tufts and so that the butt ends of the cigarettes burn out over the buttons or laces used in the tufts or the depressions made by the tufts on the half of the test surface reserved for bare mattress
+    tests. Report results for each cigarette as pass or fail as defined in the test criterion (see § 1632.3(b)).
+
+    (3)
+
+    Two-sheet tests.
+
+    Spread a section of sheet or sheeting material smoothly over the mattress surface which has been reserved for the two-sheet test and tuck under the mattress. Care must be taken that hems or any other
+    portion of the sheet which is more than one fabric thickness, is neither directly under nor directly over the test cigarette in the two-sheet test.
+
+    (i)
+
+    Smooth surfaces.
+
+    Each burning cigarette shall be placed directly on the sheet covered mattress in a smooth surface location as defined in the bare mattress test. Immediately cover the first sheet and the burning cigarette
+    loosely with a second, or top sheet (see fig. 2). Do not raise or lift the top sheet during testing unless obvious ignition has occurred or until the cigarette has burned out. Whether a cigarette has
+    extinguished may be determined by holding the hand near the surface of the top sheet over the test location. If no heat is felt or smoke observed, the cigarette has burned out. If ignition occurs, immediately
+    remove the sheets and cigarette and follow the cautionary procedures outlined in the bare mattress test. Report results for each cigarette as pass or fail as defined in the test criterion (see § 1632.3(b)).
+
+    (ii)
+
+    Tape edge.
+
+    (A) Each burning cigarette shall be placed in the depression between the top surface and the tape edge on top of the sheet, and immediately covered with a second sheet. It is important the air space
+    be eliminated, as much as possible, between the mattress and the bottom sheet at the test location before testing. Depress the bottom sheet into the depression using a thin rod or other suitable instrument.
+
+    (B) In most cases, the cigarettes will remain in place throughout the test. However, if the cigarettes show a marked tendency to roll off the tape edge location, they may be supported with straight
+    pins. Three straight pins may be inserted through the bottom sheet and tape at a 45° angle such that one pin supports the cigarette at the burning end, one at the center, and one at the butt. The heads
+    of the pins must be below the upper surface of the cigarette (see fig. 2). Report results for each cigarette as pass or fail as defined in the test criterion (see § 1632.3(b)).
+
+    (iii)
+
+    Quilted locations.
+
+    If quilting exists on the test surface, each burning cigarette shall be placed in a depression caused by quilting, dir'
+- id: art-6
+  title: § 1632.5
+  text: '§ 1632.5
+
+    Mattress pad test procedure.
+
+    (a)
+
+    Testing.
+
+    All mattress pads shall be tested, in the condition in which they are intended to be sold, according to § 1632.4 Mattress test procedure, using the glass fiberboard substrate.
+
+    (b)
+
+    Flame resistant mattress pads.
+
+    The following additional requirements shall be applicable to mattress pads which contain a chemical fire retardant.
+
+    (1) These mattress pads shall be tested in accordance with § 1632.4 Mattress test procedure after they have been washed and dried 10 times as described in § 1632.5(b)(2).
+
+    (i) Such laundering is not required of mattress pads which are intended for one time use and/or are not intended to be laundered, as determined by the Consumer Product Safety Commission.
+
+    (ii) Mattress pads which are not susceptible to being laundered and are labeled “dryclean only” shall be drycleaned by a procedure which has previously been found acceptable by the Consumer Product
+    Safety Commission.
+
+    (2)
+
+    Laundering procedure.
+
+    (i) Washing shall be performed in accordance with sections 8.2.2 and 8.2.3 of AATCC Test Method 124-1996, using wash temperature V (60° ±3 °C, 140° ±5 °F) specified in Table II of that method, and the
+    water level, agitator speed, washing time, spin speed and final spin cycle specified for “Normal/Cotton Sturdy” in Table III.
+
+    (ii) Drying shall be performed in accordance with section 8.3.1(A) of AATCC Test Method 124-1996 “Appearance of Fabrics after Repeated Home Laundering,” Tumble Dry, using the exhaust temperature (66°
+    ±5 °C, 150° ±10 °F) and cool down time of 10 minutes specified in the “Durable Press” conditions of Table IV.
+
+    (iii) Maximum washer load shall be 3.64 Kg (8 pounds) and may consist of any combination of test samples and dummy pieces.
+
+    (iv) AATCC Test Method 124-1996 “Appearance of Fabrics after Repeated Home Laundering,” is found in Technical Manual of the American Association of Textile Chemists and Colorists, vol. 73, 1997, which
+    is incorporated by reference. Copies of this document are available from the American Association of Textile Chemists and Colorists, P.O. Box 12215, Research Triangle Park, North Carolina 27709. This
+    document is also available for inspection at the National Archives and Records Administration (NARA). For information on the availability of this material at NARA, call 202-741-6030, or go to:
+
+    http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html.
+
+    This incorporation by reference was approved by the Director of the Federal Register in accordance with 5 U.S.C. 552(a) and 1 CFR part 51.
+
+    (v) A different number of wash and dry cycles using another procedure may be specified and used, if that procedure has previously been found to be equivalent by the Consumer Product Safety Commission.
+
+    (3)
+
+    Labeling
+
+    —(i)
+
+    Treatment label.
+
+    If a mattress pad contains a chemical fire retardant, it shall be labeled with the letter “T” pursuant to rules and regulations established by the Consumer Product Safety Commission.
+
+    (ii)
+
+    Care label.
+
+    All mattress pads which contain a chemical fire retardant treatment shall be labeled with precautionary instructions to protect the pads from agents or treatments which are known to cause deterioration
+    of their flame resistance. Such labels shall be permanent and otherwise in accordance with rules and regulations established by the Consumer Product Safety Commission in § 1632.31(b).
+
+    (iii)
+
+    Exception.
+
+    One time use products as defined in § 1632.5(b)(1)(i) are not subject to these labeling requirements.
+
+    [49 FR 39796, Oct. 10, 1984, as amended at 65 FR 12938, Mar. 10, 2000]'
+- id: art-7
+  title: § 1632.6
+  text: '§ 1632.6
+
+    Ticking substitution procedure.
+
+    (a) This procedure may be used to verify acceptable equivalency if a mattress or mattress pad manufacturer wishes to change the ticking used on a particular mattress or mattress pad prototype without
+    conducting a prototype test as specified in § 1632.4 or § 1632.5. The procedure includes a ticking classification test that may be used by a ticking, mattress or mattress pad manufacturer or by a distributor
+    of ticking.
+
+    (b)
+
+    Definitions.
+
+    For the purpose of this section the following definitions apply in addition to those in § 1632.1.
+
+    (1)
+
+    Mattress ticking prototype.
+
+    Means a ticking of a specific construction, color, or combination of colors or color pattern, weave pattern design, finish application, fiber content, and weight per unit area. With respect to film-coated
+    ticking, a mattress ticking prototype means in addition to the factors listed above, a given method of application, chemical formula, and thickness of application of film coating. With respect to a
+    quilted ticking, a mattress ticking prototype means the combination of a specific ticking as described above; a specific filling, thickness, density, and chemical composition; a specific thread; a specific
+    method of quilting; and a specific backing fabric construction, weave, finish, fiber content, and weight.
+
+    (2)
+
+    Mattress pad ticking prototype
+
+    (i) Means a ticking of a specific construction, color, or combination of colors or color pattern, weave pattern design, finish application, fiber content, and weight per unit area. With respect to film-coated
+    ticking, a mattress pad ticking prototype means in addition to the factors listed above, a given method of application, chemical formula, and thickness of application of film coating.
+
+    (ii) Quilted ticking is excluded from this definition. Therefore, the following procedures may not be used to substitute quilted ticking used on or as a mattress pad.
+
+    (c)
+
+    Scope and application.
+
+    (1) This procedure provides an independent evaluation of the cigarette ignition characteristics of ticking and for the classification of ticking into one of three performance classes. Class A represents
+    tickings evaluated as acting as barriers against cigarette ignition; Class B represents tickings evaluated as having no effect on cigarette ignition; and Class
+
+    C represents tickings evaluated as having the potential, in some manner, to act as a contributor to cigarette ignition.
+
+    (2) Substitution of any ticking which has been evaluated as Class A using the procedure in this § 1632.6 for any other ticking material shall not be a “difference in materials” as that phrase is used
+    in §§ 1632.1 (j) and (k). Consequently, any ticking material evaluated as Class A under this test procedure may be used on any qualified mattress prototype or on any qualified mattress pad prototype
+    without conducting new prototype tests.
+
+    (3) Substitution of any ticking which has been evaluated as Class B using the procedure in this § 1632.6 for the ticking material used on any mattress prototype or on any mattress pad prototype which
+    was qualified in prototype testing with a testing material evaluated as Class B or a Class C shall not be a “difference in materials” as that phrase is used in §§ 1632.1 (j) and (k). Consequently, any
+    ticking material evalu'
 doc_files:
 - us/raw/US-CFR-title16-part1632.xml
+- us/raw/US-CFR-title16-part1632.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1632.xml (xml, 61242 chars)，生成 7 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1632.xml (xml, 61242 chars)，生成 7 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1632.xml (xml, 61242 chars)，生成 7 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1632-4（US 16 CFR Part 1632）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1632-3（US 16 CFR Part 1632）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1632-2（US 16 CFR Part 1632）。'

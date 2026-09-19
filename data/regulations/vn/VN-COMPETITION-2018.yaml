@@ -9,11 +9,987 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'THE NATIONAL SOCIALIST REPUBLIC OF VIETNAM
+
+    ASSEMBLY Independ'
+  text: 'THE NATIONAL SOCIALIST REPUBLIC OF VIETNAM
+
+    ASSEMBLY Independence - Freedom - Happiness
+
+    -------- ---------------
+
+    Law No. 23/2018/QH14 Hanoi, June 12, 2018
+
+    COMPETITION LAW
+
+    Pursuant to the Constitution of the Socialist Republic of Vietnam;
+
+    The National Assembly promulgates the Competition Law.'
+- id: art-2
+  title: Chapter I
+  text: 'Chapter I
+
+    GENERAL PROVISIONS'
+- id: art-3
+  title: Article 1. Scope
+  text: 'Article 1. Scope
+
+    This Law sets forth anti-competitive practices, an economic concentration that causes or may
+
+    cause anti-competitive effects on the market of Vietnam; unfair competition practices;
+
+    competition legal proceedings; sanctions against violations of competition law; state
+
+    management of competition.'
+- id: art-4
+  title: Article 2. Regulated entities
+  text: 'Article 2. Regulated entities
+
+    1. Business organizations and individuals (hereinafter referred to as enterprises), including
+
+    enterprises that produce and provide public-utility products and services, enterprises that operate
+
+    in state-monopolized sectors/domains, public sector entities, and foreign enterprises that operate
+
+    in Vietnam.
+
+    2. Industry associations operating in Vietnam.
+
+    3. Relevant domestic and foreign agencies, organizations, and individuals.'
+- id: art-5
+  title: Article 3. Interpretation of terms
+  text: 'Article 3. Interpretation of terms
+
+    For the purpose of the Law, these terms below shall be construed as follows:
+
+    1. “Industry association” includes business association and professional association.
+
+    2. “Anti-competitive practices” means enterprises’ practices that cause or may cause anti-
+
+    competitive effects, including anti-competitive agreement, abuse of a dominant position on the
+
+    market, and abuse of monopoly power.
+
+    3. “Anti-competitive effects” means the effect of eliminating, reducing, distorting, or deterring
+
+    competition in the market.
+
+    4. “Anti-competitive agreement” means arrangements made by parties in any form, which causes
+
+    or may cause anti-competitive effects.
+
+    5. “Abuse of a dominant position, abuse of monopoly position” means behavior of enterprises
+
+    with dominant position, monopoly position which causes or may cause anti-competitive effects.
+
+    6. “Unfair competition practices” means competition acts performed by enterprises against the
+
+    principles of good faith, honesty, business norms, and standards, which cause or may cause
+
+    damage to the legitimate rights and interests of other enterprises.
+
+    7. “Relevant market” means the market of those products and/or services that are regarded as
+
+    interchangeable because of their characteristics, intended use, and prices in a specific
+
+    geographical area with homogeneous conditions of competition, which is considerably
+
+    differentiated from neighboring geographic areas.
+
+    8. “Competition legal proceedings” means investigation, handling of competition cases and
+
+    handling of claims against decisions on settlement of a competition case (hereinafter referred to
+
+    as settlement decisions) following the procedures prescribed herein.
+
+    9. “Competition case” means case showing signs of violation of competition law, which is
+
+    investigated and handled by this Law, including anti-competition, violation of regulations on
+
+    economic concentration, and unfair competition.'
+- id: art-6
+  title: Article 4. State’s policies on competition
+  text: 'Article 4. State’s policies on competition
+
+    1. This Law governs competition relations in general. Investigation and handling of competition
+
+    cases, exemption from prohibition on anti-competitive agreement, and notification of economic
+
+    concentration shall apply this Law.
+
+    2. If there is any discrepancy between this Law and other laws in terms of anti-competitive
+
+    practices, economic concentration, unfair competition practices, and handling of unfair
+
+    competition practices, the latter shall prevail.'
+- id: art-7
+  title: Article 5. Competition rights and rules in business
+  text: 'Article 5. Competition rights and rules in business
+
+    1. Enterprises are entitled to freedom of competition in accordance with legal provisions. The
+
+    State guarantees the lawful right to competition in business.
+
+    2. Competition must be implemented on the principles of honesty, fairness, non-infringement
+
+    upon the interests of the State, public interests, legitimate rights, and interests of enterprises and
+
+    consumers.'
+- id: art-8
+  title: Article 6. State’s policies on competition
+  text: 'Article 6. State’s policies on competition
+
+    1. Create and maintain a healthy, fair, and transparent competition environment.
+
+    2. Promote competition, ensure the right to freedom of competition in business in accordance
+
+    with legal provisions.
+
+    3. Enhance accessibility to market, improve efficiency, social welfare and protect consumers’
+
+    interests.
+
+    4. Enable society and consumers to oversee the implementation of competition law.'
+- id: art-9
+  title: Article 7. Roles of regulatory agencies in competition
+  text: 'Article 7. Roles of regulatory agencies in competition
+
+    1. The Government shall perform uniform state management of competition.
+
+    2. The Ministry of Industry and Trade shall be the designated contact point that assists the
+
+    Government in state management of competition.
+
+    3. Ministries, ministerial-level agencies, within their tasks and powers, shall cooperate with the
+
+    Ministry of Industry and Trade in state management of competition.
+
+    4. People’s Committees of provinces, within their tasks and powers, shall perform the state
+
+    management of competition.'
+- id: art-10
+  title: Article 8. Prohibited acts related to competition
+  text: 'Article 8. Prohibited acts related to competition
+
+    1. State agencies are prohibited from performing the following acts to prevent competition in the
+
+    market:
+
+    a) Forcing, requesting, recommending enterprises, organizations, or individuals to or not to buy,
+
+    sell specific products, provide services or from/to specific enterprises, except for products and
+
+    services in state-monopolized domains or in emergency cases prescribed by law;
+
+    b) Discriminating among enterprises;
+
+    c) Forcing, requesting, recommending industry associations, social-occupational organizations or
+
+    enterprises to associate with one another with a view to restraining competition on the market;
+
+    d) Taking advantage of their positions and powers to illegally intervene the competition.
+
+    2. Organizations, individuals are prohibited from providing information, mobilizing,
+
+    encouraging, coercing or enabling enterprises to engage in anti-competitive practices or unfair
+
+    competition.'
+- id: art-11
+  title: Chapter II
+  text: 'Chapter II
+
+    RELEVANT MARKET AND MARKET SHARE'
+- id: art-12
+  title: Article 9. Determination of relevant market
+  text: 'Article 9. Determination of relevant market
+
+    1. Relevant market is defined on the basis of relevant product market and relevant geographic
+
+    market.
+
+    A relevant product market comprises all those products and/or services that are regarded as
+
+    interchangeable or substitutable by reason of the products'' characteristics, their prices ,and their
+
+    intended use.
+
+    A relevant geographic market is a specific geographical area in which provided goods and
+
+    services are interchangeable under homogeneous conditions of competition, and which is
+
+    considerably differentiated from neighboring geographic areas.
+
+    2. The Government shall provide guidelines for Clause 1 of this Article.'
+- id: art-13
+  title: Article 10. Determination of market share and combined market share
+  text: 'Article 10. Determination of market share and combined market share
+
+    1. Based on the characteristics and nature of the relevant market, the market share of enterprises
+
+    in the relevant market shall be determined using one of the following methods:
+
+    a) The percentage of sales revenue of an enterprise out of the total sales revenue of all enterprises
+
+    on the relevant market on a monthly, quarterly or yearly basis;
+
+    b) The percentage of purchase revenue of an enterprise out of the total purchase revenue of all
+
+    enterprises on the relevant market on a monthly, quarterly or yearly basis;
+
+    c) The percentage of the volume of product/service sold by an enterprise out of the total volume
+
+    of products/services sold by all enterprises on the relevant market on a monthly, quarterly or
+
+    yearly basis;
+
+    d) The percentage of the volume of product/service purchased by an enterprise out of the total
+
+    volume of product /service purchased by all enterprises on the relevant market on a monthly,
+
+    quarterly or yearly basis.
+
+    2. Combined market share is total market shares in relevant market of enterprises engaging in
+
+    anti-competitive practices or economic concentration.
+
+    3. The revenue used to determine market share prescribed in Clause 1 hereof shall be defined by
+
+    Vietnam’s accounting standards.
+
+    4. In the case where an enterprise operates for less than one financial year, the revenue, sales,
+
+    volume of goods and services sold/purchased used to determine the market share prescribed in
+
+    Clause 1 hereof shall be calculated from the date of commencing its operations till the date of
+
+    determining its market share.
+
+    5. The Government shall provide guidelines for this Article.'
+- id: art-14
+  title: Chapter III
+  text: 'Chapter III
+
+    ANTI-COMPETITIVE AGREEMENTS'
+- id: art-15
+  title: Article 11. Anti-competitive agreements
+  text: 'Article 11. Anti-competitive agreements
+
+    1. Agreements on directly or indirectly fixing goods or service prices.
+
+    2. Agreements on distributing customers, consumption market, sources of supply of goods, and
+
+    provision of services.
+
+    3. Agreements on limiting or controlling the quantity, volume of produced, purchased, sold
+
+    goods or provided services.
+
+    4. Agreements for one or more parties to the agreements to win tenders when participating in
+
+    tenders for the supply of goods or services.
+
+    5. Agreements on preventing, restraining, disallowing other enterprises from entering the market
+
+    or developing business.
+
+    6. Agreements on abolishing from the market enterprises other than the parties to the agreements.
+
+    7. Agreements on restricting technical or technological development and investments.
+
+    8. Agreement on imposing on other enterprises conditions for signing of goods or services
+
+    purchase or sale contracts or forcing other enterprises to accept obligations which have no direct
+
+    connection with the subject of such contracts.
+
+    9. Agreements on not trading with enterprises other than the parties to the agreements.
+
+    10. Agreements on restricting consumption market, sources of supply of goods and services from
+
+    enterprises other than the parties to the agreements.
+
+    11. Other agreements that cause or may cause anti-competitive effects.'
+- id: art-16
+  title: Article 12. Prohibited anti-competitive agreements
+  text: 'Article 12. Prohibited anti-competitive agreements
+
+    1. Enterprises in the same relevant market are prohibited from entering anti-competitive
+
+    agreements prescribed in Clauses 1, 2, and 3 Article 11 of this Law.
+
+    2. Enterprises are prohibited from entering anti-competitive agreements prescribed in Clauses 4,
+
+    5, and 6 Article 11 of this Law.
+
+    3. Enterprises in the same relevant market are prohibited from entering anti-competitive
+
+    agreements prescribed in Clauses 7, 8, 9, 10, and 11 Article 11 of this Law if such agreements
+
+    cause or may cause substantial anti-competitive effects on the market.
+
+    4. Enterprises doing business in different steps of the same production, distribution, supply chain
+
+    for specific kinds of goods, services are prohibited from entering anti-competitive agreements
+
+    prescribed in Clauses 1, 2, 3, 7, 8, 9, 10 and 11 Article 11 of this Law if such agreements cause
+
+    or may cause substantial anti-competitive effects on the market.'
+- id: art-17
+  title: Article 13. Assessment of substantial anti-competitive effects caused or probably caused by
+  text: 'Article 13. Assessment of substantial anti-competitive effects caused or probably caused by
+
+    anti-competitive agreements
+
+    1. The National Competition Commission shall assess substantial anti-competitive effects caused
+
+    or probably caused by an anti-competitive agreement based on the following factors:
+
+    a) Market share of the enterprises engaging in the agreement;
+
+    b) Barriers to market entry and expansion;
+
+    c) Limitations to technological research, development, renovation or technological capacity
+
+    limitation;
+
+    d) Reduction in accessibility or ownership to essential infrastructure;
+
+    dd) Increase of customers’ costs and time for buying goods and services of the enterprises
+
+    engaging in the agreement or customers’ switching to other related products;
+
+    e) Obstruction of competition in the market through control of other specific factors in the
+
+    sectors and domains related to the parties engaging in the agreement.
+
+    2. The Government shall provide guidelines for Clause 1 of this Article.'
+- id: art-18
+  title: Article 14. Exemption from prohibition on anti-competitive agreements
+  text: 'Article 14. Exemption from prohibition on anti-competitive agreements
+
+    1. Anti-competitive agreements prescribed in Clauses 1, 2, 3, 7, 8, 9, 10, and 11 Article 11 which
+
+    are prohibited in Article 12 of this Law shall be granted exemption for a definite term if they
+
+    meet one of the following conditions and benefit consumers:
+
+    a) Promoting technical and technological advances, raising the quality of goods, services;
+
+    b) Increasing the competitiveness of Vietnamese enterprises in international market;
+
+    c) Promoting the single application of quality standards and technical norms of product
+
+    categories;
+
+    d) Agreeing on conditions for contract performance, goods delivery, and payment, which are not
+
+    related to prices and price elements.
+
+    2. In cases where labor agreements, cooperation agreements in specific sectors or domains have
+
+    been prescribed by other relevant laws, they shall be exempted in accordance with the provisions
+
+    of this Law.'
+- id: art-19
+  title: Article 15. Application for exemption from prohibition on anti-competitive agreements
+  text: 'Article 15. Application for exemption from prohibition on anti-competitive agreements
+
+    1. Enterprises intending to enter into anti-competitive agreements shall submit an application for
+
+    exemption for prohibited anti-competitive agreements (hereinafter referred to as exemption
+
+    application) to the National Competition Commission.
+
+    2. Required documents in exemption application:
+
+    a) An application form issued by the National Competition Commission;
+
+    b) Draft contents of the agreement reached by the parties;
+
+    c) A valid copy of the enterprise registration certificate or equivalent document of each
+
+    enterprise participating in the anti-competitive agreement and a copy of the association''s charter,
+
+    for cases where an industry association participates in the agreement;
+
+    d) Financial statements of the two consecutive years preceding the year of submission of the
+
+    exemption application or, in case of newly established enterprises, financial statements from the
+
+    time of establishment to the time of submission of the exemption application of each enterprise
+
+    participating in an anti-competitive agreement, which is certified by an auditing firm in
+
+    accordance with the provisions of law;
+
+    dd) A report explaining in detail the eligibility for exemption as specified in Clause 1 Article 14
+
+    of this Law, enclosed with evidence;
+
+    e) Letter(s) of authorization given to representatives by the parties to the anti-competitive
+
+    agreement.
+
+    3. The party submitting the application shall be responsible for the truthfulness of the
+
+    application. Vietnamese translations are required if documents in the application are made in a
+
+    foreign language.'
+- id: art-20
+  title: Article 16. Acceptance of exemption application
+  text: 'Article 16. Acceptance of exemption application
+
+    1. The National Competition Commission shall be responsible for accepting exemption
+
+    applications.
+
+    2. Within 7 working days from receipt of an exemption application, the National Competitive
+
+    Commission shall notify the applicant in writing whether the application is complete and valid.
+
+    If the application is incomplete or invalid, the National Competition Commission shall notify the
+
+    applicant in writing of deficiencies that need amendments and allow them 30 days to make
+
+    amendments from the date of the notice.
+
+    Upon expiry of 30 days, if no amendment is made or the application is not amended completely,
+
+    the National Competition Commission shall return the application.
+
+    3. After receiving a notice certifying that the application is complete and valid, the applicant
+
+    shall pay an amount of appraisal fee as prescribed in law on fees and charges.
+
+    4. The application is accepted when the applicant fully pays the appraisal fee.'
+- id: art-21
+  title: Article 17. Request for further documentation in the exemption application
+  text: 'Article 17. Request for further documentation in the exemption application
+
+    1. After accepting the exemption application, the National Competition Commission may request
+
+    the applicant to provide further documentation relating to the intention to execute the anti-
+
+    competitive agreement.
+
+    2. If the applicant fails to provide additional documentation or provides insufficient
+
+    documentation, the National Competition Commission shall consider the application according
+
+    to provided documentation.'
+- id: art-22
+  title: Article 18. Consultation while processing exemption application
+  text: 'Article 18. Consultation while processing exemption application
+
+    1. The National Competition Commission may consult relevant entities about the contents of the
+
+    prohibited anti-competitive agreement in question.
+
+    2. Within 15 days from the date on which the consultation request is received, the relevant entity
+
+    shall respond in writing and provide documentation supporting their consultation.'
+- id: art-23
+  title: Article 19. Withdrawal of exemption application
+  text: 'Article 19. Withdrawal of exemption application
+
+    1. An applicant is entitled to withdraw its exemption application. A request for withdrawal of
+
+    such application shall be made in writing and sent to the National Competition Commission.
+
+    2. The appraisal fee shall not be refunded to the applicant who withdrew their exemption
+
+    application.'
+- id: art-24
+  title: Article 20. Power and time limit to grant exemption
+  text: 'Article 20. Power and time limit to grant exemption
+
+    1. The National Competition Commission has power to grant or not grant exemption as
+
+    prescribed in this Law; if the exemption is not granted, it shall provide an explanation in writing.
+
+    2. Time limit for granting the exemption is 60 days from the date on which the application is
+
+    accepted.
+
+    3. In a complicated case, the time limit prescribed in Clause 2 of this Article may be extended by
+
+    the National Competition Commission but not exceeding 30 days. The extension must be
+
+    notified to the applicant at least 3 working days before the deadline to cconsideringgranting the
+
+    exemption.
+
+    4. If the National Competition Commission commits violations against regulations on procedures
+
+    and the time limit for granting the exemption, the enterprise is entitled to file a claim or lawsuit
+
+    as per the law.'
+- id: art-25
+  title: Article 21. Exemption decision
+  text: 'Article 21. Exemption decision
+
+    1. An exemption decision must at least contain:
+
+    a) Names and addresses of parties engaging in the agreement;
+
+    b) Contents of the agreement to be performed;
+
+    c) Conditions and obligations of parties engaging in the agreement;
+
+    d) Exemption period.
+
+    2. An exemption decision must be sent to parties engaging in the agreement within 7 working
+
+    days from its date of issuance.
+
+    3. The exemption period prescribed in Point d Clause 1 hereof is no longer than 5 years from the
+
+    date of issuance.
+
+    Within 90 days before the expiry of the exemption period, at the request of parties engaging in
+
+    the agreement, the National Competition Commission shall consider granting further exemption.
+
+    If a further exemption is granted, the extra period is no longer than 5 years from the date on
+
+    which the decision of further exemption is issued.'
+- id: art-26
+  title: Article 22. Execution of anti-competitive agreement eligible for exemption
+  text: 'Article 22. Execution of anti-competitive agreement eligible for exemption
+
+    1. Parties engaging in an anti-competitive agreement that are eligible for exemption prescribed in
+
+    Clause 1 Article 14 hereof may only enter into the agreement after they obtain an exemption
+
+    decision as prescribed in Article 21 hereof.
+
+    2. Parties engaging in the agreement eligible for exemption must adhere to the exemption
+
+    decision as prescribed in Article 21 hereof.'
+- id: art-27
+  title: Article 23. Annulment of an exemption decision
+  text: 'Article 23. Annulment of an exemption decision
+
+    1. The National Competition Commission shall decide to annul exemption decisions in the
+
+    following cases:
+
+    a) Eligibility for exemption is no longer available;
+
+    b) Fraud is found in the application for exemption;
+
+    c) The enterprise gaining exemption fails to fulfill the conditions and obligations specified in the
+
+    exemption decision;
+
+    d) The exemption decision is made based on inaccurate information on eligibility for exemption.
+
+    2. If the enterprise gaining exemption is no longer eligible for exemption, it shall notify the
+
+    National Competition Commission, the National Competition Commission shall then issue a
+
+    decision on annulment of exemption decision.
+
+    3. An annulment of exemption decision must be sent to parties engaging in the agreement within
+
+    7 working days from its date of issuance.'
+- id: art-28
+  title: Chapter IV
+  text: 'Chapter IV
+
+    ABUSE OF A DOMINANT POSITION, ABUSE OF A MONOPOLY POSITION'
+- id: art-29
+  title: Article 24. Enterprises, groups of enterprises holding a dominant position on the market
+  text: 'Article 24. Enterprises, groups of enterprises holding a dominant position on the market
+
+    1. An enterprise shall be considered to hold a dominant position in the market if it has substantial
+
+    market power as specified in Article 26 of this Law or has market shares of 30% or more in the
+
+    relevant market.
+
+    2. A group of enterprises shall be considered to hold a dominant position on the market if they
+
+    jointly cause anti-competitive effects and have substantial market power as specified in Article
+
+    26 of this Law or their total market shares fall into one of the following cases:
+
+    a) Two enterprises having a total market share of 50% or more in the relevant market;
+
+    b) Three enterprises having a total market share of 65% or more in the relevant market;
+
+    c) Four enterprises having a total market share of 75% or more in the relevant market;
+
+    d) At least five enterprises have the total market share of 85% or more in the relevant market.
+
+    3. A group of enterprises holding a dominant market position prescribed in Clause 2 of this
+
+    Article excludes an enterprise holding a market share of less than 10% of the relevant market.'
+- id: art-30
+  title: Article 25. Enterprises holding a monopoly position
+  text: 'Article 25. Enterprises holding a monopoly position
+
+    An enterprise shall be considered to hold the monopoly position if there is no enterprise
+
+    competing on the goods or services dealt in by such enterprise on the relevant market.'
+- id: art-31
+  title: Article 26. Determination of substantial market power
+  text: 'Article 26. Determination of substantial market power
+
+    1. Substantial market power of an enterprise or group of enterprises is determined based on some
+
+    of the following factors:
+
+    a) Market shares of enterprises in the relevant market;
+
+    b) Financial strength and size of the enterprise;
+
+    c) Barriers to market entry and expansion to other enterprises;
+
+    d) Ability to obtain, assess, control the goods distribution/consumption market or sources of
+
+    supply;
+
+    dd) Advantages in technology and technical infrastructure;
+
+    e) Right to own, obtain and assess infrastructure;
+
+    g) Right to own or use subject matters of intellectual property;
+
+    h) Ability to transfer to other sources of supply or demand associated with other goods and
+
+    related services;
+
+    i) Particular factors in the sector that the enterprise runs the business.
+
+    2. The Government shall provide guidelines for Clause 1 of this Article.'
+- id: art-32
+  title: Article 27. Prohibited abuse of a dominant position or abuse of a monopoly position
+  text: 'Article 27. Prohibited abuse of a dominant position or abuse of a monopoly position
+
+    1. An enterprise or group of enterprises holding a dominant position in the market is prohibited
+
+    from:
+
+    a) Selling goods or providing services below costs that drive or probably ddrivecompetitors out
+
+    of the market;
+
+    b) Imposing irrational buying or selling prices of goods or services or establishing minimum
+
+    resale price maintenance (RPM), which causes or possibly causes damage to customers;
+
+    c) Restricting production and distribution of goods, and services, limiting markets, preventing
+
+    technical and technological development, which causes or possibly causes damage to customers;
+
+    d) Applying dissimilar commercial conditions in similar transactions, which leads to or possibly
+
+    leads to prevention of other enterprises from market entry or expansion or exclusion of other
+
+    enterprises;
+
+    dd) Imposing conditions on other enterprises to conclude goods or services purchase or sale
+
+    contracts or requesting customers to accept obligations that have no direct connection with
+
+    subjects of such contracts, which leads to or possibly leads to prevention of other enterprises
+
+    from market entry/expansion or exclusion of other enterprises;
+
+    e) Preventing other enterprises from market entry or expansion;
+
+    g) Other prohibited abuse of a dominant position prescribed in other laws.
+
+    2. An enterprise holding a monopoly position is prohibited from:
+
+    a) Performing acts prescribed in Points b, c, d, dd, and e Clause 1 hereof;
+
+    b) Imposing unfavorable conditions on customers;
+
+    c) Taking advantage of the monopoly position to unilaterally modify or cancel the contract
+
+    already signed without justifiable reasons;
+
+    d) Other prohibited abuse of a monopoly position prescribed in other laws.'
+- id: art-33
+  title: Article 28. Control of enterprises operating in state-monopolized domains
+  text: 'Article 28. Control of enterprises operating in state-monopolized domains
+
+    1. The State controls enterprises operating in state-monopolized domains with the following
+
+    measures:
+
+    a) Deciding buying prices, selling prices of goods, services in state-monopolized domains;
+
+    b) Deciding the quantity, volume and market scope of goods, services in state-monopolized
+
+    domains;
+
+    c) Directing, organizing the markets related to goods, services in state-monopolized domains
+
+    prescribed by this Law and other relevant laws.
+
+    2. When undertaking other business activities outside state-monopolized domains, enterprises
+
+    shall not be subject to the provisions of Clause 1 of this Article but be still subject to the
+
+    application of other provisions of this Law.'
+- id: art-34
+  title: Chapter V
+  text: 'Chapter V
+
+    ECONOMIC CONCENTRATION'
+- id: art-35
+  title: Article 30. Categories of economic concentration
+  text: 'Article 30. Categories of economic concentration
+
+    1. Economic concentration includes the following categories:
+
+    a) Merger of enterprises;
+
+    b) Consolidation of enterprises;
+
+    c) Acquisition of enterprises;
+
+    d) Joint venture between/among enterprises;
+
+    dd) Other categories of economic concentration as per the law.
+
+    2. Merger of enterprises means an act whereby one or several enterprises transfer all of its/their
+
+    property, rights, obligations, and legitimate interests to another enterprise, and at the same time
+
+    terminate the existence of the merged enterprises.
+
+    3. Consolidation of enterprises means an act whereby two or more enterprises transfer all of their
+
+    property, rights, obligations, and legitimate interests to form a new enterprise and, at the same
+
+    time, terminate the existence of the consolidating enterprises.
+
+    4. Acquisition of enterprises means an act whereby an enterprise acquires the whole or part of
+
+    property or shares of another enterprise sufficient to control or dominate all or one of the trades
+
+    of the acquired enterprise.
+
+    5. Joint venture between enterprises means an act whereby two or more enterprises jointly
+
+    contribute part of their property, rights, obligations, and legitimate interests to the establishment
+
+    of a new enterprise.'
+- id: art-36
+  title: Article 30. Prohibited economic concentration
+  text: 'Article 30. Prohibited economic concentration
+
+    Economic concentration shall be prohibited if it causes or probably causes substantial anti-
+
+    competitive effects on the Vietnamese market.'
+- id: art-37
+  title: Article 31. Assessment of substantial anti-competitive effects caused or probably caused by
+  text: 'Article 31. Assessment of substantial anti-competitive effects caused or probably caused by
+
+    economic concentration
+
+    1. The National Competition Commission shall assess substantial anti-competitive effects caused
+
+    or probably caused by economic concentration based on the following factors:
+
+    a) Combined market share of enterprises engaging in the economic concentration on the relevant
+
+    market;
+
+    b) The degree of concentration on the relevant market before and after the economic
+
+    concentration;
+
+    c) The relationship of the parties engaging in the economic concentration in the production,
+
+    distribution, or supply chain for a certain kind of goods/service or the business lines of the
+
+    parties engaging in the economic concentration which are inputs of or complementary to one
+
+    another;
+
+    d) Competitive advantage brought about by economic concentration in the relevant market;
+
+    dd) The ability of enterprises after the economic concentration for increasing significantly their
+
+    prices or return on sales;
+
+    e) The ability of enterprises after the economic concentration for removing or preventing other
+
+    enterprises from market entry or expansion;
+
+    g) Particular factors in the sectors and domains where enterprises are engaging in economic
+
+    concentration.
+
+    2. The Government shall provide guidelines for Clause 1 of this Article.'
+- id: art-38
+  title: Article 32. Assessment of positive effects of economic concentration
+  text: 'Article 32. Assessment of positive effects of economic concentration
+
+    1. The National Competition Commission shall assess the positive effects of economic
+
+    concentration based on one of the following factors or a combination of factors:
+
+    a) Positive effects on the development of the sector, domain, science, and technology in
+
+    accordance with the state’s strategies and planning;
+
+    b) Positive effects on the development of small and medium-sized enterprises;
+
+    c) Increase of the competitiveness of Vietnamese enterprises on the international market.
+
+    2. The Government shall provide guidelines for Clause 1 of this Article.'
+- id: art-39
+  title: Article 33. Notification of economic concentration
+  text: 'Article 33. Notification of economic concentration
+
+    1. The enterprises engaging in economic concentration must file a dossier of economic
+
+    concentration notification (hereinafter referred to as notification dossier) to the National
+
+    Competition Commission as prescribed in Article 34 of this Law before initiating economic
+
+    concentration if they reach the notification threshold.
+
+    2. The notification threshold shall be determined based on one of the following criteria:
+
+    a) Total assets of the enterprises engaging in the economic concentration on the Vietnamese
+
+    market;
+
+    b) Total turnover of enterprises engaging in the economic concentration on the Vietnamese
+
+    market;
+
+    c) The transaction value of the economic concentration;
+
+    d) Combined market share of enterprises engaging in the economic concentration on the relevant
+
+    market.
+
+    3. The Government shall provide guidelines for this Article in conformity with socio-economic
+
+    conditions in each period.'
+- id: art-40
+  title: Article 34. Notification dossier
+  text: 'Article 34. Notification dossier
+
+    1. A notification dossier shall consist of:
+
+    a) A notification of economic concentration issued by the National Competition Commission;
+
+    b) Agreed contents of the economic concentration or draft contracts, memorandum of
+
+    understanding regarding economic concentration between/among enterprises;
+
+    c) Valid copies of the business registration certificates of similar documents of all enterprises
+
+    engaging in economic concentration;
+
+    d) Financial statements of all enterprises engaging in economic concentration in two consecutive
+
+    years before the notification year or, in the case of newly-established enterprises, from the
+
+    establishment time to the notification time as per the law;
+
+    dd) The list of parent companies, subsidiaries, associate companies, branches, representative
+
+    offices, and other affiliated entities of every enterprise engaging in economic concentration (if
+
+    any);
+
+    e) The list of goods, and services dealt in by each enterprise engaging in economic concentration;
+
+    g) Information about market shares in the sector where economic concentration will take place
+
+    held by every enterprise engaging in economic concentration in 2 consecutive years before the
+
+    notification year;
+
+    h) Proposed remedies for possible anti-competitive effects of the economic concentration;
+
+    i) Report on assessment of positive effects of economic concentration and measures to enhance
+
+    the positive effects of economic concentration.
+
+    2. Enterprises submitting notification dossiers shall be accountable for the truthfulness of their
+
+    dossiers. Vietnamese translations are required if documents in the dossier are made in a foreign
+
+    language.'
+- id: art-41
+  title: Article 35. Receipt of notification dossiers
+  text: 'Article 35. Receipt of notification dossiers
+
+    1. The National Competition Commission shall receive notification dossiers.
+
+    2. Within 7 working days from receipt of an exemption application, the National Competitive
+
+    Commission shall notify the applicant in writing whether the application is complete and valid.
+
+    If the application is incomplete or invalid, the National Competition Commission shall notify the
+
+    applicant in writing of deficiencies that need amendments and allow them 30 days to make
+
+    amendments from the date of the notice.
+
+    Upon expiry of 30 days, if no amendment is made or the application is not amended completely,
+
+    the National Competition Commission shall return the notification dossier.'
+- id: art-42
+  title: Article 36. Preliminary assessment of economic concentration
+  text: 'Article 36. Preliminary assessment of economic concentration
+
+    1. The National Competition Commission shall be responsible for the preliminary assessment of
+
+    economic concentration. Matters to be preliminarily assessed in economic concentration:
+
+    a) Combined market share of enterprises engaging in the economic concentration on the relevant
+
+    market;
+
+    b) The degree of concentration on the relevant market before and after the economic
+
+    concentration;
+
+    c) The relationship of the parties engaging in the economic concentration in the production,
+
+    distribution, or supply chain for a certain kind of goods/service or the business lines of the
+
+    parties engaging in the economic concentration which are inputs of or complementary to one
+
+    another;
+
+    2. Within 30 days from receipt of a complete and valid notification dossier, the National
+
+    Competition Commission shall notify the preliminary assessment result that:
+
+    a) economic concentration is approved; or
+
+    b) economic concentration is subject to further official assessment.
+
+    3. Upon expiry of 30 days prescribed in Clause 2 of this Article, if the National Competition
+
+    Commission fails to notify the preliminary assessment result, the economic concentration may be
+
+    affected and the National Competition Commission may not give notification'
 doc_files:
 - vn/raw/越南2018年《竞争法》（Law No 23_2018_QH14）.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：vn/raw/越南2018年《竞争法》（Law No 23_2018_QH14）.pdf (pdf, 110203 chars)，生成 37 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：vn/raw/越南2018年《竞争法》（Law No 23_2018_QH14）.pdf (pdf, 110203 chars)，生成 37 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：vn/raw/越南2018年《竞争法》（Law No 23_2018_QH14）.pdf (pdf, 110183 chars)，生成 42 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

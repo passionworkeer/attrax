@@ -1,6 +1,6 @@
 id: US-CFR-TITLE21-PART184
 official_citation: US 21 CFR Part 184
-short_name: US 21 CFR Part 184
+short_name: US 21 CFR Part 184 — DIRECT FOOD SUBSTANCES AFFIRMED AS GENERALLY RECOGNIZED AS SAFE
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,1426 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '21
+
+    Food and Drugs
+
+    3
+
+    2024-04-01
+
+    2024-04-01
+
+    false
+
+    DIRECT FOOD '
+  text: '21
+
+    Food and Drugs
+
+    3
+
+    2024-04-01
+
+    2024-04-01
+
+    false
+
+    DIRECT FOOD SUBSTANCES AFFIRMED AS GENERALLY RECOGNIZED AS SAFE
+
+    184
+
+    PART 184
+
+    Food and Drugs
+
+    FOOD AND DRUG ADMINISTRATION, DEPARTMENT OF HEALTH AND HUMAN SERVICES (CONTINUED)
+
+    FOOD FOR HUMAN CONSUMPTION (CONTINUED)
+
+    Pt. 184
+
+    PART 184—DIRECT FOOD SUBSTANCES AFFIRMED AS GENERALLY RECOGNIZED AS SAFE
+
+    Subpart A—General Provisions
+
+    Sec.
+
+    184.1
+
+    Substances added directly to human food affirmed as generally recognized as safe (GRAS).
+
+    Subpart B—Listing of Specific Substances Affirmed as GRAS
+
+    184.1005
+
+    Acetic acid.
+
+    184.1007
+
+    Aconitic acid.
+
+    184.1009
+
+    Adipic acid.
+
+    184.1011
+
+    Alginic acid.
+
+    184.1012
+
+    α-Amylase enzyme preparation from Bacillus stearothermophilus.
+
+    184.1021
+
+    Benzoic acid.
+
+    184.1024
+
+    Bromelain.
+
+    184.1025
+
+    Caprylic acid.
+
+    184.1027
+
+    Mixed carbohydrase and protease enzyme product.
+
+    184.1033
+
+    Citric acid.
+
+    184.1034
+
+    Catalase (bovine liver).
+
+    184.1061
+
+    Lactic acid.
+
+    184.1063
+
+    Enzyme-modified lecithin.
+
+    184.1065
+
+    Linoleic acid.
+
+    184.1069
+
+    Malic acid.
+
+    184.1077
+
+    Potassium acid tartrate.
+
+    184.1081
+
+    Propionic acid.
+
+    184.1090
+
+    Stearic acid.
+
+    184.1091
+
+    Succinic acid.
+
+    184.1095
+
+    Sulfuric acid.
+
+    184.1097
+
+    Tannic acid.
+
+    184.1099
+
+    Tartaric acid.
+
+    184.1101
+
+    Diacetyl tartaric acid esters of mono- and diglycerides.
+
+    184.1115
+
+    Agar-agar.
+
+    184.1120
+
+    Brown algae.
+
+    184.1121
+
+    Red algae.
+
+    184.1133
+
+    Ammonium alginate.
+
+    184.1135
+
+    Ammonium bicarbonate.
+
+    184.1137
+
+    Ammonium carbonate.
+
+    184.1138
+
+    Ammonium chloride.
+
+    184.1139
+
+    Ammonium hydroxide.
+
+    184.1140
+
+    Ammonium citrate, dibasic.
+
+    184.1141a
+
+    Ammonium phosphate, monobasic.
+
+    184.1141b
+
+    Ammonium phosphate, dibasic.
+
+    184.1143
+
+    Ammonium sulfate.
+
+    184.1148
+
+    Bacterially-derived carbohydrase enzyme preparation.
+
+    184.1150
+
+    Bacterially-derived protease enzyme preparation.
+
+    184.1155
+
+    Bentonite.
+
+    184.1157
+
+    Benzoyl peroxide.
+
+    184.1165
+
+    n-Butane and iso-butane.
+
+    184.1185
+
+    Calcium acetate.
+
+    184.1187
+
+    Calcium alginate.
+
+    184.1191
+
+    Calcium carbonate.
+
+    184.1193
+
+    Calcium chloride.
+
+    184.1195
+
+    Calcium citrate.
+
+    184.1199
+
+    Calcium gluconate.
+
+    184.1201
+
+    Calcium glycerophosphate.
+
+    184.1205
+
+    Calcium hydroxide.
+
+    184.1206
+
+    Calcium iodate.
+
+    184.1207
+
+    Calcium lactate.
+
+    184.1210
+
+    Calcium oxide.
+
+    184.1212
+
+    Calcium pantothenate.
+
+    184.1221
+
+    Calcium propionate.
+
+    184.1229
+
+    Calcium stearate.
+
+    184.1230
+
+    Calcium sulfate.
+
+    184.1240
+
+    Carbon dioxide.
+
+    184.1245
+
+    Beta
+
+    -carotene.
+
+    184.1250
+
+    Cellulase enzyme preparation derived from Trichoderma longi­brachi­atum.
+
+    184.1257
+
+    Clove and its derivatives.
+
+    184.1259
+
+    Cocoa butter substitute.
+
+    184.1260
+
+    Copper gluconate.
+
+    184.1261
+
+    Copper sulfate.
+
+    184.1262
+
+    Corn silk and corn silk extract.
+
+    184.1265
+
+    Cuprous iodide.
+
+    184.1271
+
+    L-Cysteine.
+
+    184.1272
+
+    L-Cysteine monohydrochloride.
+
+    184.1277
+
+    Dextrin.
+
+    184.1278
+
+    Diacetyl.
+
+    184.1282
+
+    Dill and its derivatives.
+
+    184.1287
+
+    Enzyme-modified fats.
+
+    184.1293
+
+    Ethyl alcohol.
+
+    184.1295
+
+    Ethyl formate.
+
+    184.1296
+
+    Ferric ammonium citrate.
+
+    184.1297
+
+    Ferric chloride.
+
+    184.1298
+
+    Ferric citrate.
+
+    184.1301
+
+    Ferric phosphate.
+
+    184.1304
+
+    Ferric pyrophosphate.
+
+    184.1307
+
+    Ferric sulfate.
+
+    184.1307a
+
+    Ferrous ascorbate.
+
+    184.1307b
+
+    Ferrous carbonate.
+
+    184.1307c
+
+    Ferrous citrate.
+
+    184.1307d
+
+    Ferrous fumarate.
+
+    184.1308
+
+    Ferrous gluconate.
+
+    184.1311
+
+    Ferrous lactate.
+
+    184.1315
+
+    Ferrous sulfate.
+
+    184.1316
+
+    Ficin.
+
+    184.1317
+
+    Garlic and its derivatives.
+
+    184.1318
+
+    Glucono delta-lactone.
+
+    184.1321
+
+    Corn gluten.
+
+    184.1322
+
+    Wheat gluten.
+
+    184.1323
+
+    Glyceryl monooleate.
+
+    184.1324
+
+    Glyceryl monostearate.
+
+    184.1328
+
+    Glyceryl behenate.
+
+    184.1329
+
+    Glyceryl palmitostearate.
+
+    184.1330
+
+    Acacia (gum arabic).
+
+    184.1333
+
+    Gum ghatti.
+
+    184.1339
+
+    Guar gum.
+
+    184.1343
+
+    Locust (carob) bean gum.
+
+    184.1349
+
+    Karaya gum (sterculia gum).
+
+    184.1351
+
+    Gum tragacanth.
+
+    184.1355
+
+    Helium.
+
+    184.1366
+
+    Hydrogen peroxide.
+
+    184.1370
+
+    Inositol.
+
+    184.1372
+
+    Insoluble glucose isomerase enzyme preparations.
+
+    184.1375
+
+    Iron, elemental.
+
+    184.1386
+
+    Isopropyl citrate.
+
+    184.1387
+
+    Lactase enzyme preparation from Candida pseudotropicalis.
+
+    184.1388
+
+    Lactase enzyme preparation from Kluyveromyces lactis.
+
+    184.1400
+
+    Lecithin.
+
+    184.1408
+
+    Licorice and licorice derivatives.
+
+    184.1409
+
+    Ground limestone.
+
+    184.1415
+
+    Animal lipase.
+
+    184.1420
+
+    Lipase enzyme preparation derived from Rhizopus niveus.
+
+    184.1425
+
+    Magnesium carbonate.
+
+    184.1426
+
+    Magnesium chloride.
+
+    184.1428
+
+    Magnesium hydroxide.
+
+    184.1431
+
+    Magnesium oxide.
+
+    184.1434
+
+    Magnesium phosphate.
+
+    184.1440
+
+    Magnesium stearate.
+
+    184.1443
+
+    Magnesium sulfate.
+
+    184.1443a
+
+    Malt.
+
+    184.1444
+
+    Maltodextrin.
+
+    184.1445
+
+    Malt syrup (malt extract).
+
+    184.1446
+
+    Manganese chloride.
+
+    184.1449
+
+    Manganese citrate.
+
+    184.1452
+
+    Manganese gluconate.
+
+    184.1461
+
+    Manganese sulfate.
+
+    184.1472
+
+    Menhaden oil.
+
+    184.1490
+
+    Methylparaben.
+
+    184.1498
+
+    Microparticulated protein product.
+
+    184.1505
+
+    Mono- and diglycerides.
+
+    184.1521
+
+    Monosodium phosphate derivatives of mono- and diglycerides.
+
+    184.1530
+
+    Niacin.
+
+    184.1535
+
+    Niacinamide.
+
+    184.1537
+
+    Nickel.
+
+    184.1538
+
+    Nisin preparation.
+
+    184.1540
+
+    Nitrogen.
+
+    184.1545
+
+    Nitrous oxide.
+
+    184.1553
+
+    Peptones.
+
+    184.1555
+
+    Rapeseed oil.
+
+    184.1560
+
+    Ox bile extract.
+
+    184.1563
+
+    Ozone.
+
+    184.1583
+
+    Pancreatin.
+
+    184.1585
+
+    Papain.
+
+    184.1588
+
+    Pectins.
+
+    184.1595
+
+    Pepsin.
+
+    184.1610
+
+    Potassium alginate.
+
+    184.1613
+
+    Potassium bicarbonate.
+
+    184.1619
+
+    Potassium carbonate.
+
+    184.1622
+
+    Potassium chloride.
+
+    184.1625
+
+    Potassium citrate.
+
+    184.1631
+
+    Potassium hydroxide.
+
+    184.1634
+
+    Potassium iodide.
+
+    184.1635
+
+    Potassium iodate.
+
+    184.1639
+
+    Potassium lactate.
+
+    184.1643
+
+    Potassium sulfate.
+
+    184.1655
+
+    Propane.
+
+    184.1660
+
+    Propyl gallate.
+
+    184.1666
+
+    Propylene glycol.
+
+    184.1670
+
+    Propylparaben.
+
+    184.1676
+
+    Pyridoxine hydrochloride.
+
+    184.1685
+
+    Rennet (animal-derived) and chymosin preparation (fermentation-derived).
+
+    184.1695
+
+    Riboflavin.
+
+    184.1697
+
+    Riboflavin-5′-phosphate (sodium).
+
+    184.1698
+
+    Rue.
+
+    184.1699
+
+    Oil of rue.
+
+    184.1702
+
+    Sheanut oil.
+
+    184.1721
+
+    Sodium acetate.
+
+    184.1724
+
+    Sodium alginate.
+
+    184.1733
+
+    Sodium benzoate.
+
+    184.1736
+
+    Sodium bicarbonate.
+
+    184.1742
+
+    Sodium carbonate.
+
+    184.1751
+
+    Sodium citrate.
+
+    184.1754
+
+    Sodium diacetate.
+
+    184.1763
+
+    Sodium hydroxide.
+
+    184.1764
+
+    Sodium hypophosphite.
+
+    184.1768
+
+    Sodium lactate.
+
+    184.1769a
+
+    Sodium metasilicate.
+
+    184.1784
+
+    Sodium propionate.
+
+    184.1792
+
+    Sodium sesquicarbonate.
+
+    184.1801
+
+    Sodium tartrate.
+
+    184.1804
+
+    Sodium potassium tartrate.
+
+    184.1807
+
+    Sodium thiosulfate.
+
+    184.1835
+
+    Sorbitol.
+
+    184.1845
+
+    Stannous chloride (anhydrous and dihydrated).
+
+    184.1848
+
+    Starter distillate.
+
+    184.1851
+
+    Stearyl citrate
+
+    184.1854
+
+    Sucrose.
+
+    184.1857
+
+    Corn sugar.
+
+    184.1859
+
+    Invert sugar.
+
+    184.1865
+
+    Corn syrup.
+
+    184.1866
+
+    High fructose corn syrup.
+
+    184.1875
+
+    Thiamine hydrochloride.
+
+    184.1878
+
+    Thiamine mononitrate.
+
+    184.1890
+
+    α-Tocopherols.
+
+    184.1901
+
+    Triacetin.
+
+    184.1903
+
+    Tributyrin.
+
+    184.1911
+
+    Triethyl citrate.
+
+    184.1914
+
+    Trypsin.
+
+    184.1923
+
+    Urea.
+
+    184.1924
+
+    Urease enzyme preparation from Lactobacillus fermentum.
+
+    184.1930
+
+    Vitamin A.
+
+    184.1945
+
+    Vitamin B
+
+    12
+
+    .
+
+    184.1950
+
+    Vitamin D.
+
+    184.1973
+
+    Beeswax (yellow and white).
+
+    184.1976
+
+    Candelilla wax.
+
+    184.1978
+
+    Carnauba wax.
+
+    184.1979
+
+    Whey.
+
+    184.1979a
+
+    Reduced lactose whey.
+
+    184.1979b
+
+    Reduced minerals whey.
+
+    184.1979c
+
+    Whey protein concentrate.
+
+    184.1983
+
+    Bakers yeast extract.
+
+    184.1984
+
+    Zein.
+
+    184.1985
+
+    Aminopeptidase enzyme preparation derived from lactococcus lactis.
+
+    Authority:
+
+    21 U.S.C. 321, 342, 348, 371.
+
+    Source:
+
+    42 FR 14653, Mar 15, 1977, unless otherwise noted.
+
+    Editorial Note:
+
+    Nomenclature changes to part 184 appear at 66 FR 56035, Nov. 6, 2001; 66 FR 66742, Dec. 27, 2001; 68 FR 15355, Mar. 31, 2003; 69 FR 13717, Mar. 24, 2004; 70 FR 40880, July 15, 2005; 70 FR 67651, Nov.
+    8, 2005; and 81 FR 49897, July 29, 2016.
+
+    Subpart A—General Provisions'
+- id: art-2
+  title: § 184.1
+  text: '§ 184.1
+
+    Substances added directly to human food affirmed as generally recognized as safe (GRAS).
+
+    (a) The direct human food ingredients listed in this part have been reviewed by the Food and Drug Administration and affirmed to be generally recognized as safe (GRAS) for the purposes and under the
+    conditions prescribed. The regulations in this part shall sufficiently describe each ingredient to identify the characteristics of the ingredient that has been affirmed as GRAS and to differentiate
+    it from other possible versions of the ingredient that have not been affirmed as GRAS. Ingredients affirmed as GRAS in this part are also GRAS as indirect human food ingredients, subject to any limitations
+    prescribed in parts 174, 175, 176, 177, 178 or § 179.45 of this chapter or in part 186 of this chapter. The purity specifications in this part do not apply when the ingredient is used in indirect applications.
+    However, when used in indirect applications, the ingredient must be of a purity suitable for its intended use in accordance with § 170.30(h)(1) of this chapter.
+
+    (b) Any ingredient affirmed as GRAS in this part shall be used in accordance with current good manufacturing practice. For the purpose of this part, current good manufacturing practice includes the
+    requirements that a direct
+
+    human food ingredient be of appropriate food grade; that it be prepared and handled as a food ingredient; and that the quantity of the ingredient added to food does not exceed the amount reasonably
+    required to accomplish the intended physical, nutritional, or other technical effect in food.
+
+    (1) If the ingredient is affirmed as GRAS with no limitations on its conditions of use other than current good manufacturing practice, it shall be regarded as GRAS if its conditions of use are consistent
+    with the requirements of paragraph (b), (c), and (d) of this section. When the Food and Drug Administration (FDA) determines that it is appropriate, the agency will describe one or more current good
+    manufacturing practice conditions of use in the regulation that affirms the GRAS status of the ingredient.For example, when the safety of an ingredient has been evaluated on the basis of limited conditions
+    of use, the agency will describe in the regulation that affirms the GRAS status of the ingredient, one or more of these limited conditions of use, which may include the category of food(s), the technical
+    effect(s) or functional use(s) of the ingredient, and the level(s) of use. If the ingredient is used under conditions that are significantly different from those described in the regulation, that use
+    of the ingredient may not be GRAS.In such a case, a manufacturer may not rely on the regulation as authorizing that use but shall have a basis to conclude that that use is GRAS or shall use the ingredient
+    in accordance with a food additive regulation.
+
+    (2) If the ingredient is affirmed as GRAS with specific limitation(s), it shall be used in food only within such limitation(s), including the category of food(s), the functional use(s) of the ingredient,
+    and the level(s) of use. Any use of such an ingredient not in full compliance with each such established limitation shall require a food additive regulation.
+
+    (3) If the ingredient is affirmed as GRAS for a specific use, without a general evaluation of use of the ingredient, other uses may also be GRAS.
+
+    (c) The listing of a food ingredient in this part does not authorize the use of such substance in a manner that may lead to deception of the consumer or to any other violation of the Federal Food, Drug,
+    and Cosmetic Act (the Act).
+
+    (d) The listing of more than one ingredient to produce the same technological effect does not authorize use of a combination of two or more ingredients to accomplish the same technological effect in
+    any one food at a combined level greater than the highest level permitted for one of the ingredients.
+
+    (e) If the Commissioner of Food and Drugs is aware of any prior sanction for use of an ingredient under conditions different from those proposed to be affirmed as GRAS, he will concurrently propose
+    a separate regulation covering such use of the ingredient under part 181 of this chapter. If the Commissioner is unaware of any such applicable prior sanction, the proposed regulation will so state
+    and will require any person who intends to assert or rely on such sanction to submit proof of its existence. Any regulation promulgated pursuant to this section constitutes a determination that excluded
+    uses would result in adulteration of the food in violation of section 402 of the Act, and the failure of any person to come forward with proof of such an applicable prior sanction in response to the
+    proposal will constitute a waiver of the right to assert or rely on such sanction at any later time. The notice will also constitute a proposal to establish a regulation under part 181 of this chapter,
+    incorporating the same provisions, in the event that such a regulation is determined to be appropriate as a result of submission of proof of such an applicable prior sanction in response to the proposal.
+
+    (f) The label and labeling of the ingredient and any intermediate mix of the ingredient for use in finished food shall bear, in addition to the other labeling required by the Act:
+
+    (1) The name of the ingredient, except where exempted from such labeling in part 101 of this chapter.
+
+    (2) A statement of concentration of the ingredient in any intermediate mix; or other information to permit a food processor independently to determine that use of the ingredients will be
+
+    in accordance with any limitations and good manufacturing practice guidelines prescribed.
+
+    (3) Adequate directions for use to provide a final food product that complies with any limitations prescribed for the ingredient(s).
+
+    [42 FR 14653, Mar. 15, 1977, as amended at 42 FR 55205, Oct. 14, 1977; 48 FR 48457, 48459, Oct. 19, 1983; 62 FR 15110, Mar. 31, 1997; 81 FR 55051, Aug. 17, 2016]
+
+    Subpart B—Listing of Specific Substances Affirmed as GRAS'
+- id: art-3
+  title: § 184.1005
+  text: '§ 184.1005
+
+    Acetic acid.
+
+    (a) Acetic acid (C
+
+    2
+
+    H
+
+    4
+
+    O
+
+    2
+
+    , CAS Reg. No. 64-19-7) is known as ethanoic acid. It occurs naturally in plant and animal tissues. It is produced by fermentation of carbohydrates or by organic synthesis. The principal synthetic methods
+    currently employed are oxidation of acetaldehyde derived from ethylene, liquid phase oxidation of butane, and reaction of carbon monoxide with methanol derived from natural gas.
+
+    (b) The ingredient meets the specifications of the Food Chemicals Codex, 3d Ed. (1981), p. 8, which is incorporated by reference. Copies are available from the National Academy Press, 2101 Constitution
+    Ave. NW., Washington, DC 20418, or available for inspection at the National Archives and Records Administration (NARA). For information on the availability of this material at NARA, call 202-741-6030,
+    or go to:
+
+    http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html.
+
+    (c) The ingredient is used as a curing and pickling agent as defined in § 170.3(o)(5) of this chapter; flavor enhancer as defined in § 170.3(o)(11) of this chapter; flavoring agent and adjuvant as defined
+    in § 170.3(o)(12) of this chapter; pH control agent as defined in § 170.3(o)(23) of this chapter; as a solvent and vehicle as defined in § 170.3(o)(27) of this chapter; and as a boiler water additive
+    complying with § 173.310 of this chapter.
+
+    (d) The ingredient is used in food at levels not to exceed current good manufacturing practice in accordance with § 184.1(b)(1). Current good manufacturing practice results in a maximum level as served,
+    of 0.25 percent for baked goods as defined in § 170.3(n)(1) of this chapter; 0.8 percent for cheeses as defined in § 170.3(n)(5) of this chapter and dairy product analogs as defined in § 170.3(n)(10)
+    of this chapter; 0.5 percent for chewing gum as defined in § 170.3(n)(6) of this chapter; 9.0 percent for condiments and relishes as defined in § 170.3(n)(8) of this chapter; 0.5 percent for fats and
+    oils as defined in § 170.3(n)(12) of this chapter; 3.0 percent for gravies and sauces as defined in § 170.3(n)(24) of this chapter; 0.6 percent for meat products as defined in § 170.3(n)(29) of this
+    chapter; and 0.15 percent or less for all other food categories. The ingredient may also be used in boiler water additives at levels not to exceed current good manufacturing practice.
+
+    (e) Prior sanctions for this ingredient different from the uses established in this section do not exist or have been waived.
+
+    [47 FR 27814, June 25, 1982]'
+- id: art-4
+  title: § 184.1007
+  text: '§ 184.1007
+
+    Aconitic acid.
+
+    (a) Aconitic acid (1,2,3-propenetricarboxylic acid (C
+
+    6
+
+    H
+
+    6
+
+    O
+
+    6
+
+    ), CAS Reg. No. 000499-12-7) occurs in the leaves and tubers of
+
+    Aconitum napellus
+
+    L. and other
+
+    Ranunculaceae.
+
+    Transaconitic acid can be isolated during sugarcane processing, by precipitation as the calcium salt from cane sugar or molasses. It may be synthesized by sulfuric acid dehydration of citric acid, but
+    not by the methanesulfonic acid method.
+
+    (b) The ingredient meets the following specifications:
+
+    (1)
+
+    Assay.
+
+    Not less than 98.0 percent of C
+
+    3
+
+    H
+
+    3
+
+    (COOH)
+
+    3
+
+    , using the “Food Chemicals Codex,” 4th ed. (1996), pp. 102-103, test for citric acid, which is incorporated by reference in accordance with 5 U.S.C. 552(a) and 1 CFR part 51, and a molecular weight
+    of 174.11. Copies of the material incorporated by reference are available from the National Academy Press, Box 285, 2101 Constitution Ave. NW., Washington, DC 20055 (Internet address
+
+    http://www.nap.edu
+
+    ), or may be examined at Dockets Management Staff (HFA-305), Food and Drug Administration, 5630 Fishers Lane, Rm. 1061, Rockville, MD 20852, 240-402-7500, between 9 a.m. and 4 p.m.,
+
+    Monday through Friday, or at the National Archives and Records Administration (NARA). For information on the availability of this material at NARA, call 202-741-6030, or go to:
+
+    http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html.
+
+    (2)
+
+    Melting point.
+
+    Not less than 195 °C and the determination results in decomposition of aconitic acid.
+
+    (3)
+
+    Heavy metals
+
+    (
+
+    as Pb
+
+    ). Not more than 10 parts per million.
+
+    (4)
+
+    Arsenic
+
+    (
+
+    as As
+
+    ). Not more than 3 parts per million.
+
+    (5)
+
+    Oxalate.
+
+    Passes test.
+
+    (6)
+
+    Readily carbonizable substances.
+
+    Passes the test for citric acid of the “Food Chemicals Codex,” 4th ed. (1996), pp. 102-103, which is incorporated by reference in accordance with 5 U.S.C. 552(a) and 1 CFR part 51. The availability
+    of this incorporation by reference is given in paragraph (b)(1) of this section.
+
+    (7)
+
+    Residue on ignition.
+
+    Not more than 0.1 percent as determined by the “Food Chemicals Codex,” 4th ed. (1996), pp. 102-103, test for citric acid, which is incorporated by reference in accordance with 5 U.S.C. 552(a) and 1
+    CFR part 51. The availability of this incorporation by reference is given in paragraph (b)(1) of this section.
+
+    (c) The ingredient is used as a flavoring substance and adjuvant as defined in § 170.3(o)(12) of this chapter.
+
+    (d) The ingredient is used in food, in accordance with § 184.1(b)(1), at levels not to exceed good manufacturing practice. Current good manufacturing practice results in a maximum level, as served,
+    of 0.003 percent for baked goods as defined in § 170.3(n)(1) of this chapter, 0.002 percent for alcoholic beverages as defined in § 170.3(n)(2) of this chapter, 0.0015 percent for frozen dairy products
+    as defined in § 170.3(n)(20) of this chapter, 0.0035 percent for soft candy as defined in § 170.3(n)(38) of this chapter, and 0.0005 percent or less for all other food categories.
+
+    (e) Prior sanctions for this ingredient different from the uses established in this section do not exist or have been waived.
+
+    [43 FR 47724, Oct. 17, 1978, as amended at 49 FR 5610, Feb. 14, 1984; 64 FR 1759, Jan. 12, 1999; 81 FR 5595, Feb. 3, 2016; 88 FR 17724, Mar. 24, 2023]'
+- id: art-5
+  title: § 184.1009
+  text: '§ 184.1009
+
+    Adipic acid.
+
+    (a) Adipic acid (C
+
+    6
+
+    H
+
+    10
+
+    O
+
+    4
+
+    , CAS Reg. No. 00124-04-9) is also known as 1,4-butanedicarboxylic acid or hexane-dioic acid. It is prepared by nitric acid oxidation of cyclohexanol or cyclohexanone or a mixture of the two.
+
+    (b) The ingredient meets the specifications of the Food Chemicals Codex, 3d Ed. (1981), p. 11, which is incorporated by reference (Copies are available from the National Academy Press, 2101 Constitution
+    Ave., NW., Washington, DC 20418, or available for inspection at the National Archives and Records Administration (NARA). For information on the availability of this material at NARA, call 202-741-6030,
+    or go to:
+
+    http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html.
+
+    ), and the following additional specifications:
+
+    (1) The adipic acid is converted to its corresponding amide. The amide is purified by recrystallization from water or aqueous ethanol. The melting range of the amide is 219° to 220 °C.
+
+    (2) The adipic acid is converted to its corresponding
+
+    bis-p-p-
+
+    bromophenacyl ester. The ester is purified by recrystallization from ethanol. The melting range of the ester is 153° to 154 °C.
+
+    (c) The ingredient is used as a flavoring agent as defined in § 170.3(o)(12) of this chapter; leavening agent as defined in § 170.3(o)(17) of this chapter; and pH control agent as defined in § 170.3(o)(23)
+    of this chapter.
+
+    (d) The ingredient is used in foods at levels not to exceed current good manufacturing practice in accordance with § 184.1(b)(1). Current good manufacturing practice results in maximum levels, as served,
+    of 0.05 percent for baked goods as defined in § 170.3(n)(1) of this chapter; 0.005 percent for nonalcoholic beverages as defined in § 170.3(n)(3) of this chapter; 5.0 percent for condiments and relishes
+    as defined in § 170.3(n)(8) of this chapter; 0.45 percent for dairy product analogs as defined in § 170.3(n)(10) of this chapter; 0.3
+
+    percent for fats and oil as defined in § 170.3(n)(12) of this chapter; 0.0004 percent for frozen dairy desserts as defined in § 170.3(n)(20) of this chapter; 0.55 percent for gelatin and puddings as
+    defined in § 170.3(n)(22) of this chapter; 0.1 percent for gravies as defined in § 170.3(n)(24) of this chapter; 0.3 percent for meat products as defined in § 170.3(n)(29) of this chapter; 1.3 percent
+    for snack foods as defined in § 170.3(n)(37) of this chapter; and 0.02 percent or less for all other food categories.
+
+    (e) Prior sanctions for adipic acid different from the uses established in this section do not exist or have been waived.
+
+    [47 FR 27810, June 25, 1982]'
+- id: art-6
+  title: § 184.1011
+  text: '§ 184.1011
+
+    Alginic acid.
+
+    (a) Alginic acid is a colloidal, hydrophilic polysaccharide obtained from certain brown algae by alkaline extraction.
+
+    (b) The ingredient meets the specifications of the Food Chemicals Codex, 3d Ed. (1981), p. 13, which is incorporated by reference. Copies are available from the National Academy Press, 2101 Constitution
+    Ave. NW., Washington, DC 20418, or available for inspection at the National Archives and Records Administration (NARA). For information on the availability of this material at NARA, call 202-741-6030,
+    or go to:
+
+    http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html.
+
+    (c) In accordance with § 184.1(b)(2), the ingredient is used in food only within the following specific limitations:
+
+    Category of food
+
+    Maximum level of use in food (as served)
+
+    Functional use
+
+    Soup and soup mixes, § 170.3(n)(40) of this chapter
+
+    Not to exceed current good manufacturing practice
+
+    Emulsifier, emulsifier salt, § 170.3(o)(8) of this chapter; formulation aid, § 170.3(o)(14) of this chapter; stabilizer, thickener, § 170.3(o)(28) of this chapter.
+
+    (d) Prior sanctions for this ingredient different from the use established in this section do not exist or have been waived.
+
+    [47 FR 47375, Oct. 26, 1982]'
+- id: art-7
+  title: § 184.1012
+  text: '§ 184.1012
+
+    α-Amylase enzyme preparation from Bacillus stearothermophilus.
+
+    (a) α-Amylase enzyme preparation is obtained from the culture filtrate that results from a pure culture fermentation of a nonpathogenic and nontoxicogenic strain of
+
+    Bacillus stearothermophilus.
+
+    Its characterizing enzyme activity is α-amylase (1,4 α-D glucan glucanohydrolase (E.C. 3.2.1.1)).
+
+    (b) The ingredient meets the general and additional requirements for enzyme preparations in the “Food Chemicals Codex,” 3d ed. (1981), pp. 107-110, which is incorporated by reference in accordance with
+    5 U.S.C. 552(a) and 1 CFR part 51. Copies are available from the National Academy Press, 2101 Constitution Ave. NW., Washington, DC 20418, or may be examined at the Office Food Additive Safety (HFS-200),
+    Center for Food Safety and Applied Nutrition, Food and Drug Administration, 5001 Campus Dr., College Park, MD 20740, 240-402-1200, or at the National Archives and Records Administration (NARA). For
+    information on the availability of this material at NARA, call 202-741-6030, or go to:
+
+    http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html.
+
+    (c) In accordance with § 184.1(b)(1), the ingredient is used in food with no limitation other than current good manufacturing practices. The affirmation of this ingredient as GRAS as a direct human
+    food ingredient is based upon the following current good manufacturing practice conditions of use:
+
+    (1) The ingredient is used as an enzyme, as defined in § 170.3(o)(9) of this chapter, in the hydrolysis of edible starch to produce maltodextrins and nutritive carbohydrate sweeteners.
+
+    (2) The ingredient is used at levels not to exceed current good manufacturing practices.
+
+    [60 FR 55789, Nov. 3, 1995, as amended at 78 FR 14666, Mar. 7, 2013]'
+- id: art-8
+  title: § 184.1021
+  text: '§ 184.1021
+
+    Benzoic acid.
+
+    (a) Benzoic acid is the chemical benzenecarboxylic acid (C
+
+    7
+
+    H
+
+    6
+
+    O
+
+    2
+
+    ), occurring in nature in free and combined forms. Among the foods in which benzoic acid occurs naturally are cranberries, prunes, plums, cinnamon, ripe cloves, and most berries. Benzoic acid is manufactured
+    by treating molten phthalic anhydride with steam in the presence of a zinc oxide catalyst, by the hydrolysis of benzotrichloride, or by the oxidation of toluene with nitric acid or sodium bichromate
+    or with air in the presence of a transition metal salt catalyst.
+
+    (b) The ingredient meets the specifications of the “Food Chemicals Codex,” 3d Ed. (1981), p. 35, which is incorporated by reference. Copies may be obtained from the National Academy Press, 2101 Constitution
+    Ave. NW., Washington, DC 20418, or may be examined at the National Archives and Records Administration (NARA). For information on the availability of this material at NARA, call 202-741-6030, or go
+    to:
+
+    http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html.
+
+    (c) The ingredient is used as an antimicrobial agent as defined in § 170.3(o)(2) of this chapter, and as a flavoring agent and adjuvant as defined in § 170.3(o)(12) of this chapter.
+
+    (d) The ingredient is used in food at levels not to exceed good manufacturing practice. Current usage results in a maximum level of 0.1 percent in food. (The Food and Drug Administration has not determined
+    whether significantly different conditions of use would be GRAS).
+
+    (e) Prior sanctions for this ingredient different from those uses established in this section, or different from that set forth in part 181 of this chapter, do not exist or have been waived.
+
+    [42 FR 14653, Mar. 15, 1977, as amended at 49 FR 5610, Feb. 14, 1984]'
+- id: art-9
+  title: § 184.1024
+  text: '§ 184.1024
+
+    Bromelain.
+
+    (a) Bromelain (CAS Reg. No. 9001-00-7) is an enzyme preparation derived from the pineapples
+
+    Ananas comosus
+
+    and
+
+    A. bracteatus
+
+    L. It is a white to light tan amorphous powder. Its characterizing enzyme activity is that of a peptide hydrolase (EC 3.4.22.32).
+
+    (b) The ingredient meets the general requirements and additional requirements for enzyme preparations in the Food Chemicals Codex, 3d ed. (1981), p. 110, which is incorporated by reference in accordance
+    with 5 U.S.C. 552(a) and 1 CFR part 51. Copies are available from the National Academy Press, 2101 Constitution Ave. NW., Washington, DC, or may be examined at Office of Food Additive Safety (HFS-200),
+    Center for Food Safety and Applied Nutrition, Food and Drug Administration, 5001 Campus Dr., College Park, MD 20740, 240-402-1200, and at the National Archives and Records Administration (NARA). For
+    information on the availability of this material at NARA, call 202-741-6030, or go to:
+
+    http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html.
+
+    (c) In accordance with § 184.1(b)(1), the ingredient is used in food with no limitation other than current good manufacturing practice. The affirmation of this ingredient as GRAS as a direct food ingredient
+    is based upon the following current good manufacturing practice conditions of use:
+
+    (1) The ingredient is used as an enzyme as defined in § 170.3(o)(9) of this chapter to hydrolyze proteins or polypeptides.
+
+    (2) The ingredient is used in food at levels not to exceed current good manufacturing practice.
+
+    [60 FR 32910, June 26, 1995, as amended at 78 FR 14666, Mar. 7, 2013]'
+- id: art-10
+  title: § 184.1025
+  text: '§ 184.1025
+
+    Caprylic acid.
+
+    (a) Caprylic acid [CH
+
+    3
+
+    (CH
+
+    2
+
+    )
+
+    6
+
+    COOH, CAS Reg. No. 124-07-2] is the chemical name for octanoic acid. It is considered to be a short or medium chain fatty acid. It occurs normally in various foods and is commercially prepared by oxidation
+    of
+
+    n
+
+    -octanol or by fermentation and fractional distillation of the volatile fatty acids present in coconut oil.
+
+    (b) The ingredient meets the specifications of the “Food Chemicals Codex,” 3d Ed. (1981), p. 207, which is incorporated by reference. Copies may be obtained from the National Academy Press, 2101 Constitution
+    Ave. NW.,
+
+    Washington, DC 20418, or may be examined at the National Archives and Records Administration (NARA). For information on the availability of this material at NARA, call 202-741-6030, or go to:
+
+    http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html.
+
+    (c) The ingredient is used as a flavoring agent and adjuvant as defined in § 170.3(o)(12) of this chapter.
+
+    (d) The ingredient is used in foods in accordance with § 184.1(b)(1), at levels not to exceed good manufacturing practice. Current good manufacturing practices result in maximum levels, as served, of:
+    0.013 percent for baked goods as defined in § 170.3(n)(1) of this chapter; 0.04 percent for cheeses as defined in § 170.3(n)(5) of this chapter; 0.005 percent for fats and oils as defined in § 170.3(n)(12)
+    of this chapter, for frozen dairy desserts as defined in § 170.3(n)(20) of this chapter, for gelatins and puddings as defined in § 170.3(n)(22) of this chapter, for meat products as defined in § 170.3(n)(29)
+    of this chapter, and for soft candy as defined in § 170.3(n)(38) of this chapter; 0.016 percent for snack foods as defined in § 170.3(n)(37) of this chapter; and 0.001 percent or less for all other
+    food categories.
+
+    (e) Prior sanctions for this ingredient different from the uses established in this section do not exist or have been waived.
+
+    [43 FR 19843, May 9, 1978, as amended at 49 FR 5611, Feb. 14, 1984]'
+- id: art-11
+  title: § 184.1027
+  text: '§ 184.1027
+
+    Mixed carbohydrase and protease enzyme product.
+
+    (a) Mixed carbohydrase and protease enzyme product is an enzyme preparation that includes carbohydrase and protease activity. It is obtained from the culture filtrate resulting from a pure culture fermentation
+    of a nonpathogenic strain of
+
+    B. licheniformis.
+
+    (b) The ingredient meets the specifications of the Food Chemicals Codex, 3d Ed. (1981), p. 107, which is incorporated by reference. Copies are available from the National Academy Press, 2101 Constitution
+    Ave. NW., Washington, DC 20418, or available for inspection at the National Archives and Records Administration (NARA). For information on the availability of this material at NARA, call 202-741-6030,
+    or go to:
+
+    http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html.
+
+    (c) In accordance with § 184.1(b)(1), the ingredient is used in food with no limitation other than current good manufacturing practice. The affirmation of this ingredient as generally recognized as
+    safe as a direct human food ingredient is based upon the following current good manufacturing practice conditions of use:
+
+    (1) The ingredient is used as an enzyme, as defined in § 170.3(o)(9) of this chapter, to hydrolyze proteins or carbohydrates.
+
+    (2) The ingredient is used in the following foods at levels not to exceed current good manufacturing practice: alcoholic beverages, as defined in § 170.3(n)(2) of this chapter, candy, nutritive sweeteners,
+    and protein hydrolyzates.
+
+    [48 FR 240, Jan. 4, 1983]'
+- id: art-12
+  title: § 184.1033
+  text: '§ 184.1033
+
+    Citric acid.
+
+    (a) Citric acid (C
+
+    6
+
+    H
+
+    8
+
+    O
+
+    7
+
+    , CAS Reg. No. 77-92-9) is the compound 2-hydroxy-1,2,3-propanetricarboxylic acid. It is a naturally occurring constituent of plant and animal tissues. It occurs as colorless crystals or a white powder
+    and may be anhydrous or contain one mole of water per mole of citric acid. Citric acid may be produced by recovery from sources such as lemon or pineapple jui'
 doc_files:
 - us/raw/US-CFR-title21-part184.xml
+- us/raw/US-CFR-title21-part184.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part184.xml (xml, 413157 chars)，生成 12 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part184.xml (xml, 413157 chars)，生成 12 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part184.xml (xml, 413157 chars)，生成 12 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART184-4（US 21 CFR Part 184）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART184-3（US 21 CFR Part 184）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART184-2（US 21 CFR Part 184）。'

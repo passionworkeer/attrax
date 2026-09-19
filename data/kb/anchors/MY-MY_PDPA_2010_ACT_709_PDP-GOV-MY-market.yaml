@@ -1,0 +1,25 @@
+id: KB-market-MY-MY-MY_PDPA_2010_ACT_709_PDP-GOV-MY
+regulation_id: MY-MY_PDPA_2010_ACT_709_PDP-GOV-MY
+doc_name: MY PDPA 2010 Act 709 (pdp.gov.my)
+official_citation: MY PDPA 2010 Act 709 (pdp.gov.my)
+short_name: MY PDPA 2010 Act 709 (pdp.gov.my)
+source: market
+primary_source: market
+domain: 数据保护
+applies_if:
+  category: []
+  features_any: []
+  markets:
+  - MY
+key_articles: []
+key_points:
+- MY PDPA 2010 Act 709 (pdp.gov.my)：数据保护领域法规，适用于 MY 市场相关经营行为（库自动接入，按市场匹配）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://www.pdp.gov.my/jpdpv2/laws-of-malaysia/?lang=en
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

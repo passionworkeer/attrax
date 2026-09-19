@@ -1,6 +1,6 @@
 id: US-CFR-TITLE21-PART701
 official_citation: US 21 CFR Part 701
-short_name: US 21 CFR Part 701
+short_name: US 21 CFR Part 701 — COSMETIC LABELING
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,636 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '21
+
+    Food and Drugs
+
+    7
+
+    2024-04-01
+
+    2024-04-01
+
+    false
+
+    COSMETIC LAB'
+  text: '21
+
+    Food and Drugs
+
+    7
+
+    2024-04-01
+
+    2024-04-01
+
+    false
+
+    COSMETIC LABELING
+
+    701
+
+    PART 701
+
+    Food and Drugs
+
+    FOOD AND DRUG ADMINISTRATION, DEPARTMENT OF HEALTH AND HUMAN SERVICES (CONTINUED)
+
+    COSMETICS
+
+    Pt. 701
+
+    PART 701—COSMETIC LABELING
+
+    Subpart A—General Provisions
+
+    Sec.
+
+    701.1
+
+    Misbranding.
+
+    701.2
+
+    Form of stating labeling requirements.
+
+    701.3
+
+    Designation of ingredients.
+
+    701.9
+
+    Exemptions from labeling requirements.
+
+    Subpart B—Package Form
+
+    701.10
+
+    Principal display panel.
+
+    701.11
+
+    Identity labeling.
+
+    701.12
+
+    Name and place of business of manufacturer, packer, or distributor.
+
+    701.13
+
+    Declaration of net quantity of contents.
+
+    Subpart C—Labeling of Specific Ingredients
+
+    701.20
+
+    Detergent substances, other than soap, intended for use in cleansing the body.
+
+    701.30
+
+    Ingredient names established for cosmetic ingredient labeling.
+
+    Authority:
+
+    21 U.S.C. 321, 352, 361, 362, 363, 371, 374; 15 U.S.C. 1454, 1455.
+
+    Source:
+
+    39 FR 10056, Mar. 15, 1974, unless otherwise noted.
+
+    Subpart A—General Provisions'
+- id: art-2
+  title: § 701.1
+  text: '§ 701.1
+
+    Misbranding.
+
+    (a) Among representations in labeling of a cosmetic which render such cosmetic misbranded is a false or misleading representation with respect to another cosmetic or a food, drug, or device.
+
+    (b) The labeling of a cosmetic which contains two or more ingredients may be misleading by reason (among other reasons) of the designation of such cosmetic in such labeling by a name which includes
+    or suggests the name of one or more but not all such ingredients, even though the names of all such ingredients are stated elsewhere in the labeling.'
+- id: art-3
+  title: § 701.2
+  text: '§ 701.2
+
+    Form of stating labeling requirements.
+
+    (a) A word, statement, or other information required by or under authority of the Act to appear on the label may lack that prominence and conspicuousness required by section 602(c) of the Act by reason
+    (among other reasons) of:
+
+    (1) The failure of such word, statement, or information to appear on the part or panel of the label which is presented or displayed under customary conditions of purchase;
+
+    (2) The failure of such word, statement, or information to appear on two or more parts or panels of the label, each of which has sufficient space therefor, and each of which is so designed as to render
+    it likely to be, under customary conditions of purchase, the part or panel displayed;
+
+    (3) The failure of the label to extend over the area of the container or package available for such extension, so as to provide sufficient label space for the prominent placing of such word, statement,
+    or information;
+
+    (4) Insufficiency of label space (for the prominent placing of such word, statement, or information) resulting from the use of label space for any word, statement, design, or device which is not required
+    by or under authority of the Act to appear on the label;
+
+    (5) Insufficiency of label space (for the prominent placing of such word, statement, or information) resulting from the use of label space to give materially greater conspicuousness to any other word,
+    statement, or information, or to any design or device;
+
+    (6) Smallness or style of type in which such word, statement, or information appears, insufficient background contrast, obscuring designs or vignettes, or crowding with other written, printed, or graphic
+    matter.
+
+    (b)(1) All words, statements, and other information required by or under authority of the Act to appear on the label or labeling shall appear thereon in the English language:
+
+    Provided, however,
+
+    That in the case of articles distributed solely in the Commonwealth of Puerto Rico or in a Territory where the predominant language is one other than English, the predominant language may be substituted
+    for English.
+
+    (2) If the label contains any representation in a foreign language, all words, statements, and other information required by or under authority of the Act to appear on the label shall appear thereon
+    in the foreign language.
+
+    (3) If the labeling contains any representation in a foreign language, all words, statements, and other information required by or under authority of the Act to appear on the label or labeling shall
+    appear on the labeling in the foreign language.'
+- id: art-4
+  title: § 701.3
+  text: '§ 701.3
+
+    Designation of ingredients.
+
+    (a) The label on each package of a cosmetic shall bear a declaration of the name of each ingredient in descending order of predominance, except that fragrance or flavor may be listed as fragrance or
+    flavor. An ingredient which is both fragrance and flavor shall be designated by each of the functions it performs unless such ingredient is identified by name. No ingredient may be designated as fragrance
+    or flavor unless it is within the meaning of such term as commonly understood by consumers. Where one or more ingredients is accepted by the Food and Drug Administration as exempt from public disclosure
+    pursuant to the procedure established in § 720.8(a) of this chapter, in lieu of label declaration of identity the phrase “and other ingredients” may be used at the end of the ingredient declaration.
+
+    (b) The declaration of ingredients shall appear with such prominence and conspicuousness as to render it likely to be read and understood by ordinary individuals under normal conditions of purchase.
+    The declaration shall appear on any appropriate information panel in letters not less than
+
+    1/16
+
+    of an inch in height and without obscuring design, vignettes, or crowding. In the absence of sufficient space for such declaration on the package, or where the manufacturer or distributor wishes to
+    use a decorative container, the declaration may appear on a firmly affixed tag, tape, or card. In those cases where there is insufficient space for such declaration on the package, and it is not practical
+    to firmly affix a tag, tape, or card, the Commissioner may establish
+
+    by regulation an acceptable alternate, e.g., a smaller type size. A petition requesting such a regulation as an amendment to this paragraph shall be submitted pursuant to part 10 of this chapter.
+
+    (c) A cosmetic ingredient shall be identified in the declaration of ingredients by:
+
+    (1) The name specified in § 701.30 as established by the Commissioner for that ingredient for the purpose of cosmetic ingredient labeling pursuant to paragraph (e) of this section;
+
+    (2) In the absence of the name specified in § 701.30, the name adopted for that ingredient in the following editions and supplements of the following compendia, listed in order as the source to be utilized:
+
+    (i) CTFA (Cosmetic, Toiletry and Fragrance Association, Inc.) Cosmetic Ingredient Dictionary, Second Ed., 1977 (available from the Cosmetic, Toiletry and Fragrance Association, Inc. 1110 Vermont Ave.
+    NW., Suite 800, Washington, DC 20005, or at the National Archives and Records Administration (NARA), which is incorporated by reference, except for the following deletions and revisions. (For information
+    on the availability of this material at NARA, call 202-741-6030, or go to:
+
+    http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html.
+
+    )
+
+    (
+
+    a
+
+    ) The following names are not adopted for the purpose of cosmetic ingredient labeling:
+
+    Acid Black 58
+
+    Acid Black 107
+
+    Acid Black 139
+
+    Acid Blue 168
+
+    Acid Blue 170
+
+    Acid Blue 188
+
+    Acid Blue 209
+
+    Acid Brown 19
+
+    Acid Brown 30
+
+    Acid Brown 44
+
+    Acid Brown 45
+
+    Acid Brown 46
+
+    Acid Brown 48
+
+    Acid Brown 224
+
+    Acid Orange 80
+
+    Acid Orange 85
+
+    Acid Orange 86
+
+    Acid Orange 88
+
+    Acid Orange 89
+
+    Acid Orange 116
+
+    Acid Red 131
+
+    Acid Red 213
+
+    Acid Red 252
+
+    Acid Red 259
+
+    Acid Violet 73
+
+    Acid Violet 76
+
+    Acid Violet 99
+
+    Acid Yellow 114
+
+    Acid Yellow 127
+
+    Direct Yellow 81
+
+    Solvent Black 5
+
+    Solvent Brown 43
+
+    Solvent Yellow 63
+
+    Solvent Yellow 90
+
+    (
+
+    b
+
+    ) The following names are adopted for the purpose of cosmetic ingredient labeling, provided the respective monographs are revised to describe their otherwise disclosed chemical compositions, or describe
+    their chemical compositions more precisely, and such revised monographs are published in supplements to this dictionary edition by July 18, 1980.
+
+    Acid Black 2
+
+    Benzophenone-11
+
+    Carbomer 934
+
+    Carbomer 934P
+
+    Carbomer 940
+
+    Carbomer 941
+
+    Carbomer 960
+
+    Carbomer 961
+
+    Chlorofluorocarbon 11S
+
+    Dimethicone Copolyol
+
+    Disperse Red 17
+
+    Pigment Green 7
+
+    Polyamino Sugar Condensate
+
+    SD Alcohol (all 27 alphanumeric designations)
+
+    Sodium Chondroitin Sulfate
+
+    Synthetic Beeswax
+
+    (
+
+    c
+
+    ) The following names are adopted for the purpose of cosmetic ingredient labeling until January 19, 1981.
+
+    Amphoteric (all 20 numeric designations)
+
+    Quaternium (all 49 numeric designations)
+
+    (ii) United States Pharmacopeia, 19th Ed., 1975, and Second Supplement to the USP XIX and NF XIV, 1976. (Copies are available from the U.S. Pharmacopeial Convention, Inc., 12601 Twinbrook Parkway, Rockville,
+    MD 20852, or at the National Archives and Records Administration (NARA). For information on the availability of this material at NARA, call 202-741-6030, or go to:
+
+    http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html.
+
+    ).
+
+    (iii) National Formulary, 14th Ed., 1975, and Second Supplement to the USP XIX and NF XIV, 1976. (Copies are
+
+    available from the U.S. Pharmacopeial Convention, Inc., 12601 Twinbrook Parkway, Rockville, MD 20852, or at the National Archives and Records Administration (NARA). For information on the availability
+    of this material at NARA, call 202-741-6030, or go to:
+
+    http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html.
+
+    ).
+
+    (iv) Food Chemicals Codex, 2d Ed., 1972; First Supplement, 1974, and Second Supplement, 1975, which are incorporated by reference. Copies are available from the Center for Food Safety and Applied Nutrition,
+    Food and Drug Administration, 5001 Campus Dr., College Park, MD 20740, or at the National Archives and Records Administration (NARA). For information on the availability of this material at NARA, call
+    202-741-6030, or go to:
+
+    http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html.
+
+    (v) USAN and the USP dictionary of drug names, USAN 1975, 1961-1975 cumulative list. (Copies are available from the U.S. Pharmacopeial Convention, Inc., 12601 Twinbrook Parkway, Rockville, MD 20852,
+    or at the National Archives and Records Administration (NARA). For information on the availability of this material at NARA, call 202-741-6030, or go to:
+
+    http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html.
+
+    )
+
+    (3) In the absence of such a listing, the name generally recognized by consumers.
+
+    (4) In the absence of any of the above, the chemical or other technical name or description.
+
+    (d) Where a cosmetic product is also an over-the-counter drug product, the declaration shall declare the active drug ingredients as set forth in § 201.66(c)(2) and (d) of this chapter, and the declaration
+    shall declare the cosmetic ingredients as set forth in § 201.66(c)(8) and (d) of this chapter.
+
+    (e) Interested persons may submit a petition requesting the establishment of a specific name for a cosmetic ingredient pursuant to part 10 of this chapter. The Commissioner may also propose such a name
+    on his own initiative.
+
+    (f) As an alternative to listing all ingredients in descending order of predominance, ingredients may be grouped and the groups listed in the following manner and order:
+
+    (1) Ingredients, other than color additives, present at a concentration greater than 1 percent, in descending order of predominance; followed by
+
+    (2) Ingredients, other than color additives, present at a concentration of not more than 1 percent, without respect to order of predominance; followed by
+
+    (3) Color additives, without respect to order of predominance. Ingredients specified in paragraph (f)(2) of this section may be included with those specified in paragraph (f)(1) of this section and
+    listed in descending order of predominance.
+
+    (g) A declaration of ingredients may include an ingredient not in the product if the ingredient is identified by the phrase “may contain” and:
+
+    (1) It is a color additive added to some batches of the product for purposes of color matching; or
+
+    (2)(i) The same declaration of ingredients is also used for other products similar in composition and intended for the same use, including products which may be assortments of products similar in composition
+    and intended for the same use; and
+
+    (ii) Such products are “shaded” products, i.e., those falling within the product categories identified in § 720.4 (c)(3), (7) and (8)(v) of this chapter; and
+
+    (iii) All products sharing the common declaration of ingredients are sold by the labeler under a common trade name or brand designation, and no trade name or brand designation not common to all such
+    products appears in the labeling of any of them; and
+
+    (iv) The ingredient is a color additive.
+
+    (h) As an alternative to a declaration of color additive ingredients for each product, the color additives of an assortment of cosmetic products that are sold together in the same package may be declared
+    in a single composite list in a manner that is not misleading and that indicates that the list pertains to all the products.
+
+    (i) As an alternative to the declaration of ingredients specified in paragraph (b) of this section, the declaration of ingredients may appear in letters not less than
+
+    1/16
+
+    of an inch in height in labeling accompanying the product, as for example, on padded sheets or in leaflets, if the total surface area of the package is less than 12 square inches. This paragraph is
+    inapplicable to any packaged cosmetic product enclosed in an outer container, e.g., a folding carton. In addition, this paragraph is applicable only to cosmetic products meeting one of the following
+    requirements:
+
+    (1) The cosmetic products are held and displayed for sale in tightly compartmented trays or racks of a display unit. The holder of the labeling bearing the declaration of ingredients shall be attached
+    to the display unit; or
+
+    (2) The cosmetic products are “shaded” products, i.e., those falling within the product categories identified in § 720.4 (c)(3), (7) and (8)(v) of this chapter, and are held for sale in tightly compartmented
+    trays or racks. The holder of the labeling bearing the declaration of ingredients shall be attached to a display chart bearing samples of the product shades, which is displayed to purchasers. Such a
+    display chart shall be of such construction and design as to permit its continuous use as a display, such as on a counter, and shall be designed for the primary purpose of displaying samples of the
+    shades of the products.
+
+    (j) The holder of labeling bearing a declaration of ingredients and used in accordance with paragraph (i) of this section shall be attached to the display unit or chart and shall meet one of the following
+    conditions:
+
+    (1) The labeling is on the front of the display unit or chart and can be read in full by a purchaser facing the display unit or chart under customary conditions of retail sale; or
+
+    (2) The labeling is on the front of the display unit or chart, is partially visible, and is accompanied by a conspicuous notice on the front of the display unit or chart describing the location of such
+    labeling in letters not less than
+
+    3/16
+
+    of an inch in height, e.g., “Ingredient lists above”, that can be read by a purchaser facing the display unit or chart under customary conditions of retail sale, or by the notice required by provisions
+    in paragraph (k)(3) of this section, if conspicuous at all times; or
+
+    (3) The labeling is on a side of the display unit or chart, but not on the top, back, or bottom, and is accompanied by a conspicuous notice on the front of the display unit or chart describing the location
+    of such labeling in letters not less than
+
+    3/16
+
+    of an inch in height, e.g., “Ingredient lists located on right side of display”, that can be read by a purchaser facing the display unit or chart under customary conditions of retail sale.
+
+    (k) Any use of a display unit or chart bearing labeling under the provisions of paragraph (i) of this section shall meet the following requirements:
+
+    (1) All articles of labeling bearing ingredient declarations and used in conjunction with any one display unit or chart shall be identical and shall declare the ingredients of all products sold in conjunction
+    wi'
+- id: art-5
+  title: § 701.9
+  text: '§ 701.9
+
+    Exemptions from labeling requirements.
+
+    (a) Except as provided by paragraphs (b) and (c) of this section, a shipment or other delivery of a cosmetic which is, in accordance with the practice of the trade, to be processed, labeled, or repacked
+    in substantial quantity at an establishment other than that where originally processed or packed, shall be exempt, during the time of introduction into and movement in interstate commerce and the time
+    of holding in such establishment, from compliance with the labeling requirements of sections 601(a) and 602(b) of the act if:
+
+    (1) The person who introduced such shipment or delivery into interstate commerce is the operator of the establishment where such cosmetic is to be processed, labeled, or repacked; or
+
+    (2) In case such person is not such operator, such shipment or delivery is made to such establishment under a written agreement, signed by and containing the post office addresses of such person and
+    such operator, and containing such specifications for the processing, labeling, or repacking, as the case may be, of such cosmetic in such establishment as will insure, if such specifications are followed,
+    that such cosmetic will not be adulterated or misbranded within the meaning of the act upon completion of such processing, labeling, or repacking. Such person and such operator shall each keep a copy
+    of such agreement until 2 years after the final shipment or delivery of such cosmetic from such establishment, and shall make such copies available for inspection at any reasonable hour to any officer
+    or employee of the Department who requests them.
+
+    (b) An exemption of a shipment or other delivery of a cosmetic under paragraph (a)(1) of this section shall, at the beginning of the act of removing such shipment or delivery, or any part thereof, from
+    such establishment, become void ab initio if the cosmetic comprising such shipment, delivery, or part is adulterated or misbranded within the meaning of the act when so removed.
+
+    (c) An exemption of a shipment or other delivery of a cosmetic under paragraph (a)(2) of this section shall become void ab initio with respect to the person who introduced such shipment or delivery
+    into interstate commerce upon refusal by such person to make available for inspection a copy of the agreement, as required by such clause.
+
+    (d) An exemption of a shipment or other delivery of a cosmetic under paragraph (a)(2) of this section shall expire:
+
+    (1) At the beginning of the act of removing such shipment or delivery, or
+
+    any part thereof, from such establishment if the cosmetic comprising such shipment, delivery, or part is adulterated or misbranded within the meaning of the act when so removed; or
+
+    (2) Upon refusal by the operator of the establishment where such cosmetic is to be processed, labeled, or repacked, to make available for inspection a copy of the agreement, as required by such clause.
+
+    Subpart B—Package Form'
+- id: art-6
+  title: § 701.10
+  text: '§ 701.10
+
+    Principal display panel.
+
+    The term
+
+    principal display panel
+
+    as it applies to cosmetics in package form and as used in this part, means the part of a label that is most likely to be displayed, presented, shown, or examined under customary conditions of display
+    for retail sale. The principal display panel shall be large enough to accommodate all the mandatory label information required to be placed thereon by this part with clarity and conspicuousness and
+    without obscuring designs, vignettes, or crowding. Where packages bear alternate principal display panels, information required to be placed on the principal display panel shall be duplicated on each
+    principal display panel. For the purpose of obtaining uniform type size in declaring the quantity of contents of all packages of substantially the same size, the term “area of the principal display
+    panel” means the area of the side or surface that bears the principal display panel, which area shall be:
+
+    (a) In the case of a rectangular package where one entire side properly can be considered to be the principal display panel side, the product of the height times the width of that side;
+
+    (b) In the case of a cylindrical or nearly cylindrical container, 40 percent of the product of the height of the container times the circumference; and
+
+    (c) In the case of any other shape of container, 40 percent of the total surface of the container:
+
+    Provided, however,
+
+    That where such container presents an obvious “principal display panel” such as the top of a triangular or circular package, the area shall consist of the entire top surface.
+
+    In determining the area of the principal display panel, exclude tops, bottoms, flanges at the tops and bottoms of cans, and shoulders and necks of bottles or jars. In the case of cylindrical or nearly
+    cylindrical containers, information required by this part to appear on the principal display panel shall appear within that 40 percent of the circumference which is most likely to be displayed, presented,
+    shown, or examined under customary conditions of display for retail sale.'
+- id: art-7
+  title: § 701.11
+  text: '§ 701.11
+
+    Identity labeling.
+
+    (a) The principal display panel of a cosmetic in package form shall bear as one of its principal features a statement of the identity of the commodity.
+
+    (b) Such statement of identity shall be in terms of:
+
+    (1) The common or usual name of the cosmetic; or
+
+    (2) An appropriately descriptive name or, when the nature of the cosmetic is obvious, a fanciful name understood by the public to identify such cosmetic; or
+
+    (3) An appropriate illustration or vignette representing the intended cosmetic use.
+
+    (c) The statement of identity shall be presented in bold type on the principal display panel, shall be in a size reasonably related to the most prominent printed matter on such panel, and shall be in
+    lines generally parallel to the base on which the package rests as it is designed to be displayed.'
+- id: art-8
+  title: § 701.12
+  text: '§ 701.12
+
+    Name and place of business of manufacturer, packer, or distributor.
+
+    (a) The label of a cosmetic in package form shall specify conspicuously the name and place of business of the manufacturer, packer, or distributor.
+
+    (b) The requirement for declaration of the name of the manufacturer, packer, or distributor shall be deemed to be satisfied in the case of a corporation only by the actual corporate name, which may
+    be preceded or followed by the name of the particular division of the corporation. Abbreviations for “Company,” “Incorporated,” etc., may be used and “The” may be omitted. In the case of an individual,
+    partnership, or association, the name under which the business is conducted shall be used.
+
+    (c) Where the cosmetic is not manufactured by the person whose name appears on the label, the name shall be qualified by a phrase that reveals the connection such person has with such cosmetic; such
+    as, “Manufactured for _______”, “Distributed by ________”, or any other wording that expresses the facts.
+
+    (d) The statement of the place of business shall include the street address, city, State, and ZIP Code; however, the street address may be omitted if it is shown in a current city directory or telephone
+    directory. The requirement for inclusion of the ZIP Code shall apply only to consumer commodity labels developed or revised after the effective date of this section. In the case of nonconsumer packages,
+    the ZIP Code shall appear either on the label or the labeling (including the invoice).
+
+    (e) If a person manufactures, packs, or distributes a cosmetic at a place other than his principal place of business, the label may state the principal place of business in lieu of the actual place
+    where such cosmetic was manufactured or packed or is to be distributed, unless such statement would be misleading.'
+- id: art-9
+  title: § 701.13
+  text: '§ 701.13
+
+    Declaration of net quantity of contents.
+
+    (a) The label of a cosmetic in package form shall bear a declaration of the net quantity of contents. This shall be expressed in terms of weight, measure, numerical count, or a combination of numerical
+    count and weight or measure. The statement shall be in terms of fluid measure if the cosmetic is liquid or in terms of weight if the cosmetic is solid, semisolid, or viscous, or a mixture of solid and
+    liquid. If there is a firmly established, general consumer usage and trade custom of declaring the net quantity of a cosmetic by numerical count, linear measure, or measure of area, such respective
+    term may be used. If there is a firmly established, general consumer usage and trade custom of declaring the contents of a liquid cosmetic by weight, or a solid, semisolid, or viscous cosmetic by fluid
+    measure, it may be used. Whenever the Commissioner determines for a specific packaged cosmetic that an existing practice of declaring net quantity of contents by weight, measure, numerical count, or
+    a combination of these does not facilitate value comparisons by consumers, he shall by regulation designate the appropriate term or terms to be used for such cosmetic.
+
+    (b) Statements of weight shall be in terms of avoirdupois pound and ounce. Statements of fluid measure shall be in terms of the U.S. gallon of 231 cubic inches and quart, pint, and fluid-ounce subdivisions
+    thereof and shall express the volume at 68 °F. (20 °C.).
+
+    (c) When the declaration of quantity of contents by numerical count, linear measure, or measure of area does not give accurate information as to the quantity of cosmetic in the package, it shall be
+    augmented by such statement of weight, measure, or size of the individual units or the total weight or measure of the cosmetic as will give such information.
+
+    (d) The declaration may contain common or decimal fractions. A common fraction shall be in terms of halves, quarters, eighths, sixteenths, or thirty-seconds; except that if there exists a firmly established,
+    general consumer usage and trade custom of employing different common fractions in the net quantity declaration of a particular commodity they may be employed. A common fraction shall be reduced to
+    its lowest terms; a decimal fraction shall not be carried out to more than two places. A statement that includes small fractions of an ounce shall be deemed to permit smaller variations than one which
+    does not include such fractions.
+
+    (e) The declaration shall be located on the principal display panel of the label; with respect to packages bearing alternate principal display panels, it shall be duplicated on each principal display
+    panel:
+
+    Provided,
+
+    That:
+
+    (1) The principal display panel of a cosmetic marketed in a “boudoir-type” container including decorative cosmetic containers of the “cartridge,” “pill box,” “compact,” or “pencil” variety, and those
+    with a capacity of one-fourth ounce or less, may be considered to be a tear-away tag or tape affixed to the decorative container and bearing the mandatory label information as required by this part,
+    but the type size of
+
+    the net quantity of contents statement shall be governed by the dimensions of the decorative container; and
+
+    (2) The principal display panel of a cosmetic marketed on a display card to which the immediate container is affixed may be considered to be the display panel of the card, and the type size of the net
+    quantity of content statement is governed by the dimensions of the display card.
+
+    (f) The declaration shall appear as a distinct item on the principal display panel, shall be separated (by at least a space equal to the height of the lettering used in the declaration) from other printed
+    label information appearing above or below the declaration and (by at least a space equal to twice the width of the letter “N” of the style of type used in the quantity of contents statement) from other
+    printed label information appearing to the left or right of the declaration. It shall not include any term qualifying a unit of weight, measure, or count (such as “giant pint” and “full quart”) that
+    tends to exaggerate the amount of the cosmetic in the container. It shall be placed on the principal display panel within the bottom 30 percent of the area of the label panel in line generally parallel
+    to the base on which the package rests as it is designed to be displayed:
+
+    Provided,
+
+    That:
+
+    (1) On packages having a principal display panel of 5 square inches or less, the requirement for placement within the bottom 30 percent of the area of the label panel shall not apply when the declaration
+    of net quantity of contents meets the other requirements of this part; and
+
+    (2) In the case of a cosmetic that is marketed with both outer and inner retail containers bearing the mandatory label information required by this part, and the inner container is not intended to be
+    sold separately, the net quantity of contents placement requirement of this section applicable to such inner containers is waived.
+
+    (g) The declaration shall accurately reveal the quantity of cosmetic in the package exclusive of wrappers and other material packed therewith:
+
+    Provided,
+
+    That:
+
+    (1) In the case of cosmetics packed in containers designed to deliver the cosmetic under pressure, the declaration shall state the net quantity of the contents that will be expelled when the instructions
+    for use as shown on the container are followed. The propellant is included in the net quantity declaration; and
+
+    (2) In the case of a package which contains the integral components making up a complete kit, and which is designed to deliver the components in the manner of an application (for example, a home permanent
+    wave kit), the declaration may state the net quantity of the contents in nondeceptive terms of the number of applications available in the kit when the instructions for use as shown on the container
+    are followed.
+
+    (h) The declaration shall appear in conspicuous and easily legible boldface print or type in distinct contrast (by typography, layout, color, embossing, or molding) to other matter on the package; except
+    that a declaration of net quantity blown, embossed, or molded on a glass or plastic surface is permissible when all label information is so formed on the surface. Requirements of conspicuousness and
+    legibility shall include the specifications that:
+
+    (1) The ratio of height to width (of the letter) shall not exceed a differential of 3 units to 1 unit (no more than 3 times as high as it is wide).
+
+    (2) Letter heights pertain to upper case or capital letters. When upper and lower case or all lower case letters are used, it is the lower case letter “o” or its equivalent that shall meet the minimum
+    standards.
+
+    (3) When fractions are used, each component numeral shall meet one-half the minimum height standards.
+
+    (i) The declaration shall be in letters and numerals in a type size established in relationship to the area of the principal display panel of the package and shall be uniform for all packages of substantially
+    the same size by complying with the following type specifications:
+
+    (1) Not less than one-sixteenth inch in height on packages the principal display panel of which has an area of 5 square inches or less.
+
+    (2) Not less than one-eighth inch in height on packages the principal display panel of which has an area of more
+
+    than 5 but not more than 25 square inches.
+
+    (3) Not less than three-sixteenths inch in height on packages the principal display panel of which has an area of more than 25 but not more than 100 square inches.
+
+    (4) Not less than one-fourth inch in height on packages the principal display panel of which has an area of more than 100 square inches, except not less than one-half inch in height if the area is more
+    than 400 square inches.
+
+    Where the declaration is blown, embossed, or molded on a glass or plastic surface rather than by printing, typing, or coloring, the lettering sizes specified in paragraphs (i)(1) through (4) of this
+    section shall be increased by one-sixteenth of an inch.
+
+    (j) On packages containing less than 4 pounds or 1 gallon and labeled in terms of weight or fluid measure:
+
+    (1) The declaration shall be expressed both in ounces, with identification by weight or by liquid measure and,'
 doc_files:
 - us/raw/US-CFR-title21-part701.xml
+- us/raw/US-CFR-title21-part701.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part701.xml (xml, 50743 chars)，生成 9 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part701.xml (xml, 50743 chars)，生成 9 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part701.xml (xml, 50743 chars)，生成 9 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART701-4（US 21 CFR Part 701）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART701-3（US 21 CFR Part 701）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART701-2（US 21 CFR Part 701）。'

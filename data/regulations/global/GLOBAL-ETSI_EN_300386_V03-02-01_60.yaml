@@ -9,11 +9,784 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'ETSI EN 300 386
+
+    V3.2.1
+
+    (2025-11)
+
+    HARMONISED EUROPEAN STANDAR'
+  text: 'ETSI EN 300 386
+
+    V3.2.1
+
+    (2025-11)
+
+    HARMONISED EUROPEAN STANDARD
+
+    Telecommunication network equipment;
+
+    Harmonised Standard for
+
+    ElectroMagnetic Compatibility (EMC) requirements
+
+    2 ETSI EN 300 386 V3.2.1 (2025-11)
+
+    Reference
+
+    REN/ERM-EMC-422
+
+    Keywords
+
+    EMC, harmonised standard, network, testing
+
+    ETSI
+
+    650 Route des Lucioles
+
+    F-06921 Sophia Antipolis Cedex - FRANCE
+
+    Tel.: +33 4 92 94 42 00 Fax: +33 4 93 65 47 16
+
+    Siret N° 348 623 562 00017 - APE 7112B
+
+    Association à but non lucratif enregistrée à la
+
+    Sous-Préfecture de Grasse (06) N° w061004871
+
+    Important notice
+
+    The present document can be downloaded from the
+
+    ETSI Search & Browse Standards application.
+
+    The present document may be made available in electronic versions and/or in print. The content of any electronic and/or
+
+    print versions of the present document shall not be modified without the prior written authorization of ETSI. In case of any
+
+    existing or perceived difference in contents between such versions and/or in print, the prevailing version of an ETSI
+
+    deliverable is the one made publicly available in PDF format on ETSI deliver repository.
+
+    Users should be aware that the present document may be revised or have its status changed,
+
+    this information is available in the Milestones listing.
+
+    If you find errors in the present document, please send your comments to
+
+    the relevant service listed under Committee Support Staff.
+
+    If you find a security vulnerability in the present document, please report it through our
+
+    Coordinated Vulnerability Disclosure (CVD) program.
+
+    Notice of disclaimer & limitation of liability
+
+    The information provided in the present deliverable is directed solely to professionals who have the appropriate degree of
+
+    experience to understand and interpret its content in accordance with generally accepted engineering or
+
+    other professional standard and applicable regulations.
+
+    No recommendation as to products and services or vendors is made or should be implied.
+
+    In no event shall ETSI be held liable for loss of profits or any other incidental or consequential damages.
+
+    Any software contained in this deliverable is provided "AS IS" with no warranties, express or implied, including but not
+
+    limited to, the warranties of merchantability, fitness for a particular purpose and non-infringement of intellectual property
+
+    rights and ETSI shall not be held liable in any event for any damages whatsoever (including, without limitation, damages
+
+    for loss of profits, business interruption, loss of information, or any other pecuniary loss) arising out of or related to the use
+
+    of or inability to use the software.
+
+    Copyright Notification
+
+    No part may be reproduced or utilized in any form or by any means, electronic or mechanical, including photocopying and
+
+    microfilm except as authorized by written permission of ETSI.
+
+    The content of the PDF version shall not be modified without the written authorization of ETSI.
+
+    The copyright and the foregoing restriction extend to reproduction in all media.
+
+    © ETSI 2025.
+
+    All rights reserved.
+
+    ETSI
+
+    3 ETSI EN 300 386 V3.2.1 (2025-11)
+
+    Contents
+
+    Intellectual Property Rights ................................................................................................................................ 7
+
+    Foreword ............................................................................................................................................................. 7
+
+    Modal verbs terminology .................................................................................................................................... 8
+
+    1 Scope ........................................................................................................................................................ 9
+
+    2 References .............................................................................................................................................. 10
+
+    2.1 Normative references ....................................................................................................................................... 10
+
+    2.2 Informative references ...................................................................................................................................... 12
+
+    3 Definition of terms, symbols and abbreviations ..................................................................................... 15
+
+    3.1 Terms ................................................................................................................................................................ 15
+
+    3.2 Symbols ............................................................................................................................................................ 17
+
+    3.3 Abbreviations ................................................................................................................................................... 18
+
+    4 Installation environment ......................................................................................................................... 19
+
+    5 Immunity: test methods .......................................................................................................................... 19
+
+    5.0 General requirements ....................................................................................................................................... 19
+
+    5.1 Electrostatic discharge ...................................................................................................................................... 19
+
+    5.2 Electrical fast transients/burst ........................................................................................................................... 19
+
+    5.3 Surges ............................................................................................................................................................... 20
+
+    5.3.1 Signal line ports .......................................................................................................................................... 20
+
+    5.3.2 AC power ports ........................................................................................................................................... 20
+
+    5.4 Immunity to continuous conducted signals ...................................................................................................... 20
+
+    5.4.1 Radio frequency (> 150 kHz) ..................................................................................................................... 20
+
+    5.4.1.1 AC power port ....................................................................................................................................... 20
+
+    5.4.1.2 DC power port ....................................................................................................................................... 20
+
+    5.4.1.3 Signal line port ...................................................................................................................................... 20
+
+    5.5 Immunity to radiated electromagnetic fields .................................................................................................... 21
+
+    5.6 Voltage dips and short interruptions: AC power port ....................................................................................... 21
+
+    6 Emission: test methods ........................................................................................................................... 21
+
+    6.0 General ............................................................................................................................................................. 21
+
+    6.1 AC power port .................................................................................................................................................. 21
+
+    6.2 DC power port .................................................................................................................................................. 21
+
+    6.3 Wired network Ports ......................................................................................................................................... 22
+
+    6.4 Antenna Port ..................................................................................................................................................... 22
+
+    6.5 Radiated emission............................................................................................................................................. 22
+
+    7 Test levels and limits .............................................................................................................................. 22
+
+    7.0 General requirements ....................................................................................................................................... 22
+
+    7.1 Emission ........................................................................................................................................................... 22
+
+    7.1.1 Enclosure port, Radiated electromagnetic field emissions .......................................................................... 22
+
+    7.1.2 AC ports ...................................................................................................................................................... 23
+
+    7.1.2.1 Conducted emissions ............................................................................................................................. 23
+
+    7.1.3 DC ports, Conducted emissions .................................................................................................................. 23
+
+    7.1.4 Wired network ports, Conducted emissions ............................................................................................... 23
+
+    7.2 Immunity .......................................................................................................................................................... 23
+
+    7.2.0 General ........................................................................................................................................................ 23
+
+    7.2.1 Equipment operating in telecommunication centres ................................................................................... 24
+
+    7.2.1.1 Telecommunication centres equipment, immunity requirement of enclosure port ............................... 24
+
+    7.2.1.2 Telecommunication centres equipment, immunity requirement of ports for outdoor signal lines
+
+    and antenna ports .................................................................................................................................. 25
+
+    7.2.1.3 Telecommunication centres equipment, immunity requirements of ports for indoor signal lines ........ 25
+
+    7.2.1.4 Telecommunication centres equipment, immunity requirements of AC power ports ........................... 26
+
+    7.2.1.5 Telecommunication centres equipment, immunity requirements of DC power ports ........................... 27
+
+    7.2.2 Equipment operating in locations other than telecommunication centres ................................................... 27
+
+    7.2.2.1 Other than telecommunication centres equipment, immunity requirements of enclosure port ............. 27
+
+    ETSI
+
+    4 ETSI EN 300 386 V3.2.1 (2025-11)
+
+    7.2.2.2 Other than telecommunication centres equipment, immunity requirements of ports for outdoor
+
+    signal lines and antenna ports................................................................................................................ 28
+
+    7.2.2.3 Other than telecommunication centres equipment, immunity requirements of ports for indoor
+
+    signal lines............................................................................................................................................. 29
+
+    7.2.2.4 Other than telecommunication centres equipment, immunity requirements of AC power ports .......... 30
+
+    7.2.2.5 Other than telecommunication centres equipment, immunity requirements of DC power ports .......... 30
+
+    8 General test configuration ...................................................................................................................... 31
+
+    9 '
+- id: art-2
+  title: 'Annex C (informative): Guidance on EMC performance requirements and methods of'
+  text: 'Annex C (informative): Guidance on EMC performance requirements and methods of
+
+    measurement for RF ports (also covered by EN 50083-2) of
+
+    multimedia network equipment ................................................................... 53
+
+    Annex D (normative): Requirements of radio functions .................................................................. 54
+
+    D.1 Applicability ........................................................................................................................................... 54
+
+    D.2 Exclusion bands ...................................................................................................................................... 54
+
+    D.2.1 General ............................................................................................................................................................. 54
+
+    ETSI
+
+    6 ETSI EN 300 386 V3.2.1 (2025-11)
+
+    D.2.2 Calculation for exclusion bands ....................................................................................................................... 55
+
+    D.2.2.1 Exclusion bands for receivers ..................................................................................................................... 55
+
+    D.2.2.1.1 For channelized systems ....................................................................................................................... 55
+
+    D.2.2.1.2 For non-channelized systems ................................................................................................................ 55
+
+    D.2.2.2 Exclusion bands for transmitters ................................................................................................................. 55
+
+    D.2.2.2.1 For channelized systems ....................................................................................................................... 55
+
+    D.2.2.2.2 For Non-Channelized Equipment .......................................................................................................... 55
+
+    D.2.3 Example of exclusion Bands ............................................................................................................................ 56
+
+    D.3 Mode of operation .................................................................................................................................. 56
+
+    D.3.1 General ............................................................................................................................................................. 56
+
+    D.3.2 Standby Mode .................................................................................................................................................. 56
+
+    D.3.3 Receivers .......................................................................................................................................................... 56
+
+    D.3.4 Transmitters ...................................................................................................................................................... 57
+
+    D.3.5 Performance criteria ......................................................................................................................................... 57
+
+    D.3.5.1 Performance criterion A .............................................................................................................................. 57
+
+    D.3.5.2 Performance criterion B .............................................................................................................................. 57
+
+    D.3.5.3 Performance criterion C .............................................................................................................................. 57
+
+    Annex E (informative): Why testing on cables shorter than 3 m in length is not required ............. 58
+
+    E.1 Background ............................................................................................................................................ 58
+
+    E.2 Emission requirements ........................................................................................................................... 58
+
+    E.3 Immunity requirements .......................................................................................................................... 58
+
+    E.3.1 Common rationale ............................................................................................................................................ 58
+
+    E.3.2 For EN 61000-4-6 tests .................................................................................................................................... 58
+
+    E.3.3 For EN 61000-4-4 tests .................................................................................................................................... 59
+
+    E.4 Interactive aspects in EMC Tests ........................................................................................................... 59
+
+    E.4.1 Introduction ...................................................................................................................................................... 59
+
+    E.4.2 For EN 61000-4-6 tests .................................................................................................................................... 59
+
+    E.4.3 For EN 61000-4-4 tests .................................................................................................................................... 61
+
+    E.5 Conclusion .............................................................................................................................................. 61
+
+    Annex F (informative): Bibliography ................................................................................................... 62
+
+    Annex G (informative): Change history ............................................................................................... 63
+
+    History .............................................................................................................................................................. 64
+
+    ETSI
+
+    7 ETSI EN 300 386 V3.2.1 (2025-11)
+
+    Intellectual Property Rights
+
+    Essential patents
+
+    IPRs essential or potentially essential to normative deliverables may have been declared to ETSI. The declarations
+
+    pertaining to these essential IPRs, if any, are publicly available for ETSI members and non-members, and can be
+
+    found in ETSI SR 000 314: "Intellectual Property Rights (IPRs); Essential, or potentially Essential, IPRs notified to
+
+    ETSI in respect of ETSI standards", which is available from the ETSI Secretariat. Latest updates are available on the
+
+    ETSI IPR online database.
+
+    Pursuant to the ETSI Directives including the ETSI IPR Policy, no investigation regarding the essentiality of IPRs,
+
+    including IPR searches, has been carried out by ETSI. No guarantee can be given as to the existence of other IPRs not
+
+    referenced in ETSI SR 000 314 (or the updates on the ETSI Web server) which are, or may be, or may become,
+
+    essential to the present document.
+
+    Trademarks
+
+    The present document may include trademarks and/or tradenames which are asserted and/or registered by their owners.
+
+    ETSI claims no ownership of these except for any which are indicated as being the property of ETSI, and conveys no
+
+    right to use or reproduce any trademark and/or tradename. Mention of those trademarks in the present document does
+
+    not constitute an endorsement by ETSI of products, services or organizations associated with those trademarks.
+
+    DECT™, PLUGTESTS™, UMTS™ and the ETSI logo are trademarks of ETSI registered for the benefit of its
+
+    Members. 3GPP™, LTE™ and 5G™ logo are trademarks of ETSI registered for the benefit of its Members and of the
+
+    3GPP Organizational Partners. oneM2M™ logo is a trademark of ETSI registered for the benefit of its Members and of
+
+    the oneM2M Partners. GSM® and the GSM logo are trademarks registered and owned by the GSM Association.
+
+    BLUETOOTH® is a trademark registered and owned by Bluetooth SIG, Inc.
+
+    Foreword
+
+    This Harmonised European Standard (EN) has been produced by ETSI Technical Committee Electromagnetic
+
+    compatibility and Radio spectrum Matters (ERM).
+
+    The present document has been prepared:
+
+    • under the Commission''s standardisation request C(2016) 7641 final of 30.11.2016 [i.43] (''M/552''), to provide
+
+    one voluntary means of conforming to the essential requirements of Directive 2014/30/EU on the
+
+    harmonisation of the laws of the Member States relating to electromagnetic compatibility [i.31];
+
+    • under the Commission''s standardisation request C(2015) 5376 final of 4.8.2015 [i.7] (''M/536''), to provide one
+
+    voluntary means of conforming to the essential requirements of Directive 2014/53/EU on the harmonisation of
+
+    the laws of the Member States relating to the making available on the market of radio equipment and repealing
+
+    Directive 1999/5/EC [i.6].
+
+    Once the present document is cited in the Official Journal of the European Union under the Directives, compliance with
+
+    the normative clauses of the present document given in tables A.1 and A.2 confers, within the limits of the scope of the
+
+    present document, a presumption of conformity with the corresponding essential requirements of the relevant Directives
+
+    and associated EFTA regulations.
+
+    ETSI
+
+    8 ETSI EN 300 386 V3.2.1 (2025-11)
+
+    National transposition dates
+
+    Date of adoption of this EN: 12 November 2025
+
+    Date of latest announcement of this EN (doa): 28 February 2026
+
+    Date of latest publication of new National Standard
+
+    or endorsement of this EN (dop/e): 31 August 2026
+
+    Date of withdrawal of any conflicting National Standard (dow): 31 August 2027
+
+    Modal verbs terminology
+
+    In the present document "shall", "shall not", "should", "should not", "may", "need not", "will", "will not", "can" and
+
+    "cannot" are to be interpreted as described in clause 3.2 of the ETSI Drafting Rules (Verbal forms for the expression of
+
+    provisions).
+
+    "must" and "must not" are NOT allowed in ETSI deliverables except when used in direct citation.
+
+    ETSI
+
+    9 ETSI EN 300 386 V3.2.1 (2025-11)
+
+    1 Scope
+
+    The present document specifies the EMC requirements for telecommunication equipment intended to be used within a
+
+    telecommunications network, which provides telecommunications between Network Termination Points (NTPs)
+
+    (i.e. excluding terminal equipment beyond the NTPs). Radio functionality (e.g. Bluetooth®, Wi-Fi®, GPS) incorporated in
+
+    telecommunication network equipment is also within the scope of the present document. Examples (non-exhaustive list) of
+
+    such equipment are:
+
+    1) Switching equipment. Such equipment includes:
+
+    - local telephone exchanges;
+
+    - remote switching concentrators;
+
+    - international switches;
+
+    - telex switches;
+
+    - network packet switches;
+
+    - base station controllers, radio network controllers;
+
+    - network servers and gateways.
+
+    2) Non-radio transmission equipment and ancillary equipment. Such equipment includes:
+
+    - multiplexers;
+
+    - line equipment and repeaters, e.g. equipment for:
+
+    
+
+    Synchronous Digital Hierarchy (SDH);
+
+    
+
+    Plesiochronous Digital Hierarchy (PDH);
+
+    
+
+    Asynchronous Transfer Mode (ATM);
+
+    such as:
+
+    
+
+    Digital Cross Connect systems;
+
+    
+
+    network terminations;
+
+    
+
+    transmission equipment used in the access network like xDSL.
+
+    3) Power supply equipment. Such equipment includes:
+
+    - central power plant;
+
+    - end of suite power supplies;
+
+    - uninterruptible power supplies;
+
+    - stabilized AC power supplies; and
+
+    - other dedicated telecommunication network power supplies
+
+    but excludes equipment which is uniquely associated with or integrated in other equipment.
+
+    4) Supervisory equipment. Such equipment includes:
+
+    - network management equipment;
+
+    - operator access maintenance equipment;
+
+    - traffic measurement systems;
+
+    - line test units;
+
+    ETSI
+
+    10 ETSI EN 300 386 V3.2.1 (2025-11)
+
+    - functional test units.
+
+    NOTE 1: The function of supervision may either be performed by independent equipment or form part of other
+
+    telecommunication network equipment. If the function of supervision forms part of a telecommunication
+
+    network equipment, the performance may be evaluated simultaneously with other functions (such as
+
+    switching and transmission) during EMC testing.
+
+    5) Telecomm'
+- id: art-3
+  title: annex C of EN 61000-4-3 [10] shall apply.
+  text: 'annex C of EN 61000-4-3 [10] shall apply.
+
+    5.6 Voltage dips and short interruptions: AC power port
+
+    For EUT with rated input current not exceeding 16 A per phase, test method shall be in accordance with
+
+    EN 61000-4-11 [14], clauses 6 for test instrumentation, 7 for test setup and 8 for test procedure.
+
+    For EUT with rated input current exceeding 16 A per phase, test method shall be in accordance with
+
+    EN 61000-4-34 [24], clauses 6 for test instrumentation, 7 for test setup and 8 for test procedure.
+
+    6 Emission: test methods
+
+    6.0 General
+
+    Where not specified here, the EUT shall be configured, installed, arranged and operated in a manner consistent with the
+
+    intended use of the EUT.
+
+    All emission tests defined in the present document shall be considered by the test plan.
+
+    All emission tests defined in the present document and required by the test plan shall be applied to the EUT.
+
+    For equipment with a radio function, the exclusion band(s) defined in annex D shall apply.
+
+    In the case where non compliances can be attributed to the transmission of the wanted radio signal from the EUT, these
+
+    shall be disregarded.
+
+    6.1 AC power port
+
+    For conducted emission on AC power port in the frequency range 0,15 MHz to 30 MHz, the test method specified in
+
+    EN 55032 [31] clause A3, table A.8 and clause A8.1, shall apply.
+
+    This test applies to AC power input ports. It also applies to output ports of Power Supply equipment defined in
+
+    clause 13 of the present document if, according to the EUT''s specifications, they support cable lengths greater than 3 m.
+
+    6.2 DC power port
+
+    The measuring methods shall be those specified for the AC mains interface in EN 55032 [31], clause A3, table A.8 and
+
+    clause A8.1.
+
+    This test applies to DC power input ports. It also applies to output ports of Power Supply equipment defined in
+
+    clause 13 of the present document if, according to the EUT''s specifications, they support cable lengths greater than 3 m.
+
+    For an EUT that has several modules, each with its own power cable (however terminated) and for which the
+
+    manufacturer provides a power strip (multi-socket mains splitter) with a single power cable for connection to the
+
+    external power source, a single measurement shall be performed at the mains input to that power cable.
+
+    The artificial network shall be the one described in EN 55016-1-2 [1], clause 4:
+
+    - 0,15 MHz to 30 MHz: (50 Ω // 50 μH).
+
+    The DC return lead at the EUT side shall be connected to the protective earth if this is required by the equipment
+
+    installation specification.
+
+    ETSI
+
+    22 ETSI EN 300 386 V3.2.1 (2025-11)
+
+    When the use of the artificial network is not suitable (e.g. when the EUT has a current absorption higher than 200 A)
+
+    the method described in EN 55016-1-2 [1], clause 5.2, for the voltage probe (1 500 Ω) may be used.
+
+    6.3 Wired network Ports
+
+    For conducted emissions on wired network ports in the frequency range 0,15 MHz to 30 MHz, the test method specified
+
+    in EN 55032 [31], clause A3, table A.8 and clauses A8.2, A8.3 or A8.4, shall apply.
+
+    6.4 Antenna Port
+
+    Where the EUT has a port intended for the connection of an external antenna, the requirements of EN 55032 [31],
+
+    clause A3, table A.8 and clauses A8.2, A8.3 or A8.4 for antenna ports shall apply.
+
+    6.5 Radiated emission
+
+    For radiated emission in the frequency range 30 MHz to 6 000 MHz the test method specified in EN 55032 [31],
+
+    table A.1, clauses A1.1, A1.2, A1.3 and A1.4, shall apply.
+
+    7 Test levels and limits
+
+    7.0 General requirements
+
+    The EMC properties of the radio function of the EUT shall be tested against the requirements defined in annex D of the
+
+    present document and, for radio technologies not covered in annex D, the applicable radio EMC standard(s) for the
+
+    specific technology shall also be used. Where there are conflicts between the EMC requirements of the radio standard
+
+    and the present document, the requirements of the present document shall apply.
+
+    Conducted immunity test shall not be applied to the ports that, according to the product documentation, are not
+
+    permanently connected but just used to setup or perform a maintenance activity of the equipment; these maintenance
+
+    activities are not intended operating conditions because such connections are not present in the normal operating
+
+    conditions.
+
+    The non-radio function of the EUT shall be tested against the requirements of the present document.
+
+    7.1 Emission
+
+    7.1.1 Enclosure port, Radiated electromagnetic field emissions
+
+    For radiated emissions, the EUT with the radio function in receive mode shall comply with the limits defined in
+
+    EN 55032 [31], annex A:
+
+    • for the frequency range up to 1 GHz: table A.2, clauses A2.1, A.2.2, A2.3, A2.4 or table A.4, clauses A4.1,
+
+    A.4.2, A4.3, A4.4;
+
+    • for the frequency range above 1 GHz and up to 6 GHz: table A.3, clauses A3.1 and A3.2 or clauses A5.1 and
+
+    A5.2.
+
+    The determination of the applicable limits shall be according to the equipment classification defined in EN 55032 [31],
+
+    clause 4.
+
+    If the EUT has no receiver but just a transmitter the EUT transmitter shall be set to standby-mode.
+
+    ETSI
+
+    23 ETSI EN 300 386 V3.2.1 (2025-11)
+
+    7.1.2 AC ports
+
+    7.1.2.1 Conducted emissions
+
+    The limits defined in EN 55032 [31], annex A, table A.9, clauses A9.1 and A9.2 or table A.10, clauses A10.1 and
+
+    A10.2. shall apply.
+
+    The determination of the applicable limits shall be according to the equipment classification defined in EN 55032 [31],
+
+    clause 4.
+
+    7.1.3 DC ports, Conducted emissions
+
+    The limits defined in EN 55032 [31], annex A, table A.9, clauses A9.1 and A9.2 shall apply.
+
+    The limits above apply to DC power ports in any environment defined in clause 4 of the present document.
+
+    NOTE: DC power cables of telecommunication network equipment in residential environment are either shorter
+
+    than 3 m or running underground.
+
+    7.1.4 Wired network ports, Conducted emissions
+
+    The limits defined in EN 55032 [31], annex A, table A.11, clauses A11.1, A11.2 and A11.3 or table A.12,
+
+    clauses A12.1, A12.2 and A12.3. shall apply.
+
+    The determination of the applicable limits shall be according to the equipment classification defined in EN 55032 [31],
+
+    clause 4.
+
+    7.2 Immunity
+
+    7.2.0 General
+
+    Immunity requirements are defined in clause 7.2.1 for equipment operating in telecommunication centres and
+
+    clause 7.2.2 for equipment operating in other than telecommunication centre.
+
+    If no restrictions are specified in the product documentation for the installation environment; i.e. telecommunication
+
+    centres or other than telecommunication centre as described in clause 4 of the present document, the equipment shall
+
+    comply with the requirements of both environments.
+
+    NOTE: Surge test on DC ports is not defined in the present document because in the environment of
+
+    "telecommunication centres" the DC power distribution is an indoor network in a controlled environment.
+
+    Whereas in the environment "other than telecommunication centres" the DC power line is derived from
+
+    an AC/DC converter with a cable shorter than 10 m and then surge test is performed on the AC port only.
+
+    ETSI
+
+    24 ETSI EN 300 386 V3.2.1 (2025-11)
+
+    7.2.1 Equipment operating in telecommunication centres
+
+    7.2.1.1 Telecommunication centres equipment, immunity requirement of enclosure port
+
+    Table 1: Telecommunication centres equipment, immunity requirement of enclosure port
+
+    Environmental Unit Test level and characteristic Reference Performance Remarks
+
+    phenomenon criterion
+
+    Immunity
+
+    7.2.1.1.1 Electrostatic discharge kV 4 Contact Discharge See note 1
+
+    EN 61000-4-2 [9] B
+
+    kV 4 Air Discharge
+
+    7.2.1.1.2 Electrostatic discharge kV 4 Contact Discharge See note 2
+
+    EN 61000-4-2 [9] B
+
+    kV 8 Air Discharge
+
+    7.2.1.1.3 Radio frequency MHz 80 to 690 See note 3
+
+    electromagnetic field V/m 3
+
+    amplitude modulated % AM (1 kHz) 80
+
+    EN 61000-4-3 [10] A
+
+    MHz 690 to 6 000
+
+    V/m 10
+
+    % AM (1 kHz) 80
+
+    NOTE 1: This requirement applies to telecommunication centres where ESD control practice are in place.
+
+    NOTE 2: This requirement applies to telecommunication centres where no ESD control practice are in place.
+
+    NOTE 3: These test levels have been selected in accordance with the rad'
 doc_files:
 - global/raw/ETSI_EN_300386_v03.02.01_60.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_300386_v03.02.01_60.pdf (pdf, 158993 chars)，生成 3 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_300386_v03.02.01_60.pdf (pdf, 158993 chars)，生成 3 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_300386_v03.02.01_60.pdf (pdf, 158993 chars)，生成 3 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

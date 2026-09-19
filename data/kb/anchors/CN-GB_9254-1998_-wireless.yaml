@@ -1,0 +1,26 @@
+id: KB-wireless-CN-CN-GB_9254-1998_
+regulation_id: CN-GB_9254-1998_
+doc_name: CN-GB GB 9254-1998 信息技术设备的无线电骚扰限值和测量方法
+official_citation: CN-GB GB 9254-1998 信息技术设备的无线电骚扰限值和测量方法
+short_name: CN-GB GB 9254-1998 信息技术设备的无线电骚扰限值和测量方法
+source: feature
+primary_source: wireless
+domain: wireless
+applies_if:
+  category: []
+  features_any:
+  - wireless
+  markets:
+  - CN
+key_articles: []
+key_points:
+- CN-GB GB 9254-1998 信息技术设备的无线电骚扰限值和测量方法：无线功能领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=EF42851AA33328F89DE94EB1EC129F76
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

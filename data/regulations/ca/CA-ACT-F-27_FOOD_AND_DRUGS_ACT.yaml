@@ -9,11 +9,1453 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: An Act respecting food, drugs, cosmetics and therapeutic dev
+  text: 'An Act respecting food, drugs, cosmetics and therapeutic devices
+
+    Food and Drugs Act
+
+    Food and Drugs
+
+    2025
+
+    4
+
+    1
+
+    F-27
+
+    Short Title
+
+    Short title
+
+    1
+
+    This Act may be cited as the
+
+    Food and Drugs Act
+
+    .
+
+    R.S., c. F-27, s. 1
+
+    Interpretation and Application
+
+    Definitions
+
+    2
+
+    In this Act,
+
+    advanced therapeutic product
+
+    means a therapeutic product that is described in Schedule G or that belongs to a class of therapeutic products that is described in that Schedule; (
+
+    produit thérapeutique innovant
+
+    )
+
+    advertisement
+
+    includes any representation by any means whatever for the purpose of promoting directly or indirectly the sale or disposal of any food, drug, cosmetic or device; (
+
+    publicité
+
+    ou
+
+    annonce
+
+    )
+
+    analyst
+
+    means an individual designated as an analyst for the purposes of this Act under section 28 or under section 13 of the
+
+    Canadian Food Inspection Agency Act
+
+    ; (
+
+    analyste
+
+    )
+
+    clinical trial
+
+    means a study, involving human subjects, for the purpose of discovering or verifying the effects of a drug, a device or a food for a special dietary purpose; (
+
+    essai clinique
+
+    )
+
+    confidential business information
+
+    , in respect of a person to whose business or affairs the information relates, means — subject to the regulations — business information
+
+    (a)
+
+    that is not publicly available,
+
+    (b)
+
+    in respect of which the person has taken measures that are reasonable in the circumstances to ensure that it remains not publicly available, and
+
+    (c)
+
+    that has actual or potential economic value to the person or their competitors because it is not publicly available and its disclosure would result in a material financial loss to the person or a material
+    financial gain to their competitors; (
+
+    renseignements commerciaux confidentiels
+
+    )
+
+    contraceptive device
+
+    means any instrument, apparatus, contrivance or substance other than a drug, that is manufactured, sold or represented for use in the prevention of conception; (
+
+    moyen anticonceptionnel
+
+    )
+
+    cosmetic
+
+    includes any substance or mixture of substances manufactured, sold or represented for use in cleansing, improving or altering the complexion, skin, hair or teeth, and includes deodorants and perfumes; (
+
+    cosmétique
+
+    )
+
+    Department
+
+    means the Department of Health; (
+
+    ministère
+
+    )
+
+    device
+
+    means an instrument, apparatus, contrivance or other similar article, or an
+
+    in vitro
+
+    reagent, including a component, part or accessory of any of them, that is manufactured, sold or represented for use in
+
+    (a)
+
+    diagnosing, treating, mitigating or preventing a disease, disorder or abnormal physical state, or any of their symptoms, in human beings or animals,
+
+    (b)
+
+    restoring, modifying or correcting the body structure of human beings or animals or the functioning of any part of the bodies of human beings or animals,
+
+    (c)
+
+    diagnosing pregnancy in human beings or animals,
+
+    (d)
+
+    caring for human beings or animals during pregnancy or at or after the birth of the offspring, including caring for the offspring, or
+
+    (e)
+
+    preventing conception in human beings or animals;
+
+    however, it does not include such an instrument, apparatus, contrivance or article, or a component, part or accessory of any of them, that does any of the actions referred to in paragraphs (a) to (e)
+    solely by pharmacological, immunological or metabolic means or solely by chemical means in or on the body of a human being or animal; (
+
+    instrument
+
+    )
+
+    drug
+
+    includes any substance or mixture of substances manufactured, sold or represented for use in
+
+    (a)
+
+    the diagnosis, treatment, mitigation or prevention of a disease, disorder or abnormal physical state, or its symptoms, in human beings or animals,
+
+    (b)
+
+    restoring, correcting or modifying organic functions in human beings or animals, or
+
+    (c)
+
+    disinfection in premises in which food is manufactured, prepared or kept; (
+
+    drogue
+
+    )
+
+    food
+
+    includes any article manufactured, sold or represented for use as food or drink for human beings, chewing gum, and any ingredient that may be mixed with food for any purpose whatever; (
+
+    aliment
+
+    )
+
+    food for a special dietary purpose
+
+    means a food that has been specially processed or formulated
+
+    (a)
+
+    to meet the particular requirements of an individual in whom a physical or physiological condition exists as a result of a disease, disorder or abnormal physical state, or
+
+    (b)
+
+    to be the sole or primary source of nutrition for an individual; (
+
+    aliment à des fins diététiques spéciales
+
+    )
+
+    foreign regulatory authority
+
+    means a government agency or other entity outside Canada that controls the manufacture, use or sale of therapeutic products or foods within its jurisdiction; (
+
+    autorité réglementaire étrangère
+
+    )
+
+    inspector
+
+    means an individual designated as an inspector for the purposes of this Act under subsection 22(1) or under section 13 of the
+
+    Canadian Food Inspection Agency Act
+
+    ; (
+
+    inspecteur
+
+    )
+
+    label
+
+    includes any legend, word or mark attached to, included in, belonging to or accompanying any food, drug, cosmetic, device or package; (
+
+    étiquette
+
+    )
+
+    Minister
+
+    means the Minister of Health; (
+
+    ministre
+
+    )
+
+    package
+
+    includes any thing in which any food, drug, cosmetic or device is wholly or partly contained, placed or packed; (
+
+    emballage
+
+    )
+
+    person
+
+    means an individual or an
+
+    organization
+
+    as defined in section 2 of the
+
+    Criminal Code
+
+    ; (
+
+    personne
+
+    )
+
+    prescribed
+
+    means prescribed by the regulations; (
+
+    Version anglaise seulement
+
+    )
+
+    sell
+
+    includes
+
+    (a)
+
+    offer for sale, expose for sale or have in possession for sale — or distribute to one or more persons, whether or not the distribution is made for consideration, and
+
+    (b)
+
+    lease, offer for lease, expose for lease or have in possession for lease; (
+
+    vente
+
+    )
+
+    therapeutic product
+
+    means a drug or device or any combination of drugs and devices; (
+
+    produit thérapeutique
+
+    )
+
+    therapeutic product authorization
+
+    means
+
+    (a)
+
+    an authorization, including a licence, that
+
+    (i)
+
+    authorizes the conduct of a clinical trial in respect of a therapeutic product and is issued under the regulations, or
+
+    (ii)
+
+    authorizes, as the case may be, the import, sale, advertisement, manufacture, preparation, preservation, packaging, labelling, storage or testing of a therapeutic product and is issued under subsection
+    21.92(1) or the regulations, or
+
+    (b)
+
+    an authorization, including a licence, that would fall within paragraph (a) if the authorization were not suspended; (
+
+    autorisation relative à un produit thérapeutique
+
+    )
+
+    unsanitary conditions
+
+    means such conditions or circumstances as might contaminate with dirt or filth, or render injurious to health, a food, drug or cosmetic. (
+
+    conditions non hygiéniques
+
+    )
+
+    R.S., 1985, c. F-27, s. 2; R.S., 1985, c. 27 (1st Supp.), s. 191; 1992, c. 1, s. 145(F); 1993, c. 34, s. 71; 1994, c. 26, s. 32(F), c. 38, s. 18; 1995, c. 1, s. 63; 1996, c. 8, ss. 23.1, 32, 34; 1997,
+    c. 6, s. 62; 2014, c. 24, s. 2; 2016, c. 9, s. 1
+
+    2019, c. 29, s. 163
+
+    2023, c. 26, s. 500
+
+    2024, c. 17, s. 322
+
+    Non-corrective contact lenses
+
+    2.1
+
+    For the purposes of this Act, a non-corrective contact lens is deemed to be a device.
+
+    2012, c. 25, s. 1
+
+    Tobacco products
+
+    2.2
+
+    This Act does not apply to a
+
+    tobacco product
+
+    as defined in section 2 of the
+
+    Tobacco and Vaping Products Act
+
+    .
+
+    2018, c. 9, s. 72
+
+    Vaping products
+
+    2.3
+
+    (1)
+
+    Despite the definition
+
+    drug
+
+    in section 2, this Act does not apply to a
+
+    vaping product
+
+    as defined in section 2 of the
+
+    Tobacco and Vaping Products Act
+
+    by reason that it contains nicotine, unless the vaping product is manufactured, sold or represented for use in the diagnosis, treatment, mitigation or prevention of a disease, disorder or abnormal physical
+    state, or its symptoms, in human beings.
+
+    Vaping products
+
+    (2)
+
+    Despite the definition
+
+    device
+
+    in section 2, this Act does not apply to a
+
+    vaping product
+
+    as defined in section 2 of the
+
+    Tobacco and Vaping Products Act
+
+    by reason that it is manufactured, sold or represented for use with a substance or mixture of substances that contains nicotine, unless the vaping product is manufactured, sold or represented for use
+    in the diagnosis, treatment, mitigation or prevention of a disease, disorder or abnormal physical state, or its symptoms, in human beings.
+
+    2018, c. 9, s. 72
+
+    Classification — thing
+
+    2.4
+
+    (1)
+
+    If the Minister believes that a thing falls within two or more of the definitions
+
+    food
+
+    ,
+
+    drug
+
+    ,
+
+    cosmetic
+
+    and
+
+    device
+
+    in section 2, the Minister may, by order, add a description of the thing to a single part of Schedule A that corresponds to one of the definitions in which the thing is believed to fall.
+
+    Classification — class of things
+
+    (2)
+
+    If the Minister believes that every thing in a class of things falls within the same two or more definitions
+
+    food
+
+    ,
+
+    drug
+
+    ,
+
+    cosmetic
+
+    and
+
+    device
+
+    in section 2, the Minister may, by order, add a description of the class to a single part of Schedule A that corresponds to one of the definitions in which the things in the class are believed to fall.
+
+    Factors
+
+    (3)
+
+    Before adding a description of a thing or a class of things to a part of Schedule A, the Minister shall consider the following factors:
+
+    (a)
+
+    the risk of injury that the thing or things present to human health;
+
+    (b)
+
+    the protection and promotion of health;
+
+    (c)
+
+    the possibility of a person being deceived or misled;
+
+    (d)
+
+    the purposes for which the thing or things are sold, represented or used and the history of use of the thing or things;
+
+    (e)
+
+    the treatment of similar things that have been regulated as foods, drugs, cosmetics or devices under this Act; and
+
+    (f)
+
+    the prescribed factors, if any.
+
+    Effect of addition
+
+    (4)
+
+    A thing that either is described in or belongs to a class of things that is described in
+
+    (a)
+
+    Part 1 of Schedule A falls within the definition
+
+    food
+
+    in section 2 and does not fall within any of the other definitions referred to in subsections (1) and (2);
+
+    (b)
+
+    Part 2 of Schedule A falls within the definition
+
+    drug
+
+    in section 2 and does not fall within any of the other definitions referred to in subsections (1) and (2);
+
+    (c)
+
+    Part 3 of Schedule A falls within the definition
+
+    cosmetic
+
+    in section 2 and does not fall within any of the other definitions referred to in subsections (1) and (2); and
+
+    (d)
+
+    Part 4 of Schedule A falls within the definition
+
+    device
+
+    in section 2 and does not fall within any of the other definitions referred to in subsections (1) and (2).
+
+    Deletion from Schedule A
+
+    (5)
+
+    The Minister may, by order, delete the description of a thing or a class of things from Schedule A.
+
+    Interpretation — definitions
+
+    food
+
+    ,
+
+    drug
+
+    ,
+
+    cosmetic
+
+    and
+
+    device
+
+    (6)
+
+    For greater certainty, the definitions
+
+    food
+
+    ,
+
+    drug
+
+    ,
+
+    cosmetic
+
+    and
+
+    device
+
+    in section 2 are subject to subsection (4).
+
+    2019, c. 29, s. 164
+
+    PART I
+
+    Foods, Drugs, Cosmetics and Devices
+
+    General
+
+    Prohibited advertising
+
+    3
+
+    (1)
+
+    No person shall advertise any food, drug, cosmetic or device to the general public as a treatment, preventative or cure for any of the diseases, disorders or abnormal physical states referred to in
+    Schedule A.1.
+
+    Prohibited sales
+
+    (2)
+
+    No person shall sell any food, drug, cosmetic or device if
+
+    (a)
+
+    it is represented by label as a treatment, preventative or cure for any of the diseases, disorders or abnormal physical states referred to in Schedule A.1; or
+
+    (b)
+
+    the person advertises it to the general public as a treatment, preventative or cure for any of the diseases, disorders or abnormal physical states referred to in Schedule A.1.
+
+    Unauthorized advertising of contraceptive device prohibited
+
+    (3)
+
+    Except as authorized by regulation, no person shall advertise to the general public any contraceptive device or any drug manufactured, sold or represented for use in the prevention of conception.
+
+    R.S., 1985, c. F-27, s. 3; 1993, c. 34, s. 72(F)
+
+    2019, c. 29, s. 165
+
+    Prohibition — clinical trials
+
+    3.1
+
+    No person shall conduct a clinical trial in respect of a drug, device or prescribed food for a special dietary purpose unless the person holds an authorization issued under the regulations that authorizes
+    the conduct of the clinical trial.
+
+    2019, c. 29, s. 166
+
+    Terms and conditions — clinical trial authorizations
+
+    3.2
+
+    The holder of an authorization referred to in section 3.1 shall comply with any terms and conditions of the authorization that are imposed by the Minister under regulations made '
+- id: art-2
+  title: section 3, if the contravention of that section involves food;
+  text: 'section 3, if the contravention of that section involves food;
+
+    (a.1)'
+- id: art-3
+  title: section 3.1 or 3.3, if the contravention of that section involves a clinical trial that relates to food;
+  text: 'section 3.1 or 3.3, if the contravention of that section involves a clinical trial that relates to food;
+
+    (a.2)'
+- id: art-4
+  title: section 3.2, if the contravention of that section involves the terms and conditions of an authorization that authorizes the conduct of a clinical trial that relates to food;
+  text: 'section 3.2, if the contravention of that section involves the terms and conditions of an authorization that authorizes the conduct of a clinical trial that relates to food;
+
+    (b)
+
+    subsection 22.1(2), if the contravention of that subsection involves any document or information that relates to food or a sample that is or relates to food;
+
+    (c)
+
+    subsection 23(6), if the contravention of that subsection involves a conveyance in respect of which an inspector is exercising powers or performing duties or functions in relation to food;
+
+    (d)
+
+    subsection 23(13), if the contravention of that subsection involves a place in which an inspector is exercising powers or performing duties or functions in relation to food;
+
+    (e)
+
+    subsection 24(1), if the contravention of that subsection involves the obstruction or hindering of — or the making of a false or misleading statement to — an inspector who is carrying out duties or
+    functions in relation to food;
+
+    (f)
+
+    subsection 24(2), if the contravention of that subsection involves anything seized that is or relates to food; and
+
+    (g)
+
+    subsection 27.3(2), if the contravention of that subsection involves measures that were ordered to be taken in relation to food.
+
+    1997, c. 6, s. 66
+
+    2019, c. 29, s. 173
+
+    Offences relating to therapeutic products
+
+    31.2
+
+    (1)
+
+    Subject to section 31.4, every person who contravenes any provision of this Act or the regulations, as it relates to a therapeutic product, or an order made under any of sections 21.1 to 21.32 is guilty
+    of an offence and liable
+
+    (a)
+
+    on conviction by indictment, to a fine not exceeding $5,000,000 or to imprisonment for a term not exceeding two years or to both; and
+
+    (b)
+
+    on summary conviction, for a first offence, to a fine not exceeding $250,000 or to imprisonment for a term not exceeding six months or to both and, for a subsequent offence, to a fine not exceeding
+    $500,000 or to imprisonment for a term not exceeding 18 months or to both.
+
+    Clarification
+
+    (2)
+
+    For greater certainty, subsection (1) applies in respect of the following provisions of this Act:
+
+    (a)'
+- id: art-5
+  title: section 3, if the contravention of that section involves a therapeutic product;
+  text: 'section 3, if the contravention of that section involves a therapeutic product;
+
+    (a.1)'
+- id: art-6
+  title: section 3.1 or 3.3, if the contravention of that section involves a clinical trial that relates to a therapeutic product;
+  text: 'section 3.1 or 3.3, if the contravention of that section involves a clinical trial that relates to a therapeutic product;
+
+    (a.2)'
+- id: art-7
+  title: section 3.2, if the contravention of that section involves the terms and conditions of an authorization that authorizes the conduct of a clinical trial that relates to a therapeutic product;
+  text: 'section 3.2, if the contravention of that section involves the terms and conditions of an authorization that authorizes the conduct of a clinical trial that relates to a therapeutic product;
+
+    (b)
+
+    subsection 22.1(2), if the contravention of that subsection involves any document or information that relates to a therapeutic product or a sample that is or relates to a therapeutic product;
+
+    (c)
+
+    subsection 23(6), if the contravention of that subsection involves a conveyance in respect of which an inspector is exercising powers or performing duties or functions in relation to a therapeutic product;
+
+    (d)
+
+    subsection 23(13), if the contravention of that subsection involves a place in which an inspector is exercising powers or performing duties or functions in relation to a therapeutic product;
+
+    (e)
+
+    subsection 24(1), if the contravention of that subsection involves the obstruction or hindering of — or the making of a false or misleading statement to — an inspector who is carrying out duties or
+    functions in relation to a therapeutic product;
+
+    (f)
+
+    subsection 24(2), if the contravention of that subsection involves anything seized that is or relates to a therapeutic product; and
+
+    (g)
+
+    subsection 27.3(2), if the contravention of that subsection involves measures that were ordered to be taken in relation to a therapeutic product.
+
+    2014, c. 24, ss. 9, 10
+
+    2019, c. 29, s. 174
+
+    Due diligence
+
+    31.3
+
+    Due diligence is a defence in a prosecution for an offence under this Act, other than an offence under section 31.4.
+
+    2014, c. 24, s. 9
+
+    Offences — section 21.6 and serious risk
+
+    31.4
+
+    (1)
+
+    A person who contravenes section 21.6, or who knowingly or recklessly causes a serious risk of injury to human health in contravening another provision of this Act or the regulations, as it relates
+    to a therapeutic product, or an order made under any of sections 21.1 to 21.32 is guilty of an offence and liable
+
+    (a)
+
+    on conviction on indictment, to a fine the amount of which is at the discretion of the court or to imprisonment for a term not exceeding five years or to both; and
+
+    (b)
+
+    on summary conviction, for a first offence, to a fine not exceeding $500,000 or to imprisonment for a term not exceeding 18 months or to both and, for a subsequent offence, to a fine not exceeding $1,000,000
+    or to imprisonment for a term not exceeding two years or to both.
+
+    Clarification
+
+    (2)
+
+    For greater certainty, subsection (1) applies in respect of the following provisions of this Act:
+
+    (a)'
+- id: art-8
+  title: section 3, if the contravention of that section involves a therapeutic product;
+  text: 'section 3, if the contravention of that section involves a therapeutic product;
+
+    (a.1)'
+- id: art-9
+  title: section 3.1, if the contravention of that section involves a clinical trial that relates to a therapeutic product;
+  text: 'section 3.1, if the contravention of that section involves a clinical trial that relates to a therapeutic product;
+
+    (a.2)'
+- id: art-10
+  title: section 3.2, if the contravention of that section involves the terms and conditions of an authorization that authorizes the conduct of a clinical trial that relates to a therapeutic product;
+  text: 'section 3.2, if the contravention of that section involves the terms and conditions of an authorization that authorizes the conduct of a clinical trial that relates to a therapeutic product;
+
+    (b)
+
+    subsection 22.1(2), if the contravention of that subsection involves any document or information that relates to a therapeutic product or a sample that is or relates to a therapeutic product;
+
+    (c)
+
+    subsection 23(6), if the contravention of that subsection involves a conveyance in respect of which an inspector is exercising powers or performing duties or functions in relation to a therapeutic product;
+
+    (d)
+
+    subsection 23(13), if the contravention of that subsection involves a place in which an inspector is exercising powers or performing duties or functions in relation to a therapeutic product;
+
+    (e)
+
+    subsection 24(1), if the contravention of that subsection involves the obstruction or hindering of — or the making of a false or misleading statement to — an inspector who is carrying out duties or
+    functions in relation to a therapeutic product;
+
+    (f)
+
+    subsection 24(2), if the contravention of that subsection involves anything seized that is or relates to a therapeutic product; and
+
+    (g)
+
+    subsection 27.3(2), if the contravention of that subsection involves measures that were ordered to be taken in relation to a therapeutic product.
+
+    2014, c. 24, ss. 9, 11
+
+    2019, c. 29, s. 175
+
+    Sentencing considerations
+
+    31.5
+
+    A court that imposes a sentence for an offence under section 31.2 or 31.4 shall take into account, in addition to any other principles that it is required to consider, the following factors:
+
+    (a)
+
+    the harm or risk of harm caused by the commission of the offence; and
+
+    (b)
+
+    the vulnerability of consumers of the therapeutic product.
+
+    2014, c. 24, s. 9
+
+    Parties to offence
+
+    31.6
+
+    If a person other than an individual commits an offence under section 31.2, or commits an offence under section 31.4 by reason of contravening section 21.6, then any of the person’s directors, officers
+    or agents or mandataries who directs, authorizes, assents to or acquiesces or participates in the commission of the offence is a party to the offence and is liable on conviction to the punishment provided
+    for by this Act, even if the person is not prosecuted for the offence.
+
+    2014, c. 24, s. 9
+
+    Continuing offence
+
+    31.7
+
+    If an offence under section 31.2 or 31.4 is committed or continued on more than one day, it constitutes a separate offence for each day on which it is committed or continued.
+
+    2014, c. 24, s. 9
+
+    Limitation period
+
+    32
+
+    (1)
+
+    A prosecution for a summary conviction offence under this Act may be instituted at any time within two years after the time the subject-matter of the prosecution becomes known to the Minister or, in
+    the case of a contravention of a provision of the Act that relates to food, to the Minister of Agriculture and Agri-Food.
+
+    Minister’s certificate
+
+    (2)
+
+    A document purporting to have been issued by the Minister referred to in subsection (1), certifying the day on which the subject-matter of any prosecution became known to the Minister, is admissible
+    in evidence without proof of the signature or official character of the person appearing to have signed the document and is evidence of the matters asserted in it.
+
+    R.S., 1985, c. F-27, s. 32; 1997, c. 6, s. 66
+
+    Venue
+
+    33
+
+    A prosecution for a contravention of this Act or the regulations may be instituted, heard, tried or determined in the place in which the offence was committed or the subject-matter of the prosecution
+    arose or in any place in which the accused is apprehended or happens to be.
+
+    R.S., c. F-27, s. 28
+
+    Want of knowledge
+
+    34
+
+    (1)
+
+    Subject to subsection (2), in a prosecution for the sale of any article in contravention of this Act, except Parts III and IV, or of the regulations made under this Part, if the accused proves to the
+    satisfaction of the court or judge that
+
+    (a)
+
+    the accused purchased the article from another person in packaged form and sold it in the same package and in the same condition the article was in at the time it was so purchased, and
+
+    (b)
+
+    that the accused could not with reasonable diligence have ascertained that the sale of the article would be in contravention of this Act or the regulations,
+
+    the accused shall be acquitted.
+
+    Notice of reliance on want of knowledge
+
+    (2)
+
+    Subsection (1) does not apply in any prosecution unless the accused, at least ten days before the day fixed for the trial, has given to the prosecutor notice in writing that the accused intends to avail
+    himself of the provisions of subsection (1) and has disclosed to the prosecutor the name and address of the person from whom the accused purchased the article and the date of purchase.
+
+    R.S., c. F-27, ss. 29, 39, 46
+
+    Certificate of analyst
+
+    35
+
+    (1)
+
+    Subject to this section, in any prosecution for an offence under any of sections 31 to 31.2 and 31.4, a certificate purporting to be signed by an analyst and stating that an article, sample or substance
+    has been submitted to, and analysed or examined by, the analyst and stating the results of the analysis or examination is admissible in evidence and, in the absence of evidence to the contrary, is proof
+    of the statements contained in the certificate without proof of the signature or official character of the person appearing to have signed it.
+
+    Requiring attendance of analyst
+
+    (2)
+
+    The party against whom a certificate of an analyst is produced pursuant to subsection (1) may, with leave of the court, require the attendance of the analyst for the purposes of cross-examination.
+
+    Notice of intention to produce certificate
+
+    (3)
+
+    No certificate shall be admitted in evidence pursuant to subsection (1) unless, before the trial, the party intending to produce the certificate has given reasonable notice of that intention, together
+    with a copy of the certificate, to the party against whom it is intended to be produced.
+
+    Proof of service
+
+    (4)
+
+    For the purposes of this Act, service of any certificate referred to in subsection (1) may be proved by oral evidence given under oath by, or by the affidavit or solemn declaration of, the person claiming
+    to have served it.
+
+    Attendance for examination
+
+    (5)
+
+    Notwithstanding subsection (4), the court may require the person who appears to have signed an affidavit or solemn declaration referred to in that subsection to appear before it for examination or cross-examination
+    in respect of the issue of proof of service.
+
+    R.S., 1985, c. F-27, s. 35; R.S., 1985, c. 27 (1st Supp.), s. 192; 1996, c. 19, s. 78; 2014, c. 24, s. 12
+
+    Proof as to manufacturer or packager
+
+    36
+
+    (1)
+
+    In a prosecution for a contravention of this Act or of the regulations made under this Part, proof that a package containing any article to which this Act or the regulations apply bore a name or address
+    purporting to be the name or address of the person by whom it was manufactured or packaged is, in the absence of evidence to the contrary, proof that the article was manufactured or packaged, as the
+    case may be, by the person whose name or address appeared on the package.
+
+    Offence by employee or agent
+
+    (2)
+
+    In a prosecution for a contravention described in subsection (1), it is sufficient proof of the offence to establish that it was committed by an employee or agent of the accused whether or not the employee
+    or agent is identified or has been prosecuted for the offence.
+
+    Certified copies
+
+    (3)
+
+    In a prosecution for a contravention described in subsection (1), a copy of or extract from a document, including electronic data, that is certified to be a true copy by the inspector who made or took
+    it under paragraph 23(2)(c), (d) or (f), as the case may be, is admissible in evidence and is, in the absence of evidence to the contrary, proof of its contents.
+
+    Where accused had adulterating substances
+
+    (4)
+
+    Where a person is prosecuted under this Part for having manufactured an adulterated food or drug for sale, and it is established that the person had in his possession or on his premises any substance
+    the addition of which to that food or drug has been declared by regulation to cause the adulteration of the food or drug, the onus of proving that the food or drug was not adulterated by the addition
+    of that substance lies on the accused.
+
+    R.S., 1985, c. F-27, s. 36; 1996, c. 19, s. 79
+
+    2019, c. 29, s. 176
+
+    Exports
+
+    Conditions under which exports exempt
+
+    37
+
+    (1)
+
+    This Act does not apply to any packaged food, drug, cosmetic or device if
+
+    (a)
+
+    it is manufactured or prepared in Canada;
+
+    (b)
+
+    it is intended for export and is not manufactured or prepared for consumption or use in Canada nor sold for consumption or use in Canada;
+
+    (c)
+
+    a certificate that the package and its contents do not contravene any known requirement of the law of the country to which it is or is about to be consigned has been issued in respect of the package
+    and its contents in prescribed form and manner; and
+
+    (d)
+
+    the packaged food, drug, cosmetic or device meets any other prescribed requirement.
+
+    Exception — Act
+
+    (1.1)
+
+    Despite subsection (1),
+
+    (a)'
+- id: art-11
+  title: section 4, subsection 5(1) and section 7 apply to any food;
+  text: 'section 4, subsection 5(1) and section 7 apply to any food;
+
+    (b)'
+- id: art-12
+  title: section 8, subsection 9(1) and section 11 apply to any drug that is not a
+  text: 'section 8, subsection 9(1) and section 11 apply to any drug that is not a
+
+    natural health product
+
+    within the meaning of the
+
+    Natural Health Products Regulations
+
+    ;
+
+    (c)
+
+    sections 16 and 18 apply to any cosmetic; and
+
+    (d)'
+- id: art-13
+  title: section 19 and subsection 20(1) apply to any device.
+  text: 'section 19 and subsection 20(1) apply to any device.
+
+    Exception — regulations
+
+    (1.2)
+
+    Despite subsection (1), any prescribed provision of the regulations applies to any food, drug, cosmetic or device.
+
+    Exception — General Council Decision
+
+    (2)
+
+    Despite subsection (1), this Act applies in respect of any drug or device to be manufactured for the purpose of being exported in accordance with the
+
+    General Council Decision
+
+    , as defined in subsection 30(6), and the requirements of the Act and the regulations apply to the drug or device as though it were a drug or device to be manufactured and sold for consumption or use
+    in Canada, unless the regulations provide otherwise.
+
+    R.S., 1985, c. F-27, s. 37; 1993, c. 34, s. 73; 1996, c. 19, s. 80; 2004, c. 23, s. 3; 2016, c. 9, s. 11
+
+    2020, c. 5, s. 34
+
+    2021, c. 7, s. 10
+
+    Conditions under which transhipment exempt
+
+    38
+
+    This Act does not apply to any packaged food, drug, cosmetic or device if
+
+    (a)
+
+    it is manufactured or prepared outside Canada;
+
+    (b)
+
+    it is imported solely for the purpose of export and is not sold for consumption or use in Canada; and
+
+    (c)
+
+    it meets any other prescribed requirement.
+
+    2016, c. 9, s. 12
+
+    PARTS III AND IV
+
+    [Repealed, 1996, c. 19, s. 81]
+
+    SCHEDULE A
+
+    (Section 2.4)
+
+    PART 1
+
+    Things that Fall Within Definition “Food” in Section 2
+
+    Item
+
+    Description
+
+    PART 2
+
+    Things that Fall Within Definition “Drug” in Section 2
+
+    Item
+
+    Description
+
+    PART 3
+
+    Things that Fall Within Definition “Cosmetic” in Section 2
+
+    Item
+
+    Description
+
+    PART 4
+
+    Things that Fall Within Definition “Device” in Section 2
+
+    Item
+
+    Description
+
+    2019, c. 29, s. 178
+
+    SCHEDULE A.1
+
+    (Section 3)
+
+    Acute alcoholism
+
+    Alcoolisme aigu
+
+    Acute anxiety state
+
+    État anxieux aigu
+
+    Acute infectious respiratory syndromes
+
+    Syndromes respiratoires infectieux aigus
+
+    Acute, inflammatory and debilitating arthritis
+
+    Arthrite aiguë, inflammatoire et débilitante
+
+    Acute psychotic conditions
+
+    Troubles psychotiques aigus
+
+    Addiction (except nicotine addiction)
+
+    Dépendance (sauf la dépendance à la nicotine)
+
+    Appendicitis
+
+    Appendicite
+
+    Arteriosclerosis
+
+    Artériosclérose
+
+    Asthma
+
+    Asthme
+
+    Cancer
+
+    Cancer
+
+    Congestive heart failure
+
+    Insuffisance cardiaque congestive
+
+    Convulsions
+
+    Convulsions
+
+    Dementia
+
+    Démence
+
+    Depression
+
+    Dépression
+
+    Diabetes
+
+    Diabète
+
+    Gangrene
+
+    Gangrène
+
+    Glaucoma
+
+    Glaucome
+
+    Haematologic bleeding disorders
+
+    Affections hématologiques hémorragiques
+
+    Hepatitis
+
+    Hépatite
+
+    Hypertension
+
+    Hypertension
+
+    Nausea and vomiting of pregnancy
+
+    Nausées et vomissements de la grossesse
+
+    Obesity
+
+    Obésité
+
+    Rheumatic fever
+
+    Rhumatisme articulaire aigu
+
+    Septicemia
+
+    Septicémie
+
+    Sexually transmitted diseases
+
+    Maladies transmises sexuellement
+
+    Strangulated hernia
+
+    Hernie étranglée
+
+    Thrombotic and Embolic disorders
+
+    Maladies thrombotiques et embolies
+
+    Thyroid disease
+
+    Glande thyroïdienne (affections)
+
+    Ulcer of the gastro-intestinal tract
+
+    Ulcères des voies gastro-intestinales
+
+    R.S., 1985, c. F-27, Sch. A; SOR/88-252; SOR/89-503; SOR/90-655; SOR/92-198; SOR/94-287; SOR/99-413, 414; SOR/2007-289, ss. 1, 2
+
+    2019, c. 29, s. 177
+
+    SCHEDULE B
+
+    (Section 10)
+
+    The most recent editions, including all errata, supplements, revisions and addenda, of the following standards:
+
+    Column I
+
+    Column II
+
+    Item
+
+    Name
+
+    Abbreviation
+
+    1
+
+    European Pharmacopoeia
+
+    (Ph.Eur.)
+
+    2
+
+    Pharmacopée française
+
+    (Ph.F.)
+
+    3
+
+    Pharmacopoeia Internationalis
+
+    (Ph.I.)
+
+    4
+
+    The British Pharmacopoeia
+
+    (B.P.)
+
+    5
+
+    The Canadian Formulary
+
+    (C.F.)
+
+    6
+
+    The National Formulary
+
+    (N.F.)
+
+    7
+
+    The Pharmaceutical Codex: Principles and Practices of Pharmaceuticals
+
+    8
+
+    The United States Pharmacopoeia
+
+    (U.S.P.)
+
+    R.S., 1985, c. F-27, Sch. B; SOR/85-276; SOR/89-315; SOR/90-160; SOR/94-288; SOR/95-530, s. 2; SOR/96-96
+
+    SCHEDULE C
+
+    (Section 12)
+
+    Drugs, other than radionuclides, sold or represented for use in the preparation of radiopharmaceuticals
+
+    Drogues...
+
+    Radiopharmaceuticals
+
+    Produits pharmaceutiques radioactifs
+
+    R.S., c. F-27, Sch. C; SI/72-44; SI/76-1; SOR/79-237; SOR/81-195, 332; SOR/82-769
+
+    SCHEDULE D
+
+    (Section 12)
+
+    Allergenic substances used for the treatment or diagnosis of allergic or immunological diseases
+
+    Substances...
+
+    Anterior pituitary extracts
+
+    Extraits hypophysaires (lobe antérieur)
+
+    Aprotinin
+
+    Aprotinine
+
+    Cholecystokinin
+
+    Cholécystokinine
+
+    Drugs obtained by recombinant DNA procedures
+
+    Drogues obtenues...
+
+    Drugs, other than antibiotics, prepared from micro-organisms
+
+    Drogues, sauf...
+
+    Drugs that are or are made from blood
+
+    Drogue qui est...
+
+    Glucagon
+
+    Glucagon
+
+    Gonadotrophins
+
+    Gonadotrophines
+
+    Immunizing agents
+
+    Agents immunisants
+
+    Insulin
+
+    Insuline
+
+    Interferon
+
+    Interféron
+
+    Monoclonal antibodies, their conjugates and derivatives
+
+    Anticorps monoclonaux et leurs dérivés et conjugués
+
+    Secretin
+
+    Sécrétine
+
+    Snake Venom
+
+    Venin de serpent
+
+    Urokinase
+
+    Urokinase
+
+    R.S., 1985, c. F-27, Sch. D; SOR/85-715, s. 1; SOR/89-177; SOR/93-64; SOR/97-560; SOR/2007-120; SOR/2013-180
+
+    SCHEDULE E
+
+    (Section 13)
+
+    [There are no items in this Schedule.]
+
+    R.S., c. F-27, Sch. E; SOR/77-824; SOR/82-769
+
+    SCHEDULE F
+
+    (Section 15)
+
+    [There are no items in this Schedule of the FOOD AND DRUGS ACT.]
+
+    R.S., c. F-27, Sch. F; SOR/84-566
+
+    SCHEDULE G
+
+    (Sections 2 and 21.91)
+
+    Item
+
+    Description
+
+    R.S., 1985, c. F-27, Sch. G; SOR/92‑387; 1996, c. 19, s. 82
+
+    2019, c. 29, s. 179
+
+    SCHEDULE H
+
+    [Repealed, 1996, c. 19, s. 82]
+
+    RELATED PROVISIONS
+
+    — R.S., 1985, c. 27 (1st Supp.), s. 208
+
+    Writs of Assistance
+
+    208
+
+    Nothing in sections 190, 195, 199 and 200 of this Act shall be construed as rendering invalid or inadmissible in any proceedings any evidence obtained by the exercise of a writ of assistance prior to
+    the coming into force of those sections.
+
+    — 1997, c. 6, s. 66(2)
+
+    Transitional
+
+    66
+
+    (2)
+
+    For greater certainty, the two year limitation period provided for in subsection 32(1) of the Act, as amended by subsection (1), only applies in respect of offences committed after the coming into force
+    of that subsection.
+
+    — 2005'
 doc_files:
 - ca/raw/CA-act-F-27_Food_and_Drugs_Act.xml
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：ca/raw/CA-act-F-27_Food_and_Drugs_Act.xml (xml, 122350 chars)，生成 11 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：ca/raw/CA-act-F-27_Food_and_Drugs_Act.xml (xml, 122350 chars)，生成 11 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：ca/raw/CA-act-F-27_Food_and_Drugs_Act.xml (xml, 122348 chars)，生成 13 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

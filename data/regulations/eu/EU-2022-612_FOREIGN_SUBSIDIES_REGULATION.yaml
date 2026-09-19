@@ -9,11 +9,530 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'L_2022115EN.01000101.xml
+
+
+    13.4.2022
+
+
+    EN
+
+
+    Official Journal of'
+  text: 'L_2022115EN.01000101.xml
+
+
+    13.4.2022
+
+
+    EN
+
+
+    Official Journal of the European Union
+
+
+    L 115/1
+
+
+    REGULATION (EU) 2022/612 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL
+
+
+
+    of 6 April 2022
+
+
+
+    on roaming on public mobile communications networks within the Union
+
+
+    (recast)
+
+
+    (Text with EEA relevance)
+
+
+    THE EUROPEAN PARLIAMENT AND THE COUNCIL OF THE EUROPEAN UNION,
+
+
+    Having regard to the Treaty on the Functioning of the European Union, and in particular Article 114 thereof,
+
+
+    Having regard to the proposal from the European Commission,
+
+
+    After transmission of the draft legislative act to the national parliaments,
+
+
+    Having regard to the opinion of the European Economic and Social Committee
+
+    (
+
+    1
+
+    )
+
+    ,
+
+
+    After consulting the Committee of the Regions,
+
+
+    Acting in accordance with the ordinary legislative procedure
+
+    (
+
+    2
+
+    )
+
+    ,
+
+
+    Whereas:
+
+
+    (1)
+
+
+    Regulation (EU) No 531/2012 of the European Parliament and of the Council
+
+    (
+
+    3
+
+    )
+
+    has been substantially amended several times
+
+    (
+
+    4
+
+    )
+
+    . Since further amendments are to be made, that Regulation should be recast in the interests of clarity.
+
+
+    (2)
+
+
+    In particular, Regulation (EU) 2015/2120 of the European Parliament and of the Council
+
+    (
+
+    5
+
+    )
+
+    amended Regulation (EU) No 531/2012 and required retail roaming surcharges to be abolished in the Union from 15 June 2017, subject to the fair usage of roaming services and the possibility of applying
+    a derogation mechanism for the sustainability of the abolition of retail roaming surcharges, also referred to as ‘roam-like-at-home’ (RLAH). In addition, the Commission undertook a review of the wholesale
+    roaming market with a view to assessing measures necessary to enable the abolition of retail roaming surcharges in accordance with Article 19 of Regulation (EU) No 531/2012. Following that review, Regulation
+    (EU) 2017/920 of the European Parliament and of the Council
+
+    (
+
+    6
+
+    )
+
+    was adopted with the aim of regulating national wholesale roaming markets in order to abolish retail roaming surcharges by 15 June 2017 without distorting the domestic or the visited markets.
+
+
+    (3)
+
+
+    On 29 November 2019, the Commission published its first full review of the roaming market (the ‘Commission Report’), showing that travellers across the Union have benefited significantly from the abolition
+    of retail roaming surcharges. The use of mobile services, namely regulated voice, SMS or data roaming services, while travelling in the Union has increased rapidly and massively, confirming the impact
+    of the Union’s roaming rules. The Commission Report concluded that, despite signs of some competition dynamics in both the retail and wholesale roaming markets, the underlying basic competition conditions
+    have not changed and are not likely to change in the foreseeable future. The regulation of the retail and wholesale markets therefore remains necessary and should not be abandoned. In particular, the
+    Commission Report found that, at the wholesale level, the sharp reduction in price caps has contributed to a further reduction in wholesale roaming prices, which has benefited net outbounder operators,
+    that is, operators with a customer base that consumes more mobile services on the networks of partner operators in other Member States than those consumed by the partner operators’ customer base on
+    its own network.
+
+
+    The Commission Report took note of the recommendation of the Body of European Regulators for Electronic Communications (BEREC) to further lower wholesale roaming price caps. The Commission also analysed
+    and documented the need to further lower wholesale roaming price caps and assessed the level of reduction that enables visited operators to recover the costs of providing wholesale roaming services.
+    The Commission Report referred to the requirement of Regulation (EU) No 531/2012 that roaming customers have access to the same services in other Member States, for the same price, provided that those
+    services can be delivered on the visited network. The Commission Report took note of the very recent development of new ways of trading wholesale roaming traffic, such as online trading platforms that
+    have the potential to foster competition on the wholesale roaming market and facilitate negotiation between operators. Finally, it observed that the separate sale of data roaming services has not been
+    taken up by the market.
+
+
+    (4)
+
+
+    Regulation (EU) No 531/2012 expires on 30 June 2022 and the aim of this Regulation is to recast it while introducing new measures to increase transparency, including transparency with regard to the
+    use of value-added services while roaming and the use of roaming on non-terrestrial public mobile communications networks, and to ensure a genuine RLAH experience in terms of quality of service and
+    access to emergency services while roaming. The validity of this Regulation is set for 10 years, until 2032, in order to provide certainty in the market and minimise regulatory burdens. This Regulation
+    introduces a requirement that the Commission carry out reviews and submit reports to the European Parliament and to the Council in 2025 and 2029, followed, if appropriate, by a legislative proposal
+    to amend this Regulation, where market developments so require. Because of rapid market developments and the rapid roll-out of new technologies, the Commission should assess, in particular, whether
+    it is appropriate to make a legislative proposal to amend this Regulation when issuing its first report in 2025.
+
+
+    (5)
+
+
+    The national regulatory authorities or other competent authorities that are responsible for safeguarding and promoting the interests of mobile customers who normally reside within their territory are
+    not able to control the behaviour of the visited network operators situated in other Member States on whom those customers depend when using international roaming services. That lack of control could
+    diminish the effectiveness of measures taken by Member States based on their residual competence to adopt consumer protection rules.
+
+
+    (6)
+
+
+    The mobile communications market remains fragmented in the Union, with no mobile network covering all Member States. As a consequence, in order to provide mobile communications services to their domestic
+    customers travelling in other Member States, roaming providers purchase wholesale roaming services from, or exchange wholesale roaming services with, operators in visited Member States.
+
+
+    (7)
+
+
+    An internal telecommunications market cannot be said to exist while there are differences between domestic and roaming prices. Therefore, differences between domestic charges and roaming charges should
+    be eliminated in order to establish an internal market for mobile communication services.
+
+
+    (8)
+
+
+    A common, harmonised approach should be employed to ensure that users of terrestrial public mobile communications networks when travelling within the Union do not pay excessive prices for Union-wide
+    roaming services, thereby enhancing competition concerning roaming services between roaming providers, achieving a high level of consumer protection and preserving both incentives for innovation and
+    consumer choice. In view of the cross-border nature of the services concerned, such a common approach is needed to ensure that roaming providers can operate within a single coherent regulatory framework,
+    based on objectively established criteria.
+
+
+    (9)
+
+
+    The widespread use of internet-enabled mobile devices means that data roaming is of great economic significance. This is relevant for both users and providers of applications and content. In order to
+    stimulate the development of this market, charges for data transport should not impede growth, in particular considering that the development and deployment of next generation, high-speed networks and
+    services are expected to accelerate steadily.
+
+
+    (10)
+
+
+    Directives 2002/19/EC
+
+    (
+
+    7
+
+    )
+
+    , 2002/20/EC
+
+    (
+
+    8
+
+    )
+
+    , 2002/21/EC
+
+    (
+
+    9
+
+    )
+
+    , 2002/22/EC
+
+    (
+
+    10
+
+    )
+
+    and 2002/58/EC
+
+    (
+
+    11
+
+    )
+
+    of the European Parliament and of the Council aimed to create an internal market for electronic communications within the Union, while ensuring a high level of consumer protection through enhanced competition.
+    With the exception of Directive 2002/58/EC, those Directives were repealed by Directive (EU) 2018/1972 of the European Parliament and of the Council
+
+    (
+
+    12
+
+    )
+
+    .
+
+
+    Directive (EU) 2018/1972 aims to stimulate investment in and take-up of very high capacity networks in the Union as well as to set new spectrum rules for mobile connectivity and 5G. Directive (EU) 2018/1972
+    also provides for national regulatory authorities and other competent authorities, as well as BEREC, the Commission and the Member States, to pursue, inter alia, the objectives of contributing to the
+    development of the internal market and promoting the interests of the citizens of the Union. That Directive ensures, inter alia, that all end-users have access to affordable communication, including
+    the internet. It increases consumer protection and security for users, and facilitates regulatory intervention.
+
+
+    (11)
+
+
+    The retail and wholesale roaming markets exhibit unique characteristics which justify exceptional measures which go beyond the mechanisms otherwise available under Directive (EU) 2018/1972.
+
+
+    (12)
+
+
+    This Regulation should allow for a departure from the rules otherwise applicable under Directive (EU) 2018/1972, namely that prices for service offerings are to be determined by commercial agreement
+    in the absence of significant market power, thereby accommodating the introduction of complementary regulatory obligations which reflect the specific characteristics of Union-wide roaming services.
+
+
+    (13)
+
+
+    To protect roaming customers against increasing retail prices for regulated roaming services, namely regulated voice, SMS or data roaming services, due to fluctuations in the reference exchange rate
+    of currencies other than the euro, a Member State whose currency is not the euro should use an average of several reference exchange rates over time to determine the maximum applicable surcharges in
+    its currency. Where maximum charges are not denominated in euro, the applicable values should be determined in the relevant currency by applying the average of several reference exchange rates over
+    time published in the
+
+    Official Journal of the European Union
+
+    (Official Journal) on the date specified in this Regulation. Where there is no publication on the date specified, the applicable reference exchange rates should be those published in the first Official
+    Journal following that date and containing such reference exchange rates. To align the determination of values in currencies other than the euro with the rule applied to intra-EU communications in accordance
+    with Regulation (EU) 2015/2120, the maximum charges in currencies other than the euro should be determined by applying the average of the reference exchange rates published by the European Central Bank
+    on 15 January, 15 February and 15 March of the relevant calendar year in the Official Journal. Maximum charges calculated in this way for 2022 should apply from the date of entry into force of this
+    Regulation until 15 May 2023.
+
+
+    (14)
+
+
+    In order to allow for the development of a more efficient, integrated and competitive market for roaming services, there should be no restrictions that prevent undertakings from effectively negotiating
+    wholesale access for the purpose of providing roaming services, including for machine-to-machine communications. Obstacles to access to such wholesale roaming services due to differences in negotiating
+    power and in the degree of infrastructure ownership of undertakings should be removed. To that end, wholesale roaming agreements should respect the principle of technology neutrality and ensure that
+    all operators have an equal and fair opportunity to access all available networks and technologies and should respect the principle that such agreements be negotiated in good faith to allow roaming
+    providers to offer retail roaming services equivalent to the services they offer domestically. This Regulation does not impose an obligation on r'
+- id: art-2
+  title: 'Article 109 of Directive (EU) 2018/1972 requires Member States to ensure that all end-users have access to emergency services, free of charge, through emergency communications to the most appropriate '
+  text: 'Article 109 of Directive (EU) 2018/1972 requires Member States to ensure that all end-users have access to emergency services, free of charge, through emergency communications to the most appropriate
+    public safety answering point (PSAP). That Directive also requires Member States to ensure that access by end-users with disabilities to emergency services is available through emergency communications,
+    including when travelling within the Union, and that such access is equivalent to that enjoyed by other end-users. Those means of access could include a real time text service or total conversation
+    service as provided for by Directive (EU) 2019/882 of the European Parliament and of the Council
+
+    (
+
+    13
+
+    )
+
+    or other non-voice communications services, such as SMS, messaging or video services through emergency applications, or relay services, which Member States deploy taking into account the requirements
+    laid down in Union law and the capabilities and technical equipment of the national PSAP system. The implementation of the means of access to emergency services available to roaming customers with disabilities
+    and the delivery of caller location information should be based to the greatest extent possible on European standards or specifications. Such standards should be promoted by the Commission and Member
+    States in cooperation with European standardisation bodies and other relevant bodies.
+
+
+    It is for the Member States to determine the type of emergency communications that are technically feasible for ensuring roaming customers’ access to emergency services. In order to ensure that roaming
+    customers have access to emergency communications under the conditions laid down in Article 109 of Directive (EU) 2018/1972, visited network operators should include in the reference offer information
+    about what type of emergency communications are mandated and technically feasible for ensuring access for roaming customers under national measures in the visited Member State. In addition, wholesale
+    roaming agreements should include information on the technical parameters for ensuring access to emergency services, including by roaming customers with disabilities, as well as for ensuring the transmission
+    of caller location information, including handset-derived information, to the most appropriate PSAP in the visited Member State. Such information should allow the roaming provider to identify and provide
+    the emergency communication and the transmission of caller location free of charge.
+
+
+    (20)
+
+
+    Certain conditions may be included in the reference offers in order to allow mobile network operators to prevent permanent roaming or anomalous or abusive use of wholesale roaming access. In particular,
+    where the visited network operator has reasonable grounds for considering that permanent roaming by a significant share of the roaming provider’s customers or anomalous or abusive use of wholesale roaming
+    access is taking place, it should be able to require the roaming provider to provide, in an aggregated manner and in full compliance with Union and national data protection requirements, information
+    allowing the determination of whether a significant share of the roaming provider’s customers is in a situation of permanent roaming or whether there is anomalous or abusive use of wholesale roaming
+    access, such as information on the share of customers with insignificant domestic consumption compared to the roaming consumption. Moreover, termination of wholesale roaming agreements with a view to
+    preventing permanent roaming or anomalous or abusive use of wholesale roaming access should be effected only where less stringent measures have failed to address the situation. Such termination should
+    be subject to prior authorisation by the national regulatory authority of the visited network operator, taking the utmost account of the opinion of BEREC where it has been consulted.
+
+
+    Less stringent measures could consist of setting higher wholesale charges not exceeding the maximum wholesale charges provided for in this Regulation for volumes exceeding an aggregated volume specified
+    in the agreement. Such higher wholesale charges should be set in advance, or from the moment when the visited network operator has established and informed the home network operator that, based on objective
+    criteria, permanent roaming by a significant share of the roaming provider’s customers or anomalous or abusive use of wholesale roaming access is taking place. Less stringent measures could also consist
+    of a commitment by the home network operator to adopt or revise the fair use policies applicable to its customers in accordance with the implementing acts adopted pursuant to this Regulation, or the
+    possibility for the visited network operator to request that the wholesale roaming agreement be revised. In the interests of transparency, the national regulatory authority should make information concerning
+    requests for authorisation to terminate wholesale roaming agreements available to the public, subject to business confidentiality.
+
+
+    (21)
+
+
+    In order to allow for the development of more efficient, integrated and competitive markets for roaming services, when negotiating wholesale roaming access for the purpose of providing retail roaming
+    services, operators should be given the possibility of negotiating innovative wholesale pricing schemes which are not directly linked to volumes actually consumed, such as flat payments, upfront commitments
+    or capacity-based wholesale roaming agreements, or pricing schemes that reflect variations of demand across the year. Subject to the limitations on permanent roaming included in this Regulation, machine-to-machine
+    communications, namely services involving an automated transfer of data and information between devices or software-based applications with limited or no human interaction, are not excluded from the
+    scope of this Regulation or the relevant wholesale roaming access obligations laid down in this Regulation, including the provisions on fair usage of roaming services and the possibility for mobile
+    network operators of including in their reference offers conditions to prevent permanent use of regulated roaming services or the anomalous or abusive use of wholesale roaming access. However, permanent
+    roaming is subject to commercial negotiations and can be agreed by two roaming partners in a wholesale roaming agreement. In order to allow the development of more efficient and competitive markets
+    for machine-to-machine communications, it is expected that mobile network operators will increasingly respond to and accept all reasonable requests for wholesale roaming agreements on reasonable terms
+    and explicitly allow permanent roaming for machine-to-machine communications.
+
+
+    They should be able to establish flexible wholesale roaming agreements enabling wholesale roaming services and to apply tariff schemes which are not based on the volume of data consumed but instead
+    are based on alternative schemes, for example, the number of connected machines per month. In that context, in the event of a cross-border dispute, the parties involved should have recourse to the dispute
+    resolution procedure laid down in Article 27 of Directive (EU) 2018/1972. The negotiating parties should have the option of agreeing not to apply maximum regulated wholesale roaming charges for the
+    duration of wholesale roaming agreements. That would exclude the possibility for either party to subsequently request the application of volume based maximum wholesale charges to actual consumption,
+    as set out in this Regulation. This should be without prejudice to obligations as regards the provision of regulated retail roaming services. Furthermore, the Commission Report takes note of the very
+    recent development of new ways of trading wholesale roaming traffic, such as online trading platforms, that have the potential to facilitate the negotiation process between operators. The use of similar
+    instruments could contribute to enhancing competition in the wholesale roaming market and drive further down actual wholesale rates charged.
+
+
+    (22)
+
+
+    Regulation (EU) No 531/2012 provides that end-users are not to be prevented by operators from accessing regulated data roaming services on a visited network offered by an alternative roaming provider.
+    However, this structural measure, introduced by way of the obligation for the separate sale of data roaming services, has become ineffective following the introduction of RLAH. In addition, due to the
+    lack of uptake in the market, this obligation no longer appears to be relevant. Therefore, provisions that require operators to provide separate sales of roaming data services at retail level should
+    no longer apply.
+
+
+    (23)
+
+
+    In order to ensure uniform conditions for the implementation of this Regulation, implementing powers should be conferred on the Commission in respect of setting out detailed rules on the application
+    of fair use policies and on the methodology for assessing the sustainability of the provision of retail roaming services at domestic prices, as well as on the application to be submitted by a roaming
+    provider for the purposes of that assessment. Those powers should be exercised in accordance with Regulation (EU) No 182/2011 of the European Parliament and of the Council
+
+    (
+
+    14
+
+    )
+
+    . Until the adoption of those implementing measures, Commission Implementing Regulation (EU) 2016/2286
+
+    (
+
+    15
+
+    )
+
+    should continue to apply.
+
+
+    (24)
+
+
+    Regulatory obligations should be imposed at both retail and wholesale levels to protect the interests of roaming customers, since experience has shown that reductions in wholesale prices for Union-wide
+    roaming services may not be reflected in lower retail prices for roaming, owing to the absence of incentives for this to happen. On the other hand, action to reduce the level of retail prices without
+    addressing the level of the wholesale costs associated with the provision of those services could risk disrupting the orderly functioning of the internal market for roaming services and would not allow
+    a higher degree of competition.
+
+
+    (25)
+
+
+    The abolition of retail roaming surcharges in accordance with Regulation (EU) 2015/2120 was necessary to establish and ease the functioning of a digital single market across the Union. However, that
+    Regulation alone was not sufficient to ensure the proper functioning of the roaming market. This Regulation should contribute to pricing models in domestic markets not being affected by the abolition
+    of retail roaming surcharges.
+
+
+    (26)
+
+
+    The relevant domestic retail price should be equal to the domestic retail per-unit charge. However, in situations where there are no specific domestic retail prices that could be used as a basis for
+    a regulated retail roaming service (for example, in the case of domestic unlimited tariff plans, bundles or domestic tariffs which do not include data), the domestic retail price should be deemed to
+    be the same charging mechanism as if the customer were consuming the domestic tariff plan in that customer’s Member State.
+
+
+    (27)
+
+
+    When roaming within the Union, roaming customers should be able to use the retail services to which they subscribe and benefit from the same level of quality of service as at home. To that end, and
+    in accordance with the wholesale access obligations laid down in this Regulation, roaming providers and mobile network operators should take the necessary measures to ensure that regulated retail roaming
+    services are provided under the same conditions as if such services were consumed domestically. For example, if the maximum available data speed of the visited network is equal to, or higher than, the
+    maximum available speed offered domestically by the roaming provider, the roaming provider should not offer a lower speed than the maximum available speed provided domestically. If the maximum available
+    data speed of the visited network is lower than the maximum available speed offered domestically by the roaming provider, the roaming '
+- id: art-3
+  title: Article 110 of Directive (EU) 2018/1972 requires Member States to ensure that their public warning systems transmit public warnings to end-users concerned, namely end-users who are located in the
+    geog
+  text: 'Article 110 of Directive (EU) 2018/1972 requires Member States to ensure that their public warning systems transmit public warnings to end-users concerned, namely end-users who are located in the
+    geographic areas potentially being affected by imminent or developing major emergencies and disasters during the warning period, including roaming end-users. Currently available technologies enable
+    national authorities to send public warnings to concerned roaming customers without the need for prior action by the roaming customer, such as downloading an application. However, in some Member States,
+    public warning mobile applications which allow sending rich information to end-users are deployed, sometimes in addition to the previously mentioned technologies. In the Member States where the link
+    to such a national public warning mobile application is provided in the database of the means of access to emergency services that are mandated in each Member State established pursuant to this Regulation,
+    roaming providers should inform roaming customers of the link to that application. The information should be provided in the language in which the roaming provider communicates with the roaming customer.
+    With reference to the preamble to Directive (EU) 2018/1972, the Commission will assess possibilities for enabling roaming customers concerned to receive public warnings issued by the competent national
+    authorities, including through a mobile application when travelling within the Union, through a Union-wide public warning system that complements national public warning systems.
+
+
+    (59)
+
+
+    Numbering ranges, including those used for value-added services, are set in the national numbering plans and are not harmonised at Union level. Operators may therefore not be able to recognise the numbering
+    ranges for value-added services in all countries in advance. Numbering ranges used for value-added services are subject to particular pricing conditions at the national level, and in many cases their
+    termination rates are not regulated. While this is understood by roaming providers, the level of the wholesale charges they will incur may still be unexpectedly high. In a roaming scenario, operators
+    are unable to address this issue because they lack information on numbering ranges used for value-added services throughout the Union. To address this problem, BEREC should establish and maintain a
+    single Union-wide, secure database of numbering ranges for value-added services. The database is intended to enhance transparency, enabling national regulatory authorities and, where applicable, other
+    competent authorities, as well as operators, to have direct access to information about which numbering ranges can generate higher costs (termination rates) in all Member States. It represents a necessary
+    intermediate step to increase transparency at retail level as it could be used to inform roaming customers about the types of services that may be subject to increased charges when roaming. With a view
+    to providing better consumer protection and transparency, it should be possible for the database to contain additional information, for example about the tariffs associated with numbering ranges for
+    value-added services, such as per minute or per act tariffs. Such tariff information could be made available on the dedicated webpage providing information about value-added services. BEREC should establish
+    the procedures by which competent authorities are to provide and update the information in the database of numbering ranges for value-added services established pursuant to this Regulation.
+
+
+    (60)
+
+
+    BEREC should establish and maintain a single Union-wide database of means of access to emergency services that are mandated and are technically feasible to be used by roaming end-users in each Member
+    State. The database is intended to help national operators, national regulatory authorities and, where applicable, other competent authorities to be informed of all these means of access to emergency
+    services deployed in the Union. Member States should be able to update the database with the link to the national public warning mobile application, if applicable. BEREC should establish the procedures
+    by which the competent authorities are to provide and update the information requested pursuant to this Regulation.
+
+
+    (61)
+
+
+    Where Member States assign to competent authorities other than national regulatory authorities some of the tasks related to end-user protection, for instance regarding information requirements for retail
+    contracts, transparency, or contract termination, the competence of those competent authorities for those tasks covers all parts of the retail contract, including the roaming related rights and obligations.
+    Without prejudice to the assignment of tasks under Directive (EU) 2018/1972, the national regulatory authorities and, where applicable, other competent authorities which are responsible for carrying
+    out tasks under that Directive should have the powers needed to monitor, supervise and enforce the obligations under this Regulation within their territory. They should also monitor developments in
+    the pricing of voice, SMS and data services for roaming customers within the Union including, where appropriate, the specific costs related to roaming calls made and received in the outermost regions
+    of the Union and the need to ensure that these costs can be adequately recovered on the wholesale market, and that traffic-steering techniques are not used to limit choice to the detriment of customers.
+    They should ensure that up-to-date information on the application of this Regulation is made available to interested parties and publish the results of such monitoring. Information should be provided
+    on corporate, post-paid and pre-paid customers separately.
+
+
+    (62)
+
+
+    In-country roaming in the outermost regions of the Union, where mobile telephony licences are distinct from those issued in respect of the rest of the national territory, could benefit from rate reductions
+    equivalent to those practised on the internal market for roaming services. The implementation of this Regulation should not give rise to less favourable pricing treatment for customers using in-country
+    roaming services as opposed to customers using Union-wide roaming services. To that end, the national authorities may take additional measures consistent with Union law.
+
+
+    (63)
+
+
+    While ensuring business confidentiality and in order to monitor and supervise the application of this Regulation and developments in wholesale roaming markets, national regulatory authorities should
+    be entitled to require information on wholesale roaming agreements that do not provide for the application of the maximum wholesale roaming charges. Those authorities should also be allowed to require
+    information on the adoption and application of conditions in wholesale roaming agreements aiming to prevent permanent roaming and any anomalous or abusive use of wholesale roaming access for purposes
+    other than the provision of regulated roaming services to roaming providers’ customers travelling within the Union.
+
+
+    (64)
+
+
+    Where Union providers of mobile services find the benefits of interoperability and end-to-end connectivity for their customers jeopardised by the termination, or threat of termination, of their roaming
+    arrangements with mobile network operators in another Member State or where they are unable to provide their customers with services in another Member State as a result of a lack of agreement with at
+    least one wholesale network provider, national regulatory authorities, or other competent authorities in the situations referred to under Article 61(2), points (b) and (c) of Directive (EU) 2018/1972,
+    should make use, where necessary, of the powers under Article 61 of that Directive to ensure adequate access and interconnection, taking into account the objectives set out in Article 3 of that Directive,
+    in particular the development of the internal market by favouring the pr'
 doc_files:
 - eu/raw/EU-2022-612_Foreign_Subsidies_Regulation.pdf
+- eu/raw/EU-2022-612_Foreign_Subsidies_Regulation.xhtml
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 去重：合并同法规异名条目 EU-2022-612_FOREIGN_SUBSIDIES_REGULATION-2（EU-2022-612 Foreign Subsidies Regulation [xhtml]）。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2022-612_Foreign_Subsidies_Regulation.pdf (pdf, 154539 chars)，生成 8 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2022-612_Foreign_Subsidies_Regulation.xhtml (html, 153172 chars)，生成 3 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2022-612_Foreign_Subsidies_Regulation.xhtml (html, 152987 chars)，生成 3 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

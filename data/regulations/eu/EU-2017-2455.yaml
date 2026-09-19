@@ -9,11 +9,78 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'What US sellers need to know about EU IOSS intermediaries - '
+  text: "What US sellers need to know about EU IOSS intermediaries - Avalara\nSkip to main content\nAgentic AI\nSolutions\nProducts\nPartners\nResources\nAbout\nSupport\nGet started\nGet started\nSales\n\
+    phone_number\nSupport\nSign in\nBlog\nBlog\nLocation\nTax type\nNeed\nIndustry\nRelated\n        Share:\nShare to Facebook\nShare to Twitter\nShare to LinkedIn\nCopy URL to clipboard\nWhat US sellers\
+    \ need to know about EU IOSS intermediaries\nGail Cole\nJun 24, 2021\nA sweeping value-added tax (VAT) reform package will come into force in the European Union (EU) on July 1, 2021. Affecting many\
+    \ companies in the business-to-consumer (B2C) ecommerce supply chain that sell to consumers in the EU, these reforms will impact EU and non-EU businesses in different ways. This post is geared toward\
+    \ U.S. businesses that sell across borders and focuses on the new Import One-Stop Shop, or IOSS, which provides non-EU companies access to all 27 member states of the biggest trading bloc in the world\
+    \ with a single registration.\n              What is the IOSS?\nThe Import One-Stop Shop is a new electronic portal designed to simplify VAT compliance requirements for non-EU ecommerce merchants and\
+    \ deemed suppliers (i.e., marketplace facilitators) selling low-value goods into the EU. All 27 EU member states are participating in the IOSS scheme. \nStarting July 1, 2021, VAT must be collected\
+    \ on commercial imports with a total shipment value under €150. The IOSS facilitates the collection, declaration, and payment of the VAT due on these low-value imports by creating a fast track or “green\
+    \ channel” for quick and easy customs clearance. However, the IOSS cannot be used to collect, declare, or pay the VAT due on shipments valued at or above €150.\nThere’s a trade-off for the expedited\
+    \ clearance offered by the IOSS: Sellers using the IOSS must collect VAT at the point of sale, not upon import into the EU.\nUse of the IOSS is voluntary, not mandatory. However, the benefits of the\
+    \ IOSS will make it an attractive option for many B2C ecommerce retailers and marketplaces, as well as their customers. \nNote: For shipments valued at or above €150, import VAT will continue to be\
+    \ due upon import into the EU. See the\n European Commission Taxation and Customs Union\n for more details.\n              Benefits to using the IOSS\nFor businesses, the greatest advantage of the IOSS\
+    \ scheme is that it provides companies access to all 27 member states of the biggest trading bloc in the world with one single registration. That point can’t be overemphasized.  \nAdditional benefits\
+    \ to businesses and their EU customers include:\nExpedited customs clearance.\n The IOSS system will help prevent delays at customs because VAT is collected at the point of sale. Low-value imports (shipments\
+    \ valued < €150) should sail through a “green channel” at customs.\nIncreased transparency for consumers.\n Because consumers are charged the total cost of goods, including import VAT, up front, at\
+    \ checkout, they should encounter fewer surprise costs when a package arrives at customs.\nSimplified compliance for merchants.\n Ecommerce sellers and marketplaces can use a single IOSS registration\
+    \ to report and pay VAT on all low-value shipments (< €150) into the 27 EU member states, reducing cash flow issues created by the standard method.\nStreamlined logistics.\n Goods listed in the IOSS\
+    \ with proper \nHarmonized System codes\n (HS codes) can move freely within the EU, thus can be imported into any member state and subsequently transported to their final destination. Goods imported\
+    \ without the IOSS regime must arrive and clear customs in the member state where the goods will be delivered to the end user (i.e., the destination country).\n              How to register for the\
+    \ IOSS"
+- id: art-2
+  title: Though the IOSS will greatly simplify VAT collection, declar
+  text: "Though the IOSS will greatly simplify VAT collection, declaration, and payment for ecommerce merchants and marketplaces, there’s one tricky bit: Non-EU businesses cannot register directly for the\
+    \ IOSS unless they’re established in a country that has a VAT mutual assistance agreement with the EU. As of this writing, the only country with such an agreement is Norway.\nTherefore, non-EU businesses\
+    \ will need to\n appoint an approved EU-established intermediary\n to represent them and “\nfulfill their VAT obligations under IOSS\n.” Non-EU businesses are required to register in the intermediary’s\
+    \ member state. For example, a non-EU business working with an intermediary based in France must be registered in France (i.e., France must be the member state of identification).\n              What\
+    \ you need to know about IOSS intermediaries\nTo emphasize the point, businesses based outside of the EU cannot register for the IOSS themselves. Non-EU businesses must hire an IOSS intermediary to\
+    \ complete the IOSS registration on their behalf.\nResidency requirements for IOSS intermediaries\nAn IOSS intermediary must reside in an EU member state and register with tax authorities of that country.\n\
+    Registration requirements for IOSS intermediaries and their clients\nUpon registering with the tax authorities, an IOSS intermediary will receive an identification number that’s unique to them. This\
+    \ number is needed during the customs clearance process.\nIt’s the job of an IOSS intermediary to register the name of all the businesses they represent with the IOSS intermediary’s home tax office.\
+    \ Once registration is complete, the IOSS intermediary will receive an IOSS VAT identification number for each seller.\n              What you need to do to use the IOSS\nMerchants should do the following:\n\
+    Display the amount of VAT paid by the buyer when the order is finalized\nCollect VAT from the buyer at checkout\nClassify their catalog of products to HS codes (known as TARIC codes in the EU) and include\
+    \ codes on the shipping label and commercial invoice provided to the carrier \nMake sure shipments do not exceed the  €150 threshold (value is based on total value of a shipment)\nState the price paid\
+    \ by the buyer on the invoice, in euros\nProvide the information required for customs clearance in the EU, including the IOSS VAT identification number, to the person declaring goods at the EU border\n\
+    Submit a monthly VAT return electronically, via the IOSS portal of the member state where you’re registered for the IOSS\nMake a monthly payment of the VAT declared in the VAT return to the member state\
+    \ where you’re registered for the IOSS\nMaintain records of all eligible IOSS sales and/or facilitated sales for 10 years\nNote: Starting July 1, 2021, the marketplace facilitator is the deemed supplier\
+    \ responsible for the VAT due on third-party sales. Marketplace sellers that sell only through a registered marketplace and don’t make direct sales into the EU aren’t required to register.\n       \
+    \       What if I don’t want to use the IOSS?\nThe IOSS isn’t compulsory. Non-EU businesses can instead elect to have the customs declarant collect import VAT from the final consumer when shipments\
+    \ enter the EU. The customs declarant — usually the postal operator, courier firm, or a customs agent — must then submit the VAT monthly.\nConsumers will likely find this option less appealing. Their\
+    \ packages could be held up at customs, and they could be surprised when they’re required to pay the VAT due, especially if the package contains a gift.\n              Why now?\nThe goal of the IOSS\
+    \ scheme is twofold: \nTo make it easier to sell online and support the growth of the digital economy in Europe\nTo fight fraud and ensure all sellers are collecting and remitting VAT as required\n\
+    The introduction of the IOSS scheme is one of several significant tax changes taking effect in the EU on July 1, 2021. Others include the elimination of the VAT exemption for goods valued ≤ €22 and "
+- id: art-3
+  title: deeming marketplace facilitators the supplier liable for the
+  text: "deeming marketplace facilitators the supplier liable for the payment of VAT on third-party sales\n. EU-based businesses will also face other changes.\nTogether, these measures should help reduce\
+    \ VAT fraud, which is a significant problem throughout the European Union. They should also level the playing field for EU retailers and non-EU retailers, as VAT will now apply to all taxable imports.\
+    \ At the same time, the IOSS should simplify the burdens of collecting, remitting, and reporting VAT.\nAvalara’s\n end-to-end IOSS solution\n, which includes serving as an intermediary and obtaining\
+    \ IOSS registration numbers, can help U.S. retailers and marketplaces of all sizes navigate the forthcoming changes to the EU VAT system, whether they currently have EU-based customers or plan to expand\
+    \ in the future. And \nAvalara Managed Tariff Code Classification\n helps sellers quickly identify the HS codes required for IOSS customs clearance documentation.\n        Share:\nShare to Facebook\n\
+    Share to Twitter\nShare to LinkedIn\nCopy URL to clipboard\nCross-border\nEurope\nIOSS and OSS\nTax and compliance\nUnited States\nVAT\nSales tax rates, rules, and regulations change frequently. Although\
+    \ we hope you'll find this information helpful, this blog is for informational purposes only and does not provide legal or tax advice.\nGail Cole\nAvalara Author\nRecent posts\n                    \
+    \        Apr 21, 2026\n                            Kentucky to remove economic nexus transaction threshold, tax data brokering services\n                            Apr 16, 2026\n                  \
+    \          March 2026 monthly roundup\n                            Apr 13, 2026\n                            2026 gas tax holidays \nAvalara Tax Changes 2026 is here\nThe 10th edition of our annual\
+    \ report engagingly breaks down key policies related to sales tax, tariffs, and VAT.\nRead the report\n              Stay up to date\nSign up for our free newsletter and stay up to date with the latest\
+    \ tax news.\nAbout\nWhy Avalara\nWhy automate\nStreamlined Sales Tax Program\nCustomer stories\nAvalara leadership\nAvalara careers\nBecome a partner\nBecome a developer\nPress\nLocations\nSitemap\n\
+    Products & Services\nAvaTax\nReturns\nTax software demos\nCompliance documents\nAll products\nIntegrations\nAdobe Commerce\nMicrosoft Dynamics\nNetSuite\nQuickBooks\nSage\nShopify\nStripe\nZuora\nBrowse\
+    \ integrations\nContact us\nphone_number\nMonday-Friday \n8:00 a.m.–6:00 p.m. PT\nMonday–Friday\n4:30 a.m.–4:30 p.m. PT\nResources\nSupport\nAvalara University\nKnowledge Center\nWhitepapers\nEvents\n\
+    Webinars\nSales tax calculator\nState sales tax rates\nTerms\nPrivacy\nCorporate compliance\nCookies\nYour Privacy Rights\nEnglish\nAustralia (English)\nBrazil (English)\nBrasil (Português)\nEurope\
+    \ (English)\nFrance (Français)\nGermany (Deutsch)\nIndia (English)\nNew Zealand (English)\nSingapore (English)\nSpain (Español)\nItaly (Italiano)\nAvalara, Inc. 2026"
 doc_files:
 - eu/raw/欧盟VAT电商IOSS和OSS一站式服务解读.html
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：eu/raw/欧盟VAT电商IOSS和OSS一站式服务解读.html (html, 10509 chars)，生成 3 条共 10509 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：eu/raw/欧盟VAT电商IOSS和OSS一站式服务解读.html (html, 10509 chars)，生成 3 条共 10509 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：eu/raw/欧盟VAT电商IOSS和OSS一站式服务解读.html (html, 10509 chars)，生成 3 条共 10509 字符；解析文本未人工复核，引用以官方原件为准。'

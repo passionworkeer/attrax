@@ -1,6 +1,6 @@
 id: US-CFR-TITLE21-PART182
 official_citation: US 21 CFR Part 182
-short_name: US 21 CFR Part 182
+short_name: US 21 CFR Part 182 — SUBSTANCES GENERALLY RECOGNIZED AS SAFE
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,2495 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '21
+
+    Food and Drugs
+
+    3
+
+    2024-04-01
+
+    2024-04-01
+
+    false
+
+    SUBSTANCES G'
+  text: '21
+
+    Food and Drugs
+
+    3
+
+    2024-04-01
+
+    2024-04-01
+
+    false
+
+    SUBSTANCES GENERALLY RECOGNIZED AS SAFE
+
+    182
+
+    PART 182
+
+    Food and Drugs
+
+    FOOD AND DRUG ADMINISTRATION, DEPARTMENT OF HEALTH AND HUMAN SERVICES (CONTINUED)
+
+    FOOD FOR HUMAN CONSUMPTION (CONTINUED)
+
+    Pt. 182
+
+    PART 182—SUBSTANCES GENERALLY RECOGNIZED AS SAFE
+
+    Subpart A—General Provisions
+
+    Sec.
+
+    182.1
+
+    Substances that are generally recognized as safe.
+
+    182.10
+
+    Spices and other natural seasonings and flavorings.
+
+    182.20
+
+    Essential oils, oleoresins (solvent-free), and natural extractives (including distillates).
+
+    182.40
+
+    Natural extractives (solvent-free) used in conjunction with spices, seasonings, and flavorings.
+
+    182.50
+
+    Certain other spices, seasonings, essential oils, oleoresins, and natural extracts.
+
+    182.60
+
+    Synthetic flavoring substances and adjuvants.
+
+    182.70
+
+    Substances migrating from cotton and cotton fabrics used in dry food packaging.
+
+    182.90
+
+    Substances migrating to food from paper and paperboard products.
+
+    182.99
+
+    Adjuvants for pesticide chemicals.
+
+    Subpart B—Multiple Purpose GRAS Food Substances
+
+    182.1045
+
+    Glutamic acid.
+
+    182.1047
+
+    Glutamic acid hydrochloride.
+
+    182.1057
+
+    Hydrochloric acid.
+
+    182.1073
+
+    Phosphoric acid.
+
+    182.1087
+
+    Sodium acid pyrophosphate.
+
+    182.1125
+
+    Aluminum sulfate.
+
+    182.1127
+
+    Aluminum ammonium sulfate.
+
+    182.1129
+
+    Aluminum potassium sulfate.
+
+    182.1131
+
+    Aluminum sodium sulfate.
+
+    182.1180
+
+    Caffeine.
+
+    182.1217
+
+    Calcium phosphate.
+
+    182.1235
+
+    Caramel.
+
+    182.1320
+
+    Glycerin.
+
+    182.1480
+
+    Methylcellulose.
+
+    182.1500
+
+    Monoammonium glutamate.
+
+    182.1516
+
+    Monopotassium glutamate.
+
+    182.1711
+
+    Silica aerogel.
+
+    182.1745
+
+    Sodium carboxymethylcellulose.
+
+    182.1748
+
+    Sodium caseinate.
+
+    182.1778
+
+    Sodium phosphate.
+
+    182.1781
+
+    Sodium aluminum phosphate.
+
+    182.1810
+
+    Sodium tripolyphosphate.
+
+    Subpart C—Anticaking Agents
+
+    182.2122
+
+    Aluminum calcium silicate.
+
+    182.2227
+
+    Calcium silicate.
+
+    182.2437
+
+    Magnesium silicate.
+
+    182.2727
+
+    Sodium aluminosilicate.
+
+    182.2729
+
+    Sodium calcium aluminosilicate, hydrated.
+
+    182.2906
+
+    Tricalcium silicate.
+
+    Subpart D—Chemical Preservatives
+
+    182.3013
+
+    Ascorbic acid.
+
+    182.3041
+
+    Erythorbic acid.
+
+    182.3089
+
+    Sorbic acid.
+
+    182.3109
+
+    Thiodipropionic acid.
+
+    182.3149
+
+    Ascorbyl palmitate.
+
+    182.3169
+
+    Butylated hydroxyanisole.
+
+    182.3173
+
+    Butylated hydroxytoluene.
+
+    182.3189
+
+    Calcium ascorbate.
+
+    182.3225
+
+    Calcium sorbate.
+
+    182.3280
+
+    Dilauryl thiodipropionate.
+
+    182.3616
+
+    Potassium bisulfite.
+
+    182.3637
+
+    Potassium metabisulfite.
+
+    182.3640
+
+    Potassium sorbate.
+
+    182.3731
+
+    Sodium ascorbate.
+
+    182.3739
+
+    Sodium bisulfite.
+
+    182.3766
+
+    Sodium metabisulfite.
+
+    182.3795
+
+    Sodium sorbate.
+
+    182.3798
+
+    Sodium sulfite.
+
+    182.3862
+
+    Sulfur dioxide.
+
+    182.3890
+
+    Tocopherols.
+
+    Subpart E—Emulsifying Agents [Reserved]
+
+    Subpart F—Dietary Supplements [Reserved]
+
+    Subpart G—Sequestrants
+
+    182.6085
+
+    Sodium acid phosphate.
+
+    182.6197
+
+    Calcium diacetate.
+
+    182.6203
+
+    Calcium hexametaphosphate.
+
+    182.6215
+
+    Monobasic calcium phosphate.
+
+    182.6285
+
+    Dipotassium phosphate.
+
+    182.6290
+
+    Disodium phosphate.
+
+    182.6757
+
+    Sodium gluconate.
+
+    182.6760
+
+    Sodium hexametaphosphate.
+
+    182.6769
+
+    Sodium metaphosphate.
+
+    182.6778
+
+    Sodium phosphate.
+
+    182.6787
+
+    Sodium pyrophosphate.
+
+    182.6789
+
+    Tetra sodium pyrophosphate.
+
+    182.6810
+
+    Sodium tripolyphosphate.
+
+    Subpart H—Stabilizers
+
+    182.7255
+
+    Chondrus extract.
+
+    Subpart I—Nutrients
+
+    182.8013
+
+    Ascorbic acid.
+
+    182.8159
+
+    Biotin.
+
+    182.8217
+
+    Calcium phosphate.
+
+    182.8223
+
+    Calcium pyrophosphate.
+
+    182.8250
+
+    Choline bitartrate.
+
+    182.8252
+
+    Choline chloride.
+
+    182.8778
+
+    Sodium phosphate.
+
+    182.8890
+
+    Tocopherols.
+
+    182.8892
+
+    α-Tocopherol acetate.
+
+    182.8985
+
+    Zinc chloride.
+
+    182.8988
+
+    Zinc gluconate.
+
+    182.8991
+
+    Zinc oxide.
+
+    182.8994
+
+    Zinc stearate.
+
+    182.8997
+
+    Zinc sulfate.
+
+    Authority:
+
+    21 U.S.C. 321, 342, 348, 371.
+
+    Source:
+
+    42 FR 14640, Mar. 15, 1977, unless otherwise noted.
+
+    Subpart A—General Provisions'
+- id: art-2
+  title: § 182.1
+  text: '§ 182.1
+
+    Substances that are generally recognized as safe.
+
+    (a) It is impracticable to list all substances that are generally recognized as safe for their intended use. However, by way of illustration, the Commissioner regards such common food ingredients as
+    salt, pepper, vinegar, baking powder, and monosodium glutamate as safe for their intended use. This part includes additional substances that, when used for the purposes indicated, in accordance with
+    good manufacturing practice, are regarded by the Commissioner as generally recognized as safe for such uses.
+
+    (b) For the purposes of this section, good manufacturing practice shall be defined to include the following restrictions:
+
+    (1) The quantity of a substance added to food does not exceed the amount reasonably required to accomplish its intended physical, nutritional, or other technical effect in food; and
+
+    (2) The quantity of a substance that becomes a component of food as a result of its use in the manufacturing, processing, or packaging of food, and which is not intended to accomplish any physical or
+    other technical effect in the food itself, shall be reduced to the extent reasonably possible.
+
+    (3) The substance is of appropriate food grade and is prepared and handled as a food ingredient. Upon request the Commissioner will offer an opinion, based on specifications and intended use, as to
+    whether or not a particular grade or lot of the substance is of suitable purity for use in food and would
+
+    generally be regarded as safe for the purpose intended, by experts qualified to evaluate its safety.
+
+    (c) The inclusion of substances in the list of nutrients does not constitute a finding on the part of the Department that the substance is useful as a supplement to the diet for humans.
+
+    (d) Substances that are generally recognized as safe for their intended use within the meaning of section 409 of the act are listed in this part. When the status of a substance has been reevaluated,
+    it will be deleted from this part, and will be issued as a new regulation under the appropriate part, e.g., “affirmed as GRAS” under part 184 or 186 of this chapter; “food additive regulation” under
+    parts 170 through 180 of this chapter; “interim food additive regulation” under part 180 of this chapter; or “prohibited from use in food” under part 189 of this chapter.
+
+    [42 FR 14640, Mar. 15, 1977, as amended at 53 FR 44875, Nov. 7, 1988]'
+- id: art-3
+  title: § 182.10
+  text: '§ 182.10
+
+    Spices and other natural seasonings and flavorings.
+
+    Spices and other natural seasonings and flavorings that are generally recognized as safe for their intended use, within the meaning of section 409 of the Act, are as follows:
+
+    Common name
+
+    Botanical name of plant source
+
+    Alfalfa herb and seed
+
+    Medicago sativa L.
+
+    Allspice
+
+    Pimenta officinalis Lindl.
+
+    Ambrette seed
+
+    Hibiscus abelmoschus L.
+
+    Angelica
+
+    Angelica archangelica L. or other spp. of Angelica.
+
+    Angelica root
+
+    Do.
+
+    Angelica seed
+
+    Do.
+
+    Angostura (cusparia bark)
+
+    Galipea officinalis Hancock.
+
+    Anise
+
+    Pimpinella anisum L.
+
+    Anise, star
+
+    Illicium verum Hook. f.
+
+    Balm (lemon balm)
+
+    Melissa officinalis L.
+
+    Basil, bush
+
+    Ocimum minimum L.
+
+    Basil, sweet
+
+    Ocimum basilicum L.
+
+    Bay
+
+    Laurus nobilis L.
+
+    Calendula
+
+    Calendula officinalis L.
+
+    Camomile (chamomile), English or Roman
+
+    Anthemis nobilis L.
+
+    Camomile (chamomile), German or Hungarian
+
+    Matricaria chamomilla L.
+
+    Capers
+
+    Capparis spinosa L.
+
+    Capsicum
+
+    Capsicum frutescens L. or Capsicum annuum L.
+
+    Caraway
+
+    Carum carvi L.
+
+    Caraway, black (black cumin)
+
+    Nigella sativa L.
+
+    Cardamom (cardamon)
+
+    Elettaria cardamomum Maton.
+
+    Cassia, Chinese
+
+    Cinnamomum cassia Blume.
+
+    Cassia, Padang or Batavia
+
+    Cinnamomum burmanni Blume.
+
+    Cassia, Saigon
+
+    Cinnamomum loureirii Nees.
+
+    Cayenne pepper
+
+    Capsicum frutescens L. or Capsicum annuum L.
+
+    Celery seed
+
+    Apium graveolens L.
+
+    Chervil
+
+    Anthriscus cerefolium (L.) Hoffm.
+
+    Chives
+
+    Allium schoenoprasum L.
+
+    Cinnamon, Ceylon
+
+    Cinnamomum zeylanicum Nees.
+
+    Cinnamon, Chinese
+
+    Cinnamomum cassia Blume.
+
+    Cinnamon, Saigon
+
+    Cinnamomum loureirii Nees.
+
+    Clary (clary sage)
+
+    Salvia sclarea L.
+
+    Clover
+
+    Trifolium spp.
+
+    Coriander
+
+    Coriandrum sativum L.
+
+    Cumin (cummin)
+
+    Cuminum cyminum L.
+
+    Cumin, black (black caraway)
+
+    Nigella sativa L.
+
+    Elder flowers
+
+    Sambucus canadensis L.
+
+    Fennel, common
+
+    Foeniculum vulgare Mill.
+
+    Fennel, sweet (finocchio, Florence fennel)
+
+    Foeniculum vulgare Mill. var. duice (DC.) Alex.
+
+    Fenugreek
+
+    Trigonella foenum-graecum L.
+
+    Galanga (galangal)
+
+    Alpinia officinarum Hance.
+
+    Geranium
+
+    Pelargonium spp.
+
+    Ginger
+
+    Zingiber officinale Rosc.
+
+    Grains of paradise
+
+    Amomum melegueta Rosc.
+
+    Horehound (hoarhound)
+
+    Marrubium vulgare L.
+
+    Horseradish
+
+    Armoracia lapathifolia Gilib.
+
+    Hyssop
+
+    Hyssopus officinalis L.
+
+    Lavender
+
+    Lavandula officinalis Chaix.
+
+    Linden flowers
+
+    Tilia spp.
+
+    Mace
+
+    Myristica fragrans Houtt.
+
+    Marigold, pot
+
+    Calendula officinalis L.
+
+    Marjoram, pot
+
+    Majorana onites (L.) Benth.
+
+    Marjoram, sweet
+
+    Majorana hortensis Moench.
+
+    Mustard, black or brown
+
+    Brassica nigra (L.) Koch.
+
+    Mustard, brown
+
+    Brassica juncea (L.) Coss.
+
+    Mustard, white or yellow
+
+    Brassica hirta Moench.
+
+    Nutmeg
+
+    Myristica fragrans Houtt.
+
+    Oregano (oreganum, Mexican oregano, Mexican sage, origan)
+
+    Lippia spp.
+
+    Paprika
+
+    Capsicum annuum L.
+
+    Parsley
+
+    Petroselinum crispum (Mill.) Mansf.
+
+    Pepper, black
+
+    Piper nigrum L.
+
+    Pepper, cayenne
+
+    Capsicum frutescens L. or Capsicum annuum L.
+
+    Pepper, red
+
+    Do.
+
+    Pepper, white
+
+    Piper nigrum L.
+
+    Peppermint
+
+    Mentha piperita L.
+
+    Poppy seed
+
+    Papayer somniferum L.
+
+    Pot marigold
+
+    Calendula officinalis L.
+
+    Pot marjoram
+
+    Majorana onites (L.) Benth.
+
+    Rosemary
+
+    Rosmarinus officinalis L.
+
+    Saffron
+
+    Crocus sativus L.
+
+    Sage
+
+    Salvia officinalis L.
+
+    Sage, Greek
+
+    Salvia triloba L.
+
+    Savory, summer
+
+    Satureia hortensis L. (Satureja).
+
+    Savory, winter
+
+    Satureia montana L. (Satureja).
+
+    Sesame
+
+    Sesamum indicum L.
+
+    Spearmint
+
+    Mentha spicata L.
+
+    Star anise
+
+    Illicium verum Hook. f.
+
+    Tarragon
+
+    Artemisia dracunculus L.
+
+    Thyme
+
+    Thymus vulgaris L.
+
+    Thyme, wild or creeping
+
+    Thymus serpyllum L.
+
+    Turmeric
+
+    Curcuma longa L.
+
+    Vanilla
+
+    Vanilla planifolia Andr. or Vanilla tahitensis J. W. Moore.
+
+    Zedoary
+
+    Curcuma zedoaria Rosc.
+
+    [42 FR 14640, Mar. 15, 1977, as amended at 43 FR 3705, Jan. 27, 1978; 44 FR 3963, Jan. 19, 1979; 50 FR 21044, May 22, 1985; 61 FR 14246, Apr. 1, 1996]'
+- id: art-4
+  title: § 182.20
+  text: '§ 182.20
+
+    Essential oils, oleoresins (solvent-free), and natural extractives (including distillates).
+
+    Essential oils, oleoresins (solvent-free), and natural extractives (including distillates) that are generally recognized as safe for their intended use, within the meaning of section 409 of the Act,
+    are as follows:
+
+    Common name
+
+    Botanical name of plant source
+
+    Alfalfa
+
+    Medicago sativa L.
+
+    Allspice
+
+    Pimenta officinalis Lindl.
+
+    Almond, bitter (free from prussic acid)
+
+    Prunus amygdalus Batsch, Prunus armeniaca L., or Prunus persica (L.) Batsch.
+
+    Ambrette (seed)
+
+    Hibiscus moschatus Moench.
+
+    Angelica root
+
+    Angelica archangelica L.
+
+    Angelica seed
+
+    Do.
+
+    Angelica stem
+
+    Do.
+
+    Angostura (cusparia bark)
+
+    Galipea officinalis Hancock.
+
+    Anise
+
+    Pimpinella anisum L.
+
+    Asafetida
+
+    Ferula assa-foetida L. and related spp. of Ferula.
+
+    Balm (lemon balm)
+
+    Melissa officinalis L.
+
+    Balsam of Peru
+
+    Myroxylon pereirae Klotzsch.
+
+    Basil
+
+    Ocimum basilicum L.
+
+    Bay leaves
+
+    Laurus nobilis L.
+
+    Bay (myrcia oil)
+
+    Pimenta racemosa (Mill.) J. W. Moore.
+
+    Bergamot (bergamot orange)
+
+    Citrus aurantium L. subsp. bergamia Wright et Arn.
+
+    Bitter almond (free from prussic acid)
+
+    Prunus amygdalus Batsch, Prunus armeniaca L., or Prunus persica (L.) Batsch.
+
+    Bois de rose
+
+    Aniba rosaeodora Ducke.
+
+    Cacao
+
+    Theobroma cacao L.
+
+    Camomile (chamomile) flowers, Hungarian
+
+    Matricaria chamomilla L.
+
+    Camomile (chamomile) flowers, Roman or English
+
+    Anthemis nobilis L.
+
+    Cananga
+
+    Cananga odorata Hook. f. and Thoms.
+
+    Capsicum
+
+    Capsicum frutescens L. and Capsicum annuum L.
+
+    Caraway
+
+    Carum carvi L.
+
+    Cardamom seed (cardamon)
+
+    Elettaria cardamomum Maton.
+
+    Carob bean
+
+    Ceratonia siliqua L.
+
+    Carrot
+
+    Daucus carota L.
+
+    Cascarilla bark
+
+    Croton eluteria Benn.
+
+    Cassia bark, Chinese
+
+    Cinnamomum cassia Blume.
+
+    Cassia bark, Padang or Batavia
+
+    Cinnamomum burmanni Blume.
+
+    Cassia bark, Saigon
+
+    Cinnamomum loureirii Nees.
+
+    Celery seed
+
+    Apium graveolens L.
+
+    Cherry, wild, bark
+
+    Prunus serotina Ehrh.
+
+    Chervil
+
+    Anthriscus cerefolium (L.) Hoffm.
+
+    Chicory
+
+    Cichorium intybus L.
+
+    Cinnamon bark, Ceylon
+
+    Cinnamomum zeylanicum Nees.
+
+    Cinnamon bark, Chinese
+
+    Cinnamomum cassia Blume.
+
+    Cinnamon bark, Saigon
+
+    Cinnamomum loureirii Nees.
+
+    Cinnamon leaf, Ceylon
+
+    Cinnamomum zeylanicum Nees.
+
+    Cinnamon leaf, Chinese
+
+    Cinnamomum cassia Blume.
+
+    Cinnamon leaf, Saigon
+
+    Cinnamomum loureirii Nees.
+
+    Citronella
+
+    Cymbopogon nardus Rendle.
+
+    Citrus peels
+
+    Citrus spp.
+
+    Clary (clary sage)
+
+    Salvia sclarea L.
+
+    Clover
+
+    Trifolium spp.
+
+    Coca (decocainized)
+
+    Erythroxylum coca Lam. and other spp. of Erythroxylum.
+
+    Coffee
+
+    Coffea spp.
+
+    Cola nut
+
+    Cola acuminata Schott and Endl., and other spp. of Cola.
+
+    Coriander
+
+    Coriandrum sativum L.
+
+    Cumin (cummin)
+
+    Cuminum cyminum L.
+
+    Curacao orange peel (orange, bitter peel)
+
+    Citrus aurantium L.
+
+    Cusparia bark
+
+    Galipea officinalis Hancock.
+
+    Dandelion
+
+    Taraxacum officinale Weber and T. laevigatum DC.
+
+    Dandelion root
+
+    Do.
+
+    Dog grass (quackgrass, triticum)
+
+    Agropyron repens (L.) Beauv.
+
+    Elder flowers
+
+    Sambucus canadensis L. and S. nigra I.
+
+    Estragole (esdragol, esdragon, tarragon)
+
+    Artemisia dracunculus L.
+
+    Estragon (tarragon)
+
+    Do.
+
+    Fennel, sweet
+
+    Foeniculum vulgare Mill.
+
+    Fenugreek
+
+    Trigonella foenum-graecum L.
+
+    Galanga (galangal)
+
+    Alpinia officinarum Hance.
+
+    Geranium
+
+    Pelargonium spp.
+
+    Geranium, East Indian
+
+    Cymbopogon martini Stapf.
+
+    Geranium, rose
+
+    Pelargonium graveolens L''Her.
+
+    Ginger
+
+    Zingiber officinale Rosc.
+
+    Grapefruit
+
+    Citrus paradisi Macf.
+
+    Guava
+
+    Psidium spp.
+
+    Hickory bark
+
+    Carya spp.
+
+    Horehound (hoarhound)
+
+    Marrubium vulgare L.
+
+    Hops
+
+    Humulus lupulus L.
+
+    Horsemint
+
+    Monarda punctata L.
+
+    Hyssop
+
+    Hyssopus officinalis L.
+
+    Immortelle
+
+    Helichrysum augustifolium DC.
+
+    Jasmine
+
+    Jasminum officinale L. and other spp. of Jasminum.
+
+    Juniper (berries)
+
+    Juniperus communis L.
+
+    Kola nut
+
+    Cola acuminata Schott and Endl., and other spp. of Cola.
+
+    Laurel berries
+
+    Laurus nobilis L.
+
+    Laurel leaves
+
+    Laurus spp.
+
+    Lavender
+
+    Lavandula officinalis Chaix.
+
+    Lavender, spike
+
+    Lavandula latifolia Vill.
+
+    Lavandin
+
+    Hybrids between Lavandula officinalis Chaix and Lavandula latifolin Vill.
+
+    Lemon
+
+    Citrus limon (L.) Burm. f.
+
+    Lemon balm (see balm)
+
+    Lemon grass
+
+    Cymbopogon citratus DC. and Cymbopogon lexuosus Stapf.
+
+    Lemon peel
+
+    Citrus limon (L.) Burm. f.
+
+    Lime
+
+    Citrus aurantifolia Swingle.
+
+    Linden flowers
+
+    Tilia spp.
+
+    Locust bean
+
+    Ceratonia siliqua L,
+
+    Lupulin
+
+    Humulus lupulus L.
+
+    Mace
+
+    Myristica fragrans Houtt.
+
+    Mandarin
+
+    Citrus reticulata Blanco.
+
+    Marjoram, sweet
+
+    Majorana hortensis Moench.
+
+    Maté
+
+    Ilex paraguariensis St. Hil.
+
+    Melissa (see balm)
+
+    Menthol
+
+    Mentha spp.
+
+    Menthyl acetate
+
+    Do.
+
+    Molasses (extract)
+
+    Saccarum officinarum L.
+
+    Mustard
+
+    Brassica spp.
+
+    Naringin
+
+    Citrus paradisi Macf.
+
+    Neroli, bigarade
+
+    Citrus aurantium L.
+
+    Nutmeg
+
+    Myristica fragrans Houtt.
+
+    Onion
+
+    Allium cepa L.
+
+    Orange, bitter, flowers
+
+    Citrus aurantium L.
+
+    Orange, bitter, peel
+
+    Do.
+
+    Orange leaf
+
+    Citrus sinensis (L.) Osbeck.
+
+    Orange, sweet
+
+    Do.
+
+    Orange, sweet, flowers
+
+    Do.
+
+    Orange, sweet, peel
+
+    Do.
+
+    Origanum
+
+    Origanum spp.
+
+    Palmarosa
+
+    Cymbopogon martini Stapf.
+
+    Paprika
+
+    Capsicum annuum L.
+
+    Parsley
+
+    Petroselinum crispum (Mill.) Mansf.
+
+    Pepper, black
+
+    Piper nigrum L.
+
+    Pepper, white
+
+    Do.
+
+    Peppermint
+
+    Mentha piperita L.
+
+    Peruvian balsam
+
+    Myroxylon pereirae Klotzsch.
+
+    Petitgrain
+
+    Citrus aurantium L.
+
+    Petitgrain lemon
+
+    Citrus limon (L.) Burm. f.
+
+    Petitgrain mandarin or tangerine
+
+    Citrus reticulata Blanco.
+
+    Pimenta
+
+    Pimenta officinalis Lindl.
+
+    Pimenta leaf
+
+    Pimenta officinalis Lindl.
+
+    Pipsissewa leaves
+
+    Chimaphila umbellata Nutt.
+
+    Pomegranate
+
+    Punica granatum L.
+
+    Prickly ash bark
+
+    Xanthoxylum (or Zanthoxylum) Americanum Mill. or Xanthoxylum clava-herculis L.
+
+    Rose absolute
+
+    Rosa alba L., Rosa centifolia L., Rosa damascena Mill., Rosa gallica L., and vars. of these spp.
+
+    Rose (otto of roses, attar of roses)
+
+    Do.
+
+    Rose buds
+
+    Do.
+
+    Rose flowers
+
+    Do.
+
+    Rose fruit (hips)
+
+    Do.
+
+    Rose geranium
+
+    Pelargonium graveolens L''Her.
+
+    Rose leaves
+
+    Rosa spp.
+
+    Rosemary
+
+    Rosmarinus officinalis L.
+
+    Saffron
+
+    Crocus sativus L.
+
+    Sage
+
+    Salvia officinalis L.
+
+    Sage, Greek
+
+    Salvia triloba L.
+
+    Sage, Spanish
+
+    Salvia lavandulaefolia Vahl.
+
+    St. John''s bread
+
+    Ceratonia siliqua L.
+
+    Savory, summer
+
+    Satureia hortensis L.
+
+    Savory, winter
+
+    Satureia montana L.
+
+    Schinus molle
+
+    Schinus molle L.
+
+    Sloe berries (blackthorn berries)
+
+    Prunus spinosa L.
+
+    Spearmint
+
+    Mentha spicata L.
+
+    Spike lavender
+
+    Lavandula latifolia Vill.
+
+    Tamarind
+
+    Tamarindus indica L.
+
+    Tangerine
+
+    Citrus reticulata Blanco.
+
+    Tarragon
+
+    Artemisia dracunculus L.
+
+    Tea
+
+    Thea sinensis L.
+
+    Thyme
+
+    Thymus vulgaris L. and Thymus zygis var. gracilis Boiss.
+
+    Thyme, white
+
+    Do.
+
+    Thyme, wild or creeping
+
+    Thymus serpyllum L.
+
+    Triticum (see dog grass)
+
+    Tuberose
+
+    Polianthes tuberosa L.
+
+    Turmeric
+
+    Curcuma longa L.
+
+    Vanilla
+
+    Vanilla planifolia Andr. or Vanilla tahitensis J. W. Moore.
+
+    Violet flowers
+
+    Viola odorata L.
+
+    Violet leaves
+
+    Do.
+
+    Violet leaves absolute
+
+    Do.
+
+    Wild cherry bark
+
+    Prunus serotina Ehrh.
+
+    Ylang-ylang
+
+    Cananga odorata Hook. f. and Thoms.
+
+    Zedoary bark
+
+    Curcuma zedoaria Rosc.
+
+    [42 FR 14640, Mar. 15, 1977, as amended at 44 FR 3963, Jan. 19, 1979; 47 FR 29953, July 9, 1982; 48 FR 51613, Nov. 10, 1983; 50 FR 21043, 21044, May 22, 1985]'
+- id: art-5
+  title: § 182.40
+  text: '§ 182.40
+
+    Natural extractives (solvent-free) used in conjunction with spices, seasonings, and flavorings.
+
+    Natural extractives (solvent-free) used in conjunction with spices, seasonings, and flavorings that are generally recognized as safe for their intended use, within the meaning of section 409 of the
+    Act, are as follows:
+
+    Common name
+
+    Botanical name of plant source
+
+    Apricot kernel (persic oil)
+
+    Prunus armeniaca L.
+
+    Peach kernel (persic oil)
+
+    Prunus persica Sieb. et Zucc.
+
+    Peanut stearine
+
+    Arachis hypogaea L.
+
+    Persic oil (see apricot kernel and peach kernel)
+
+    Quince seed
+
+    Cydonia oblonga Miller.
+
+    [42 FR 14640, Mar. 15, 1977, as amended at 47 FR 47375, Oct. 26, 1982]'
+- id: art-6
+  title: § 182.50
+  text: '§ 182.50
+
+    Certain other spices, seasonings, essential oils, oleoresins, and natural extracts.
+
+    Certain other spices, seasonings, essential oils, oleoresins, and natural extracts that are generally recognized as safe for their intended use, within the meaning of section 409 of the Act, are as
+    follows:
+
+    Common name
+
+    Derivation
+
+    Ambergris
+
+    Physeter macrocephalus L.
+
+    Castoreum
+
+    Castor fiber L. and C. canadensis Kuhl.
+
+    Civet (zibeth, zibet, zibetum)
+
+    Civet cats, Viverra civetta Schreber and Viverra zibetha Schreber.
+
+    Cognac oil, white and green
+
+    Ethyl oenanthate, so-called.
+
+    Musk (Tonquin musk)
+
+    Musk deer, Moschus moschiferus L.'
+- id: art-7
+  title: § 182.60
+  text: '§ 182.60
+
+    Synthetic flavoring substances and adjuvants.
+
+    Synthetic flavoring substances and adjuvants that are generally recognized as safe for their intended use, within the meaning of section 409 of the Act, are as follows:
+
+    Acetaldehyde (ethanal).
+
+    Acetoin (acetyl methylcarbinol).
+
+    Anethole (parapropenyl anisole).
+
+    Benzaldehyde (benzoic aldehyde).
+
+    N
+
+    -Butyric acid (butanoic acid).
+
+    d
+
+    - or
+
+    l
+
+    -Carvone (carvol).
+
+    Cinnamaldehyde (cinnamic aldehyde).
+
+    Citral (2,6-dimethyloctadien-2,6-
+
+    al
+
+    -8, gera-nial, neral).
+
+    Decanal (
+
+    N
+
+    -decylaldehyde, capraldehyde, capric aldehyde, caprinaldehyde, aldehyde C-10).
+
+    Ethyl acetate.
+
+    Ethyl butyrate.
+
+    3-Methyl-3-phenyl glycidic acid ethyl ester (ethyl-methyl-phenyl-glycidate, so-called strawberry aldehyde, C-16 aldehyde).
+
+    Ethyl vanillin.
+
+    Geraniol (3,7-dimethyl-2,6 and 3,6-octadien-1-
+
+    ol
+
+    ).
+
+    Geranyl acetate (geraniol acetate).
+
+    Limonene (
+
+    d-, l-,
+
+    and
+
+    dl-
+
+    ).
+
+    Linalool (linalol, 3,7-dimethyl-1,6-octadien-3-
+
+    ol
+
+    ).
+
+    Linalyl acetate (bergamol).
+
+    Methyl anthranilate (methyl-2-aminobenzoate).
+
+    Piperonal (3,4-methylenedioxy-benzaldehyde, heliotropin).
+
+    Vanillin.
+
+    [42 FR 14640, Mar. 15, 1977, as amended at 43 FR 47724, Oct. 17, 1978; 44 FR 3963, Jan. 19, 1979; 44 FR 20656, Apr. 6, 1979; 48 FR 51907, Nov. 15, 1983; 54 FR 7402, Feb. 21, 1989]'
+- id: art-8
+  title: § 182.70
+  text: '§ 182.70
+
+    Substances migrating from cotton and cotton fabrics used in dry food packaging.
+
+    Substances migrating to food from cotton and cotton fabrics used in dry food packaging that are generally recognized as safe for their intended use, within the meaning of section 409 of the Act, are
+    as follows:
+
+    Beef tallow.
+
+    Carboxymethylcellulose.
+
+    Coconut oil, refined.
+
+    Cornstarch.
+
+    Gelatin.
+
+    Lard.
+
+    Lard oil.
+
+    Oleic acid.
+
+    Peanut oil.
+
+    Potato starch.
+
+    Sodium acetate.
+
+    Sodium chloride.
+
+    Sodium silicate.
+
+    Sodium tripolyphosphate.
+
+    Soybean oil (hydrogenated).
+
+    Talc.
+
+    Tallow (hydrogenated).
+
+    Tallow flakes.
+
+    Tapioca starch.
+
+    Tetrasodium pyrophosphate.
+
+    Wheat starch.
+
+    Zinc chloride.
+
+    [42 FR 14640, Mar. 15, 1977, as amended at 43 FR 11698, Mar. 21, 1978; 44 FR 28323, May 15, 1979; 45 FR 6085, Jan. 25, 1980; 47 FR 27807, 27814, June 25, 1982; 48 FR 51150, Nov. 7, 1983; 48 FR 51616,
+    Nov. 10, 1983; 48 FR 51909, Nov. 15, 1983; 48 FR 52441, 52443, 52445, 52446, Nov. 18, 1983; 51 FR 16830, May 7, 1986; 51 FR 27171, July 30, 1986; 60 FR 62208, Dec. 5, 1995]'
+- id: art-9
+  title: § 182.90
+  text: '§ 182.90
+
+    Substances migrating to food from paper and paperboard products.
+
+    Substances migrating to food from paper and paperboard products used in food packaging that are generally recognized as safe for their intended use, within the meaning of section 409 of the Act, are
+    as follows:
+
+    Alum (double sulfate of aluminum and ammonium potassium, or sodium).
+
+    Aluminum hydroxide.
+
+    Aluminum oleate.
+
+    Aluminum palmitate.
+
+    Casein.
+
+    Cellulose acetate.
+
+    Cornstarch.
+
+    Diatomaceous earth filler.
+
+    Ethyl cellulose.
+
+    Ethyl vanillin.
+
+    Glycerin.
+
+    Oleic acid.
+
+    Potassium sorbate.
+
+    Silicon dioxides.
+
+    Sodium aluminate.
+
+    Sodium chloride.
+
+    Sodium hexametaphosphate.
+
+    Sodium hydrosulfite.
+
+    Sodium phosphoaluminate.
+
+    Sodium silicate.
+
+    Sodium sorbate.
+
+    Sodium tripolyphosphate.
+
+    Sorbitol.
+
+    Soy protein, isolated.
+
+    Starch, acid modified.
+
+    Starch, pregelatinized.
+
+    Starch, unmodified.
+
+    Talc.
+
+    Vanillin.
+
+    Zinc hydrosulfite.
+
+    Zinc sulfate.
+
+    [42 FR 14640, Mar. 15, 1977]
+
+    Editorial Note:
+
+    For
+
+    Federal Register
+
+    citations affecting § 182.90, see the List of CFR Sections Affected, which appears in the Finding Aids section of the printed volume and at
+
+    www.govinfo.gov.'
+- id: art-10
+  title: § 182.99
+  text: '§ 182.99
+
+    Adjuvants for pesticide chemicals.
+
+    Adjuvants, identified and used in accordance with 40 CFR 180.910 and 40 CFR 180.920, which are added to pesticide use dilutions by a grower or applicator prior to application to the raw agricultural
+    commodity, are exempt from the requirement of tolerances under section 409 of the Federal Food, Drug, and Cosmetic Act (21 U.S.C. 348).
+
+    [76 FR 59249, Sept. 26, 2011]
+
+    Subpart B—Multiple Purpose GRAS Food Substances'
+- id: art-11
+  title: § 182.1045
+  text: '§ 182.1045
+
+    Glutamic acid.
+
+    (a)
+
+    Product.
+
+    Glutamic acid.
+
+    (b) [Reserved]
+
+    (c)
+
+    Limitations, restrictions, or explanation.
+
+    This substance is generally recognized as safe when used as a salt substitute in accordance with good manufacturing practice.'
+- id: art-12
+  title: § 182.1047
+  text: '§ 182.1047
+
+    Glutamic acid hydrochloride.
+
+    (a)
+
+    Product.
+
+    Glutamic acid hydrochloride.
+
+    (b) [Reserved]
+
+    (c)
+
+    Limitations, restrictions, or explanation.
+
+    This substance is generally recognized as safe when used as a salt substitute in accordance with good manufacturing practice.'
+- id: art-13
+  title: § 182.1057
+  text: '§ 182.1057
+
+    Hydrochloric acid.
+
+    (a)
+
+    Product.
+
+    Hydrochloric acid.
+
+    (b) [Reserved]
+
+    (c)
+
+    Limitations, restrictions, or explanation.
+
+    This substance is generally recognized as safe when used as a buffer and neutralizing agent in accordance with good manufacturing practice.'
+- id: art-14
+  title: § 182.1073
+  text: '§ 182.1073
+
+    Phosphoric acid.
+
+    (a)
+
+    Product.
+
+    Phosphoric acid.
+
+    (b)
+
+    Conditions of use.
+
+    This substance is generally recognized as safe when used in accordance with good manufacturing practice.'
+- id: art-15
+  title: § 182.1087
+  text: '§ 182.1087
+
+    Sodium acid pyrophosphate.
+
+    (a)
+
+    Product.
+
+    Sodium acid pyrophosphate.
+
+    (b)
+
+    Conditions of use.
+
+    This substance is generally recognized as safe when used in accordance with good manufacturing practice.'
+- id: art-16
+  title: § 182.1125
+  text: '§ 182.1125
+
+    Aluminum sulfate.
+
+    (a)
+
+    Product.
+
+    Aluminum sulfate.
+
+    (b)
+
+    Conditions of use.
+
+    This substance is generally recognized as safe when used in accordance with good manufacturing practice.'
+- id: art-17
+  title: § 182.1127
+  text: '§ 182.1127
+
+    Aluminum ammonium sulfate.
+
+    (a)
+
+    Product.
+
+    Aluminum ammonium sulfate.
+
+    (b)
+
+    Conditions of use.
+
+    This substance is generally recognized as safe when used in accordance with good manufacturing practice.'
+- id: art-18
+  title: § 182.1129
+  text: '§ 182.1129
+
+    Aluminum potassium sulfate.
+
+    (a)
+
+    Product.
+
+    Aluminum potassium sulfate.
+
+    (b)
+
+    Conditions of use.
+
+    This substance is generally recognized as safe when used in accordance with good manufacturing practice.'
+- id: art-19
+  title: § 182.1131
+  text: '§ 182.1131
+
+    Aluminum sodium sulfate.
+
+    (a)
+
+    Product.
+
+    Aluminum sodium sulfate.
+
+    (b)
+
+    Conditions of use.
+
+    This substance is generally recognized as safe when used in accordance with good manufacturing practice.'
+- id: art-20
+  title: § 182.1180
+  text: '§ 182.1180
+
+    Caffeine.
+
+    (a)
+
+    Product.
+
+    Caffeine.
+
+    (b)
+
+    Tolerance.
+
+    0.02 percent.
+
+    (c)
+
+    Limitations, restrictions, or explanation.
+
+    This substance is generally recognized as safe when used in cola-type beverages in accordance with good manufacturing practice.'
+- id: art-21
+  title: § 182.1217
+  text: '§ 182.1217
+
+    Calcium phosphate.
+
+    (a)
+
+    Product.
+
+    Calcium phosphate (mono-, di-, and tribasic).
+
+    (b)
+
+    Conditions of use.
+
+    This substance is generally recognized as safe when used in accordance with good manufacturing practice.'
+- id: art-22
+  title: § 182.1235
+  text: '§ 182.1235
+
+    Caramel.
+
+    (a)
+
+    Product.
+
+    Caramel.
+
+    (b)
+
+    Conditions of use.
+
+    This substance is generally recognized as safe when used in accordance with good manufacturing practice.'
+- id: art-23
+  title: § 182.1320
+  text: '§ 182.1320
+
+    Glycerin.
+
+    (a)
+
+    Product.
+
+    Glycerin.
+
+    (b)
+
+    Conditions of use.
+
+    This substance is generally recognized as safe when used in accordance with good manufacturing practice.'
+- id: art-24
+  title: § 182.1480
+  text: '§ 182.1480
+
+    Methylcellulose.
+
+    (a)
+
+    Product.
+
+    U.S.P. methylcellulose, except that the methoxy content shall not be less than 27.5 percent and not more than 31.5 percent on a dry-weight basis.
+
+    (b)
+
+    Conditions of use.
+
+    This substance is generally recognized as safe when used in accordance with good manufacturing practice.'
+- id: art-25
+  title: § 182.1500
+  text: '§ 182.1500
+
+    Monoammonium glutamate.
+
+    (a)
+
+    Product.
+
+    Monoammonium glutamate.
+
+    (b)
+
+    Conditions of use.
+
+    This substance is generally recognized as safe when used in accordance with good manufacturing practice.'
+- id: art-26
+  title: § 182.1516
+  text: '§ 182.1516
+
+    Monopotassium glutamate.
+
+    (a)
+
+    Product.
+
+    Monopotassium glutamate.
+
+    (b)
+
+    Conditions of use.
+
+    This substance is generally recognized as safe when used in accordance with good manufacturing practice.'
+- id: art-27
+  title: § 182.1711
+  text: '§ 182.1711
+
+    Silica aerogel.
+
+    (a)
+
+    Product.
+
+    Silica aerogel as a finely powdered microcellular silica foam having a minimum silica content of 89.5 percent.
+
+    (b) [Reserved]
+
+    (c)
+
+    Limitations, restrictions, or explanation.
+
+    This substance is generally recognized as safe when used as a component of an anti-foaming agent in accordance with good manufacturing practice.'
+- id: art-28
+  title: § 182.1745
+  text: '§ 182.1745
+
+    Sodium carboxymethylcellu­lose.
+
+    (a)
+
+    Product.
+
+    Sodium carboxy­methylcellulose is the sodium salt of carboxymethylcellulose not less than 99.5 percent on a dry-weight basis, with maximum substitution of 0.95 carboxymethyl groups per
+
+    anhydroglucose unit, and with a minimum viscosity of 25 centipoises for 2 percent by weight aqueous solution at 25 °C.
+
+    (b)
+
+    Conditions of use.
+
+    This substance is generally recognized as safe when used in accordance with good manufacturing practice.'
+- id: art-29
+  title: § 182.1748
+  text: '§ 182.1748
+
+    Sodium caseinate.
+
+    (a)
+
+    Product.
+
+    Sodium caseinate.
+
+    (b)
+
+    Conditions of use.
+
+    This substance is generally recognized as safe when used in accordance with good manufacturing practice.'
+- id: art-30
+  title: § 182.1778
+  text: '§ 182.1778
+
+    Sodium phosphate.
+
+    (a)
+
+    Product.
+
+    Sodium phosphate (mono-, di-, and tribasic).
+
+    (b)
+
+    Conditions of use.
+
+    This substance is generally recognized as safe when used in accordance with good manufacturing practice.'
+- id: art-31
+  title: § 182.1781
+  text: '§ 182.1781
+
+    Sodium aluminum phosphate.
+
+    (a)
+
+    Product.
+
+    Sodium aluminum phosphate.
+
+    (b)
+
+    Conditions of use.
+
+    This substance is generally recognized as safe when used in accordance with good manufacturing practice.'
+- id: art-32
+  title: § 182.1810
+  text: '§ 182.1810
+
+    Sodium tripolyphosphate.
+
+    (a)
+
+    Product.
+
+    Sodium tripolyphosphate.
+
+    (b)
+
+    Conditions of use.
+
+    This substance is generally recognized as safe when used in accordance with good manufacturing practice.
+
+    Subpart C—Anticaking Agents'
+- id: art-33
+  title: § 182.2122
+  text: '§ 182.2122
+
+    Aluminum calcium silicate.
+
+    (a)
+
+    Product.
+
+    Aluminum calcium silicate.
+
+    (b)
+
+    Tolerance.
+
+    2 percent.
+
+    (c)
+
+    Limitations, restrictions, or explanation.
+
+    This substance is generally recognized as safe when used in table salt in accordance with good manufacturing practice.'
+- id: art-34
+  title: § 182.2227
+  text: '§ 182.2227
+
+    Calcium silicate.
+
+    (a)
+
+    Product.
+
+    Calcium silicate.
+
+    (b)
+
+    Tolerance.
+
+    2 percent and 5 percent.
+
+    (c)
+
+    Limitations, restrictions, or explanation.
+
+    This substance is generally recognized as safe when used at levels not exceeding 2 percent in table salt and 5 percent in baking powder in accordance with good manufacturing practice.'
+- id: art-35
+  title: § 182.2437
+  text: '§ 182.2437
+
+    Magnesium silicate.
+
+    (a)
+
+    Product.
+
+    Magnesium silicate.
+
+    (b)
+
+    Tolerance.
+
+    2 percent.
+
+    (c)
+
+    Limitations, restrictions, or explanation.
+
+    This substance is generally recognized as safe when used in table salt in accordance with good manufacturing practice.'
+- id: art-36
+  title: § 182.2727
+  text: '§ 182.2727
+
+    Sodium aluminosilicate.
+
+    (a)
+
+    Product.
+
+    Sodium aluminosilicate (sodium silicoaluminate).
+
+    (b)
+
+    Tolerance.
+
+    This substance is generally recognized as safe for use at a level not exceeding 2 percent in accordance with good manufacturing practice.'
+- id: art-37
+  title: § 182.2729
+  text: '§ 182.2729
+
+    Sodium calcium aluminosilicate, hydrated.
+
+    (a)
+
+    Product.
+
+    Hydrated sodium calcium aluminosilicate (sodium calcium silicoaluminate).
+
+    (b)
+
+    Tolerance.
+
+    This substance is generally recognized as safe for use at a level not exceeding 2 percent in accordance with good manufacturing practice.'
+- id: art-38
+  title: § 182.2906
+  text: '§ 182.2906
+
+    Tricalcium silicate.
+
+    (a)
+
+    Product.
+
+    Tricalcium silicate.
+
+    (b)
+
+    Tolerance.
+
+    2 percent.
+
+    (c)
+
+    Limitations, restrictions, or explanation.
+
+    This substance is generally recognized as safe when used in table salt in accordance with good manufacturing practice.
+
+    Subpart D—Chemical Preservatives'
+- id: art-39
+  title: § 182.3013
+  text: '§ 182.3013
+
+    Ascorbic acid.
+
+    (a)
+
+    Product.
+
+    Ascorbic acid.
+
+    (b)
+
+    Conditions of use.
+
+    This substance is generally recognized as safe when used in accordance with good manufacturing practice.'
+- id: art-40
+  title: § 182.3041
+  text: '§ 182.3041
+
+    Erythorbic acid.
+
+    (a)
+
+    Product.
+
+    Erythorbic acid.
+
+    (b)
+
+    Conditions of use.
+
+    This substance is generally recognized as safe when used in accordance with good manufacturing practice.'
+- id: art-41
+  title: § 182.3089
+  text: '§ 182.3089
+
+    Sorbic acid.
+
+    (a)
+
+    Product.
+
+    Sorbic acid.
+
+    (b)
+
+    Conditions of use.
+
+    This substance is generally recognized as safe when used in accordance with good manufacturing practice.'
+- id: art-42
+  title: § 182.3109
+  text: '§ 182.3109
+
+    Thiodipropionic acid.
+
+    (a)
+
+    Product.
+
+    Thiodipropionic acid.
+
+    (b)
+
+    Tolerance.
+
+    This substance is generally recognized as safe for use in food when the total content of antioxidants is not over 0.02 percent of fat or oil content, including essential (volatile) oil content of the
+    food, provided the substance is used in accordance with good manufacturing practice.'
+- id: art-43
+  title: § 182.3149
+  text: '§ 182.3149
+
+    Ascorbyl palmitate.
+
+    (a)
+
+    Product.
+
+    Ascorbyl palmitate.
+
+    (b)
+
+    Conditions of use.
+
+    This substance is generally recognized as safe when used in accordance with good manufacturing practice.'
+- id: art-44
+  title: § 182.3169
+  text: '§ 182.3169
+
+    Butylated hydroxyanisole.
+
+    (a)
+
+    Product.
+
+    Butylated hydroxyanisole.
+
+    (b)
+
+    Tolerance.
+
+    This substance is generally recognized as safe for use in food when the total content of antioxidants is not over 0.02 percent of fat or oil content, including essential (volatile) oil content of food,
+    provided the substance is used in accordance with good manufacturing practice.'
+- id: art-45
+  title: § 182.3173
+  text: '§ 182.3173
+
+    Butylated hydroxytoluene.
+
+    (a)
+
+    Product.
+
+    Butylated hydroxytoluene.
+
+    (b)
+
+    Tolerance.
+
+    This substance is generally recognized as safe for use in food when the total content of antioxidants is not over 0.02 percent of fat or oil content, including essential (volatile) oil content of food,
+    provided the substance is used in accordance with good manufacturing practice.'
+- id: art-46
+  title: § 182.3189
+  text: '§ 182.3189
+
+    Calcium ascorbate.
+
+    (a)
+
+    Product.
+
+    Calcium ascorbate.
+
+    (b)
+
+    Conditions of use.
+
+    This substance is generally recognized as safe when used in accordance with good manufacturing practice.'
+- id: art-47
+  title: § 182.3225
+  text: '§ 182.3225
+
+    Calcium sorbate.
+
+    (a)
+
+    Product.
+
+    Calcium sorbate.
+
+    (b)
+
+    Conditions of use.
+
+    This substance is generally recognized as safe when used in accordance with good manufacturing practice.'
+- id: art-48
+  title: § 182.3280
+  text: '§ 182.3280
+
+    Dilauryl thiodipropionate.
+
+    (a)
+
+    Product.
+
+    Dilauryl thiodipropionate.
+
+    (b)
+
+    Tolerance.
+
+    This substance is generally recognized as safe for use in food when the total content of antioxidants is not over 0.02 percent of fat or oil content, including essential (volatile) oil content of the
+    food, provided the substance is used in accordance with good manufacturing practice.'
+- id: art-49
+  title: § 182.3616
+  text: '§ 182.3616
+
+    Potassium bisulfite.
+
+    (a)
+
+    Product.
+
+    Potassium bisulfite.
+
+    (b) [Reserved]
+
+    (c)
+
+    Limitations, restrictions, or explanation.
+
+    This substance is generally recognized as safe when used in accordance with good manufacturing practice, except that it is not used in meats; in food recognized as a source of vitamin B
+
+    1
+
+    ; on fruits and vegetables intended to be served raw to consumers or sold raw to consumers, or to be presented to consumers as fresh.
+
+    [42 FR 14640, Mar. 15, 1977, as amended at 51 FR 25025, July 9, 1986; 55 FR 9832, Mar. 15, 1990; 59 FR 65939, Dec. 22, 1994]'
+- id: art-50
+  title: § 182.3637
+  text: '§ 182.3637
+
+    Potassium metabisulfite.
+
+    (a)
+
+    Product.
+
+    Potassium metabisulfite.
+
+    (b) [Reserved]
+
+    (c)
+
+    Limitations, restrictions, or explanation.
+
+    This substance is generally recognized as safe when used in accordance with good manufacturing practice, except that it is not used in meats; in food recognized as a source of vitamin B
+
+    1
+
+    ; on fruits and vegetables intended to be served raw to consumers or sold'
 doc_files:
 - us/raw/US-CFR-title21-part182.xml
+- us/raw/US-CFR-title21-part182.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part182.xml (xml, 41012 chars)，生成 50 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part182.xml (xml, 41012 chars)，生成 50 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part182.xml (xml, 41012 chars)，生成 50 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART182-4（US 21 CFR Part 182）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART182-3（US 21 CFR Part 182）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART182-2（US 21 CFR Part 182）。'

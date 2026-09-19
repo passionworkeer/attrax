@@ -1,0 +1,26 @@
+id: KB-other-CN-CN-GB_T_4943-2-2026_-_-_-2-_-GB_4943-1_2022
+regulation_id: CN-GB_T_4943-2-2026_-_-_-2-_-GB_4943-1_2022
+doc_name: CN-GB GB/T 4943.2-2026 音视频、信息技术和通信技术设备 第2部分：与GB 4943.1—2022相关的解释信息
+official_citation: CN-GB GB/T 4943.2-2026 音视频、信息技术和通信技术设备 第2部分：与GB 4943.1—2022相关的解释信息
+short_name: CN-GB GB/T 4943.2-2026 音视频、信息技术和通信技术设备 第2部分：与GB 4943.1—2022相关的解释信息
+source: category
+primary_source: other
+domain: other
+applies_if:
+  category:
+  - other
+  features_any: []
+  markets:
+  - CN
+key_articles: []
+key_points:
+- CN-GB GB/T 4943.2-2026 音视频、信息技术和通信技术设备 第2部分：与GB 4943.1—2022相关的解释信息：其他品类领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=58529580826B5D1CF90603524416FABD
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

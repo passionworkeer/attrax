@@ -9,11 +9,606 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'ETSI EN 301 489-20
+
+    V2.2.1
+
+    (2021-11)
+
+    HARMONISED EUROPEAN STAN'
+  text: 'ETSI EN 301 489-20
+
+    V2.2.1
+
+    (2021-11)
+
+    HARMONISED EUROPEAN STANDARD
+
+    ElectroMagnetic Compatibility (EMC) standard
+
+    for radio equipment and services;
+
+    Part 20: Specific conditions for Mobile Earth Stations (MES)
+
+    used in the Mobile Satellite Services (MSS);
+
+    Harmonised Standard for ElectroMagnetic Compatibility
+
+    2 ETSI EN 301 489-20 V2.2.1 (2021-11)
+
+    Reference
+
+    REN/ERM-EMC-405
+
+    Keywords
+
+    earth station, EMC, harmonised standard, MSS,
+
+    radio, regulation, satellite, testing
+
+    ETSI
+
+    650 Route des Lucioles
+
+    F-06921 Sophia Antipolis Cedex - FRANCE
+
+    Tel.: +33 4 92 94 42 00 Fax: +33 4 93 65 47 16
+
+    Siret N° 348 623 562 00017 - APE 7112B
+
+    Association à but non lucratif enregistrée à la
+
+    Sous-Préfecture de Grasse (06) N° w061004871
+
+    Important notice
+
+    The present document can be downloaded from:
+
+    http://www.etsi.org/standards-search
+
+    The present document may be made available in electronic versions and/or in print. The content of any electronic and/or
+
+    print versions of the present document shall not be modified without the prior written authorization of ETSI. In case of any
+
+    existing or perceived difference in contents between such versions and/or in print, the prevailing version of an ETSI
+
+    deliverable is the one made publicly available in PDF format at www.etsi.org/deliver.
+
+    Users of the present document should be aware that the document may be subject to revision or change of status.
+
+    Information on the current status of this and other ETSI documents is available at
+
+    https://portal.etsi.org/TB/ETSIDeliverableStatus.aspx
+
+    If you find errors in the present document, please send your comment to one of the following services:
+
+    https://portal.etsi.org/People/CommiteeSupportStaff.aspx
+
+    Notice of disclaimer & limitation of liability
+
+    The information provided in the present deliverable is directed solely to professionals who have the appropriate degree of
+
+    experience to understand and interpret its content in accordance with generally accepted engineering or
+
+    other professional standard and applicable regulations.
+
+    No recommendation as to products and services or vendors is made or should be implied.
+
+    In no event shall ETSI be held liable for loss of profits or any other incidental or consequential damages.
+
+    Any software contained in this deliverable is provided "AS IS" with no warranties, express or implied, including but not
+
+    limited to, the warranties of merchantability, fitness for a particular purpose and non-infringement of intellectual property
+
+    rights and ETSI shall not be held liable in any event for any damages whatsoever (including, without limitation, damages
+
+    for loss of profits, business interruption, loss of information, or any other pecuniary loss) arising out of or related to the use
+
+    of or inability to use the software.
+
+    Copyright Notification
+
+    No part may be reproduced or utilized in any form or by any means, electronic or mechanical, including photocopying and
+
+    microfilm except as authorized by written permission of ETSI.
+
+    The content of the PDF version shall not be modified without the written authorization of ETSI.
+
+    The copyright and the foregoing restriction extend to reproduction in all media.
+
+    © ETSI 2021.
+
+    All rights reserved.
+
+    ETSI
+
+    3 ETSI EN 301 489-20 V2.2.1 (2021-11)
+
+    Contents
+
+    Intellectual Property Rights ................................................................................................................................ 5
+
+    Foreword ............................................................................................................................................................. 5
+
+    Modal verbs terminology .................................................................................................................................... 6
+
+    1 Scope ........................................................................................................................................................ 7
+
+    2 References ................................................................................................................................................ 7
+
+    2.1 Normative references ......................................................................................................................................... 7
+
+    2.2 Informative references ........................................................................................................................................ 8
+
+    3 Definition of terms, symbols and abbreviations ....................................................................................... 9
+
+    3.1 Terms .................................................................................................................................................................. 9
+
+    3.2 Symbols ............................................................................................................................................................ 10
+
+    3.3 Abbreviations ................................................................................................................................................... 10
+
+    4 Test conditions ....................................................................................................................................... 11
+
+    4.1 General ............................................................................................................................................................. 11
+
+    4.2 Arrangements for test signals ........................................................................................................................... 11
+
+    4.2.0 General ........................................................................................................................................................ 11
+
+    4.2.1 Arrangements for test signals at the input of transmitters ........................................................................... 11
+
+    4.2.2 Arrangements for test signals at the output of transmitters ......................................................................... 12
+
+    4.2.3 Arrangements for test signals at the input of receivers ............................................................................... 12
+
+    4.2.4 Arrangements for test signals at the output of receivers ............................................................................. 12
+
+    4.3 Exclusion bands ................................................................................................................................................ 12
+
+    4.3.0 General ........................................................................................................................................................ 12
+
+    4.3.1 Transmitter exclusion band ......................................................................................................................... 13
+
+    4.3.2 Receiver exclusion band ............................................................................................................................. 13
+
+    5 Performance assessment ......................................................................................................................... 13
+
+    5.1 Void .................................................................................................................................................................. 13
+
+    5.2 MES connected to host equipment ................................................................................................................... 13
+
+    5.2.0 General ........................................................................................................................................................ 13
+
+    5.2.1 Alternative A: combined equipment ........................................................................................................... 13
+
+    5.2.2 Alternative B: use of a test jig..................................................................................................................... 13
+
+    5.3 Ancillary equipment ......................................................................................................................................... 13
+
+    5.4 Equipment classification .................................................................................................................................. 13
+
+    6 Performance criteria ............................................................................................................................... 14
+
+    6.1 General ............................................................................................................................................................. 14
+
+    6.2 Performance criteria for Continuous Phenomena ............................................................................................. 14
+
+    6.3 Performance criteria for Transient Phenomena ................................................................................................ 14
+
+    7 Requirements .......................................................................................................................................... 14
+
+    7.1 Emission ........................................................................................................................................................... 14
+
+    7.1.1 General ........................................................................................................................................................ 14
+
+    7.1.2 Special conditions ....................................................................................................................................... 15
+
+    7.2 Immunity .......................................................................................................................................................... 15
+
+    7.2.1 General ........................................................................................................................................................ 15
+
+    7.2.2 Special conditions ....................................................................................................................................... 17
+
+    Annex A (informative): Relationship between the present document and the essential
+
+    requirements of Directive 2014/53/EU ......................................................... 18
+
+    Annex B (informative): Definitions of MES within the scope of the present document .................. 20
+
+    B.0 General ................................................................................................................................................... 20
+
+    B.1 MES operating within 1,6 GHz/2,4 GHz band ....................................................................................... 20
+
+    B.2 MES operating within the 1,5 GHz/1,6 GHz ......................................................................................... 20
+
+    ETSI
+
+    4 ETSI EN 301 489-20 V2.2.1 (2021-11)
+
+    B.3 MES operating within 2,0 GHz band ..................................................................................................... 20
+
+    B.4 MES operating below 1 GHz ................................................................................................................. 21
+
+    B.5 MES operating in the 11 GHz/12 GHz/14 GHz frequency bands .......................................................... 21'
+- id: art-2
+  title: 'Annex C (informative): Change history ............................................................................................... 22'
+  text: 'Annex C (informative): Change history ............................................................................................... 22
+
+    History .............................................................................................................................................................. 23
+
+    ETSI
+
+    5 ETSI EN 301 489-20 V2.2.1 (2021-11)
+
+    Intellectual Property Rights
+
+    Essential patents
+
+    IPRs essential or potentially essential to normative deliverables may have been declared to ETSI. The declarations
+
+    pertaining to these essential IPRs, if any, are publicly available for ETSI members and non-members, and can be
+
+    found in ETSI SR 000 314: "Intellectual Property Rights (IPRs); Essential, or potentially Essential, IPRs notified to
+
+    ETSI in respect of ETSI standards", which is available from the ETSI Secretariat. Latest updates are available on the
+
+    ETSI Web server (https://ipr.etsi.org/).
+
+    Pursuant to the ETSI Directives including the ETSI IPR Policy, no investigation regarding the essentiality of IPRs,
+
+    including IPR searches, has been carried out by ETSI. No guarantee can be given as to the existence of other IPRs not
+
+    referenced in ETSI SR 000 314 (or the updates on the ETSI Web server) which are, or may be, or may become,
+
+    essential to the present document.
+
+    Trademarks
+
+    The present document may include trademarks and/or tradenames which are asserted and/or registered by their owners.
+
+    ETSI claims no ownership of these except for any which are indicated as being the property of ETSI, and conveys no
+
+    right to use or reproduce any trademark and/or tradename. Mention of those trademarks in the present document does
+
+    not constitute an endorsement by ETSI of products, services or organizations associated with those trademarks.
+
+    DECT™, PLUGTESTS™, UMTS™ and the ETSI logo are trademarks of ETSI registered for the benefit of its
+
+    Members. 3GPP™ and LTE™ are trademarks of ETSI registered for the benefit of its Members and of the 3GPP
+
+    Organizational Partners. oneM2M™ logo is a trademark of ETSI registered for the benefit of its Members and of the
+
+    oneM2M Partners. GSM® and the GSM logo are trademarks registered and owned by the GSM Association.
+
+    Foreword
+
+    This Harmonised European Standard (EN) has been produced by ETSI Technical Committee Electromagnetic
+
+    compatibility and Radio spectrum Matters (ERM).
+
+    The present document has been prepared under the Commission''s standardisation request C(2015) 5376 final [i.2] to
+
+    provide one voluntary means of conforming to the essential requirements of Directive 2014/53/EU on the harmonisation
+
+    of the laws of the Member States relating to the making available on the market of radio equipment and repealing
+
+    Directive 1999/5/EC [i.1].
+
+    Once the present document is cited in the Official Journal of the European Union under that Directive, compliance with
+
+    the normative clauses of the present document given in table A.1 confers, within the limits of the scope of the present
+
+    document, a presumption of conformity with the corresponding essential requirements of that Directive and associated
+
+    EFTA regulations.
+
+    The present document is part 20 of a multi-part deliverable. Full details of the entire series can be found in part 1 [1].
+
+    National transposition dates
+
+    Date of adoption of this EN: 19 November 2021
+
+    Date of latest announcement of this EN (doa): 28 February 2022
+
+    Date of latest publication of new National Standard
+
+    or endorsement of this EN (dop/e): 31 August 2022
+
+    Date of withdrawal of any conflicting National Standard (dow): 31 August 2023
+
+    ETSI
+
+    6 ETSI EN 301 489-20 V2.2.1 (2021-11)
+
+    Modal verbs terminology
+
+    In the present document "shall", "shall not", "should", "should not", "may", "need not", "will", "will not", "can" and
+
+    "cannot" are to be interpreted as described in clause 3.2 of the ETSI Drafting Rules (Verbal forms for the expression of
+
+    provisions).
+
+    "must" and "must not" are NOT allowed in ETSI deliverables except when used in direct citation.
+
+    ETSI
+
+    7 ETSI EN 301 489-20 V2.2.1 (2021-11)
+
+    1 Scope
+
+    The present document specifies technical characteristics and methods of measurement for Mobile Earth Stations (MES)
+
+    operating in the Mobile Satellite Services (MSSs) as defined in annex B, and ancillary equipment in respect of
+
+    ElectroMagnetic Compatibility (EMC).
+
+    Technical specifications related to the antenna port and emissions from the enclosure port of the equipment are not
+
+    included in the present document. Such technical specifications are found in the relevant product standards for the
+
+    effective use of the radio spectrum, see table 1.
+
+    Emissions requirements in the present document are only specified for frequencies above 9 kHz.
+
+    Table 1: Radio Technologies in the scope of the present document
+
+    Technology ETSI Standard
+
+    Low data rate Land Mobile satellite Earth Stations (LMES) and Maritime Mobile
+
+    satellite Earth Stations (MMES) operating in the 1 518 MHz to 1 675 MHz ETSI EN 301 426 [i.3]
+
+    frequency bands
+
+    Low data rate Land Mobile satellite Earth Stations (LMES) operating in the
+
+    ETSI EN 301 427 [i.4]
+
+    11/12/14 GHz frequency bands
+
+    Mobile Earth Stations (MES), including handheld earth stations, for Satellite
+
+    Personal Communications Networks (S-PCN) in the 1 610 MHz to 2 500 MHz ETSI EN 301 441 [i.5]
+
+    frequency bands under the Mobile Satellite Service (MSS)
+
+    Mobile Earth Stations (MES), including handheld earth stations, for Satellite
+
+    Personal Communications Networks (S-PCN) in the 1 980 MHz to 2 200 MHz ETSI EN 301 442 [i.6]
+
+    frequency bands under the Mobile Satellite Service (MSS)
+
+    Land Mobile Earth Stations (LMES) and Maritime Mobile Earth Stations (MMES)
+
+    operating in the 1 518 MHz to 1 675 MHz frequency bands providing voice and/or ETSI EN 301 444 [i.7]
+
+    data communications
+
+    Mobile Earth Stations (MES) providing Low Bit Rate Data Communications
+
+    (LBRDC) using Low Earth Orbiting (LEO) satellites operating in the 137 MHz to ETSI EN 301 721 [i.8]
+
+    401 MHz frequency bands
+
+    Land Mobile Earth Stations (LMES) and Maritime Mobile Earth Stations (MMES)
+
+    of Geostationary mobile satellite systems, including handheld earth stations, for
+
+    ETSI EN 301 681 [i.9]
+
+    Satellite Personal Communications Networks (S-PCN) under the Mobile Satellite
+
+    Service (MSS), operating in the 1 518 MHz to 1 675 MHz frequency bands
+
+    Aircraft Earth Stations (AES) providing Aeronautical Mobile Satellite Service
+
+    (AMSS)/Mobile Satellite Service (MSS) and/or the Aeronautical Mobile Satellite
+
+    ETSI EN 301 473 [i.10]
+
+    on Route Service (AMS(R)S)/Mobile Satellite Service (MSS), operating in the
+
+    1 518 MHz to 2 500 MHz frequency bands
+
+    The environmental classification used in the present document are as stated in ETSI EN 301 489-1 [1].
+
+    For a multimode radio station, the present document only applies to the radio station when operated in the Mobile
+
+    Satellite Service mode.
+
+    NOTE: The relationship between the present document and essential requirements of article 3.1(b) of Directive
+
+    2014/53/EU [i.1] is given in annex A.
+
+    2 References
+
+    2.1 Normative references
+
+    References are either specific (identified by date of publication and/or edition number or version number) or
+
+    non-specific. For specific references, only the cited version applies. For non-specific references, the latest version of the
+
+    referenced document (including any amendments) applies.
+
+    Referenced documents which are not found to be publicly available in the expected location might be found at
+
+    https://docbox.etsi.org/Reference/.
+
+    ETSI
+
+    8 ETSI EN 301 489-20 V2.2.1 (2021-11)
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    The following referenced documents are necessary for the application of the present document.
+
+    [1] ETSI EN 301 489-1 (V2.2.3) (11-2019): "ElectroMagnetic Compatibility (EMC) standard for
+
+    radio equipment and services; Part 1: Common technical requirements; Harmonised Standard for
+
+    ElectroMagnetic Compatibility".
+
+    [2] Void.
+
+    [3] Void.
+
+    [4] ITU-R Radio Regulations (2020).
+
+    [5] Void.
+
+    [6] Void.
+
+    2.2 Informative references
+
+    References are either specific (identified by date of publication and/or edition number or version number) or
+
+    non-specific. For specific references, only the cited version applies. For non-specific references, the latest version of the
+
+    referenced document (including any amendments) applies.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    The following referenced documents are not necessary for the application of the present document but they assist the
+
+    user with regard to a particular subject area.
+
+    [i.1] Directive 2014/53/EU of the European Parliament and of the Council of 16 April 2014 on the
+
+    harmonisation of the laws of the Member States relating to the making available on the market of
+
+    radio equipment and repealing Directive 1999/5/EC.
+
+    [i.2] Commission Implementing Decision C(2015) 5376 final of 4.8.2015 on a standardisation request
+
+    to the European Committee for Electrotechnical Standardisation and to the European
+
+    Telecommunications Standards Institute as regards radio equipment in support of Directive
+
+    2014/53/EU of the European Parliament and of the Council.
+
+    [i.3] ETSI EN 301 426: "Satellite Earth Stations and Systems (SES); Harmonised Standard for Low
+
+    data rate Land Mobile satellite Earth Stations (LMES) and Maritime Mobile satellite Earth
+
+    Stations (MMES) not intended for distress and safety communications operating in the 1,5
+
+    GHz/1,6 GHz frequency bands covering the essential requirements of article 3.2 of the Directive
+
+    2014/53/EU".
+
+    [i.4] ETSI EN 301 427: "Satellite Earth Stations and Systems (SES); Harmonised Standard for low data
+
+    rate Mobile satellite Earth Stations (MES) except aeronautical mobile satellite earth stations,
+
+    operating in the 11/12/14 GHz frequency bands covering the essential requirements of article 3.2
+
+    of the Directive 2014/53/EU".
+
+    [i.5] ETSI EN 301 441: "Satellite Earth Stations and Systems (SES); Harmonised Standard for Mobile
+
+    Earth Stations (MES), including handheld earth stations, for Satellite Personal Communications
+
+    Networks (S-PCN) operating in the 1,6 GHz/2,4 GHz frequency band under the Mobile Satellite
+
+    Service (MSS) covering the essential requirements of article 3.2 of the Directive 2014/53/EU".
+
+    [i.6] ETSI EN 301 442: "Satellite Earth Stations and Systems (SES); Harmonised Standard for NGSO
+
+    Mobile Earth Stations (MES) including handheld earth stations, for Satellite Personal
+
+    Communications Networks (S-PCN) operating in the 1 980 MHz to 2 010 MHz (earth-to-space)
+
+    and 2 170 MHz to 2 200 MHz (space-to-earth) frequency bands under the Mobile Satellite Service
+
+    (MSS) covering the essential requirements of article 3.2 of the Directive 2014/53/EU".
+
+    ETSI
+
+    9 ETSI EN 301 489-20 V2.2.1 (2021-11)
+
+    [i.7] ETSI EN 301 444: "Satellite Earth Stations and Systems (SES); Land Mobile Earth Stations
+
+    (LMES) and Maritime Mobile Earth Stations (MMES) providing voice and/or data
+
+    communications, operating in the 1,5 GHz and 1,6 GHz frequency bands; Harmonised Standard
+
+    for access to radio spectrum".
+
+    [i.8] ETSI EN 301 721: "Satellite Earth Stations and Systems (SES); Harmonised Standard for Mobile
+
+    Earth Stations (MES) providing Low Bit Rate Data Communications (LBRDC) using Low Earth
+
+    Orbiting (LEO) satellites operating below 1 GHz frequency band covering the essential
+
+    requirements of article 3.2 of the Directive 2014/53/EU".
+
+    [i.9] ETSI EN 301 681: "Satellite Earth Stations and Systems (SES); Harmonised Standard for Mobile
+
+    Earth Stations (MES) of Geostationary mobile satellite systems, including handheld earth stations,
+
+    for Satellite Personal Communications Networks (S-PCN) under the Mobile Satellite Service
+
+    (MSS), operating in the 1,5 GHz and 1,6 GHz frequency bands covering the essential requirements
+
+    of article 3.2 of the Directive 2014/53/EU".
+
+    [i.10] ETSI EN 301 473: "Satellite Earth Stations and Systems (SES); Harmonised Standard for Aircraft
+
+    Earth Stations (AES) providing Aeronautical Mobile Satellite Service (AMSS)/Mobile Satellite
+
+    Service (MSS) and/or the Aeronautical Mobile Sat'
+- id: art-3
+  title: 'Annex C (informative):'
+  text: 'Annex C (informative):
+
+    Change history
+
+    Version Information about changes
+
+    2.1.1 Updated for RED compliance
+
+    2.1.2 Alignment with EC feedback and the mapping of requirements with ETSI EN 301 489-1 (V2.2.3)
+
+    2.2.0 Updated with ENAP comment resolutions
+
+    ETSI
+
+    23 ETSI EN 301 489-20 V2.2.1 (2021-11)
+
+    History
+
+    Document history
+
+    V1.1.1 December 2000 Publication
+
+    V1.2.1 November 2002 Publication
+
+    V2.1.1 April 2019 Publication
+
+    V2.1.2 March 2021 EN Approval Procedure AP 20210622: 2021-03-24 to 2021-06-22
+
+    V2.2.0 September 2021 Vote V 20211119: 2021-09-20 to 2021-11-19
+
+    V2.2.1 November 2021 Publication
+
+    ETSI'
 doc_files:
 - global/raw/ETSI_EN_30148920_v02.02.01_60.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30148920_v02.02.01_60.pdf (pdf, 46523 chars)，生成 3 条共 23732 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30148920_v02.02.01_60.pdf (pdf, 46523 chars)，生成 3 条共 23732 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30148920_v02.02.01_60.pdf (pdf, 46523 chars)，生成 3 条共 23732 字符；解析文本未人工复核，引用以官方原件为准。'

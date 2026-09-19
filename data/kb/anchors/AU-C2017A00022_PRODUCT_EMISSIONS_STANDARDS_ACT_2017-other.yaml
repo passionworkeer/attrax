@@ -1,0 +1,26 @@
+id: KB-other-AU-AU-C2017A00022_PRODUCT_EMISSIONS_STANDARDS_ACT_2017
+regulation_id: AU-C2017A00022_PRODUCT_EMISSIONS_STANDARDS_ACT_2017
+doc_name: AU Product Emissions Standards Act 2017 (legislation.gov.au)
+official_citation: AU Product Emissions Standards Act 2017 (legislation.gov.au)
+short_name: AU Product Emissions Standards Act 2017 (legislation.gov.au)
+source: category
+primary_source: other
+domain: other
+applies_if:
+  category:
+  - other
+  features_any: []
+  markets:
+  - AU
+key_articles: []
+key_points:
+- AU Product Emissions Standards Act 2017 (legislation.gov.au)：其他品类领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://www.legislation.gov.au/C2017A00022/latest/text
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

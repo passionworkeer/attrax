@@ -9,11 +9,628 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'EN 301 549
+
+    V4.1.1
+
+    (2026-09)
+
+    HARMONISED EUROPEAN STANDARD
+
+    Acc'
+  text: 'EN 301 549
+
+    V4.1.1
+
+    (2026-09)
+
+    HARMONISED EUROPEAN STANDARD
+
+    Accessibility requirements for ICT products and services
+
+    2 EN 301 549 V4.1.1 (2026-09)
+
+    Reference
+
+    REN/HF-00301561
+
+    Keywords
+
+    accessibility, HF, ICT, product, service
+
+    CEN CENELEC ETSI
+
+    Rue de la science, 23 Rue de la science, 23 650 Route des Lucioles
+
+    B-1040 Brussels - BELGIUM B-1040 Brussels - BELGIUM F-06921 Sophia Antipolis Cedex - FRANCE
+
+    Tel: + 32 2 550 08 11 Tel.: +32 2 519 68 71 Tel.: +33 4 92 94 42 00
+
+    Fax: + 32 2 550 08 19 Fax: +32 2 519 69 19 Fax: +33 4 93 65 47 16
+
+    Siret N° 348 623 562 00017 - APE 7112B
+
+    Association à but non lucratif enregistrée à la
+
+    Sous-Préfecture de Grasse (06) N° w061004871
+
+    Important notice
+
+    The present document can be downloaded from the
+
+    ETSI Search & Browse Standards application.
+
+    The present document may be made available in electronic versions and/or in print. The content of any electronic and/or
+
+    print versions of the present document shall not be modified without the prior written authorization of ETSI. In case of any
+
+    existing or perceived difference in contents between such versions and/or in print, the prevailing version of an ETSI
+
+    deliverable is the one made publicly available in PDF format on ETSI deliver repository.
+
+    Users should be aware that the present document may be revised or have its status changed,
+
+    this information is available in the Milestones listing.
+
+    If you find errors in the present document, please send your comments to
+
+    the relevant service listed under Committee Support Staff.
+
+    If you find a security vulnerability in the present document, please report it through our
+
+    Coordinated Vulnerability Disclosure (CVD) program.
+
+    Notice of disclaimer & limitation of liability
+
+    The information provided in the present deliverable is directed solely to professionals who have the appropriate degree of
+
+    experience to understand and interpret its content in accordance with generally accepted engineering or
+
+    other professional standard and applicable regulations.
+
+    No recommendation as to products and services or vendors is made or should be implied.
+
+    In no event shall ETSI be held liable for loss of profits or any other incidental or consequential damages.
+
+    Any software contained in this deliverable is provided "AS IS" with no warranties, express or implied, including but not
+
+    limited to, the warranties of merchantability, fitness for a particular purpose and non-infringement of intellectual property
+
+    rights and ETSI shall not be held liable in any event for any damages whatsoever (including, without limitation, damages
+
+    for loss of profits, business interruption, loss of information, or any other pecuniary loss) arising out of or related to the use
+
+    of or inability to use the software.
+
+    Copyright Notification
+
+    No part of this document may be reproduced in any form, by any means and in any media, without the prior written
+
+    authorization of ETSI and except as expressly permitted below.
+
+    By way of exception and when the document is a normative deliverable (European Standard (EN),
+
+    Technical Specification (TS), Group Specification (GS) or ETSI Standard (ES)), ETSI authorizes to reproduce
+
+    and incorporate into products, services and technical documentation only those extracts (e.g. templates) that are strictly
+
+    necessary for the technical implementation of the normative deliverable, to ensure compliance with the latter.
+
+    Nothing in this notice shall be construed as limiting any mandatory exceptions to copyright provided by applicable law.
+
+    © ETSI 2026.
+
+    © Comité Européen de Normalisation 2026.
+
+    © Comité Européen de Normalisation Electrotechnique 2026.
+
+    All rights reserved.
+
+    ETSI CEN CENELEC
+
+    3 EN 301 549 V4.1.1 (2026-09)
+
+    Contents
+
+    Contents .............................................................................................................................................................. 3
+
+    Intellectual Property Rights ................................................................................................................................ 9
+
+    Foreword............................................................................................................................................................. 9
+
+    Modal verbs terminology ................................................................................................................................. 10
+
+    Introduction ...................................................................................................................................................... 10
+
+    1 Scope ...................................................................................................................................................... 12
+
+    2 References .............................................................................................................................................. 12
+
+    2.1 Normative references ....................................................................................................................................... 12
+
+    2.2 Informative references ..................................................................................................................................... 12
+
+    3 Definition of terms, symbols and abbreviations ..................................................................................... 16
+
+    3.1 Terms ............................................................................................................................................................... 16
+
+    3.2 Symbols ........................................................................................................................................................... 25
+
+    3.3 Abbreviations ................................................................................................................................................... 25
+
+    4 Functional performance .......................................................................................................................... 26
+
+    4.1 Meeting Functional Performance Criteria ........................................................................................................ 26
+
+    4.2 Functional Performance Criteria ...................................................................................................................... 27
+
+    4.2.1 Usage without vision .................................................................................................................................. 27
+
+    4.2.2 Usage with limited vision ........................................................................................................................... 27
+
+    4.2.3 Usage without perception of colour ........................................................................................................... 27
+
+    4.2.4 Usage without hearing ................................................................................................................................ 27
+
+    4.2.5 Usage with limited hearing ........................................................................................................................ 28
+
+    4.2.6 Usage with no or limited vocal capability .................................................................................................. 28
+
+    4.2.7 Usage with limited manipulation or strength ............................................................................................. 28
+
+    4.2.8 Usage with limited reach ............................................................................................................................ 28
+
+    4.2.9 Minimize photosensitive seizure triggers ................................................................................................... 29
+
+    4.2.10 Usage with limited cognition, language or learning ................................................................................... 29
+
+    4.2.11 Privacy ....................................................................................................................................................... 29
+
+    5 Generic requirements ............................................................................................................................. 29
+
+    5.1 Closed functionality ......................................................................................................................................... 29
+
+    5.1.1 Introduction (informative) .......................................................................................................................... 29
+
+    5.1.2 General ....................................................................................................................................................... 30
+
+    5.1.3 Non-visual access ....................................................................................................................................... 30
+
+    5.1.4 Functionality closed to text enlargement .................................................................................................... 34
+
+    5.1.5 Visual output for auditory information....................................................................................................... 34
+
+    5.1.6 Operation without keyboard interface ........................................................................................................ 34
+
+    5.1.7 Access without speech ............................................................................................................................... 35
+
+    5.1.8 Identify input purpose (closed functionality) ............................................................................................. 35
+
+    5.2 Activation of accessibility features .................................................................................................................. 35
+
+    5.3 Biometrics ........................................................................................................................................................ 35
+
+    5.4 Preservation of accessibility information during conversion ........................................................................... 35
+
+    5.5 Tactilely discernible operable parts ................................................................................................................. 35
+
+    5.6 Locking or toggle controls ............................................................................................................................... 36
+
+    5.6.1 Tactile or auditory status ............................................................................................................................ 36
+
+    5.6.2 Visual status ............................................................................................................................................... 36
+
+    5.7 Key repeat ........................................................................................................................................................ 36
+
+    5.8 Double-strike key acceptance .......................................................................................................................... 37
+
+    5.9 Simultaneous user actions ................................................................................................................................ 37
+
+    5.10 Authoring tools ................................................................................................................................................ 37
+
+    5.10.0 General (informative) ................................................................................................................................. 37
+
+    5.10.1 Content technology .................................................................................................................................... 37
+
+    5.10.2 Accessible content creation ........................................................................................................................ 37
+
+    5.10.3 Preservation of accessibility information in transformations ..................................................................... 37
+
+    ETSI CEN CENELEC
+
+    4 EN 301 549 V4.1.1 (2026-09)
+
+    5.10.4 Repair assistance ........'
+- id: art-2
+  title: 'Annex C (normative): Determination of conformance ................................................................................... 141'
+  text: 'Annex C (normative): Determination of conformance ................................................................................... 141
+
+    C.1 Introduction.................................................................................................................................................... 141
+
+    C.2 Empty clause .................................................................................................................................................. 141
+
+    C.3 Empty clause .................................................................................................................................................. 141
+
+    C.4 Functional performance ................................................................................................................................. 141
+
+    C.4.1 Meeting Functional Performance Criteria ................................................................................................ 141
+
+    C.4.2 Functional Performance Criteria .............................................................................................................. 141
+
+    C.5 Generic requirements ..................................................................................................................................... 143
+
+    C.5.1 Closed functionality ................................................................................................................................. 143
+
+    C.5.2 Activation of accessibility features .......................................................................................................... 149
+
+    C.5.3 Biometrics ................................................................................................................................................ 149
+
+    C.5.4 Preservation of accessibility information during conversion ................................................................... 149
+
+    C.5.5 Tactilely discernible operable parts .......................................................................................................... 149
+
+    C.5.6 Locking or toggle controls ....................................................................................................................... 149
+
+    C.5.7 Key repeat ................................................................................................................................................ 150
+
+    C.5.8 Double-strike key acceptance ................................................................................................................... 150
+
+    C.5.9 Simultaneous user actions ........................................................................................................................ 150
+
+    C.5.10 Authoring tools......................................................................................................................................... 150
+
+    C.6 ICT supporting real-time bidirectional communication ................................................................................. 152
+
+    C.6.0 Accessible real-time bidirectional communication operational scenarios ................................................ 152
+
+    C.6.1 Real-time bidirectional voice communication .......................................................................................... 154
+
+    C.6.2 Real-Time Text (RTT) ............................................................................................................................. 155
+
+    C.6.3 Caller ID ................................................................................................................................................... 166
+
+    C.6.4 Alternatives to voice-based services ........................................................................................................ 167
+
+    C.6.5 Video communication .............................................................................................................................. 167
+
+    C.6.6 Alternatives to video-based services (recommendation) .......................................................................... 169
+
+    C.6.7 Total conversation .................................................................................................................................... 169
+
+    C.7 ICT with video capabilities ............................................................................................................................ 170
+
+    C.7.1 Subtitle processing technology ................................................................................................................. 170
+
+    C.7.2 Audio description technology .................................................................................................................. 171
+
+    C.7.3 User control of audiovisual accessibility features .................................................................................... 172
+
+    C.8 Hardware ....................................................................................................................................................... 172
+
+    C.8.1 General ..................................................................................................................................................... 172
+
+    C.8.2 Hardware products with speech output .................................................................................................... 172
+
+    C.8.3 Stationary ICT .......................................................................................................................................... 173
+
+    C.8.4 Operable parts .......................................................................................................................................... 177
+
+    C.8.5 Tactile indication of speech mode ............................................................................................................ 178
+
+    C.8.6 Standard connections................................................................................................................................ 178
+
+    C.8.7 Colour on hardware .................................................................................................................................. 178
+
+    C.8.8 Contrast on hardware ............................................................................................................................... 178
+
+    C.9 Web ................................................................................................................................................................ 178
+
+    C.9.0 General (informative) ............................................................................................................................... 178
+
+    C.9.1 Perceivable ............................................................................................................................................... 179
+
+    C.9.2 Operable ................................................................................................................................................... 183
+
+    C.9.3 Understandable ......................................................................................................................................... 188
+
+    C.9.4 Robust ...................................................................................................................................................... 191
+
+    C.9.5 WCAG 2.2 AAA Success Criteria (informative) ..................................................................................... 191
+
+    C.9.6 WCAG 2.2 conformance requirements .................................................................................................... 192
+
+    C.10 Non-web documents ...................................................................................................................................... 192
+
+    C.10.0 General (informative) ............................................................................................................................... 192
+
+    C.10.1 Perceivable ............................................................................................................................................... 192
+
+    C.10.2 Operable ................................................................................................................................................... 196
+
+    C.10.3 Understandable ......................................................................................................................................... 200
+
+    C.10.4 Robust ...................................................................................................................................................... 203
+
+    C.10.5 Subtitle positioning (recommendation) .................................................................................................... 203
+
+    C.10.6 Audio description timing (recommendation) ........................................................................................... 203
+
+    ETSI CEN CENELEC
+
+    8 EN 301 549 V4.1.1 (2026-09)
+
+    C.11 Software ......................................................................................................................................................... 203
+
+    C.11.0 General (informative) ............................................................................................................................... 203
+
+    C.11.1 Perceivable ............................................................................................................................................... 204
+
+    C.11.2 Operable ................................................................................................................................................... 208
+
+    C.11.3 Understandable ......................................................................................................................................... 212
+
+    C.11.4 Robust ...................................................................................................................................................... 214
+
+    C.11.5 Interoperability with assistive technology ................................................................................................ 215
+
+    C.11.6 Documented accessibility usage ............................................................................................................... 221
+
+    C.12 Information about products and services ....................................................................................................... 222
+
+    C.12.1 Accessible information about products .................................................................................................... 222
+
+    C.12.2 Accessible information about services ..................................................................................................... 222
+
+    C.12.3 Accessibility and compatibility features .................................................................................................. 222
+
+    C.12.4 Electronic program guides ....................................................................................................................... 222
+
+    C.12.5 Electronic program guide display ............................................................................................................. 222
+
+    C.13 ICT providing relay or emergency service access ......................................................................................... 223
+
+    C.13.1 Relay services........................................................................................................................................... 223
+
+    C.13.2 Void .......................................................................................................................................................... 227
+
+    C.13.3 Access to emergency services (informative) ............................................................................................ 227
+
+    C.14 Conformance.................................................................................................................................................. 227
+
+    C.14.1 Achieving conformance (informative) .......................................................................'
+- id: art-3
+  title: section 3.2 use case U-C 5 is recommended to be used for RTT. The use of WebRTC Data
+  text: 'section 3.2 use case U-C 5 is recommended to be used for RTT. The use of WebRTC Data
+
+    Channels in web pages and apps is specified in W3C WebRTC: Real-Time Communication in
+
+    Browsers [i.58].
+
+    ETSI CEN CENELEC
+
+    47 EN 301 549 V4.1.1 (2026-09)
+
+    e) Emergency communications: An interface to IP based emergency communications is specified in
+
+    ETSI TS 103 479 [i.48], making use of IETF RFC 4103 [i.13] updated by IETF RFC 9071 [i.52]
+
+    for RTT. A corresponding standard exists for North America. For emergency apps, ETSI
+
+    TS 103 478 [i.47] is specified to implement RTT as specified in ETSI TS 103 871 [i.49]. The use
+
+    of these standards for accessible and interoperable emergency communications including the use of
+
+    RTT is specified in ETSI EN 303 919 [i.56].
+
+    f) Relay services: ETSI ES 202 975 [i.6] specifies in its Annexes A and B interfaces to relay services,
+
+    referring to the present document for specific technologies.
+
+    NOTE 5: Analogue Text telephony is a legacy text communication concept providing functionality to some degree
+
+    similar to RTT in circuit-switched fixed and mobile technologies. There are 6 variants for fixed lines,
+
+    collected in Recommendation ITU-T V.18 [i.22], and one for circuit-switched 2G and 3G mobile
+
+    technologies specified in ETSI TS 126 226 [i.55]. Interworking between these technologies and RTT can
+
+    be achieved to some degree but with severe functional limitations such as no support for multiparty text
+
+    communication, need for gateways for character conversion and buffering the much faster RTT text input
+
+    to accommodate the slower rate of analog technologies, clashes due to lack of bi-directional support, and
+
+    no possibility to use voice while text is transmitted. The differences can also cause confusion to users
+
+    unaware of the differences. Details about the limitations can be found in the references in the present note
+
+    and in IETF RFC 5194 [i.62], section 6.2.5. Considering these limitations, Analogue Text telephony does
+
+    not provide a working (additional) sensory channel.
+
+    NOTE 6: For applying option b) it can be emphasized that the fallback method for multiparty mixing and
+
+    presentation of RTT in multi-party unaware clients specified in IETF RFC 9071 [i.52], sections 2.2 and
+
+    4.2 does not provide a satisfactory user experience and is discouraged from regular use.
+
+    6.3 Caller ID
+
+    Where ICT provides caller identification or other identification functions,
+
+    the caller identification and other identification functions shall be available in text form as well as being
+
+    programmatically determinable, for all functionality that is not closed to programmatic access of information by
+
+    assistive technologies.
+
+    NOTE: See clause 5 for requirements on functionality that is closed.
+
+    6.4 Alternatives to voice-based services
+
+    Where ICT provides voice mail, auto-attendant, or interactive voice response facilities,
+
+    the ICT shall offer users a means to access the information and carry out the tasks provided by the ICT without the use
+
+    of hearing or speech.
+
+    NOTE 1: Tasks that involve both operating the interface and perceiving the information would require that both the
+
+    interface and information be accessible without use of speech or hearing.
+
+    NOTE 2: Solutions capable of handling audio, RTT and video media could satisfy the above requirement.
+
+    6.5 Video communication
+
+    6.5.1 General (informative)
+
+    Clause 6.5 (Video communication) provides performance requirements that support users who communicate using sign
+
+    language and lip-reading. For these users, good usability is achieved with a resolution of at least Quarter Video
+
+    Graphics Array (QVGA, 320 × 240), a frame rate of 20 frames per second and over, with a time difference between
+
+    speech audio and video that does not exceed 100 ms.
+
+    Increasing the resolution and frame rate further improves both sign language (especially finger spelling) and lipreading,
+
+    with frame rate being more important than resolution.
+
+    Time differences between audio and video (asynchronicity) can have a great impact on lip-reading - with video that lags
+
+    behind audio having greater negative effect.
+
+    ETSI CEN CENELEC
+
+    48 EN 301 549 V4.1.1 (2026-09)
+
+    End-to-end latency can be a problem in video (sign) communication. Overall delay values below 400 ms are preferred,
+
+    with an increase in preference down to 100 ms. Overall delay depends on multiple factors, including e.g. network delay
+
+    and video processing. For this reason a testable requirement on minimum values for overall delay cannot be produced.
+
+    NOTE 1: Recommendation ITU-T F.703 [i.38] defines and gives requirements for Total Conversation that relate to
+
+    the integration of audio, RTT and video in a combined real-time bidirectional communication.
+
+    NOTE 2: The delays are specified in Recommendation ITU-T P.1305 [i.61].
+
+    NOTE 3: For the purposes of interoperability and sufficient quality, support of Recommendation
+
+    ITU-T H.264 [i.74] at least version 10 and at least constrained baseline level 3 is widely used for this
+
+    purpose.
+
+    NOTE 4: Where codec negotiation is implemented, other standardized codecs such as Recommendation
+
+    ITU‑T H.265 [i.75] and IETF RFC 6386 [i.76] VP8 [i.76] are commonly used with proper settings are
+
+    suitable so as to avoid transcoding.
+
+    NOTE 5: Background reading and detailed guidance about accessible video communication is provided in ETSI
+
+    ES 204 009 [i.77].
+
+    6.5.2 Resolution
+
+    Where ICT provides real-time bidirectional voice communication, and includes real-time bidirectional video
+
+    communication,
+
+    the ICT:
+
+    a) shall support at least QVGA resolution;
+
+    b) should preferably support at least VGA resolution.
+
+    6.5.3 Frame rate
+
+    Where ICT provides real-time bidirectional voice communication, and includes real-time bidirectional video
+
+    communication,
+
+    the ICT:
+
+    a) shall support a frame rate of at least 20 Frames Per Second (FPS);
+
+    b) should preferably support a frame rate of at least 30 Frames Per Second (FPS) with or without sign language in
+
+    the video stream.
+
+    6.5.4 Synchronization between audio and video
+
+    Where ICT provides real-time bidirectional voice communication, and includes real-time bidirectional video
+
+    communication,
+
+    the ICT shall ensure that voice is received by the user not earlier than 100 ms before and not later than 100 ms after the
+
+    corresponding video is presented to the user.
+
+    NOTE: Verification material and methods are described in Recommendation ITU-T H.Sup1 [i.65], clause 6.
+
+    6.5.5 Indicator of audio with video
+
+    Where ICT provides real-time bidirectional voice communication, and includes real-time bidirectional video
+
+    communication,
+
+    the ICT shall provide a real-time indicator of audio activity.
+
+    NOTE 1: The indicator may be a simple visual dot, or other type of on/off indicator, that flickers to reflect audio
+
+    activity.
+
+    NOTE 2: Without this indication a person who lacks the ability to hear does not know when someone is talking.
+
+    ETSI CEN CENELEC
+
+    49 EN 301 549 V4.1.1 (2026-09)
+
+    6.5.6 Indication of all active communication participants
+
+    Where ICT provides real-time bidirectional voice communication, includes real-time bidirectional video
+
+    communication, and provides speaker indication for voice users,
+
+    the ICT shall provide indication of all active communicators including those signing.
+
+    NOTE 1: The indication of all active communicators can be in the same location as the speaker identification for
+
+    voice users in multiparty communication sessions.
+
+    NOTE 2: This mechanism might be triggered manually by a user, or automatically where this is technically
+
+    achievable.
+
+    6.6 Alternatives to video-based services (recommendation)
+
+    Where ICT provides real-time bidirectional voice communication, and includes real-time bidirectional video
+
+    communication, and provides answering machine, auto attendant or interactive response facilities,
+
+    the ICT should offer users a means to access the information and carry out the tasks related to these facilities:
+
+    a) for audible information, without the use of hearing;
+
+    b) for spoken commands, without the use of speech;
+
+    c) for visual information, without the use of vision.
+
+    NOTE: Solutions capable of generating '
 doc_files:
 - global/raw/ETSI_EN_301549_v04.01.01_60.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_301549_v04.01.01_60.pdf (pdf, 628586 chars)，生成 3 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_301549_v04.01.01_60.pdf (pdf, 628586 chars)，生成 3 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_301549_v04.01.01_60.pdf (pdf, 628586 chars)，生成 3 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

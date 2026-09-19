@@ -1,0 +1,25 @@
+id: KB-market-CA-CA-ACT-C-1-68_CANADA_CONSUMER_PRODUCT_SAFETY_ACT-2
+regulation_id: CA-ACT-C-1-68_CANADA_CONSUMER_PRODUCT_SAFETY_ACT-2
+doc_name: CA C-1.68 Canada Consumer Product Safety Act [html]
+official_citation: CA C-1.68 Canada Consumer Product Safety Act [html]
+short_name: CA C-1.68 Canada Consumer Product Safety Act [html]
+source: market
+primary_source: market
+domain: 产品安全
+applies_if:
+  category: []
+  features_any: []
+  markets:
+  - CA
+key_articles: []
+key_points:
+- CA C-1.68 Canada Consumer Product Safety Act [html]：产品安全领域法规，适用于 CA 市场相关经营行为（库自动接入，按市场匹配）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://laws-lois.justice.gc.ca/eng/acts/C-1.68/
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

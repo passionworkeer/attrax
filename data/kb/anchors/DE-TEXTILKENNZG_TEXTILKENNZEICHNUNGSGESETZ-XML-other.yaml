@@ -1,0 +1,26 @@
+id: KB-other-DE-DE-TEXTILKENNZG_TEXTILKENNZEICHNUNGSGESETZ-XML
+regulation_id: DE-TEXTILKENNZG_TEXTILKENNZEICHNUNGSGESETZ-XML
+doc_name: DE TextilKennzG Textilkennzeichnungsgesetz [xml]
+official_citation: DE TextilKennzG Textilkennzeichnungsgesetz [xml]
+short_name: DE TextilKennzG Textilkennzeichnungsgesetz [xml]
+source: category
+primary_source: other
+domain: other
+applies_if:
+  category:
+  - other
+  features_any: []
+  markets:
+  - DE
+key_articles: []
+key_points:
+- DE TextilKennzG Textilkennzeichnungsgesetz [xml]：其他品类领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://www.gesetze-im-internet.de/textilkennzg_2016/xml.zip
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

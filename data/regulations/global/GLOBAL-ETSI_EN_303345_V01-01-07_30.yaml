@@ -9,11 +9,859 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'ETSI EN 303 345
+
+    Final draft V1.1.7
+
+    (2017-03)
+
+    HARMONISED EURO'
+  text: 'ETSI EN 303 345
+
+    Final draft V1.1.7
+
+    (2017-03)
+
+    HARMONISED EUROPEAN STANDARD
+
+    Broadcast Sound Receivers;
+
+    Harmonised Standard covering the essential requirements
+
+    of article 3.2 of Directive 2014/53/EU
+
+    2 Final draft ETSI EN 303 345 V1.1.7 (2017-03)
+
+    Reference
+
+    DEN/ERM-TG17-15
+
+    Keywords
+
+    broadcast, digital, harmonised standard, radio,
+
+    receiver
+
+    ETSI
+
+    650 Route des Lucioles
+
+    F-06921 Sophia Antipolis Cedex - FRANCE
+
+    Tel.: +33 4 92 94 42 00 Fax: +33 4 93 65 47 16
+
+    Siret N° 348 623 562 00017 - NAF 742 C
+
+    Association à but non lucratif enregistrée à la
+
+    Sous-Préfecture de Grasse (06) N° 7803/88
+
+    Important notice
+
+    The present document can be downloaded from:
+
+    http://www.etsi.org/standards-search
+
+    The present document may be made available in electronic versions and/or in print. The content of any electronic and/or
+
+    print versions of the present document shall not be modified without the prior written authorization of ETSI. In case of any
+
+    existing or perceived difference in contents between such versions and/or in print, the only prevailing document is the
+
+    print of the Portable Document Format (PDF) version kept on a specific network drive within ETSI Secretariat.
+
+    Users of the present document should be aware that the document may be subject to revision or change of status.
+
+    Information on the current status of this and other ETSI documents is available at
+
+    https://portal.etsi.org/TB/ETSIDeliverableStatus.aspx
+
+    If you find errors in the present document, please send your comment to one of the following services:
+
+    https://portal.etsi.org/People/CommiteeSupportStaff.aspx
+
+    Copyright Notification
+
+    No part may be reproduced or utilized in any form or by any means, electronic or mechanical, including photocopying
+
+    and microfilm except as authorized by written permission of ETSI.
+
+    The content of the PDF version shall not be modified without the written authorization of ETSI.
+
+    The copyright and the foregoing restriction extend to reproduction in all media.
+
+    © European Telecommunications Standards Institute 2017.
+
+    All rights reserved.
+
+    DECTTM, PLUGTESTSTM, UMTSTM and the ETSI logo are Trade Marks of ETSI registered for the benefit of its Members.
+
+    3GPPTM and LTE™ are Trade Marks of ETSI registered for the benefit of its Members and
+
+    of the 3GPP Organizational Partners.
+
+    GSM® and the GSM logo are Trade Marks registered and owned by the GSM Association.
+
+    ETSI
+
+    3 Final draft ETSI EN 303 345 V1.1.7 (2017-03)
+
+    Contents
+
+    Intellectual Property Rights ................................................................................................................................ 5
+
+    Foreword ............................................................................................................................................................. 5
+
+    Modal verbs terminology .................................................................................................................................... 5
+
+    Introduction ........................................................................................................................................................ 5
+
+    1 Scope ........................................................................................................................................................ 6
+
+    2 References ................................................................................................................................................ 6
+
+    2.1 Normative references ......................................................................................................................................... 6
+
+    2.2 Informative references ........................................................................................................................................ 6
+
+    3 Definitions and abbreviations ................................................................................................................... 7
+
+    3.1 Definitions .......................................................................................................................................................... 7
+
+    3.2 Abbreviations ..................................................................................................................................................... 7
+
+    4 Technical requirements specifications ..................................................................................................... 8
+
+    4.1 Environmental profile ......................................................................................................................................... 8
+
+    4.2 Conformance requirements ................................................................................................................................ 8
+
+    4.2.1 Broadcast radio modulation methods ............................................................................................................ 8
+
+    4.2.2 Broadcast radio frequency bands .................................................................................................................. 9
+
+    4.2.3 Test signal configurations ............................................................................................................................. 9
+
+    4.2.3.1 AM testing............................................................................................................................................... 9
+
+    4.2.3.2 FM testing ............................................................................................................................................... 9
+
+    4.2.3.3 DAB testing........................................................................................................................................... 10
+
+    4.2.3.4 DRM testing .......................................................................................................................................... 10
+
+    4.2.4 Sensitivity ................................................................................................................................................... 10
+
+    4.2.4.1 Definition .............................................................................................................................................. 10
+
+    4.2.4.2 Limits .................................................................................................................................................... 10
+
+    4.2.4.3 Conformance ......................................................................................................................................... 11
+
+    4.2.5 Adjacent channel selectivity and blocking .................................................................................................. 11
+
+    4.2.5.1 Definition .............................................................................................................................................. 11
+
+    4.2.5.2 Limits .................................................................................................................................................... 12
+
+    4.2.5.3 Conformance ......................................................................................................................................... 13
+
+    4.2.6 Unwanted emissions in the spurious domain .............................................................................................. 13
+
+    4.2.6.1 Definition .............................................................................................................................................. 13
+
+    4.2.6.2 Limits .................................................................................................................................................... 13
+
+    4.2.6.3 Conformance ......................................................................................................................................... 13
+
+    5 Testing for compliance with technical requirements .............................................................................. 13
+
+    5.1 Environmental conditions for testing ............................................................................................................... 13
+
+    5.2 Interpretation of the measurement results ........................................................................................................ 14
+
+    5.3 Methods of measurement ................................................................................................................................. 14
+
+    5.3.1 Generic methods of measurement ............................................................................................................... 14
+
+    5.3.2 Generic measurement set-up for radiated testing ........................................................................................ 15
+
+    5.3.3 Generic measurement set-up for equipment for conducted testing ............................................................. 17
+
+    5.3.4 Sensitivity measurement methods ............................................................................................................... 18
+
+    5.3.4.1 AM and FM sensitivity measurements .................................................................................................. 18
+
+    5.3.4.2 DAB and DRM sensitivity measurements ............................................................................................ 18
+
+    5.3.5 Adjacent channel selectivity and blocking measurement methods ............................................................. 18
+
+    5.3.5.1 AM and FM adjacent channel selectivity and blocking measurements................................................. 18
+
+    5.3.5.2 DAB and DRM adjacent channel selectivity and blocking measurements ........................................... 19
+
+    5.3.6 Unwanted emissions in the spurious domain .............................................................................................. 19
+
+    5.3.6.1 Methods of measurement ...................................................................................................................... 19
+
+    Annex A (informative): Relationship between the present document and the essential
+
+    requirements of Directive 2014/53/EU ......................................................... 20
+
+    Annex B (informative): Commentary on development of the present document ............................. 21
+
+    ETSI
+
+    4 Final draft ETSI EN 303 345 V1.1.7 (2017-03)'
+- id: art-2
+  title: 'Annex C (informative): Measurement set-up for electrical methods during radiated testing ........ 22'
+  text: 'Annex C (informative): Measurement set-up for electrical methods during radiated testing ........ 22
+
+    Annex D (informative): Change History .............................................................................................. 23
+
+    History .............................................................................................................................................................. 24
+
+    ETSI
+
+    5 Final draft ETSI EN 303 345 V1.1.7 (2017-03)
+
+    Intellectual Property Rights
+
+    IPRs essential or potentially essential to the present document may have been declared to ETSI. The information
+
+    pertaining to these essential IPRs, if any, is publicly available for ETSI members and non-members, and can be found
+
+    in ETSI SR 000 314: "Intellectual Property Rights (IPRs); Essential, or potentially Essential, IPRs notified to ETSI in
+
+    respect of ETSI standards", which is available from the ETSI Secretariat. Latest updates are available on the ETSI Web
+
+    server (https://ipr.etsi.org/).
+
+    Pursuant to the ETSI IPR Policy, no investigation, including IPR searches, has been carried out by ETSI. No guarantee
+
+    can be given as to the existence of other IPRs not referenced in ETSI SR 000 314 (or the updates on the ETSI Web
+
+    server) which are, or may be, or may become, essential to the present document.
+
+    Foreword
+
+    This final draft Harmonised European Standard (EN) has been produced by ETSI Technical Committee
+
+    Electromagnetic compatibility and Radio spectrum Matters (ERM), and is now submitted for the Vote phase of the
+
+    ETSI standards EN Approval Procedure.
+
+    The present document has been prepared under the Commission''s standardisation request C(2015) 5376 final [i.9] to
+
+    provide one voluntary means of conforming to the essential requirements of Directive 2014/53/EU on the harmonisation
+
+    of the laws of the Member States relating to the making available on the market of radio equipment and repealing
+
+    Directive 1999/5/EC [i.1].
+
+    Once the present document is cited in the Official Journal of the European Union under that Directive, compliance with
+
+    the normative clauses of the present document given in table A.1 confers, within the limits of the scope of the present
+
+    document, a presumption of conformity with the corresponding essential requirements of that Directive, and associated
+
+    EFTA regulations.
+
+    Proposed national transposition dates
+
+    Date of latest announcement of this EN (doa): 3 months after ETSI publication
+
+    Date of latest publication of new National Standard
+
+    or endorsement of this EN (dop/e): 6 months after doa
+
+    Date of withdrawal of any conflicting National Standard (dow): 18 months after doa
+
+    Modal verbs terminology
+
+    In the present document "shall", "shall not", "should", "should not", "may", "need not", "will", "will not", "can" and
+
+    "cannot" are to be interpreted as described in clause 3.2 of the ETSI Drafting Rules (Verbal forms for the expression of
+
+    provisions).
+
+    "must" and "must not" are NOT allowed in ETSI deliverables except when used in direct citation.
+
+    Introduction
+
+    The present document describes the requirements for radio broadcast receivers to meet the essential requirements of'
+- id: art-3
+  title: article 3.2 of Directive 2014/53/EU [i.1].
+  text: 'article 3.2 of Directive 2014/53/EU [i.1].
+
+    ETSI
+
+    6 Final draft ETSI EN 303 345 V1.1.7 (2017-03)
+
+    1 Scope
+
+    The present document specifies technical characteristics and methods of measurements for devices, including the
+
+    supplied antenna, that receive broadcast sound services, whether analogue or digital modulation is used. Multi-function
+
+    devices may also fall under the requirements of other documents.
+
+    The present document covers the essential requirements of article 3.2 of Directive 2014/53/EU [i.1] under the
+
+    conditions identified in annex A.
+
+    2 References
+
+    2.1 Normative references
+
+    References are specific, identified by date of publication and/or edition number or version number. Only the cited
+
+    version applies.
+
+    Referenced documents which are not found to be publicly available in the expected location might be found at
+
+    https://docbox.etsi.org/Reference/.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    The following referenced documents are necessary for the application of the present document.
+
+    [1] ETSI EN 300 401 (V2.1.1) (01-2017): "Radio Broadcasting Systems; Digital Audio Broadcasting
+
+    (DAB) to mobile, portable and fixed receivers".
+
+    [2] ETSI ES 201 980 (V4.1.1) (01-2014): "Digital Radio Mondiale (DRM); System Specification".
+
+    [3] CENELEC EN 55032:2015: "Electromagnetic compatibility of multimedia equipment - Emission
+
+    Requirements".
+
+    [4] IEC 60315-1 (1988): "Methods of measurement on radio receivers for various classes of
+
+    emission−Part 1: General considerations and methods of measurement, including audio-frequency
+
+    measurements".
+
+    [5] Recommendation ITU-R BS.559-2 (06/1990): "Objective measurement of radio-frequency
+
+    protection ratios in LF, MF and HF broadcasting".
+
+    [6] Recommendation ITU-R BS.468-4 (07/1986): "Measurement of audio-frequency noise voltage
+
+    level in sound broadcasting".
+
+    2.2 Informative references
+
+    References are either specific (identified by date of publication and/or edition number or version number) or
+
+    non-specific. For specific references, only the cited version applies. For non-specific references, the latest version of the
+
+    referenced document (including any amendments) applies.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    The following referenced documents are not necessary for the application of the present document but they assist the
+
+    user with regard to a particular subject area.
+
+    [i.1] Directive 2014/53/EU of the European Parliament and of the Council of 16 April 2014 on the
+
+    harmonisation of the laws of the Member States relating to the making available on the market of
+
+    radio equipment and repealing Directive 1999/5/EC.
+
+    [i.2] ETSI TR 100 028 (all parts): "Electromagnetic compatibility and Radio spectrum Matters (ERM);
+
+    Uncertainties in the measurement of mobile radio equipment characteristics".
+
+    ETSI
+
+    7 Final draft ETSI EN 303 345 V1.1.7 (2017-03)
+
+    [i.3] ETSI TR 100 028-2: "Electromagnetic compatibility and Radio spectrum Matters (ERM);
+
+    Uncertainties in the measurement of mobile radio equipment characteristics; Part 2".
+
+    [i.4] ECA table.
+
+    NOTE: Available at www.efis.dk.
+
+    [i.5] Recommendation ITU-R BS.1615-1: "Planning parameters for digital sound broadcasting at
+
+    frequencies below 30 MHz".
+
+    [i.6] Recommendation ITU-R BS.641: "Determination of radio-frequency protection ratios for
+
+    frequency-modulated sound broadcasting".
+
+    [i.7] CEPT/ERC/Recommendation 74-01E (2011): "Unwanted emissions in the spurious domain".
+
+    [i.8] CISPR 35: "Electromagnetic Compatibility of Multimedia equipment - Immunity Requirements".
+
+    [i.9] Commission Implementing Decision C(2015) 5376 final of 4.8.2015 on a standardisation request
+
+    to the European Committee for Electrotechnical Standardisation and to the European
+
+    Telecommunications Standards Institute as regards radio equipment in support of Directive
+
+    2014/53/EU of the European Parliament and of the Council.
+
+    3 Definitions and abbreviations
+
+    3.1 Definitions
+
+    For the purposes of the present document, the terms and definitions given in Directive 2014/53/EU [i.1] and the
+
+    following apply:
+
+    adjacent channel selectivity: at a given frequency separation, ratio of the maximum unwanted signal level to the
+
+    wanted signal level necessary to provide a given level of audio quality
+
+    blocking: at a given frequency separation, ratio of the maximum AM unwanted signal level to the wanted signal level
+
+    necessary to provide a given level of audio quality
+
+    built-in antenna: antenna that cannot be detached from the equipment
+
+    dBm: decibels relative to 1 mW of power
+
+    dBQ: audio decibels after Recommendation ITU-R BS.468-4 [6] noise weighting and a quasi-peak detector have been
+
+    applied
+
+    dBµV: decibels relative to 1 µV
+
+    dBµV/m: decibels relative to 1 µV/m
+
+    Ω Ω
+
+    external antenna: antenna designed to be connected to the equipment with the use of a 50 or 75 external
+
+    connector
+
+    Ω
+
+    integrΩal antenna: antenna which is detachable from the equipment without the use of any tools, and not using a 50
+
+    or 75 external connector
+
+    NOTE: A device that uses a supplied earphone as the antenna has an integral antenna.
+
+    sensitivity: minimum wanted signal level required to provide a given level of audio quality
+
+    3.2 Abbreviations
+
+    For the purposes of the present document, the following abbreviations apply:
+
+    AAC Advanced Audio Coding
+
+    ACS Adjacent Channel Selectivity
+
+    ETSI
+
+    8 Final draft ETSI EN 303 345 V1.1.7 (2017-03)
+
+    AM Amplitude Modulation
+
+    AMSS Amplitude Modulation Signalling System
+
+    BS Broadcast service (Sound)
+
+    CISPR Comité International Spécial des Perturbations Radioélectriques
+
+    CMAD Common Mode Absorption Device
+
+    DAB Digital Audio Broadcasting
+
+    DRM Digital Radio Mondiale
+
+    ECA European Common Allocation
+
+    EEP Equal Error Protection
+
+    EEP-3A Equal Error Protection profile 3A
+
+    EFTA European Free Trade Area
+
+    FAR Fully Anechoic Room
+
+    FM Frequency Modulation
+
+    GTEM Gigahertz Transverse ElectroMagnetic
+
+    HF High Frequency
+
+    ITU-R International Telecommunications Union - Radiocommunications
+
+    LF Low Frequency
+
+    MF Medium Frequency
+
+    MSC Main Service Channel
+
+    PC Personal Computer
+
+    RDS Radio Data System
+
+    RF Radio Frequency
+
+    RM Robustness Mode
+
+    RMS Root Mean Square
+
+    SAC Semi Anechoic Chamber
+
+    SNR Signal to Noise Ratio
+
+    UI User Interface
+
+    VHF Very High Frequency
+
+    4 Technical requirements specifications
+
+    4.1 Environmental profile
+
+    The technical requirements of the present document apply under the environmental profile for operation of the
+
+    equipment, which shall be declared by the manufacturer. The equipment shall comply with all the technical
+
+    requirements of the present document which are identified as applicable in annex A at all times when operating within
+
+    the boundary limits of the declared operational environmental profile.
+
+    4.2 Conformance requirements
+
+    4.2.1 Broadcast radio modulation methods
+
+    The following broadcast radio modulation methods are considered feasible within the current authorization regime in
+
+    Europe:
+
+    • Amplitude modulation, with or without AMSS (AM).
+
+    • Frequency modulation, with or without RDS (FM).
+
+    • Digital Audio Broadcasting (DAB).
+
+    • Digital Radio Mondiale (DRM).
+
+    Broadcast radio receivers may include demodulation capability for one or more of these modulation methods.
+
+    Conformance shall only be required for each of the modulation methods included in the receiver.
+
+    ETSI
+
+    9 Final draft ETSI EN 303 345 V1.1.7 (2017-03)
+
+    4.2.2 Broadcast radio frequency bands
+
+    The following frequency bands are identified in the ECA table [i.4] for broadcast radio services:
+
+    • Low frequency (LF): 148,5 kHz to 283,5 kHz.
+
+    • Medium frequency (MF): 526,5 kHz to 1 606,5 kHz.
+
+    • High Frequency (HF): 3 950 kHz to 4 000 kHz, 5 900 kHz to 6 200 kHz, 7 200 kHz to 7 450 kHz, 9 400 kHz
+
+    to 9 900 kHz, 11 600 kHz to 12 100 kHz, 13 570 kHz to 13 870 kHz, 15 100 kHz to 15 800 kHz, 17 480 kHz
+
+    to 17 900 kHz, 18 900 kHz to 19 020 kHz, 21 450 kHz to 21 850 kHz and 25 670 kHz to 26 100 kHz.
+
+    • VHF band I: 47 MHz to 68 MHz.
+
+    • VHF band II: 87,5 MHz to 108 MHz.
+
+    • VHF band III: 174 MHz to 240 MHz.
+
+    Broadcast radio receivers may include tuning capability for one or more of these frequency bands. Conformance shall
+
+    only be required for each of the frequency bands included in the receiver.
+
+    4.2.3 Test signal configurations
+
+    4.2.3.1 AM testing
+
+    The generated AM signals (wanted, unwanted and blocking) shall be in accordance with table 1. The configuration is
+
+    based on Recommendation ITU-R BS.1615-1 [i.5].
+
+    Table 1: AM configuration
+
+    AM signals
+
+    Parameter
+
+    Wanted Unwanted Blocking
+
+    Audio modulation Weighted noise
+
+    Recommendation
+
+    1 kHz tone
+
+    ITU-R BS.559-2 [5], 1 kHz tone
+
+    clause 1
+
+    Band-limited to 4,5 kHz
+
+    Other modulation
+
+    40 % 50 % quasi-peak 80 % depth
+
+    parameters
+
+    4.2.3.2 FM testing
+
+    The generated FM signals (wanted and unwanted) and the blocking signal shall be in accordance with table 2. The
+
+    configuration is based on Recommendation ITU-R BS.641 [i.6].
+
+    Table 2: FM configuration
+
+    FM signals AM signal
+
+    Parameter
+
+    Wanted Unwanted Blocking
+
+    Weighted noise
+
+    1 kHz tone Recommendation 1 kHz tone
+
+    Audio modulation
+
+    ITU-R BS.559-2 [5], clause 1
+
+    Band-limited to 15 kHz
+
+    Other modulation 32 kHz quasi-peak deviation
+
+    ±60,8 kHz peak deviation 80 % depth
+
+    parameters (see note)
+
+    Pilot tone No√ne None
+
+    NOTE: This is equivalent to 19 / 2 = 13,4 kHz RMS deviation in the absence of pre-emphasis.
+
+    ETSI
+
+    10 Final draft ETSI EN 303 345 V1.1.7 (2017-03)
+
+    4.2.3.3 DAB testing
+
+    The generated DAB signals (wanted and unwanted) and the blocking signal shall be in accordance in table 3.
+
+    Table 3: DAB configuration
+
+    DAB signal AM signal
+
+    Parameter
+
+    Wanted and Unwanted Blocking
+
+    Service label: "Sine+"
+
+    Audio modulation 1 kHz tone at a level of -3 dBFS 1 kHz tone
+
+    Coding: mono, 128 kbit/s AAC
+
+    DAB signal with EEP-3A to ETSI EN 300 401 [1],
+
+    Other modulation parameters 80 % depth
+
+    clause 15
+
+    4.2.3.4 DRM testing
+
+    The generated DRM signals (wanted and unwanted) and the blocking signal shall be in accordance in table 4.
+
+    Table 4: DRM configuration
+
+    DRM signal AM signal
+
+    Parameter
+
+    Wanted and Unwanted Blocking
+
+    Service label: "Sine +"
+
+    Audio coding 1 kHz tone at a level of -3 dBFS 1 kHz tone
+
+    Coding: mono AAC at maximum permitted rate
+
+    Frequency band LF/MF HF VHF
+
+    RM flag 0 0 1
+
+    protection level 1 1 2
+
+    MSC mode 0 0 0
+
+    Channel coding parameters interleaver depth 1 1 0
+
+    robustness mode B B E
+
+    spectrum
+
+    2 3 0
+
+    occupancy
+
+    Other modulation Parameters DRM signal to ETSI ES 201 980 [2], clause 8 80 % depth
+
+    4.2.4 Sensitivity
+
+    4.2.4.1 Definition
+
+    The receiver sensitivity is the minimum wanted signal level required to provide a given level of audio quality.
+
+    The appropriate measure of audio quality, known as the impairment criteria, are specified for each modulation type.
+
+    4.2.4.2 Limits
+
+    The limits for sensitivity specified in table 5 shall apply. Each figure quoted is the required level of wanted signal which
+
+    provides a given level of audio quality. The audio impairment criteria relevant for these tests for the different
+
+    demodulation types are given in table 6.
+
+    ETSI
+
+    11 Final draft ETSI EN 303 345 V1.1.7 (2017-03)
+
+    Table 5: Sensitivity requirements
+
+    Test De-modulation Tuned Wanted signal Required sensitivity limit
+
+    frequency centre Conducted Radiated
+
+    μ
+
+    band frequency (dBm) (dB V/m)
+
+    (MHz)
+
+    1 AM LF 0,216 -65 74
+
+    2 MF 0,999 -65 66
+
+    3 HF 9,9 -65 60
+
+    4 FM VHF band II 98 -90 50 (see note 1)
+
+    5 DAB VHF band III 202,928 -94 37 (see note 2)
+
+    6 DRM LF 0,216 -101 58
+
+    7 MF 0,999 -101 52
+
+    8 HF1 4 -101 44
+
+    9 HF2 19 -101 40
+
+    10 VHF band I 65 -102 45
+
+    11 VHF band II 100 -102 46
+
+    12 VHF band III 200 -102 51
+
+    NOTE 1: For products with an integral antenna, the requirement is relaxed to 67 dBμµV/m.
+
+    NOTE 2: For products with an integral antenna, the requirement is relaxed to 50 dB V/m.
+
+    Table 6: Impairment criteria for sensitivity tests
+
+    Demodulation ≥ Impairment criteria
+
+    AM SNR ≥ 28 dBQ ref 40 % AM
+
+    FM SNR 40 dBQ ref ±60,8 kHz deviation; clean audio (see note 1)
+
+    DAB Clean audio (see note 2)
+
+    DRM Clean audio (see note 2)
+
+    NOTE 1: Clean audio is defined as 10 seconds of audio with no subjective impairments
+
+    (e.g. clicks resulting from FM threshold effects).
+
+    NOTE 2: Clean audi'
+- id: art-4
+  title: 'Annex C (informative):'
+  text: 'Annex C (informative):
+
+    Measurement set-up for electrical methods during radiated
+
+    testing
+
+    Electrical connections within the field can influence the result to testing unless carefully positioned. The connection to
+
+    the audio analyser and any external power supply cables should be configured in a perpendicular direction to the
+
+    electric field, and a CMAD or ferrite with an appropriate impedance over the frequency range of the testing should be
+
+    applied, see figure C.1.
+
+    SAC
+
+    Floor Absorber To Audio analyser
+
+    Ferrite or
+
+    CMAD
+
+    RUT
+
+    Transmitting
+
+    Antenna
+
+    Figure C.1: Example set-up for electrical method (top view).
+
+    ETSI
+
+    23 Final draft ETSI EN 303 345 V1.1.7 (2017-03)
+
+    Annex D (informative):
+
+    Change History
+
+    Version Information about changes
+
+    1.1.7 First published version.
+
+    ETSI
+
+    24 Final draft ETSI EN 303 345 V1.1.7 (2017-03)
+
+    History
+
+    Document history
+
+    V1.1.1 July 2016 EN Approval Procedure AP 20161011: 2016-07-13 to 2016-10-11
+
+    V1.1.7 March 2017 Vote V 20170514: 2017-03-15 to 2017-05-15
+
+    ETSI'
 doc_files:
 - global/raw/ETSI_EN_303345_v01.01.07_30.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_303345_v01.01.07_30.pdf (pdf, 54030 chars)，生成 4 条共 26320 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_303345_v01.01.07_30.pdf (pdf, 54030 chars)，生成 4 条共 26320 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_303345_v01.01.07_30.pdf (pdf, 54030 chars)，生成 4 条共 26320 字符；解析文本未人工复核，引用以官方原件为准。'

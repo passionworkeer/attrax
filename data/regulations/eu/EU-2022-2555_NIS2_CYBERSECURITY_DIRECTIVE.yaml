@@ -9,11 +9,891 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'L_2022333EN.01008001.xml
+
+
+    27.12.2022
+
+
+    EN
+
+
+    Official Journal o'
+  text: 'L_2022333EN.01008001.xml
+
+
+    27.12.2022
+
+
+    EN
+
+
+    Official Journal of the European Union
+
+
+    L 333/80
+
+
+    DIRECTIVE (EU) 2022/2555 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL
+
+
+
+    of 14 December 2022
+
+
+
+    on measures for a high common level of cybersecurity across the Union, amending Regulation (EU) No 910/2014 and Directive (EU) 2018/1972, and repealing Directive (EU) 2016/1148 (NIS 2 Directive)
+
+
+    (Text with EEA relevance)
+
+
+    THE EUROPEAN PARLIAMENT AND THE COUNCIL OF THE EUROPEAN UNION,
+
+
+    Having regard to the Treaty on the Functioning of the European Union, and in particular Article 114 thereof,
+
+
+    Having regard to the proposal from the European Commission,
+
+
+    After transmission of the draft legislative act to the national parliaments,
+
+
+    Having regard to the opinion of the European Central Bank
+
+    (
+
+    1
+
+    )
+
+    ,
+
+
+    Having regard to the opinion of the European Economic and Social Committee
+
+    (
+
+    2
+
+    )
+
+    ,
+
+
+    After consulting the Committee of the Regions,
+
+
+    Acting in accordance with the ordinary legislative procedure
+
+    (
+
+    3
+
+    )
+
+    ,
+
+
+    Whereas:
+
+
+    (1)
+
+
+    Directive (EU) 2016/1148 of the European Parliament and the Council
+
+    (
+
+    4
+
+    )
+
+    aimed to build cybersecurity capabilities across the Union, mitigate threats to network and information systems used to provide essential services in key sectors and ensure the continuity of such services
+    when facing incidents, thus contributing to the Union’s security and to the effective functioning of its economy and society.
+
+
+    (2)
+
+
+    Since the entry into force of Directive (EU) 2016/1148, significant progress has been made in increasing the Union’s level of cyber resilience. The review of that Directive has shown that it has served
+    as a catalyst for the institutional and regulatory approach to cybersecurity in the Union, paving the way for a significant change in mind-set. That Directive has ensured the completion of national
+    frameworks on the security of network and information systems by establishing national strategies on security of network and information systems and establishing national capabilities and by implementing
+    regulatory measures covering essential infrastructures and entities identified by each Member State. Directive (EU) 2016/1148 has also contributed to cooperation at Union level through the establishment
+    of the Cooperation Group and the network of national computer security incident response teams. Notwithstanding those achievements, the review of Directive (EU) 2016/1148 has revealed inherent shortcomings
+    that prevent it from addressing effectively current and emerging cybersecurity challenges.
+
+
+    (3)
+
+
+    Network and information systems have developed into a central feature of everyday life with the speedy digital transformation and interconnectedness of society, including in cross-border exchanges.
+    That development has led to an expansion of the cyber threat landscape, bringing about new challenges, which require adapted, coordinated and innovative responses in all Member States. The number, magnitude,
+    sophistication, frequency and impact of incidents are increasing, and present a major threat to the functioning of network and information systems. As a result, incidents can impede the pursuit of economic
+    activities in the internal market, generate financial loss, undermine user confidence and cause major damage to the Union’s economy and society. Cybersecurity preparedness and effectiveness are therefore
+    now more essential than ever to the proper functioning of the internal market. Moreover, cybersecurity is a key enabler for many critical sectors to successfully embrace the digital transformation and
+    to fully grasp the economic, social and sustainable benefits of digitalisation.
+
+
+    (4)
+
+
+    The legal basis of Directive (EU) 2016/1148 was Article 114 of the Treaty on the Functioning of the European Union (TFEU), the objective of which is the establishment and functioning of the internal
+    market by enhancing measures for the approximation of national rules. The cybersecurity requirements imposed on entities providing services or carrying out activities which are economically significant
+    vary considerably among Member States in terms of type of requirement, their level of detail and the method of supervision. Those disparities entail additional costs and create difficulties for entities
+    that offer goods or services across borders. Requirements imposed by one Member State that are different from, or even in conflict with, those imposed by another Member State, may substantially affect
+    such cross-border activities. Furthermore, the possibility of the inadequate design or implementation of cybersecurity requirements in one Member State is likely to have repercussions at the level of
+    cybersecurity of other Member States, in particular given the intensity of cross-border exchanges. The review of Directive (EU) 2016/1148 has shown a wide divergence in its implementation by Member
+    States, including in relation to its scope, the delimitation of which was very largely left to the discretion of the Member States. Directive (EU) 2016/1148 also provided the Member States with very
+    wide discretion as regards the implementation of the security and incident reporting obligations laid down therein. Those obligations were therefore implemented in significantly different ways at national
+    level. There are similar divergences in the implementation of the provisions of Directive (EU) 2016/1148 on supervision and enforcement.
+
+
+    (5)
+
+
+    All those divergences entail a fragmentation of the internal market and can have a prejudicial effect on its functioning, affecting in particular the cross-border provision of services and the level
+    of cyber resilience due to the application of a variety of measures. Ultimately, those divergences could lead to the higher vulnerability of some Member States to cyber threats, with potential spill-over
+    effects across the Union. This Directive aims to remove such wide divergences among Member States, in particular by setting out minimum rules regarding the functioning of a coordinated regulatory framework,
+    by laying down mechanisms for effective cooperation among the responsible authorities in each Member State, by updating the list of sectors and activities subject to cybersecurity obligations and by
+    providing effective remedies and enforcement measures which are key to the effective enforcement of those obligations. Therefore, Directive (EU) 2016/1148 should be repealed and replaced by this Directive.
+
+
+    (6)
+
+
+    With the repeal of Directive (EU) 2016/1148, the scope of application by sectors should be extended to a larger part of the economy to provide a comprehensive coverage of sectors and services of vital
+    importance to key societal and economic activities in the internal market. In particular, this Directive aims to overcome the shortcomings of the differentiation between operators of essential services
+    and digital service providers, which has been proven to be obsolete, since it does not reflect the importance of the sectors or services for the societal and economic activities in the internal market.
+
+
+    (7)
+
+
+    Under Directive (EU) 2016/1148, Member States were responsible for identifying the entities which met the criteria to qualify as operators of essential services. In order to eliminate the wide divergences
+    among Member States in that regard and ensure legal certainty as regards the cybersecurity risk-management measures and reporting obligations for all relevant entities, a uniform criterion should be
+    established that determines the entities falling within the scope of this Directive. That criterion should consist of the application of a size-cap rule, whereby all entities which qualify as medium-sized
+    enterprises under Article 2 of the Annex to Commission Recommendation 2003/361/EC
+
+    (
+
+    5
+
+    )
+
+    , or exceed the ceilings for medium-sized enterprises provided for in paragraph 1 of that Article, and which operate within the sectors and provide the types of service or carry out the activities covered
+    by this Directive fall within its scope. Member States should also provide for certain small enterprises and microenterprises, as defined in Article 2(2) and (3) of that Annex, which fulfil specific
+    criteria that indicate a key role for society, the economy or for particular sectors or types of service to fall within the scope of this Directive.
+
+
+    (8)
+
+
+    The exclusion of public administration entities from the scope of this Directive should apply to entities whose activities are predominantly carried out in the areas of national security, public security,
+    defence or law enforcement, including the prevention, investigation, detection and prosecution of criminal offences. However, public administration entities whose activities are only marginally related
+    to those areas should not be excluded from the scope of this Directive. For the purposes of this Directive, entities with regulatory competences are not considered to be carrying out activities in the
+    area of law enforcement and are therefore not excluded on that ground from the scope of this Directive. Public administration entities that are jointly established with a third country in accordance
+    with an international agreement are excluded from the scope of this Directive. This Directive does not apply to Member States’ diplomatic and consular missions in third countries or to their network
+    and information systems, insofar as such systems are located in the premises of the mission or are operated for users in a third country.
+
+
+    (9)
+
+
+    Member States should be able to take the necessary measures to ensure the protection of the essential interests of national security, to safeguard public policy and public security, and to allow for
+    the prevention, investigation, detection and prosecution of criminal offences. To that end, Member States should be able to exempt specific entities which carry out activities in the areas of national
+    security, public security, defence or law enforcement, including the prevention, investigation, detection and prosecution of criminal offences, from certain obligations laid down in this Directive with
+    regard to those activities. Where an entity provides services exclusively to a public administration entity that is excluded from the scope of this Directive, Member States should be able to exempt
+    that entity from certain obligations laid down in this Directive with regard to those services. Furthermore, no Member State should be required to supply information the disclosure of which would be
+    contrary to the essential interests of its national security, public security or defence. Union or national rules for the protection of classified information, non-disclosure agreements, and informal
+    non-disclosure agreements such as the traffic light protocol should be taken into account in that context. The traffic light protocol is to be understood as a means to provide information about any
+    limitations with regard to the further spreading of information. It is used in almost all computer security incident response teams (CSIRTs) and in some information analysis and sharing centres.
+
+
+    (10)
+
+
+    Although this Directive applies to entities carrying out activities in the production of electricity from nuclear power plants, some of those activities may be linked to national security. Where that
+    is the case, a Member State should be able to exercise its responsibility for safeguarding national security with respect to those activities, including activities within the nuclear value chain, in
+    accordance with the Treaties.
+
+
+    (11)
+
+
+    Some entities carry out activities in the areas of national security, public security, defence or law enforcement, including the prevention, investigation, detection and prosecution of criminal offences,
+    while also providing trust services. Trust service providers which fall within the scope of Regulation (EU) No 910/2014 of the European Parliament and of the Council
+
+    (
+
+    6
+
+    )
+
+    should fall within the scope of this Directive in order to secure the same level of security requirements and supervision as that which was previously laid down in that R'
+- id: art-2
+  title: CHAPTER I
+  text: 'CHAPTER I
+
+
+    GENERAL PROVISIONS'
+- id: art-3
+  title: Article 1
+  text: 'Article 1
+
+
+    Subject matter
+
+
+    1.   This Directive lays down measures that aim to achieve a high common level of cybersecurity across the Union, with a view to improving the functioning of the internal market.
+
+
+    2.   To that end, this Directive lays down:
+
+
+    (a)
+
+
+    obligations that require Member States to adopt national cybersecurity strategies and to designate or establish competent authorities, cyber crisis management authorities, single points of contact on
+    cybersecurity (single points of contact) and computer security incident response teams (CSIRTs);
+
+
+    (b)
+
+
+    cybersecurity risk-management measures and reporting obligations for entities of a type referred to in Annex I or II as well as for entities identified as critical entities under Directive (EU) 2022/2557;
+
+
+    (c)
+
+
+    rules and obligations on cybersecurity information sharing;
+
+
+    (d)
+
+
+    supervisory and enforcement obligations on Member States.'
+- id: art-4
+  title: Article 2
+  text: 'Article 2
+
+
+    Scope
+
+
+    1.   This Directive applies to public or private entities of a type referred to in Annex I or II which qualify as medium-sized enterprises under Article 2 of the Annex to Recommendation 2003/361/EC,
+    or exceed the ceilings for medium-sized enterprises provided for in paragraph 1 of that Article, and which provide their services or carry out their activities within the Union.'
+- id: art-5
+  title: Article 3(4) of the Annex to that Recommendation shall not apply for the purposes of this Directive.
+  text: 'Article 3(4) of the Annex to that Recommendation shall not apply for the purposes of this Directive.
+
+
+    2.   Regardless of their size, this Directive also applies to entities of a type referred to in Annex I or II, where:
+
+
+    (a)
+
+
+    services are provided by:
+
+
+    (i)
+
+
+    providers of public electronic communications networks or of publicly available electronic communications services;
+
+
+    (ii)
+
+
+    trust service providers;
+
+
+    (iii)
+
+
+    top-level domain name registries and domain name system service providers;
+
+
+    (b)
+
+
+    the entity is the sole provider in a Member State of a service which is essential for the maintenance of critical societal or economic activities;
+
+
+    (c)
+
+
+    disruption of the service provided by the entity could have a significant impact on public safety, public security or public health;
+
+
+    (d)
+
+
+    disruption of the service provided by the entity could induce a significant systemic risk, in particular for sectors where such disruption could have a cross-border impact;
+
+
+    (e)
+
+
+    the entity is critical because of its specific importance at national or regional level for the particular sector or type of service, or for other interdependent sectors in the Member State;
+
+
+    (f)
+
+
+    the entity is a public administration entity:
+
+
+    (i)
+
+
+    of central government as defined by a Member State in accordance with national law; or
+
+
+    (ii)
+
+
+    at regional level as defined by a Member State in accordance with national law that, following a risk-based assessment, provides services the disruption of which could have a significant impact on critical
+    societal or economic activities.
+
+
+    3.   Regardless of their size, this Directive applies to entities identified as critical entities under Directive (EU) 2022/2557.
+
+
+    4.   Regardless of their size, this Directive applies to entities providing domain name registration services.
+
+
+    5.   Member States may provide for this Directive to apply to:
+
+
+    (a)
+
+
+    public administration entities at local level;
+
+
+    (b)
+
+
+    education institutions, in particular where they carry out critical research activities.
+
+
+    6.   This Directive is without prejudice to the Member States’ responsibility for safeguarding national security and their power to safeguard other essential State functions, including ensuring the
+    territorial integrity of the State and maintaining law and order.
+
+
+    7.   This Directive does not apply to public administration entities that carry out their activities in the areas of national security, public security, defence or law enforcement, including the prevention,
+    investigation, detection and prosecution of criminal offences.
+
+
+    8.   Member States may exempt specific entities which carry out activities in the areas of national security, public security, defence or law enforcement, including the prevention, investigation, detection
+    and prosecution of criminal offences, or which provide services exclusively to the public administration entities referred to in paragraph 7 of this Article, from the obligations laid down in Article 21
+    or 23 with regard to those activities or services. In such cases, the supervisory and enforcement measures referred to in Chapter VII shall not apply in relation to those specific activities or services.
+    Where the entities carry out activities or provide services exclusively of the type referred to in this paragraph, Member States may decide also to exempt those entities from the obligations laid down
+    in Articles 3 and 27.
+
+
+    9.   Paragraphs 7 and 8 shall not apply where an entity acts as a trust service provider.
+
+
+    10.   This Directive does not apply to entities which Member States have exempted from the scope of Regulation (EU) 2022/2554 in accordance with Article 2(4) of that Regulation.
+
+
+    11.   The obligations laid down in this Directive shall not entail the supply of information the disclosure of which would be contrary to the essential interests of Member States’ national security,
+    public security or defence.
+
+
+    12.   This Directive applies without prejudice to Regulation (EU) 2016/679, Directive 2002/58/EC, Directives 2011/93/EU
+
+    (
+
+    27
+
+    )
+
+    and 2013/40/EU
+
+    (
+
+    28
+
+    )
+
+    of the European Parliament and of the Council and Directive (EU) 2022/2557.
+
+
+    13.   Without prejudice to Article 346 TFEU, information that is confidential pursuant to Union or national rules, such as rules on business confidentiality, shall be exchanged with the Commission and
+    other relevant authorities in accordance with this Directive only where that exchange is necessary for the application of this Directive. The information exchanged shall be limited to that which is
+    relevant and proportionate to the purpose of that exchange. The exchange of information shall preserve the confidentiality of that information and protect the security and commercial interests of entities
+    concerned.
+
+
+    14.   Entities, the competent authorities, the single points of contact and the CSIRTs shall process personal data to the extent necessary for the purposes of this Directive and in accordance with Regulation
+    (EU) 2016/679, in particular such processing shall rely on Article 6 thereof.
+
+
+    The processing of personal data pursuant to this Directive by providers of public electronic communications networks or providers of publicly available electronic communications services shall be carried
+    out in accordance with Union data protection law and Union privacy law, in particular Directive 2002/58/EC.'
+- id: art-6
+  title: Article 3
+  text: 'Article 3
+
+
+    Essential and important entities
+
+
+    1.   For the purposes of this Directive, the following entities shall be considered to be essential entities:
+
+
+    (a)
+
+
+    entities of a type referred to in Annex I which exceed the ceilings for medium-sized enterprises provided for in Article 2(1) of the Annex to Recommendation 2003/361/EC;
+
+
+    (b)
+
+
+    qualified trust service providers and top-level domain name registries as well as DNS service providers, regardless of their size;
+
+
+    (c)
+
+
+    providers of public electronic communications networks or of publicly available electronic communications services which qualify as medium-sized enterprises under Article 2 of the Annex to Recommendation
+    2003/361/EC;
+
+
+    (d)
+
+
+    public administration entities referred to in Article 2(2), point (f)(i);
+
+
+    (e)
+
+
+    any other entities of a type referred to in Annex I or II that are identified by a Member State as essential entities pursuant to Article 2(2), points (b) to (e);
+
+
+    (f)
+
+
+    entities identified as critical entities under Directive (EU) 2022/2557, referred to in Article 2(3) of this Directive;
+
+
+    (g)
+
+
+    if the Member State so provides, entities which that Member State identified before 16 January 2023 as operators of essential services in accordance with Directive (EU) 2016/1148 or national law.
+
+
+    2.   For the purposes of this Directive, entities of a type referred to in Annex I or II which do not qualify as essential entities pursuant to paragraph 1 of this Article shall be considered to be
+    important entities. This includes entities identified by Member States as important entities pursuant to Article 2(2), points (b) to (e).
+
+
+    3.   By 17 April 2025, Member States shall establish a list of essential and important entities as well as entities providing domain name registration services. Member States shall review and, where
+    appropriate, update that list on a regular basis and at least every two years thereafter.
+
+
+    4.   For the purpose of establishing the list referred to in paragraph 3, Member States shall require the entities referred to in that paragraph to submit at least the following information to the competent
+    authorities:
+
+
+    (a)
+
+
+    the name of the entity;
+
+
+    (b)
+
+
+    the address and up-to-date contact details, including email addresses, IP ranges and telephone numbers;
+
+
+    (c)
+
+
+    where applicable, the relevant sector and subsector referred to in Annex I or II; and
+
+
+    (d)
+
+
+    where applicable, a list of the Member States where they provide services falling within the scope of this Directive.
+
+
+    The entities referred to in paragraph 3 shall notify any changes to the details submitted pursuant to the first subparagraph of this paragraph without delay, and, in any event, within two weeks of the
+    date of the change.
+
+
+    The Commission, with the assistance of the European Union Agency for Cybersecurity (ENISA), shall without undue delay provide guidelines and templates regarding the obligations laid down in this paragraph.
+
+
+    Member States may establish national mechanisms for entities to register themselves.
+
+
+    5.   By 17 April 2025 and every two years thereafter, the competent authorities shall notify:
+
+
+    (a)
+
+
+    the Commission and the Cooperation Group of the number of essential and important entities listed pursuant to paragraph 3 for each sector and subsector referred to in Annex I or II; and
+
+
+    (b)
+
+
+    the Commission of relevant information about the number of essential and important entities identified pursuant to Article 2(2), points (b) to (e), the sector and subsector referred to in Annex I or
+    II to which they belong, the type of service that they provide, and the provision, from among those laid down in Article 2(2), points (b) to (e), pursuant to which they were identified.
+
+
+    6.   Until 17 April 2025 and upon request of the Commission, Member States may notify the Commission of the names of the essential and important entities referred to in paragraph 5, point (b).'
+- id: art-7
+  title: Article 4
+  text: 'Article 4
+
+
+    Sector-specific Union legal acts
+
+
+    1.   Where sector-specific Union legal acts require essential or important entities to adopt cybersecurity risk-management measures or to notify significant incidents and where those requirements are
+    at least equivalent in effect to the obligations laid down in this Directive, the relevant provisions of this Directive, including the provisions on supervision and enforcement laid down in Chapter
+    VII, shall not apply to such entities. Where sector-specific Union legal acts do not cover all entities in a specific sector falling within the scope of this Directive, the relevant provisions of this
+    Directive shall continue to apply to the entities not covered by those sector-specific Union legal acts.
+
+
+    2.   The requirements referred to in paragraph 1 of this Article shall be considered to be equivalent in effect to the obligations laid down in this Directive where:
+
+
+    (a)
+
+
+    cybersecurity risk-management measures are at least equivalent in effect to those laid down in Article 21(1) and (2); or
+
+
+    (b)
+
+
+    the sector-specific Union legal act provides for immediate access, where appropriate automatic and direct, to the incident notifications by the CSIRTs, the competent authorities or the single points
+    of contact under this Directive and where requirements to notify significant incidents are at least equivalent in effect to those laid down in Article 23(1) to (6) of this Directive.
+
+
+    3.   The Commission shall, by 17 July 2023, provide guidelines clarifying the application of paragraphs 1 and 2. The Commission shall review those guidelines on a regular basis. When preparing those
+    guidelines, the Commission shall take into account any observations of the Cooperation Group and ENISA.'
+- id: art-8
+  title: Article 5
+  text: 'Article 5
+
+
+    Minimum harmonisation
+
+
+    This Directive shall not preclude Member States from adopting or maintaining provisions ensuring a higher level of cybersecurity, provided that such provisions are consistent with Member States’ obligations
+    laid down in Union law.'
+- id: art-9
+  title: Article 6
+  text: 'Article 6
+
+
+    Definitions
+
+
+    For the purposes of this Directive, the following definitions apply:
+
+
+    (1)
+
+
+    ‘network and information system’ means:
+
+
+    (a)
+
+
+    an electronic communications network as defined in Article 2, point (1), of Directive (EU) 2018/1972;
+
+
+    (b)
+
+
+    any device or group of interconnected or related devices, one or more of which, pursuant to a programme, carry out automatic processing of digital data; or
+
+
+    (c)
+
+
+    digital data stored, processed, retrieved or transmitted by elements covered under points (a) and (b) for the purposes of their operation, use, protection and maintenance;
+
+
+    (2)
+
+
+    ‘security of network and information systems’ means the ability of network and information systems to resist, at a given level of confidence, any event that may compromise the availability, authenticity,
+    integrity or confidentiality of stored, transmitted or processed data or of the services offered by, or accessible via, those network and information systems;
+
+
+    (3)
+
+
+    ‘cybersecurity’ means cybersecurity as defined in Article 2, point (1), of Regulation (EU) 2019/881;
+
+
+    (4)
+
+
+    ‘national cybersecurity strategy ’ means a coherent framework of a Member State providing strategic objectives and priorities in the area of cybersecurity and the governance to achieve them in that
+    Member State;
+
+
+    (5)
+
+
+    ‘near miss’ means an event that could have compromised the availability, authenticity, integrity or confidentiality of stored, transmitted or processed data or of the services offered by, or accessible
+    via, network and information systems, but that was successfully prevented from materialising or that did not materialise;
+
+
+    (6)
+
+
+    ‘incident’ means an event compromising the availability, authenticity, integrity or confidentiality of stored, transmitted or processed data or of the services offered by, or accessible via, network
+    and information systems;
+
+
+    (7)
+
+
+    ‘large-scale cybersecurity incident’ means an incident which causes a level of disruption that exceeds a Member State’s capacity to respond to it or which has a significant impact on at least two Member
+    States;
+
+
+    (8)
+
+
+    ‘incident handling’ means any actions and procedures aiming to prevent, detect, analyse, and contain or to respond to and recover from an incident;
+
+
+    (9)
+
+
+    ‘risk’ means the potential for loss or disruption caused by an incident and is to be expressed as a combination of the magnitude of such loss or disruption and the likelihood of occurrence of the incident;
+
+
+    (10)
+
+
+    ‘cyber threat’ means a cyber threat as defined in Article 2, point (8), of Regulation (EU) 2019/881;
+
+
+    (11)
+
+
+    ‘significant cyber threat’ means a cyber threat which, based on its technical characteristics, can be assumed to have the potential to have a severe impact on the network and information systems of
+    an entity or the users of the entity’s services by causing considerable material or non-material damage;
+
+
+    (12)
+
+
+    ‘ICT product’ means an ICT product as defined in Article 2, point (12), of Regulation (EU) 2019/881;
+
+
+    (13)
+
+
+    ‘ICT service’ means an ICT service as defined in Article 2, point (13), of Regulation (EU) 2019/881;
+
+
+    (14)
+
+
+    ‘ICT process’ means an ICT process as defined in Article 2, point (14), of Regulation (EU) 2019/881;
+
+
+    (15)
+
+
+    ‘vulnerability’ means a weakness, susceptibility or flaw of ICT products or ICT services that can be exploited by a cyber threat;
+
+
+    (16)
+
+
+    ‘standard’ means a standard as defined in Article 2, point (1), of Regulation (EU) No 1025/2012 of the European Parliament and of the Council
+
+    (
+
+    29
+
+    )
+
+    ;
+
+
+    (17)
+
+
+    ‘technical specification’ means a technical specification as defined in Article 2, point (4), of Regulation (EU) No 1025/2012;
+
+
+    (18)
+
+
+    ‘internet exchange point’ means a network facility which enables the interconnection of more than two independent networks (autonomous systems), primarily for the purpose of facilitating the exchange
+    of internet traffic, which provides interconnection only for autonomous systems and which neither requires the internet traffic passing between any pair of participating autonomous systems to pass through
+    any third autonomous system nor alters or otherwise interferes with such traffic;
+
+
+    (19)
+
+
+    ‘domain name system’ or ‘DNS’ means a hierarchical distributed naming system which enables the identification of internet services and resources, allowing end-user devices to use internet routing and
+    connectivity services to reach those services and resources;
+
+
+    (20)
+
+
+    ‘DNS service provider’ means an entity that provides:
+
+
+    (a)
+
+
+    publicly available recursive domain name resolution services for internet end-users; or
+
+
+    (b)
+
+
+    authoritative domain name resolution services for third-party use, with the exception of root name servers;
+
+
+    (21)
+
+
+    ‘top-level domain name registry’ or ‘TLD name registry’ means an entity which has been delegated a specific TLD and is responsible for administering the TLD including the registration of domain names
+    under the TLD and the technical operation of the TLD, including the operation of its name servers, the maintenance of its databases and the distribution of TLD zone files across name servers, irrespective
+    of whether any of those operations are carried out by the entity itself or are outsourced, but excluding situations where TLD names are used by a registry only for its own use;
+
+
+    (22)
+
+
+    ‘entity providing domain name registration services’ means a registrar or an agent acting on behalf of registrars, such as a privacy or proxy registration service provider or reseller;
+
+
+    (23)
+
+
+    ‘digital service’ means a service as defined in Article 1(1), point (b), of Directive (EU) 2015/1535 of the European Parliament and of the Council
+
+    (
+
+    30
+
+    )
+
+    ;
+
+
+    (24)
+
+
+    ‘trust service’ means a trust service as defined in Article 3, point (16), of Regulation (EU) No 910/2014;
+
+
+    (25)
+
+
+    ‘trust service provider’ means a trust service provider as defined in Article 3, point (19), of Regulation (EU) No 910/2014;
+
+
+    (26)
+
+
+    ‘qualified trust service’ means a qualified trust service as defined in Article 3, point (17), of Regulation (EU) No 910/2014;
+
+
+    (27)
+
+
+    ‘qualified trust service provider’ means a qualified trust service provider as defined in Article 3, point (20), of Regulation (EU) No 910/2014;
+
+
+    (28)
+
+
+    ‘online marketplace’ means an online marketplace as defined in Article 2, point (n), of Directive 2005/29/EC of the European Parliament and of the Council
+
+    (
+
+    31
+
+    )
+
+    ;
+
+
+    (29)
+
+
+    ‘online search engine’ means an online search engine as defined in Article 2, point (5), of Regulation (EU) 2019/1150 of the European Parliament and of the Council
+
+    (
+
+    32
+
+    )
+
+    ;
+
+
+    (30)
+
+
+    ‘cloud computing service’ means a digital service that enables on-demand administration and broad remote access to a scalable and elastic pool of shareable computing resources, including where such
+    resources are distributed across several locations;
+
+
+    (31)
+
+
+    ‘data centre service’ means a service that encompasses structures, or groups of structures, dedicated to the centralised accommodation, interconnection and operation of IT and network equipment providing
+    data storage, processing and transport services together with all the facilities and infrastructures for power distribution and environmental control;
+
+
+    (32)
+
+
+    ‘content delivery network’ means a network of geographically distributed servers for the purpose of ensuring high availability, accessibility or fast delivery of digital content and services to internet
+    users on behalf of content and service providers;
+
+
+    (33)
+
+
+    ‘social networking services platform’ means a platform that enables end-users to connect, share, discover and communicate with each other across multiple devices, in particu'
 doc_files:
 - eu/raw/EU-2022-2555_NIS2_Cybersecurity_Directive.pdf
+- eu/raw/EU-2022-2555_NIS2_Cybersecurity_Directive.xhtml
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 去重：合并同法规异名条目 EU-2022-2555_NIS2_CYBERSECURITY_DIRECTIVE-2（EU-2022-2555 NIS2 Cybersecurity Directive [xhtml]）。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2022-2555_NIS2_Cybersecurity_Directive.pdf (pdf, 279624 chars)，生成 10 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2022-2555_NIS2_Cybersecurity_Directive.xhtml (html, 277219 chars)，生成 8 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2022-2555_NIS2_Cybersecurity_Directive.xhtml (html, 277065 chars)，生成 9 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

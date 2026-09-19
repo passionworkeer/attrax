@@ -9,11 +9,1487 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: VIET NAM COMSUMER PROTECTION
+  text: 'VIET NAM COMSUMER PROTECTION
+
+    (SAFETY REGULATION OF
+
+    ELECTRICAL AND ELECTRONIC EQUIPMENT)
+
+    REGISTRATION SCHEME
+
+    Information Booklet
+
+    (version 2.0)
+
+    Directorate for Standards,
+
+    Metrology and Quality (STAMEQ)
+
+    © 2022 Directorate for Standards, Metrology and Quality
+
+    8 Hoang Quoc Viet Street, Ha Noi, Viet Nam
+
+    Tel: 84-24-37911630
+
+    Fax: 84-24-37911595
+
+    Email: htqt@tcvn.gov.vn
+
+    Website: http://www.tcvn.gov.vn
+
+    2
+
+    CONTENTS
+
+    Chapter
+
+    1 Preface .............................................................................................................. 4
+
+    2 Introduction ....................................................................................................... 4
+
+    3 Who Should be Concerned with this Scheme .................................................. 5
+
+    4 Legal Bases ...................................................................................................... 5
+
+    5 Parties that Need to Apply for Registration ..................................................... 6
+
+    6 Controlled Goods and their Applicable Safety Standards ............................... 7
+
+    7 Regulatory Authority’s Requirements ............................................................. 8
+
+    8 Registration Procedure/affixing the QR mark/Registration of suppliers ......... 9
+
+    9 Modifications of Registered Controlled Goods ............................................... 10
+
+    10 Technical File ................................................................................................... 12
+
+    Appendix
+
+    A Term and definitions ........................................................................................ 13
+
+    B Flow-chart for Designation, Conformity Assessment and Registration .......... 14
+
+    C Guidelines for using CR Mark on the Registered Controlled Goods .............. 15
+
+    D Conformity Assessment Bodies (Local) .......................................................... 17
+
+    E Conformity Assessment Bodies (Foreign - MRA) .......................................... 21
+
+    3
+
+    1 PREFACE
+
+    This information booklet serves as a guide to registration of controlled goods and
+
+    other requirements related to the controlled goods registration scheme in Viet Nam.
+
+    Directorate for Standards, Metrology and Quality reserves the right to amend and
+
+    introduce new requirements to the aforementioned scheme without reference to the holder
+
+    of this booklet and encourages feedback from readers to ensure that improvements to this
+
+    booklet could be made from time to time.
+
+    Our address is:
+
+    Directorate for Standards, Metrology and Quality
+
+    8 Hoang Quoc Viet, Ha Noi, Viet Nam
+
+    Telephone: 84-4-37911630
+
+    Facsimile: 84-4-37911595
+
+    Email: htqt@tcvn.gov.vn
+
+    Website: www.tcvn.gov.vn
+
+    2 INTRODUCTION
+
+    The objective of the Controlled Goods Registration Scheme is to protect consumers’
+
+    interest by ensuring that household electrical and electronic products, designated as
+
+    controlled goods, meet the Safety Technical Regulation. The regulation is equally applied
+
+    to both domestic and imported products. At the time being, there are thirteen (13) categories
+
+    of controlled goods in Viet Nam. The list of controlled goods and applicable safety
+
+    standards are provided in Chapter 6 of this information booklet.
+
+    Registration of controlled goods under the Safety Technical Regulation is based on
+
+    Certificate of Conformity (CoC) issued by designated third-party Conformity Assessment
+
+    Bodies (CABs). An overall view of the registration process is shown in Appendix B.
+
+    We would like to draw your attention to Safety Technical Regulation, where it is
+
+    stipulated that no person shall trade, supply or advertise for the purpose of supplying any
+
+    of the controlled goods in Viet Nam after the specified dates, unless the controlled goods
+
+    are registered and affixed with the Conformity Mark (CR Mark).
+
+    4
+
+    3 WHO SHOULD BE CONCERNED WITH THIS SCHEME
+
+    Consumers
+
+    To assure that consumers’ interest can be met, consumers are strongly advised to
+
+    purchase controlled goods that are registered with the Regulatory Authority and affixed'
+- id: art-2
+  title: 'with the CR Mark. Registered controlled goods that have met '
+  text: 'with the CR Mark. Registered controlled goods that have met the safety requirements
+
+    specified by Technical Regulation are, in general, safe to accidental fire, electric shock,
+
+    explosion, radiation and other hazards that could result in injuries or deaths to humans
+
+    and/or damages to private properties.
+
+    Suppliers
+
+    Manufacturers, importers (including parallel importers), distributors and retailers
+
+    who are involved in advertising and/or supplying the controlled goods must ensure that
+
+    their obligations under the Safety Technical Regulation are fulfilled.
+
+    This Information Booklet is to assist suppliers in understanding the requirements and
+
+    procedures when they apply for registration of controlled goods.
+
+    4 LEGAL BASES
+
+    Circular No. 28/2012/QD-BKHCN, dated 12 December 2012 issued by Ministry of
+
+    Science and Technology guidance on declaration and assessment system of conformity to
+
+    standards, technical regulations and Circular No. 02/2017/TT-BKHCN, dated 31 March
+
+    2017 issued by Ministry of Science and Technology on amendments to certain articles of
+
+    the Circular No. 28/2012/QD-BKHCN, dated 12 December 2012 and Circular No.
+
+    06/2020/TT-BKHCN dated 10 December 2020 elaborating to Decree No. 132/2008/ND-
+
+    CP dated 31 December 2008, Decree No. 74/2018/ND-CP dated 15 May 2018, Decree No.
+
+    154/2018/ND-CP dated 9 November 2018 and Decree No. 119/2017/ND-CP dated 1
+
+    November 2017 of the Government.
+
+    QCVN 4:2009/BKHCN, National Technical Regulation on Safety of Electrical and
+
+    Electronic Products dated 30 September 2009 approved by Ministry of Science and
+
+    Technology and Amendment 1:2016 QCVN 4:2009/BKHCN - National Technical
+
+    Regulations on Safety of Electrical and Electronic Products dated 15 December 2016.
+
+    Decree 132/2008/ND-CP dated 31 December 2008 detailing the implementation of
+
+    a number of articles of the law on product and goods quality, Decree 74/2018/ND-CP dated
+
+    15 May 2018, amending and supplementing a number of articles of the decree no.
+
+    132/208/ND, CP dated 12 December 2008 providing specific guidance on enforcement of
+
+    the law on the quality of products and goods; Decree 154/2018/ND-CP dated 9 November
+
+    2018 amending, supplementing and repealing certain regulations on investment and
+
+    5
+
+    business conditions in sectors under management of ministry of science and technology
+
+    and certain regulations on specialized inspections.
+
+    Decree No. 119/2017/ND-CPdated 1 November 2017 Decree on penalties for
+
+    administrative violations against regulations on standards, measurement and quality of
+
+    goods and Decree No. 126/2021/ND-CP dated 30 December 2021 on amendments to
+
+    certain articles of decrees on administrative penalties in industrial property; standards,
+
+    measurement and quality of goods; science and technology activities, technology transfers;
+
+    atomic energy.
+
+    Circular No. 06/2020/TT-BKHCN dated 10 December 2020 elaborating to Decree
+
+    No. 132/2008/ND-CP dated 31 December 2008, Decree No. 74/2018/ND-CP dated 15 May
+
+    2018, Decree No. 154/2018/ND-CP dated 9 November 2018 and Decree No.
+
+    119/2017/ND-CP dated 1 November 2017 of the Government.
+
+    Decission No. 1989/QD-TDC dated 12 September 2019 issued by Directorate for
+
+    Standards, Metrology and Quality on “Guidelines to Certification of Conformity to
+
+    Technical regulation on Safety of Electrical and Electronic products”
+
+    5 PARTIES THAT NEED TO APPLY FOR REGISTRATION
+
+    Only one party involved in the supply chain of the controlled goods in Viet Nam
+
+    needs to register the controlled goods with the Regulatory Authority. No party shall be
+
+    allowed to advertise and/or supply the controlled goods unless they have been registered
+
+    with the Regulatory Authority. The registration is non-transferable.
+
+    Importer
+
+    Importers who import controlled goods that are meant for Viet Nam are required to
+
+    apply for registration with the Regulatory Authority. No registration is needed if the
+
+    controlled goods are meant for export only. However, these ‘For Export Only’ controlled'
+- id: art-3
+  title: goods shall not be advertised, supplied, displayed in any re
+  text: 'goods shall not be advertised, supplied, displayed in any retail outlets and/or made available
+
+    for sale in Viet Nam under any circumstances.
+
+    Parallel Importer
+
+    Any parallel importer of the same brand and model of controlled goods are also
+
+    required to apply for registration.
+
+    Retailer
+
+    Retailers are only required to apply for registration if they import the controlled
+
+    goods themselves.
+
+    6
+
+    Manufacturer
+
+    Any local manufacturers in Viet Nam who supply the controlled goods to the
+
+    domestic market are required to apply for registration of goods prior to sale.
+
+    Distributor
+
+    Since the Certificate of Conformity (CoC) is not transferable, when a company
+
+    relegates its ownership of its registered controlled goods to another business entity, the
+
+    latter has to re-register the controlled goods with the Regulatory Authority prior to sale on
+
+    the domestic market.
+
+    6 CONTROLLED GOODS AND THEIR APPLICABLE SAFETY STANDARDS
+
+    Relevant
+
+    Controlled National
+
+    TT International
+
+    Goods Standards (TCVN)
+
+    Standards
+
+    Instantaneous IEC 60335-2-
+
+    1 TCVN 5699-2-35:2013
+
+    electric water heaters 35:2012
+
+    Water heaters and/or IEC 60335-2-
+
+    2 TCVN 5699-2-21:2013
+
+    heating containers 21:2012
+
+    IEC 60335-2-
+
+    3 Hair dryers TCVN 5699-2-23:2013
+
+    23:2012
+
+    IEC 60335-2-
+
+    4 Water boiling kettles TCVN 5699-2-15:2013
+
+    15:2012
+
+    IEC 60335-2-
+
+    5 Rice cookers TCVN 5699-2-15:2013
+
+    15:2012
+
+    IEC 60335-2-
+
+    6 Electric fans TCVN 5699-2-80:2007
+
+    80:2004
+
+    IEC 60335-2-3:
+
+    7 Electric irons TCVN 5699-2-3:2010
+
+    2008
+
+    IEC 60335-2-
+
+    8 Microwave ovens TCVN 5699-2-25:2007
+
+    25:2005
+
+    Electric ovens (Toaster, IEC 60335-2-
+
+    9 TCVN 5699-2-9:2017
+
+    grill, roaster…) 9:2016
+
+    Electric cables with nominal
+
+    10 voltage above 50 V and under
+
+    1000 V
+
+    7
+
+    TCVN 6610-1:2014 IEC 60227-1:2007
+
+    - Polyvinyl chloride insulated TCVN 6610-3:2000 IEC 60227-3:1997
+
+    cables with nominal voltage TCVN 6610-4:2000 IEC 60227-4:1992,
+
+    450/750 V TCVN 6610-5:2014 a1:1997
+
+    IEC 60227-5:2011
+
+    Applicable national,
+
+    - Other electric cables with Applicable national, regional or
+
+    nominal voltage above 50 V regional or international international
+
+    under 1000 V standards standards
+
+    Water heating devices IEC 60335-2-
+
+    11 TCVN 5699-2-74:2010
+
+    of dipping type 74:2009
+
+    IEC 60335-2-
+
+    12 Tea and coffee makers TCVN 5699-2-15:2013
+
+    15:2012
+
+    IEC 60335-2-
+
+    13 Hand dryers TCVN 5699-2-23:2013
+
+    23:2012
+
+    7 REGULATORY AUTHORITY’S REQUIREMENTS
+
+    The Regulatory Authority monitors the safety of the controlled goods sold in Viet
+
+    Nam by investigating all complaints, incidents and accidents reported to the authority.
+
+    Experiences gained are expected to be translated into the Regulatory Authority’s
+
+    Requirements. These new requirements are to be fulfilled in addition to the applicable
+
+    safety standards.
+
+    No Items Requirements
+
+    Conformity to
+
+    All controlled goods must bear CR mark based on
+
+    Regulations
+
+    1 Certificate of conformity issued by the designated third-
+
+    or Conformity (CR)
+
+    party CAB.
+
+    Mark
+
+    For products being certified according to system 5,
+
+    Certificate of conformity/ Report of conformity shall be
+
+    valid no more than three (3) years.
+
+    Certificate of
+
+    For products being certified according to system 7,
+
+    2 conformity/Report of
+
+    Certificate of conformity/Report of conformity is valid
+
+    conformity
+
+    for the lot only.
+
+    The Certificated systems according to the Circular No.
+
+    28/2012/QD-BKHCN, dated 12 December 2012
+
+    3 All appliances Vision inspection
+
+    8
+
+    Quick test: insulated resistance, leakage current, etc
+
+    4 All appliances (according to applicable safety standard specified in the
+
+    Technical Regulation)
+
+    8 REGISTRATION PROCEDURE/AFFIXING THE QR MARK/ REGISTRATION
+
+    OF SUPPLIERS
+
+    Suppliers who wish to supply the controlled goods into Viet Nam’s market shall
+
+    submit a set of specified technical file to the Regulatory Authority. The Regulatory
+
+    Authority will proceed a documents review. If no evidence of compliance of goods with
+
+    the Technical Regulation has been found, the Regulation Authority will request conformity
+
+    assessment.
+
+    The supplier shall submit them to designated third-party CAB for certification. The'
+- id: art-4
+  title: designated third-party CAB maybe a local or foreign based un
+  text: 'designated third-party CAB maybe a local or foreign based under an appropriate mutual
+
+    recognition agreement (MRA) and will be hereinafter referred as a Listed CAB (Appendix
+
+    D & E).
+
+    Controlled goods shall be certificated using system 5 in general including Factory
+
+    Inspection, type testing of selected samples and frequent after-certification surveillance
+
+    (not more than 12 months).
+
+    The supplier can also apply for Certification by system 7 including testing,
+
+    assessment for the lot.
+
+    After the controlled goods have been successfully certified for conformity to
+
+    Technical Regulation, the listed CAB shall issue Certificate of Conformity (CoC) with
+
+    Certification Code and guidance for supplier to prepare CR Mark according to the most
+
+    current specification. The suppliers can then affix the CR Mark (Appendix C) either on
+
+    the registered controlled goods or their packaging.
+
+    Then the suppliers submit complete technical file as specified in Chapter 10 and
+
+    proceed registration of the controlled goods to Regulatory Authority before commencing
+
+    supply to the market.
+
+    The Certificate of Conformity (CoC) is valid for the lot submitted only if
+
+    controlled products are certified according to system 7.
+
+    The Certificate of Conformity is valid no more than three (3) years if controlled
+
+    products are certified according to system 5.
+
+    The certification code (XXXX-YY/ABC) is a unique number issued by the listed
+
+    CAB which is traceable to the Suppliers and the registered controlled goods of
+
+    9
+
+    type/model/lots under the particular certification. The connotation of the certification
+
+    number is as following:
+
+    XXXX = serial number (e.g. 1234)
+
+    YY = the last 2 digits of year of certification (e.g. 01 for year 2001)
+
+    ABC = CAB’s name (e.g. QUACERT)
+
+    A flow-chart for registration of controlled goods is found in Appendix B.
+
+    Suppliers who have test reports issued by testing laboratories of the listed CABs can
+
+    apply test reports to the local listed CABs only for certification of their controlled goods.
+
+    The local listed CABs shall certify the controlled goods without re-testing unless the test
+
+    reports are found not to be in full compliance to the safety requirements specified in this
+
+    booklet.
+
+    The importer after receiving the certification of regulation must register at quality
+
+    control inspection agency in accordance with Decree 74/2018/ND-CP dated 15 May 2018,
+
+    amending and supplementing a number of articles of the decree no. 132/208/ND, CP dated
+
+    12 December 2008 providing specific guidance on enforcement of the law on the quality
+
+    of products and goods and Decree 154/2018/ND-CP dated 9 November 2018 amending,
+
+    supplementing and repealing certain regulations on investment and business conditions in
+
+    sectors under management of ministry of science and technology and certain regulations
+
+    on specialized inspections.
+
+    9 MODIFICATIONS OF REGISTERED CONTROLLED GOODS
+
+    Modification (including technical and non-technical changes) refers to any change
+
+    made to the registered controlled goods. Non-technical changes are (i) colour change; (ii)
+
+    change relating only to factory location but without change in the manufacturing process
+
+    (including testing facilities) or a change of the manufacturer; and/or (iii) change in the year
+
+    of production.
+
+    The Suppliers may approach the Regulatory Authority to determine whether re-
+
+    certification of the registered controlled goods is required as a result of modification.
+
+    The Suppliers shall update their technical file on the registered controlled goods with
+
+    details of the change.
+
+    In a case where there is modification to the registered controlled goods, the following
+
+    scenarios shall apply:
+
+    10
+
+    a) If the modification does not result in a change in the model number even though the
+
+    change is a technical one:
+
+    i) The controlled goods have to be re-registered with the Regulatory Authority.
+
+    ii) The Supplier only needs to submit the modification to the certifying Listed
+
+    CAB for updating related certification files and/or re-certification if necessary.'
+- id: art-5
+  title: The Supplier is to update the technical file with the test r
+  text: 'The Supplier is to update the technical file with the test report and certification
+
+    attesting that the modification still meets the safety standard requirements.
+
+    b) If the modification does not result in a change in the model number and the change is a
+
+    non technical one, which does not affect safety aspects of the controlled goods:
+
+    i) The controlled goods have to be re-registered with the Regulatory Authority.
+
+    ii) The controlled goods do not have to be re-certified.
+
+    iii) The Supplier only needs to update the technical file with the modification,
+
+    e.g. merely change(s) in the aesthetics that does (do) not affect the safety of the
+
+    controlled goods.
+
+    iv) The Supplier shall be responsible to ensure that the modification does not
+
+    compromise the safety of the controlled goods.
+
+    c) If the modification results in a change in the model number and the change is a technical
+
+    one:
+
+    i) The controlled goods have to be re-registered with the Regulatory Authority
+
+    as per procedure indicated in Chapter 8.
+
+    ii) The controlled goods have to be re-certified with the Listed CAB as per
+
+    procedure indicated in Chapter 8.
+
+    iii) A new CoC bearing a new certification code is required
+
+    iv) The Supplier needs to create a new technical file.
+
+    d) If the modification results in a change in the model number even though the change is a
+
+    nontechnical one and does not affect the safety of the controlled goods:
+
+    i) The controlled goods do not have to be re-certified but the change in model
+
+    number of the certified controlled goods shall be updated to the listed CAB
+
+    provided the original certification. The CAB shall have to revise the technical files
+
+    to decide the appropriate action(s) regarding the certified goods under review
+
+    including certification code issue.
+
+    ii) The controlled goods have to be re-registered with the Authorized Local
+
+    Quality Control Body.
+
+    iii) The Supplier needs to update a technical file and submit to the listed CAB
+
+    provided original certification for revision.
+
+    11
+
+    10 TECHNICAL FILE
+
+    Every Supplier in Viet Nam is required to maintain technical files of all their
+
+    registered controlled goods for at least ten (10) years from the date of issue of the CoC or
+
+    the last renewed CoC. The requested contents of the technical files are specified in the table
+
+    below.
+
+    CAB is required to maintain certify file for at least six (6) years from the date of
+
+    expiry date of the certificate.
+
+    The maintenance of the technical files is necessary to enable the Regulatory
+
+    Authority to carry out its investigation duties in the event of a complaint, incident or
+
+    accident. Upon receiving request made by the Regulatory Authority, the Suppliers must
+
+    provide the relevant technical files to the Regulatory Authority. In addition, the Suppliers
+
+    shall be responsible for the regular updating of the technical files especially if there have
+
+    been modifications made to the registered controlled goods. Supplementary testing and
+
+    certification are required if there are modifications with safety implications.
+
+    LIST OF DOCUMENTS TO BE INCLUDED IN THE TECHNICAL FILE
+
+    No. Type of Document
+
+    1 Certificate of Conformity
+
+    2 Test Reports *
+
+    Full Electrical Wiring/Circuit Diagrams or Service Manual
+
+    3 (Circuit diagrams must indicate the component’s values, or alternatively, be
+
+    supported with Bill of Material/Part List.)
+
+    Photographs showing exterior (whole, front, top and rear view of controlled
+
+    goods, nameplate, rating label, mains plug, etc.) and interior (critical safety
+
+    components) views. Polaroid photographs as well as photocopies (in black and
+
+    4
+
+    white) are not acceptable.
+
+    Photographs for similar/derived models must also be kept together with the
+
+    photographs of the basic model.
+
+    Rating Label (if it is not clear in the photograph)
+
+    5
+
+    To provide an original or clear photograph or artwork.
+
+    User’s Instruction Manual (English version must be included for the imported
+
+    6 goods and Vietnamese version is highly reccommended (the Manual in
+
+    Vietnamese is required for the goods to be distributed in domestic market)'
+- id: art-6
+  title: 7 Record of Modification, if any
+  text: '7 Record of Modification, if any
+
+    Note:
+
+    * Suppliers are strongly encouraged to maintain the testing results of every registered
+
+    controlled goods. The testing results may be of help to determine whether the fault
+
+    occurring in an incident or accident is attributed to a single product or a single batch.
+
+    12
+
+    Appendix A
+
+    TERMS AND DEFINITIONS
+
+    For the purposes of this document, the following terms and definitions apply.
+
+    1 CAB means Conformity Assessment Body that conducts Conformity assessment for
+
+    Controlled Goods.
+
+    2 CAB (Local) means CAB that is located in Viet Nam and is designated by
+
+    Directorate for Standards, Metrology and Quality, the Designating Authority to issue CoC
+
+    for products or controlled goods supplied in Vietnam.
+
+    3 CAB (Foreign - MRA) means CAB that is located in the MRA partner country
+
+    designated by the Designating Authority of the MRA partner country to issue CoC which
+
+    is recognized and/or accepted by the Vietnamese Designating Authority.
+
+    4 Listed CAB is CAB (Local) or CAB (Foreign - MRA)
+
+    5 CoC means Certificate of Conformity issued by either CAB (Local) or CAB
+
+    (Foreign- MRA).
+
+    6 Controlled goods means any goods of a type, class or description specified in the
+
+    Technical Regulation on EE products safety QCVN 4:2009/BKHCN.
+
+    7 MRA means a Mutual Recognition Agreement or Arrangement between Viet Nam
+
+    and any other country/territory.
+
+    8 RTL means a Recognized Testing Laboratory.
+
+    9 Registered controlled goods means any controlled goods registered with the
+
+    Regulatory Authority.
+
+    10 Regulator means Ministry of Science and Technology authorized by the
+
+    Government to take full responsibility to manage quality of the specified group of goods
+
+    and product and the Provincial Body authorized by local government for goods and
+
+    products quality management within the city or province’s scope.
+
+    11 Designating Authority means Directorate for Standards, Metrology and Quality
+
+    authorized by the Regulator to manage Quality and Safety Assurance system to the
+
+    controlled electrical and electronic products.
+
+    12 Regulatory Authority means Provincial/Municipal Department for Standards,
+
+    Metrology and Quality authorized by the Designating Authority to implement Quality and
+
+    Safety Assurance system and regulations for electrical and electronic products.
+
+    13 CR Mark means the Mark of conformity to Technical Regulation
+
+    14 IEC means the International Electrotechnical Commission.
+
+    15 TCVN means Vietnamese National Standard.
+
+    13
+
+    Appendix B
+
+    FLOW-CHART FOR DESIGNATION, CONFORMITY ASSESSMENT AND
+
+    REGISTRATION
+
+    14
+
+    Appendix C
+
+    GUIDELINES FOR USING CR MARK ON THE REGISTERED GOODS
+
+    1) Structure and size of mark of conformity to technical regulations shall be defined as
+
+    follows.
+
+    i) The conformity mark shall be formed as description at Figure 1.
+
+    Figure 1 – Form of the CR Mark of conformity to technical regulations
+
+    ii) The basic composition of mark of conformity to technical regulations shall be detailed
+
+    in Figure 2.
+
+    Note
+
+    H = 1,5 a
+
+    h = 0,5 H
+
+    C = 7,5 H
+
+    Figure 2 – Basic composition of CR mark of conformity to technical regulations
+
+    2) The CR Mark may be fixed directly on products/goods or on packages at visible readable
+
+    position, while can be printed in attached technical documents.
+
+    3) The CR Mark may be made larger or smaller but has to be kept with the defined
+
+    dimensional ratio and visibility.
+
+    4) The CR Mark shall be presented only in a same colour.
+
+    15
+
+    5) The CR Mark applied for EEE products which are certified according to system 5:
+
+    6) The CR Mark applied for EEE products which are certified according to system 7:
+
+    16
+
+    Appendix D
+
+    CONFORMITY ASSESSMENT BODIES (LOCAL)
+
+    I) Designated Certification Body – For Product Certification (CoC)
+
+    No. Name of conformity assessment
+
+    Address
+
+    organization
+
+    1. Quality Assurance and Testing Center 1 No. 8 Hoang Quoc Viet - Cau Giay
+
+    (Quatest 1) District - Hanoi
+
+    2. Quality Assurance and Testing Center 2 No. 02 Ngo Quyen, Son Tra District -
+
+    (Quatest 2) Da Nang City (or No. 97 Ly Thai To-
+
+    Da Nang City)'
+- id: art-7
+  title: 3. Quality Assurance and Testing Center 3 No. 49 Pasteur-Dis
+  text: '3. Quality Assurance and Testing Center 3 No. 49 Pasteur-District 1 - Ho Chi
+
+    (Quatest 3) Minh City
+
+    No. 8 Hoang Quoc Viet - Cau Giay
+
+    4. Viet Nam Certification Center (Quacert)
+
+    District - Hanoi
+
+    5. Technical Center of Standards Metrology and No. 43 Le Loi Street, Dong Ha City -
+
+    Quality (under the Sub-Department of Quang Tri Province
+
+    Standards, Metrology and Quality of Quang
+
+    Tri Province)
+
+    6. Institute for Standard and Quality No. 52, lane 46, Lien Mac road, Lien
+
+    Development Studies (ISSQ) mac ward, North of Tu Liem distric,
+
+    Ha noi
+
+    7. Vietcert Certification and Inspection Centre 123 Nguyen Duc Trung, Thanh Khe,
+
+    Da Nang
+
+    8. Vietnamcontrol Sterilization Inspection Joint 2/3A Nguyen Thi Minh Khai, Dakao
+
+    Stock Company Ward, District 1, Ho Chi Minh City.
+
+    9. TQC Center for Testing and Quality No. 08, alley 127/30, lane 127, Van
+
+    Certification Cao street, Lieu Giai ward, Ba Dinh
+
+    district, Hanoi city
+
+    Office Delivered: Floor No.6, 41 Pham
+
+    Tuan Tai, Co Nhue 1, Bac Tu Liem, Ha
+
+    Noi
+
+    10. Ho Chi Minh City Technical Center of 263 Dien Bien Phu, Ward 7, District 3,
+
+    Standards Metrology and Quality Ho Chi Minh City
+
+    17
+
+    Address: No. 298 Mai Anh Tuan
+
+    11. TTP Certification and Inspection Joint Stock
+
+    Street, Thanh Cong Ward, Ba Dinh
+
+    Company
+
+    District, Hanoi City
+
+    Contact address: house number 25,
+
+    garden house 5, housing area of
+
+    General Department 5, Yen Xa, Tan
+
+    Trieu commune, Thanh Tri district,
+
+    Hanoi city
+
+    18
+
+    II) Testing Laboratories – For Product Testing
+
+    No. Name of conformity assessment
+
+    Address
+
+    organization
+
+    1. Quality Assurance and Testing Center 1 No. 8 Hoang Quoc Viet - Cau Giay
+
+    (Quatest 1) District - Hanoi
+
+    2. Quality Assurance and Testing Center 2 No. 02 Ngo Quyen, Son Tra District -
+
+    (Quatest 2) Da Nang City (or No. 97 Ly Thai To-
+
+    Da Nang City)
+
+    3. Quality Assurance and Testing Center 3 No. 49 Pasteur-District 1 - Ho Chi
+
+    (Quatest 3) Minh City
+
+    4. Viet Nam Certification Center (Quacert) No. 8 Hoang Quoc Viet - Cau Giay
+
+    District - Hanoi
+
+    5. Can Tho Technical Center of Standards No. 45, 3/2 street, Xuan Khanh ward,
+
+    Metrology and Quality Ninh Kieu district - Can Tho city
+
+    6. Quang Ninh Technical Center of Standards Km 5 Nguyen Van Cu street, Hong Ha
+
+    Metrology and Quality ward, Ha Long city - Quang Ninh
+
+    province
+
+    7. Hai Phong Technical Center of Standards 240 Van Cao, Dang Giang Ward, Ngo
+
+    Metrology and Quality Quyen District, Hai Phong City
+
+    8. Binh Dinh Quality Measurement and No. 173-175 Phan Boi Chau, Quy
+
+    Analysis Center Nhon, Binh Dinh
+
+    9. Center of Science and Technology No. 428 Hung Vuong Street, Co Man
+
+    Application and Development and Village, Mai Pha Commune, Lang Son
+
+    Standards Metrology and Quality City, Lang Son Province
+
+    10. Science and Technology Center (under the No. 1597 Pham Van Thuan, Thong
+
+    Department of Science and Technology of Nhat ward, Bien Hoa city, Dong Nai
+
+    Dong Nai province) province
+
+    11. Ho Chi Minh City Technical Center of No. 263 Dien Bien Phu, Ward 7,
+
+    Standards Metrology and Quality (under the District 3 - Ho Chi Minh City
+
+    Department of Standards, Metrology and
+
+    Quality of Ho Chi Minh City)
+
+    19
+
+    - Head office: 28 An Xuan, An Khe
+
+    12. Deming Institute for Quality Productivity
+
+    ward, Thanh Khe district, Da Nang
+
+    city.
+
+    - Address of the testing room: Lot 21-
+
+    22, B1.6, Quang Thanh 3B residential
+
+    area, Hoa Khanh Bac ward, Lien
+
+    Chieu district, Da Nang city.
+
+    13. Thai Binh Technical Center of Standards No. 36A, Quang Trung Street, Thai
+
+    Metrology and Quality Binh City - Thai Binh Province
+
+    14. Vietnamcontrol Sterilization Inspection Business registration address: 136 Le
+
+    Joint Stock Company Dinh Can, Tan Tao ward, Binh Tan
+
+    district, Ho Chi Minh city.
+
+    Operation office address: No. 94
+
+    Nguyen Cuu Van, Ward 17, Binh Thanh
+
+    District, Ho Chi Minh City.
+
+    Testing Lab Address: Testing Center of
+
+    Vietnamcontrol Sterilization Inspection
+
+    Joint Stock Company - No. 19 Binh
+
+    Trung, Binh Trung Dong Ward, District
+
+    2, Ho Chi Minh City.
+
+    15. Institute for Standard and Quality No. 52, lane 46, Lien Mac road, Lien
+
+    Development Studies (ISSQ) mac ward, North of Tu Liem Distric,
+
+    Ha Noi'
+- id: art-8
+  title: 'Testing Lab Address: No 655 Pham'
+  text: 'Testing Lab Address: No 655 Pham
+
+    Van Dong, Co Nhue 1, Bac Tu Liem,
+
+    thành phố Hà Nội
+
+    20
+
+    Appendix E
+
+    CONFORMITY ASSESSMENT BODIES (FOREIGN - MRA)
+
+    “Listed Testing Laboratories and Certification Bodies under the ASEAN Sectoral MRA
+
+    for Electrical and Electronic Equipment”, is available on the ASEAN website:
+
+    https://asean.org/listed-testing-laboratories-and-certification-bodies-under-the-asean-sectoral-
+
+    mra-for-electrical-and-electronic-equipment/
+
+    VALIDITY
+
+    NAME OF PERIOD
+
+    LISTED LISTING OF
+
+    COUNTRY BODY TYPE OF CAB SINCE LISTING
+
+    PT Sucofindo 22 July
+
+    – SBU Testing 22 July 2020 – 21
+
+    laboratory Laboratory 2020 July 2023
+
+    PT
+
+    Sucofindo,
+
+    SBU & Eco 23 Sept
+
+    Framework – 23 Sept 2020 – 22
+
+    SCIS Certification Body 2020 Sept 2023
+
+    Balai Besar
+
+    Bahan dan 12 Feb
+
+    Barang Testing 12 Feb 2019 – 11
+
+    Teknik (B4T) Laboratory 2019 Feb 2022
+
+    Balai
+
+    Pengujian 22 July
+
+    Mutu Barang Testing 22 July 2020 – 21
+
+    (BPMB) Laboratory 2020 July 2023
+
+    Balai
+
+    Sertifikasi
+
+    Direktorat
+
+    Standarisasi
+
+    dan 6 Mar 2019
+
+    Pengendalian 6 Mar – 5 Mar
+
+    INDONESIA Mutu Barang Certification Body 2019 2022
+
+    21
+
+    (LSPRO
+
+    PPMB)
+
+    15 March
+
+    Certification Body 15 March 2021 – 14
+
+    PT UL 2021 March 2024
+
+    International 15 March
+
+    Indonesia Testing 15 March 2021 – 14
+
+    Laboratory 2021 March 2024
+
+    17
+
+    PT. Qualis December 17 Dec 2019
+
+    Indonesia Certification Body 2019 – 16 Dec 2022
+
+    1
+
+    September
+
+    Psychrometric
+
+    1 2020 – 31
+
+    Laboratory &
+
+    September August
+
+    Cal/ Bration
+
+    2020 2023
+
+    Laboratory
+
+    Daikin 26
+
+    Research and November
+
+    development 26 2018 – 12
+
+    Malaysia Sdn. Testing November September
+
+    Bhd Laboratory 2018 2020
+
+    1 August
+
+    Testing Laboratory 1 August 2019 – 31
+
+    2019 July 2023
+
+    1 August
+
+    1 August 2020 – 31
+
+    2020 July 2023
+
+    MALAYSIA SIRIM QAS
+
+    International 1 August
+
+    Sdn.Bhd, 1 August 2019 – 31
+
+    Malaysia Certification Body 2019 July 2020
+
+    22
+
+    19 Nov 2020
+
+    – 18 Nov
+
+    19 Nov 2023
+
+    2020
+
+    UL 23 Dec 2019
+
+    International- – 18 Nov
+
+    Singapore Pte Testing 23 Dec 2020
+
+    Ltd Laboratory 2019
+
+    20 May 2021
+
+    – 19 May
+
+    20 May 2024
+
+    2021
+
+    6 June 2020 –
+
+    6 June 19 May 2021
+
+    2020
+
+    19 7 June 2017 –
+
+    SETS Testing January 6 June 2020
+
+    Singapore Laboratory 2007
+
+    3 Dec 2018
+
+    – 2 Dec
+
+    2021
+
+    3 Dec 2018
+
+    Testing 3 Dec – 20 Sept
+
+    Laboratory 2018 2020
+
+    15 August 15 Aug
+
+    2021 2021 – 14
+
+    Aug 2024
+
+    15 August
+
+    TUV SUD 2018 – 14
+
+    PSB PTE Ltd, Certification Body 15 August August
+
+    Singapore 2018 2021
+
+    12 August
+
+    2020 – 11
+
+    SGS Testing
+
+    August
+
+    and Control
+
+    2023
+
+    Services
+
+    SINGAPORE Singapore Pte 8 August 08 August
+
+    Ltd Certification Body 2018 2018 – 11
+
+    23
+
+    August
+
+    2020
+
+    14 14 Sept
+
+    September 2020 –13
+
+    2020 Sept 2023
+
+    27 10 January
+
+    September 2018 –13
+
+    Certification Body 2017 September
+
+    2020
+
+    19 April
+
+    2018 –18
+
+    April 2021
+
+    Intertek
+
+    Testing 3 3 Sep 2020
+
+    Services (S) Testing September – 2 Sep
+
+    Pte Ltd Laboratory 2020 2023
+
+    SGS (Thailand) 22 Nov 22 Nov
+
+    Limited 2019 2019 – 26
+
+    may 2022
+
+    25 Feb
+
+    PTEC Thailand 25 Feb 2019 2019 – 24
+
+    Feb 2022
+
+    Underwriters
+
+    Laboratories
+
+    (Thailand)
+
+    Limited (UL 21 Dec
+
+    Thailand) Testing 21 Dec 2018 2018 – 14
+
+    Laboratory Aug 2021
+
+    Intertek Testing
+
+    Services
+
+    (Thailand) 27 Aug 2018
+
+    Limited. (ITS 27 Aug – 26 Aug
+
+    Thailand-2) Testing Laboratory 2018 2021
+
+    THAILAND
+
+    24
+
+    14 April
+
+    2020 – 13
+
+    April 2023
+
+    17 Aug
+
+    2017 – 12
+
+    Jun 2020
+
+    13 Jun 2017
+
+    – 12 Jun
+
+    Intertek 2020
+
+    Testing 14 May
+
+    Services Testing 2018 – 12
+
+    (Thailand) Laboratory Jun 2020
+
+    Ltd. (ITS 25 January 26 Mar
+
+    Thailand-1) 2006 2019 – 25
+
+    Certification Body Mar 2022
+
+    23 April
+
+    23 April 2019 – 25
+
+    2019 April 2022
+
+    6 February
+
+    6 February 2017 – 5
+
+    2017 February
+
+    2020
+
+    23 May 2017
+
+    1 October – 5 February
+
+    Electrical and
+
+    Testing 2014 2020
+
+    Electronics
+
+    Laboratory
+
+    Institute,
+
+    Foundation for 26 March
+
+    Industrial 26 March 2019 – 21
+
+    Development 2019 October 2021
+
+    (EEI Thailand) Certification Body
+
+    30 October
+
+    2017 –
+
+    Quality
+
+    14 June 24 October
+
+    Assurance
+
+    2005 2020
+
+    and Testing
+
+    Centre 1 25
+
+    (QUATEST Testing October 25 October
+
+    VIET NAM 1) Laboratory 2020 2020 –
+
+    25
+
+    24 October
+
+    2023
+
+    Quality
+
+    Assurance
+
+    and Testing
+
+    Centre 3 23 23 Oct 2020
+
+    (QUATEST October – 10 Apr
+
+    3) Certification Body 2020 2023
+
+    26'
 doc_files:
 - vn/raw/越南TCVN国家标准认证说明（越南CR标志认证信息册）.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：vn/raw/越南TCVN国家标准认证说明（越南CR标志认证信息册）.pdf (pdf, 31586 chars)，生成 8 条共 31586 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：vn/raw/越南TCVN国家标准认证说明（越南CR标志认证信息册）.pdf (pdf, 31586 chars)，生成 8 条共 31586 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：vn/raw/越南TCVN国家标准认证说明（越南CR标志认证信息册）.pdf (pdf, 31586 chars)，生成 8 条共 31586 字符；解析文本未人工复核，引用以官方原件为准。'

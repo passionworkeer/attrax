@@ -1,0 +1,25 @@
+id: KB-market-TH-TH-TH_PDPA_2019_-_MDES-GO-TH
+regulation_id: TH-TH_PDPA_2019_-_MDES-GO-TH
+doc_name: TH PDPA 2019 个人数据保护法 (mdes.go.th)
+official_citation: TH PDPA 2019 个人数据保护法 (mdes.go.th)
+short_name: TH PDPA 2019 个人数据保护法 (mdes.go.th)
+source: market
+primary_source: market
+domain: 数据保护
+applies_if:
+  category: []
+  features_any: []
+  markets:
+  - TH
+key_articles: []
+key_points:
+- TH PDPA 2019 个人数据保护法 (mdes.go.th)：数据保护领域法规，适用于 TH 市场相关经营行为（库自动接入，按市场匹配）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://www.mdes.go.th/
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

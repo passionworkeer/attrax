@@ -9,11 +9,856 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 31.7.2002 EN OfficialJournaloftheEuropeanCommunities L201/37
+  text: '31.7.2002 EN OfficialJournaloftheEuropeanCommunities L201/37
+
+    DIRECTIVE2002/58/ECOFTHEEUROPEANPARLIAMENTANDOFTHECOUNCIL
+
+    of12July2002
+
+    concerning the processing ofpersonal dataandthe protection ofprivacyin the electronic commu-
+
+    nicationssector(Directiveonprivacyandelectroniccommunications)
+
+    THEEUROPEANPARLIAMENTANDTHECOUNCILOFTHE and privacy for users of publicly available electronic
+
+    EUROPEANUNION, communications services, regardless of the technologies
+
+    used. That Directive should therefore be repealed and
+
+    Having regard tothe Treaty establishing theEuropean Commu- replacedbythisDirective.
+
+    nity,andinparticularArticle95thereof,
+
+    HavingregardtotheproposalfromtheCommission(1),
+
+    Having regard to the opinion of the Economic and Social (5) New advanced digital technologies are currently being
+
+    Committee(2), introduced in public communications networks in the
+
+    Community, which give rise to specific requirements
+
+    HavingconsultedtheCommitteeoftheRegions, concerning the protection of personal data and privacy
+
+    of the user. The development of the information society
+
+    is characterised by the introduction of new electronic
+
+    Acting in accordance with the procedure laid down in Article
+
+    communications services. Access to digital mobile
+
+    251oftheTreaty(3),
+
+    networkshasbecomeavailable andaffordablefora large
+
+    public. These digital networks have large capacities and
+
+    Whereas: possibilities for processing personal data. The successful
+
+    cross-border development of these services is partly
+
+    (1) Directive 95/46/EC of the European Parliament and of dependent on the confidence of users that their privacy
+
+    the Council of 24 October 1995 on the protection of willnotbeatrisk.
+
+    individuals with regard to the processing of personal
+
+    data and on the free movement of such data(4) requires
+
+    Member States to ensure the rights and freedoms of
+
+    naturalpersonswithregardtotheprocessingofpersonal
+
+    data, and in particular their right to privacy, in order to
+
+    ensurethefreeflowofpersonaldataintheCommunity. (6) The Internet is overturning traditional market structures
+
+    by providing a common, global infrastructure for the
+
+    delivery of a wide range of electronic communications
+
+    (2) This Directive seeks to respect the fundamental rights
+
+    services. Publicly available electronic communications
+
+    and observes the principles recognised in particular by
+
+    servicesovertheInternetopennewpossibilitiesforusers
+
+    the Charter of fundamental rights of the European
+
+    butalsonewrisksfortheirpersonaldataandprivacy.
+
+    Union. In particular, this Directive seeks to ensure full
+
+    respect for the rights set out in Articles 7 and 8 of that
+
+    Charter.
+
+    (3) Confidentiality of communications is guaranteed in
+
+    accordance with the internationalinstrumentsrelating to (7) In the case of public communications networks, specific
+
+    human rights, in particular the European Conventionfor legal,regulatoryandtechnicalprovisionsshouldbemade
+
+    the Protection of Human Rights and Fundamental Free- in order to protect fundamental rights and freedoms of
+
+    doms,andtheconstitutionsoftheMemberStates. natural persons and legitimate interests of legal persons,
+
+    in particular with regard to the increasing capacity for
+
+    (4) Directive 97/66/EC of the European Parliament and of automated storage and processing of data relating to
+
+    the Council of 15 December 1997 concerning the subscribersandusers.
+
+    processingofpersonaldataandtheprotectionofprivacy
+
+    inthetelecommunicationssector(5)translatedtheprinci-
+
+    ples set out in Directive 95/46/EC into specific rules for
+
+    the telecommunications sector. Directive 97/66/EC has
+
+    to be adapted to developments in the markets and tech-
+
+    nologies for electronic communications services in order (8) Legal,regulatoryandtechnicalprovisionsadoptedbythe
+
+    Member States concerning the protection of personal
+
+    to provide an equal level of protection of personal data
+
+    data, privacy and the legitimate interest of legal persons,
+
+    in the electronic communication sector, should be
+
+    (1) OJC365E,19.12.2000,p.223.
+
+    harmonised in order to avoid obstacles to the internal
+
+    (2) OJC123,25.4.2001,p.53.
+
+    (3) OpinionoftheEuropeanParliamentof13November2001(notyet marketforelectronic communicationinaccordance with
+
+    published in the Official Journal), Council Common Position of 28 Article 14 of the Treaty. Harmonisation should be
+
+    January 2002 (OJ C 113 E, 14.5.2002, p. 39) and Decision of the limited to requirements necessary to guarantee that the
+
+    EuropeanParliamentof30May2002(notyetpublishedintheOffi-
+
+    promotion and development of new electronic commu-
+
+    cialJournal).CouncilDecisionof25June2002.
+
+    (4) OJL281,23.11.1995,p.31. nications services and networks between Member States
+
+    (5) OJL24,30.1.1998,p.1. arenothindered.
+
+    L201/38 EN OfficialJournaloftheEuropeanCommunities 31.7.2002
+
+    (9) The Member States, providers and users concerned, (14) Location data may refer to the latitude, longitude and
+
+    together with the competent Community bodies, should altitudeoftheuser’sterminalequipment,tothedirection
+
+    cooperate in introducing and developing the relevant oftravel,tothelevelofaccuracyofthelocationinforma-
+
+    technologieswhere thisisnecessarytoapplytheguaran- tion, to the identification of the network cell in which
+
+    tees provided for by this Directive and taking particular the terminal equipment is located at a certain point in
+
+    account of the objectives of minimising the processing time and to the time the location information was
+
+    of personal data and of using anonymous or pseudo- recorded.
+
+    nymousdatawherepossible.
+
+    (15) A communication may include any naming, numbering
+
+    or addressing information provided by the sender of a
+
+    (10) In the electronic communications sector, Directive 95/
+
+    communication or the user of a connection to carry out
+
+    46/EC applies in particular to all matters concerning
+
+    thecommunication.Trafficdatamayincludeanytransla-
+
+    protection of fundamental rights and freedoms, which
+
+    tion of this information by the network over which the
+
+    are not specifically covered by the provisions of this
+
+    communication is transmitted for the purpose of
+
+    Directive, including theobligationsonthecontrollerand
+
+    carrying outthe transmission.Traffic datamay, interalia,
+
+    the rights of individuals. Directive 95/46/EC applies to
+
+    consistofdata referring tothe routing, duration, time or
+
+    non-publiccommunicationsservices.
+
+    volumeofacommunication,totheprotocolused,tothe
+
+    locationofthe terminal equipment ofthe sender or reci-
+
+    pient, to the network on which the communication
+
+    originates or terminates, to the beginning, end or dura-
+
+    (11) Like Directive 95/46/EC, this Directive does not address tion of a connection. They may also consist of the
+
+    issues of protection of fundamental rights and freedoms format in which the communication is conveyed by the
+
+    related to activities which are not governed by Commu- network.
+
+    nity law. Therefore it does not alter the existing balance
+
+    between the individual’s right toprivacy andthe possibi-
+
+    lityforMemberStatestotakethemeasuresreferredtoin'
+- id: art-2
+  title: Article 15(1) of this Directive, necessary for the protec- (16) Information that is part of a broadcasting service
+  text: 'Article 15(1) of this Directive, necessary for the protec- (16) Information that is part of a broadcasting service
+
+    tion of public security, defence, State security (including provided over a public communications network is
+
+    the economic well-being of the State when the activities intended for a potentially unlimited audience and does
+
+    relate to State security matters) and the enforcement of not constitute a communication in the sense of this
+
+    criminal law. Consequently,this Directive doesnotaffect Directive. However, in cases where the individual
+
+    theabilityofMember Statestocarry outlawfulintercep- subscriber or user receiving such information can be
+
+    tion of electronic communications, or take other identified, for example with video-on-demand services,
+
+    measures, if necessary for any of these purposes and in the informationconveyed is covered within the meaning
+
+    accordance with the European Convention for the ofacommunicationforthepurposesofthisDirective.
+
+    Protection of Human Rights and Fundamental Freedoms,
+
+    as interpreted by the rulings of the European Court of
+
+    Human Rights. Such measures must be appropriate,
+
+    strictlyproportionatetotheintendedpurposeandneces- (17) For the purposes of this Directive, consent of a user or
+
+    sary within a democratic society and should be subject subscriber,regardlessofwhether thelatterisanaturalor
+
+    to adequate safeguards in accordance with the European alegalperson,shouldhavethesamemeaningasthedata
+
+    Convention for the Protection of Human Rights and subject’s consent as defined and further specified in
+
+    FundamentalFreedoms. Directive95/46/EC.Consentmaybegivenbyanyappro-
+
+    priate method enabling a freely given specific and
+
+    informed indication of the user’s wishes, including by
+
+    tickingaboxwhenvisitinganInternetwebsite.
+
+    (12) Subscriberstoapubliclyavailableelectroniccommunica-
+
+    tions service may be natural or legal persons. By supple-
+
+    menting Directive 95/46/EC, this Directive is aimed at
+
+    (18) Value added services may, for example, consist of advice
+
+    protecting the fundamentalrightsofnatural persons and
+
+    on least expensive tariff packages, route guidance, traffic
+
+    particularly their right to privacy, as well as the legiti-
+
+    information,weatherforecastsandtouristinformation.
+
+    mate interests of legal persons. This Directive does not
+
+    entail an obligation for Member States to extend the
+
+    application of Directive 95/46/EC to the protection of
+
+    thelegitimate interestsoflegalpersons,which isensured
+
+    within the framework of the applicable Community and (19) The application of certain requirements relating to
+
+    presentationandrestriction ofcalling andconnectedline
+
+    nationallegislation.
+
+    identification and to automatic call forwarding to
+
+    subscriber lines connected to analogue exchanges should
+
+    not be made mandatory in specific cases where such
+
+    application would prove to be technically impossible or
+
+    (13) The contractual relation between a subscriber and a would require a disproportionate economic effort. It is
+
+    service provider may entail a periodic or a one-off important for interested parties to be informed of such
+
+    payment for the service provided or to be provided. cases and the Member States should therefore notify
+
+    Prepaidcardsarealsoconsideredasacontract. themtotheCommission.
+
+    31.7.2002 EN OfficialJournaloftheEuropeanCommunities L201/39
+
+    (20) Service providers should take appropriate measures to (23) Confidentiality of communications should also be
+
+    safeguard the security of their services, if necessary in ensured in the course of lawful business practice. Where
+
+    conjunction with the provider of the network, and necessary andlegally authorised, communicationscanbe
+
+    informsubscribers ofany special risksofa breach ofthe recorded for the purpose of providing evidence of a
+
+    security of the network. Such risks may especially occur commercial transaction. Directive 95/46/EC applies to
+
+    for electronic communications services over an open such processing. Parties to the communications should
+
+    network such as the Internet or analogue mobile tele- be informed prior to the recording about the recording,
+
+    phony. It is particularly important for subscribers and its purpose and the duration of its storage. The recorded
+
+    users of such services to be fully informed by their communicationshouldbeerasedassoonaspossibleand
+
+    service provider of the existing security risks which lie in any case at the latest by the end of the period during
+
+    outside the scope of possible remedies by the service whichthetransactioncanbelawfullychallenged.
+
+    provider. Service providers who offer publicly available
+
+    electronic communications services over the Internet
+
+    should inform users and subscribers of measures they
+
+    can take to protect the security of their communications
+
+    for instance by using specific types of software or
+
+    encryption technologies. The requirement to inform
+
+    subscribersofparticular security risksdoesnotdischarge
+
+    a service provider fromthe obligationtotake, at itsown
+
+    (24) Terminal equipment of users of electronic communica-
+
+    costs, appropriate and immediate measures to remedy
+
+    tions networks and any information stored on such
+
+    any new, unforeseen security risks and restore the
+
+    equipment are part of the private sphere of the users
+
+    normal security level of the service. The provision of
+
+    requiring protection under the European Convention for
+
+    information about security risks to the subscriber should
+
+    the Protection of Human Rights and Fundamental Free-
+
+    befreeofcharge exceptforanynominalcostswhichthe
+
+    doms. So-called spyware, web bugs, hidden identifiers
+
+    subscriber may incur while receiving or collecting the
+
+    and other similar devices can enter the user’s terminal
+
+    information, for instance by downloading an electronic
+
+    without their knowledgein ordertogain accesstoinfor-
+
+    mailmessage. Security isappraised in the light ofArticle
+
+    mation,tostorehiddeninformationortotracetheactiv-
+
+    17ofDirective95/46/EC.
+
+    ities of the user and may seriously intrude upon the
+
+    privacy ofthese users.The useofsuchdevices shouldbe
+
+    allowed only for legitimate purposes, with the knowl-
+
+    edgeoftheusersconcerned.
+
+    (21) Measuresshouldbetakentopreventunauthorisedaccess
+
+    tocommunicationsinordertoprotecttheconfidentiality
+
+    ofcommunications,including boththe contentsandany
+
+    datarelatedtosuchcommunications,bymeansofpublic
+
+    communications networks and publicly available elec-
+
+    (25) However, such devices, for instance so-called ‘cookies’,
+
+    tronic communications services. National legislation in
+
+    can be a legitimate and useful tool, for example, in
+
+    some Member States only prohibits intentional
+
+    analysing the effectiveness of website design and adver-
+
+    unauthorisedaccesstocommunications.
+
+    tising, and in verifying the identity of users engaged in
+
+    on-line transactions. Where such devices, for instance
+
+    cookies,areintendedforalegitimate purpose,suchasto
+
+    facilitate the provision of information society services,
+
+    their use should be allowed on condition that users are
+
+    provided with clear and precise information in accor-
+
+    dance with Directive 95/46/EC about the purposes of
+
+    (22) The prohibition of storage of communications and the cookies or similar devices so as to ensure that users are
+
+    related traffic data by persons other than the users or made aware ofinformationbeing placed onthe terminal
+
+    without their consent is not intended to prohibit any equipment they are using. Users should have the oppor-
+
+    automatic, intermediate and transient storage of this tunity to refuse to have a cookie or similar device stored
+
+    information in so far as this takes place for the sole on their terminal equipment. This is particularly impor-
+
+    purpose of carrying out the transmission in the elec- tant where users other than the original user have access
+
+    tronic communications network and provided that the to the terminal equipment and thereby to any data
+
+    information is not stored for any period longer than is containing privacy-sensitive information stored on such
+
+    necessary for the transmission and for traffic manage- equipment. Information and the right to refuse may be
+
+    mentpurposes,andthatduring theperiod ofstoragethe offeredoncefortheuseofvariousdevicestobeinstalled
+
+    confidentiality remains guaranteed. Where this is neces- on the user’s terminal equipment during the same
+
+    sary for making more efficient the onward transmission connection and also covering any further use that may
+
+    ofany publiclyaccessible informationtoother recipients bemadeofthosedevicesduringsubsequentconnections.
+
+    of the service upon their request, this Directive should The methods for giving information, offering a right to
+
+    not prevent such information from being further stored, refuse or requesting consent should be made as user-
+
+    provided that this information would in any case be friendly as possible. Access to specific website content
+
+    accessible to the public without restriction and that any may still be made conditional on the well-informed
+
+    data referring to the individual subscribers or users acceptance of a cookie or similar device, if it is used for
+
+    requestingsuchinformationareerased. alegitimatepurpose.
+
+    L201/40 EN OfficialJournaloftheEuropeanCommunities 31.7.2002
+
+    (26) The data relating to subscribers processed within elec- (30) Systems for the provision of electronic communications
+
+    tronic communications networks to establish connec- networks and services should be designed to limit the
+
+    tions and to transmit information contain information amount of personal data necessary to a strict minimum.
+
+    on the private life of natural persons and concern the Any activities related to the provision of the electronic
+
+    right to respect for their correspondence or concern the communicationsservice thatgobeyondthetransmission
+
+    legitimate interests of legal persons. Such data may only of a communication and the billing thereof should be
+
+    bestoredtotheextentthatisnecessaryfortheprovision based on aggregated, traffic data that cannot be related
+
+    oftheservice forthepurposeofbillingandforintercon- to subscribers or users. Where such activities cannot be
+
+    nection payments, and for a limited time. Any further based on aggregated data, they should be considered as
+
+    processing of such data which the provider of the value added services for which the consent of the
+
+    publicly available electronic communications services subscriberisrequired.
+
+    may want to perform, for the marketing of electronic
+
+    communications services or for the provision of value
+
+    addedservices,mayonlybeallowedifthesubscriber has
+
+    agreed to this on the basis of accurate and full informa-
+
+    tion given by the provider of the publicly available elec-
+
+    tronic communications services about the types of
+
+    further processing it intends to perform and about the (31) Whether the consent to be obtained for the processing
+
+    subscriber’s right not to give or to withdraw his/her of personal data with a view to providing a particular
+
+    consent to such processing. Traffic data used for value added service should be that of the user or of the
+
+    marketing communications services or for the provision subscriber, will depend on the data to be processed and
+
+    of value added services should also be erased or made on the type of service to be provided and on whether it
+
+    anonymous after the provision of the service. Service is technically, procedurally and contractually possible to
+
+    providers should always keep subscribers informed of distinguish the individual using an electronic communi-
+
+    the types of data they are processing and the purposes cations service from the legal or natural person having
+
+    anddurationforwhichthisisdone. subscribedtoit.
+
+    (27) Theexactmomentofthecompletionofthetransmission (32) Where the provider of an electronic communications
+
+    of a communication, after which traffic data should be service or of a value added service subcontracts the
+
+    erased except for billing purposes, may depend on the processing of personal data necessary for the provision
+
+    type of electronic communications service that is of these services to another entity, such subcontracting
+
+    provided. For instance for a voice telephony call the andsubsequentdataproces'
+- id: art-3
+  title: Article 6 of this Directive. However, in addition, digital mission should be subject to the condition that the data
+  text: 'Article 6 of this Directive. However, in addition, digital mission should be subject to the condition that the data
+
+    mobile networks may have the capacity to process loca- maynotbeusedforotherpurposesthanthoseforwhich
+
+    tion data which are more precise than is necessary for they were collected. If the party collecting the data from
+
+    the transmission of communications and which are used the subscriber or any third party to whom the data have
+
+    forthe provision ofvalue addedservices such asservices been transmittedwishes touse the dataforan additional
+
+    providing individualisedtrafficinformationandguidance purpose, the renewed consent of the subscriber is to be
+
+    to drivers. The processing of such data for value added obtained either by the initial party collecting the data or
+
+    services should only be allowed where subscribers have by the third party to whom the data have been trans-
+
+    giventheirconsent.Evenincaseswheresubscribershave mitted.
+
+    given their consent, they should have a simple means to
+
+    temporarily deny the processing of location data, free of
+
+    charge.
+
+    (40) Safeguards should be provided for subscribers against
+
+    intrusionoftheir privacy byunsolicitedcommunications
+
+    for direct marketing purposes in particular by means of
+
+    automated calling machines, telefaxes, and e-mails,
+
+    including SMS messages. These forms of unsolicited
+
+    (36) Member States may restrict the users’ and subscribers’ commercial communications may on the one hand be
+
+    rights to privacy with regard tocalling line identification relatively easy and cheap to send and on the other may
+
+    where this is necessary to trace nuisance calls and with impose a burden and/or cost onthe recipient. Moreover,
+
+    regard to calling line identification and location data in some cases their volume may also cause difficulties
+
+    where this is necessary to allow emergency services to for electronic communications networks and terminal
+
+    carry out their tasks as effectively as possible. For these equipment. For such forms of unsolicited communica-
+
+    purposes, Member States may adopt specific provisions tions for direct marketing, it is justified to require that
+
+    to entitle providers of electronic communications prior explicit consentofthe recipients is obtainedbefore
+
+    services to provide access to calling line identification such communications are addressed to them. The single
+
+    and location data without the prior consent of the users market requires a harmonised approach to ensure
+
+    orsubscribersconcerned. simple,Community-widerulesforbusinessesandusers.
+
+    L201/42 EN OfficialJournaloftheEuropeanCommunities 31.7.2002
+
+    (41) Within the context of an existing customer relationship, nents necessary to provide the service and of the distri-
+
+    it is reasonable to allow the use of electronic contact bution of the necessary functionalities between these
+
+    details for the offering of similar products or services, components. Directive 95/46/EC covers any form of
+
+    but only by the same company that has obtained the processing of personal data regardless of the technology
+
+    electronic contact details in accordance with Directive used. The existence of specific rules for electronic
+
+    95/46/EC. When electronic contact details are obtained, communications services alongside general rules for
+
+    the customer should be informed about their further use other components necessary for the provision of such
+
+    for direct marketing in a clear and distinct manner, and servicesmaynotfacilitatetheprotectionofpersonaldata
+
+    be given the opportunity to refuse such usage. This and privacy in a technologically neutral way. It may
+
+    opportunity should continue to be offered with each therefore be necessary to adopt measures requiring
+
+    subsequent direct marketing message, free of charge, manufacturers of certain types of equipment used for
+
+    exceptforanycostsforthetransmissionofthisrefusal. electronic communications services to construct their
+
+    product in such a way as to incorporate safeguards to
+
+    ensurethatthepersonaldataandprivacy oftheuserand
+
+    (42) Other formsofdirect marketing that are more costlyfor subscriber are protected. The adoption of such measures
+
+    the sender and impose no financial costs on subscribers inaccordance with Directive 1999/5/ECoftheEuropean
+
+    and users, such as person-to-person voice telephony ParliamentandoftheCouncilof9March1999onradio
+
+    calls, may justify the maintenance of a system giving equipment and telecommunications terminal equipment
+
+    subscribers or users the possibility to indicate that they and the mutual recognition of their conformity(2) will
+
+    do not want to receive such calls. Nevertheless, in order ensure thatthe introduction oftechnical features ofelec-
+
+    not to decrease existing levels of privacy protection, tronic communication equipment including software for
+
+    Member States should be entitled to uphold national data protection purposes is harmonised in order to be
+
+    systems,onlyallowingsuchcallstosubscribersandusers compatible with the implementation of the internal
+
+    whohavegiventheirpriorconsent. market.
+
+    (47) Where the rights of the users and subscribers are not
+
+    (43) To facilitate effective enforcement of Community rules respected, national legislation should provide for judicial
+
+    on unsolicited messages for direct marketing, it is neces- remedies. Penalties should be imposed on any person,
+
+    sary to prohibit the use of false identities or false return whether governed by private or public law, who fails to
+
+    addressesornumberswhilesendingunsolicitedmessages comply with the national measures taken under this
+
+    fordirectmarketingpurposes. Directive.
+
+    (48) Itisuseful,inthefieldofapplicationofthisDirective, to
+
+    (44) Certain electronic mailsystemsallowsubscribers toview
+
+    draw on the experience of the Working Party on the
+
+    thesenderandsubjectlineofanelectronicmail,andalso
+
+    ProtectionofIndividualswithregard totheProcessingof
+
+    to delete the message, without having to download the
+
+    Personal Data composed of representatives of the super-
+
+    rest of the electronic mail’s content or any attachments,
+
+    visoryauthoritiesoftheMemberStates,setupbyArticle
+
+    thereby reducing costs which could arise from down-
+
+    29ofDirective95/46/EC.
+
+    loading unsolicited electronic mails or attachments.
+
+    These arrangements may continue tobe usefulin certain
+
+    cases as an additional tool to the general obligations (49) To facilitate compliance with the provisions of this
+
+    establishedinthisDirective. Directive, certain specific arrangements are needed for
+
+    processing of data already under way on the date that
+
+    national implementing legislation pursuant to this Direc-
+
+    (45) This Directive is without prejudice to the arrangements tiveentersintoforce,
+
+    which Member States make to protect the legitimate
+
+    interests of legal persons with regard to unsolicited
+
+    communications for direct marketing purposes. Where
+
+    Member States establish an opt-out register for such
+
+    communications to legal persons, mostly business users, HAVEADOPTEDTHISDIRECTIVE:
+
+    the provisions of Article 7 of Directive 2000/31/EC of
+
+    the European Parliament and of the Council of 8 June
+
+    2000 on certain legal aspects of information society
+
+    services, in particular electronic commerce, in the Article1
+
+    internal market (Directive on electronic commerce)(1)
+
+    arefullyapplicable.
+
+    Scopeandaim
+
+    (46) The functionalities for the provision of electronic 1. This Directive harmonises the provisions of the Member
+
+    communications services may be integrated in the States required to ensure an equivalent level of protection of
+
+    network or in any part of the terminal equipment of the fundamental rights and freedoms, and in particular the right to
+
+    user, including the software. The protection of the privacy, with respect to the processing of personal data in the
+
+    personal data and the privacy of the user of publicly electronic communication sector and to ensure the free move-
+
+    available electronic communications services should be ment of such data and of electronic communication equipment
+
+    independent of the configuration of the various compo- andservicesintheCommunity.
+
+    (1) OJL178,17.7.2000,p.1. (2) OJL91,7.4.1999,p.10.
+
+    31.7.2002 EN OfficialJournaloftheEuropeanCommunities L201/43
+
+    2. The provisions of this Directive particularise and comple- can be stored in the network or in the recipient’s terminal
+
+    ment Directive 95/46/EC for the purposes mentioned in para- equipmentuntilitiscollectedbytherecipient.
+
+    graph1.Moreover,theyprovideforprotectionofthelegitimate
+
+    interestsofsubscriberswhoarelegalpersons.
+
+    Article3
+
+    3. This Directive shall not apply to activities which fall
+
+    outside the scope of the Treaty establishing the European
+
+    Community, such as those covered by Titles V and VI of the Servicesconcerned
+
+    Treaty on European Union, and in any case to activities
+
+    concerning public security, defence, State security (including 1. This Directive shall apply to the processing of personal
+
+    the economic well-being of the State when the activities relate datainconnectionwiththeprovisionofpubliclyavailable elec-
+
+    to State security matters) and the activities of the State in areas tronic communications services in public communications
+
+    ofcriminallaw. networksintheCommunity.
+
+    2. Articles 8, 10 and 11 shall apply to subscriber lines
+
+    Article2 connected to digital exchanges and, where technically possible
+
+    andifitdoesnotrequire adisproportionateeconomiceffort,to
+
+    subscriberlinesconnectedtoanalogueexchanges.
+
+    Definitions
+
+    3. Cases where it would be technically impossible or require
+
+    Save as otherwise provided, the definitions in Directive 95/46/
+
+    a disproportionate economic effort to fulfil the requirements of
+
+    EC and in Directive 2002/21/EC of the European Parliament
+
+    Articles 8, 10 and 11 shall be notified to the Commission by
+
+    and of the Council of 7 March 2002 on a common regulatory
+
+    theMemberStates.
+
+    framework for electronic communications networks and
+
+    services(FrameworkDirective)(1)shallapply.
+
+    Thefollowingdefinitionsshallalsoapply: Article4
+
+    (a) ‘user’ means any natural person using a publicly available Security
+
+    electronic communications service, for private or business
+
+    purposes, without necessarily having subscribed to this
+
+    1. The provider of a publicly available electronic communi-
+
+    service;
+
+    cations service must take appropriate technical and organisa-
+
+    (b) ‘traffic data’ means any data processed for the purpose of tionalmeasurestosafeguardsecurity ofitsservices, ifnecessary
+
+    the conveyance of a communication on an electronic in conjunctionwith the provider ofthe public communications
+
+    communicationsnetworkorforthebillingthereof; network with respect to network security. Having regard to the
+
+    state of the art and the cost of their implementation, these
+
+    (c) ‘location data’ means any data processed in an electronic measures shall ensure a level of security appropriate to the risk
+
+    communications network, indicating the geographic posi- presented.
+
+    tionoftheterminal equipment ofauser ofa publiclyavail-
+
+    ableelectroniccommunicationsservice; 2. In case of a particular risk of a breach of the security of
+
+    the network, the provider of a publicly available electronic
+
+    (d) ‘communication’ means any information exchanged or
+
+    communications service must inform the subscribers
+
+    conveyed between a finite number of parties by means of a
+
+    concerning such risk and, where the risk lies outside the scope
+
+    publicly available electronic communications service. This of the measures to be taken by the service provider, of any
+
+    does not include any information conveyed as part of a possible remedies, including an indication of the likely costs
+
+    broadcasting service to the public over an electronic involved.
+
+    communications network except to the extent that the
+
+    information can be related to the identifiable subscriber or
+
+    userreceiving theinformation;
+
+    Article5
+
+    (e) ‘call’meansaconnectionestablishedbymeansofapublicly
+
+    available telephone service allowing two-way communica-
+
+    Confidentialityofthecommunications
+
+    tioninrealtime;
+
+    (f) ‘consent’ by a user or subscriber corresponds to the data 1. Member States shall ensure the confidentiality of commu-
+
+    subject’sconsentinDirective95/46/EC; nications and the re'
 doc_files:
 - eu/raw/EU-2002-58_ePrivacy_Directive.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2002-58_ePrivacy_Directive.pdf (pdf, 55325 chars)，生成 3 条共 30894 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2002-58_ePrivacy_Directive.pdf (pdf, 55325 chars)，生成 3 条共 30894 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2002-58_ePrivacy_Directive.pdf (pdf, 55325 chars)，生成 3 条共 30894 字符；解析文本未人工复核，引用以官方原件为准。'

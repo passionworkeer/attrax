@@ -1,0 +1,26 @@
+id: KB-textile-US-US-FTC_TFPIA
+regulation_id: US-FTC_TFPIA
+doc_name: US FTC Textile Fiber Products Identification Act
+official_citation: US FTC Textile Fiber Products Identification Act
+short_name: US FTC Textile Fiber Products Identification Act
+source: category
+primary_source: textile
+domain: textile
+applies_if:
+  category:
+  - textile
+  features_any: []
+  markets:
+  - US
+key_articles: []
+key_points:
+- US FTC Textile Fiber Products Identification Act：纺织领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://www.ftc.gov/enforcement/statutes/textile-fiber-products-identification-act
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

@@ -16,4 +16,6 @@ doc_files:
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 去重：合并同法规异名条目 CN-GB_18401-2010_-2（CN-GB GB 18401-2010 国家纺织产品基本安全技术规范）。'

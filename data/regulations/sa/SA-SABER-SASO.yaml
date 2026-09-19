@@ -9,13 +9,100 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: zh
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: Certificate of Conformity for Exports to Saudi Arabia | QIMA
+  text: "Certificate of Conformity for Exports to Saudi Arabia | QIMA\nSASO Certification \nGet your products certified and ready for export to Saudi Arabia. \n Download our Handbook Guide \nConsumer Products\n\
+    Certifications\nCertificate of Conformity for Exports to Saudi Arabia\nSASO Compliance: Streamlined Certification with SABER and FASAH\n The Saudi Standards, Metrology and Quality Organization (SASO)\
+    \ oversees the Saudi Product Safety Program, \nSALEEM\n, ensuring products entering the Saudi market are safe, secure, and free from defects that could harm consumers or the environment. The \nSABER\n\
+    \ platform, fully integrated with the \nFASAH\n system since July 2020, simplifies the certification process by enabling automatic verification of Shipment Certificates of Conformity (SCoC), facilitating\
+    \ smooth and efficient customs clearance.\nKey Updates:\nEffective January 1, 2025:\n All shipments to Saudi Arabia require both a Product Certificate of Conformity (PCoC) and an SCoC issued through\
+    \ the SABER platform. Letters of Undertaking are no longer accepted for customs clearance, and obtaining certificates post-arrival is considered a violation, risking shipment re-export.\nEffective September\
+    \ 15, 2025:\n New list of HS CODE Added which requires importers to provide a declaration approved by the Ministry of Industry and Mineral Resources when requesting SCoCs via SABER, enhancing compliance\
+    \ with technical regulations.\nImporters of regulated products must register via SABER to obtain Product Certificates of Conformity, ensuring compliance with SASO’s Technical Regulations (TRs). All\
+    \ consignments (regulated and non-regulated) require SABER Shipment certificates for smooth customs clearance at Saudi ports.\nNeed more information?\nSelect your country\nAfghanistan\nAlbania\nAlgeria\n\
+    American Samoa\nAndorra\nAngola\nAnguilla (UK)\nAntarctica\nAntigua And Barbuda\nArgentina\nArmenia\nAruba\nAustralia\nAustria\nAzerbaijan\nBahamas\nBahrain\nBangladesh\nBarbados\nBarbuda\nBelgium\n\
+    Belize\nBenin\nBermuda\nBhutan\nBolivia\nBosnia\nBotswana\nBrazil\nBritish Virgin Islands (UK)\nBrunei\nBulgaria\nBurkina Faso\nBurundi\nCambodia\nCameroon\nCanada\nCape Verde\nCentral African Republic\n\
+    Chad\nChile\nChina\nColombia\nComoros\nCongo\nCook Islands\nCosta Rica\nIvory Coast\nCroatia\nCuracao\nCyprus\nCzech Republic\nDenmark\nDiego Garcia\nDjibouti\nDominica\nDominican Republic\nEaster Island\n\
+    Ecuador\nEgypt\nEl Salvador\nEquatorial Guinea\nEritrea\nEstonia\nEthiopia\nFiji\nFinland\nFrance\nFrench Guiana\nFrench Polynesia\nGabon\nGambia\nGeorgia\nGermany\nGhana\nGibraltar (UK)\nGreece\nGreenland\n\
+    Grenada\nGuadeloupe (France)\nGuam\nGuatemala\nGuinea\nGuinea-Bissau\nGuyana\nHaiti\nHonduras\nHong Kong SAR China\nHungary\nIceland\nIndia\nIndonesia\nIraq\nIreland\nIsrael\nItaly\nJamaica\nJapan\n\
+    Jersey\nJordan\nKazakhstan\nKenya\nKiribati\nKosovo\nKorea (South)\nKuwait\nKyrgyzstan\nLaos\nLatvia\nLebanon\nLesotho\nLiberia\nLibya\nLiechtenstein\nLithuania\nLuxembourg\nMacau SAR China\nMacedonia\n\
+    Madagascar\nMalawi\nMalaysia\nMaldives\nMali\nMalta\nMarshall Islands\nMartinique (France)\nMauritania\nMauritius\nMexico\nMicronesia\nMoldova\nMonaco\nMongolia\nMontenegro\nMontserrat (UK)\nMorocco\n\
+    Mozambique\nMyanmar\nNamibia\nNauru\nNepal\nNetherlands\nNew Caledonia\nNew Zealand\nNicaragua\nNiger\nNigeria\nNorthern Mariana Islands (US)\nNorway\nOman\nPakistan\nPalau\nPalestine\nPanama\nPapua\
+    \ New Guinea\nParaguay\nPeru\nPhilippines\nPoland\nPortugal\nPuerto Rico (US)\nQatar\nReunion\nRomania\nRwanda\nSaint Kitts And Nevis\nSaint Lucia\nSaint Pierre And Miquelon\nSaint Vincent & The Grenadines\n\
+    San Marino\nSao Tome & Principe\nSaudi Arabia\nSenegal\nSerbia\nSeychelles\nSierra Leone\nSingapore\nSlovakia\nSlovenia\nSolomon Islands\nSomalia\nSomaliland\nSouth Africa\nSpain\nSri Lanka\nSuriname\n\
+    Eswatini\nSweden\nSwitzerland\nTaiwan\nTajikistan\nTanzania\nThailand\nTimor-Leste\nTogo\nTonga\nTrinidad And Tobago\nTunisia\nTurkey\nTurkmenistan\nTurks And Caicos Islands (UK)\nTuvalu\nUganda\nUkraine\n\
+    United Arab Emirates\nUnited Kingdom\nUnited States\nUruguay\nUzbekistan\nVanuatu\nVatican City\nVenezuela\nVietnam\nVirgin Islands (British)\nVirgin Islands (UK)\nVirgin Islands (US)\nYemen\nZambia"
+- id: art-2
+  title: Select your industry
+  text: "Select your industry\nFood & Food Packaging\nBodycare Fashion & Accessories\nElectrical & Electronic Products\nGifts & Premiums\nHomeware & Gardenware\nIndustrial Construction & Mechanical Items\n\
+    Printing & Packaging\nTextile Apparel Footwear & Accessories\nToys & Recreational Items\nEyewear\nTechnical Parts\nLife Sciences\nYour question is about...\nOur services (prices, locations, products...)\n\
+    The QIMA website\nA current Order with QIMA\nA job application\nOther\nReceive supply chain insights and updates from QIMA. You can always unsubscribe and manage your email preferences later.\nContact\
+    \ Us\nBy contacting QIMA you agree to our \nprivacy policy\n and \nterms and conditions\n.\nQIMA: A SASO-Approved Conformity Assessment Body\nQIMA is one of the SASO approved Conformity Assessment Bodies\
+    \ (CB) and is authorized to issue Certificates of Conformity for products exporting from the following regions:\nAsia and Australia, see our approved product scope\nEurope,   see our approved product\
+    \ scope\nAmericas (North and South)\n,\n see our approved product scope\nMiddle East and North African countries\n, \nsee our approved product scope\nMiddle and South Africa region, see our approved\
+    \ product scope\nAdditionally, QIMA has received accreditation from the Saudi Accreditation Center (SAAC) for \nISO/IEC 17065:2012\n, encompassing the SASO and SFDA scopes for the Middle East region.\n\
+    SABER System\nSABER is a platform that allows importers and local manufacturers to electronically obtain the required Certificate of Conformity and Certificate of Shipment Conformity for consumer goods,\
+    \ whether they were imported or locally manufactured to enter the Saudi market. The platform aims to protect the businesses from fraud and ensure that products are free from defects that may affect\
+    \ the health and safety of consumers.\nImporters and local manufacturers can request a Certificate of Conformity (both Product and Shipment Certificates of Conformity) for their products easily through\
+    \ SABER.\nThe mechanism of the SABER system is divided into 3 steps as below.\n*Risk level of product\nThe risk level of a product is assigned by the system based on the supplied HS code and product\
+    \ category. Those items that are not regulated by any Saudi Arabian technical regulations are classified as low-risk items. \nProduct Registration\nThe importer inputs details of the product into SABER\n\
+    The SABER system verifies if the product is regulated or not based on HS code or product category\nType Approval Certificate (Product Certificate of Conformity)\nScope: Products that are regulated by\
+    \ Saudi Arabia TR. Click \nhere\n for a list of technical regulations. \nFor products not regulated by Saudi Arabia TR, self-declaration according to the approved forms by SASO is sufficient – , Type\
+    \ Approval Certificates are not needed\n.\nValidity: One year\nRequired documents:\nConformity documents such as test reports, quality certificates, risk assessment reports, inspection report etc.,\
+    \ if applicable\nDesign, dimensions, plans, specification photo of the products, if applicable\nThe Type Approval Certificate will be issued through the SABER system after compliance to relevant standards\
+    \ is proven and after approval by SASO Approved Conformity Assessment Body.\nShipment Certificate of Conformity\nScope: All products\nValidity: Per consignment\nRequired documents:\nType Approval Certificate\
+    \ or self-declaration\nShipment document, such as invoice, packing list etc.\nA Shipment Certificate is required for each consignment. Issuance of Shipment Certificates for shipments of non-regulated\
+    \ products and regulated products are done through SABER.\nOn July 1, 2020 the SABER platform was linked with the FASAH system. This integration ensures the automatic verification of Shipment Certificates\
+    \ – there is no need to print a Shipment Certificate of Conformity (SCoC) as it will automatically be in the FASAH system. Any shipment to Saudi Arabia that does not have an SCoC will be required to\
+    \ be re-exported.\nSASO Approved Technical Regulations"
+- id: art-3
+  title: QIMA is able to approve Product Certificates of Conformity f
+  text: "QIMA is able to approve Product Certificates of Conformity for a number of product categories. The table below contains details on these SASO approved Technical Regulations, their scope and type\
+    \ of approval.\nA note on approval types:\n Approval types 1a, 3 and 5 refer to the assessment types defined in ISO/IEC 17067. Different conformity assessment activities are required for each type as\
+    \ applicable:\nType 1a: \nProduct testing / inspection\nType 3: \nProduct testing / factory inspection / audit\nType 5: \nProduct testing / factory inspection / surveillance factory audit\n*Textile\
+    \ Products & Auto Spare Parts are subject to a Categorized Conformity Assessment which enables similar products to be grouped together covered by a single PCoC. This effectively reduces the number of\
+    \ PCoCs required for importing products into Saudi Arabia and streamlines the certification process.\nFor a full list of SASO approved Technical Regulations, \nclick here\n.\nPlease note the following:\n\
+    QIMA will stop issuing any SASO CoC for regulated products under the remaining technical regulations (TR) from the SABER system / SABER CoC program starting on 15/01/2020.\nQIMA will issue only the\
+    \ PCoCs for regulated products from the SABER platform.\nAll traders shall obtain the shipment certificate for all non-regulated products via the ​SABER platform.\nStarting from 15/02/2020, no shipment\
+    \ will enter Saudi Arabia unless it has the required certifications via SABER only.\nStarting from 01/01/2025 : ALL Shipments need to have SABER Shipment COC (Regulated and Non-Regulated) and no undertaking\
+    \ will be allowed at Saudi Customs. \nNeed more information?\nSelect your country\nAfghanistan\nAlbania\nAlgeria\nAmerican Samoa\nAndorra\nAngola\nAnguilla (UK)\nAntarctica\nAntigua And Barbuda\nArgentina\n\
+    Armenia\nAruba\nAustralia\nAustria\nAzerbaijan\nBahamas\nBahrain\nBangladesh\nBarbados\nBarbuda\nBelgium\nBelize\nBenin\nBermuda\nBhutan\nBolivia\nBosnia\nBotswana\nBrazil\nBritish Virgin Islands (UK)\n\
+    Brunei\nBulgaria\nBurkina Faso\nBurundi\nCambodia\nCameroon\nCanada\nCape Verde\nCentral African Republic\nChad\nChile\nChina\nColombia\nComoros\nCongo\nCook Islands\nCosta Rica\nIvory Coast\nCroatia\n\
+    Curacao\nCyprus\nCzech Republic\nDenmark\nDiego Garcia\nDjibouti\nDominica\nDominican Republic\nEaster Island\nEcuador\nEgypt\nEl Salvador\nEquatorial Guinea\nEritrea\nEstonia\nEthiopia\nFiji\nFinland\n\
+    France\nFrench Guiana\nFrench Polynesia\nGabon\nGambia\nGeorgia\nGermany\nGhana\nGibraltar (UK)\nGreece\nGreenland\nGrenada\nGuadeloupe (France)\nGuam\nGuatemala\nGuinea\nGuinea-Bissau\nGuyana\nHaiti\n\
+    Honduras\nHong Kong SAR China\nHungary\nIceland\nIndia\nIndonesia\nIraq\nIreland\nIsrael\nItaly\nJamaica\nJapan\nJersey\nJordan\nKazakhstan\nKenya\nKiribati\nKosovo\nKorea (South)\nKuwait\nKyrgyzstan\n\
+    Laos\nLatvia\nLebanon\nLesotho\nLiberia\nLibya\nLiechtenstein\nLithuania\nLuxembourg\nMacau SAR China\nMacedonia\nMadagascar\nMalawi\nMalaysia\nMaldives\nMali\nMalta\nMarshall Islands\nMartinique (France)\n\
+    Mauritania\nMauritius\nMexico\nMicronesia\nMoldova\nMonaco\nMongolia\nMontenegro\nMontserrat (UK)\nMorocco\nMozambique\nMyanmar\nNamibia\nNauru\nNepal\nNetherlands\nNew Caledonia\nNew Zealand\nNicaragua\n\
+    Niger\nNigeria\nNorthern Mariana Islands (US)\nNorway\nOman\nPakistan\nPalau\nPalestine\nPanama\nPapua New Guinea\nParaguay\nPeru\nPhilippines\nPoland\nPortugal\nPuerto Rico (US)\nQatar\nReunion\nRomania\n\
+    Rwanda\nSaint Kitts And Nevis\nSaint Lucia\nSaint Pierre And Miquelon\nSaint Vincent & The Grenadines\nSan Marino\nSao Tome & Principe\nSaudi Arabia\nSenegal\nSerbia\nSeychelles\nSierra Leone\nSingapore\n\
+    Slovakia\nSlovenia\nSolomon Islands\nSomalia\nSomaliland\nSouth Africa\nSpain\nSri Lanka\nSuriname\nEswatini\nSweden\nSwitzerland\nTaiwan\nTajikistan\nTanzania\nThailand\nTimor-Leste\nTogo\nTonga\n\
+    Trinidad And Tobago\nTunisia\nTurkey\nTurkmenistan\nTurks And Caicos Islands (UK)\nTuvalu\nUganda\nUkraine\nUnited Arab Emirates\nUnited Kingdom\nUnited States\nUruguay\nUzbekistan\nVanuatu\nVatican\
+    \ City\nVenezuela\nVietnam\nVirgin Islands (British)\nVirgin Islands (UK)\nVirgin Islands (US)\nYemen\nZambia\nSelect your industry\nFood & Food Packaging\nBodycare Fashion & Accessories\nElectrical\
+    \ & Electronic Products"
+- id: art-4
+  title: Gifts & Premiums
+  text: "Gifts & Premiums\nHomeware & Gardenware\nIndustrial Construction & Mechanical Items\nPrinting & Packaging\nTextile Apparel Footwear & Accessories\nToys & Recreational Items\nEyewear\nTechnical\
+    \ Parts\nLife Sciences\nYour question is about...\nOur services (prices, locations, products...)\nThe QIMA website\nA current Order with QIMA\nA job application\nOther\nReceive supply chain insights\
+    \ and updates from QIMA. You can always unsubscribe and manage your email preferences later.\nContact Us\nBy contacting QIMA you agree to our \nprivacy policy\n and \nterms and conditions\n.\nSmart\
+    \ solutions to make products consumers can trust.\n Contact Us \nResources\nNewsroom\nSASO Updates\nRegulatory Updates\nSupply Chain Insights\nSupply Chain Soundbites Podcast\nWebinars\nQIMAone SaaS\
+    \ Resources\nDeveloper Portal\nReport Verification\nBlog\nAbout QIMA\nOur Story\nOur Values\nAccreditations\nPartners\nCompany Policies\nQIMA Decision Rule\nComplaints & Appeals\nGuidelines & Legislation\n\
+    Data Security\nSearch QIMA\nResources\nNewsroom\nSASO Updates\nRegulatory Updates\nSupply Chain Insights\nSupply Chain Soundbites Podcast\nWebinars\nQIMAone SaaS Resources\nDeveloper Portal\nReport\
+    \ Verification\nBlog\nAbout QIMA\nOur Story\nOur Values\nAccreditations\nPartners\nCompany Policies\nQIMA Decision Rule\nComplaints & Appeals\nGuidelines & Legislation\nData Security\nSearch QIMA\n\
+    Follow Us\nMobile Apps\n QIMA © 2026 \nTerms\nPrivacy\nCookie Consent\n QIMA © 2026"
 doc_files:
 - sa/raw/沙特Saber_SASO电子认证系统说明（QIMA指南）.html
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: |
-  目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
   2026-09-19 验证复核：URL 有效——外部网络实测打开的是 SABER 官方平台（SASO 监管、沙特数字政府局注册号 20250414462）。本机 DNS 对 saber.sa 解析失败属本地解析器问题，不代表域名失效。
+
+
+  2026-09-19 机器解析原件入库：sa/raw/沙特Saber_SASO电子认证系统说明（QIMA指南）.html (html, 13343 chars)，生成 4 条共 13343 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：sa/raw/沙特Saber_SASO电子认证系统说明（QIMA指南）.html (html, 13343 chars)，生成 4 条共 13343 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：sa/raw/沙特Saber_SASO电子认证系统说明（QIMA指南）.html (html, 13343 chars)，生成 4 条共 13343 字符；解析文本未人工复核，引用以官方原件为准。'

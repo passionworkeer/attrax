@@ -1,0 +1,26 @@
+id: KB-other-US-US-US_FEDERALREGISTER_LATEST
+regulation_id: US-US_FEDERALREGISTER_LATEST
+doc_name: US Federal Register API (latest documents)
+official_citation: US Federal Register API (latest documents)
+short_name: US Federal Register API (latest documents)
+source: category
+primary_source: other
+domain: other
+applies_if:
+  category:
+  - other
+  features_any: []
+  markets:
+  - US
+key_articles: []
+key_points:
+- US Federal Register API (latest documents)：其他品类领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://www.federalregister.gov/api/v1/documents.json?per_page=100&order=newest
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

@@ -9,11 +9,776 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'ETSI EN 301 908-2
+
+    V13.1.1
+
+    (2020-06)
+
+    HARMONISED EUROPEAN STAN'
+  text: 'ETSI EN 301 908-2
+
+    V13.1.1
+
+    (2020-06)
+
+    HARMONISED EUROPEAN STANDARD
+
+    IMT cellular networks;
+
+    Harmonised Standard for access to radio spectrum;
+
+    Part 2: CDMA Direct Spread (UTRA FDD) User Equipment (UE)
+
+    2 ETSI EN 301 908-2 V13.1.1 (2020-06)
+
+    Reference
+
+    REN/MSG-TFES-13-02
+
+    Keywords
+
+    3G, 3GPP, cellular, digital, IMT, mobile, radio,
+
+    regulation, UMTS, UTRA, WCDMA
+
+    ETSI
+
+    650 Route des Lucioles
+
+    F-06921 Sophia Antipolis Cedex - FRANCE
+
+    Tel.: +33 4 92 94 42 00 Fax: +33 4 93 65 47 16
+
+    Siret N° 348 623 562 00017 - NAF 742 C
+
+    Association à but non lucratif enregistrée à la
+
+    Sous-Préfecture de Grasse (06) N° 7803/88
+
+    Important notice
+
+    The present document can be downloaded from:
+
+    http://www.etsi.org/standards-search
+
+    The present document may be made available in electronic versions and/or in print. The content of any electronic and/or
+
+    print versions of the present document shall not be modified without the prior written authorization of ETSI. In case of any
+
+    existing or perceived difference in contents between such versions and/or in print, the prevailing version of an ETSI
+
+    deliverable is the one made publicly available in PDF format at www.etsi.org/deliver.
+
+    Users of the present document should be aware that the document may be subject to revision or change of status.
+
+    Information on the current status of this and other ETSI documents is available at
+
+    https://portal.etsi.org/TB/ETSIDeliverableStatus.aspx
+
+    If you find errors in the present document, please send your comment to one of the following services:
+
+    https://portal.etsi.org/People/CommiteeSupportStaff.aspx
+
+    Copyright Notification
+
+    No part may be reproduced or utilized in any form or by any means, electronic or mechanical, including photocopying
+
+    and microfilm except as authorized by written permission of ETSI.
+
+    The content of the PDF version shall not be modified without the written authorization of ETSI.
+
+    The copyright and the foregoing restriction extend to reproduction in all media.
+
+    © ETSI 2020.
+
+    All rights reserved.
+
+    DECT™, PLUGTESTS™, UMTS™ and the ETSI logo are trademarks of ETSI registered for the benefit of its Members.
+
+    3GPP™ and LTE™ are trademarks of ETSI registered for the benefit of its Members and
+
+    of the 3GPP Organizational Partners.
+
+    oneM2M™ logo is a trademark of ETSI registered for the benefit of its Members and
+
+    of the oneM2M Partners.
+
+    GSM® and the GSM logo are trademarks registered and owned by the GSM Association.
+
+    ETSI
+
+    3 ETSI EN 301 908-2 V13.1.1 (2020-06)
+
+    Contents
+
+    Intellectual Property Rights ................................................................................................................................ 7
+
+    Foreword ............................................................................................................................................................. 7
+
+    Modal verbs terminology .................................................................................................................................... 7
+
+    Introduction ........................................................................................................................................................ 8
+
+    1 Scope ........................................................................................................................................................ 9
+
+    2 References .............................................................................................................................................. 10
+
+    2.1 Normative references ....................................................................................................................................... 10
+
+    2.2 Informative references ...................................................................................................................................... 10
+
+    3 Definition of terms, symbols and abbreviations ..................................................................................... 11
+
+    3.1 Terms ................................................................................................................................................................ 11
+
+    3.2 Symbols ............................................................................................................................................................ 12
+
+    3.3 Abbreviations ................................................................................................................................................... 13
+
+    4 Technical requirements specifications ................................................................................................... 14
+
+    4.1 Environmental profile ....................................................................................................................................... 14
+
+    4.2 Conformance requirements .............................................................................................................................. 14
+
+    4.2.0 General ........................................................................................................................................................ 14
+
+    4.2.1 Introduction................................................................................................................................................. 15
+
+    4.2.2 Transmitter maximum output power........................................................................................................... 15
+
+    4.2.2.1 Transmitter maximum output power ..................................................................................................... 15
+
+    4.2.2.1.1 Definition......................................................................................................................................... 15
+
+    4.2.2.1.2 Limits .............................................................................................................................................. 16
+
+    4.2.2.1.3 Conformance ................................................................................................................................... 16
+
+    4.2.2.2 Transmitter maximum output power for DC-HSUPA .......................................................................... 16
+
+    4.2.2.2.1 Definition for DC-HSUPA .............................................................................................................. 16
+
+    4.2.2.2.2 Limits for DC-HSUPA .................................................................................................................... 16
+
+    4.2.2.2.3 Conformance ................................................................................................................................... 17
+
+    4.2.2.3 Transmitter maximum output power for UL OLTD ............................................................................. 17
+
+    4.2.2.3.1 Definition for UL OLTD ................................................................................................................. 17
+
+    4.2.2.3.2 Limits for UL OLTD ....................................................................................................................... 17
+
+    4.2.2.3.3 Conformance ................................................................................................................................... 17
+
+    4.2.3 Transmitter spectrum emission mask .......................................................................................................... 17
+
+    4.2.3.1 Transmitter spectrum emission mask .................................................................................................... 17
+
+    4.2.3.1.1 Definition......................................................................................................................................... 17
+
+    4.2.3.1.2 Limits .............................................................................................................................................. 17
+
+    4.2.3.1.3 Conformance ................................................................................................................................... 18
+
+    4.2.3.2 Transmitter spectrum emission mask for DC-HSUPA ......................................................................... 18
+
+    4.2.3.2.1 Definition for DC-HSUPA .............................................................................................................. 18
+
+    4.2.3.2.2 Limits for DC-HSUPA .................................................................................................................... 18
+
+    4.2.3.2.3 Conformance ................................................................................................................................... 19
+
+    4.2.3.3 Transmitter spectrum emission mask for UL OLTD ............................................................................ 19
+
+    4.2.3.3.1 Definition for UL OLTD ................................................................................................................. 19
+
+    4.2.3.3.2 Limits for UL OLTD ....................................................................................................................... 19
+
+    4.2.3.3.3 Conformance ................................................................................................................................... 19
+
+    4.2.3.4 Transmitter spectrum emission mask for UL CLTD Activation state 1 ................................................ 19
+
+    4.2.3.4.1 Definition for UL CLTD Activation state 1 .................................................................................... 19
+
+    4.2.3.4.2 Limits for UL CLTD Activation state 1 .......................................................................................... 20
+
+    4.2.3.4.3 Conformance ................................................................................................................................... 20
+
+    4.2.4 Transmitter spurious emissions ................................................................................................................... 20
+
+    4.2.4.1 Transmitter spurious emissions ............................................................................................................. 20
+
+    4.2.4.1.1 Definition......................................................................................................................................... 20
+
+    4.2.4.1.2 Limits .............................................................................................................................................. 20
+
+    4.2.4.1.3 Conformance ................................................................................................................................... 23
+
+    4.2.4.2 Transmitter spurious emissions for DC-HSUPA .................................................................................. 23
+
+    4.2.4.2.1 Definition for DC-HSUPA .............................................................................................................. 23
+
+    ETSI
+
+    4 ETSI EN 301 908-2 V13.1.1 (2020-06)
+
+    4.2.4.2.2 Limits for DC-HSUPA .................................................................................................................... 23
+
+    4.2.4.2.3 Conformance ................................................................................................................................... 25
+
+    4.2.5 Transmitter minimum output power ........................................................................................................... 25
+
+    4.2.5.1 Transmitter minimum output power...................................................................................................... 25
+
+    4.2.5.1.1 Definition......................................................................................................................................... 25
+
+    4.2.5.1.2 Limits .............................................................................................................................................. 25
+
+    4.2.5.1.3 Conformance ................................................................................................................................... 25
+
+    4.2.5.2 Transmitter minimum output power for DC-HSUPA ............................................................'
+- id: art-2
+  title: 'Annex C (informative): Recommended maximum measurement uncertainty ................................. 59'
+  text: 'Annex C (informative): Recommended maximum measurement uncertainty ................................. 59
+
+    Annex D (informative): Bibliography ................................................................................................... 60
+
+    Annex E (informative): Change history ............................................................................................... 61
+
+    History .............................................................................................................................................................. 62
+
+    ETSI
+
+    7 ETSI EN 301 908-2 V13.1.1 (2020-06)
+
+    Intellectual Property Rights
+
+    Essential patents
+
+    IPRs essential or potentially essential to normative deliverables may have been declared to ETSI. The information
+
+    pertaining to these essential IPRs, if any, is publicly available for ETSI members and non-members, and can be found
+
+    in ETSI SR 000 314: "Intellectual Property Rights (IPRs); Essential, or potentially Essential, IPRs notified to ETSI in
+
+    respect of ETSI standards", which is available from the ETSI Secretariat. Latest updates are available on the ETSI Web
+
+    server (https://ipr.etsi.org/).
+
+    Pursuant to the ETSI IPR Policy, no investigation, including IPR searches, has been carried out by ETSI. No guarantee
+
+    can be given as to the existence of other IPRs not referenced in ETSI SR 000 314 (or the updates on the ETSI Web
+
+    server) which are, or may be, or may become, essential to the present document.
+
+    Trademarks
+
+    The present document may include trademarks and/or tradenames which are asserted and/or registered by their owners.
+
+    ETSI claims no ownership of these except for any which are indicated as being the property of ETSI, and conveys no
+
+    right to use or reproduce any trademark and/or tradename. Mention of those trademarks in the present document does
+
+    not constitute an endorsement by ETSI of products, services or organizations associated with those trademarks.
+
+    Foreword
+
+    This Harmonised European Standard (EN) has been produced by ETSI Technical Committee Mobile Standards Group
+
+    (MSG).
+
+    The present document has been prepared under the Commission''s standardization request C(2015) 5376 final [i.9] to
+
+    provide one voluntary means of conforming to the essential requirements of Directive 2014/53/EU on the harmonisation
+
+    of the laws of the Member States relating to the making available on the market of radio equipment and repealing
+
+    Directive 1999/5/EC [i.2].
+
+    Once the present document is cited in the Official Journal of the European Union under that Directive, compliance with
+
+    the normative clauses of the present document given in table A-1 confers, within the limits of the scope of the present
+
+    document, a presumption of conformity with the corresponding essential requirements of that Directive, and associated
+
+    EFTA regulations.
+
+    The present document is part 2 of a multi-part deliverable. Full details of the entire series can be found in part 1 [i.10].
+
+    National transposition dates
+
+    Date of adoption of this EN: 9 June 2020
+
+    Date of latest announcement of this EN (doa): 30 September 2020
+
+    Date of latest publication of new National Standard
+
+    or endorsement of this EN (dop/e): 31 March 2021
+
+    Date of withdrawal of any conflicting National Standard (dow): 31 March 2022
+
+    Modal verbs terminology
+
+    In the present document "shall", "shall not", "should", "should not", "may", "need not", "will", "will not", "can" and
+
+    "cannot" are to be interpreted as described in clause 3.2 of the ETSI Drafting Rules (Verbal forms for the expression of
+
+    provisions).
+
+    "must" and "must not" are NOT allowed in ETSI deliverables except when used in direct citation.
+
+    ETSI
+
+    8 ETSI EN 301 908-2 V13.1.1 (2020-06)
+
+    Introduction
+
+    The present document is part of a set of standards developed by ETSI and is designed to fit in a modular structure to
+
+    cover all radio and telecommunications terminal equipment within the scope of the Radio Equipment Directive [i.2].
+
+    The present document is produced following the guidance in ETSI EG 203 336 [i.3] as applicable.
+
+    ETSI
+
+    9 ETSI EN 301 908-2 V13.1.1 (2020-06)
+
+    1 Scope
+
+    The present document applies to the following radio equipment type:
+
+    • User Equipment for IMT-2000 CDMA Direct Spread (UTRA FDD).
+
+    These radio equipment types are capable of operating in all or any part of the frequency bands given in table 1-1.
+
+    Table 1-1: UTRA FDD operating bands
+
+    UTRA FDD Band Direction of transmission UTRA FDD operating bands
+
+    I Transmit 1 920 MHz to 1 980 MHz
+
+    Receive 2 110 MHz to 2 170 MHz
+
+    III Transmit 1 710 MHz to 1 785 MHz
+
+    Receive 1 805 MHz to 1 880 MHz
+
+    VII Transmit 2 500 MHz to 2 570 MHz
+
+    Receive 2 620 MHz to 2 690 MHz
+
+    VIII Transmit 880 MHz to 915 MHz
+
+    Receive 925 MHz to 960 MHz
+
+    XV Transmit 1 900 MHz to 1 920 MHz
+
+    Receive 2 600 MHz to 2 620 MHz
+
+    XVI Transmit 2 010 MHz to 2 025 MHz
+
+    Receive 2 585 MHz to 2 600 MHz
+
+    XX Transmit 832 MHz to 862 MHz
+
+    Receive 791 MHz to 821 MHz
+
+    XXII Transmit 3 410 MHz to 3 490 MHz
+
+    Receive 3 510 MHz to 3 590 MHz
+
+    XXXII Transmit -
+
+    (see notes 1 and 2) Receive 1 452 MHz to 1 496 MHz
+
+    NOTE 1: The down link frequencies of this band are paired with the uplink frequencies of the other FDD band
+
+    (external) of the dual band configuration.
+
+    NOTE 2: Radio equipment in band XXXII is only allowed to operate between 1 452 MHz and 1 492 MHz.
+
+    NOTE 1: The relationship between the present document and essential requirements of article 3.2 of Directive
+
+    2014/53/EU [i.2] is given in annex A.
+
+    The present document covers requirements for UTRA FDD User Equipment from 3GPP™ Releases 99, 4, 5, 6, 7, 8, 9,
+
+    10 and 11 defined in ETSI TS 125 101 [4]. This includes the requirements for UE operating bands from 3GPP™
+
+    Release 12 defined in ETSI TS 125 101 [4]. In addition, the present document covers requirements for UTRA FDD
+
+    User Equipment in the operating bands specified in ETSI TS 102 735 [i.4].
+
+    NOTE 2: For Band XX:
+
+    - for user equipment designed to be mobile or nomadic, the requirements in the present document
+
+    measured at the antenna port also show conformity to the corresponding requirement defined as
+
+    TRP (Total Radiated Power), as described in Commission Decision 2010/267/EU [i.6],
+
+    ECC Decision (09)03 [i.7] and CEPT Report 30 [i.8];
+
+    - for user equipment designed to be fixed or installed, the present document does not address the
+
+    requirements described in Commission Decision 2010/267/EU [i.6], ECC Decision (09)03 [i.7] and
+
+    CEPT Report 30 [i.8].
+
+    The present document contains requirements to demonstrate that radio equipment both effectively uses and supports the
+
+    efficient use of radio spectrum in order to avoid harmful interference.
+
+    ETSI
+
+    10 ETSI EN 301 908-2 V13.1.1 (2020-06)
+
+    2 References
+
+    2.1 Normative references
+
+    References are specific, identified by date of publication and/or edition number or version number. Only the cited
+
+    version applies.
+
+    Referenced documents which are not found to be publicly available in the expected location might be found at
+
+    https://docbox.etsi.org/Reference/.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    The following referenced documents are necessary for the application of the present document.
+
+    [1] ETSI TS 134 121-1 (V12.1.0) (10-2015): "Universal Mobile Telecommunications System
+
+    (UMTS); User Equipment (UE) conformance specification; Radio transmission and reception
+
+    (FDD); Part 1: Conformance specification (3GPP TS 34.121-1 version 12.1.0 Release 12)".
+
+    [2] ETSI TS 134 108 (V12.1.0) (10-2015): "Universal Mobile Telecommunications System (UMTS);
+
+    LTE; Common test environments for User Equipment (UE); Conformance testing (3GPP
+
+    TS 34.108 version 12.1.0 Release 12)".
+
+    [3] ETSI TS 134 109 (V12.0.0) (09-2014): "Universal Mobile Telecommunications System (UMTS);
+
+    Terminal logical test interface; Special conformance testing functions (3GPP TS 34.109
+
+    version 12.0.0 Release 12)".
+
+    [4] ETSI TS 125 101 (V11.11.0) (01-2015): "Universal Mobile Telecommunications System (UMTS);
+
+    User Equipment (UE) radio transmission and reception (FDD) (3GPP TS 25.101 version 11.11.0
+
+    Release 11)".
+
+    [5] IEC 60068-2-1 (03-2007): "Environmental testing - Part 2-1: Tests - Test A: Cold".
+
+    [6] IEC 60068-2-2 (07-2007): "Environmental testing - Part 2-2: Tests - Test B: Dry heat".
+
+    [7] ETSI TS 125 214 (V11.12.0) (07-2015): "Universal Mobile Telecommunications System (UMTS);
+
+    Physical layer procedures (FDD) (3GPP TS 25.214 version 11.12.0 Release 11)".
+
+    [8] ETSI TS 145 004 (V11.0.0) (10-2012): "Digital cellular telecommunications system (Phase 2+);
+
+    Modulation (3GPP TS 45.004 version 11.0.0 Release 11)".
+
+    [9] ETSI TS 137 544 (V14.3.0) (10-2017): "Universal Mobile Telecommunications System (UMTS);
+
+    LTE; Universal Terrestrial Radio Access (UTRA) and Evolved UTRA (E-UTRA); User
+
+    Equipment (UE) Over The Air (OTA) performance; Conformance testing (3GPP TS 37.544
+
+    version 14.3.0 Release 14)".
+
+    2.2 Informative references
+
+    References are either specific (identified by date of publication and/or edition number or version number) or
+
+    non-specific. For specific references, only the cited version applies. For non-specific references, the latest version of the
+
+    referenced document (including any amendments) applies.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    The following referenced documents are not necessary for the application of the present document but they assist the
+
+    user with regard to a particular subject area.
+
+    [i.1] Void.
+
+    ETSI
+
+    11 ETSI EN 301 908-2 V13.1.1 (2020-06)
+
+    [i.2] Directive 2014/53/EU of the European Parliament and of the Council of 16 April 2014 on the
+
+    harmonisation of the laws of the Member States relating to the making available on the market of
+
+    radio equipment and repealing Directive 1999/5/EC.
+
+    [i.3] ETSI EG 203 336 (V1.1.1) (08-2015): "Electromagnetic compatibility and Radio spectrum
+
+    Matters (ERM); Guide for the selection of technical parameters for the production of Harmonised
+
+    Standards covering article 3.1(b) and article 3.2 of Directive 2014/53/EU".
+
+    [i.4] ETSI TS 102 735 (V7.1.0): "Universal Mobile Telecommunications System (UMTS);
+
+    Band-specific requirements for UMTS Frequency Division Duplex (FDD) operation in the bands
+
+    1 900 MHz to 1 920 MHz paired with 2 600 MHz to 2 620 MHz and 2 010 MHz to 2 025 MHz
+
+    paired with 2 585 MHz to 2 600 MHz".
+
+    [i.5] ETSI TR 100 028 (all parts) (V1.4.1): "Electromagnetic compatibility and Radio spectrum Matters
+
+    (ERM); Uncertainties in the measurement of mobile radio equipment characteristics".
+
+    [i.6] Commission Decision 2010/267/EU of 6 May 2010 on harmonised technical conditions of use in
+
+    the 790-862 MHz frequency band for terrestrial systems capable of providing electronic
+
+    communications services in the European Union.
+
+    [i.7] ECC Decision (09)03 of 30 October 2009 on harmonised conditions for mobile/fixed
+
+    communications networks (MFCN) operating in the band 790 - 862 MHz.
+
+    [i.8] CEPT Report 30 of 30 October 2009 to the European Commission in response to the Mandate on
+
+    the identification of common and minimal (least restrictive) technical conditions for
+
+    790 - 862 MHz for the digital dividend in the European Union.
+
+    [i.9] Commission Implementing Decision C(2015) 5376 final of 4.8.2015 on a standardisation request
+
+    to the European Committee for Electrotechnical Standardisation and to the European
+
+    Telecommunications Standards Institute as regards radio equipment in support of Directive
+
+    2014/53/EU of the European Parliament and of the Council.
+
+    [i.10] ETSI EN 301 908-1 (V11.1.1): "IMT cellular networks; Harmonised Standard covering the
+
+    essential requirements of article 3.2 of the Directive 2014/53/EU; Part 1: Introduction and
+
+    common requirements".
+
+    [i.11] Void.
+
+    [i.12] ETSI TR 125 914 (V15.0.1) (09-2018): "Universal Mobile Telecommunications System (UMTS);
+
+    Measurements of radio performances for UMTS terminals in speech mode (3GPP TR 25.914
+
+    version 15.0.1 Release 15)".
+
+    3 Definition of terms, symbols and abbreviations
+
+    3.1 Terms
+
+    For the purposes of the present document, the following terms apply:
+
+    chip rate: rate of "chips" (modul'
+- id: art-3
+  title: 'Annex C (informative):'
+  text: 'Annex C (informative):
+
+    Recommended maximum measurement uncertainty
+
+    For the test methods, according to the present document, the measurement uncertainty figures are calculated using
+
+    expansion factors as described in clause 5.2. The recommended maximum uncertainty values in table C-1 is based on
+
+    such expansion factors.
+
+    Table C-1: Maximum uncertainty of the test system
+
+    Test system
+
+    Parameter Conditions
+
+    uncertainty
+
+    Transmitter maximum output power ±0,7 dB
+
+    Transmitter spectrum emissions mask ±1,5 dB
+
+    ≤
+
+    Transmitter spurious emissions f 2,2 G≤Hz ±1,5 dB
+
+    2,2 GHz < f 4 GHz ±2,0 dB
+
+    f > 4 GHz≥ ±4,0 dB
+
+    Co-existence band ( -60 dBm) ±2,0 dB
+
+    Co-existence band (< -60 dBm) ±3,0 dB
+
+    Transmitter Minimum output power ±1,0 dB
+
+    Receiver Adjacent Channel Selectivity (ACS) ±1,1 dB
+
+    Receiver Blocking characteristics f < 15 MH≤z o≤ffset: ±1,4 dB
+
+    15 MHz offset ≤f 2,2 GHz ±1,0 dB
+
+    2,2 GHz < f 4 GHz ±1,7 dB
+
+    f > 4 GHz ±3,1 dB
+
+    Receiver spurious response f ≤ 2,2 G≤Hz ±1,0 dB
+
+    2,2 GHz < f 4 GHz ±1,7 dB
+
+    f > 4 GHz ±3,1 dB
+
+    Receiver intermodulation characteristics ±1,3 dB
+
+    Receiver spurious emissions For UE receive band (-60 dBm) ±3,0 dB
+
+    For UE transmit band (-60 dBm) ±3,0 dB
+
+    Outside the≤ UE receive band:
+
+    f 2,2 G≤Hz ±2,0 dB
+
+    2,2 GHz < f 4 GHz ±2,0 dB
+
+    f > 4 GHz ±4,0 dB
+
+    Out of synchronization of handling power DPCCH E /I ±0,4 dB
+
+    c or
+
+    Transmit OFF power ±1,0 dB
+
+    Transmitter adjacent channel leakage power ratio - ±0,8 dB
+
+    Total Receiver Sensitivity For single measurement ±2,3 dB
+
+    Total Radiated Power For single measurement ±1,9 dB
+
+    NOTE: For RF tests it shoΩuld be noted that the uncertainties in this table apply to the test system operating
+
+    into a nominal 50 load and do not include system effects due to mismatch between the EUT and
+
+    the test system.
+
+    ETSI
+
+    60 ETSI EN 301 908-2 V13.1.1 (2020-06)
+
+    Annex D (informative):
+
+    Bibliography
+
+    Directive 2004/108/EC of the European Parliament and of the Council of 15 December 2004 on the approximation of
+
+    the laws of the Member States relating to electromagnetic compatibility and repealing Directive 89/336/EEC
+
+    (EMC Directive).
+
+    CEPT/ERC/REC 74-01 (Siófok 1998, Nice 1999, Sesimbra 2002, Hradec Kralove 2005, Cardiff 2011): "Unwanted
+
+    Emissions in the Spurious Domain".
+
+    Directive 2006/95/EC of the European Parliament and of the Council of 12 December 2006 on the harmonisation of the
+
+    laws of Member States relating to electrical equipment designed for use within certain voltage limits (LV Directive).
+
+    Commission Decision 2008/477/EC of 13 June 2008 on the harmonisation of the 2 500-2 690 MHz frequency band for
+
+    terrestrial systems capable of providing electronic communications services in the Community.
+
+    Directive 98/34/EC of the European Parliament and of the Council of 22 June 1998 laying down a procedure for the
+
+    provision of information in the field of technical standards and regulations.
+
+    Directive 98/48/EC of the European Parliament and of the Council of 20 July 1998 amending Directive 98/34/EC laying
+
+    down a procedure for the provision of information in the field of technical standards and regulations.
+
+    ETSI TS 125 101 (V12.9.0) (10-2015): "Universal Mobile Telecommunications System (UMTS); User Equipment
+
+    (UE) radio transmission and reception (FDD) (3GPP TS 25.101 version 12.9.0 Release 12)".
+
+    ETSI
+
+    61 ETSI EN 301 908-2 V13.1.1 (2020-06)
+
+    Annex E (informative):
+
+    Change history
+
+    Version Information about changes
+
+    V13.1.1_11.1.3 Updates up to release 13 included
+
+    V13.1.1_11.1.5 UMTS UE OTA antenna requirements included
+
+    V13.1.1_11.1.6 Minor changes on note 2 in TRP and TRS requirement tables
+
+    V13.1.1_11.1.7 Clean-up done by editHelp!
+
+    E-mail: mailto:edithelp@etsi.org
+
+    V13.1.1_11.1.9 EC early assessment comments incorporated
+
+    ETSI
+
+    62 ETSI EN 301 908-2 V13.1.1 (2020-06)
+
+    History
+
+    Document history
+
+    V1.1.1 January 2002 Publication
+
+    V2.2.1 October 2003 Publication
+
+    V3.2.1 May 2007 Publication
+
+    V4.2.1 March 2010 Publication
+
+    V5.2.1 July 2011 Publication
+
+    V5.4.1 December 2012 Publication
+
+    V6.2.1 October 2013 Publication
+
+    V7.1.1 December 2015 Publication
+
+    V11.1.1 July 2016 Publication
+
+    V11.1.2 August 2017 Publication
+
+    V13.0.1 March 2020 EN Approval Procedure AP 20200609: 2020-03-11 to 2020-06-09
+
+    V13.1.1 June 2020 Publication
+
+    ETSI'
 doc_files:
 - global/raw/ETSI_EN_30190802_v13.01.01_60.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30190802_v13.01.01_60.pdf (pdf, 166024 chars)，生成 3 条共 28142 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30190802_v13.01.01_60.pdf (pdf, 166024 chars)，生成 3 条共 28142 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30190802_v13.01.01_60.pdf (pdf, 166024 chars)，生成 3 条共 28142 字符；解析文本未人工复核，引用以官方原件为准。'

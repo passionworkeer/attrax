@@ -1,0 +1,26 @@
+id: KB-other-CN-CN-GB_T_39560-10-2024_-_-10-_-_GC-MS_-_PAHS
+regulation_id: CN-GB_T_39560-10-2024_-_-10-_-_GC-MS_-_PAHS
+doc_name: CN-GB GB/T 39560.10-2024 电子电气产品中某些物质的测定 第10部分：气相色谱-质谱法（GC-MS）测定聚合物和电子件中的多环芳烃（PAHs）
+official_citation: CN-GB GB/T 39560.10-2024 电子电气产品中某些物质的测定 第10部分：气相色谱-质谱法（GC-MS）测定聚合物和电子件中的多环芳烃（PAHs）
+short_name: CN-GB GB/T 39560.10-2024 电子电气产品中某些物质的测定 第10部分：气相色谱-质谱法（GC-MS）测定聚合物和电子件中的多环芳烃（PAHs）
+source: category
+primary_source: other
+domain: other
+applies_if:
+  category:
+  - other
+  features_any: []
+  markets:
+  - CN
+key_articles: []
+key_points:
+- CN-GB GB/T 39560.10-2024 电子电气产品中某些物质的测定 第10部分：气相色谱-质谱法（GC-MS）测定聚合物和电子件中的多环芳烃（PAHs）：其他品类领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=10AF1681A8F6FC442CDD1D32D0865127
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

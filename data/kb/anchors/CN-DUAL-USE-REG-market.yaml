@@ -1,0 +1,25 @@
+id: KB-market-CN-CN-DUAL-USE-REG
+regulation_id: CN-DUAL-USE-REG
+doc_name: 国务院令第792号《两用物项出口管制条例》(2024)
+official_citation: 国务院令第792号《两用物项出口管制条例》(2024)
+short_name: 两用物项出口管制条例 (2024)
+source: market
+primary_source: market
+domain: 出口管制
+applies_if:
+  category: []
+  features_any: []
+  markets:
+  - CN
+key_articles: []
+key_points:
+- 两用物项出口管制条例 (2024)：出口管制领域法规，适用于 CN 市场相关经营行为（库自动接入，按市场匹配）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://www.gov.cn/zhengce/content/202410/content_6981399.htm
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

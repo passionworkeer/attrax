@@ -1,0 +1,26 @@
+id: KB-other-CN-CN-GB_9706-202-2021_-_-2-2-_
+regulation_id: CN-GB_9706-202-2021_-_-2-2-_
+doc_name: CN-GB GB 9706.202-2021 医用电气设备 第2-2部分：高频手术设备及高频附件的基本安全和基本性能专用要求
+official_citation: CN-GB GB 9706.202-2021 医用电气设备 第2-2部分：高频手术设备及高频附件的基本安全和基本性能专用要求
+short_name: CN-GB GB 9706.202-2021 医用电气设备 第2-2部分：高频手术设备及高频附件的基本安全和基本性能专用要求
+source: category
+primary_source: other
+domain: other
+applies_if:
+  category:
+  - other
+  features_any: []
+  markets:
+  - CN
+key_articles: []
+key_points:
+- CN-GB GB 9706.202-2021 医用电气设备 第2-2部分：高频手术设备及高频附件的基本安全和基本性能专用要求：其他品类领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=EE773D76F18670C83A9C555EA8B2689A
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

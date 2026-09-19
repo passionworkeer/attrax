@@ -16,4 +16,6 @@ doc_files:
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 去重：合并同法规异名条目 CN-GB_5296-3-1995_-_-2（CN-GB GB 5296.3-1995 消费品使用说明  化妆品通用标签）。'

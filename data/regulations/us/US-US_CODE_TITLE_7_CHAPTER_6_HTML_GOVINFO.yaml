@@ -9,11 +9,949 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'U.S.C. Title 7 - AGRICULTURE
+
+
+    7 U.S.C.
+
+
+    United States Code, '
+  text: 'U.S.C. Title 7 - AGRICULTURE
+
+
+    7 U.S.C.
+
+
+    United States Code, 2023 Edition
+
+
+    Title 7 - AGRICULTURE'
+- id: art-2
+  title: CHAPTER 6 - INSECTICIDES AND ENVIRONMENTAL PESTICIDE CONTROL
+  text: 'CHAPTER 6 - INSECTICIDES AND ENVIRONMENTAL PESTICIDE CONTROL
+
+
+    From the U.S. Government Publishing Office,
+
+    www.gpo.gov'
+- id: art-3
+  title: CHAPTER 6—INSECTICIDES AND ENVIRONMENTAL PESTICIDE CONTROL
+  text: 'CHAPTER 6—INSECTICIDES AND ENVIRONMENTAL PESTICIDE CONTROL
+
+
+    SUBCHAPTER I—INSECTICIDES
+
+
+    Sec.
+
+
+    121 to 134. Repealed.
+
+
+
+
+    SUBCHAPTER II—ENVIRONMENTAL PESTICIDE CONTROL
+
+
+    135 to 135k. Omitted.
+
+
+    136.
+
+    Definitions.
+
+
+    136a.
+
+    Registration of pesticides.
+
+
+    136a–1.
+
+    Reregistration of registered pesticides.
+
+
+    136b.
+
+    Transferred.
+
+
+    136c.
+
+    Experimental use permits.
+
+
+    136d.
+
+    Administrative review; suspension.
+
+
+    136e.
+
+    Registration of establishments.
+
+
+    136f.
+
+    Books and records.
+
+
+    136g.
+
+    Inspection of establishments, etc.
+
+
+    136h.
+
+    Protection of trade secrets and other information.
+
+
+    136i.
+
+    Use of restricted use pesticides; applicators.
+
+
+    136i–1.
+
+    Pesticide recordkeeping.
+
+
+    136i–2.
+
+    Collection of pesticide use information.
+
+
+    136j.
+
+    Unlawful acts.
+
+
+    136k.
+
+    Stop sale, use, removal, and seizure.
+
+
+    136
+
+    l.
+
+    Penalties.
+
+
+    136m.
+
+    Indemnities.
+
+
+    136n.
+
+    Administrative procedure; judicial review.
+
+
+    136
+
+    o.
+
+    Imports and exports.
+
+
+    136p.
+
+    Exemption of Federal and State agencies.
+
+
+    136q.
+
+    Storage, disposal, transportation, and recall.
+
+
+    136r.
+
+    Research and monitoring.
+
+
+    136r–1.
+
+    Integrated Pest Management.
+
+
+    136s.
+
+    Solicitation of comments; notice of public hearings.
+
+
+    136t.
+
+    Delegation and cooperation.
+
+
+    136u.
+
+    State cooperation, aid, and training.
+
+
+    136v.
+
+    Authority of States.
+
+
+    136w.
+
+    Authority of Administrator.
+
+
+    136w–1.
+
+    State primary enforcement responsibility.
+
+
+    136w–2.
+
+    Failure by the State to assure enforcement of State pesticide use regulations.
+
+
+    136w–3.
+
+    Identification of pests; cooperation with Department of Agriculture''s program.
+
+
+    136w–4.
+
+    Omitted.
+
+
+    136w–5.
+
+    Minimum requirements for training of maintenance applicators and service technicians.
+
+
+    136w–6.
+
+    Environmental Protection Agency minor use program.
+
+
+    136w–7.
+
+    Department of Agriculture minor use program.
+
+
+    136w–8.
+
+    Pesticide registration service fees.
+
+
+    136x.
+
+    Severability.
+
+
+    136y.
+
+    Authorization of appropriations.
+
+
+
+
+    SUBCHAPTER I—INSECTICIDES
+
+
+    §§121 to 134. Repealed. June 25, 1947, ch. 125, §16, 61 Stat. 172
+
+
+    Sections, act Apr. 26, 1910, ch. 191, 36 Stat. 335, formerly known as "The Insecticides Act", are covered by subchapter II of this chapter.
+
+
+    Statutory Notes and Related Subsidiaries
+
+
+    Effective Date of Repeal; Savings Provision
+
+
+    Act June 25, 1947, ch. 125, §16, 61 Stat. 172, repealed this subchapter effective one year after June 25, 1947, and further provided that this subchapter should be deemed to remain in full force for
+    the purpose of sustaining any proper suit, action, or other proceeding
+
+    with respect to any violations, liabilities incurred, or appeals taken prior to such date of repeal or to sales, shipments, or deliveries of insecticides and fungicides exempted by the Secretary.
+
+
+    SUBCHAPTER II—ENVIRONMENTAL PESTICIDE CONTROL
+
+
+    §§135 to 135k. Omitted
+
+
+    Editorial Notes
+
+
+    Codification
+
+
+    Sections 135 to 135k, acts June 25, 1947, ch. 125, §§2–13, 61 Stat. 163–172; Aug. 7, 1959, Pub. L. 86–139, §2, 73 Stat. 286; May 12, 1964, Pub. L. 88–305, §§1–6, 78 Stat. 190–193; Oct. 15, 1970, Pub.
+    L. 91–452, title II, §204, 84 Stat. 928; Dec. 30, 1970, Pub. L. 91–601, §6(b), formerly §7(b), 84 Stat. 1673, renumbered, Aug. 13, 1981, Pub. L. 97–35, title XII, §1205(c), 95 Stat. 716, which related
+    to economic poison control, were superseded by the amendments made to act June 25, 1947, by Pub. L. 92–516, Oct. 21, 1972, 86 Stat. 975. See section 4 of Pub. L. 92–516, set out as a note under section
+    136 of this title. The provisions of act June 25, 1947, as amended by Pub. L. 92–516, are set out in section 136 et seq. of this title.'
+- id: art-4
+  title: Section 135 provided definitions for the purposes of this subchapter.
+  text: Section 135 provided definitions for the purposes of this subchapter.
+- id: art-5
+  title: Section 135a related to prohibited acts.
+  text: Section 135a related to prohibited acts.
+- id: art-6
+  title: Section 135b related to registration of economic poisons.
+  text: Section 135b related to registration of economic poisons.
+- id: art-7
+  title: Section 135c related to access, inspection, and use in criminal prosecutions of books and records.
+  text: Section 135c related to access, inspection, and use in criminal prosecutions of books and records.
+- id: art-8
+  title: Section 135d related to rules and regulations, examination of economic poisons or devices, notification to violators, certification to United States attorney, duty of attorney, and publication
+    of judg
+  text: Section 135d related to rules and regulations, examination of economic poisons or devices, notification to violators, certification to United States attorney, duty of attorney, and publication of
+    judgments.
+- id: art-9
+  title: Section 135e related to exemptions from penalties.
+  text: Section 135e related to exemptions from penalties.
+- id: art-10
+  title: Section 135f provided for penalties.
+  text: Section 135f provided for penalties.
+- id: art-11
+  title: Section 135g related to seizure, disposal, and award of costs against claimant.
+  text: Section 135g related to seizure, disposal, and award of costs against claimant.
+- id: art-12
+  title: Section 135h related to refusal of admission of imports.
+  text: Section 135h related to refusal of admission of imports.
+- id: art-13
+  title: Section 135i related to delegation of duties.
+  text: Section 135i related to delegation of duties.
+- id: art-14
+  title: Section 135j related to authorization of appropriations and expenditure of funds.
+  text: Section 135j related to authorization of appropriations and expenditure of funds.
+- id: art-15
+  title: Section 135k related to cooperation between departments and agencies.
+  text: Section 135k related to cooperation between departments and agencies.
+- id: art-16
+  title: §136. Definitions
+  text: '§136. Definitions
+
+
+    For purposes of this subchapter—
+
+
+    (a) Active ingredient
+
+
+    The term "active ingredient" means—
+
+
+    (1) in the case of a pesticide other than a plant regulator, defoliant, desiccant, or nitrogen stabilizer, an ingredient which will prevent, destroy, repel, or mitigate any pest;
+
+
+    (2) in the case of a plant regulator, an ingredient which, through physiological action, will accelerate or retard the rate of growth or rate of maturation or otherwise alter the behavior of ornamental
+    or crop plants or the product thereof;
+
+
+    (3) in the case of a defoliant, an ingredient which will cause the leaves or foliage to drop from a plant;
+
+
+    (4) in the case of a desiccant, an ingredient which will artificially accelerate the drying of plant tissue; and
+
+
+    (5) in the case of a nitrogen stabilizer, an ingredient which will prevent or hinder the process of nitrification, denitrification, ammonia volatilization, or urease production through action affecting
+    soil bacteria.
+
+
+    (b) Administrator
+
+
+    The term "Administrator" means the Administrator of the Environmental Protection Agency.
+
+
+    (c) Adulterated
+
+
+    The term "adulterated" applies to any pesticide if—
+
+
+    (1) its strength or purity falls below the professed standard of quality as expressed on its labeling under which it is sold;
+
+
+    (2) any substance has been substituted wholly or in part for the pesticide; or
+
+
+    (3) any valuable constituent of the pesticide has been wholly or in part abstracted.
+
+
+    (d) Animal
+
+
+    The term "animal" means all vertebrate and invertebrate species, including but not limited to man and other mammals, birds, fish, and shellfish.
+
+
+    (e) Certified applicator, etc.
+
+
+    (1) Certified applicator
+
+
+    The term "certified applicator" means any individual who is certified under section 136i of this title as authorized to use or supervise the use of any pesticide which is classified for restricted use.
+    Any applicator who holds or applies registered pesticides, or uses dilutions of registered pesticides consistent with subsection (ee), only to provide a service of controlling pests without delivering
+    any unapplied pesticide to any person so served is not deemed to be a seller or distributor of pesticides under this subchapter.
+
+
+    (2) Private applicator
+
+
+    The term "private applicator" means a certified applicator who uses or supervises the use of any pesticide which is classified for restricted use for purposes of producing any agricultural commodity
+    on property owned or rented by the applicator or the applicator''s employer or (if applied without compensation other than trading of personal services between producers of agricultural commodities)
+    on the property of another person.
+
+
+    (3) Commercial applicator
+
+
+    The term "commercial applicator" means an applicator (whether or not the applicator is a private applicator with respect to some uses) who uses or supervises the use of any pesticide which is classified
+    for restricted use for any purpose or on any property other than as provided by paragraph (2).
+
+
+    (4) Under the direct supervision of a certified applicator
+
+
+    Unless otherwise prescribed by its labeling, a pesticide shall be considered to be applied under the direct supervision of a certified applicator if it is applied by a competent person acting under
+    the instructions and control of a certified applicator who is available if and when needed, even though such certified applicator is not physically present at the time and place the pesticide is applied.
+
+
+    (f) Defoliant
+
+
+    The term "defoliant" means any substance or mixture of substances intended for causing the
+
+    leaves or foliage to drop from a plant, with or without causing abscission.
+
+
+    (g) Desiccant
+
+
+    The term "desiccant" means any substance or mixture of substances intended for artificially accelerating the drying of plant tissue.
+
+
+    (h) Device
+
+
+    The term "device" means any instrument or contrivance (other than a firearm) which is intended for trapping, destroying, repelling, or mitigating any pest or any other form of plant or animal life (other
+    than man and other than bacteria, virus, or other microorganism on or in living man or other living animals); but not including equipment used for the application of pesticides when sold separately
+    therefrom.
+
+
+    (i) District court
+
+
+    The term "district court" means a United States district court, the District Court of Guam, the District Court of the Virgin Islands, and the highest court of American Samoa.
+
+
+    (j) Environment
+
+
+    The term "environment" includes water, air, land, and all plants and man and other animals living therein, and the interrelationships which exist among these.
+
+
+    (k) Fungus
+
+
+    The term "fungus" means any non-chlorophyll-bearing thallophyte (that is, any non-chlorophyll-bearing plant of a lower order than mosses and liverworts), as for example, rust, smut, mildew, mold, yeast,
+    and bacteria, except those on or in living man or other animals and those on or in processed food, beverages, or pharmaceuticals.
+
+
+    (l) Imminent hazard
+
+
+    The term "imminent hazard" means a situation which exists when the continued use of a pesticide during the time required for cancellation proceeding would be likely to result in unreasonable adverse
+    effects on the environment or will involve unreasonable hazard to the survival of a species declared endangered or threatened by the Secretary pursuant to the Endangered Species Act of 1973 [16 U.S.C.
+    1531 et seq.].
+
+
+    (m) Inert ingredient
+
+
+    The term "inert ingredient" means an ingredient which is not active.
+
+
+    (n) Ingredient statement
+
+
+    The term "ingredient statement" means a statement which contains—
+
+
+    (1) the name and percentage of each active ingredient, and the total percentage of all inert ingredients, in the pesticide; and
+
+
+    (2) if the pesticide contains arsenic in any form, a statement of the percentages of total and water soluble arsenic, calculated as elementary arsenic.
+
+
+    (o) Insect
+
+
+    The term "insect" means any of the numerous small invertebrate animals generally having the body more or less obviously segmented, for the most part belonging to the class insecta, comprising six-legged,
+    usually winged forms, as for example, beetles, bugs, bees, flies, and to other allied classes of arthropods whose members are wingless and usually have more than six legs, as for example, spiders, mites,
+    ticks, centipedes, and wood lice.
+
+
+    (p) Label and labeling
+
+
+    (1) Label
+
+
+    The term "label" means the written, printed, or graphic matter on, or attached to, the pesticide or device or any of its containers or wrappers.
+
+
+    (2) Labeling
+
+
+    The term "labeling" means all labels and all other written, printed, or graphic matter—
+
+
+    (A) accompanying the pesticide or device at any time; or
+
+
+    (B) to which reference is made on the label or in literature accompanying the pesticide or device, except to current official publications of the Environmental Protection Agency, the United States Departments
+    of Agriculture and Interior, the Department of Health and Human Services, State experiment stations, State agricultural colleges, and other similar Federal or State institutions or agencies authorized
+    by law to conduct research in the field of pesticides.
+
+
+    (q) Misbranded
+
+
+    (1) A pesticide is misbranded if—
+
+
+    (A) its labeling bears any statement, design, or graphic representation relative thereto or to its ingredients which is false or misleading in any particular;
+
+
+    (B) it is contained in a package or other container or wrapping which does not conform to the standards established by the Administrator pursuant to section 136w(c)(3) of this title;
+
+
+    (C) it is an imitation of, or is offered for sale under the name of, another pesticide;
+
+
+    (D) its label does not bear the registration number assigned under section 136e of this title to each establishment in which it was produced;
+
+
+    (E) any word, statement, or other information required by or under authority of this subchapter to appear on the label or labeling is not prominently placed thereon with such conspicuousness (as compared
+    with other words, statements, designs, or graphic matter in the labeling) and in such terms as to render it likely to be read and understood by the ordinary individual under customary conditions of
+    purchase and use;
+
+
+    (F) the labeling accompanying it does not contain directions for use which are necessary for effecting the purpose for which the product is intended and if complied with, together with any requirements
+    imposed under section 136a(d) of this title, are adequate to protect health and the environment;
+
+
+    (G) the label does not contain a warning or caution statement which may be necessary and if complied with, together with any requirements imposed under section 136a(d) of this title, is adequate to
+    protect health and the environment; or
+
+
+    (H) in the case of a pesticide not registered in accordance with section 136a of this title
+
+    and intended for export, the label does not contain, in words prominently placed thereon with such conspicuousness (as compared with other words, statements, designs, or graphic matter in the labeling)
+    as to render it likely to be noted by the ordinary individual under customary conditions of purchase and use, the following: "Not Registered for Use in the United States of America".
+
+
+    (2) A pesticide is misbranded if—
+
+
+    (A) the label does not bear an ingredient statement on that part of the immediate container (and on the outside container or wrapper of the retail package, if there be one, through which the ingredient
+    statement on the immediate container cannot be clearly read) which is presented or displayed under customary conditions of purchase, except that a pesticide is not misbranded under this subparagraph
+    if—
+
+
+    (i) the size or form of the immediate container, or the outside container or wrapper of the retail package, makes it impracticable to place the ingredient statement on the part which is presented or
+    displayed under customary conditions of purchase; and
+
+
+    (ii) the ingredient statement appears prominently on another part of the immediate container, or outside container or wrapper, permitted by the Administrator;
+
+
+    (B) the labeling does not contain a statement of the use classification under which the product is registered;
+
+
+    (C) there is not affixed to its container, and to the outside container or wrapper of the retail package, if there be one, through which the required information on the immediate container cannot be
+    clearly read, a label bearing—
+
+
+    (i) the name and address of the producer, registrant, or person for whom produced;
+
+
+    (ii) the name, brand, or trademark under which the pesticide is sold;
+
+
+    (iii) the net weight or measure of the content, except that the Administrator may permit reasonable variations; and
+
+
+    (iv) when required by regulation of the Administrator to effectuate the purposes of this subchapter, the registration number assigned to the pesticide under this subchapter, and the use classification;
+    and
+
+
+    (D) the pesticide contains any substance or substances in quantities highly toxic to man, unless the label shall bear, in addition to any other matter required by this subchapter—
+
+
+    (i) the skull and crossbones;
+
+
+    (ii) the word "poison" prominently in red on a background of distinctly contrasting color; and
+
+
+    (iii) a statement of a practical treatment (first aid or otherwise) in case of poisoning by the pesticide.
+
+
+    (r) Nematode
+
+
+    The term "nematode" means invertebrate animals of the phylum nemathelminthes and class nematoda, that is, unsegmented round worms with elongated, fusiform, or saclike bodies covered with cuticle, and
+    inhabiting soil, water, plants, or plant parts; may also be called nemas or eelworms.
+
+
+    (s) Person
+
+
+    The term "person" means any individual, partnership, association, corporation, or any organized group of persons whether incorporated or not.
+
+
+    (t) Pest
+
+
+    The term "pest" means (1) any insect, rodent, nematode, fungus, weed, or (2) any other form of terrestrial or aquatic plant or animal life or virus, bacteria, or other micro-organism (except viruses,
+    bacteria, or other micro-organisms on or in living man or other living animals) which the A'
+- id: art-17
+  title: Section 321 of title 21, referred to in subsec. (u), was subsequently amended, and subsecs. (w) and (x) of section 321 no longer define the terms "new animal drug" and "animal feed", respectively.
+    How
+  text: Section 321 of title 21, referred to in subsec. (u), was subsequently amended, and subsecs. (w) and (x) of section 321 no longer define the terms "new animal drug" and "animal feed", respectively.
+    However, such terms are defined elsewhere in that section.
+- id: art-18
+  title: Section 27(b) of Federal Pesticide Act of 1978, referred to in subsec. (ee), is section 27(b) of Pub. L. 95–396, Sept. 30, 1978, 92 Stat. 841, which was formerly set out as a note under section
+    136w–4
+  text: 'Section 27(b) of Federal Pesticide Act of 1978, referred to in subsec. (ee), is section 27(b) of Pub. L. 95–396, Sept. 30, 1978, 92 Stat. 841, which was formerly set out as a note under section
+    136w–4 of this title.
+
+
+    Prior Provisions
+
+
+    A prior section 2 of act June 25, 1947, was classified to section 135 of this title prior to amendment of act June 25, 1947, by Pub. L. 92–516.
+
+
+    Amendments
+
+
+    1996
+
+    —Subsec. (a)(1). Pub. L. 104–170, §105(a)(1)(A), substituted "defoliant, desiccant, or nitrogen stabilizer" for "defoliant, or desiccant".
+
+
+    Subsec. (a)(5). Pub. L. 104–170, §105(a)(1)(B)–(D), added par. (5).
+
+
+    Subsec. (u). Pub. L. 104–170, §§105(a)(2), 221(1), struck out "and" before "(2)", inserted "and (3) any nitrogen stabilizer," after "desiccant,", and inserted at end "The term ''pesticide'' does not
+    include liquid chemical sterilant products (including any sterilant or subordinate disinfectant claims on such products) for use on a critical or semi-critical device, as defined in section 321 of title
+    21. For purposes of the preceding sentence, the term ''critical device'' includes any device which is introduced directly into the human body, either into or in contact with the bloodstream or normally
+    sterile areas of the body and the term ''semi-critical device'' includes any device which contacts intact mucous membranes but which does not ordinarily penetrate the blood barrier or otherwise enter
+    normally sterile areas of the body."
+
+
+    Subsec. (bb). Pub. L. 104–170, §304, which directed amendment of section 2(bb) by inserting "(1)" after "means" and adding cl. (2), without specifying the Act being amended, was executed to this subsection,
+    which is section 2(bb) of the Federal Insecticide, Fungicide, and Rodenticide Act, to reflect the probable intent of Congress.
+
+
+    Pub. L. 104–170, §230(a), inserted at end "The Administrator shall consider the risks and benefits of public health pesticides separate from the risks and benefits of other pesticides. In weighing any
+    regulatory action concerning a public health pesticide under this subchapter, the Administrator shall weigh any risks of the pesticide against the health risks such as the diseases transmitted by the
+    vector to be controlled by the pesticide."
+
+
+    Subsec. (hh). Pub. L. 104–170, §105(a)(3), added subsec. (hh).
+
+
+    Subsecs. (jj), (kk). Pub. L. 104–170, §120, added subsecs. (jj) and (kk).
+
+
+    Subsec. (ll). Pub. L. 104–170, §210(a), added subsec. (ll).
+
+
+    Subsec. (mm). Pub. L. 104–170, §221(2), added subsec. (mm).
+
+
+    Subsecs. (nn), (oo). Pub. L. 104–170, §230(b), added subsecs. (nn) and (oo).
+
+
+    1991
+
+    —Subsec. (e)(1). Pub. L. 102–237, §1006(a)(1), substituted "section 136i" for "section 136b" and "uses dilutions" for "use dilutions" and made technical amendment to reference to subsection (ee) of
+    this section involving corresponding provision of original act.
+
+
+    Subsec. (e)(2). Pub. L. 102–237, §1006(b)(3)(A), substituted "the applicator or the applicator''s" for "him or his".
+
+
+    Subsec. (e)(3). Pub. L. 102–237, §1006(b)(3)(B), substituted "the applicator" for "he".
+
+
+    Subsec. (q)(2)(A)(i). Pub. L. 102–237, §1006(a)(2), substituted "size or form" for "size of form".
+
+
+    1988
+
+    —Subsec. (c). Pub. L. 100–532, §801(a)(1), substituted "if—" for "if:".
+
+
+    Subsec. (p)(2)(B). Pub. L. 100–532, §801(a)(2), substituted "Health and Human Services" for "Health, Education, and Welfare".
+
+
+    Subsec. (q)(2)(A). Pub. L. 100–532, §801(a)(3), substituted "if—" for "if:".
+
+
+    Subsec. (q)(2)(C)(iii). Pub. L. 100–532, §801(a)(4), substituted ", except that" for ":
+
+    Provided
+
+    , That".
+
+
+    Subsec. (u). Pub. L. 100–532, §801(a)(5), substituted ", except that" for ":
+
+    Provided
+
+    , That", struck out "(1)(a)" after "include any article" and "or (b)" after "section 321(w) of title 21,", and substituted "Health and Human Services" for "Health, Education, and Welfare", "or that
+    is" for "or (2) that is", and "a new animal drug" for "an article covered by clause (1) of this proviso".
+
+
+    Subsec. (ee). Pub. L. 100–532, §§601(a)(1), 801(a)(6), substituted ", except that" for ":
+
+    Provided
+
+    , That", inserted "unless the labeling specifically prohibits deviation from the specified dosage, concentration, or frequency" and "unless the labeling specifically states that the product may be applied
+    only by the methods specified on the labeling", substituted "labeling, (4) mixing" for "labeling, or (4) mixing", ", (5)" for ":
+
+    Provided further
+
+    , That the term also shall not include", "or (6) any use" for "or any use", and ". After" for ":
+
+    And provided further
+
+    , That after".
+
+
+    Subsec. (ff). Pub. L. 100–532, §101, added subsec. (ff).
+
+
+    Subsec. (gg). Pub. L. 100–532, §601(a)(2), added subsec. (gg).
+
+
+    1978
+
+    —Subsec. (e)(1). Pub. L. 95–396, §1(1), inserted provision deeming an applicator not a seller or distributor of pesticides when providing a service of controlling pests.
+
+
+    Subsec. (e)(3). Pub. L. 95–396, §1(2), substituted "an applicator" for "a certified applicator".
+
+
+    Subsec. (q)(1)(H). Pub. L. 95–396, §1(3), added subpar. (H).
+
+
+    Subsec. (w). Pub. L. 95–396, §1(4), (5), amended definition of "producer" and "produce" to include reference to active ingredient used in producing a pesticide and inserted provision that an individual
+    did not become a producer when there was dilution of a pesticide for personal use according to directions on registered labels.
+
+
+    Subsec. (dd). Pub. L. 95–396, §1(6), inserted "or active ingredient used in producing a pesticide".
+
+
+    Subsec. (ee). Pub. L. 95–396, §1(7), added subsec. (ee).
+
+
+    1975
+
+    —Subsec. (u). Pub. L. 94–140 inserted proviso which excluded from term "pesticide" any article designated as "new animal drug" and any article denominated as animal feed.
+
+
+    1973
+
+    —Subsec. (l). Pub. L. 93–205 substituted "or threatened by the Secretary pursuant to the Endangered Species Act of 1973" for "by the Secretary of the Interior under Public Law 91–135".
+
+
+    Statutory Notes and Related Subsidiaries
+
+
+    Effective Date of 1988 Amendment
+
+
+    Pub. L. 100–532, title IX, §901, Oct. 25, 1988, 102 Stat. 2688, provided that: "Except as otherwise provided in this Act, the amendments made by this Act [see Short Title of 1988 Amendment note below]
+    shall take effect on the expiration of 60 days after the date of enactment of this Act [Oct. 25, 1988]."
+
+
+    Effective Date of 1973 Amendment
+
+
+    Amendment by Pub. L. 93–205 effective Dec. 28, 1973, see section 16 of Pub. L. 93–205, set out as an Effective Date note under section 1531 of Title 16, Conservation.
+
+
+    Effective Date
+
+
+    Pub. L. 92–516, §4, Oct. 21, 1972, 86 Stat. 998, as amended by Pub. L. 94–140, §4, Nov. 28, 1975, 89 Stat. 752; Pub. L. 95–396, §28, Sept. 30, 1978, 92 Stat. 842, provided that:
+
+
+    "(a) Except as otherwise provided in the Federal Insecticide, Fungicide, and Rodenticide Act [this subchapter], as amended by this Act and as otherwise provided by this section, the amendments made
+    by this Act [see Short Title note set out below] shall take effect at the close of the date of the enactment of this Act [Oct. 21, 1972], provided if regulations are necessary for the implementation
+    of any provision that becomes effective on the date of enactment, such regulations shall be promulgated and shall become effective within 90 days from the date of enactment of this Act.
+
+
+    "(b) The provisions of the Federal Insecticide, Fungicide, and Rodenticide Act [this subchapter] and the regulations thereunder as such existed prior to the enactment of this Act shall remain in effect
+    until superseded by the amendments made by this Act and regulations thereunder.
+
+
+    "(c)(1) Two years after the enactment of this Act the Administrator shall have promulgated regulations providing for the registration and classification of pesticides under the provisions of this Act
+    and thereafter shall register all new applications under such provisions.
+
+
+    "(2) Any requirements that a pesticide be registered for use only by a certified applicator shall not be effective until five years from the date of enactment of this Act.
+
+
+    "(3) A period of five years from date of enactment shall be provided for certification of applicators.
+
+
+    "(A) One year after the enactment of this Act the Administrator shall have prescribed the standards for the certification of applicators.
+
+
+    "(B) Each State desiring to certify applicators shall submit a State plan to the Administrator for the purpose provided by section 4(b).
+
+
+    "(C) As promptly as possible but in no event more than one year after submission of a State plan, the Administrator shall approve the State plan or disapprove it and indicate the reasons for disapproval.
+    Consideration of plans resubmitted by States shall be expedited.
+
+
+    "(4) One year after the enactment of this Act the Administrator shall have promulgated and shall make effective regulations relating to the registration of establishments, permits for experimental use,
+    and the keeping of books and records under the provisions of this Act.
+
+
+    "(d) No person shall be subject to any criminal or civil penalty imposed by the Federal Insecticide, Fungicide, and Rodenticide Act, as amended by this Act, for any act (or failure to act) occurring
+    before the expiration of 60 days after the Administrator has published effective regulations in the Federal Register and taken such other action as may be necessary to permit compliance with the provisions
+    under which the penalty is to be imposed.
+
+
+    "(e) For purposes of determining any criminal or civil penalty or liability to any third person in respect of any act or omission occurring before the expiration of the periods referred to in this section,
+    the Federal Insecticide, Fungicide, and Rodenticide Act shall be treated as continuing in effect as if this Act had not been enacted."
+
+
+    Short Title of 2022 Amendment
+
+
+    Pub. L. 117–328, div. HH, title VI, §701, Dec. 29, 2022, 136 Stat. 5996, provided that: "This title [amending sections 136a, 136a–1, and 136w–8 of this title and section 346a of Title 21, Food and Drugs,
+    and enacting provisions set out as notes under sections 136a, 136a–1, and 136w of this title] may be cited as the ''Pesticide Registration Improvement Act of 2022''."
+
+
+    Short Title of 2019 Amendment
+
+
+    Pub. L. 116–8, §1(a), Mar. 8, 2019, 133 Stat. 484, provided that: "This Act [amending sections 136a–1, 136c, and 136w–8 of this title and section 346a of Title 21, Food and Drugs, and enacting provisions
+    set out as a note under section 136w of this title] may be cited as the ''Pesticide Registration Improvement Extension Act of 2018''."
+
+
+    Short Title of 2012 Amendment
+
+
+    Pub. L. 112–177, §1, Sept. 28, 2012, 126 Stat. 1327, provided that: "This Act [amending sections 136a–1 and 136w–8 of this title and section 346a of Title 21, Food and Drugs, and enacting provisions
+    set out as notes under section 136a–1 of this title] may be cited as the ''Pesticide Registration Improvement Extension Act of 2012''."
+
+
+    Short Title of 2007 Amendment
+
+
+    Pub. L. 110–94, §1, Oct. 9, 2007, 121 Stat. 1000, provided that: "This Act [amending sections 136a, 136a–1, and 136w–8 of this title and section 346a of Title 21, Food and Drugs, and enacting provisions
+    set out as a note under section 136a of this title] may be cited as the ''Pesticide Registration Improvement Renewal Act''."
+
+
+    Short Title of 2004 Amendment
+
+
+    Pub. L. 108–199, div. G, title V, §501(a), Jan. 23, 2004, 118 Stat. 419, provided that: "This section [enacting section 136w–8 of this title, amending sections 136a, 136a–1, 136x, and 136y of this title,
+    and enacting provisions set out as notes under section 136a of this title and section 346a of Title 21, Food and Drugs] may be cited as the ''Pesticide Registration Improvement Act of 2003''."
+
+
+    Short Title of 1996 Amendment
+
+
+    Pub. L. 104–170, §1, Aug. 3, 1996, 110 Stat. 1489, provided that: "This Act [enacting sections 136i–2, 136r–1, and 136w–5 to 136w–7 of this title, amending this section, sections 136a, 136a–1, 136d,
+    136q, 136s, 136w, 136w–3, 136x, and 136y of this title, and sections 321, 331, 333, 342, and 346a of Title 21, Food and Drugs, and enacting provisions set out as notes under section 136i–2 of this title
+    and sections 301 and '
+- id: art-19
+  title: §136a. Registration of pesticides
+  text: '§136a. Registration of pesticides
+
+
+    (a) Requirement of registration
+
+
+    Except as provided by this subchapter, no person in any State may distribute or sell to any person any pesticide that is not registered under this subchapter. To the extent necessary to prevent unreasonable
+    adverse effects on the environment, the Administrator may by regulation limit the distribution, sale, or use in any State of any pesticide that is not registered under this subchapter and that is not
+    the subject of an experimental use permit under section 136c of this title or an emergency exemption under section 136p of this title.
+
+
+    (b) Exemptions
+
+
+    A pesticide which is not registered with the Administrator may be transferred if—
+
+
+    (1) the transfer is from one registered establishment to another registered establishment operated by the same producer solely for packaging at the second establishment or for use as a constituent part
+    of another pesticide produced at the second establishment; or
+
+
+    (2) the transfer is pursuant to and in accordance with the requirements of an experimental use permit.
+
+
+    (c) Procedure for registration
+
+
+    (1) Statement required
+
+
+    Each applicant for registration of a pesticide shall file with the Administrator a statement which includes—
+
+
+    (A) the name and address of the applicant and of any other person whose name will appear on the labeling;
+
+
+    (B) the name of the pesticide;
+
+
+    (C) a complete copy of the labeling of the pesticide, a statement of all claims to be made for it, and any directions for its use;
+
+
+    (D) the complete formula of the pesticide;
+
+
+    (E) a request that the pesticide be classified for general use or for restricted use, or for both; and
+
+
+    (F) except as otherwise provided in paragraph (2)(D), if requested by the Administrator, a full description of the tests made and the results thereof upon which the claims are based, or alternatively
+    a citation to data that appear in the public literature or that previously had been submitted to the Administrator and that the Administrator may consider in accordance with the following provisions:
+
+
+    (i) With respect to pesticides containing active ingredients that are initially registered under this subchapter after September 30, 1978, data submitted to support the application for the original
+    registration of the pesticide, or an application for an amendment adding any new use to the registration and that pertains solely to such new use, shall not, without the written permission of the original
+    data submitter, be considered by the Administrator to support an application by another person during a period of ten years following the date the Administrator first registers the pesticide, except
+    that such permission shall not be required in the case of defensive data.
+
+
+    (ii) The period of exclusive data use provided under clause (i) shall be extended 1 additional year for each 3 minor uses registered after August 3, 1996, and within 7 years of the commencement of the
+    exclusive use period, up to a total of 3 additional years for all minor uses registered by the Administrator if the Administrator, in consultation with the Secretary of Agriculture, determines that,
+    based on information provided by an applicant for registration o'
 doc_files:
 - us/raw/US_Code_title_7_chapter_6_HTML_govinfo.html
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US_Code_title_7_chapter_6_HTML_govinfo.html (html, 630711 chars)，生成 10 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US_Code_title_7_chapter_6_HTML_govinfo.html (html, 630711 chars)，生成 10 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US_Code_title_7_chapter_6_HTML_govinfo.html (html, 630702 chars)，生成 19 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

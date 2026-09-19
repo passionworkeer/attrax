@@ -9,12 +9,673 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: Kingdom of Saudi Arabia
+  text: 'Kingdom of Saudi Arabia
+
+    Personal Data Protection
+
+    Law Series
+
+    Part 1 - Summary of the Personal Data Protection Law
+
+    Introduction
+
+    This “Kingdom of Saudi Arabia Personal Data Protection Law Series” addresses the following
+
+    three aspects:
+
+    Part 1: A summary of the Part 2: A summary of the Part 3: A step-by-step guide
+
+    Personal Data Protection Implementing Regulation to personal data transfers
+
+    Law (“PDPL”) of the PDPL outside of the Kingdom of
+
+    (“Implementing Saudi Arabia, based on the
+
+    Regulation”) Regulation on Personal Data
+
+    Transfer outside the Kingdom
+
+    (“Data Transfer
+
+    Regulation”)1
+
+    On 14 September 2023, the PDPL came into force in the
+
+    Kingdom of Saudi Arabia (“KSA”). The PDPL is the main law in
+
+    KSA regulating the use of personal data. From 14 September
+
+    2023, entities have one year to achieve compliance with the
+
+    PDPL and Regulations, which will all become fully enforceable
+
+    from 14 September 2024.
+
+    All public and private entities must comply with the PDPL
+
+    and Regulations.
+
+    The Saudi Authority for Data and Artificial Intelligence
+
+    (“SDAIA”) is the Competent Authority that shall supervise the
+
+    implementation of the PDPL and Regulations. The Competent
+
+    Authority may request documents or information from entities
+
+    to check their compliance.
+
+    The PDPL provides fines (up to SAR 5,000,000) for breach of
+
+    its provisions and provisions of Regulations. The competent
+
+    court may double the amount of the fine for data breaches in
+
+    case of repetitive violations. The PDPL also provides for
+
+    imprisonment (up to two years) for disclosure or publication of
+
+    sensitive data (done in violation of the PDPL) with the intention
+
+    to harm an individual or to achieve personal gain.
+
+    In this part 1 of our series, we look at the core concepts
+
+    of the PDPL and what these will mean for the entities
+
+    doing business in the KSA.
+
+    1 In our series we refer jointly to Implementing Regulation and to Data Transfer
+
+    Regulation as “Regulations”.
+
+    PwC | KSA Personal Data Protection Law Series 2
+
+    Scope of the Personal Data Protection
+
+    Law (“PDPL”)
+
+    A. What does the PDPL regulate?
+
+    The PDPL regulates processing2 of personal data. The scope of the PDPL includes:
+
+    processing of personal data of processing of personal data processing of personal data in
+
+    any type (e.g., contact from any source (e.g., provided any form (e.g., electronic or
+
+    information, health data, credit by individuals directly to the paper, structured or
+
+    data, etc.) entity or obtained by the entity unstructured, etc.)
+
+    from other sources, etc.)
+
+    01 02 03
+
+    Personal Data Sensitive Data
+
+    The personal data is defined in the PDPL as The PDPL provides for a separate subset of
+
+    follows3: any data, regardless of its source or personal data – “sensitive data”. It includes
+
+    form, that may lead to identifying an individual personal data revealing racial or ethnic origin, or
+
+    specifically, or that may directly or indirectly religious, intellectual or political belief, security
+
+    make it possible to identify an individual, data, data relating to criminal offenses, biometric
+
+    including name, personal identification number, or genetic data, health data, and data that
+
+    addresses, contact numbers, licence numbers, indicates that one or both of the individual’s
+
+    records, personal assets, bank and credit card parents are unknown.
+
+    numbers, photos and videos of an individual, The PDPL provides for additional requirements
+
+    and any other data of personal nature. and restrictions to processing sensitive data. For
+
+    Therefore, any data based on which it is example:
+
+    possible to identify an individual shall be • it is not allowed to rely on a lawful basis of
+
+    considered as personal data under the PDPL. “legitimate interest” when processing
+
+    Examples: sensitive data4;
+
+    • it is forbidden to use sensitive data for
+
+    an individual’s telephone bank
+
+    marketing purposes5.
+
+    name number account number
+
+    If it is impossible to identify a particular
+
+    individual from the data in question, then
+
+    such data is not personal data and its use is
+
+    not regulated by the PDPL. For instance,'
+- id: art-2
+  title: anonymised data, sales figures, data about
+  text: 'anonymised data, sales figures, data about
+
+    the number of overall visits on a web page.
+
+    Please note that unlike many other data protection laws, the PDPL also regulates
+
+    processing of data of deceased persons if such data allows the identification of the
+
+    deceased person or their family members.
+
+    2 “Processing” means any kind of use of personal data.
+
+    3 Article 1 (4) of the PDPL.
+
+    4 Art. 6 (4) of the PDPL.
+
+    5 Art. 26 of the PDPL.
+
+    .
+
+    PwC | KSA Personal Data Protection Law Series 3
+
+    B. Where does the PDPL apply?
+
+    The PDPL applies to the following processing of personal data by any means (manual or
+
+    automated):
+
+    In the KSA Outside the KSA
+
+    Any processing of personal data that takes The processing of KSA residents’ personal
+
+    place in the KSA, which means that the PDPL data outside the KSA, which means that the
+
+    applies to processing of personal data on all PDPL has extraterritorial application in relation
+
+    territory on which the Kingdom has its to KSA residents (this may include Saudi
+
+    authority, including the geographical territory of citizens and other individuals who stay in the
+
+    the Kingdom and its embassies in foreign KSA permanently or temporary)
+
+    jurisdictions
+
+    01 02
+
+    PwC | KSA Personal Data Protection Law Series 4
+
+    Roles and obligations of an entity under
+
+    the PDPL
+
+    A. What are the roles that an entity can assume under the PDPL?
+
+    The PDPL provides for two roles for an entity in respect of the processing of personal data – a
+
+    Controller and a Processor.
+
+    A Controller is an entity that makes decisions A Processor is an entity that processes
+
+    about the purposes and ways of the processing personal data on behalf of a Controller. As
+
+    of personal data. The Controller is ultimately opposed to the Controller, the Processor does
+
+    responsible for the processing under the not make decisions about the purposes and
+
+    PDPL. ways of personal data processing and instead
+
+    takes direction from the Controller.
+
+    PwC | KSA Personal Data Protection Law Series 5
+
+    B. What are the key obligations of a Controller?
+
+    • To define the purpose of the processing of personal data.
+
+    • To ensure that there is a suitable lawful basis for the processing of personal data (e.g., consent,
+
+    legal obligation, legitimate interest, etc.).
+
+    • To ensure that personal data is processed pursuant to the principles of personal data processing
+
+    (for example storage limitation, see further Principles of personal data processing).
+
+    • To notify data subjects6 on how their personal data is processed (for example, via a privacy
+
+    notice).
+
+    • To enable data subjects to exercise their rights under the PDPL.
+
+    • To maintain records of processing activities register (“RoPA”) for all processing of personal data
+
+    across the entity.
+
+    • To conduct impact assessments of personal data processing (for example, Data Protection
+
+    Impact Assessment; Data Transfer Impact Assessment or Legitimate Interest Assessment).
+
+    • To ensure lawful cross-border transfers of personal data outside the KSA.
+
+    • To implement all the necessary organisational, administrative and technical measures to protect
+
+    personal data.
+
+    • To cooperate only with those Processors that provide necessary guarantees to implement the
+
+    provisions of the PDPL and the Regulations, to enter into data processing agreements with
+
+    Processors, and to monitor compliance of Processors with such agreements.
+
+    • To notify any changes in personal data to entities to which the personal data was transferred.
+
+    • To notify the Competent Authority and data subjects of personal data breaches.
+
+    • To appoint a Data Protection Officer, where required by the Implementing Regulation7.
+
+    • To comply with requirements of the PDPL and Implementing Regulation to specific types of
+
+    processing activities, for example:
+
+    – processing of health data and credit data;
+
+    – processing of personal data for sending advertising or awareness-raising materials;
+
+    – processing of personal data for scientific, research, or statistical purposes;
+
+    – disclosure of personal data;'
+- id: art-3
+  title: – copying official documents where data subjects are identif
+  text: '– copying official documents where data subjects are identifiable.
+
+    • To comply with the rules for registration of Controllers in the National Register of Controllers (the
+
+    rules are to be issued by the Competent Authority).
+
+    6 Data subjects are individuals whose personal data is processed.
+
+    7 Art. 32 of the PDPL.
+
+    PwC | KSA Personal Data Protection Law Series 6
+
+    C. What are the key obligations of a Processor?
+
+    • To process personal data for the Controller based on a data processing agreement.
+
+    • To comply with instructions of the Controller regarding the personal data processing.
+
+    • To assist the Controller by implementing appropriate organisational, administrative and technical
+
+    measures to protect personal data that it is processing for the Controller.
+
+    • Before a Processor engages with any sub-processor for the processing, to ensure the following:
+
+    – the contracts with sub-processors will not impact the level of protection provided to the
+
+    personal data being processed;
+
+    – the sub-processors will provide sufficient guarantees to comply with the PDPL and the
+
+    Regulations; and
+
+    – the Processor shall notify the Controller on engaging a sub-processor and the Controller shall
+
+    have the right to object to such engagement within a timeframe agreed upon between the
+
+    Controller and the Processor.
+
+    PwC | KSA Personal Data Protection Law Series 7
+
+    Principles of personal data
+
+    processing
+
+    Although the PDPL does not explicitly list any data protection principles, such principles are
+
+    embedded in the PDPL’s provisions. Understanding these principles helps to understand many of the
+
+    requirements of the PDPL.
+
+    Principle Description of the principle
+
+    Entity must:
+
+    Lawfulness, fairness • ensure that it processes and discloses personal data only after having an
+
+    and transparency appropriate lawful basis for such processing;
+
+    • process personal data only in ways that data subject would reasonably expect;
+
+    • be open and clear towards data subjects when processing personal data.
+
+    Entity must:
+
+    • have a specific purpose for processing the personal data, which must be
+
+    Purpose limitation
+
+    documented in the RoPA;
+
+    • only collect and process personal data to fulfill a legitimate purpose, which is
+
+    specified in the RoPA, and not process personal data beyond such a purpose.
+
+    Data minimisation Entity must only collect and process the minimum amount of personal data that is
+
+    relevant, necessary, and adequate to fulfill the purposes for which it is processed.
+
+    Entity must process personal data no longer than is necessary for the purposes for
+
+    Storage limitation
+
+    which the personal data has been collected, unless processing (storing) for a longer
+
+    time is required by the applicable laws.
+
+    Entity must:
+
+    • take reasonable measures to ensure that personal data is accurate and up to
+
+    Accuracy
+
+    date (for example: it regularly reviews the personal data that it holds);
+
+    • provide an opportunity to individuals to correct and update their personal data,
+
+    where necessary.
+
+    Entity must have in place appropriate technical and organisational measures to
+
+    Integrity and
+
+    ensure security of personal data. Such measures shall protect the confidentiality,
+
+    confidentiality
+
+    integrity and availability of personal data.
+
+    Entity must have appropriate measures and records in place to be able to
+
+    Accountability demonstrate compliance with the PDPL.
+
+    PwC | KSA Personal Data Protection Law Series 8
+
+    Lawful bases for personal data
+
+    processing
+
+    The Controller must ensure that it processes personal data only if having an appropriate lawful basis
+
+    (ground) for such processing. The PDPL provides for several sets of lawful bases that should be
+
+    used depending on particular circumstances of processing.
+
+    General lawful bases Lawful bases for (i) collection of personal
+
+    (Art. 5 and Art. 6 of the PDPL) data from a source other than the data
+
+    subject and for (ii) processing personal data
+
+    for purposes other than the ones for which
+
+    the personal data was initially collected
+
+    (Art. 10 of the PDPL)'
+- id: art-4
+  title: '• Consent – data subject has given consent • Consent – data '
+  text: '• Consent – data subject has given consent • Consent – data subject has given consent
+
+    to the processing of his or her personal data. to the processing of his or her personal data.
+
+    • Actual interests – processing serves actual • Publicly available data – personal data is
+
+    interests of the data subject, but publicly available or collected from a publicly
+
+    communicating with the data subject is available source.
+
+    impossible or difficult. • Public interest or security purposes – the
+
+    • Contract – processing is pursuant to the Controller is a public entity and processing of
+
+    implementation of a previous agreement to personal data is required for public interest
+
+    which the data subject is a party. or security purposes, or to implement
+
+    • Legal obligation – processing is required another law, or to fulfill judicial requirements.
+
+    and regulated by another law. • Vital interests – if not collecting or
+
+    • Public interest – if the Controller is a public processing of personal data may harm the
+
+    entity and the processing is required for data subject or affect their vital interests.
+
+    security purposes or to satisfy judicial • Public health and safety – personal data
+
+    requirements. collection or processing is necessary to
+
+    • Legitimate interest – processing is protect public health, public safety, or to
+
+    necessary for the purpose of legitimate protect the life or health of specific
+
+    interest of the Controller, provided that no individuals.
+
+    sensitive data is to be processed. • Anonymised data – personal data is not to
+
+    be recorded or stored in a form that makes it
+
+    possible to identify the data subject directly
+
+    or indirectly.
+
+    • Legitimate interest – processing is
+
+    necessary for the purpose of legitimate
+
+    interest of the Controller, provided that no
+
+    sensitive data is to be processed.
+
+    PwC | KSA Personal Data Protection Law Series 9
+
+    Lawful bases for disclosure of personal
+
+    data
+
+    In addition to having a lawful basis for processing, a separate lawful basis is required when a
+
+    Controller discloses personal data (e.g. disclosure of personal data to another legal entity – including
+
+    within the same group).
+
+    Lawful bases for disclosure8 of personal data
+
+    (Art. 15 of the PDPL)
+
+    • Consent – data subject has given consent to disclosure of his or her personal data.
+
+    • Publicly available data – personal data has been collected from a publicly available source.
+
+    • Public interest or security purposes – the entity requesting disclosure is a public entity, and
+
+    the collection or processing of the personal data is required for public interest or security
+
+    purposes, or to implement another law, to fulfill judicial requirements.
+
+    • Public health and safety – the disclosure is necessary to protect public health, public safety, or
+
+    to protect the lives or health of specific individuals.
+
+    • Anonymised data – the disclosure will only involve subsequent Processing in a form that
+
+    makes it impossible to directly or indirectly identify the data subject.
+
+    • Legitimate interest – the disclosure is necessary to achieve legitimate interests of the
+
+    Controller, without prejudice to the rights and interests of the data subject, and provided that no
+
+    sensitive data is to be processed.
+
+    8 Please note that in any case the Controller must comply with the restrictions on the disclosure, as they are specified in
+
+    Art. 16 of the PDPL.
+
+    PwC | KSA Personal Data Protection Law Series 10
+
+    Rights of data subjects
+
+    The PDPL provides individuals with certain rights regarding processing of their personal data. The
+
+    Controller must enable individuals to effectively exercise all such rights.
+
+    Articles of the
+
+    Data subject right Description of the right
+
+    PDPL
+
+    Right to be informed Data subjects have the right to be informed about the Art. 4 (1)
+
+    01
+
+    lawful basis and the purpose of collection of their
+
+    personal data (for example via a privacy notice).
+
+    Right to access Data subjects have the right to access the personal Art. 4 (2)
+
+    02
+
+    personal data data which is processed by the Controller.'
+- id: art-5
+  title: Right to obtain Data subjects have the right to request thei
+  text: 'Right to obtain Data subjects have the right to request their personal Art. 4 (3)
+
+    03
+
+    personal data data to be provided to them in a readable and clear
+
+    format.
+
+    Right to correct Data subjects can request to have their personal data Art. 4 (4)
+
+    04
+
+    personal data corrected (if inaccurate), completed (if incomplete) or
+
+    updated (if out of date).
+
+    Right to request Data subjects can request destruction of their personal Art. 4 (5)
+
+    05
+
+    destruction of personal data.
+
+    data
+
+    Right to withdraw Data subjects may at any time withdraw their consent Art. 5 (2)
+
+    06
+
+    consent to processing of their personal data.
+
+    Right to submit a Data subjects may submit to the Competent Authority a Art. 34
+
+    07
+
+    complaint to the complaint that may arise out of the implementation of
+
+    Competent Authority the PDPL and the Regulations.
+
+    The Controller shall respond to the requests of the data subject pertaining to their rights under the
+
+    PDPL within a period not exceeding thirty (30) days and without delay. This period may be
+
+    extended by the Controller in case the response requires disproportionate effort, or if the Controller
+
+    receives multiple requests from the data subject, provided that the extension does not exceed an
+
+    additional (30) days and the data subject is notified in advance of the extension with the reasons for
+
+    the delay.
+
+    In order to effectively respond to the above rights, a Controller should have in place, for instance, the
+
+    following:
+
+    • a policy and procedure on responding to the rights of data subjects;
+
+    • a form for raising data subject requests (this could be for various channels);
+
+    • dedicated and trained data privacy team that can effectively respond to the rights of data
+
+    subjects;
+
+    • technology tools that the data privacy team can use to respond to the requests of data subjects.
+
+    PPwwCC || KKSSAA PPeerrssoonnaall DDaattaa PPrrootteeccttiioonn LLaaww SSeerriieess 1111
+
+    Get in Touch
+
+    To discuss how PwC can support you with implementing your data privacy programme, please get in
+
+    touch.
+
+    Phil Mennie
+
+    Partner, Cybersecurity and Digital Trust
+
+    +971 56 369 7736
+
+    phil.mennie@pwc.com
+
+    linkedin.com/in/philmennie @philmennie
+
+    Richard Chudzynski
+
+    PwC Data Privacy Legal Leader
+
+    +971 56 417 6591
+
+    richard.chudzynski@pwc.com
+
+    linkedin.com/in/richardchudzynski
+
+    PPwwCC || KKSSAA PPeerrssoonnaall DDaattaa PPrrootteeccttiioonn LLaaww SSeerriieess 1122
+
+    Thank you
+
+    About PwC
+
+    Established in the Middle East for 40 years, PwC has 22 offices across 12 countries. As a community of solvers, with
+
+    8,000 people across the region, we bring the right combination of people, technology and expert capabilities from
+
+    Strategy, through Advisory and Consulting to Tax and Assurance Services, to solve the region’s most pressing
+
+    challenges (www.pwc.com/me).
+
+    PwC refers to the PwC network and/or one or more of its member firms, each of which is a separate legal entity. Please
+
+    see www.pwc.com/structure for further details.
+
+    © 2024 PwC. All rights reserved
+
+    PwC | KSA Personal Data Protection Law Series 13'
 doc_files:
 - sa/raw/沙特《个人数据保护法》（PDPL 2021年修订版合规指南）.html
 - sa/raw/沙特《个人数据保护法》（PDPL，Royal Decree M_19_2021）英文分析.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：sa/raw/沙特《个人数据保护法》（PDPL 2021年修订版合规指南）.html (html, 21434 chars)，生成 6 条共 21434 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：sa/raw/沙特《个人数据保护法》（PDPL，Royal Decree M_19_2021）英文分析.pdf (pdf, 18752 chars)，生成 5 条共 18752 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：sa/raw/沙特《个人数据保护法》（PDPL，Royal Decree M_19_2021）英文分析.pdf (pdf, 18752 chars)，生成 5 条共 18752 字符；解析文本未人工复核，引用以官方原件为准。'

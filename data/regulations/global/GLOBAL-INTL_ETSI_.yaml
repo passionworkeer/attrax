@@ -9,11 +9,75 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: Standards - ETSI
+  text: "Standards - ETSI\nSearch for:\nStandards\nExplore the technology standards ETSI creates for a connected world\nAs an officially recognised European Standardisation Organisation, ETSI creates and\
+    \ maintains thousands of standards, technical specifications and other deliverables that are foundational to the development and market success of ICT-enabled products, systems, applications and services.\
+    \ In a hyper-connected global marketplace ETSI standards foster interoperability, cybersecurity and sustainability to benefit technology developers, vendors and end users.\nListen to the standards story!\n\
+    Filter search results \nSEARCH TERM\nSEARCH IN\nTitle \nETSI number \nContent \nVERSION / STATUS\nAll versions\nMajor versions only\nENs, EGs or ESs on Approval \nPublished \nWithdrawn \nHistorical\
+    \ \nFILTER BY Markers\nCurrent \nSuperseded \nFILTER BY / RESET\nPublished from\nPublished to\nSelect Keywords\nSelect Technical Committees\nSelect Standard Types\nSelect Frequencies\nSelect Mandates\n\
+    Select Custom Collection\nHSs cited in OJ\nHSs not yet cited in OJ\nHSs RED cited in OJ\nHSs EMC cited in OJ\nHSs 2016/2102/EU cited in OJ\nDownload All\nExport List\nSort By\nRelevant\nETSI Number\n\
+    Date published\nPopular\nLoading Standards\nLoading More\nSearch Standards\n\t\t\t\t\t\t\tSearch\nPre-defined Collections\nTechnologies\nCybersecurity, privacy and users\nSoftware for standards\nWireless\
+    \ and mobile technologies\nNext generation technologies\nICT infrastructure and operations\nTesting and interoperability\nTransport technologies\nTechnologies for life\nBroadcasting\nArtificial Intelligence\
+    \ and automation\nMost Popular\nMost Recent\nHarmonised Standards\nES/EG on approval\nEN on approval\nPublished last week\nHSs not yet cited in OJ\nHSs RED cited in OJ\nHSs EMC cited in OJ\nHSs 2016/2102/EU\
+    \ cited in OJ\nHSs cited in OJ\nLawful Interception (LI)\nLawful Interception for Mobile\nMobile Communications\nManagement, Orchestration and Charging for 3GPP networks and services\nPublic safety\
+    \ & emergency communications\n5G\nQuality of Service\nArtificial Intelligence\nQuantum Key Distribution (QKD)\nBroadband Wireless Access\nQuantum-Safe Cryptography (QSC)\nBroadcast\nSecure Elements\
+    \ (Smart Cards)\nCertification Authorities and other Trust Service Providers\nSecuring Artificial Intelligence (SAI)\nCodecs\nSecurity algorithms\nConsumer IoT security\nSIM\nConsumer Mobile Device\
+    \ Protection Profile\nCybersecurity\nDigital Signature\nGalileo\nInternet of Things (IoT)\nManagement, Orchestration and Charging for 3GPP networks and services\nArtificial Intelligence\nCybersecurity\n\
+    Software Defined Networks\nAutomation\nOptical networks\nInfrastructure and Operations\nNetwork Slicing\nCommon API Framework\nOperator Platform\nNetwork Federation\nVirtualisation\nTelco Cloud\nMedical\
+    \ devices\nUltra Wide Band\nMobile and Private Mobile Radio\nMobile Communications\nManagement, Orchestration and Charging for 3GPP networks and services\nProgramme making & special events (PMSE)\n\
+    5G\nPublic safety & emergency communications\nAeronautical\nQuality of Service\nArtificial Intelligence\nRadio\nBroadband Satellite Multimedia\nReconfigurable Intelligent Surfaces\nBroadband Wireless\
+    \ Access\nReconfigurable Radio\nBroadcast\nSatellite Communications\nCodecs\nSecure Elements (Smart Cards)\nDigital Enhanced Cordless Telecommunications (DECT)\nSecurity algorithms\nElectro Magnetic\
+    \ Compatibility\nShort Range Devices\nGalileo\nSIM\nLawful Interception for Mobile\nTerahertz (THz)\nMaritime\nTETRA\n5G\nArtificial Intelligence\nAugmented Reality\nautomotive Intelligent Transport\
+    \ Systems (ITS)\nCybersecurity\nIntegrated Sensing and Communications\nInternet of Things (IoT)\nQuantum Key Distribution (QKD)\nQuantum-Safe Cryptography (QSC)\nSatellite Communications\nSecuring Artificial\
+    \ Intelligence (SAI)\nSmart Grids and Meters\nxDSL\nZero touch network & Service Management (ZSM)\nArtificial Intelligence\nBroadband Cable Access\nBroadband Wireless Access\nEnergy efficiency and environmental\
+    \ aspects\nFifth Generation Fixed Network (F5G)\nFixed Radio Links\nFixed-line Access\nHuman Factors (HF) and accessibility\nMulti-access Edge Computing (MEC)"
+- id: art-2
+  title: Network Functions Virtualisation (NFV)
+  text: "Network Functions Virtualisation (NFV)\nOpen Source MANO (OSM)\nQuality of Service\nSmart cities\n5G\nArtificial Intelligence\nTesting languages\nMethodology\nautomotive Intelligent Transport Systems\
+    \ (ITS)\nBroadband Wireless Access\nMaritime\nRail Communications (RT)\nSafety\nGSM-R\nFRMCS\nArtificial Intelligence\neHEALTH\nHuman Factors (HF) and accessibility\nInternet of Things (IoT)\nMedical\
+    \ devices\nPublic safety & emergency communications\nSafety\nSmart Body Area Networks\nSmart cities\nManagement, Orchestration and Charging for 3GPP networks and services\n5G\nBroadcast\nDVB-S/S2/S2X\n\
+    Mobile Communications\nProgramme making & special events (PMSE)\nArtificial Intelligence\nExperiential Networked Intelligence (ENI)\nInternet of Things (IoT)\nPermissioned Distributed Ledgers (PDL)\n\
+    Smart appliances and SAREF\nSmart cities\nSmart Grids and Meters\nSubscribe to alerts for ETSI deliverables\nPlease enter your details below to be informed when a new version of the selected deliverable\
+    \ is publicly available:\nFirstname:\nLastname:\nEmail Address:\n\t\t\t\t\t I agree and accept that my personal data contained in the present form are collected and stored in compliance with the \n\
+    ETSI privacy policy\n to be notified of ETSI deliverables updates. \n\t\t\t\t\t If you have any question about your personal data or wish to exercise your rights of access, \n\t\t\t\t\t rectification\
+    \ and/or erasure, please send an e-mail to \n[email protected]\n.\n\t\tA confirmation e-mail has been sent. Please click on the link in the e-mail to confirm your subscription.\n\t\tThere was a problem\
+    \ with the service and your request cannot be processed. Please try again later.\nUnderstanding standards\nWe publish thousands of freely-available technology standards, specifications and reports every\
+    \ year. Learn about the different types of ETSI publications, and their critical role in ensuring the interoperability, safety, sustainability and regulatory compliance of ICT systems worldwide.\nRead\
+    \ more \nThe standards-making process\nOur world-class technical standards are created through a transparent, consensus-driven process. Find out how ETSI standards are developed, approved and maintained\
+    \ to ensure their enduring value and relevance in a fast-changing European and global technology landscape.\nRead more \nEuropean regulation\nETSI supports European radio regulation by providing harmonised\
+    \ standards and technical guidance.\nOur work enables manufacturers and service providers to access European markets while ensuring compliance.\nThrough collaboration with the EC, EFTA and CEPT/ECC,\
+    \ we help shape spectrum use and regulatory frameworks.\nRead more \nCoordinated Vulnerability Disclosure (CVD)\nETSI’s Coordinated Vulnerability Disclosure (CVD) process provides a secure and transparent\
+    \ way for individuals and organisations to report potential security issues in ETSI standards. Valid reports are triaged and resolved in collaboration with technical groups, with the aim of reaching\
+    \ resolution within 90 days.\nRead more \nOther ways to get ETSI standards\nThe \nNational Standards Organisations\n (NSOs) assist us in the making of European Standards (ENs). You can buy the standards\
+    \ from these NSOs.\nThe National Standardisation Bodies (NSBs) assist us in the making of European Standards (ENs) and European standardisation deliverables in response to Standardisation Requests to\
+    \ support the European legislation or policies, in accordance with the amended Regulation (EU) No 1025/2012.\nThere are international distributors around the world from which you can also obtain ETSI\
+    \ standards:\nCountry \n Company name\nAUSTRALIA\nStandards Australia\nCZECH REPUBLIC\nNormservis\nEN Standard\nJAPAN \nKEC Ogasawara\nKAZAKHSTAN \nRSE\n (Kazakhstan institute for standardization and\
+    \ certification)\nUNITED KINGDOM \nILI\n London Information (SAI Global)\nUNITED STATES \nANSI\n (American National Standards Institute)\nIHS\n (Information Handling Services)\nThomson Reuters\nDiscover\
+    \ ETSI expertise\nExpertise\nStandards development and committees"
+- id: art-3
+  title: Explore how ETSI’s technical and industry groups work togeth
+  text: "Explore how ETSI’s technical and industry groups work together to create standards that drive innovation, enable interoperability, and respond to real-world market needs—discover the collaborative...\n\
+    Read more \nStandards development and committees\nExpertise\nTesting and interoperability\nExplore how ETSI ensures technologies truly work together in real-world conditions through structured testing,\
+    \ interoperability events, and validation activities that strengthen trust, performance, and adoption...\nRead more \nTesting and interoperability\nExpertise\nOpen source software development support\n\
+    Explore how open source software development supports faster, better, and more collaborative standardisation at ETSI.\nRead more \nOpen source software development support\nExpertise\nResearch and innovation\
+    \ support\nETSI offers services to support early-stage research and innovation, helping businesses and organisations drive advancements in emerging technologies and align with evolving industry standards.\n\
+    Read more \nResearch and innovation support\nExpertise\nPolicy affairs\nETSI provides a collaborative platform that supports businesses in understanding and navigating technology policies and regulatory\
+    \ frameworks.\nRead more \nPolicy affairs\nExpertise\nAlgorithms and codes\nDiscover how ETSI manages and delivers codes and security algorithms that underpin trusted communications systems. From encryption\
+    \ technologies to protocol identifiers, access the resources and...\nRead more \nAlgorithms and codes\nStay up to date on the latest ETSI news\nSign up for ETSI newsletter\nVisit us on Social\n© ETSI\
+    \ 2026. All rights reserved\n\t\t\t\tLogin\t\t\t\nUsername or Email Address\nPassword\n Remember Me\nLost Your Password?\n\t\t\t\t\t\tRegister\t\t\t\t\t\nDon't have an account? Register one!\nRegister\
+    \ an Account"
 doc_files:
 - global/raw/INTL_ETSI_标准与服务.html
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/INTL_ETSI_标准与服务.html (html, 9710 chars)，生成 3 条共 9710 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/INTL_ETSI_标准与服务.html (html, 9710 chars)，生成 3 条共 9710 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/INTL_ETSI_标准与服务.html (html, 9710 chars)，生成 3 条共 9710 字符；解析文本未人工复核，引用以官方原件为准。'

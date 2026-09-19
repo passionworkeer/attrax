@@ -9,11 +9,535 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'L_2022322EN.01001501.xml
+
+
+    16.12.2022
+
+
+    EN
+
+
+    Official Journal o'
+  text: 'L_2022322EN.01001501.xml
+
+
+    16.12.2022
+
+
+    EN
+
+
+    Official Journal of the European Union
+
+
+    L 322/15
+
+
+    DIRECTIVE (EU) 2022/2464 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL
+
+
+
+    of 14 December 2022
+
+
+
+    amending Regulation (EU) No 537/2014, Directive 2004/109/EC, Directive 2006/43/EC and Directive 2013/34/EU, as regards corporate sustainability reporting
+
+
+    (Text with EEA relevance)
+
+
+    THE EUROPEAN PARLIAMENT AND THE COUNCIL OF THE EUROPEAN UNION,
+
+
+    Having regard to the Treaty on the Functioning of the European Union, and in particular Articles 50 and 114 thereof,
+
+
+    Having regard to the proposal from the European Commission,
+
+
+    After transmission of the draft legislative act to the national parliaments,
+
+
+    Having regard to the opinion of the European Economic and Social Committee
+
+    (
+
+    1
+
+    )
+
+    ,
+
+
+    Acting in accordance with the ordinary legislative procedure
+
+    (
+
+    2
+
+    )
+
+    ,
+
+
+    Whereas:
+
+
+    (1)
+
+
+    In its communication of 11 December 2019 entitled ‘The European Green Deal’ (the ‘Green Deal’), the European Commission made a commitment to review the provisions concerning non-financial reporting
+    of Directive 2013/34/EU of the European Parliament and of the Council
+
+    (
+
+    3
+
+    )
+
+    . The Green Deal is the new growth strategy of the Union. It aims to transform the Union into a modern, resource-efficient and competitive economy with no net emissions of greenhouse gases (GHG) by
+    2050. It also aims to protect, conserve and enhance the Union''s natural capital, and protect the health and well-being of Union citizens from environment-related risks and impacts. The Green Deal aims
+    to decouple economic growth from resource use, and ensure that all regions and Union citizens participate in a socially just transition to a sustainable economic system whereby no person and no place
+    is left behind. It will contribute to the objective of building an economy that works for the people, strengthening the Union’s social market economy, helping to ensure that it is ready for the future
+    and that it delivers stability, jobs, growth and sustainable investment.
+
+
+    These goals are especially important considering the socio-economic damage caused by the COVID-19 pandemic and the need for a sustainable, inclusive and fair recovery. Regulation (EU) 2021/1119 of the
+    European Parliament and of the Council
+
+    (
+
+    4
+
+    )
+
+    makes the objective of climate neutrality by 2050 binding in the Union. Moreover, in its Communication of 20 May 2020 entitled ‘EU Biodiversity Strategy for 2030: Bringing nature back into our lives’,
+    the Commission commits to ensuring that by 2050 all of the world’s ecosystems are restored, resilient and adequately protected. That strategy aims to put Europe’s biodiversity on a path to recovery
+    by 2030.
+
+
+    (2)
+
+
+    In its Communication of 8 March 2018 entitled ‘Action Plan: Financing Sustainable Growth’ (the ‘Action Plan on Financing Sustainable Growth’), the Commission set out measures to achieve the following
+    objectives: reorient capital flows towards sustainable investment in order to achieve sustainable and inclusive growth, manage financial risks stemming from climate change, resource depletion, environmental
+    degradation and social issues, and foster transparency and long-termism in financial and economic activity. The disclosure by certain categories of undertakings of relevant, comparable and reliable
+    sustainability information is a prerequisite for meeting those objectives. The European Parliament and the Council have adopted a number of legislative acts as part of the implementation of the Action
+    Plan on Financing Sustainable Growth. Regulation (EU) 2019/2088 of the European Parliament and of the Council
+
+    (
+
+    5
+
+    )
+
+    governs how financial market participants and financial advisers are to disclose sustainability information to end investors and asset owners.
+
+
+    Regulation (EU) 2020/852 of the European Parliament and of the Council
+
+    (
+
+    6
+
+    )
+
+    creates a classification system of environmentally sustainable economic activities with the aim of scaling up sustainable investments and combatting greenwashing of financial products that unduly claim
+    to be sustainable. Regulation (EU) 2019/2089 of the European Parliament and of the Council
+
+    (
+
+    7
+
+    )
+
+    , complemented by Commission Delegated Regulations (EU) 2020/1816
+
+    (
+
+    8
+
+    )
+
+    , (EU) 2020/1817
+
+    (
+
+    9
+
+    )
+
+    and (EU) 2020/1818
+
+    (
+
+    10
+
+    )
+
+    , introduces environmental, social and governance (‘ESG’) disclosure requirements for benchmark administrators and minimum standards for the construction of EU Climate Transition Benchmarks and EU Paris-aligned
+    Benchmarks.
+
+
+    Regulation (EU) No 575/2013 of the European Parliament and of the Council
+
+    (
+
+    11
+
+    )
+
+    requires large institutions which have issued securities that are admitted to trading on a regulated market to disclose information on ESG risks from 28 June 2022. The prudential framework for investment
+    firms established by Regulation (EU) 2019/2033 of the European Parliament and of the Council
+
+    (
+
+    12
+
+    )
+
+    and Directive (EU) 2019/2034 of the European Parliament and of the Council
+
+    (
+
+    13
+
+    )
+
+    contains provisions concerning the introduction of an ESG risk dimension in the Supervisory Review and Evaluation Process (‘SREP’) by competent authorities, and contains ESG risk disclosure requirements
+    for investment firms, applicable from 26 December 2022. On 6 July 2021, the Commission also adopted a proposal for a Regulation of the European Parliament and of the Council on European green bonds,
+    following up on the Action Plan on Financing Sustainable Growth.
+
+
+    (3)
+
+
+    In its Communication of 17 June 2019 entitled ‘Guidelines on non-financial reporting: Supplement on reporting climate-related information’ (‘Guidelines on reporting climate-related information’), the
+    Commission highlighted the benefits for companies of reporting on climate-related information particularly by increasing awareness and understanding of climate-related risks and opportunities within
+    the company, diversifying the investor base, creating a lower cost of capital and improving constructive dialogue with all stakeholders. Furthermore, diversity on company boards might have an influence
+    on decision-making, corporate governance and resilience.
+
+
+    (4)
+
+
+    In its conclusions of 5 December 2019 on the deepening of the Capital Markets Union, the Council stressed the importance of reliable, comparable and relevant information on sustainability risks, opportunities
+    and impacts, and called on the Commission to consider the development of a European non-financial reporting standard.
+
+
+    (5)
+
+
+    In its resolution of 29 May 2018 on sustainable finance
+
+    (
+
+    14
+
+    )
+
+    , the European Parliament called for the further development of non-financial reporting requirements in the framework of Directive 2013/34/EU. In its resolution of 17 December 2020 on sustainable corporate
+    governance
+
+    (
+
+    15
+
+    )
+
+    , the European Parliament welcomed the Commission’s commitment to review Directive 2013/34/EU and expressed the need to set up a comprehensive Union framework on non-financial reporting that contains
+    mandatory Union non-financial reporting standards. The European Parliament called for the expansion of the scope of the reporting requirements to additional categories of undertakings and for the introduction
+    of an audit requirement.
+
+
+    (6)
+
+
+    In its resolution of 25 September 2015 entitled ‘Transforming our world: the 2030 Agenda for Sustainable Development’ (the ‘2030 Agenda’) the United Nations (UN) General Assembly adopted a new global
+    sustainable development framework. The 2030 Agenda has at its core the UN Sustainable Development Goals (‘SDGs’) and covers the three dimensions of sustainability: economic, social and environmental.
+    The Commission Communication of 22 November 2016 entitled ‘Next steps for a sustainable European future: European action for sustainability’ linked the SDGs to the Union policy framework to ensure that
+    all Union actions and policy initiatives, both within and outside the Union, take those goals on board at the outset. In its conclusions of 20 June 2017 on ‘A sustainable European future: The EU response
+    to the 2030 Agenda for Sustainable Development’, the Council confirmed the commitment of the Union and its Member States to the implementation of the 2030 Agenda in a full, coherent, comprehensive,
+    integrated and effective manner, in close cooperation with partners and other stakeholders.
+
+
+    (7)
+
+
+    Directive 2014/95/EU of the European Parliament and of the Council
+
+    (
+
+    16
+
+    )
+
+    amended Directive 2013/34/EU as regards disclosure of non-financial information by certain large undertakings and groups. Directive 2014/95/EU introduced a requirement on undertakings to report information
+    on, as a minimum, environmental, social and employee matters, respect for human rights, anti-corruption and bribery matters. With regard to those topics, Directive 2014/95/EU required undertakings to
+    disclose information under the following reporting areas: business model; policies, including due diligence processes; the outcome of those policies; risks and risk management; and key performance indicators
+    relevant to the business.
+
+
+    (8)
+
+
+    Many stakeholders consider the term ‘non-financial’ to be inaccurate, in particular because it implies that the information in question has no financial relevance. Increasingly, however, such information
+    does have financial relevance. Many organisations, initiatives and practitioners in the field of sustainability reporting refer to ‘sustainability information’. It is therefore preferable to use the
+    term ‘sustainability information’ in place of ‘non-financial information’. Directive 2013/34/EU should therefore be amended to take account of that change in terminology.
+
+
+    (9)
+
+
+    If undertakings carried out better sustainability reporting, the ultimate beneficiaries would be individual citizens and savers, including trade unions and workers’ representatives who would be adequately
+    informed and therefore able to better engage in social dialogue. Savers who want to invest sustainably will have the opportunity to do so, while all citizens would benefit from a stable, sustainable
+    and inclusive economic system. To realise such benefits, the sustainability information disclosed in the annual reports of undertakings first has to reach two primary groups of users. The first group
+    of users consists of investors, including asset managers, who want to better understand the risks and opportunities that sustainability issues pose for their investments and the impacts of those investments
+    on people and the environment. The second group of users consists of civil society actors, including non-governmental organisations and social partners, which wish to better hold undertakings to account
+    for their impacts on people and the environment. Other stakeholders might also make use of sustainability information disclosed in annual reports, in particular to foster comparability across and within
+    market sectors.
+
+
+    The business partners of undertakings, including customers, might rely on sustainability information to understand and, where necessary, report on their sustainability risks and impacts throughout their
+    own value chains. Policy makers and environmental agencies can use such information, in particular on an aggregate basis, to monitor environmental and social trends, to contribute to environmental accounts,
+    and to inform public policy. Few individual citizens and consumers directly consult undertakings’ annual reports, but they might use sustainability information indirectly, for example, when considering
+    the advice or opinions of financial advisers or non-governmental organisations. Many investors and asset managers purchase sustainability information from third-party data providers, who collect information
+    from various sources, including public corporate reports.
+
+
+    (10)
+
+
+    The market for sustainability information is rapidly growing, and the role of third-party data providers is gaining in importance given the new obligations that investors and asset managers need to
+    fulfil. With the increased availability of disaggregated data, sustainability information should come at a more reasonable cost. The amendments to Directive 2013/34'
+- id: art-2
+  title: Article 19a(3) and Article 29a(3) of Directive 2013/34/EU exempt all subsidiary undertakings from the obligation to report non-financial information where such undertakings and their subsidiary
+    undert
+  text: 'Article 19a(3) and Article 29a(3) of Directive 2013/34/EU exempt all subsidiary undertakings from the obligation to report non-financial information where such undertakings and their subsidiary
+    undertakings are included in the consolidated management report of their parent undertaking, provided that report includes non-financial information reported pursuant to that Directive. It is necessary,
+    however, to ensure that sustainability information is easily accessible for users, and to ensure that there is transparency as regards which parent undertaking of the exempted subsidiary undertaking
+    is reporting at group level. It is therefore necessary to require those subsidiary undertakings to include in their management report the name and registered office of the parent undertaking that is
+    reporting sustainability information at group level, the weblinks to the consolidated management report of their parent undertaking and a reference in their management report to the fact that they are
+    exempted from sustainability reporting. Member States should be able to require that the parent undertaking publish the consolidated management report in the languages they accept and that the parent
+    undertaking provide any necessary translation in such languages. Such exemption should also apply where the parent undertaking reporting at group level is a third-country undertaking reporting sustainability
+    information in accordance with equivalent sustainability reporting standards.
+
+
+    Directive 2004/109/EC, as amended by this amending Directive, should provide for appropriate mechanisms to determine the equivalence of sustainability reporting standards, and undertakings whose securities
+    are admitted to trading on a regulated market in the Union and undertakings whose securities are not admitted to trading on a regulated market in the Union should be required to report in accordance
+    with the same sustainability reporting standards. In this context, the implementing acts adopted by the Commission pursuant to point (i) of the first subparagraph of Article 23(4) and the fourth subparagraph
+    of Article 23(4) of Directive 2004/109/EC establishing a mechanism for the determination of equivalence of standards should be used to determine whether to exempt subsidiary undertakings of third-country
+    parent undertakings under the regime of Directive 2013/34/EU. Therefore, the subsidiary undertaking should be exempted when the consolidated sustainability reporting is carried out in accordance with
+    the sustainability reporting standards adopted by the Commission pursuant to Article 29b of Directive 2013/34/EU introduced by this amending Directive or in a manner equivalent to those sustainability
+    reporting standards, as determined in accordance with an implementing act on the equivalence of sustainability reporting standards adopted pursuant to the third subparagraph of Article 23(4) of Directive
+    2004/109/EC. Such exemption should not apply to large undertakings whose securities are admitted to trading on a regulated market in the Union for reasons of investor protection, in order to ensure
+    greater transparency as regards such undertakings.
+
+
+    (26)'
+- id: art-3
+  title: Article 23 of Directive 2013/34/EU exempts parent undertakings from the obligation to prepare consolidated financial statements and a consolidated management report where parent undertakings are
+    subsi
+  text: 'Article 23 of Directive 2013/34/EU exempts parent undertakings from the obligation to prepare consolidated financial statements and a consolidated management report where parent undertakings are
+    subsidiary undertakings of another parent undertaking that complies with that obligation. It should be specified, however, that the exemption regime for consolidated financial statements and consolidated
+    management reports operates independently from the exemption regime for consolidated sustainability reporting. An undertaking can therefore be exempted from consolidated financial reporting requirements
+    but not from consolidated sustainability reporting requirements where its ultimate parent undertaking prepares consolidated financial statements and consolidated management reports in accordance with
+    Union law, or in accordance with equivalent requirements if the undertaking is established in a third country, but does not carry out consolidated sustainability reporting in accordance with Union law,
+    or in accordance with equivalent requirements if the undertaking is established in a third country. It is necessary that parent undertakings reporting at group level provide an adequate understanding
+    of the risks for, and impacts of, their subsidiary undertakings, including information on their due diligence processes where appropriate. There might be cases where the differences between the situation
+    of the group and that of its individual subsidiary undertakings, or between the situation of individual subsidiary undertakings in different territories are particularly significant and would, in the
+    absence of additional information about the individual subsidiary undertaking concerned, cause the user of the information to reach a substantially different conclusion about the risks for, or impacts
+    of, the subsidiary undertaking.
+
+
+    (27)
+
+
+    Credit institutions and insurance undertakings play a key role in the transition towards a fully sustainable and inclusive economic and financial system in line with the Green Deal. They can have significant
+    positive and negative impacts via their lending, investment and underwriting activities. Credit institutions and insurance undertakings other than those that are required to comply with Directive 2013/34/EU,
+    including cooperatives and mutual undertakings, should therefore be subject to sustainability reporting requirements, provided that they meet certain size criteria. Users of sustainability information
+    would thus be enabled to assess both the impacts of such credit institutions and insurance undertakings on society and the environment and the risks arising from sustainability matters that such credit
+    institutions and insurance undertakings could face. Directive 2013/34/EU provides for three possible criteria to determine whether an undertaking is to be considered a ‘large undertaking’, namely the
+    balance sheet total, net turnover and the average number of employees during the financial year.
+
+
+    The criterion of net turnover needs to be adapted for credit institutions and for insurance undertakings by referring to the definition of net turnover in Council Directives 86/635/EEC
+
+    (
+
+    19
+
+    )
+
+    and 91/674/EEC
+
+    (
+
+    20
+
+    )
+
+    instead of the general definition laid down in Directive 2013/34/EU. To ensure coherence with the reporting requirements of Directive 86/635/EEC, Member States should be able to choose not to apply
+    sustainability reporting requirements to credit institutions listed in Article 2(5) of Directive 2013/36/EU of the European Parliament and of the Council
+
+    (
+
+    21
+
+    )
+
+    .
+
+
+    (28)
+
+
+    The list of sustainability matters on which undertakings are required to report should be as consistent as possible with the definition of the term ‘sustainability factors’ laid down in Regulation (EU)
+    2019/2088, and should prevent a mismatch between information required by data users and information to be reported by undertakings. That list should also correspond to the needs and expectations of
+    users and undertakings, who often use the terms ‘environmental’, ‘social’ and ‘governance’ as a means of categorising the three main sustainability matters. However, the definition of the term ‘sustainability
+    factors’ laid down in Regulation (EU) 2019/2088 does not explicitly include governance matters. The definition of the term ‘sustainability matters’ in Directive 2013/34/EU as amended by this amending
+    Directive should therefore cover environmental, social and human rights, and governance factors, and incorporate the definition of the term ‘sustainability factors’ laid down in Regulation (EU) 2019/2088.
+    The reporting requirements of Directive 2013/34/EU should be without prejudice to national reporting obligations.
+
+
+    (29)'
+- id: art-4
+  title: Article 19a(1) and Article 29a(1) of Directive 2013/34/EU require reporting not only on information to the extent necessary for an understanding of the undertaking’s development, performance and
+    posit
+  text: 'Article 19a(1) and Article 29a(1) of Directive 2013/34/EU require reporting not only on information to the extent necessary for an understanding of the undertaking’s development, performance and
+    position, but also on information necessary for an understanding of the impact of the undertaking’s activities on environmental, social and employee matters, respect for human rights, anti-corruption
+    and bribery matters. Those Articles therefore require undertakings to report both on the impacts of the activities of the undertaking on people and the environment, and on how sustainability matters
+    affect the undertaking. That is referred to as the double materiality perspective, in which the risks to the undertaking and the impacts of the undertaking each represent one materiality perspective.
+    The fitness check on corporate reporting shows that those two perspectives are often not well understood or applied. It is therefore necessary to clarify that undertakings should consider each materiality
+    perspective in its own right, and should disclose information that is material from both perspectives as well as information that is material from only one perspective.
+
+
+    (30)'
+- id: art-5
+  title: 'Article 19a(1) and Article 29a(1) of Directive 2013/34/EU require undertakings to disclose information about five reporting areas: business model; policies, including due diligence processes implement'
+  text: 'Article 19a(1) and Article 29a(1) of Directive 2013/34/EU require undertakings to disclose information about five reporting areas: business model; policies, including due diligence processes implemented;
+    the outcome of those policies; risks and risk management; and key performance indicators relevant to the business. Article 19a(1) of Directive 2013/34/EU does not contain explicit references to other
+    reporting areas that users of information consider relevant, some of which align with disclosures included in international frameworks, including the recommendations of the Task Force on Climate-related
+    Financial Disclosures. Disclosure requirements should be specified in sufficient detail to ensure that undertakings report information on their resilience in relation to risks related to sustainability
+    matters. In addition to the reporting areas identified in Article 19a(1) and Article 29a(1) of Directive 2013/34/EU, undertakings should be required to disclose information about their business strategy
+    and the resilience of the business model and strategy in relation to risks related to sustainability matters. They should also be required to disclose any plans they may have to ensure that their business
+    model and strategy are compatible with the transition to a sustainable economy and with the objectives of limiting global warming to 1,5 °C in line with the Paris Agreement and achieving climate neutrality
+    by 2050, as established in Regulation (EU) 2021/1119, with no or limited overshoot.
+
+
+    It is especially important that plans related to the climate be based on the latest science, including Intergovernmental Panel on Climate Change (IPCC) reports and reports by the European Scientific
+    Advisory Board on Climate Change. Information disclosed in accordance with Article 8 of Regulation (EU) 2020/852 about the amount of capital expenditure (CapEx) or operating expenditure (OpEx) associated
+    with taxonomy-aligned activities could support financial and investment plans related to such plans where appropriate. Undertakings should also be required to disclose whether and how their business
+    model and strategy take account of the interests of stakeholders; any opportunities for the undertaking arising from sustainability matters; the implementation of the aspects of the business strategy
+    which affect, or are affected by, sustainability matters; any sustainability targets set by the undertaking and the progress made towards achieving them; the role of the board and management with regard
+    to sustainability matters; the principal actual and potential adverse impacts connected with the undertaking’s activities; and how the undertaking has identified the information that it reports on.
+    Once the disclosure of elements, such as targets and the progress towards achieving them, is required, a separate requirement to disclose the outcomes of policies is no longer necessary.
+
+
+    (31)
+
+
+    To ensure consistency with international instruments such as the UN ‘Guiding Principles on Business and Human Rights: Implementing the United Nations ‘Protect, Respect and Remedy’ Framework’ (‘UN Guiding
+    Principles on Business and Human Rights’), the OECD Guidelines for Multinational Enterprises and the OECD Due Diligence Guidance for Responsible Business Conduct, the due diligence disclosure requirements
+    should be specified in greater detail than is currently the case in point (b) of Article 19a(1) and point (b) of Article 29a(1) of Directive 2013/34/EU. Due diligence is the process that undertakings
+    carry out to identify, monitor, prevent, mitigate, remediate or bring an end to the principal actual and potential adverse impacts connected with their activities and identifies how undertakings address
+    those adverse impacts. Impacts connected with an undertaking’s activities include impacts directly caused by the undertaking, impacts to which the undertaking contributes, and impacts which are otherwise
+    linked to the undertaking’s value chain. The due diligence process concerns the whole value chain of the undertaking including its own operations, its products and services, its business relationships
+    and its supply chains. In line with the UN Guiding Principles on Business and Human Rights, an actual or potential adverse impact is to be considered a principal impact where it ranks among the greatest
+    impacts connected with the undertaking’s activities based on: the gravity of the impact on people or the environment; the number of individuals that are or could be affected, or the scale of damage
+    to the environment; and the ease with which the harm could be remediated, restoring the environment or affected people to their prior state.
+
+
+    (32)
+
+
+    Directive 2013/34/EU does not require the disclosure of information on intangible resources other than intangible assets recognised in the balance sheet. It is widely recognised that information on
+    intangible assets and other intangible factors, including internally generated intangible resources, is underreported, impeding the proper assessment of an undertaking’s development, performance and
+    position, and the monitoring of investments. To enable investors to better understand the increasing gap between the accounting book value of many undertakings and their market valuation, which is observed
+    in many sectors of the economy, adequate reporting on intangible resources should be required of all large undertakings and all undertakings, except micro-undertakings, whose securities are admitted
+    to trading on a regulated market in the Union. Nonetheless, certain information on intangible resources is intrinsic to sustainability matters, and should therefore be part of sustainability reporting.
+    For example, information about employees’ skills, competences, experience, loyalty to the undertaking and motivation for improving processes, goods and services, is sustainability information regarding
+    social matters that could also be considered as information on intangible resources. Likewise, information about the quality of the relationships between the undertaking and its stakeholders, including
+    customers, suppliers and communities affected by the activities of the undertaking, is sustainability information relevant to social or governance matters that could also be considered as information
+    on intangible resources. Such examples illustrate how in some cases it is not possible to distinguish information on intangible resources from information on sustainability matters.
+
+
+    (33)'
+- id: art-6
+  title: Article 19a(1) and Article 29a(1) of Directive 2013/34/EU do not specify whether the information to be reported is to be forward-looking or information about past performance. There is currently
+    a lac
+  text: 'Article 19a(1) and Article 29a(1) of Directive 2013/34/EU do not specify whether the information to be reported is to be forward-looking or information about past performance. There is currently
+    a lack of forward-looking disclosures, which users of sustainability information especially value. Articles 19a and 29a of Directive 2013/34/EU should therefore specify that the sustainability information
+    reported is to include forward-looking and retrospective information and both qualitative and quantitative information. Information should be based on conclusive scientific evidence where appropriate.
+    Information should also be harmonized, comparable and based on uniform indicators where appropriate, while allowing for reporting that is specific to individual undertakings and does not endanger the
+    commercial position of the undertaking. Reported sustainability information should also take into account short-, medium- and long-term time horizons and contain information about the undertaking’s
+    whole value chain, including its own operations, its products and services, its business relationships and its supply chain, as appropriate. Information about the undertaking’s whole value chain would
+    include information related to its value chain within the Union and information that covers third countries if the undertaking’s value chain extends outside the Union. For the first three years of the
+    application of the measures to be adopted by the Member States in accordance with this amending Directive, in the event that not all the necessary information regarding the value chain is available,
+    the undertaking should explain the efforts made to obtain the information about its value chain, the reasons why that information could not be obtained, and the plans of the undertaking to obtain such
+    information in the future.
+
+
+    (34)
+
+
+    It is not the objective of this amending Directive to require undertakings to disclose intellectual capital, intellectual property, know-how or the results of innovation that would qualify as trade
+    secrets as defined in Directive (EU) 2016/943 of the European Parliament and of the Council
+
+    (
+
+    22
+
+    )
+
+    . Reporting requirements provided for in this amending Directive should therefore be without prejudice to Directive (EU) 2016/943.
+
+
+    (35)'
+- id: art-7
+  title: Article 19a(1) and Article 29a(1) of Directive 2013/34/EU require undertakings to include in their non-financial reporting references to, and additional explanations of, amounts reported in the
+    annual
+  text: 'Article 19a(1) and Article 29a(1) of Directive 2013/34/EU require undertakings to include in their non-financial reporting references to, and additional explanations of, amounts reported in the
+    annual financial statements. Those Articles do not, however, require undertakings to make references to other information in the management report or to add additional explanations to that information.
+    Thus, there is currently a lack of consistency between non-financial information reported and the rest of the information disclosed in the management report. It is necessary to lay down clear requirements
+    in this regard.
+
+
+    (36)'
+- id: art-8
+  title: Article 19a(1) and Article 29a(1) of Directive 2013/34/EU require undertakings to provide a clear and reasoned explanation for not pursuing policies in relation to one or more of the matters listed
+    in
+  text: 'Article 19a(1) and Article 29a(1) of Directive 2013/34/EU require undertakings to provide a clear and reasoned explanation for not pursuing policies in relation to one or more of the matters listed
+    in those Articles, where the undertaking does not do so. The different treatment of disclosures on the policies that undertakings may have, compared to the other reporting areas included in those Articles,
+    has created confusion among reporting undertakings and has not helped to improve the quality of the reported information. Therefore, there is no need to maintain such different treatment of policies
+    in that Directive. The sustainability reporting standards should determine what information needs to be disclosed in relation to each of the reporting areas mentioned in Articles 19a and 29a of Directive
+    2013/34/EU as amended by this amending Directive.
+
+
+    (37)
+
+
+    Undertakings that fall under the scope of Article 19a(1) and Article 29a(1) of Directive 2013/34/EU may rely on national, Union-based or international reporting frameworks, and where they do so, they
+    have to specify which frameworks they have relied upon. However, Directive 2013/34/EU does not require undertakings to use a common reporting framework or standard, and it does not prevent undertakings
+    from choosing not to use any reporting framework or standards at all. As required by Article 2 of Directive 2014/95/EU, on 5 July 2017, the Commission adopted a Communication entitled ‘Guidelines on
+    non-financial reporting (methodology for reporting non-financial information)’ (‘Guidelines on non-financial reporting’), providing for non-binding guidelines for unde'
 doc_files:
 - eu/raw/EU-2022-2464_Corporate_Sustainability_Reporting_CSRD.pdf
+- eu/raw/EU-2022-2464_Corporate_Sustainability_Reporting_CSRD.xhtml
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 去重：合并同法规异名条目 EU-2022-2464_CORPORATE_SUSTAINABILITY_REPORTING_CSRD-2（EU-2022-2464 Corporate Sustainability Reporting CSRD [xhtml]）。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2022-2464_Corporate_Sustainability_Reporting_CSRD.pdf (pdf, 270796 chars)，生成 3 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2022-2464_Corporate_Sustainability_Reporting_CSRD.xhtml (html, 268517 chars)，生成 8 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2022-2464_Corporate_Sustainability_Reporting_CSRD.xhtml (html, 268515 chars)，生成 8 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

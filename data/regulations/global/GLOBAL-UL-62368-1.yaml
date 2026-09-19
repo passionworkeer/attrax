@@ -9,12 +9,1372 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: Test Report On The Safety Of Electrical Equipment
+  text: 'Test Report On The Safety Of Electrical Equipment
+
+    For
+
+    Pro V&V Inc
+
+    On
+
+    ADA Voting Machine (Ballot Marking Device),
+
+    Model: ExpressVote Universal Voting System Hardware 3.0
+
+    Report No. PRVV0001-R1
+
+    09 October 2023
+
+    EMT form STRF62368-1E 7.0
+
+    Test Report issued under the responsibility of:
+
+    Element Materials Technology (>site<)
+
+    TEST REPORT
+
+    UL 62368-1
+
+    Audio/video, information and communication technology equipment
+
+    Part 1: Safety requirements
+
+    Report Number............................... : PRVV0001-R1
+
+    Date of issue .................................. : 2023-10-09
+
+    Total number of pages .................. : 71 (Including Attachments)
+
+    Name of Testing Laboratory Element Materials Technology (Irvine)
+
+    preparing the Report ..................... : 41 Tesla, Irvine, CA 92618, United States of America
+
+    Applicant’s name ........................... : Pro V&V Inc.
+
+    Address .......................................... : 6705 Odyssey Drive Suite C, Huntsville, AL 35806 USA
+
+    Test specification:
+
+    Standard ......................................... : UL 62368-1:3rd Edition: 2021-07
+
+    Test procedure ............................... : SF-SSP-023A
+
+    Non-standard test method ............ : N/A
+
+    TRF template used ........................ : IECEE OD-2020-F1:2020, Ed.1.3
+
+    Test Report Form No. .................... : IEC62368_1E (EMT form STRF62368-1E)
+
+    Test Report Form(s) Originator .... : UL(US)
+
+    Master TRF ..................................... : Dated 2021-02-04
+
+    Copyright © 2021 IEC System of Conformity Assessment Schemes for Electrotechnical Equipment
+
+    and Components (IECEE System). All rights reserved.
+
+    This publication may be reproduced in whole or in part for non-commercial purposes as long as the IECEE is acknowledged as
+
+    copyright owner and source of the material. IECEE takes no responsibility for and will not assume liability for damages resulting from
+
+    the reader''s interpretation of the reproduced material due to its placement and context.
+
+    If this Test Report Form is used by non-IECEE members, the IECEE/IEC logo and the reference to the CB
+
+    Scheme procedure shall be removed.
+
+    General disclaimer:
+
+    The test results presented in this report relate only to the object tested.
+
+    This report shall not be reproduced, except in full, without the written approval of the Issuing CB Testing
+
+    Laboratory. The authenticity of this Test Report and its contents can be verified by contacting the NCB,
+
+    responsible for this Test Report.
+
+    TRF No. IEC62368_1E
+
+    Page 2 of 71 Report No. PRVV0001-R1
+
+    Test item description ....................... : ADA Voting Machine (Ballot Marking Device)
+
+    Trade Mark(s) .................................. : ExpressVote, ES&S, ES&S Logo Block
+
+    Manufacturer ..................................... : Election Systems & Software (ES&S), 11208 John Galt Blvd.
+
+    Omaha, NE 68137 USA
+
+    Model/Type reference ...................... : ExpressVote Universal Voting System Hardware 3.0
+
+    Ratings .............................................. : 100-125 Vac, 60 Hz, 1.5 A without AC Outlet / 15 A with AC Outlet
+
+    Responsible Testing Laboratory (as applicable), testing procedure and testing location(s):
+
+    Testing Laboratory: -
+
+    Testing location/ address ............................ : -
+
+    Tested by (name, function, signature) ....... : -
+
+    Approved by (name, function, signature) .. : -
+
+    Testing procedure: TMP: NTS / Element (Longmont)
+
+    Testing location/ address ............................ : 1736 Vista View Drive, Longmont, CO, 80504-5242
+
+    United States of America
+
+    Tested by (name, function, signature) ....... : Duy Nguyen
+
+    Sr. Product Safety
+
+    Test Engineer – Safety
+
+    Division
+
+    Approved by (name, function, signature) .. : Jameel Armstrong
+
+    Sr. Product Safety
+
+    Test Engineer – Safety
+
+    Division
+
+    Testing procedure: WMT: -
+
+    Testing location/ address ............................ : -
+
+    Tested by (name, function, signature) .............-. .. : -
+
+    Witnessed by (name, function, signature) . : - -
+
+    Approved by (name, function, signature) .. : - -
+
+    Testing procedure: SMT: -
+
+    Testing procedure: RMT: -'
+- id: art-2
+  title: 'Testing location/ address ............................ : -'
+  text: 'Testing location/ address ............................ : -
+
+    Tested by (name, function, signature) ....... : - -
+
+    Witnessed by (name, function, signature) . : - -
+
+    Approved by (name, function, signature) .. : - -
+
+    Supervised by (name, function, signature) : - -
+
+    TRF No. IEC62368_1E
+
+    Page 3 of 71 Report No. PRVV0001-R1
+
+    List of Attachments (including a total number of pages in each attachment):
+
+    Attachment Description Pages
+
+    Attachment 1 Test equipment used 1 page
+
+    Attachment 2 US National Differences 7 pages
+
+    Attachment 3 Photographs of the equipment 6 pages
+
+    Attachment 4 Power Supply Condition of Acceptability 3 pages
+
+    Summary of testing:
+
+    Tests performed (name of test and test clause): Testing location:
+
+    4. General requirements NTS Longmont - EMI/EMC Test Lab
+
+    5. Electrically caused injury 1736 Vista View Dr, Longmont, CO 80504
+
+    6. Electrically caused fire United States of America
+
+    8. Mechanically caused injury
+
+    9. Thermal burn injury
+
+    Annex B Normal operating condition tests,
+
+    Abnormal operating condition tests and single fault
+
+    condition tests
+
+    Summary of compliance with National Differences (List of countries addressed):
+
+    AU CA CN NZ SA SG US
+
+    By virtue of the national differences applied above, the product fulfils the full requirements of the following
+
+    national standard:
+
+    UL 62368-1:3rd Edition: 2021-07
+
+    Statement concerning the uncertainty of the measurement systems used for the tests
+
+    Internal procedure used for type testing through which traceability of the measuring uncertainty
+
+    has been established:
+
+    SF-OP 002 Measurement Uncertainty Version 10.0 2021-11-18
+
+    The decision rule for compliance is not inherent within the specification. As requested by the customer, all
+
+    tests reported in this document are required to have a statement of conformity. Measurement uncertainty
+
+    has been accounted for in determining compliance according to Procedure 1 of IEC Guide 115:2007.
+
+    Where a measurement falls within the limits of uncertainty (WLU), the results section will identify the
+
+    specific measurement with the abbreviation ‘WLU’ and will include the laboratory’s Uncertainty Budget for
+
+    the measurement in question.
+
+    Statement not required by the standard used for type testing.
+
+    TRF No. IEC62368_1E
+
+    Page 4 of 71 Report No. PRVV0001-R1
+
+    Copy of marking plate:
+
+    The artwork below may be only a draft.
+
+    Actual model number on label ‘ExpressVote HW 3.0’
+
+    TRF No. IEC62368_1E
+
+    Page 5 of 71 Report No. PRVV0001-R1
+
+    Test item particulars:
+
+    Product group ..................................................... : end product built-in component
+
+    Classification of use by ...................................... : Ordinary person Children likely present
+
+    Instructed person
+
+    Skilled person
+
+    Supply connection ............................................... : AC mains DC mains
+
+    not mains connected:
+
+    ES1 ES2 ES3
+
+    Supply tolerance ................................................. : +10%/-10%
+
+    +20%/-15%
+
+    + %/ - %
+
+    None
+
+    Supply connection – type .................................. : pluggable equipment type A -
+
+    non-detachable supply cord
+
+    appliance coupler
+
+    direct plug-in
+
+    pluggable equipment type B -
+
+    non-detachable supply cord
+
+    appliance coupler
+
+    permanent connection
+
+    mating connector other:
+
+    Considered current rating of protective N/A
+
+    device ................................................................. : 20 A Location: building equipment
+
+    N/A
+
+    Equipment mobility .......................................... : movable hand-held transportable
+
+    direct plug-in stationary for building-in
+
+    wall/ceiling-mounted SRME/rack-mounted
+
+    other:
+
+    Overvoltage category (OVC) ........................... : OVC I OVC II OVC III
+
+    OVC IV other:
+
+    Class of equipment ......................................... : Class I Class II Class III
+
+    Not classified
+
+    Special installation location ........................... : N/A restricted access area
+
+    outdoor location
+
+    Pollution degree (PD) ...................................... : PD 1 PD 2 PD 3
+
+    Manufacturer’s specified T ........................... : 15.5 – 37.75 °C Outdoor: minimum °C
+
+    ma'
+- id: art-3
+  title: IP protection class ........................................
+  text: 'IP protection class ........................................... : IPX0 IP___
+
+    Power systems ................................................. : TN TT IT - V L-L
+
+    not AC mains
+
+    Altitude during operation (m) ......................... : 2000 m or less m
+
+    Altitude of test laboratory (m) ........................ : 2000 m or less m
+
+    Mass of equipment (kg) .................................. : 10.5
+
+    Overall size of equipment – W x D x H (mm) : 470 x 457 x 546 (Operating)
+
+    470 x 457 x 118 (Operating)
+
+    TRF No. IEC62368_1E
+
+    Page 6 of 71 Report No. PRVV0001-R1
+
+    Possible test case verdicts:
+
+    - test case does not apply to the test object .... : N/A
+
+    - test object does meet the requirement ........... : P (Pass)
+
+    - test object does not meet the requirement .... : F (Fail)
+
+    Testing:
+
+    Date of receipt of test item ................................. : 2023-09-11
+
+    Date (s) of performance of tests ........................ : 2023-09-11 to 2023-09-15
+
+    General remarks:
+
+    "(See Enclosure #)" refers to additional information appended to the report.
+
+    "(See appended table)" refers to a table appended to the report.
+
+    Throughout this report a comma / point is used as the decimal separator.
+
+    Manufacturer’s Declaration per sub-clause 4.2.5 of IECEE 02:
+
+    The application for obtaining a CB Test Certificate Yes
+
+    includes more than one factory location and a
+
+    Not applicable
+
+    declaration from the Manufacturer stating that the
+
+    sample(s) submitted for evaluation is (are)
+
+    representative of the products from each factory
+
+    has been provided ................................................ :
+
+    When differences exist; they shall be identified in the General product information section.
+
+    Name and address of factory (ies) ................. : Pivot-Hawks Manila, Inc.
+
+    Orient Goldcrest Greenfield Automotive Park
+
+    East American Road, Lot 7 B1 and B2
+
+    Greenfield Auto Park Bldg 1, SEZ B
+
+    Barangay Don Jose Santa Rosa
+
+    Laguna, 4026, Philippines
+
+    TRF No. IEC62368_1E
+
+    Page 7 of 71 Report No. PRVV0001-R1
+
+    General product information and other remarks:
+
+    The Express Vote 3 (EV3) is a ballot marking device giving voters a convenient method to create a
+
+    summary of their selections while preventing the voter intent issues inherent in hand-marked ballots.
+
+    The EV3 utilizes a thermal card that both initiates the voting session and captures the voter’s selections.
+
+    Insertion of the activation card triggers the selection of ballot, which is presented to the voter. After
+
+    makings their selections through the touchscreen interface, their selections are printed on the card. The
+
+    EV3 then reads back their selections and presents a summary to the voter. The ballot summary card is
+
+    returned to the voter for insertion into a tabulator.
+
+    1. The equipment was assessed using the following documentation references:
+
+    Circuit diagrams: PSB528 Rev A01
+
+    User/installation guide: ExpressVote 3 Manual
+
+    2. Classification of some polymeric materials has been verified using data supplied by the client. In
+
+    these cases no testing has been conducted under this project.
+
+    3. Where approval or product certification documentation has been used to verify suitability of safety
+
+    critical components then limited testing only has been conducted under this project. Responsibility
+
+    for compliance of such items remains with the issuing authority.
+
+    4. The operating temperature range of the apparatus was 15.5 °C to 37.75 °C
+
+    Model Differences –
+
+    N/A – only 1 model assessed
+
+    Isolation Diagram –
+
+    Refer to Energy Source Diagram below
+
+    TRF No. IEC62368_1E
+
+    Page 8 of 71 Report No. PRVV0001-R1
+
+    OVERVIEW OF ENERGY SOURCES AND SAFEGUARDS
+
+    Clause Possible Hazard
+
+    5 Electrically-caused injury
+
+    Safeguards
+
+    Class and Energy Source Body Part
+
+    (e.g. ES3: Primary circuit) (e.g. Ordinary)
+
+    B S R
+
+    Insulation Enclosure / -
+
+    ES3: Primary circuit Instructed and Skilled
+
+    FE
+
+    ES1: Secondary Circuits Ordinary and Instructed No Safeguard Required
+
+    6 Electrically-caused fire
+
+    Safeguards
+
+    Class and Energy Source Material part
+
+    (e.g. PS2: 100 Watt circuit) (e.g. Printed board) B 1st S 2nd S
+
+    See Clause Fire -'
+- id: art-4
+  title: 'PS3: Power Supply PCB 6.3 Enclosure'
+  text: 'PS3: Power Supply PCB 6.3 Enclosure
+
+    (Polymeric)
+
+    PS2: Enclosure and Internal See Clause - -
+
+    components, Secondary PCB 6.3
+
+    Circuits
+
+    7 Injury caused by hazardous substances
+
+    Safeguards
+
+    Class and Energy Source Body Part
+
+    (e.g. Ozone) (e.g., Skilled)
+
+    B S R
+
+    Backup Battery Lithium Annex M - -
+
+    8 Mechanically-caused injury
+
+    Safeguards
+
+    Class and Energy Source Body Part
+
+    (e.g. MS3: Plastic fan blades) (e.g. Ordinary)
+
+    B S R
+
+    See Clause
+
+    MS2: Mass of the product Ordinary - -
+
+    8.6
+
+    MS1: Edges and corners Ordinary No Safeguard Required
+
+    9 Thermal burn
+
+    Safeguards
+
+    Class and Energy Source Body Part
+
+    (e.g. TS1: Keyboard caps) (e.g., Ordinary)
+
+    B S R
+
+    TS1: Enclosure Ordinary No Safeguard Required
+
+    10 Radiation
+
+    Safeguards
+
+    Class and Energy Source Body Part
+
+    (e.g. RS1: PMP sound output) (e.g., Ordinary)
+
+    B S R
+
+    RS1: LEDs and LCD Ordinary No Safeguard Required
+
+    Supplementary Information:
+
+    “B” – Basic Safeguard; “S” – Supplementary Safeguard; “R” – Reinforced Safeguard
+
+    TRF No. IEC62368_1E
+
+    Page 9 of 71 Report No. PRVV0001-R1
+
+    ENERGY SOURCE DIAGRAM
+
+    Optional. Manufacturers are to provide the energy sources diagram identify declared energy sources and
+
+    identifying the demarcations are between power sources. Recommend diagram be provided included in
+
+    power supply and multipart systems.
+
+    Insert diagram below. Example diagram designs are; Block diagrams; image(s) with layered data; mechanical
+
+    drawings
+
+    ES PS MS TS RS
+
+    LCD, RS1 /
+
+    Paper Path,
+
+    ES1, PS2
+
+    AC Mains Supply
+
+    Open frame power
+
+    ES3, PS3 Main board PC,
+
+    supply ES3, PS3
+
+    ES1, PS2
+
+    Rechargeable
+
+    lithium battery
+
+    backup pack,
+
+    Annex M
+
+    Polymeric Enclosure, TS1, MS2
+
+    Remark: Primary circuit within EUT is ES3, PS3; Secondary circuits within EUT is ES, PS2 and external
+
+    surface of EUT is TS1, MS2.
+
+    TRF No. IEC62368_1E
+
+    Page 10 of 71 Report No. PRVV0001-R1
+
+    IEC 62368-1
+
+    Clause Requirement + Test Result - Remark Verdict
+
+    4 GENERAL REQUIREMENTS P
+
+    4.1.1 Acceptance of materials, components and Components which are P
+
+    subassemblies certified to IEC/UL and/or
+
+    national standards are used
+
+    within their ratings.
+
+    Components not covered by
+
+    IEC/UL standards are tested
+
+    under the conditions present
+
+    in the equipment. See Annex
+
+    G and Table 4.1.2
+
+    4.1.2 Use of components Certified components used in P
+
+    accordance with their ratings,
+
+    certifications and they comply
+
+    with applicable parts of the
+
+    standard.
+
+    Components, which not
+
+    certified are used in
+
+    accordance with their ratings
+
+    and they comply with
+
+    applicable parts of UL 62368-
+
+    1 and applicable component
+
+    standard.
+
+    4.1.3 Equipment design and construction Equipment designed with P
+
+    appropriate safeguards.
+
+    Hazardous parts are not
+
+    accessible. Adjustment of
+
+    controls does not defeat
+
+    equipment safeguards.
+
+    4.1.4 Specified ambient temperature for outdoor use (oC) Indoor location only N/A
+
+    .................................................................................... :
+
+    4.1.5 Constructions and components not specifically (See Annex F) P
+
+    covered
+
+    4.1.8 Liquids and liquid filled components (LFC) LCD screen considered P
+
+    4.1.15 Markings and instructions (See Annex T.4, T.5) P
+
+    4.4.3 Safeguard robustness Not Hand-held or N/A
+
+    transportable
+
+    4.4.3.1 General (See Annex T.6) P
+
+    4.4.3.2 Steady force tests P
+
+    4.4.3.3 Drop tests P
+
+    4.4.3.4 Impact tests P
+
+    4.4.3.5 Internal accessible safeguard tests P
+
+    4.4.3.6 Glass impact tests N/A
+
+    4.4.3.7 Glass fixation tests N/A
+
+    Glass impact test (1J) N/A
+
+    TRF No. IEC62368_1E
+
+    Page 11 of 71 Report No. PRVV0001-R1
+
+    IEC 62368-1
+
+    Clause Requirement + Test Result - Remark Verdict
+
+    Push/pull test (10 N) 10 N applied to relevant P
+
+    conductors.
+
+    4.4.3.8 Thermoplastic material tests N/A
+
+    4.4.3.9 Air comprising a safeguard N/A
+
+    4.4.3.10 Accessibility, glass, safeguard effectiveness Class 3 energy sources not P
+
+    accessible. All safeguards
+
+    remain effective
+
+    4.4.4 Displacement of a safeguard by an insulating liquid No insulating liquids N/A
+
+    4.4.5 Safety interlocks No Safety Interlocks N/A
+
+    4.5 Explosion P
+
+    4.5.1 General Explosion did not occur during P
+
+    normal and operating
+
+    conditions.
+
+    4.5.2 No explosion during normal/abnormal operating P'
+- id: art-5
+  title: condition
+  text: 'condition
+
+    No harm by explosion during single fault conditions Single faults performed as N/A
+
+    part of approved components
+
+    4.6 Fixing of conductors P
+
+    Fix conductors not to defeat a safeguard P
+
+    Compliance is checked by test .............................. : P
+
+    4.7 Equipment for direct insertion into mains socket–outlets N/A
+
+    4.7.2 Mains plug part complies with relevant standard .. : N/A
+
+    4.7.3 Torque (Nm) .......................................................... : N/A
+
+    4.8 Equipment containing coin/button cell batteries N/A
+
+    4.8.1 General Professional equipment N/A
+
+    4.8.2 Instructional safeguard .......................................... : N/A
+
+    4.8.3 Battery compartment door/cover construction N/A
+
+    Open torque test N/A
+
+    4.8.4.2 Stress relief test N/A
+
+    4.8.4.3 Battery replacement test N/A
+
+    4.8.4.4 Drop test N/A
+
+    4.8.4.5 Impact test N/A
+
+    4.8.4.6 Crush test N/A
+
+    4.8.5 Compliance N/A
+
+    30N force test with test probe N/A
+
+    20N force test with test hook N/A
+
+    4.9 Likelihood of fire or shock due to entry of conductive object P
+
+    4.10 Component requirements N/A
+
+    TRF No. IEC62368_1E
+
+    Page 12 of 71 Report No. PRVV0001-R1
+
+    IEC 62368-1
+
+    Clause Requirement + Test Result - Remark Verdict
+
+    4.10.1 Disconnect Device Appliance coupler P
+
+    4.10.2 Switches and relays N/A
+
+    5 ELECTRICALLY-CAUSED INJURY P
+
+    5.2 Classification and limits of electrical energy sources P
+
+    5.2.2 ES1, ES2 and ES3 limits (See appended table 5.2) P
+
+    5.2.2.2 Steady-state voltage and current limits .................... : ES3 P
+
+    5.2.2.3 Capacitance limits ..................................................... : (See appended table 5.2) P
+
+    5.2.2.4 Single pulse limits ...................................................... : N/A
+
+    5.2.2.5 Limits for repetitive pulses ........................................ : No pulse signals N/A
+
+    5.2.2.6 Ringing signals No ringing signals N/A
+
+    5.2.2.7 Audio signals No Audio signals N/A
+
+    5.3 Protection against electrical energy sources P
+
+    5.3.1 General Requirements for accessible parts to Only ES1 accessible to the P
+
+    ordinary, instructed and skilled persons ordinary person
+
+    5.3.1 a) Accessible ES1/ES2 derived from ES2/ES3 circuits ES2 / ES3 circuits N/A
+
+    5.3.1 b) Skilled persons not unintentional contact ES3 bare Ordinary person N/A
+
+    conductors
+
+    5.3.2.1 Accessibility to electrical energy sources and N/A
+
+    safeguards
+
+    Accessibility to outdoor equipment bare parts Not for outdoor use N/A
+
+    5.3.2.2 Contact requirements N/A
+
+    Test with test probe from Annex V 
+
+    5.3.2.2 a) Air gap – electric strength test potential (V) ............. : N/A
+
+    5.3.2.2 b) Air gap – distance (mm) ........................................... : N/A
+
+    5.3.2.3 Compliance N/A
+
+    5.3.2.4 Terminals for connecting stripped wire No stripped wire type terminals N/A
+
+    5.4 Insulation materials and requirements P
+
+    5.4.1.2 Properties of insulating material P
+
+    5.4.1.3 Material is non-hygroscopic Compliance determined during N/A
+
+    separate certification of power
+
+    supply.
+
+    5.4.1.4 Maximum operating temperature for insulating (See appended table 5.4.1.4) P
+
+    materials .................................................................... :
+
+    5.4.1.5 Pollution degrees ....................................................... : PD2 P
+
+    5.4.1.5.2 Test for pollution degree 1 environment and for an Pollution degree 2 applied. N/A
+
+    insulating compound
+
+    5.4.1.5.3 Thermal cycling test N/A
+
+    TRF No. IEC62368_1E
+
+    Page 13 of 71 Report No. PRVV0001-R1
+
+    IEC 62368-1
+
+    Clause Requirement + Test Result - Remark Verdict
+
+    5.4.1.6 Insulation in transformers with varying dimensions N/A
+
+    5.4.1.7 Insulation in circuits generating starting pulses No starting pulses N/A
+
+    5.4.1.8 Determination of working voltage ............................. : ES3 N/A
+
+    5.4.1.9 Insulating surfaces N/A
+
+    5.4.1.10 Thermoplastic parts on which conductive metallic N/A
+
+    parts are directly mounted
+
+    5.4.1.10.2 Vicat test .................................................................... : No Vicat softening N/A
+
+    5.4.1.10.3 Ball pressure test ....................................................... : N/A
+
+    5.4.2 Clearances P'
+- id: art-6
+  title: 5.4.2.1 General requirements P
+  text: '5.4.2.1 General requirements P
+
+    Clearances in circuits connected to AC Mains, ES3 P
+
+    Alternative method
+
+    5.4.2.2 Procedure 1 for determining clearance P
+
+    Temporary overvoltage ............................................ : 
+
+    5.4.2.3 Procedure 2 for determining clearance N/A
+
+    5.4.2.3.2.2 a.c. mains transient voltage ...................................... : 
+
+    5.4.2.3.2.3 d.c. mains transient voltage ..................................... : 
+
+    5.4.2.3.2.4 External circuit transient voltage ............................... : 
+
+    5.4.2.3.2.5 Transient voltage determined by measurement ...... : 
+
+    5.4.2.4 Determining the adequacy of a clearance using an N/A
+
+    electric strength test ................................................. :
+
+    5.4.2.5 Multiplication factors for clearances and test voltages Equipment not intended to be N/A
+
+    ................................................................................... : used more than 2000 m above
+
+    sea level
+
+    5.4.2.6 Clearance measurement........................................... : N/A
+
+    5.4.3 Creepage distances N/A
+
+    5.4.3.1 General N/A
+
+    5.4.3.3 Material group............................................................ : 
+
+    5.4.3.4 Creepage distances measurement .......................... : N/A
+
+    5.4.4 Solid insulation N/A
+
+    5.4.4.1 General requirements N/A
+
+    5.4.4.2 Minimum distance through insulation ...................... : N/A
+
+    5.4.4.3 Insulating compound forming solid insulation None used N/A
+
+    5.4.4.4 Solid insulation in semiconductor devices Evaluated as part of certified N/A
+
+    power supply
+
+    5.4.4.5 Insulating compound forming cemented joints No such construction N/A
+
+    TRF No. IEC62368_1E
+
+    Page 14 of 71 Report No. PRVV0001-R1
+
+    IEC 62368-1
+
+    Clause Requirement + Test Result - Remark Verdict
+
+    5.4.4.6 Thin sheet material Evaluated as part of certified N/A
+
+    power supply
+
+    5.4.4.6.1 General requirements N/A
+
+    5.4.4.6.2 Separable thin sheet material N/A
+
+    Number of layers (pcs) ............................................ : See above N/A
+
+    5.4.4.6.3 Non-separable thin sheet material N/A
+
+    Number of layers (pcs) ......................................... : See above N/A
+
+    5.4.4.6.4 Standard test procedure for non-separable thin See above N/A
+
+    sheet material ........................................................ :
+
+    5.4.4.6.5 Mandrel test N/A
+
+    5.4.4.7 Solid insulation in wound components N/A
+
+    5.4.4.9 Solid insulation at frequencies >30 kHz, E , K , d, N/A
+
+    P R
+
+    V (V) ................................................................... :
+
+    PW
+
+    Alternative by electric strength test, tested voltage N/A
+
+    (V), K .................................................................... :
+
+    R
+
+    5.4.5 Antenna terminal insulation No antenna terminals N/A
+
+    5.4.5.1 General N/A
+
+    5.4.5.2 Voltage surge test N/A
+
+    5.4.5.3 Insulation resistance (M) ..................................... : See above N/A
+
+    Electric strength test .................................................. : See above N/A
+
+    5.4.6 Insulation of internal wire as part of supplementary N/A
+
+    safeguard
+
+    5.4.7 Tests for semiconductor components and for No cemented joints N/A
+
+    cemented joints
+
+    5.4.8 Humidity conditioning N/A
+
+    Relative humidity (%), temperature (°C), duration Investigated as part of 
+
+    (h) ........................................................................... : separately certified power
+
+    supply. No natural rubber,
+
+    hygroscopic materials used in
+
+    insulation.
+
+    5.4.9 Electric strength test P
+
+    5.4.9.1 Test procedure for type test of solid insulation ....... : P
+
+    5.4.9.2 Test procedure for routine test Not required for this evaluation N/A
+
+    5.4.10 Safeguards against transient voltages from external N/A
+
+    circuits
+
+    5.4.10.1 Parts and circuits separated from external circuits N/A
+
+    5.4.10.2 Test methods N/A
+
+    5.4.10.2.1 General N/A
+
+    5.4.10.2.2 Impulse test ............................................................ : N/A
+
+    TRF No. IEC62368_1E
+
+    Page 15 of 71 Report No. PRVV0001-R1
+
+    IEC 62368-1
+
+    Clause Requirement + Test Result - Remark Verdict
+
+    5.4.10.2.3 Steady-state test .................................................... : N/A'
+- id: art-7
+  title: 5.4.10.3 Verification for insulation breakdown for impulse N
+  text: '5.4.10.3 Verification for insulation breakdown for impulse N/A
+
+    test ......................................................................... :
+
+    5.4.11 Separation between external circuits and earth No external circuits N/A
+
+    5.4.11.1 Exceptions to separation between external circuits N/A
+
+    and earth
+
+    5.4.11.2 Requirements N/A
+
+    SPDs bridge separation between external circuit N/A
+
+    and earth
+
+    Rated operating voltage U op (V) ............................. : 
+
+    Nominal voltage U peak (V) ....................................... : 
+
+    Max increase due to variation U ........................ : 
+
+    sp
+
+    Max increase due to ageing U .......................... : 
+
+    sa
+
+    5.4.11.3 Test method and compliance ................................. : N/A
+
+    5.4.12 Insulating liquid N/A
+
+    5.4.12.1 General requirements N/A
+
+    5.4.12.2 Electric strength of an insulating liquid .................. : ES1. No connections to Mains N/A
+
+    5.4.12.3 Compatibility of an insulating liquid ........................ : See above N/A
+
+    5.4.12.4 Container for insulating liquid ................................ : See above N/A
+
+    5.5 Components as safeguards P
+
+    5.5.1 General P
+
+    5.5.2 Capacitors and RC units P
+
+    5.5.2.1 General requirement P
+
+    5.5.2.2 Safeguards against capacitor discharge after (See appended table 5.5.2.2) P
+
+    disconnection of a connector ................................. : Part of certified power supply
+
+    5.5.3 Transformers Evaluated as part of certified N/A
+
+    power supply
+
+    5.5.4 Optocouplers See above N/A
+
+    5.5.5 Relays N/A
+
+    5.5.6 Resistors See above N/A
+
+    5.5.7 SPDs See above N/A
+
+    5.5.8 Insulation between the mains and an external No such connections N/A
+
+    circuit consisting of a coaxial cable ........................ :
+
+    5.5.9 Safeguards for socket-outlets in outdoor equipment N/A
+
+    RCD rated residual operating current (mA) ........... : None 
+
+    5.6 Protective conductor Protective conductor not relied N/A
+
+    upon. Class II construction
+
+    TRF No. IEC62368_1E
+
+    Page 16 of 71 Report No. PRVV0001-R1
+
+    IEC 62368-1
+
+    Clause Requirement + Test Result - Remark Verdict
+
+    5.6.2 Requirement for protective conductors N/A
+
+    5.6.2.1 General requirements N/A
+
+    5.6.2.2 Colour of insulation N/A
+
+    5.6.3 Requirement for protective earthing conductors N/A
+
+    Protective earthing conductor size (mm2) .............. : 
+
+    Protective earthing conductor serving as a N/A
+
+    reinforced safeguard
+
+    Protective earthing conductor serving as a double N/A
+
+    safeguard
+
+    5.6.4 Requirements for protective bonding conductors N/A
+
+    5.6.4.1 Protective bonding conductors N/A
+
+    Protective bonding conductor size (mm2). .............. : 
+
+    5.6.4.2 Protective current rating (A) .................................... : N/A
+
+    5.6.5 Terminals for protective conductors N/A
+
+    5.6.5.1 Terminal size for connecting protective earthing N/A
+
+    conductors (mm) .................................................... :
+
+    Terminal size for connecting protective bonding N/A
+
+    conductors (mm) ....................................................... :
+
+    5.6.5.2 Corrosion N/A
+
+    5.6.6 Resistance of the protective bonding system N/A
+
+    5.6.6.1 Requirements N/A
+
+    5.6.6.2 Test Method ........................................................... : N/A
+
+    5.6.6.3 Resistance () or voltage drop .............................. : N/A
+
+    5.6.7 Reliable connection of a protective earthing N/A
+
+    conductor
+
+    5.6.8 Functional earthing N/A
+
+    Conductor size (mm2) ............................................. : N/A
+
+    Class II with functional earthing marking .............. : N/A
+
+    Appliance inlet cl & cr (mm) ................................... : N/A
+
+    5.7 Prospective touch voltage, touch current and protective conductor current P
+
+    5.7.2 Measuring devices and networks P
+
+    5.7.2.1 Measurement of touch current P
+
+    5.7.2.2 Measurement of voltage P
+
+    5.7.3 Equipment set-up, supply connections and earth P
+
+    connections
+
+    5.7.4 Unearthed accessible parts ................................... : (See appended table 5.7.4) P
+
+    5.7.5 Earthed accessible conductive parts ..................... : Class II construction N/A
+
+    TRF No. IEC62368_1E
+
+    Page 17 of 71 Report No. PRVV0001-R1
+
+    IEC 62368-1'
+- id: art-8
+  title: Clause Requirement + Test Result - Remark Verdict
+  text: 'Clause Requirement + Test Result - Remark Verdict
+
+    5.7.6 Requirements when touch current exceeds ES2 N/A
+
+    limits
+
+    Protective conductor current (mA) ......................... : N/A
+
+    Instructional Safeguard .......................................... : N/A
+
+    5.7.7 Prospective touch voltage and touch current N/A
+
+    associated with external circuits
+
+    5.7.7.1 Touch current from coaxial cables N/A
+
+    5.7.7.2 Prospective touch voltage and touch current N/A
+
+    associated with paired conductor cables
+
+    5.7.8 Summation of touch currents from external circuits N/A
+
+    a) Equipment connected to earthed external N/A
+
+    circuits, current (mA) .............................................. :
+
+    b) Equipment connected to unearthed external N/A
+
+    circuits, current (mA) .............................................. :
+
+    5.8 Backfeed safeguard in battery backed up supplies N/A
+
+    Mains terminal ES ..................................................... : N/A
+
+    Air gap (mm) .............................................................. : N/A
+
+    TRF No. IEC62368_1E
+
+    Page 18 of 71 Report No. PRVV0001-R1
+
+    IEC 62368-1
+
+    Clause Requirement + Test Result - Remark Verdict
+
+    6 ELECTRICALLY- CAUSED FIRE P
+
+    6.2 Classification of PS and PIS P
+
+    6.2.2 Power source circuit classifications .......................... : PS3 part of PSU evaluation P
+
+    6.2.3 Classification of potential ignition sources N/A
+
+    6.2.3.1 Arcing PIS ................................................................ : Within certified power supply N/A
+
+    6.2.3.2 Resistive PIS ............................................................ : None assessed N/A
+
+    6.3 Safeguards against fire under normal operating and abnormal operating P
+
+    conditions
+
+    6.3.1 No ignition and attainable temperature value less (See appended table B.1.5 and P
+
+    than 90 % defined by ISO 871 or less than 300 C B.3)
+
+    for unknown materials ........................................... :
+
+    Combustible materials outside fire enclosure .......... : N/A
+
+    6.4 Safeguards against fire under single fault conditions P
+
+    6.4.1 Safeguard method Both methods (reduce the P
+
+    likelihood of ignition and
+
+    control fire spread) employed.
+
+    6.4.2 Reduction of the likelihood of ignition under single No safeguards required N/A
+
+    fault conditions in PS1 circuits
+
+    6.4.3 Reduction of the likelihood of ignition under single P
+
+    fault conditions in PS2 and PS3 circuits
+
+    6.4.3.1 Supplementary safeguards Protective devices employed P
+
+    (see appended table 4.1.2)
+
+    6.4.3.2 Single Fault Conditions .......................................... : (See appended table B.4) P
+
+    Special conditions for temperature limited by fuse Not applied N/A
+
+    6.4.4 Control of fire spread in PS1 circuits No PS1 circuits N/A
+
+    6.4.5 Control of fire spread in PS2 circuits Complies. Fire enclosure P
+
+    provided
+
+    6.4.5.2 Supplementary safeguards (See appended tables 4.1.2 P
+
+    and Annex G)
+
+    6.4.6 Control of fire spread in PS3 circuits Complies. Fire enclosure P
+
+    provided
+
+    6.4.7 Separation of combustible materials from a PIS Separation by fire enclosure P
+
+    6.4.7.2 Separation by distance P
+
+    6.4.7.3 Separation by a fire barrier N/A
+
+    6.4.8 Fire enclosures and fire barriers P
+
+    6.4.8.2 Fire enclosure and fire barrier material properties P
+
+    6.4.8.2.1 Requirements for a fire barrier N/A
+
+    6.4.8.2.2 Requirements for a fire enclosure P
+
+    TRF No. IEC62368_1E
+
+    Page 19 of 71 Report No. PRVV0001-R1
+
+    IEC 62368-1
+
+    Clause Requirement + Test Result - Remark Verdict
+
+    6.4.8.3 Constructional requirements for a fire enclosure P
+
+    and a fire barrier
+
+    6.4.8.3.1 Fire enclosure and fire barrier openings P
+
+    6.4.8.3.2 Fire barrier dimensions N/A
+
+    6.4.8.3.3 Top openings and properties No top openings N/A
+
+    Openings dimensions (mm) ................................... : N/A
+
+    6.4.8.3.4 Bottom openings and properties No bottom openings N/A
+
+    Openings dimensions (mm) ................................... : N/A
+
+    Flammability tests for the bottom of a fire enclosure N/A
+
+    Instructional Safeguard ............................................. : N/A
+
+    6.4.8.3.5 Side openings and properties P'
+- id: art-9
+  title: Openings dimensions (mm) ...................................
+  text: 'Openings dimensions (mm) ................................... : See clause P.2.2 for side P
+
+    openings
+
+    6.4.8.3.6 Integrity of a fire enclosure, condition met: a), b) or No doors or c'
 doc_files:
 - global/raw/1 PRVV0001-R1_UL 62368-1 2019.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。 UL 为付费标准；本地副本为技术参考件，原文按钮指向 UL 官方站。原件在
-  attrax-docs 里有「1 …」与「6 …」两份同内容副本（sha256 相同），只登记一份。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。 UL 为付费标准；本地副本为技术参考件，原文按钮指向 UL 官方站。原件在 attrax-docs 里有「1 …」与「6 …」两份同内容副本（sha256 相同），只登记一份。
+
+  2026-09-19 机器解析原件入库：global/raw/1 PRVV0001-R1_UL 62368-1 2019.pdf (pdf, 110048 chars)，生成 9 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/1 PRVV0001-R1_UL 62368-1 2019.pdf (pdf, 110048 chars)，生成 9 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/1 PRVV0001-R1_UL 62368-1 2019.pdf (pdf, 110048 chars)，生成 9 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

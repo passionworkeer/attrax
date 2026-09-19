@@ -1,6 +1,6 @@
 id: US-CFR-TITLE21-PART174
 official_citation: US 21 CFR Part 174
-short_name: US 21 CFR Part 174
+short_name: 'US 21 CFR Part 174 — INDIRECT FOOD ADDITIVES: GENERAL'
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,127 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '21
+
+    Food and Drugs
+
+    3
+
+    2024-04-01
+
+    2024-04-01
+
+    false
+
+    INDIRECT FOO'
+  text: '21
+
+    Food and Drugs
+
+    3
+
+    2024-04-01
+
+    2024-04-01
+
+    false
+
+    INDIRECT FOOD ADDITIVES: GENERAL
+
+    174
+
+    PART 174
+
+    Food and Drugs
+
+    FOOD AND DRUG ADMINISTRATION, DEPARTMENT OF HEALTH AND HUMAN SERVICES (CONTINUED)
+
+    FOOD FOR HUMAN CONSUMPTION (CONTINUED)
+
+    Pt. 174
+
+    PART 174—INDIRECT FOOD ADDITIVES: GENERAL
+
+    Sec.
+
+    174.5
+
+    General provisions applicable to indirect food additives.
+
+    174.6
+
+    Threshold of regulation for substances used in food-contact articles.
+
+    Authority:
+
+    21 U.S.C. 321, 342, 348, 371.'
+- id: art-2
+  title: § 174.5
+  text: '§ 174.5
+
+    General provisions applicable to indirect food additives.
+
+    (a) Regulations prescribing conditions under which food additive substances may be safely used predicate usage under conditions of good manufacturing practice. For the purpose of this part and parts
+    175, 176, and 177 of this chapter, good manufacturing practice shall be defined to include the following restrictions:
+
+    (1) The quantity of any food additive substance that may be added to food as a result of use in articles that contact food shall not exceed, where no limits are specified, that which results from use
+    of the substance in an amount not more than reasonably required to accomplish the intended physical or technical effect in the food-contact article; shall not exceed any prescribed limitations; and
+    shall not be intended to accomplish any physical or technical effect in the food itself, except as such may be permitted by regulations in parts 170 through 189 of this chapter.
+
+    (2) Any substance used as a component of articles that contact food shall be of a purity suitable for its intended use.
+
+    (b) The existence in the subchapter B of a regulation prescribing safe conditions for the use of a substance as an article or component of articles that contact food shall not be construed to relieve
+    such use of the substance or article from compliance with any other provision of the Federal Food, Drug, and Cosmetic Act. For example, if a
+
+    regulated food-packaging material were found on appropriate test to impart odor or taste to a specific food product such as to render it unfit within the meaning of section 402(a)(3) of the Act, the
+    regulation would not be construed to relieve such use from compliance with section 402(a)(3).
+
+    (c) The existence in this subchapter B of a regulation prescribing safe conditions for the use of a substance as an article or component of articles that contact food shall not be construed as implying
+    that such substance may be safely used as a direct additive in food.
+
+    (d) Substances that under conditions of good manufacturing practice may be safely used as components of articles that contact food include the following, subject to any prescribed limitations:
+
+    (1) Substances generally recognized as safe in or on food.
+
+    (2) Substances generally recognized as safe for their intended use in food packaging.
+
+    (3) Substances used in accordance with a prior sanction or approval.
+
+    (4) Substances permitted for use by regulations in this part and parts 175, 176, 177, 178 and § 179.45 of this chapter.
+
+    (5) Food contact substances used in accordance with an effective premarket notification for a food contact substance (FCN) submitted under section 409(h) of the act.
+
+    [42 FR 14534, Mar. 15, 1977, as amended at 67 FR 35731, May 21, 2002]'
+- id: art-3
+  title: § 174.6
+  text: '§ 174.6
+
+    Threshold of regulation for substances used in food-contact articles.
+
+    Substances used in food-contact articles (e.g., food-packaging or food-processing equipment) that migrate, or that may be expected to migrate, into food at negligible levels may be reviewed under § 170.39
+    of this chapter. The Food and Drug Administration will exempt substances whose uses it determines meet the criteria in § 170.39 of this chapter from regulation as food additives and, therefore, a food
+    additive petition will not be required for the exempted use.
+
+    [60 FR 36596, July 17, 1995]'
 doc_files:
 - us/raw/US-CFR-title21-part174.xml
+- us/raw/US-CFR-title21-part174.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part174.xml (xml, 3785 chars)，生成 3 条共 3785 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part174.xml (xml, 3785 chars)，生成 3 条共 3785 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part174.xml (xml, 3785 chars)，生成 3 条共 3785 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART174-4（US 21 CFR Part 174）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART174-3（US 21 CFR Part 174）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART174-2（US 21 CFR Part 174）。'

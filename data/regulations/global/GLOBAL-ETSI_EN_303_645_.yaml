@@ -9,11 +9,868 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: ETSI EN 303 645
+  text: 'ETSI EN 303 645
+
+    V2.1.1
+
+    (2020-06)
+
+    EUROPEAN STANDARD
+
+    CYBER;
+
+    Cyber Security for Consumer Internet of Things:
+
+    Baseline Requirements
+
+    2 ETSI EN 303 645 V2.1.1 (2020-06)
+
+    Reference
+
+    REN/CYBER-0048
+
+    Keywords
+
+    cybersecurity, IoT, privacy
+
+    ETSI
+
+    650 Route des Lucioles
+
+    F-06921 Sophia Antipolis Cedex - FRANCE
+
+    Tel.: +33 4 92 94 42 00 Fax: +33 4 93 65 47 16
+
+    Siret N° 348 623 562 00017 - NAF 742 C
+
+    Association à but non lucratif enregistrée à la
+
+    Sous-Préfecture de Grasse (06) N° 7803/88
+
+    Important notice
+
+    The present document can be downloaded from:
+
+    http://www.etsi.org/standards-search
+
+    The present document may be made available in electronic versions and/or in print. The content of any electronic and/or
+
+    print versions of the present document shall not be modified without the prior written authorization of ETSI. In case of any
+
+    existing or perceived difference in contents between such versions and/or in print, the prevailing version of an ETSI
+
+    deliverable is the one made publicly available in PDF format at www.etsi.org/deliver.
+
+    Users of the present document should be aware that the document may be subject to revision or change of status.
+
+    Information on the current status of this and other ETSI documents is available at
+
+    https://portal.etsi.org/TB/ETSIDeliverableStatus.aspx
+
+    If you find errors in the present document, please send your comment to one of the following services:
+
+    https://portal.etsi.org/People/CommiteeSupportStaff.aspx
+
+    Copyright Notification
+
+    No part may be reproduced or utilized in any form or by any means, electronic or mechanical, including photocopying
+
+    and microfilm except as authorized by written permission of ETSI.
+
+    The content of the PDF version shall not be modified without the written authorization of ETSI.
+
+    The copyright and the foregoing restriction extend to reproduction in all media.
+
+    © ETSI 2020.
+
+    All rights reserved.
+
+    DECT™, PLUGTESTS™, UMTS™ and the ETSI logo are trademarks of ETSI registered for the benefit of its Members.
+
+    3GPP™ and LTE™ are trademarks of ETSI registered for the benefit of its Members and
+
+    of the 3GPP Organizational Partners.
+
+    oneM2M™ logo is a trademark of ETSI registered for the benefit of its Members and
+
+    of the oneM2M Partners.
+
+    GSM® and the GSM logo are trademarks registered and owned by the GSM Association.
+
+    ETSI
+
+    3 ETSI EN 303 645 V2.1.1 (2020-06)
+
+    Contents
+
+    Intellectual Property Rights ................................................................................................................................ 4
+
+    Foreword ............................................................................................................................................................. 4
+
+    Modal verbs terminology .................................................................................................................................... 4
+
+    Introduction ........................................................................................................................................................ 4
+
+    1 Scope ........................................................................................................................................................ 6
+
+    2 References ................................................................................................................................................ 6
+
+    2.1 Normative references ......................................................................................................................................... 6
+
+    2.2 Informative references ........................................................................................................................................ 7
+
+    3 Definition of terms, symbols and abbreviations ....................................................................................... 9
+
+    3.1 Terms .................................................................................................................................................................. 9'
+- id: art-2
+  title: 3.2 Symbols ................................................
+  text: '3.2 Symbols ............................................................................................................................................................ 11
+
+    3.3 Abbreviations ................................................................................................................................................... 12
+
+    4 Reporting implementation ...................................................................................................................... 12
+
+    5 Cyber security provisions for consumer IoT .......................................................................................... 13
+
+    5.1 No universal default passwords ........................................................................................................................ 13
+
+    5.2 Implement a means to manage reports of vulnerabilities ................................................................................. 14
+
+    5.3 Keep software updated ..................................................................................................................................... 15
+
+    5.4 Securely store sensitive security parameters .................................................................................................... 18
+
+    5.5 Communicate securely ..................................................................................................................................... 19
+
+    5.6 Minimize exposed attack surfaces .................................................................................................................... 20
+
+    5.7 Ensure software integrity .................................................................................................................................. 21
+
+    5.8 Ensure that personal data is secure ................................................................................................................... 22
+
+    5.9 Make systems resilient to outages .................................................................................................................... 22
+
+    5.10 Examine system telemetry data ........................................................................................................................ 23
+
+    5.11 Make it easy for users to delete user data ......................................................................................................... 23
+
+    5.12 Make installation and maintenance of devices easy ......................................................................................... 24
+
+    5.13 Validate input data............................................................................................................................................ 24
+
+    6 Data protection provisions for consumer IoT ......................................................................................... 24
+
+    Annex A (informative): Basic concepts and models ............................................................................ 26
+
+    A.1 Architecture ............................................................................................................................................ 26
+
+    A.2 Device states ........................................................................................................................................... 28
+
+    Annex B (informative): Implementation conformance statement pro forma ................................... 31
+
+    History .............................................................................................................................................................. 34
+
+    ETSI
+
+    4 ETSI EN 303 645 V2.1.1 (2020-06)
+
+    Intellectual Property Rights
+
+    Essential patents
+
+    IPRs essential or potentially essential to normative deliverables may have been declared to ETSI. The information
+
+    pertaining to these essential IPRs, if any, is publicly available for ETSI members and non-members, and can be found
+
+    in ETSI SR 000 314: "Intellectual Property Rights (IPRs); Essential, or potentially Essential, IPRs notified to ETSI in'
+- id: art-3
+  title: respect of ETSI standards", which is available from the ETSI
+  text: 'respect of ETSI standards", which is available from the ETSI Secretariat. Latest updates are available on the ETSI Web
+
+    server (https://ipr.etsi.org/).
+
+    Pursuant to the ETSI IPR Policy, no investigation, including IPR searches, has been carried out by ETSI. No guarantee
+
+    can be given as to the existence of other IPRs not referenced in ETSI SR 000 314 (or the updates on the ETSI Web
+
+    server) which are, or may be, or may become, essential to the present document.
+
+    Trademarks
+
+    The present document may include trademarks and/or tradenames which are asserted and/or registered by their owners.
+
+    ETSI claims no ownership of these except for any which are indicated as being the property of ETSI, and conveys no
+
+    right to use or reproduce any trademark and/or tradename. Mention of those trademarks in the present document does
+
+    not constitute an endorsement by ETSI of products, services or organizations associated with those trademarks.
+
+    Foreword
+
+    This European Standard (EN) has been produced by ETSI Technical Committee Cyber Security (CYBER).
+
+    National transposition dates
+
+    Date of adoption of this EN: 19 June 2020
+
+    Date of latest announcement of this EN (doa): 30 September 2020
+
+    Date of latest publication of new National Standard
+
+    or endorsement of this EN (dop/e): 31 March 2021
+
+    Date of withdrawal of any conflicting National Standard (dow): 31 March 2021
+
+    Modal verbs terminology
+
+    In the present document "shall", "shall not", "should", "should not", "may", "need not", "will", "will not", "can" and
+
+    "cannot" are to be interpreted as described in clause 3.2 of the ETSI Drafting Rules (Verbal forms for the expression of
+
+    provisions).
+
+    "must" and "must not" are NOT allowed in ETSI deliverables except when used in direct citation.
+
+    Introduction
+
+    As more devices in the home connect to the Internet, the cyber security of the Internet of Things (IoT) becomes a
+
+    growing concern. People entrust their personal data to an increasing number of online devices and services. Products
+
+    and appliances that have traditionally been offline are now connected and need to be designed to withstand cyber
+
+    threats.
+
+    The present document brings together widely considered good practice in security for Internet-connected consumer
+
+    devices in a set of high-level outcome-focused provisions. The objective of the present document is to support all
+
+    parties involved in the development and manufacturing of consumer IoT with guidance on securing their products.
+
+    ETSI
+
+    5 ETSI EN 303 645 V2.1.1 (2020-06)
+
+    The provisions are primarily outcome-focused, rather than prescriptive, giving organizations the flexibility to innovate
+
+    and implement security solutions appropriate for their products.
+
+    The present document is not intended to solve all security challenges associated with consumer IoT. It also does not
+
+    focus on protecting against attacks that are prolonged/sophisticated or that require sustained physical access to the
+
+    device. Rather, the focus is on the technical controls and organizational policies that matter most in addressing the most
+
+    significant and widespread security shortcomings. Overall, a baseline level of security is considered; this is intended to
+
+    protect against elementary attacks on fundamental design weaknesses (such as the use of easily guessable passwords).
+
+    The present document provides a set of baseline provisions applicable to all consumer IoT devices. It is intended to be
+
+    complemented by other standards defining more specific provisions and fully testable and/or verifiable requirements for
+
+    specific devices which, together with the present document, will facilitate the development of assurance schemes.
+
+    Many consumer IoT devices and their associated services process and store personal data, the present document can
+
+    help in ensuring that these are compliant with the General Data Protection Regulation (GDPR) [i.7]. Security by design
+
+    is an important principle that is endorsed by the present document.'
+- id: art-4
+  title: ETSI TS 103 701 [i.19] provides guidance on how to assess an
+  text: 'ETSI TS 103 701 [i.19] provides guidance on how to assess and assure IoT products against provisions within the
+
+    present document.
+
+    The provisions in the present document have been developed following a review of published standards,
+
+    recommendations and guidance on IoT security and privacy, including: ETSI TR 103 305-3 [i.1], ETSI
+
+    TR 103 309 [i.2], ENISA Baseline Security Recommendations [i.8], UK Department for Digital, Culture, Media and
+
+    Sport (DCMS) Secure by Design Report [i.9], IoT Security Foundation Compliance Framework [i.10], GSMA IoT
+
+    Security Guidelines and Assessment [i.11], ETSI TR 103 533 [i.12], DIN SPEC 27072 [i.20] and OWASP Internet of
+
+    Things [i.23].
+
+    NOTE: Mappings of the landscape of IoT security standards, recommendations and guidance are available in
+
+    ENISA Baseline Security Recommendations for IoT - Interactive Tool [i.15] and in Copper Horse
+
+    Mapping Security & Privacy in the Internet of Things [i.14].
+
+    As consumer IoT products become increasingly secure, it is envisioned that future revisions of the present document
+
+    will mandate provisions that are currently recommendations in the present document.
+
+    ETSI
+
+    6 ETSI EN 303 645 V2.1.1 (2020-06)
+
+    1 Scope
+
+    The present document specifies high-level security and data protection provisions for consumer IoT devices that are
+
+    connected to network infrastructure (such as the Internet or home network) and their interactions with associated
+
+    services. The associated services are out of scope. A non-exhaustive list of examples of consumer IoT devices includes:
+
+    • connected children''s toys and baby monitors;
+
+    • connected smoke detectors, door locks and window sensors;
+
+    • IoT gateways, base stations and hubs to which multiple devices connect;
+
+    • smart cameras, TVs and speakers;
+
+    • wearable health trackers;
+
+    • connected home automation and alarm systems, especially their gateways and hubs;
+
+    • connected appliances, such as washing machines and fridges; and
+
+    • smart home assistants.
+
+    Moreover, the present document addresses security considerations specific to constrained devices.
+
+    EXAMPLE: Window contact sensors, flood sensors and energy switches are typically constrained devices.
+
+    The present document provides basic guidance through examples and explanatory text for organizations involved in the
+
+    development and manufacturing of consumer IoT on how to implement those provisions. Table B.1 provides a schema
+
+    for the reader to give information about the implementation of the provisions.
+
+    Devices that are not consumer IoT devices, for example those that are primarily intended to be used in manufacturing,
+
+    healthcare or other industrial applications, are not in scope of the present document.
+
+    The present document has been developed primarily to help protect consumers, however, other users of consumer IoT
+
+    equally benefit from the implementation of the provisions set out here.
+
+    Annex A (informative) of the present document has been included to provide context to clauses 4, 5 and 6 (normative).
+
+    Annex A contains examples of device and reference architectures and an example model of device states including data
+
+    storage for each state.
+
+    2 References
+
+    2.1 Normative references
+
+    References are either specific (identified by date of publication and/or edition number or version number) or
+
+    non-specific. For specific references, only the cited version applies. For non-specific references, the latest version of the
+
+    referenced document (including any amendments) applies.
+
+    Referenced documents which are not found to be publicly available in the expected location might be found at
+
+    https://docbox.etsi.org/Reference/.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    The following referenced documents are necessary for the application of the present document.
+
+    Not applicable.
+
+    ETSI
+
+    7 ETSI EN 303 645 V2.1.1 (2020-06)
+
+    2.2 Informative references'
+- id: art-5
+  title: References are either specific (identified by date of public
+  text: 'References are either specific (identified by date of publication and/or edition number or version number) or
+
+    non-specific. For specific references, only the cited version applies. For non-specific references, the latest version of the
+
+    referenced document (including any amendments) applies.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    The following referenced documents are not necessary for the application of the present document but they assist the
+
+    user with regard to a particular subject area.
+
+    [i.1] ETSI TR 103 305-3: "CYBER; Critical Security Controls for Effective Cyber Defence; Part 3:
+
+    Service Sector Implementations".
+
+    [i.2] ETSI TR 103 309: "CYBER; Secure by Default - platform security technology".
+
+    [i.3] NIST Special Publication 800-63B: "Digital Identity Guidelines - Authentication and Lifecycle
+
+    Management".
+
+    NOTE: Available at https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63b.pdf.
+
+    [i.4] ISO/IEC 29147: "Information technology - Security techniques - Vulnerability Disclosure".
+
+    NOTE: Available at https://www.iso.org/standard/45170.html.
+
+    [i.5] OASIS: "CSAF Common Vulnerability Reporting Framework (CVRF)".
+
+    NOTE: Available at http://docs.oasis-open.org/csaf/csaf-cvrf/v1.2/csaf-cvrf-v1.2.html.
+
+    [i.6] ETSI TR 103 331: "CYBER; Structured threat information sharing".
+
+    [i.7] Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the
+
+    protection of natural persons with regard to the processing of personal data and on the free
+
+    movement of such data, and repealing Directive 95/46/EC (General Data Protection Regulation).
+
+    [i.8] ENISA: "Baseline Security Recommendations for IoT in the context of Critical Information
+
+    Infrastructures", November 2017, ISBN: 978-92-9204-236-3, doi: 10.2824/03228.
+
+    NOTE: Available at https://op.europa.eu/en/publication-detail/-/publication/c37f8196-d96f-11e7-a506-
+
+    01aa75ed71a1/language-en/format-PDF/source-117211901.
+
+    [i.9] UK Department for Digital, Culture, Media and Sport: "Secure by Design: Improving the cyber
+
+    security of consumer Internet of Things Report", March 2018.
+
+    NOTE: Available at https://www.gov.uk/government/collections/secure-by-design.
+
+    [i.10] IoT Security Foundation: "IoT Security Compliance Framework", Release 2 December 2018.
+
+    NOTE: Available at https://www.iotsecurityfoundation.org/wp-content/uploads/2018/12/IoTSF-IoT-Security-
+
+    Compliance-Framework-Release-2.0-December-2018.pdf.
+
+    [i.11] GSMA: "GSMA IoT Security Guidelines and Assessment".
+
+    NOTE: Available at https://www.gsma.com/iot/iot-security/iot-security-guidelines/.
+
+    [i.12] ETSI TR 103 533: "SmartM2M; Security; Standards Landscape and best practices".
+
+    [i.13] Commission Notice: The "Blue Guide" on the implementation of EU products rules 2016 (Text
+
+    with EEA relevance), 2016/C 272/01.
+
+    NOTE: Available in the Official Journal of the European Union, https://eur-lex.europa.eu/legal-
+
+    content/EN/ALL/?uri=OJ:C:2016:272:TOC.
+
+    [i.14] Copper Horse: "Mapping Security & Privacy in the Internet of Things".
+
+    NOTE: Available at https://iotsecuritymapping.uk/.
+
+    ETSI
+
+    8 ETSI EN 303 645 V2.1.1 (2020-06)
+
+    [i.15] ENISA: "Baseline Security Recommendations for IoT - Interactive Tool".
+
+    NOTE: Available at https://www.enisa.europa.eu/topics/iot-and-smart-infrastructures/iot/baseline-security-
+
+    recommendations-for-iot-interactive-tool.
+
+    [i.16] IoT Security Foundation: "Understanding the Contemporary Use of Vulnerability Disclosure in
+
+    Consumer Internet of Things Product Companies".
+
+    NOTE: Available at https://www.iotsecurityfoundation.org/wp-content/uploads/2018/11/Vulnerability-
+
+    Disclosure-Design-v4.pdf.
+
+    [i.17] F-Secure: "IoT threats: Explosion of ''smart'' devices filling up homes leads to increasing risks".
+
+    NOTE: Available at https://blog.f-secure.com/iot-threats/.
+
+    [i.18] W3C: "Web of Things at W3C".
+
+    NOTE: Available at https://www.w3.org/WoT/.
+
+    [i.19] ETSI TS 103 701: "CYBER; Cybersecurity assessment for consumer IoT products".'
+- id: art-6
+  title: 'NOTE: It is under development.'
+  text: 'NOTE: It is under development.
+
+    [i.20] DIN SPEC 27072: "Information Technology - IoT capable devices - Minimum requirements for
+
+    Information security".
+
+    [i.21] GSMA: "Coordinated Vulnerability Disclosure (CVD) Programme".
+
+    NOTE: Available at https://www.gsma.com/security/gsma-coordinated-vulnerability-disclosure-programme/.
+
+    [i.22] IoT Security Foundation: "Vulnerability Disclosure - Best Practice Guidelines".
+
+    NOTE: Available at https://www.iotsecurityfoundation.org/wp-content/uploads/2017/12/Vulnerability-
+
+    Disclosure_WG4_2017.pdf.
+
+    [i.23] OWASP Internet of Things (IoT) Top 10 2018.
+
+    NOTE: Available at https://www.owasp.org/index.php/OWASP_Internet_of_Things_Project#tab=IoT_Top_10.
+
+    [i.24] IEEE 802.15.4™-2015: "IEEE Standard for Low-Rate Wireless Networks".
+
+    NOTE: Available at https://standards.ieee.org/content/ieee-standards/en/standard/802_15_4-2015.html.
+
+    [i.25] ETSI TS 102 221: "Smart Cards; UICC-Terminal interface; Physical and logical characteristics".
+
+    [i.26] GSMA: "SGP.22 Technical Specification v2.2.1".
+
+    [i.27] ISO/IEC 27005:2018: "Information technology - Security techniques - Information security risk
+
+    management".
+
+    NOTE: Available at https://www.iso.org/standard/75281.html.
+
+    [i.28] Microsoft® Corporation: "The STRIDE Threat Model".
+
+    NOTE: Available at https://msdn.microsoft.com/en-us/library/ee823878(v=cs.20).aspx.
+
+    [i.29] ETSI TR 121 905: "Digital cellular telecommunications system (Phase 2+) (GSM); Universal
+
+    Mobile Telecommunications System (UMTS); LTE; Vocabulary for 3GPP Specifications (3GPP
+
+    TR 21.905)".
+
+    ETSI
+
+    9 ETSI EN 303 645 V2.1.1 (2020-06)
+
+    3 Definition of terms, symbols and abbreviations
+
+    3.1 Terms
+
+    For the purposes of the present document, the following terms apply:
+
+    administrator: user who has the highest-privilege level possible for a user of the device, which can mean they are able
+
+    to change any configuration related to the intended functionality
+
+    associated services: digital services that, together with the device, are part of the overall consumer IoT product and that
+
+    are typically required to provide the product''s intended functionality
+
+    EXAMPLE 1: Associated services can include mobile applications, cloud computing/storage and third party
+
+    Application Programming Interfaces (APIs).
+
+    EXAMPLE 2: A device transmits telemetry data to a third-party service chosen by the device manufacturer. This
+
+    service is an associated service.
+
+    authentication mechanism: method used to prove the authenticity of an entity
+
+    NOTE: An "entity" can be either a user or machine.
+
+    EXAMPLE: An authentication mechanism can be the requesting of a password, scanning a QR code, or use of a
+
+    biometric fingerprint scanner.
+
+    authentication value: individual value of an attribute used by an authentication mechanism
+
+    EXAMPLE: When the authentication mechanism is to request a password, the authentication value can be a
+
+    character string. When the authentication mechanism is a biometric fingerprint recognition, the
+
+    authentication value can be the index fingerprint of the left hand.
+
+    best practice cryptography: cryptography that is suitable for the corresponding use case and has no indications of a
+
+    feasible attack with current readily available techniques
+
+    NOTE 1: This does not refer only to the cryptographic primitives used, but also implementation, key generation and
+
+    handling of keys.
+
+    NOTE 2: Multiple organizations, such as SDOs and public authorities, maintain guides and catalogues of
+
+    cryptographic methods that can be used.
+
+    EXAMPLE: The device manufacturer uses a communication protocol and cryptographic library provided with
+
+    the IoT platform and where that library and protocol have been assessed against feasible attacks,
+
+    such as replay.
+
+    constrained device: device which has physical limitations in either the ability to process data, the ability to
+
+    communicate data, the ability to store data or the ability to interact with the user, due to restrictions that arise from its
+
+    intended use'
+- id: art-7
+  title: 'NOTE 1: Physical limitations can be due to power supply, bat'
+  text: 'NOTE 1: Physical limitations can be due to power supply, battery life, processing power, physical access, limited
+
+    functionality, limited memory or limited network bandwidth. These limitations can require a constrained
+
+    device to be supported by another device, such as a base station or companion device.
+
+    EXAMPLE 1: A window sensor''s battery cannot be charged or changed by the user; this is a constrained device.
+
+    EXAMPLE 2: The device cannot have its software updated due to storage limitations, resulting in hardware
+
+    replacement or network isolation being the only options to manage a security vulnerability.
+
+    EXAMPLE 3: A low-powered device uses a battery to enable it to be deployed in a range of locations.
+
+    Performing high power cryptographic operations would quickly reduce the battery life, so it relies
+
+    on a base station or hub to perform validations on updates.
+
+    EXAMPLE 4: The device has no display screen to validate binding codes for Bluetooth pairing.
+
+    EXAMPLE 5: The device has no ability to input, such as via a keyboard, authentication information.
+
+    ETSI
+
+    10 ETSI EN 303 645 V2.1.1 (2020-06)
+
+    NOTE 2: A device that has a wired power supply and can support IP-based protocols and the cryptographic
+
+    primitives used by those protocols is not constrained.
+
+    EXAMPLE 6: A device is mains powered and communicates primarily using TLS (Transport Layer Security).
+
+    consumer: natural person who is acting for purposes that are outside her/his trade, business, craft or profession
+
+    NOTE: Organizations, including businesses of any size, use consumer IoT. For example, Smart TVs are
+
+    frequently deployed in meeting rooms, and home security kits can protect the premises of small
+
+    businesses.
+
+    consumer IoT device: network-connected (and network-connectable) device that has relationships to associated
+
+    services and are used by the consumer typically in the home or as electronic wearables
+
+    NOTE 1: Consumer IoT devices are commonly also used in business contexts. These devices remain classified as
+
+    consumer IoT devices.
+
+    NOTE 2: Consumer IoT devices are often available for the consumer to purchase in retail environments. Consumer
+
+    IoT devices can also be commissioned and/or installed professionally.
+
+    critical security parameter: security-related secret information whose disclosure or modification can compromise the
+
+    security of a security module
+
+    EXAMPLE: Secret cryptographic keys, authentication values such as passwords, PINs, private components of
+
+    certificates.
+
+    debug interface: physical interface used by the manufacturer to communicate with the device during development or to
+
+    perform triage of issues with the device and that is not used as part of the consumer-facing functionality
+
+    EXAMPLE: Test points, UART, SWD, JTAG.
+
+    defined support period: minimum length of time, expressed as a period or by an end-date, for which a manufacturer
+
+    will provide security updates
+
+    NOTE: This definition focuses on security aspects and not other aspects related to product support such as
+
+    warranty.
+
+    device manufacturer: entity that creates an assembled final consumer IoT product, which is likely to contain the
+
+    products and components of many other suppliers
+
+    factory default: state of the device after factory reset or after final production/assembly
+
+    NOTE: This includes the physical device and software (including firmware) that is present on it after assembly.
+
+    initialization: process that activates the network connectivity of the device for operation and optionally sets
+
+    authentication features for a user or for network access
+
+    initialized state: state of the device after initialization
+
+    IoT product: consumer IoT device and its associated services
+
+    isolable: able to be removed from the network it is connected to, where any functionality loss caused is related only to
+
+    that connectivity and not to its main function; alternatively, able to be placed in a self-contained environment with other
+
+    devices if and only if the integrity of devices within that environment can be ensured'
+- id: art-8
+  title: 'EXAMPLE: A Smart Fridge has a touchscreen-based interface th'
+  text: 'EXAMPLE: A Smart Fridge has a touchscreen-based interface that is network-connected. This interface can be
+
+    removed without stopping the fridge from keeping the contents chilled.
+
+    logical interface: software implementation that utilizes a network interface to communicate over the network via
+
+    channels or ports
+
+    ETSI
+
+    11 ETSI EN 303 645 V2.1.1 (2020-06)
+
+    manufacturer: relevant economic operator in the supply chain (including the device manufacturer)
+
+    NOTE: This definition acknowledges the variety of actors involved in the consumer IoT ecosystem and the
+
+    complex ways by which they can share responsibilities. Beyond the device manufacturer, such entities
+
+    can also be, for example and depending on a specific case at hand: importers, distributors, integrators,
+
+    component and platform providers, software providers, IT and telecommunications service providers,
+
+    managed service providers and providers of associated services.
+
+    network interface: physical interface that can be used to access the functionality of consumer IoT via a network
+
+    owner: user who owns or who purchased the device
+
+    personal data: any information relating to an identified or identifiable natural person
+
+    NOTE: This term is used to align with well-known terminology but has no legal meaning within the present
+
+    document.
+
+    physical interface: physical port or air interface (such as radio, audio or optical) used to communicate with the device
+
+    at the physical layer
+
+    EXAMPLE: Radios, ethernet ports, serial interfaces such as USB, and those used for debugging.
+
+    public security parameter: security related public information whose modification can compromise the security of a
+
+    security module
+
+    EXAMPLE 1: A public key to verify the authenticity/integrity of software updates.
+
+    EXAMPLE 2: Public components of certificates.
+
+    remotely accessible: intended to be accessible from outside the local network
+
+    security module: set of hardware, software, and/or firmware that implements security functions
+
+    EXAMPLE: A device contains a hardware root of trust, a cryptographic software library that operates within a
+
+    trusted execution environment, and software within the operating system that enforces security
+
+    such as user separation and the update mechanism. These all make up the security module.
+
+    security update: software update that addresses security vulnerabilities either discovered by or reported to the
+
+    manufacturer
+
+    NOTE: Software updates can be purely security updates if the severity of the vulnerability requires a higher
+
+    priority fix.
+
+    sensitive security parameters: critical security parameters and public security parameters
+
+    software service: software component of a device that is used to support functionality
+
+    EXAMPLE: A runtime for the programming language used within the device software or a daemon that
+
+    exposes an API used by the device software, e.g. a cryptographic module''s API.
+
+    telemetry: data from a device that can provide information to help the manufacturer identify issues or information
+
+    related to device usage
+
+    EXAMPLE: A consumer IoT device reports software malfunctions to the manufacturer enabling them to
+
+    identify and remedy the cause.
+
+    unique per device: unique for each individual device of a given product class or type
+
+    user: natural person or organization
+
+    3.2 Symbols
+
+    Void.
+
+    ETSI
+
+    12 ETSI EN 303 645 V2.1.1 (2020-06)
+
+    3.3 Abbreviations
+
+    For the purposes of the present document, the following abbreviations apply:
+
+    API Application Programming Interface
+
+    ASLR Address Space Layout Randomization
+
+    CVD Coordinated Vulnerability Disclosure
+
+    CVRF Common Vulnerability Reporting Framework
+
+    DDoS Distributed Denial of Service
+
+    DSC Dedicated Security Components
+
+    ENISA European Union Agency for Network and Information Security
+
+    EU European Union
+
+    GDPR General Data Protection Regulation
+
+    GSM Global System for Mobile communications
+
+    GSMA GSM Association
+
+    IEEE Institute of Electrical and Electronics Engineers
+
+    IoT Internet of Things
+
+    IP Internet Protocol
+
+    ISO International Organization for Standardization
+
+    JTAG Joint Test Action Group'
+- id: art-9
+  title: LAN Local Area Network
+  text: 'LAN Local Area Network
+
+    LoRaWAN Long Range Wide Area Network
+
+    MAC Media Access Control
+
+    NIST National Institute of Standards and Technology
+
+    NX No execute
+
+    OTP One-Time Password
+
+    QR Quick Response
+
+    SBOM Software Bill of Materials
+
+    SDO Standards Development Organization
+
+    SE Secure Elements
+
+    SSID Service Set IDentifier
+
+    STRIDE Spoofing, Tampering, Repudiation, Information disclosure, Denial of service, Elevation of
+
+    privile'
 doc_files:
 - global/raw/ETSI_EN_303_645_消费物联网网络安全.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_303_645_消费物联网网络安全.pdf (pdf, 93124 chars)，生成 9 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_303_645_消费物联网网络安全.pdf (pdf, 93124 chars)，生成 9 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_303_645_消费物联网网络安全.pdf (pdf, 93124 chars)，生成 9 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

@@ -12,7 +12,19 @@ articles: []
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: |
-  Manually created 2026-09-17 from official_sources.json entry ca-consumer-products-containing-lead-regulations.
+notes: 'Manually created 2026-09-17 from official_sources.json entry ca-consumer-products-containing-lead-regulations.
+
   Backed by Government of Canada Justice Laws Website (canada_justice_xml).
-  Authoring note: a KB anchor at data/kb/anchors/CA-SOR-2018-83-children.yaml is required to surface this regulation in generator must-check output.
+
+  Authoring note: a KB anchor at data/kb/anchors/CA-SOR-2018-83-children.yaml is required to surface this regulation in generator
+  must-check output.
+
+
+  2026-09-19 去重：合并同法规异名条目 CA-SOR-2018-83_CONSUMER_PRODUCTS_CONTAINING_LEAD_REGULATIONS（CA SOR-2018-83 Consumer Products Containing
+  Lead Regulations）。
+
+  2026-09-19 去重：合并同法规异名条目 CA-SOR-2018-83_CONSUMER_PRODUCTS_CONTAINING_LEAD_REGULATIONS-2（CA SOR-2018-83 Consumer Products
+  Containing Lead Regulations [html]）。'
+doc_files:
+- ca/raw/CA-SOR-2018-83_Consumer_Products_Containing_Lead_Regulations.xml
+- ca/raw/CA-SOR-2018-83_Consumer_Products_Containing_Lead_Regulations.html

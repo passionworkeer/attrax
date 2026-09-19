@@ -9,11 +9,803 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'L_2014096EN.01014901.xml
+
+
+    29.3.2014
+
+
+    EN
+
+
+    Official Journal of'
+  text: 'L_2014096EN.01014901.xml
+
+
+    29.3.2014
+
+
+    EN
+
+
+    Official Journal of the European Union
+
+
+    L 96/149
+
+
+    DIRECTIVE 2014/32/EU OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL
+
+
+
+    of 26 February 2014
+
+
+
+    on the harmonisation of the laws of the Member States relating to the making available on the market of measuring instruments (recast)
+
+
+    (Text with EEA relevance)
+
+
+    THE EUROPEAN PARLIAMENT AND THE COUNCIL OF THE EUROPEAN UNION,
+
+
+    Having regard to the Treaty on the Functioning of the European Union, and in particular Article 114 thereof,
+
+
+    Having regard to the proposal from the European Commission,
+
+
+    After transmission of the draft legislative act to the national parliaments,
+
+
+    Having regard to the opinion of the European Economic and Social Committee
+
+    (
+
+    1
+
+    )
+
+    ,
+
+
+    Acting in accordance with the ordinary legislative procedure
+
+    (
+
+    2
+
+    )
+
+    ,
+
+
+    Whereas:
+
+
+    (1)
+
+
+    Directive 2004/22/EC of the European Parliament and of the Council of 31 March 2004 on measuring instruments
+
+    (
+
+    3
+
+    )
+
+    has been substantially amended
+
+    (
+
+    4
+
+    )
+
+    . Since further amendments are to be made, that Directive should be recast in the interests of clarity.
+
+
+    (2)
+
+
+    Regulation (EC) No 765/2008 of the European Parliament and of the Council of 9 July 2008 setting out the requirements for accreditation and market surveillance relating to the marketing of products
+
+    (
+
+    5
+
+    )
+
+    lays down rules on the accreditation of conformity assessment bodies, provides a framework for the market surveillance of products and for controls on products from third countries, and lays down the
+    general principles of the CE marking.
+
+
+    (3)
+
+
+    Decision No 768/2008/EC of the European Parliament and of the Council of 9 July 2008 on a common framework for the marketing of products
+
+    (
+
+    6
+
+    )
+
+    lays down common principles and reference provisions intended to apply across sectoral legislation in order to provide a coherent basis for revision or recasts of that legislation. Directive 2004/22/EC
+    should be adapted to that Decision.
+
+
+    (4)
+
+
+    This Directive covers measuring instruments which are new to the Union market when they are placed on the market; that is to say they are either new measuring instruments made by a manufacturer established
+    in the Union or measuring instruments, whether new or second-hand, imported from a third country.
+
+
+    (5)
+
+
+    Correct and traceable measuring instruments can be used for a variety of measurement tasks. Those responding to reasons of public interest, public health, safety and order, protection of the environment
+    and the consumer, of levying taxes and duties and of fair trading, which directly and indirectly affect the daily life of citizens in many ways, may require the use of legally controlled measuring instruments.
+
+
+    (6)
+
+
+    This Directive should apply to all forms of supply, including distance selling.
+
+
+    (7)
+
+
+    Legal metrological control should not lead to barriers to the free movement of measuring instruments. The applicable provisions should be the same in all Member States and proof of conformity should
+    be accepted throughout the Union.
+
+
+    (8)
+
+
+    Legal metrological control requires conformity with specified performance requirements. The performance requirements that the measuring instruments must meet should provide a high level of protection.
+    The conformity assessment should provide a high level of confidence.
+
+
+    (9)
+
+
+    Member States should as a general rule prescribe legal metrological control. Where legal metrological control is prescribed, only measuring instruments complying with common performance requirements
+    should be used.
+
+
+    (10)
+
+
+    The principle of optionality introduced by Directive 2004/22/EC allows Member States to exercise their right to decide whether or not to prescribe the use of the measuring instruments covered by this
+    Directive.
+
+
+    (11)
+
+
+    National specifications concerning the appropriate national requirements for use should not interfere with the provisions of this Directive on ‘putting into use’.
+
+
+    (12)
+
+
+    The performance of certain measuring instruments is particularly sensitive to the environment, in particular the electromagnetic environment. Immunity of measuring instruments to electromagnetic interference
+    should form an integral part of this Directive and the immunity requirements of Directive 2004/108/EC of the European Parliament and of the Council of 15 December 2004 on the approximation of the laws
+    of the Member States relating to electromagnetic compatibility
+
+    (
+
+    7
+
+    )
+
+    should therefore not apply.
+
+
+    (13)
+
+
+    In order to ensure the free circulation of measuring instruments in the Union, Member States should not impede the placing on the market and/or putting into use of measuring instruments that carry the
+    CE marking and supplementary metrology marking in accordance with the provisions of this Directive.
+
+
+    (14)
+
+
+    Member States should take appropriate action to prevent non-complying measuring instruments from being placed on the market and/or put into use. Adequate cooperation between the competent authorities
+    of the Member States is therefore necessary to ensure a Union-wide effect of this objective.
+
+
+    (15)
+
+
+    Economic operators should be responsible for the compliance of measuring instruments with this Directive, in relation to their respective roles in the supply chain, so as to ensure a high level of protection
+    of the aspects of public interest covered by this Directive, and also to guarantee fair competition on the Union market.
+
+
+    (16)
+
+
+    All economic operators intervening in the supply and distribution chain should take appropriate measures to ensure that they make available on the market only measuring instruments which are in conformity
+    with this Directive. It is necessary to provide for a clear and proportionate distribution of obligations which correspond to the role of each economic operator in the supply and distribution chain.
+
+
+    (17)
+
+
+    In order to facilitate communication between economic operators, market surveillance authorities and consumers, Member States should encourage economic operators to include a website address in addition
+    to the postal address.
+
+
+    (18)
+
+
+    The manufacturer, having detailed knowledge of the design and production process, is best placed to carry out the conformity assessment procedure. Conformity assessment should therefore remain solely
+    the obligation of the manufacturer.
+
+
+    (19)
+
+
+    It is necessary to ensure that measuring instruments from third countries entering the Union market comply with this Directive, and in particular that the appropriate conformity assessment procedures
+    have been carried out by manufacturers with regard to those measuring instruments. Provision should therefore be made for importers to make sure that the measuring instruments they place on the market
+    comply with the requirements of this Directive and that they do not place on the market measuring instruments which do not comply with such requirements or present a risk. Provision should also be made
+    for importers to make sure that conformity assessment procedures have been carried out and that marking of measuring instruments and documentation drawn up by manufacturers are available for inspection
+    by the competent national authorities.
+
+
+    (20)
+
+
+    When placing a measuring instrument on the market, every importer should indicate on the measuring instrument his name, registered trade name or registered trade mark and the postal address at which
+    he can be contacted. Exceptions should be provided for in cases where the size or nature of the measuring instrument does not allow it. This includes cases where the importer would have to open the
+    packaging to put his name and address on the measuring instrument.
+
+
+    (21)
+
+
+    The distributor makes a measuring instrument available on the market after it has been placed on the market by the manufacturer or the importer. The distributor should act with due care to ensure that
+    its handling of the measuring instrument does not adversely affect the compliance of that instrument with this Directive.
+
+
+    (22)
+
+
+    Any economic operator that either places a measuring instrument on the market under his own name or trade mark or modifies a measuring instrument in such a way that compliance with of this Directive
+    may be affected should be considered to be the manufacturer and should assume the obligations of the manufacturer.
+
+
+    (23)
+
+
+    Distributors and importers, being close to the market place, should be involved in market surveillance tasks carried out by competent national authorities, and should be prepared to participate actively,
+    providing those authorities with all necessary information relating to the measuring instrument concerned.
+
+
+    (24)
+
+
+    Ensuring traceability of a measuring instrument throughout the whole supply chain helps to make market surveillance simpler and more efficient. An efficient traceability system facilitates market surveillance
+    authorities’ task of tracing economic operators who made non-compliant measuring instruments available on the market. When keeping the information required under this Directive for the identification
+    of other economic operators, economic operators should not be required to update such information in respect of other economic operators who have either supplied them with a measuring instrument or
+    to whom they have supplied a measuring instrument.
+
+
+    (25)
+
+
+    This Directive should be limited to the expression of essential requirements that do not impede technical progress, preferably performance requirements. In order to facilitate conformity assessment
+    with those requirements it is necessary to provide for a presumption of conformity for measuring instruments which are in conformity with harmonised standards that are adopted in accordance with Regulation
+    (EU) No 1025/2012 of the European Parliament and of the Council of 25 October 2012 on European Standardisation
+
+    (
+
+    8
+
+    )
+
+    for the purpose of expressing detailed technical specifications of those requirements.
+
+
+    (26)
+
+
+    Regulation (EU) No 1025/2012 provides for a procedure for objections to harmonised standards where those standards do not entirely satisfy the requirements of this Directive.
+
+
+    (27)
+
+
+    The technical and performance specifications of internationally agreed normative documents may also comply, in part or in full, with the essential requirements laid down by this Directive. In those
+    cases the use of these internationally agreed normative documents should be allowed as an alternative to the use of harmonised standards and, under specific conditions, give rise to a presumption of
+    conformity.
+
+
+    (28)
+
+
+    Conformity with the essential requirements laid down by this Directive can also be provided by specifications that are not supplied by a harmonised standard or an internationally agreed normative document.
+    The use of harmonised standards or internationally agreed normative documents should therefore be optional.
+
+
+    (29)
+
+
+    In order to enable economic operators to demonstrate and the competent authorities to ensure that measuring instruments made available on the market comply with the essential requirements, it is necessary
+    to provide for conformity assessment procedures. Decision No 768/2008/EC establishes modules for conformity assessment procedures, from the least to the most stringent, in proportion to the level of
+    risk involved and the level of safety required. In order to ensure inter-sectoral coherence and to avoid ad-hoc variants, conformity assessment procedures should be chosen from among those modules.
+    However, it is necessary to adapt those modules in order to reflect specific aspects of metrological control.
+
+
+    (30)
+
+
+    The conformity assessment of sub-assemblies should be carried out in accordance with this Directive. If sub-assemblies are made available on the market separately and independently of an instrument,
+    their conformity assessment should be undertaken independently of the instrument concerned.
+
+
+    (31)
+
+
+    The state of the art in measurement technology is subject to constant evolution which may lead to changes in the needs for conformity assessments. Therefore, for each category of measuring instrument
+    and, where appropriate, sub-assemblies, there should be an appropriate procedure or a'
+- id: art-2
+  title: CHAPTER 1
+  text: 'CHAPTER 1
+
+
+    GENERAL PROVISIONS'
+- id: art-3
+  title: Article 1
+  text: 'Article 1
+
+
+    Subject matter
+
+
+    This Directive establishes the requirements that measuring instruments have to satisfy with a view to their being made available on the market and/or put into use for the measuring tasks referred to
+    in Article 3(1).'
+- id: art-4
+  title: Article 2
+  text: 'Article 2
+
+
+    Scope
+
+
+    1.   This Directive applies to the measuring instruments defined in the instrument-specific Annexes III to XII (hereinafter ‘instrument-specific Annexes’) concerning water meters (MI-001), gas meters
+    and volume conversion devices (MI-002), active electrical energy meters (MI-003), thermal energy meters (MI-004), measuring systems for continuous and dynamic measurement of quantities of liquids other
+    than water (MI-005), automatic weighing instruments (MI-006), taximeters (MI-007), material measures (MI-008), dimensional measuring instruments (MI-009) and exhaust gas analysers (MI-010).
+
+
+    2.   This Directive is a specific Directive in respect of requirements for electromagnetic immunity within the meaning of Article 2(3) of Directive 2014/30/EU of the European Parliament and of the Council
+
+    (
+
+    10
+
+    )
+
+    . That Directive continues to apply with regard to emission requirements.'
+- id: art-5
+  title: Article 3
+  text: 'Article 3
+
+
+    Optionality
+
+
+    1.   Member States may prescribe the use of measuring instruments for measuring tasks, where they consider it justified for reasons of public interest, public health, public safety, public order, protection
+    of the environment, protection of consumers, levying of taxes and duties and fair trading.
+
+
+    2.   Where Member States do not prescribe such use, they shall communicate the reasons therefor to the Commission and the other Member States.'
+- id: art-6
+  title: Article 4
+  text: 'Article 4
+
+
+    Definitions
+
+
+    For the purposes of this Directive, the following definitions shall apply:
+
+
+    (1)
+
+
+    ‘measuring instrument’ means any device or system with a measurement function that is covered by Article 2(1);
+
+
+    (2)
+
+
+    ‘sub-assembly’ means a hardware device, mentioned as such in the instrument-specific annexes, that functions independently and makes up a measuring instrument together with other sub-assemblies with
+    which it is compatible, or with a measuring instrument with which it is compatible;
+
+
+    (3)
+
+
+    ‘legal metrological control’ means the control of the measurement tasks intended for the field of application of a measuring instrument, for reasons of public interest, public health, public safety,
+    public order, protection of the environment, levying of taxes and duties, protection of the consumers and fair trading;
+
+
+    (4)
+
+
+    ‘normative document’ means a document containing technical specifications adopted by the International Organisation of Legal Metrology;
+
+
+    (5)
+
+
+    ‘making available on the market’ means any supply of a measuring instrument for distribution or use on the Union market in the course of a commercial activity, whether in return for payment or free
+    of charge;
+
+
+    (6)
+
+
+    ‘placing on the market’ means the first making available of a measuring instrument on the Union market;
+
+
+    (7)
+
+
+    ‘putting into use’ means the first use of a measuring instrument intended for the end-user for the purposes for which it was intended;
+
+
+    (8)
+
+
+    ‘manufacturer’ means any natural or legal person who manufactures a measuring instrument or has a measuring instrument designed or manufactured, and markets that measuring instrument under his name
+    or trade mark or puts it into use for his own purposes;
+
+
+    (9)
+
+
+    ‘authorised representative’ means any natural or legal person established within the Union who has received a written mandate from a manufacturer to act on his behalf in relation to specified tasks;
+
+
+    (10)
+
+
+    ‘importer’ means any natural or legal person established within the Union who places a measuring instrument from a third country on the Union market;
+
+
+    (11)
+
+
+    ‘distributor’ means any natural or legal person in the supply chain, other than the manufacturer or the importer, who makes a measuring instrument available on the market;
+
+
+    (12)
+
+
+    ‘economic operators’ means the manufacturer, the authorised representative, the importer and the distributor;
+
+
+    (13)
+
+
+    ‘technical specification’ means a document that prescribes technical requirements to be fulfilled by a measuring instrument;
+
+
+    (14)
+
+
+    ‘harmonised standard’ means harmonised standard as defined in point (c) of point 1 of Article 2 of Regulation (EU) No 1025/2012;
+
+
+    (15)
+
+
+    ‘accreditation’ means accreditation as defined in point 10 of Article 2 of Regulation (EC) no 765/2008;
+
+
+    (16)
+
+
+    ‘national accreditation body’ means national accreditation body as defined in point 11 of Article 2 of Regulation (EC) no 765/2008;
+
+
+    (17)
+
+
+    ‘conformity assessment’ means the process demonstrating whether the essential requirements of this Directive relating to a measuring instrument have been fulfilled;
+
+
+    (18)
+
+
+    ‘conformity assessment body’ means a body that performs conformity assessment activities including calibration, testing, certification and inspection;
+
+
+    (19)
+
+
+    ‘recall’ means any measure aimed at achieving the return of a measuring instrument that has already been made available to the end-user;
+
+
+    (20)
+
+
+    ‘withdrawal’ means any measure aimed at preventing a measuring instrument in the supply chain from being made available on the market;
+
+
+    (21)
+
+
+    ‘Union harmonisation legislation’ means any Union legislation harmonising the conditions for the marketing of products;
+
+
+    (22)
+
+
+    ‘CE marking’ means a marking by which the manufacturer indicates that the measuring instrument is in conformity with the applicable requirements set out in Union harmonisation legislation providing
+    for its affixing.'
+- id: art-7
+  title: Article 5
+  text: 'Article 5
+
+
+    Applicability to sub-assemblies
+
+
+    Where instrument-specific annexes lay down the essential requirements for sub-assemblies, this Directive shall apply mutatis mutandis to such sub-assemblies.
+
+
+    Sub-assemblies and measuring instruments may be assessed independently and separately for the purpose of establishing conformity.'
+- id: art-8
+  title: Article 6
+  text: 'Article 6
+
+
+    Essential requirements
+
+
+    A measuring instrument shall meet the essential requirements set out in Annex I and in the relevant instrument-specific Annex.
+
+
+    Member States may require, if it is needed for correct use of the instrument, the information referred to in point 9 of Annex I or in the relevant instrument-specific Annexes to be provided in a language
+    which can be easily understood by end-users, as determined by the Member State in which the instrument is made available on the market.'
+- id: art-9
+  title: Article 7
+  text: 'Article 7
+
+
+    Making available on the market and putting into use
+
+
+    1.   Member States shall not impede for reasons covered by this Directive the making available on the market and/or putting into use of any measuring instrument that satisfies the requirements of this
+    Directive.
+
+
+    2.   Member States shall take all appropriate measures to ensure that measuring instruments are made available on the market and/or put into use only if they satisfy the requirements of this Directive.
+
+
+    3.   A Member State may require a measuring instrument to satisfy provisions governing its putting into use that are justified by local climatic conditions. In such a case, the Member State shall choose
+    appropriate upper and lower temperature limits from Table 1 of Annex I and may specify humidity conditions (condensing or non-condensing) and whether the intended location of use is open or closed.
+
+
+    4.   When different accuracy classes are defined for a measuring instrument:
+
+
+    (a)
+
+
+    the instrument-specific Annexes under the heading ‘Putting into use’ may indicate the accuracy classes to be used for specific applications;
+
+
+    (b)
+
+
+    in all other cases a Member State may determine the accuracy classes to be used for specific applications within the classes defined, subject to allowing the use of all accuracy classes on its territory.
+
+
+    For the purposes of point (a) or point (b), measuring instruments of a better accuracy class may be used if the owner so chooses.
+
+
+    5.   At trade fairs, exhibitions, demonstrations or similar events, Member States shall not prevent the showing of measuring instruments not in conformity with this Directive, provided that a visible
+    sign clearly indicates their non-conformity and their non-availability for making available on the market and/or putting into use until they are brought into conformity.'
+- id: art-10
+  title: CHAPTER 2
+  text: 'CHAPTER 2
+
+
+    OBLIGATIONS OF ECONOMIC OPERATORS'
+- id: art-11
+  title: Article 8
+  text: 'Article 8
+
+
+    Obligations of manufacturers
+
+
+    1.   When placing their measuring instruments on the market and/or putting them into use, manufacturers shall ensure that they have been designed and manufactured in accordance with the essential requirements
+    set out in Annex I and in the relevant instrument-specific Annexes.
+
+
+    2.   Manufacturers shall draw up the technical documentation referred to in Article 18 and carry out the relevant conformity assessment procedure referred to in Article 17 or have it carried out.
+
+
+    Where compliance of a measuring instrument with the applicable requirements of this Directive has been demonstrated by that conformity assessment procedure, manufacturers shall draw up an EU declaration
+    of conformity and affix the CE marking and the supplementary metrology marking.
+
+
+    3.   Manufacturers shall keep the technical documentation and the EU declaration of conformity for 10 years after the measuring instrument has been placed on the market.
+
+
+    4.   Manufacturers shall ensure that procedures are in place for series production to remain in conformity with this Directive. Changes in measuring instrument design or characteristics and changes
+    in the harmonised standards, normative documents or in other technical specifications by reference to which conformity of a measuring instrument is declared shall be adequately taken into account.
+
+
+    When deemed appropriate with regard to the performance of a measuring instrument, manufacturers shall carry out sample testing of measuring instruments made available on the market, investigate and,
+    if necessary, keep a register of complaints, of non-conforming measuring instruments and measuring instrument recalls, and shall keep distributors informed of any such monitoring.
+
+
+    5.   Manufacturers shall ensure that measuring instruments which they have placed on the market bear a type, batch or serial number or other element allowing their identification, or, where the size
+    or nature of the measuring instrument does not allow it, that the required information is provided in a document accompanying the measuring instrument and on the packaging, if any, in accordance with
+    point 9.2 of Annex I.
+
+
+    6.   Manufacturers shall indicate on the measuring instrument their name, registered trade name or registered trade mark and the postal address at which they can be contacted or, where that is not possible,
+    in a document accompanying the measuring instrument and on the packaging, if any, in accordance with point 9.2 of Annex I. The address shall indicate a single point at which the manufacturer can be
+    contacted. The contact details shall be in a language easily understood by end-users and market surveillance authorities.
+
+
+    7.   Manufacturers shall ensure that the measuring instrument which they have placed on the market is accompanied by a copy of the EU Declaration of conformity and by instructions and information in
+    accordance with point 9.3 of Annex I, in a language which can be easily understood by end-users, as determined by the Member State concerned. Such instructions and information, as well as any labelling,
+    shall be clear, understandable and intelligible.
+
+
+    8.   Manufacturers who consider or have reason to believe that a measuring instrument which they have placed on the market is not in conformity with this Directive shall immediately take the corrective
+    measures necessary to bring that measuring instrument into conformity, to withdraw it or recall it, if appropriate. Furthermore, where the measuring instrument presents a risk, manufacturers shall immediately
+    inform the competent national authorities of the Member States in which they made the measuring instrument available on the market to that effect, giving details, in particular, of the non-compliance
+    and of any corrective measures taken.
+
+
+    9.   Manufacturers shall, further to a reasoned request from a competent national authority, provide it with all the information and documentation in paper or electronic form necessary to demonstrate
+    the conformity of the measuring instrument with this Directive, in a language which can be easily understood by that authority. They shall cooperate with that authority, at its request, on any action
+    taken to eliminate the risks posed by measuring instruments which they have placed on the market.'
+- id: art-12
+  title: Article 9
+  text: 'Article 9
+
+
+    Authorised representatives
+
+
+    1.   A manufacturer may, by a written mandate, appoint an authorised representative.
+
+
+    The obligations laid down in Article 8(1) and the obligation to draw up technical documentation referred to in Article 8(2) shall not form part of the authorised representative’s mandate.
+
+
+    2.   An authorised representative shall perform the tasks specified in the mandate received from the manufacturer. The mandate shall allow the authorised representative to do at least the following:
+
+
+    (a)
+
+
+    keep the EU declaration of conformity and the technical documentation at the disposal of national market surveillance authorities for 10 years after the measuring instrument has been placed on the market;
+
+
+    (b)
+
+
+    further to a reasoned request from a competent national authority, provide that authority with all the information and documentation necessary to demonstrate the conformity of a measuring instrument;
+
+
+    (c)
+
+
+    cooperate with the competent national authorities, at their request, on any action taken to eliminate the risks posed by measuring instruments covered by their mandate.'
+- id: art-13
+  title: Article 10
+  text: 'Article 10
+
+
+    Obligations of importers
+
+
+    1.   Importers shall place only compliant measuring instruments on the market.
+
+
+    2.   Before placing a measuring instrument on the market and/or putting a measuring instrument into use importers shall ensure that the appropriate conformity assessment procedure referred to in Article
+    17 has been carried out by the manufacturer. They shall ensure that the manufacturer has drawn up the technical documentation, that the measuring instrument bears the CE marking and the supplementary
+    metrology marking and is accompanied by a copy of the EU declaration of conformity and the required documents, and that the manufacturer has complied with the requirements set out in Article 8(5) and
+    (6).
+
+
+    Where an importer considers or has reason to believe that a measuring instrument is not in conformity with the essential requirements set out in Annex I and in the relevant instrument-specific Annexes,
+    he shall not place the measuring instrument on the market or put it into use until it has been brought into conformity. Furthermore, where the measuring instrument presents a risk, the importer shall
+    inform the manufacturer and the market surveillance authorities to that effect.
+
+
+    3.   Importers shall indicate on the measuring instrument their name, registered trade name or registered trade mark and the postal address at which they can be contacted or, where that is not possible,
+    in a document accompanying the measuring instrument and on its packaging, if any, in accordance with point 9.2 of Annex I. The contact details shall be in a language easily understood by end-users and
+    market surveillance authorities.
+
+
+    4.   Importers shall ensure that the measuring instrument is accompanied by instructions and information in accordance with point 9.3 of Annex I, in a language which can be easily understood by end-users,
+    as determined by the Member State concerned.
+
+
+    5.   Importers shall ensure that, while a measuring instrument is under their responsibility, its storage or transport conditions do not jeopardise its compliance with the essential requirements set
+    out in Annex I and in the relevant instrument-specific Annexes.
+
+
+    6.   When deemed appropriate with regard to the performance of a measuring instrument, importers shall carry out sample testing of measuring instruments made available on the market, investigate, and,
+    if necessary, keep a register of complaints, of non-conforming measuring instruments and measuring instrument recalls, and shall keep distributors informed of any such monitoring.
+
+
+    7.   Importers who consider or have reason to believe that a measuring instrument which they have placed on the market is not in conformity with this Directive shall immediately take the corrective
+    measures necessary to bring that measuring instrument into conformity, to withdraw it or recall it, if appropriate. Furthermore, where the measuring instrument presents a risk, importers shall immediately
+    inform the competent national authorities of the Member States in which they made the measuring instrument available on the market to that effect, giving details, in particular, of the non-compliance
+    and of any corrective measures taken.
+
+
+    8.   Importers shall, for 10 years after the measuring instrument has been placed on the market keep a copy of the EU declaration of conformity at the disposal of the market surveillance authorities
+    and ensure that the technical documentation can be made available to those authorities, upon request.
+
+
+    9.   Importers shall, further to a reasoned request from a competent national authority, provide it with all the information and documentation in paper or electronic form necessary to demonstrate the
+    conformity of a measuring instrument in a language which can be easily understood by that authority. They shall cooperate with that authority, at its request, on any action taken to eliminate the risks
+    posed by measuring instruments which they have placed on the market.'
+- id: art-14
+  title: Article 11
+  text: 'Article 11
+
+
+    Obligations of distributors
+
+
+    1.   When making a measuring instrument available on the market and/or putting it into use, distributors shall act with due care in relation to the requirements of this Directive.
+
+
+    2.   Before making a measuring instrument available on the market and/or putting a measuring instrument into use distributors shall verify that the measuring instrument bears the CE marking and the
+    supplementary metrology marking, that it is accompanied by the EU declaration of conformity, by the required documents and by instructions and information in accordance with point 9.3 of Annex I, in
+    a language which can be easily understood by end-users in the Member State in which the measuring instrument is to be made available on the market and/or put into use, and that the manufacturer and
+    the importer have complied with the requirements set out in Article 8(5) and (6) and Article 10(3) respectively.
+
+
+    Where a distributor considers or has reason to believe that a measuring instrument is not in conformity with the essential requirements set out in Annex I and in the relevant instrument-specific Annexes,
+    he shall not make the measuring instrument available on the market or put it into use, until it has been brought into conformity. Furthermore, where the measuring instrument presents a risk, the distributor
+    shall inform the manufacturer or the importer to that effect as well as the market surveillance authorities.
+
+
+    3.   Distributors shall ensure that, while a measuring instrument is under their responsibility, its storage or transport conditions do not jeopardise its compliance with the essential requirements
+    set out in Annex I and in the relevant instrument-specific Annexes.
+
+
+    4.   Distributors who consider or have reason to believe that a measuring instrument which they have made available on the market or put into use is not in conformity with this Directive shall make
+    sure that the corrective measures necessary to bring that measuring instrument into conformity, to withdraw it or recall it, if appropriate, are taken. Furthermore, where the measuring instrument presents
+    a risk, distributors shall immediately inform the competent national authorities of the Member States in which they made the measuring instrument available on the market to that effect, giving details,
+    in particular, of the non-compliance and of any corrective measures taken.
+
+
+    5.   Distributors shall, further to a reasoned request from a competent nat'
 doc_files:
 - eu/raw/EU-2014-32_Measuring_Instruments_Directive.xhtml
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2014-32_Measuring_Instruments_Directive.xhtml (html, 297367 chars)，生成 12 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2014-32_Measuring_Instruments_Directive.xhtml (html, 297367 chars)，生成 12 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2014-32_Measuring_Instruments_Directive.xhtml (html, 297207 chars)，生成 14 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

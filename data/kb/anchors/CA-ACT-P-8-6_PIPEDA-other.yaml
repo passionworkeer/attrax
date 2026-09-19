@@ -1,0 +1,28 @@
+id: KB-other-CA-CA-ACT-P-8-6_PIPEDA
+regulation_id: CA-ACT-P-8-6_PIPEDA
+doc_name: CA P-8.6 PIPEDA
+official_citation: CA P-8.6 PIPEDA
+short_name: CA P-8.6 PIPEDA
+source: category
+primary_source: other
+domain: other
+applies_if:
+  category:
+  - other
+  features_any: []
+  markets:
+  - CA
+key_articles:
+- art-1
+- art-2
+key_points:
+- CA P-8.6 PIPEDA：其他品类领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://laws-lois.justice.gc.ca/eng/XML/P-8.6.xml
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

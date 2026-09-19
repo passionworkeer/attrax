@@ -1,6 +1,6 @@
 id: US-CFR-TITLE21-PART171
 official_citation: US 21 CFR Part 171
-short_name: US 21 CFR Part 171
+short_name: US 21 CFR Part 171 — FOOD ADDITIVE PETITIONS
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,382 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '21
+
+    Food and Drugs
+
+    3
+
+    2024-04-01
+
+    2024-04-01
+
+    false
+
+    FOOD ADDITIV'
+  text: '21
+
+    Food and Drugs
+
+    3
+
+    2024-04-01
+
+    2024-04-01
+
+    false
+
+    FOOD ADDITIVE PETITIONS
+
+    171
+
+    PART 171
+
+    Food and Drugs
+
+    FOOD AND DRUG ADMINISTRATION, DEPARTMENT OF HEALTH AND HUMAN SERVICES (CONTINUED)
+
+    FOOD FOR HUMAN CONSUMPTION (CONTINUED)
+
+    Pt. 171
+
+    PART 171—FOOD ADDITIVE PETITIONS
+
+    Subpart A—General Provisions
+
+    Sec.
+
+    171.1
+
+    Petitions.
+
+    171.6
+
+    Amendment of petition.
+
+    171.7
+
+    Withdrawal of petition without prejudice.
+
+    171.8
+
+    Threshold of regulation for substances used in food-contact articles.
+
+    Subpart B—Administrative Actions on Applications
+
+    171.100
+
+    Regulation based on petition.
+
+    171.102
+
+    Effective date of regulation.
+
+    171.110
+
+    Procedure for objections and hearings.
+
+    171.130
+
+    Procedure for amending and repealing tolerances or exemptions from tolerances.
+
+    Authority:
+
+    21 U.S.C. 321, 342, 348, 371.
+
+    Source:
+
+    42 FR 14489, Mar. 15, 1977, unless otherwise noted.
+
+    Subpart A—General Provisions'
+- id: art-2
+  title: § 171.1
+  text: '§ 171.1
+
+    Petitions.
+
+    (a) Petitions to be filed with the Commissioner under the provisions of section 409(b) of the Federal Food, Drug, and Cosmetic Act (the act) shall be submitted in triplicate (quadruplicate, if intended
+    uses include use in meat, meat food product, or poultry product). If any part of the material submitted is in a foreign language, it shall be accompanied by an accurate and complete English translation.
+    The petition shall state petitioner''s post office address to which published notices or orders issued or objections filed pursuant to section 409 of the Act may be sent.
+
+    (b) Pertinent information may be incorporated in, and will be considered as part of, a petition on the basis of specific reference to such information submitted to and retained in the files of the Food
+    and Drug Administration. However, any reference to unpublished information furnished by a person other than the applicant will not be considered unless use of such information is authorized in a written
+    statement signed by the person who submitted it. Any reference to published information offered in support of a food additive petition should be accompanied by reprints or photostatic copies of such
+    references.
+
+    (c) Petitions shall include the following data and be submitted in the following form:
+
+    (Date)
+
+    Name of petitioner
+
+    Post-office address
+
+    Date
+
+    Name of food additive and proposed use
+
+    Office of Food Additive Safety (HFS-200), Center for Food Safety and Applied Nutrition, Food and Drug Administration, 5001 Campus Dr., College Park, MD 20740.
+
+    Dear Sirs:
+
+    The undersigned, __________ submits this petition pursuant to section 409(b)(1) of the Federal Food, Drug, and Cosmetic Act with respect to __________
+
+    (Name of the food additive and proposed use)
+
+    Attached hereto, in triplicate (quadruplicate, if intended uses include use in meat, meat food product, or poultry product), and constituting a part of this petition are the following:
+
+    A. The name and all pertinent information concerning the food additive, including chemical identity and composition of the food additive, its physical, chemical, and biological properties, and specifications
+    prescribing the minimum content of the desired
+
+    component(s) and identifying and limiting the reaction byproducts and other impurities. Where such information is not available, a statement as to the reasons why it is not should be submitted.
+
+    When the chemical identity and composition of the food additive is not known, the petition shall contain information in sufficient detail to permit evaluation regarding the method of manufacture and
+    the analytical controls used during the various stages of manufacturing, processing, or packing of the food additive which are relied upon to establish that it is a substance of reproducible composition.
+    Alternative methods and controls and variations in methods and controls within reasonable limits that do not affect the characteristics of the substance or the reliability of the controls may be specified.
+
+    If the food additive is a mixture of chemicals, the petition shall supply a list of all substances used in the synthesis, extraction, or other method of preparation, regardless of whether they undergo
+    chemical change in the process. Each substance should be identified by its common English name and complete chemical name, using structural formulas when necessary for specific identification. If any
+    proprietary preparation is used as a component, the proprietary name should be followed by a complete quantitative statement of composition. Reasonable alternatives for any listed substance may be specified.
+
+    If the petitioner does not himself perform all the manufacturing, processing, and packing operations for a food additive, the petition shall identify each person who will perform a part of such operations
+    and designate the part.
+
+    The petition shall include stability data, and, if the data indicate that it is needed to insure the identity, strength, quality, or purity of the additive, the expiration date that will be employed.
+
+    B. The amount of the food additive proposed for use and the purposes for which it is proposed, together with all directions, recommendations, and suggestions regarding the proposed use, as well as specimens
+    of the labeling proposed for the food additive and any labeling that will be required by applicable provisions of the Federal Food, Drug, and Cosmetic Act on the finished food by reason of the use of
+    the food additive. If the additive results or may reasonably be expected to result from the use of packaging material, the petitioner shall show how this may occur and what residues may reasonably be
+    anticipated.
+
+    (Typewritten or other draft-labeling copy will be accepted for consideration of the petition, provided a statement is made that final printed labeling identical in content to the draft copy will be
+    submitted as soon as available and prior to the marketing of the food additive.)
+
+    (If the food additive is one for which a tolerance limitation is required to assure its safety, the level of use proposed should be no higher than the amount reasonably required to accomplish the intended
+    physical or other technical effect, even though the safety data may support a higher tolerance.)
+
+    C. Data establishing that the food additive will have the intended physical or other technical effect or that it may reasonably be expected to become a component, or to affect the characteristics, directly
+    or indirectly, of food and the amount necessary to accomplish this. These data should include information in sufficient detail to permit evaluation with control data.
+
+    D. A description of practicable methods to determine the amount of the food additive in the raw, processed, and/or finished food and of any substance formed in or on such food because of its use. The
+    test proposed shall be one that can be used for food-control purposes and that can be applied with consistent results by any properly equipped and trained laboratory personnel.
+
+    E. Full reports of investigations made with respect to the safety of the food additive.
+
+    (A petition may be regarded as incomplete unless it includes full reports of adequate tests reasonably applicable to show whether or not the food additive will be safe for its intended use. The reports
+    ordinarily should include detailed data derived from appropriate animal and other biological experiments in which the methods used and the results obtained are clearly set forth. The petition shall
+    not omit without explanation any reports of investigations that would bias an evaluation of the safety of the food additive.)
+
+    F. Proposed tolerances for the food additive, if tolerances are required in order to insure its safety. A petitioner may include a proposed regulation.
+
+    G. If submitting petition to modify an existing regulation issued pursuant to section 409(c)(1)(A) of the Act, full information on each proposed change that is to be made in the original regulation
+    must be submitted. The petition may omit statements made in the original petition concerning which no change is proposed. A supplemental petition must be submitted for any change beyond the variations
+    provided for in the original petition and the regulation issued on the basis of the original petition.
+
+    H. The petitioner is required to submit either a claim for categorical exclusion under § 25.30 or 25.32 of this chapter or an environmental assessment under § 25.40 of this chapter.
+
+    Yours very truly,
+
+    Petitioner
+
+    By
+
+    (Indicate authority)
+
+    (d) The petitioner will be notified of the date on which his petition is filed;
+
+    and an incomplete petition, or one that has not been submitted in triplicate, will usually be retained but not filed as a petition under section 409 of the Act. The petitioner will be notified in what
+    respects his petition is incomplete.
+
+    (e) The petition must be signed by the petitioner or by his attorney or agent, or (if a corporation) by an authorized official.
+
+    (f) The data specified under the several lettered headings should be submitted on separate sheets or sets of sheets, suitably identified. If such data have already been submitted with an earlier application,
+    the present petition may incorporate it by specific reference to the earlier. If part of the data have been submitted by the manufacturer of the food additive as a master file, the petitioner may refer
+    to the master file if and to the extent he obtains the manufacturer''s written permission to do so. The manufacturer may authorize specific reference to the data without disclosure to the petitioner.
+    Nothing herein shall prevent reference to published data.
+
+    (g) A petition shall be retained but shall not be filed if any of the data prescribed by section 409(b) of the Act are lacking or are not set forth so as to be readily understood.
+
+    (h)(1) The following data and information in a food additive petition are available for public disclosure, unless extraordinary circumstances are shown, after the notice of filing of the petition is
+    published in the
+
+    Federal Register
+
+    or, if the petition is not promptly filed because of deficiencies in it, after the petitioner is informed that it will not be filed because of the deficiencies involved:
+
+    (i) All safety and functionality data and information submitted with or incorporated by reference in the petition.
+
+    (ii) A protocol for a test or study, unless it is shown to fall within the exemption established for trade secrets and confidential commercial information in § 20.61 of this chapter.
+
+    (iii) Adverse reaction reports, product experience reports, consumer complaints, and other similar data and information, after deletion of:
+
+    (
+
+    a
+
+    ) Names and any information that would identify the person using the product.
+
+    (
+
+    b
+
+    ) Names and any information that would identify any third party involved with the report, such as a physician or hospital or other institution.
+
+    (iv) A list of all ingredients contained in a food additive, whether or not it is in descending order of predominance. A particular ingredient or group of ingredients shall be deleted from any such
+    list prior to public disclosure if it is shown to fall within the exemption established in § 20.61 of this chapter, and a notation shall be made that any such ingredient list is incomplete.
+
+    (v) An assay method or other analytical method, unless it serves no regulatory or compliance purpose and is shown to fall within the exemption established in § 20.61 of this chapter.
+
+    (2) The following data and information in a food additive petition are not available for public disclosure unless they have been previously disclosed to the public as defined in § 20.81 of this chapter
+    or they relate to a product or ingredient that has been abandoned and they no longer represent a trade secret or confidential commercial or financial information as defined in § 20.61 of this chapter:
+
+    (i) Manufacturing methods or processes, including quality control procedures.
+
+    (ii) Production, sales, distribution, and similar data and information, except that any compilation of such data and information aggregated and prepared in a way that does not reveal data or information
+    which is not available for public disclosure under this provision is available for public disclosure.
+
+    (iii) Quantitative or semi­quan­ti­ta­tive formulas.
+
+    (3) All correspondence and written summaries of oral discussions relating to a food additive petition are available for public disclosure in accordance with the provisions of part 20 of this chapter
+    when the food additive regulation is published in the
+
+    Federal Register.
+
+    (4) For purposes of this regulation, safety and functionality data include all studies and tests of a food additive on animals and humans and all studies and tests on a food additive for identity, stability,
+    purity, potency, performance, and usefulness.
+
+    (i)(1)(i) Within 15 days after receipt, the Food and Drug Administration will notify the petitioner of the acceptance or nonacceptance of a petition, and if not accepted, the reasons therefor. If accepted,
+    the pet'
+- id: art-3
+  title: § 171.6
+  text: '§ 171.6
+
+    Amendment of petition.
+
+    After a petition has been filed, the petitioner may submit additional information or data in support thereof. In such cases, if the Commissioner determines that the additional information or data amount
+    to a substantive amendment, the petition as amended will be given a new filing date, and the time limitation will begin to run anew. If nonclinical laboratory studies are involved, additional information
+    and data submitted in support of filed petitions shall include, with respect to each nonclinical study, either a statement that the study was conducted in compliance with the requirements set forth
+    in part 58 of this chapter, or, if the study was not conducted in compliance with such regulations, a brief statement of the reason for the noncompliance.
+
+    [50 FR 7492, Feb. 22, 1985, as amended at 50 FR 16668, Apr. 26, 1985]'
+- id: art-4
+  title: § 171.7
+  text: '§ 171.7
+
+    Withdrawal of petition without prejudice.
+
+    (a) In some cases the Commissioner will notify the petitioner that the petition, while technically complete, is inadequate to justify the establishment of a regulation or the regulation requested by
+    petitioner. This may be due to the fact that the data are not sufficiently clear or complete. In such cases, the petitioner may withdraw the petition pending its clarification or the obtaining of additional
+    data. This withdrawal will be without prejudice to a future filing. Upon refiling, the time limitation will begin to run anew from the date of refiling.
+
+    (b) At any time before the order provided for in § 171.100(a) has been forwarded to the
+
+    Federal Register
+
+    for publication, the petitioner may withdraw the petition without prejudice to a future filing. Upon refiling the time limitation will begin to run anew.
+
+    (c) Any petitioner who has a food additive petition pending before the agency and who subsequently submits a premarket notification for a food contact substance (FCN) for a use or uses described in
+    such petition shall be deemed to have withdrawn the petition for such use or uses without prejudice to a future filing on the date the FCN is received by the Food and Drug Administration.
+
+    [42 FR 14489, Mar. 15, 1977, as amended at 67 FR 35731, May 21, 2002]'
+- id: art-5
+  title: § 171.8
+  text: '§ 171.8
+
+    Threshold of regulation for substances used in food-contact articles.
+
+    Substances used in food-contact articles (e.g., food-packaging or food-processing equipment) that migrate or that may be expected to migrate into food at negligible levels may be reviewed under § 170.39
+    of this chapter. The Food and Drug Administration will exempt substances whose uses it determines meet the criteria in § 170.39 of this chapter from regulation as food additives and, therefore, a food
+    additive petition will not be required for the exempted use.
+
+    [60 FR 36596, July 17, 1995]
+
+    Subpart B—Administrative Actions on Applications'
+- id: art-6
+  title: § 171.100
+  text: '§ 171.100
+
+    Regulation based on petition.
+
+    (a) The Commissioner will forward for publication in the
+
+    Federal Register,
+
+    within 90 days after filing of the petition (or within 180 days if the time is extended as provided for in section 409(c)(2) of the Act), a regulation prescribing the conditions under which the food
+    additive may be safely used (including, but not limited to, specifications as to the particular food or classes of food in or on which such additive may be used, the maximum quantity that may be used
+    or permitted to remain in or on such food, the manner in which such additive may be added to or used in or on such food, and any directions or other labeling or packaging requirements for such additive
+    deemed necessary by him to assure the safety of such use), and prior to the forwarding of the order to the
+
+    Federal Register
+
+    for publication shall notify the petitioner of such order and the reasons for such action; or by order deny the petition, and shall notify the petitioner of such order and of the reasons for such action.
+
+    (b) The regulation shall describe the conditions under which the substance may be safely used in any meat product, meat food product, or poultry product subject to the Federal Meat Inspection Act (FMIA)
+    (21 U.S.C. 601
+
+    et seq.
+
+    ) or the Poultry Products Inspection Act (PPIA) (21 U.S.C. 451
+
+    et seq.
+
+    ).
+
+    (c) If the Commissioner determines that additional time is needed to study and investigate the petition, he shall by written notice to the petitioner extend the 90-day period for not more than 180 days
+    after the filing of the petition.
+
+    [42 FR 14489, Mar. 15, 1977, as amended at 65 FR 51763, Aug. 25, 2000]'
+- id: art-7
+  title: § 171.102
+  text: '§ 171.102
+
+    Effective date of regulation.
+
+    A regulation published in accordance with § 171.100(a) shall become effective upon publication in the
+
+    Federal Register.'
+- id: art-8
+  title: § 171.110
+  text: '§ 171.110
+
+    Procedure for objections and hearings.
+
+    Objections and hearings relating to food additive regulations under section 409 (c), (d), or (h) of the Act shall be governed by part 12 of this chapter.
+
+    [42 FR 14491, Mar. 15, 1977, as amended at 42 FR 15674, Mar. 22, 1977]'
+- id: art-9
+  title: § 171.130
+  text: '§ 171.130
+
+    Procedure for amending and repealing tolerances or exemptions from tolerances.
+
+    (a) The Commissioner, on his own initiative or on the petition of any interested person, pursuant to part 10 of this chapter, may propose the issuance of a regulation amending or repealing a regulation
+    pertaining to a food additive or granting or repealing an exception for such additive.
+
+    (b) Any such petition shall include an assertion of facts, supported by data, showing that new information exists with respect to the food additive or that new uses have been developed or old uses abandoned,
+    that new data are available as to toxicity of the chemical, or that experience with the existing regulation or exemption may justify its amendment or repeal. New data shall be furnished in the form
+    specified in §§ 171.1 and 171.100 for submitting petitions.
+
+    [42 FR 14491, Mar. 15, 1977, as amended at 42 FR 15674, Mar. 22, 1977]'
 doc_files:
 - us/raw/US-CFR-title21-part171.xml
+- us/raw/US-CFR-title21-part171.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part171.xml (xml, 24127 chars)，生成 9 条共 18653 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part171.xml (xml, 24127 chars)，生成 9 条共 18653 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part171.xml (xml, 24127 chars)，生成 9 条共 18653 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART171-4（US 21 CFR Part 171）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART171-3（US 21 CFR Part 171）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART171-2（US 21 CFR Part 171）。'

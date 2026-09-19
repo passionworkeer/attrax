@@ -9,11 +9,145 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: Rouse - Data Localisation and Transfer Issues in Southeast A
+  text: "Rouse - Data Localisation and Transfer Issues in Southeast Asia: What Businesses Need to Know \nInsights\n News & Articles\n Webinars\n Case Studies\nServices\n Trade Marks & Brands\nGeographical\
+    \ Indications\n Copyright\n Patent & Technologies\n Designs\nConsultancy\nManagement Consultancy (Konsert Strategy & IP)\n Brand Protection/Anti-Counterfeiting, Anti-Piracy and Enforcement\nBrand Protection\
+    \ and Anti–Counterfeiting\nCopyright and Anti-Piracy\nComplex IP Enforcement\nDisputes\nLitigation\nMediation\nArbitration\n Digital & Commercial\nOutsourced In-House Counsel\nDigital and Data Regulatory\
+    \ Compliance\nMarketing Campaign Clearance\nIP Transactions\nWhere We Work\nChina\nBeijing\nShanghai\nGuangzhou\nHong Kong SAR\nSouth East Asia\nCambodia\nPhilippines\nIndonesia\nThailand\nMyanmar\n\
+    Vietnam\nEurope, Middle East & Africa\nAfrica\nSweden\nUnited Arab Emirates\nUnited Kingdom\n                                        People\n                                        Careers\nAbout\n\
+    \ Announcements\n Code of Conduct\n Diversity, Equality & Inclusivity\n Environment, Social & Governance\nEnvironment\nGovernance\nSocial\nESG Annual Report 2024-2025\nThe Mitrataa Foundation\n Contact\
+    \ Us\n                                        ClientWEB\n×\nInsights\nServices\nServices\nWhere We Work\nPeople\nCareers\nAbout\n Insights\nServices\nWhere We Work\nPeople\nCareers\nAbout\nClientWEB\n\
+    Insights\nInsights\nLatest News\nTrending Topics\nServices\nServices\nTrade Marks & Brands\nGeographical Indications\nCopyright\nPatent & Technologies\nDesigns\nManagement Consultancy (Konsert Strategy\
+    \ & IP)\nBrand Protection/Anti-Counterfeiting, Anti-Piracy and Enforcement\nBrand Protection and Anti-Counterfeiting\nComplex IP Enforcement\nCopyright and Anti-Piracy\nDisputes\nLitigation\nArbitration\n\
+    Mediation\nDigital & Commercial\nOutsourced In-House Counsel\nMarketing Campaign Clearance\nDigital & Data Regulatory Compliance\nIP Transactions\nWhere We Work\nWhere We Work\nChina\nBeijing\nGuangzhou\n\
+    Hong Kong SAR\nShanghai\nSouth East Asia\nCambodia\nIndonesia\nMyanmar\nPhilippines\nThailand\nVietnam\nEurope, Middle East & Africa\nAfrica\nSweden\nUnited Arab Emirates\nUnited Kingdom\nPeople\nCareers\n\
+    About\nAbout Us\nAnnouncements\nCode of Conduct\nDiversity, Equality & Inclusivity\nEnvironment, Social & Governance \nEnvironment\nSocial\nGovernance\nESG Annual Report 2024-2025\nThe Mitrataa Foundation\n\
+    Contact Us\nClientWEB\nThank You \nYou are now registered for our Rouse Insights Newsletter\nData Localisation and Transfer Issues in Southeast Asia\n Published on 26 Sep 2025\n | 12 minute read \n\
+    \                                        Rouse Editor\nEditor\n +44 20 7536 4100 \nWhat Businesses Need to Know                     \nThe present reality is that multinationals increasingly organise\
+    \ their data in regional cloud hubs rather than establishing infrastructure in every local jurisdiction where they operate. These organisations collect large volumes of personal data from customers\
+    \ and local employees—a trend that will only intensify as multinational investment in Southeast Asia grows. As this investment accelerates, the volume and sensitivity of collected data will increase\
+    \ significantly. This note discusses how evolving local rules in Southeast Asian countries are poised to impact these data management practices.\nIndonesia\nData localisation - \nData localisation in\
+    \ Indonesia is governed primarily by Government Regulation No. 71 of 2019 (GR 71) and the Personal Data Protection (PDP) Law enacted in 2022, which together set a nuanced framework for data storage\
+    \ and processing within the country.\nIndonesia’s data localisation rules primarily mandate local storage and processing for public sector data and certain sensitive financial sector data, while private\
+    \ and non-financial sectors can often store data offshore under strict regulatory oversight and data protection obligations.\nHowever, sector-specific regulations, notably in financial services, impose\
+    \ stricter localisation requirements for private companies (e.g., banks must localise financial data).\nData transfer out of Indonesia - "
+- id: art-2
+  title: Indonesia allows the transfer of personal data out of the co
+  text: "Indonesia allows the transfer of personal data out of the country under several layered conditions, as set out in the Personal Data Protection Law (PDP Law, 2022). The law’s core requirement is\
+    \ that data transferred internationally must be given an equivalent level of protection as under Indonesian law.\nMain Requirements are:\nAdequacy Principle\n: Data controllers can transfer data to\
+    \ a country that has an equal or higher standard of data protection than Indonesia. Assessing “adequacy” will eventually be handled by a dedicated Data Protection Authority (not yet operational as of\
+    \ September 2025).\nAppropriate Safeguards\n: If the destination country lacks sufficient protection, legally binding and enforceable safeguards (such as contractual clauses) are required to ensure\
+    \ equivalent personal data protection.\nExplicit Consent\n: If neither adequacy nor appropriate safeguards are available, data controllers must obtain the explicit consent of the data subject before\
+    \ any transfer takes place.\nAdministrative Procedures\n - Data controllers must report and coordinate cross-border data transfers with Indonesia’s Ministry of Communication and Informatics, typically\
+    \ notifying the ministry before and after each transfer.\nSingapore\nData localisation\n - Singapore \ndoes\nnot impose general data localisation obligations\n. The country promotes data flows as a\
+    \ hub economy, including through initiatives like the Association of Southeast Asian Nations (ASEAN) Digital Economy Framework and cross-border digital trade agreements (e.g., Digital Economic Agreements\
+    \ (DEAs) with Australia, UK, South Korea, etc.). There are only limited localisation restrictions in \nnarrow regulated sectors\n (e.g., banking, insurance, healthcare), where supervisory agencies may\
+    \ require that some classes of data (such as financial ledgers or health records) remain accessible to regulators within Singapore.\nData transfer out of Singapore\n - The \nPersonal Data Protection\
+    \ Act (PDPA)\n is the central law. Cross-border transfers are permitted if the \nreceiving organisation is bound to provide a standard of protection comparable to the PDPA\n.\nKey mechanisms include:\n\
+    Legally enforceable obligations\n: through binding corporate rules, contracts incorporating Personal Data Protection Commission (PDPC) model clauses, or adherence to the Asia-Pacific Economic Cooperation\
+    \ (APEC) Cross-Border Privacy Rules (CBPR).\nConsent\n: Explicit consent of the individual is an alternate legal basis.\nExemption for deemed consent\n: Where transfer is necessary to fulfill a contract\
+    \ with the individual.\nThe Personal Data Protection Commission (PDPC) has issued detailed \nAdvisory Guidelines on Key Concepts\n and cross-border compliance toolkits. Unlike Indonesia, Singapore’s\
+    \ framework emphasises organisational accountability rather than pre-transfer approvals.\nMalaysia\nData localisation\n - Malaysia does not have blanket localisation requirements but enforces stricter\
+    \ conditions in \nfinancial services, telecommunications, and health\n (particularly under the supervision of Bank Negara Malaysia and sectoral regulators). For ordinary commercial entities, data may\
+    \ be stored offshore if transfer rules are followed.\nData transfer out of Malaysia\n - The Personal Data Protection (Amendment) Act 2024 began taking effect in phases starting 1 January 2025, the specific\
+    \ \ncross-border data transfer provisions\n (the adequacy-based model) became effective on \n1 April 2025\n. This established an \n\"adequacy-based\" model\n: transfers are permitted to destinations\
+    \ that have laws substantially similar to the PDPA or provide an adequate level of protection equivalent to that afforded by the PDPA. This replaced the previous whitelist regime, eliminating the legal\
+    \ uncertainty that existed when no official whitelist was published. Transfers may also occur under exemptions, e.g.:\nConsent\n of the individual;\nNecessary for contract performance\n;\nPublic interest\
+    \ or legal claims\n;\nRegulatory approvals\n for financial/health transfers."
+- id: art-3
+  title: The Ministry of Digital has supervisory jurisdiction, but se
+  text: "The Ministry of Digital has supervisory jurisdiction, but sectoral regulators interact in practice for sensitive industries.\nThailand\nData localisation\n –Thailand’s \nPersonal Data Protection\
+    \ Act (PDPA Thailand, effective 2022)\n does not mandate general localisation. However, certain government organisations and operators of critical information infrastructures (for example, telecommunications,\
+    \ energy, and finance) that use cloud services may be required to host their data within Thailand, as specified under subordinate legislation and official notifications issued pursuant to the Cybersecurity\
+    \ Act.\nData transfer out of Thailand\n – For international transfers, the PDPA applies a framework similar to the EU General Data Protection Regulation (GDPR):\nAdequacy\n: Transfers are allowed to\
+    \ jurisdictions recognised as having adequate protection. However, as of September 2025, the Personal Data Protection Committee (PDPC) has not yet published a “whitelist” of destination countries.\n\
+    Exemption to adequacy requirement\n:\nRequired by law.\nWith informed consent of the data subject - data subject is informed of the potential inadequate level of protection in the recipient country\
+    \ or organisation.\nNecessary under certain conditions such as compliance with legal obligations or contractual necessity, life/health protection, or vital public interest.\nAppropriate Safeguards:\n\
+    \ If adequacy is not available, data controllers/processors must use appropriate safeguards ensuring the enforceability of the data subject rights. The PDPC has officially recognised the ASEAN Model\
+    \ Contractual Clauses and the EU GDPR Standard Contractual Clauses as valid safeguards.\nContractual\n: binding agreements or contractual clauses which have been approved and suggested by the PDPC,\
+    \ for example, (i) ASEAN Model Contractual Clauses for Cross Border Data Flows, or (ii) EU GDPR Standard Contractual Clause for the Transfer of Personal Data to Third Countries.\nCertification\n: demonstrating\
+    \ compliance with recognised standards through certification mechanisms approved by the PDPC.\nIntra-group transfers\n: Allowed under binding corporate rules (BCRs) approved by the PDPC.\n\"No Third-Party\
+    \ Access\" Doctrine\n: Storing or transferring data outside of Thailand is not considered a \"data transfer\" under the PDPA if the data controller retains sole and exclusive control (e.g. encryption\
+    \ keys), and no third party can access the data. This allows businesses to use foreign cloud infrastructure without triggering cross-border transfer obligations under the law.\nPhilippines\nData localisation\n\
+    \ –The Philippines generally does not impose data localisation.\nData transfer out of the Philippines\n –The \nData Privacy Act 2012 (DPA)\n, which is the primary data privacy legislation in the Philippines,\
+    \ allows data transfers internationally but a comparable level of protection through contractual or other reasonable means must be provided.\nMechanisms may include:\nAdequacy principle\n: Transfers\
+    \ to jurisdictions meeting NPC (National Privacy Commission) adequacy expectations.\nContractual safeguards\n: Model clauses, instruments binding the recipient.\nConsent\n: If adequate safeguards are\
+    \ not assured.\nIn this regard, the NPC has issued an advisory (NPC Advisory No. 2024-01) providing guidance on the availability of various model contractual clauses for transfers of personal data across\
+    \ jurisdictions, including model/standard contractual clauses of the ASEAN, Council of Europe, European Commission and data privacy agencies of the United Kingdom, New Zealand and Argentina, among others.\n\
+    Vietnam\nData localisation\n - Vietnam imposes one of the \nmost stringent localisation regimes in ASEAN\n.\nUnder \nDecree 53/2022/ND-CP"
+- id: art-4
+  title: ' (implementing the Law on Cybersecurity 2018), foreign entit'
+  text: " (implementing the Law on Cybersecurity 2018), foreign entities providing certain types of services – particularly telecommunications, data storage/sharing, domain-name provision to Vietnam users,\
+    \ e-commerce, online payment, social networks/social media, online games, or other online information services – are required (under specific circumstances such as committing violations and/or failing\
+    \ to cooperate with the competent authorities), upon written request from the Minister of Public Security (MPS), to:\nstore specific user data (including personal data of users, data created by users,\
+    \ and data on user relationships) in Vietnam; and\nestablish a local branch or representative office in Vietnam.\n[1]\nThese obligations must be fulfilled within 12 months from the date of the MPS'\
+    \ decision, with data retention required for a minimum of 24 months, starting from the request's receipt.\n[2]\nIn addition, \nDecree 147/2024/ND-CP\n (on management, provision, and use of internet\
+    \ services and cyber information) requires certain service providers to maintain at least one server system physically located in Vietnam to enable inspection, supervision, storage, and provision of\
+    \ information upon competent authorities’ request. This is a standing licensing/operating condition for:\nOperators of general information websites;\n[3]\nDomestic social network service providers;\n\
+    [4]\nEnterprises providing online game services;\n[5]\n and\nEnterprises providing information services on mobile networks.\n[6]\nData transfer out of Vietnam - \nThe Vietnamese Government regulates\
+    \ cross-border transfers of both personal and non-personal data.\nUnder \nDecree 13/2023/ND-CP\n and the \nLaw on Personal Data Protection\n (effective from 1 January 2026), organisations that transfer\
+    \ personal data across borders must:\nPrepare a Cross-Border Transfer Impact Assessment (CTIA) using the official form;\nSubmit one original CTIA to competent authority within 60 days of initiating\
+    \ the transfer; and\nUpdate and amend the CTIA when its contents change.\n[7]\nFor non-personal data, the \nLaw on Data\n sets principles for cross-border transfer/processing where the data is classified\
+    \ as important or core data.\n[8]\n CTIA dossiers must be prepared and submitted for both categories. However, core data may be transferred only after prior approval is granted, while important data\
+    \ requires dossier submission only (no prior approval required). \nCambodia\nData localisation\n – Cambodia is still in the early stages of developing comprehensive data protection. As of 2025, there\
+    \ is \nno general data localisation law\n. However, sectoral regimes (e.g., \nfinancial services under the National Bank of Cambodia\n, and telecom licenses) may impose localisation obligations.\nData\
+    \ transfer out of Cambodia\n –Cambodia has \nno omnibus personal data protection law\n yet in force (a \ndraft Personal Data Protection Law\n is under discussion). Current practice relies heavily on\
+    \ \ncontractual arrangements\n, regulator-specific rules, and international agreements.\nTransfers can usually occur with \ndata subject consent\n or under contractual guarantees.\nExpected future law\
+    \ will likely follow an \nadequacy, safeguard and consent\n model similar to other ASEAN neighbors.\nExecutive Summary: Data Localisation & Cross-Border Transfers in Southeast Asia\nCountry\nLocalisation\
+    \ Requirement Strength\nCross-Border Transfer Rules\nMain Supervisory Authority\nIndonesia\nModerate to Strict (sectoral): Public sector and financial data must be localised. Private non-financial organisations\
+    \ may use offshore storage under oversight.\nAllowed if: (i) Adequacy; (ii) Contractual safeguards; or (iii) Explicit consent. Pre/post notification to the Ministry required.\nMinistry of Communication\
+    \ and Digitalisation (Komdigi); future Data Protection Authority.\nSingapore\nLow: No general localisation; limited sector-specific obligations (banking, healthcare). Actively promotes cross-border\
+    \ flows."
+- id: art-5
+  title: Transfers permitted if the recipient is bound to PDPA-equiva
+  text: "Transfers permitted if the recipient is bound to PDPA-equivalent protection. Mechanisms: contracts, binding rules, CBPR participation, or consent.\nPersonal Data Protection Commission (PDPC).\n\
+    Malaysia\nLow to Moderate (sectoral): Some industry regulators (e.g., financial, telecom, health) impose restrictions. No blanket localisation.\n\"Adequacy-based\" model: transfers are permitted to\
+    \ destinations that have laws substantially similar to the PDPA\nDepartment of Personal Data Protection (JPDP) (under Ministry of Digital).\nThailand\nLow: No general mandate, but sector regulators\
+    \ (finance, telecoms) may impose storage obligations.\nTransfers allowed if: (i) Adequacy; (ii) Safeguards (contractual clauses, BCRs); or (iii) Consent. GDPR-style framework.\nPersonal Data Protection\
+    \ Committee (PDPC).\nPhilippines\nLow to Moderate (critical sectors): No broad localisation, but banks and  government entities may be required to keep local copies.\nTransfers allowed where recipient\
+    \ jurisdiction ensures equivalent protection. Alternatives: contracts, consent.\nNational Privacy Commission (NPC).\nVietnam\nHigh (broad localisation): Foreign service providers (telecom, online services,\
+    \ e-commerce, etc.) may be requested to store user data locally. May also need a local office/branch.\nOffshore transfers of personal data, important and core data subject to MPS notification/approval.\
+    \ Must satisfy consent, necessity, and safe handling. Strictest in ASEAN.\nMinistry of Public Security (MPS).\nCambodia\nMinimal (developing framework): No general localisation law yet. Some restrictions\
+    \ in banking/telecom.\nNo omnibus law; transfers generally allowed with consent or contractual arrangements. Future law will likely introduce adequacy/safeguard models.\nCurrently sectoral regulators\
+    \ (e.g., National Bank, Telecom Regulator). Draft PDP Law pending.\nReferences: \nIndonesia\n- Government of Indonesia. (2019). Government Regulation No. 71 of 2019 on Electronic Systems and Transactions\
+    \ (GR 71/2019). Retrieved from (\nhttps://peraturan.go.id\n)\n- Government of Indonesia. (2022). Law No. 27 of 2022 on Personal Data Protection. Retrieved from (\nhttps://peraturan.go.id\n)\n- Ministry\
+    \ of Communication and Informatics (Kominfo). Personal Data Protection Guidance. (\nhttps://kominfo.go.id\n)\nSingapore\n - Parliament of Singapore. (2012). Personal Data Protection Act (as amended\
+    \ 2021). Retrieved from (\nhttps://sso.agc.gov.sg\n)\n - PDPC. (2021). Advisory Guidelines on Key Concepts in the PDPA. (\nhttps://www.pdpc.gov.sg\n)\nMalaysia\n - Parliament of Malaysia. (2010). Personal\
+    \ Data Protection Act 2010 (Act 709). Retrieved from (\nhttps://www.agc.gov.my\n)\n - JPDP (Malaysia). Guidelines & Standards. Retrieved from (\nhttps://www.pdp.gov.my\n)\nThailand\n- Royal Thai Government.\
+    \ (2019). Personal Data Protection Act B.E. 2562 (2019). Retrieved from (\nhttp://ratchakitcha.soc.go.th\n) \n- Personal Data Protection Committee (PDPC Thailand). (2022). Implementation Guidelines.\
+    \ (\nhttps://pdpc.or.th\n) \nPhilippines\n- Republic Act No. 10173. (2012). Data Privacy Act of 2012. Retrieved from (\nhttps://www.officialgazette.gov.ph\n)\n- NPC. (2016). Implementing Rules and Regulations.\
+    \ (\nhttps://privacy.gov.ph\n)\nVietnam:\n- Government of Vietnam. (2018). Law on Cybersecurity. Available at (\nhttps://vanban.chinhphu.vn/?pageid=27160&docid=206114\n)\n- Government of Vietnam. (2024).\
+    \ Law on Data. Available at (\nhttps://chinhphu.vn/?pageid=27160&docid=212488&classid=1&typegroupid=3\n)\n- Government of Vietnam. (2025). Law on Personal Data Protection. Available at (\nhttps://chinhphu.vn/?pageid=27160&docid=214590&classid=1&typegroupid=3\n\
+    )\n- Government of Vietnam. (2022). Decree 53/2022/ND-CP – Implementation of Law on Cybersecurity. Available at (\nhttps://vanban.chinhphu.vn/?pageid=27160&docid=206381\n)\n- Government of Vietnam.\
+    \ (2023). Decree 13/2023/ND-CP on Personal Data Protection. Available at (\nhttps://vanban.chinhphu.vn/?pageid=27160&docid=207759\n)"
+- id: art-6
+  title: '- Government of Vietnam. (2024). Decree 147/2024/ND-CP on th'
+  text: "- Government of Vietnam. (2024). Decree 147/2024/ND-CP on the management, provision and use of internet services and information in cyberspace. Available at (\nhttps://vanban.chinhphu.vn/?pageid=27160&docid=211654\n\
+    )\n- Government of Vietnam. (2025). Decree 165/2025/ND-CP – Implementation of Law on Data. Available at (\nhttps://chinhphu.vn/?pageid=27160&docid=214331&classid=1&typegroupid=4\n)\nCambodia: \n- MPTC.\
+    \ (2025). Draft Law on Personal Data Protection. Retrieved from (\nhttps://opendevelopmentcambodia.net\n)\n- National Bank of Cambodia. (2019). Technology Risk Management Guidelines. Retrieved from\
+    \ (\nhttps://www.nbc.gov.kh/NBC-Risk-Management-Guidelines\n)\n[1]\n Art. 26 of Decree 53/2022/ND-CP\n[2]\n Arts. 26.6(c) and 27 of Decree 53/2022/ND-CP\n[3]\n Art. 34.2 of Decree 147/2024/ND-CP\n[4]\n\
+    \ Art. 35.10 of Decree 147/2024/ND-CP\n[5]\n Art. 54.1 of Decree 147/2024//ND-CP\n[6]\n Art. 74.2 of Decree 147/2024/ND-CP\n[7]\n Art. 25 of Decree 13/2023/ND-CP; Art. 20 and 22 of the Law on Personal\
+    \ Data Protection\n[8]\n Art. 23.2 of the Law on Data; Art. 12.5 of Decree 165/2025/ND-CP\nAuthors:\nIndonesia, Malaysia, Singapore – \nKin Wah Chow\n, \nEvi Triana\n, \nDaniel Markho Santoso\nThailand\
+    \ - \nKaew (Peeraya) Thammasujarit\n, \nTerapat Laopatarakasem\nVietnam – \nKhanh Nguyen\n, \nLy Nguyen\n, \nNguyet Nguyen\nPhilippines - \nEdmund J. Baranda\nCambodia - \nMonyrak Phang\nRelated articles:\n\
+    Understanding the ASEAN Manufacturing Landscape\nAnticipating Trade Mark Issues in Southeast Asia\n30% Complete\n                                        Rouse Editor\nEditor\n +44 20 7536 4100 \nTAGS\n\
+    China Plus One\nData\ndata localisation\nSouth East Asia\ndata transfer\n                            Rouse Editor\nEditor\n+44 20 7536 4100 \n                        Related Articles\n             \
+    \           More\nKuwait - Clarifying the “All Goods/Services in the Class” Approach \n3 minute read\nMona Saleh\nREAD MORE \n22 Apr 2026\n#kuwait \n#gcc \n#trade marks \n#trademark filing \n阿联酋延长商标认证文件提交期限\
+    \ \n1 minute read\nMona Saleh\nREAD MORE \n15 Apr 2026\n#阿联酋 \n#商标 \n#知识产权 \n#品牌保护 \n越南个人数据保护新规：第356号法令要点解析 \n4 minute read\nYen Vu\nREAD MORE \n09 Apr 2026\n#越南 \n#个人数据 \n#数据保护 \n#执法环境 \nHow can we\
+    \ help you?\nGet in touch\n with us or \nfind an office\n to help you.\nContact Us\nAccessibility Statement\nLegal\nModern Slavery Statement\nThe Rouse Network consists of local subsidiaries of Rouse\
+    \ International Limited and closely aligned but independent firms which work seamlessly together on engagements. Which elements of work are done by which entity depends entirely on the country in which\
+    \ work is carried out, in compliance with relevant legal and regulatory provisions.\nRouse International Limited"
 doc_files:
 - id/raw/印尼《个人数据保护法》（PDP Law No 27 of 2022）解读.html
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：id/raw/印尼《个人数据保护法》（PDP Law No 27 of 2022）解读.html (html, 22124 chars)，生成 6 条共 22124 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：id/raw/印尼《个人数据保护法》（PDP Law No 27 of 2022）解读.html (html, 22124 chars)，生成 6 条共 22124 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：id/raw/印尼《个人数据保护法》（PDP Law No 27 of 2022）解读.html (html, 22124 chars)，生成 6 条共 22124 字符；解析文本未人工复核，引用以官方原件为准。'

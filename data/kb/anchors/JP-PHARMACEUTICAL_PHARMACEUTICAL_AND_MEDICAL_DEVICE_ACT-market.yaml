@@ -1,0 +1,27 @@
+id: KB-market-JP-JP-PHARMACEUTICAL_PHARMACEUTICAL_AND_MEDICAL_DEVICE_ACT
+regulation_id: JP-PHARMACEUTICAL_PHARMACEUTICAL_AND_MEDICAL_DEVICE_ACT
+doc_name: JP-PHARMACEUTICAL Pharmaceutical and Medical Device Act
+official_citation: JP-PHARMACEUTICAL Pharmaceutical and Medical Device Act
+short_name: JP-PHARMACEUTICAL Pharmaceutical and Medical Device Act
+source: market
+primary_source: market
+domain: 医疗器械
+applies_if:
+  category: []
+  features_any: []
+  markets:
+  - JP
+key_articles:
+- art-1
+- art-2
+key_points:
+- JP-PHARMACEUTICAL Pharmaceutical and Medical Device Act：医疗器械领域法规，适用于 JP 市场相关经营行为（库自动接入，按市场匹配）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://laws.e-gov.go.jp/api/1/lawdata/335AC0000000145
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

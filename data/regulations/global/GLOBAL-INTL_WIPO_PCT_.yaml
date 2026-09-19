@@ -9,11 +9,52 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: PCT Legal Texts
+  text: "PCT Legal Texts\nAbout Intellectual Property\nIP Training\nRespect for IP\nIP Outreach\nIP for…\nIP and...\nIP in...\nPatent & Technology Information\nTrademark Information\nDesign Information\n\
+    Geographical Indication Information\nPlant Variety Information (UPOV)\nIP Laws, Treaties & Judgments\nIP Resources\nIP Reports\nPatent Protection\nTrademark Protection\nDesign Protection\nGeographical\
+    \ Indication Protection\nPlant Variety Protection (UPOV)\nIP Dispute Resolution\nIP Office Business Solutions\nPaying for IP Services\nNegotiation & Decision-Making\nIP Cooperation\nInnovation Support\n\
+    Public-Private Partnerships\nThe Organization\nWIPO and Artificial Intelligence\nWorking at WIPO\nAccountability\nPatents\nTrademarks\nDesigns\nGeographical Indications\nCopyright\nTrade Secrets\nFuture\
+    \ of IP\nWIPO Academy\nWorkshops & Seminars\nIP Enforcement\nWIPO ALERT\nRaising Awareness\nWorld IP Day\nWIPO Magazine\nCase Studies & Success Stories\nIP News\nWIPO Awards\nBusiness\nWomen\nUniversities\n\
+    Indigenous Peoples\nJudiciaries\nYouth\nExaminers\nInnovation Ecosystems\nEconomics\nFinance\nIntangible Assets\nGlobal Health\nClimate Change\nCompetition Policy\nSustainable Development Goals\nGenetic\
+    \ Resources, Traditional Knowledge and Traditional Cultural Expressions\nFrontier Technologies\nMobile Applications\nSports\nTourism\nMusic\nFashion\nPATENTSCOPE\nPatent Analytics\nInternational Patent\
+    \ Classification\nARDI – Research for Innovation\nASPI – Specialized Patent Information\nGlobal Brand Database\nMadrid Monitor\nArticle 6ter Express Database\nNice Classification\nVienna Classification\n\
+    Global Design Database\nInternational Designs Bulletin\nHague Express Database\nLocarno Classification\nLisbon Express Database\nGlobal Brand Database for GIs\nPLUTO Plant Variety Database\nGENIE Database\n\
+    WIPO-Administered Treaties\nWIPO Lex - IP Laws, Treaties & Judgments\nWIPO Standards\nIP Statistics\nWIPO Pearl (Terminology)\nWIPO Publications\nCountry IP Profiles\nWIPO Knowledge Center\nWorld Intangible\
+    \ Investment Highlights\nWIPO Technology Trends\nGlobal Innovation Index\nWorld Intellectual Property Report\nPCT – The International Patent System\nePCT\nBudapest – The International Microorganism\
+    \ Deposit System\nMadrid – The International Trademark System\neMadrid\nArticle 6ter (armorial bearings, flags, state emblems)\nHague – The International Design System\neHague\nLisbon – The International\
+    \ System of Appellations of Origin and Geographical Indications\neLisbon\nUPOV PRISMA\nMediation\nArbitration\nExpert Determination\nDomain Name Disputes\nCentralized Access to Search and Examination\
+    \ (CASE)\nDigital Access Service (DAS)\nWIPO Pay\nCurrent Account at WIPO\nWIPO Assemblies\nStanding Committees\nCalendar of Meetings\nWIPO Webcast\nWIPO Official Documents\nDevelopment Agenda\nTailored\
+    \ Initiatives & Projects\nCollaborative Forums & Dialogues\nInnovation, Creativity and Development Acceleration Program\nIP for Impact\nNational IP Strategies\nCooperation Hub\nTechnology and Innovation\
+    \ Support Centers (TISC)\nTechnology Transfer\nInventor Assistance Program\nIP Commercialization\nWIPO GREEN\nWIPO's Pat-INFORMED\nAccessible Books Consortium\nWIPO for Creators\nMember States\nObservers\n\
+    Director General\nActivities by Unit\nExternal Offices\nGlobal Forum on IP and AI\nAI Infrastructure Interchange\nAI Tools & Services\nStaff Positions\nAffiliated Personnel Positions\nProcurement\n\
+    Results & Budget\nFinancial Reporting\nOversight\nPCT Legal Texts\nAccess all PCT System legal and procedural texts.\nPatent Cooperation Treaty\n [\nPDF\n] (as in force from April 1, 2002)\nRegulations\
+    \ under the PCT\n [\nPDF\n] (as in force from January 1, 2026)\nPCT Administrative Instructions\n [\nPDF\n ] (as in force from January 1, 2026) \nAnnex A: Forms\nAnnex F:  Standard for Filing and Processing\
+    \ in Electronic Form\nMain Body and  Appendices II - IV (as in force from July 1, 2022) [\nPDF\n]\nAppendix I (as in force from July 1, 2022) [\nPDF\n]\nPCT Receiving Office Guidelines\n [\nPDF\n] (as\
+    \ in force from July 1, 2025) \nPCT International Search and Preliminary Examination Guidelines\n [\nPDF\n] (as in force from January 1, 2026) ​​​​​​​"
+- id: art-2
+  title: Patent Cooperation Treaty (as in force until March 31, 2002)
+  text: "Patent Cooperation Treaty (as in force until March 31, 2002) [\nPDF\n]\nRegulations under the PCT (as in force until December 31, 2025) [\nPDF\n]\nPCT Administrative Instructions (as in force until\
+    \ December 31, 2025) [\nPDF\n]\nAnnex F:  Standard for Filing and Processing in Electronic Form\nMain Body and  Appendices II - IV (as in force until June 30, 2022) [\nPDF\n]\nAppendix I (as in force\
+    \ until June 30, 2022) [\nPDF\n]\nPCT Receiving Office Guidelines (as in force until June 30, 2025) [\nPDF\n]\nPCT International Search and Preliminary Examination Guidelines (as in force until December\
+    \ 31, 2025) [\nPDF\n]\nDirectives of the PCT Assembly\nUpcoming amendments\nAmendments to the PCT Regulations (entry into force July 1, 2025) \nPCT/A/56/2, Annex I\nUseful information\nPCT Notifications\n\
+    Reservations and incompatibilities\nHistory of the PCT Regulations [\nPDF\n]\nPCT Applicant’s Guide\nRegulations under the PCT\nas in force from January 1, 2026 [\nPDF\n]\nPCT Administrative Instructions\n\
+    Parts 1 - 8 and Annexes B to H\nas in force from January 1, 2026 [\nPDF\n]\nPCT Receiving Office Guidelines\nas in force from July 1, 2025 [\nPDF\n]\nPCT International Search and Preliminary Examination\
+    \ Guidelines\nas in force from January 1, 2026 [\nPDF\n]\nOther languages\nTrattato di cooperazione in materia di brevetti [\nPDF\n]\nRegolamento d’esecuzione del Trattato di cooperazione in materia\
+    \ di brevetti\ntesto in vigore al 1º gennaio 2026  [\nPDF\n]\ntesto in vigore al 1º luglio 2025  [\nPDF\n]\nHidden\nhttps://www.wipo.int/contact/en/area.jsp?area=pct\nhttps://www.wipo.int/pressroom/en/\n\
+    https://www.wipo.int/tools/en/disclaim.html\nhttps://www.wipo.int/en/web/privacy-policy\nhttps://www.wipo.int/en/web/accessibility\nhttps://www.wipo.int/en/web/sitemap\nhttps://www.wipo.int/en/web/newsletters\n\
+    https://www.wipo.int/en/web/podcasts\nhttps://www.wipo.int/en/web/news/rss"
 doc_files:
 - global/raw/INTL_WIPO_PCT_专利合作条约.html
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/INTL_WIPO_PCT_专利合作条约.html (html, 5807 chars)，生成 2 条共 5807 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/INTL_WIPO_PCT_专利合作条约.html (html, 5807 chars)，生成 2 条共 5807 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/INTL_WIPO_PCT_专利合作条约.html (html, 5807 chars)，生成 2 条共 5807 字符；解析文本未人工复核，引用以官方原件为准。'

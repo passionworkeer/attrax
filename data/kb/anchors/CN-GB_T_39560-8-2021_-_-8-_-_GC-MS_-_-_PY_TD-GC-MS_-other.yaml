@@ -1,0 +1,26 @@
+id: KB-other-CN-CN-GB_T_39560-8-2021_-_-8-_-_GC-MS_-_-_PY_TD-GC-MS_
+regulation_id: CN-GB_T_39560-8-2021_-_-8-_-_GC-MS_-_-_PY_TD-GC-MS_
+doc_name: CN-GB GB/T 39560.8-2021 电子电气产品中某些物质的测定 第8部分：气相色谱-质谱法（GC-MS）与配有热裂解/热脱附的气相色谱-质谱法 （Py/TD-GC-MS）测定聚合物中的邻苯二甲酸酯
+official_citation: CN-GB GB/T 39560.8-2021 电子电气产品中某些物质的测定 第8部分：气相色谱-质谱法（GC-MS）与配有热裂解/热脱附的气相色谱-质谱法 （Py/TD-GC-MS）测定聚合物中的邻苯二甲酸酯
+short_name: CN-GB GB/T 39560.8-2021 电子电气产品中某些物质的测定 第8部分：气相色谱-质谱法（GC-MS）与配有热裂解/热脱附的气相色谱-质谱法 （Py/TD-GC-MS）测定聚合物中的邻苯二甲酸酯
+source: category
+primary_source: other
+domain: other
+applies_if:
+  category:
+  - other
+  features_any: []
+  markets:
+  - CN
+key_articles: []
+key_points:
+- CN-GB GB/T 39560.8-2021 电子电气产品中某些物质的测定 第8部分：气相色谱-质谱法（GC-MS）与配有热裂解/热脱附的气相色谱-质谱法 （Py/TD-GC-MS）测定聚合物中的邻苯二甲酸酯：其他品类领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=DBF377B430BD2088453043E0760C95A3
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

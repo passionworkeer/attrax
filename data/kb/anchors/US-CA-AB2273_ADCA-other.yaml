@@ -1,0 +1,28 @@
+id: KB-other-US-US-CA-AB2273_ADCA
+regulation_id: US-CA-AB2273_ADCA
+doc_name: US CA AB2273 Age-Appropriate Design Code Act
+official_citation: US CA AB2273 Age-Appropriate Design Code Act
+short_name: US CA AB2273 Age-Appropriate Design Code Act
+source: category
+primary_source: other
+domain: other
+applies_if:
+  category:
+  - other
+  features_any: []
+  markets:
+  - US
+key_articles:
+- art-1
+- art-2
+key_points:
+- US CA AB2273 Age-Appropriate Design Code Act：其他品类领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=202120220AB2273
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

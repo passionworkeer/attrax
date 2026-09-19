@@ -1,0 +1,26 @@
+id: KB-other-CN-CN-GB_17761-2024_
+regulation_id: CN-GB_17761-2024_
+doc_name: CN-GB GB 17761-2024 电动自行车安全技术规范
+official_citation: CN-GB GB 17761-2024 电动自行车安全技术规范
+short_name: CN-GB GB 17761-2024 电动自行车安全技术规范
+source: category
+primary_source: other
+domain: other
+applies_if:
+  category:
+  - other
+  features_any: []
+  markets:
+  - CN
+key_articles: []
+key_points:
+- CN-GB GB 17761-2024 电动自行车安全技术规范：其他品类领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=32E5D633E04B67FB241D100CA2A4A41D
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

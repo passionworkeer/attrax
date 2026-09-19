@@ -9,11 +9,672 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'ETSI EN 301 489-22
+
+    V2.1.1
+
+    (2020-10)
+
+    HARMONISED EUROPEAN STAN'
+  text: 'ETSI EN 301 489-22
+
+    V2.1.1
+
+    (2020-10)
+
+    HARMONISED EUROPEAN STANDARD
+
+    ElectroMagnetic Compatibility (EMC)
+
+    standard for radio equipment and services;
+
+    Part 22: Specific conditions for ground based
+
+    aeronautical mobile and fixed radio equipment;
+
+    Harmonised Standard for ElectroMagnetic Compatibility
+
+    2 ETSI EN 301 489-22 V2.1.1 (2020-10)
+
+    Reference
+
+    REN/ERM-EMC-355
+
+    Keywords
+
+    aeronautical, EMC, harmonised standard, UHF,
+
+    VHF
+
+    ETSI
+
+    650 Route des Lucioles
+
+    F-06921 Sophia Antipolis Cedex - FRANCE
+
+    Tel.: +33 4 92 94 42 00 Fax: +33 4 93 65 47 16
+
+    Siret N° 348 623 562 00017 - NAF 742 C
+
+    Association à but non lucratif enregistrée à la
+
+    Sous-Préfecture de Grasse (06) N° 7803/88
+
+    Important notice
+
+    The present document can be downloaded from:
+
+    http://www.etsi.org/standards-search
+
+    The present document may be made available in electronic versions and/or in print. The content of any electronic and/or
+
+    print versions of the present document shall not be modified without the prior written authorization of ETSI. In case of any
+
+    existing or perceived difference in contents between such versions and/or in print, the prevailing version of an ETSI
+
+    deliverable is the one made publicly available in PDF format at www.etsi.org/deliver.
+
+    Users of the present document should be aware that the document may be subject to revision or change of status.
+
+    Information on the current status of this and other ETSI documents is available at
+
+    https://portal.etsi.org/TB/ETSIDeliverableStatus.aspx
+
+    If you find errors in the present document, please send your comment to one of the following services:
+
+    https://portal.etsi.org/People/CommiteeSupportStaff.aspx
+
+    Copyright Notification
+
+    No part may be reproduced or utilized in any form or by any means, electronic or mechanical, including photocopying
+
+    and microfilm except as authorized by written permission of ETSI.
+
+    The content of the PDF version shall not be modified without the written authorization of ETSI.
+
+    The copyright and the foregoing restriction extend to reproduction in all media.
+
+    © ETSI 2020.
+
+    All rights reserved.
+
+    DECT™, PLUGTESTS™, UMTS™ and the ETSI logo are trademarks of ETSI registered for the benefit of its Members.
+
+    3GPP™ and LTE™ are trademarks of ETSI registered for the benefit of its Members and
+
+    of the 3GPP Organizational Partners.
+
+    oneM2M™ logo is a trademark of ETSI registered for the benefit of its Members and
+
+    of the oneM2M Partners.
+
+    GSM® and the GSM logo are trademarks registered and owned by the GSM Association.
+
+    ETSI
+
+    3 ETSI EN 301 489-22 V2.1.1 (2020-10)
+
+    Contents
+
+    Intellectual Property Rights ................................................................................................................................ 5
+
+    Foreword ............................................................................................................................................................. 5
+
+    Modal verbs terminology .................................................................................................................................... 5
+
+    1 Scope ........................................................................................................................................................ 6
+
+    2 References ................................................................................................................................................ 6
+
+    2.1 Normative references ......................................................................................................................................... 6
+
+    2.2 Informative references ........................................................................................................................................ 7
+
+    3 Definition of terms, symbols and abbreviations ....................................................................................... 7
+
+    3.1 Terms .................................................................................................................................................................. 7
+
+    3.2 Symbols .............................................................................................................................................................. 8
+
+    3.3 Abbreviations ..................................................................................................................................................... 8
+
+    4 Test conditions ......................................................................................................................................... 8
+
+    4.1 General ............................................................................................................................................................... 8
+
+    4.2 Arrangements for test signals ............................................................................................................................. 8
+
+    4.2.0 General .......................................................................................................................................................... 8
+
+    4.2.1 Arrangement for test signals at the input to the transmitter .......................................................................... 8
+
+    4.2.2 Arrangements for test signals at the output from the transmitter .................................................................. 9
+
+    4.2.3 Arrangements for test signals at the input to the receiver ............................................................................. 9
+
+    4.2.4 Arrangements for test signals at the output from the receiver ...................................................................... 9
+
+    4.2.5 Arrangements for testing transmitters and receivers together (as a system) ................................................. 9
+
+    4.3 RF exclusion band for radio communications equipment .................................................................................. 9
+
+    4.3.1 General .......................................................................................................................................................... 9
+
+    4.3.2 Transmitter exclusion bands for EM emission measurements ...................................................................... 9
+
+    4.3.3 Receiver exclusion bands for EM emission measurements ........................................................................ 10
+
+    4.3.4 Transmitter exclusion bands for immunity tests ......................................................................................... 10
+
+    4.3.5 Receiver exclusion bands for immunity tests ............................................................................................. 10
+
+    4.4 Narrow band responses of receivers ................................................................................................................. 10
+
+    4.5 Normal test modulation .................................................................................................................................... 11
+
+    5 Performance assessment ......................................................................................................................... 11
+
+    5.1 Void .................................................................................................................................................................. 11
+
+    5.2 Equipment which can provide a continuous communications link .................................................................. 11
+
+    5.3 Void .................................................................................................................................................................. 11
+
+    5.4 Ancillary equipment ......................................................................................................................................... 11
+
+    5.5 Equipment classification .................................................................................................................................. 12
+
+    6 Performance criteria ............................................................................................................................... 12
+
+    6.1 General Requirements ...................................................................................................................................... 12
+
+    6.2 Performance criteria A for continuous phenomena applied to transmitters and receivers................................ 13
+
+    6.3 Performance criteria B for transient phenomena applied to transmitters and receivers ................................... 13
+
+    6.4 Performance criteria C for immunity tests with power interruptions ............................................................... 13
+
+    7 Applicability overview ........................................................................................................................... 14
+
+    7.1 Emission ........................................................................................................................................................... 14
+
+    7.1.1 General ........................................................................................................................................................ 14
+
+    7.1.2 Methods of measurement and limits modifications .................................................................................... 14
+
+    7.2 Immunity .......................................................................................................................................................... 15
+
+    7.2.1 General ........................................................................................................................................................ 15
+
+    7.2.2 Test methods and levels modifications ....................................................................................................... 16
+
+    Annex A (informative): Relationship between the present document and the essential
+
+    requirements of Directive 2014/53/EU ......................................................... 18
+
+    Annex B (normative): Minimum Performance Levels (MPL) ......................................................... 20
+
+    B.1 Ground based aeronautical VHF and UHF radio ................................................................................... 20
+
+    ETSI
+
+    4 ETSI EN 301 489-22 V2.1.1 (2020-10)
+
+    B.2 VHF Digital Link Mode 2 (VDL Mode 2) and Mode 4 (VDL Mode 4) ................................................ 20'
+- id: art-2
+  title: 'Annex C (informative): Test Report ..................................................................................................... 21'
+  text: 'Annex C (informative): Test Report ..................................................................................................... 21
+
+    Annex D (informative): Change history ............................................................................................... 22
+
+    History .............................................................................................................................................................. 23
+
+    ETSI
+
+    5 ETSI EN 301 489-22 V2.1.1 (2020-10)
+
+    Intellectual Property Rights
+
+    Essential patents
+
+    IPRs essential or potentially essential to normative deliverables may have been declared to ETSI. The information
+
+    pertaining to these essential IPRs, if any, is publicly available for ETSI members and non-members, and can be found
+
+    in ETSI SR 000 314: "Intellectual Property Rights (IPRs); Essential, or potentially Essential, IPRs notified to ETSI in
+
+    respect of ETSI standards", which is available from the ETSI Secretariat. Latest updates are available on the ETSI Web
+
+    server (https://ipr.etsi.org/).
+
+    Pursuant to the ETSI IPR Policy, no investigation, including IPR searches, has been carried out by ETSI. No guarantee
+
+    can be given as to the existence of other IPRs not referenced in ETSI SR 000 314 (or the updates on the ETSI Web
+
+    server) which are, or may be, or may become, essential to the present document.
+
+    Trademarks
+
+    The present document may include trademarks and/or tradenames which are asserted and/or registered by their owners.
+
+    ETSI claims no ownership of these except for any which are indicated as being the property of ETSI, and conveys no
+
+    right to use or reproduce any trademark and/or tradename. Mention of those trademarks in the present document does
+
+    not constitute an endorsement by ETSI of products, services or organizations associated with those trademarks.
+
+    Foreword
+
+    This Harmonised European Standard (EN) has been produced by ETSI Technical Committee Electromagnetic
+
+    compatibility and Radio spectrum Matters (ERM).
+
+    The present document has been prepared under the Commission''s standardisation request C(2015) 5376 final [i.2] to
+
+    provide one voluntary means of conforming to the essential requirements of Directive 2014/53/EU on the harmonisation
+
+    of the laws of the Member States relating to the making available on the market of radio equipment and repealing
+
+    Directive 1999/5/EC [i.1].
+
+    Once the present document is cited in the Official Journal of the European Union under that Directive, compliance with
+
+    the normative clauses of the present document given in table A.1 confers, within the limits of the scope of the present
+
+    document, a presumption of conformity with the corresponding essential requirements of that Directive and associated
+
+    EFTA regulations.
+
+    The present document is part 22 of a multi-part deliverable. Full details of the entire series can be found in part 1 [1].
+
+    National transposition dates
+
+    Date of adoption of this EN: 8 October 2020
+
+    Date of latest announcement of this EN (doa): 31 January 2021
+
+    Date of latest publication of new National Standard
+
+    or endorsement of this EN (dop/e): 31 July 2021
+
+    Date of withdrawal of any conflicting National Standard (dow): 31 July 2022
+
+    Modal verbs terminology
+
+    In the present document "shall", "shall not", "should", "should not", "may", "need not", "will", "will not", "can" and
+
+    "cannot" are to be interpreted as described in clause 3.2 of the ETSI Drafting Rules (Verbal forms for the expression of
+
+    provisions).
+
+    "must" and "must not" are NOT allowed in ETSI deliverables except when used in direct citation.
+
+    ETSI
+
+    6 ETSI EN 301 489-22 V2.1.1 (2020-10)
+
+    1 Scope
+
+    The present document covers in respect of ElectroMagnetic Compatibility (EMC), the assessment of:
+
+    1) ground based aeronautical VHF radio communications equipment characterized by the following operating
+
+    conditions:
+
+    a) operating in the frequency range 118 MHz to 136,975 MHz, at 8,33 kHz or 25 kHz channel
+
+    spacing;
+
+    b) using DSB AM modulation;
+
+    2) ground-based UHF radio transmitters, receivers and transceivers for the UHF aeronautical mobile service
+
+    characterized by the following operating conditions:
+
+    a) operating in the frequency range 225 MHz to 399,975 MHz at 12,5 kHz or 25 kHz channel spacing;
+
+    b) using DSB AM modulation;
+
+    3) VDL Mode 2 ground base station radio equipment operating in the frequency range 117,975 MHz to
+
+    137,000 MHz;
+
+    4) VDL Mode 4 ground base station radio equipment operating in the frequency range 112,000 MHz to
+
+    136,975 MHz.
+
+    NOTE: The relationship between the present document and essential requirements of article 3.1(b) of Directive
+
+    2014/53/EU [i.1] is given in Annex A.
+
+    2 References
+
+    2.1 Normative references
+
+    References are either specific (identified by date of publication and/or edition number or version number) or non-
+
+    specific. For specific references, only the cited version applies. For non-specific references, the latest version of the
+
+    referenced document (including any amendments) applies.
+
+    Referenced documents which are not found to be publicly available in the expected location might be found at
+
+    https://docbox.etsi.org/Reference/.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    The following referenced documents are necessary for the application of the present document.
+
+    [1] ETSI EN 301 489-1 (V2.2.3) (11-2019): "ElectroMagnetic Compatibility (EMC) standard for
+
+    radio equipment and services; Part 1: Common technical requirements; Harmonised Standard for
+
+    ElectroMagnetic Compatibility".
+
+    [2] ETSI EN 301 841-1 (V1.4.1) (04-2015): "VHF air-ground Digital Link (VDL) Mode 2; Technical
+
+    characteristics and methods of measurement for ground-based equipment; Part 1: Physical layer
+
+    and MAC sub-layer".
+
+    [3] ETSI EN 301 842-1 (V1.4.1) (04-2015): "VHF air-ground Digital Link (VDL) Mode 4 radio
+
+    equipment; Technical characteristics and methods of measurement for ground-based equipment;
+
+    Part 1: EN for ground equipment".
+
+    [4] ETSI EN 300 676-1 (V1.5.2) (03-2011): "Ground-based VHF hand-held, mobile and fixed radio
+
+    transmitters, receivers and transceivers for the VHF aeronautical mobile service using amplitude
+
+    modulation; Part 1: Technical characteristics and methods of measurement".
+
+    ETSI
+
+    7 ETSI EN 301 489-22 V2.1.1 (2020-10)
+
+    [5] ETSI EN 302 617 (V2.3.1) (07-2018): "Ground-based UHF radio transmitters, receivers and
+
+    transceivers for the UHF aeronautical mobile service using amplitude modulation; Harmonised
+
+    Standard for access to radio spectrum".
+
+    2.2 Informative references
+
+    References are either specific (identified by date of publication and/or edition number or version number) or
+
+    non-specific. For specific references, only the cited version applies. For non-specific references, the latest version of the
+
+    referenced document (including any amendments) applies.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    The following referenced documents are not necessary for the application of the present document but they assist the
+
+    user with regard to a particular subject area.
+
+    [i.1] Directive 2014/53/EU of the European Parliament and of the Council of 16 April 2014 on the
+
+    harmonisation of the laws of the Member States relating to the making available on the market of
+
+    radio equipment and repealing Directive 1999/5/EC.
+
+    [i.2] Commission Implementing Decision C(2015) 5376 final of 4.8.2015 on a standardisation request
+
+    to the European Committee for Electrotechnical Standardisation and to the European
+
+    Telecommunications Standards Institute as regards radio equipment in support of Directive
+
+    2014/53/EU of the European Parliament and of the Council.
+
+    [i.3] ITU Radio Regulations (2016).
+
+    [i.4] Recommendation ITU-T P.53: "Psophometer for use on telephone-type circuits".
+
+    3 Definition of terms, symbols and abbreviations
+
+    3.1 Terms
+
+    For the purposes of the present document, the terms given in ETSI EN 301 489-1 [1] and the following apply:
+
+    base station: aeronautical radio equipment, used in the aeronautical mobile service, for use with an external antenna
+
+    and intended for use at a fixed location
+
+    centre frequency (Fc): centre of the transmitter necessary bandwidth
+
+    integral antenna equipment: radio communications equipment with an antenna integrated into the equipment without
+
+    the use of an external connector and considered to be part of the equipment
+
+    necessary bandwidth: for a given class of emission, the width of the frequency band which is just sufficient to ensure
+
+    the transmission of information at the rate and with the quality required under specified conditions
+
+    NOTE: This is the definition in the ITU Radio Regulations, clause 146 [i.3].
+
+    occupied bandwidth: width of a frequency band such that, below the lower and above the upper frequency limits, the
+
+    mean powers emitted are each equal to a specified percentage ß/2 of the total mean power of a given emission
+
+    NOTE: Unless otherwise specified by ITU-R for the appropriate class of emission, the value of ß/2 should be
+
+    taken as 0,5 % as defined in the ITU Radio Regulations [i.3].
+
+    operating frequency range: range(s) of continuous radio frequencies covered by the Equipment Under Test (EUT)
+
+    product standard: functional standard describing frequency management parameters of radio product
+
+    simplex: instantaneous one-way communications link
+
+    ETSI
+
+    8 ETSI EN 301 489-22 V2.1.1 (2020-10)
+
+    3.2 Symbols
+
+    Void.
+
+    3.3 Abbreviations
+
+    For the purposes of the present document, the following abbreviations apply:
+
+    AC Alternating Current
+
+    AM Amplitude Modulation
+
+    BER Bit Error Ratio
+
+    BW BandWidth
+
+    DC Direct Current
+
+    DSB Double Side Band full carrier
+
+    EM ElectroMagnetic
+
+    EMC ElectroMagnetic Compatibility
+
+    EUT Equipment Under Test
+
+    Fc centre frequency
+
+    MPL Minimum Performance Levels
+
+    RF Radio Frequency
+
+    rms root mean of squares
+
+    SINAD Signal In Noise And Distortion
+
+    THD Total Harmonic Distortion
+
+    UHF Ultra High Frequency
+
+    VDL VHF Digital Link
+
+    VHF Very High Frequency
+
+    4 Test conditions
+
+    4.1 General
+
+    The test configuration and mode of operation shall represent the intended use and shall be recorded in the test report.
+
+    4.2 Arrangements for test signals
+
+    4.2.0 General
+
+    The provisions of ETSI EN 301 489-1 [1], clause 4.2 shall apply with the following modification:
+
+    • For integral antenna radio communications equipment a temporary 50 Ω RF connection point may be provided
+
+    for connection to the measuring equipment.
+
+    4.2.1 Arrangement for test signals at the input to the transmitter
+
+    The provisions of ETSI EN 301 489-1 [1], clause 4.2.1 shall apply with the following modification:
+
+    • The transmitter shall be modulated with normal test modulation by an internal or external signal source
+
+    capable of producing the appropriate drive signal (see clause 4.5).
+
+    ETSI
+
+    9 ETSI EN 301 489-22 V2.1.1 (2020-10)
+
+    4.2.2 Arrangements for test signals at the output from the transmitter
+
+    The provisions of ETSI EN 301 489-1 [1], clause 4.2.2 shall apply with the following modifications:
+
+    • The transmitter shall be operated at its maximum rated RF carrier output. If the maximum power cannot be
+
+    maintained due to thermal limitations, any tests should be paused and the transmitter allowed to cool, until full
+
+    power can be maintained again.
+
+    • The RF output signal of the transmitter shall be coupled to the measuring equipment via a shielded
+
+    transmission line such as a coaxial cable. The measuring equipment shall comprise a combination of a
+
+    modulation analyser and an audio distortion meter.
+
+    4.2.3 Arrangements for test signals at the input to the receiver
+
+    The provisions of ETSI EN 301 489-1 [1], clause 4.2.3 shall apply with the following modifications:
+
+    • The wanted RF input signal coupled to the receiver shall be modulated with normal test modulation (see
+
+    clause 4.5).
+
+    4.2.4 Arrangements for test signals at the output from the receiver
+
+    The provisions of ETSI EN 301 489-1 [1], clause 4.2.4 shall apply.
+
+    4.2.5 Arrangements for testing transmitters and receivers together
+
+    (as a system)
+
+    The provisions of ETSI EN 301 489-1 [1], clause 4.2.5 shall apply.
+
+    4.3 RF exclusion band f'
+- id: art-3
+  title: 'Annex C (informative):'
+  text: 'Annex C (informative):
+
+    Test Report
+
+    The following information should be recorded in the test report:
+
+    • the functions of the radio equipment to be assessed during and after the EMC exposure;
+
+    • the intended functions of the radio equipment which should be in accordance with the documentation
+
+    accompanying the equipment;
+
+    • the user control functions and stored data that are required for normal operation and the method to be used to
+
+    assess whether these have been lost after the EMC exposure;
+
+    • the type of modulation, the characteristics of the transmission used for testing (random bit stream, message
+
+    format, etc.) and the necessary test equipment delivered to enable the assessment of the EUT;
+
+    • the ancillary equipment to be combined with the radio equipment for testing (where applicable);
+
+    • an exhaustive list of ports, with the maximum cable lengths allowed, classified as either power or
+
+    telecommunication/signal/control. Power ports should further be classified as AC or DC power;
+
+    • the bandwidth of the IF filter immediately preceding the demodulator or equivalent system bandwidth;
+
+    • the method to be used to verify that a communication link is established and maintained (if appropriate);
+
+    • the operating frequency bands over which the equipment is intended to operate;
+
+    • any equipment thermal limitation which prevent continuous testing of the EUT;
+
+    • the environment(s) in which the equipment is intended to be used;
+
+    • the occupied bandwidth of the corresponding transmitter signal for non-channelized equipment;
+
+    • a list of service connectors or programming connectors;
+
+    • details of the mechanism for manual recovery of normal operation should be provided in the user
+
+    documentation;
+
+    • the EUT software version used during the test;
+
+    • exclusion bands applied.
+
+    ETSI
+
+    22 ETSI EN 301 489-22 V2.1.1 (2020-10)
+
+    Annex D (informative):
+
+    Change history
+
+    Version Information about changes
+
+    2.1.1 First version under the Radio Equipment Directive
+
+    ETSI
+
+    23 ETSI EN 301 489-22 V2.1.1 (2020-10)
+
+    History
+
+    Document history
+
+    V1.1.1 December 2000 Publication
+
+    V1.2.1 August 2002 Publication
+
+    V1.3.1 November 2003 Publication
+
+    V2.0.1 July 2020 EN Approval Procedure AP 20201008: 2020-07-10 to 2020-10-08
+
+    V2.1.1 October 2020 Publication
+
+    ETSI'
 doc_files:
 - global/raw/ETSI_EN_30148922_v02.01.01_60.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30148922_v02.01.01_60.pdf (pdf, 48883 chars)，生成 3 条共 24476 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30148922_v02.01.01_60.pdf (pdf, 48883 chars)，生成 3 条共 24476 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30148922_v02.01.01_60.pdf (pdf, 48883 chars)，生成 3 条共 24476 字符；解析文本未人工复核，引用以官方原件为准。'

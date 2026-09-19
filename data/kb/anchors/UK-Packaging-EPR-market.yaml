@@ -1,0 +1,26 @@
+id: KB-market-UK-UK-Packaging-EPR
+regulation_id: UK-Packaging-EPR
+doc_name: 'UK Extended producer responsibility for packaging: who is affected and what to do'
+official_citation: 'UK Extended producer responsibility for packaging: who is affected and what to do'
+short_name: UK EPR 包装生产者责任指南 (gov.uk)
+source: market
+primary_source: market
+domain: 环境
+applies_if:
+  category: []
+  features_any: []
+  markets:
+  - UK
+key_articles:
+- art-1
+key_points:
+- UK EPR 包装生产者责任指南 (gov.uk)：环境领域法规，适用于 UK 市场相关经营行为（库自动接入，按市场匹配）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://www.gov.uk/guidance/extended-producer-responsibility-for-packaging-who-is-affected-and-what-to-do
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

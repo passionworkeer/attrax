@@ -9,11 +9,67 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: World Bank Group - International Development, Poverty and Su
+  text: "World Bank Group - International Development, Poverty and Sustainability\nUnlocking Private Capital at Record Scale for Developing Economies\nUnlocking Private Capital at Record Scale for Developing\
+    \ Economies\nA record $112 billion in private capital to create jobs, build infrastructure, and drive growth.\nhttps://www.worldbank.org/en/news/press-release/2026/09/17/world-bank-group-mobilizes-record-private-capital-for-developing-countries-driving\n\
+    Learn More\nTop\neager\nhttps://delivery-p136806-e1377844.adobeaemcloud.com/adobe/assets/urn:aaid:aem:52d2acec-389f-4673-a40d-94ed025efbb1/as/Partnerships%20homepage.jpg\nHow MIGA Mobilizes Private\
+    \ Capital\nnews\nHow MIGA Mobilizes Private Capital\nhttps://www.miga.org/guarantees-and-private-capital-mobilization\nhttps://delivery-p136806-e1377844.adobeaemcloud.com/adobe/assets/urn:aaid:aem:52d2acec-389f-4673-a40d-94ed025efbb1/as/Partnerships%20homepage.jpg\n\
+    How This Thai Manufacturer is Creating Better Jobs\nimmersive story\nHow This Thai Manufacturer is Creating Better Jobs\nhttps://www.ifc.org/en/stories/2026/building-infrastructure-strengthening-workforces\n\
+    https://delivery-p136806-e1377844.adobeaemcloud.com/adobe/assets/urn:aaid:aem:52d2acec-389f-4673-a40d-94ed025efbb1/as/Partnerships%20homepage.jpg\nHow IFC Unlocks Private Investment\nnews\nHow IFC Unlocks\
+    \ Private Investment\nhttps://www.ifc.org/en/what-we-do/sector-expertise/mobilizing-private-capital\nhttps://delivery-p136806-e1377844.adobeaemcloud.com/adobe/assets/urn:aaid:aem:52d2acec-389f-4673-a40d-94ed025efbb1/as/Partnerships%20homepage.jpg\n\
+    sec-spacing\nsection-none\nsec-spacing-bottom\nsection-padding-between\nstyle\nbg-primary-blue\nsec-inside-container\nfalse\nOUR \nPRIORITIES\nlp-heading-bottom-xlarge\nfalse\nimage\nJobs\nWhy jobs?\
+    \ Because they’re the surest path out of poverty for individuals and communities.\nLearn More\nhttps://www.worldbank.org/ext/en/jobs\ntrue\nimage\nMission 300\nMission 300 is connecting homes, communities,\
+    \ and businesses in Africa to electricity \n,\n powering growth and expanding opportunity.\nLearn More\nhttps://www.worldbank.org/ext/en/energizingafrica\nfalse\nimage\nHealth Works\nHealth Works is\
+    \ reaching 1.5 billion people with quality, affordable health services by 2030 — creating jobs and driving economic growth.\nLearn More\nhttps://www.worldbank.org/ext/en/health-works\nfalse\nfalse\n\
+    center\nimage\nAgriConnect\nAgriConnect helps 300 million small-scale farmers build thriving agribusinesses — boosting incomes, feeding more people, and strengthening economies.\nLearn More\nhttps://www.worldbank.org/ext/en/agriconnect\n\
+    true\nimage\nGender\nUnlocking economic opportunity for millions of women through digital access, finance, and jobs.\nLearn More\nhttps://www.worldbank.org/ext/en/gender\ntrue\nimage\nWater Forward\n\
+    Water forward is securing reliable water for over a billion people by 2030, protecting jobs, health and economies that depend on it.\nLearn More\nhttps://www.worldbank.org/ext/en/water\ntrue\nsec-spacing\n\
+    section-none\nsec-spacing-bottom\nsection-padding-between\nstyle\ndefault\nData\n for Development\nEssential data to guide decisions, monitor progress, and evaluate impact.\nSee More Data\nExplore by\
+    \ focus area\nPeople\nProsperity\nPlanet\nInfrastructure\nDigital\npeople\n3.4\nadditional jobs\n are created in related industries for every job in the \nhealth sector\n.\nhttps://www.worldbank.org/ext/en/health-works\n\
+    Source: World Bank Health Works\ntrue\nThink this information from World Bank Group is useful\nprosperity\n10 percent\nof global gross domestic product in 2024 came from \ntravel and tourism\n.\nhttps://blogs.worldbank.org/en/voices/cities-that-work-how-urban-tourism-drives-jobs\n\
+    Source: World Travel & Tourism Council\ntrue\nThink this information from World Bank Group is useful\ninfrastructure\n9 in 10\npeople without electricity\n today live in Sub-Saharan Africa.\nhttps://data360.worldbank.org/en/atlas/electricity-access/\n\
+    Source: 2026 Atlas of Global Development\ntrue\nThink this information from World Bank Group is useful\nsec-spacing\nsection-none\nsec-spacing-bottom"
+- id: art-2
+  title: section-padding-between
+  text: "section-padding-between\nsec-swoosh\nsec-swoosh-type7\nstyle\nbg-image, lp-download-btn, lp-3column-card\nimage\ntab-image\nmob-image\nsec-inside-container\nfalse\nSTAY CURRENT WITH OUR LATEST\n\
+    DATA & INSIGHTS\ntrue\nWBG External Corporate English Newsletter|wbg-svc-ext-corp-eng-nl\nfalse\nsec-spacing\nsection-xlarge\nsec-swoosh\nsec-swoosh-none\nstyle\nbg-neutrals-20\nsec-inside-container\n\
+    true\nsec-width\nfalse\nRESEARCH\n & PUBLICATIONS\nMore Research & Publications\nhttps://www.worldbank.org/en/research\ndefault\nWorld Development Report 2026\nWorld Development Report 2026\nAI offers\
+    \ developing economies a rare path to prosperity — and the World Development Report 2026 shows how.\nhttps://www.worldbank.org/en/publication/wdr2026\nRead Full Report\nhttps://openknowledge.worldbank.org/entities/publication/8d048ad2-5cc3-4fc0-ba22-2e1f82f5d7de\n\
+    Global Economic Prospects Report - June 2026\nGlobal Economic Prospects Report - June 2026\nAs the Middle East conflict drives sharp energy price increases, global growth is projected to slow to 2.5\
+    \ percent in 2026.\nhttps://www.worldbank.org/en/publication/global-economic-prospects\nRead Full Report\nhttps://openknowledge.worldbank.org/bitstreams/8e6bcf71-89a1-443b-bbe9-6c39a496d7ab/download\n\
+    sec-spacing\nsection-xhuge\nsec-spacing-bottom\nsection-xhuge\nstyle\ndefault\nsec-inside-container\nfalse\nDefault alt\nTHE POWER\n OF PURPOSE\nThe world’s challenges are bigger than one project, one\
+    \ country, or even one World Bank Group. That’s why we’re pairing 80 years of experience with renewed focus. To move faster. Work smarter. With more partners. And to create jobs that empower people\
+    \ and grow economies.\n26%\nReduced project approval time\nlp lp-arrow-down\n10x\nEach $1 from shareholders translates into $10 in development finance over 10 years\nlp lp-arrow-up\n$1.2 T\nCapital\
+    \ invested since 1946\nlp lp-arrow-up\nstyle\ngrid, related-1-cols, data-list-container, heading-vertical, image-1by1, border-radius-medium\nsec-spacing\nsection-none\nsec-spacing-bottom\nsection-padding-between\n\
+    sec-width\nfalse\nno-grid\nfalse\ncol-ctrl\ncol-3\ncol1-class\ncol-lg-6 col-md-6 col-sm-12 col-xs-12\ncol1-blocks\ncustom-image\ncol2-class\ncol-lg-1 col-md-1 col-sm-12 col-xs-12\ncol3-class\ncol-lg-5\
+    \ col-md-5 col-sm-12 col-xs-12\ncol3-blocks\nrelated-links\nlp-heading\nTRANSFORMING KNOWLEDGE \nTRANSFORMING LIVES\nTrusted data, insights, and education to help organizations, practitioners, and global\
+    \ leaders deliver impactful policies and projects at scale.\nlp-heading-bottom-xlarge\nDefault alt\nWorld Bank Group Academy\nOne-of-a-kind capacity development and training for next-generation leaders.\n\
+    Learn More\nWorld Bank Group Scorecard\nEasy-to-understand indicators and data that measure progress and impact.\nLearn More\nstyle\ngrid, bg-primary-blue-90, heading-vertical, transform-teaser-container\n\
+    sec-spacing\nsection-none\nsec-spacing-bottom\nsection-none\ncol-ctrl\ncol-2\ncol1-class\ncol-lg-7 col-md-7 col-sm-8 col-xs-12 lp-two-column-card\ncol1-blocks\nlp-heading\ncustom-text\ncol2-class\n\
+    col-lg-5 col-md-5 col-sm-4 col-xs-12\ncol2-blocks\ncustom-image\ncol3-class\ncol-lg-5 col-md-5 col-sm-12 col-xs-12\nEMPOWERING PEOPLE & COUNTRIES\n TO MAKE PROGRESS\nSee all Projects\nExplore by region\n\
+    Africa\nEast Asia & Pacific\nEurope & Central Asia\nLatin America & Caribbean\nMiddle East, N. Africa, Afghanistan, and Pakistan\nSouth Asia\nplanet\nGrowing Jobs, Protecting Forests: A Decade of Transformational\
+    \ Change in the Amazon\nhttps://www.worldbank.org/en/results/2026/07/21/growing-jobs-protecting-forests-a-decade-of-transformational-change-in-the-amazon\nProsperity\npeople\nFrom Classrooms to Careers:\
+    \ Guyana’s Youth Gain Skills for Real Jobs in Growing Industries\nhttps://www.worldbank.org/en/results/2026/06/30/from-classrooms-to-careers-guyana-s-youth-gain-skills-for-real-jobs-in-growing-ind\n\
+    Guyana’s Youth Gain Skills for Real Job\ndigital\nArtificial Intelligence in Action in Latin America’s Schools\nhttps://www.worldbank.org/en/results/2026/07/02/artificial-intelligence-in-action-in-latin-america-s-schools-evidence-from-peru"
+- id: art-3
+  title: Artificial Intelligence in Action in Latin America’s Schools
+  text: "Artificial Intelligence in Action in Latin America’s Schools\nsec-spacing\nsection-xhuge\nstyle\ndefault\nstyle\ndefault\nPARTNER WITH\n THE WORLD BANK GROUP\nWe work with local partners and global\
+    \ partners. Because with more resources, we can accomplish more.\nlp-heading-bottom-none\nsec-spacing\nsection-none\nsec-spacing-bottom\nsection-xlarge\nstyle\ndefault\ntrue\nimage\nPartnerships\nCombining\
+    \ knowledge, experience, and innovative thinking to deliver meaningful results and improve lives.\nLearn More\nhttps://www.worldbank.org/ext/en/work-with-us/partnerships\ntrue\nimage\nProject Procurement\n\
+    Connecting borrowers and suppliers to opportunities that move communities and countries forward.\nLearn More\nhttps://www.worldbank.org/ext/en/what-we-do/project-procurement\ntrue\nsec-spacing\nsection-none\n\
+    sec-spacing-bottom\nsection-xhuge\nstyle\noverlay-carousel-card-container\nsec-inside-container\nfalse\nsec-width\nfalse"
 doc_files:
 - global/raw/INTL_World_Bank_世界银行.html
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/INTL_World_Bank_世界银行.html (html, 8861 chars)，生成 3 条共 8861 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/INTL_World_Bank_世界银行.html (html, 8861 chars)，生成 3 条共 8861 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/INTL_World_Bank_世界银行.html (html, 8861 chars)，生成 3 条共 8861 字符；解析文本未人工复核，引用以官方原件为准。'

@@ -29,4 +29,11 @@ checksum_sha256: null
 schema_version: 1
 source_url: https://eur-lex.europa.eu/eli/reg/2004/1935/oj
 notes: 'Initial seed: article text condensed from KB key_points and marked needs_human_review. Top-cited articles (e.g. EU-2023-1542,
-  EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.'
+  EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.
+
+  2026-09-19 去重：合并同法规异名条目 EU-1935-2004_FOOD_CONTACT_MATERIALS_FRAMEWORK（EU-1935-2004 Food Contact Materials Framework）。
+
+  2026-09-19 去重：合并同法规异名条目 EU-1935-2004_FOOD_CONTACT_MATERIALS_FRAMEWORK-2（EU-1935-2004 Food Contact Materials Framework [xhtml]）。'
+doc_files:
+- eu/raw/EU-1935-2004_Food_Contact_Materials_Framework.pdf
+- eu/raw/EU-1935-2004_Food_Contact_Materials_Framework.xhtml

@@ -1,0 +1,27 @@
+id: KB-market-US-US-PLAW-114PUBL125_TRADE_FACILITATION_AND_TRADE_ENFORCEMENT_ACT
+regulation_id: US-PLAW-114PUBL125_TRADE_FACILITATION_AND_TRADE_ENFORCEMENT_ACT
+doc_name: US PLAW-114publ125 Trade Facilitation and Trade Enforcement Act 2015
+official_citation: US PLAW-114publ125 Trade Facilitation and Trade Enforcement Act 2015
+short_name: US PLAW-114publ125 Trade Facilitation and Trade Enforcement Act 2015
+source: market
+primary_source: market
+domain: 海关商贸
+applies_if:
+  category: []
+  features_any: []
+  markets:
+  - US
+key_articles:
+- art-1
+- art-2
+key_points:
+- US PLAW-114publ125 Trade Facilitation and Trade Enforcement Act 2015：海关商贸领域法规，适用于 US 市场相关经营行为（库自动接入，按市场匹配）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://www.govinfo.gov/content/pkg/PLAW-114publ125/pdf/PLAW-114publ125.pdf
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

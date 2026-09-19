@@ -1,6 +1,6 @@
 id: US-CFR-TITLE21-PART110
 official_citation: US 21 CFR Part 110
-short_name: US 21 CFR Part 110
+short_name: US 21 CFR Part 110 — CURRENT GOOD MANUFACTURING PRACTICE IN MANUFACTURING, PACKING, OR HOLDING HUMAN FOOD
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,695 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '21
+
+    Food and Drugs
+
+    2
+
+    2024-04-01
+
+    2024-04-01
+
+    false
+
+    CURRENT GOOD'
+  text: '21
+
+    Food and Drugs
+
+    2
+
+    2024-04-01
+
+    2024-04-01
+
+    false
+
+    CURRENT GOOD MANUFACTURING PRACTICE IN MANUFACTURING, PACKING, OR HOLDING HUMAN FOOD
+
+    110
+
+    PART 110
+
+    Food and Drugs
+
+    FOOD AND DRUG ADMINISTRATION, DEPARTMENT OF HEALTH AND HUMAN SERVICES (CONTINUED)
+
+    FOOD FOR HUMAN CONSUMPTION
+
+    Pt. 110
+
+    PART 110—CURRENT GOOD MANUFACTURING PRACTICE IN MANUFACTURING, PACKING, OR HOLDING HUMAN FOOD
+
+    Subpart A—General Provisions
+
+    Sec.
+
+    110.3
+
+    Definitions.
+
+    110.5
+
+    Current good manufacturing practice.
+
+    110.10
+
+    Personnel.
+
+    110.19
+
+    Exclusions.
+
+    Subpart B—Buildings and Facilities
+
+    110.20
+
+    Plant and grounds.
+
+    110.35
+
+    Sanitary operations.
+
+    110.37
+
+    Sanitary facilities and controls.
+
+    Subpart C—Equipment
+
+    110.40
+
+    Equipment and utensils.
+
+    Subpart D [Reserved]
+
+    Subpart E—Production and Process Controls
+
+    110.80
+
+    Processes and controls.
+
+    110.93
+
+    Warehousing and distribution.
+
+    Subpart F [Reserved]
+
+    Subpart G—Defect Action Levels
+
+    110.110
+
+    Natural or unavoidable defects in food for human use that present no health hazard.
+
+    Authority:
+
+    21 U.S.C. 342, 371, 374; 42 U.S.C. 264.
+
+    Source:
+
+    51 FR 22475, June 19, 1986, unless otherwise noted.
+
+    Editorial Note:
+
+    Nomenclature changes to part 110 appear at 81 FR 49896, July 29, 2016.
+
+    Subpart A—General Provisions'
+- id: art-2
+  title: § 110.3
+  text: '§ 110.3
+
+    Definitions.
+
+    The definitions and interpretations of terms in section 201 of the Federal Food, Drug, and Cosmetic Act (the act) are applicable to such terms when used in this part. The following definitions shall
+    also apply:
+
+    (a)
+
+    Acid foods or acidified foods
+
+    means foods that have an equilibrium pH of 4.6 or below.
+
+    (b)
+
+    Adequate
+
+    means that which is needed to accomplish the intended purpose in keeping with good public health practice.
+
+    (c)
+
+    Batter
+
+    means a semifluid substance, usually composed of flour and other ingredients, into which principal components of food are dipped or with which they are coated, or which may be used directly to form
+    bakery foods.
+
+    (d)
+
+    Blanching,
+
+    except for tree nuts and peanuts, means a prepackaging
+
+    heat treatment of foodstuffs for a sufficient time and at a sufficient temperature to partially or completely inactivate the naturally occurring enzymes and to effect other physical or biochemical changes
+    in the food.
+
+    (e)
+
+    Critical control point
+
+    means a point in a food process where there is a high probability that improper control may cause, allow, or contribute to a hazard or to filth in the final food or decomposition of the final food.
+
+    (f)
+
+    Food
+
+    means food as defined in section 201(f) of the act and includes raw materials and ingredients.
+
+    (g)
+
+    Food-contact surfaces
+
+    are those surfaces that contact human food and those surfaces from which drainage onto the food or onto surfaces that contact the food ordinarily occurs during the normal course of operations. “Food-contact
+    surfaces” includes utensils and food-contact surfaces of equipment.
+
+    (h)
+
+    Lot
+
+    means the food produced during a period of time indicated by a specific code.
+
+    (i)
+
+    Microorganisms
+
+    means yeasts, molds, bacteria, and viruses and includes, but is not limited to, species having public health significance. The term “undesirable microorganisms” includes those microorganisms that are
+    of public health significance, that subject food to decomposition, that indicate that food is contaminated with filth, or that otherwise may cause food to be adulterated within the meaning of the act.
+    Occasionally in these regulations, FDA used the adjective “microbial” instead of using an adjectival phrase containing the word microorganism.
+
+    (j)
+
+    Pest
+
+    refers to any objectionable animals or insects including, but not limited to, birds, rodents, flies, and larvae.
+
+    (k)
+
+    Plant
+
+    means the building or facility or parts thereof, used for or in connection with the manufacturing, packaging, labeling, or holding of human food.
+
+    (l)
+
+    Quality control operation
+
+    means a planned and systematic procedure for taking all actions necessary to prevent food from being adulterated within the meaning of the act.
+
+    (m)
+
+    Rework
+
+    means clean, unadulterated food that has been removed from processing for reasons other than insanitary conditions or that has been successfully reconditioned by reprocessing and that is suitable for
+    use as food.
+
+    (n)
+
+    Safe-moisture level
+
+    is a level of moisture low enough to prevent the growth of undesirable microorganisms in the finished product under the intended conditions of manufacturing, storage, and distribution. The maximum safe
+    moisture level for a food is based on its water activity (a
+
+    w
+
+    ). An a
+
+    w
+
+    will be considered safe for a food if adequate data are available that demonstrate that the food at or below the given a
+
+    w
+
+    will not support the growth of undesirable microorganisms.
+
+    (o)
+
+    Sanitize
+
+    means to adequately treat food-contact surfaces by a process that is effective in destroying vegetative cells of microorganisms of public health significance, and in substantially reducing numbers of
+    other undesirable microorganisms, but without adversely affecting the product or its safety for the consumer.
+
+    (p)
+
+    Shall
+
+    is used to state mandatory requirements.
+
+    (q)
+
+    Should
+
+    is used to state recommended or advisory procedures or identify recommended equipment.
+
+    (r)
+
+    Water activity
+
+    (a
+
+    w
+
+    ) is a measure of the free moisture in a food and is the quotient of the water vapor pressure of the substance divided by the vapor pressure of pure water at the same temperature.'
+- id: art-3
+  title: § 110.5
+  text: '§ 110.5
+
+    Current good manufacturing practice.
+
+    (a) The criteria and definitions in this part shall apply in determining whether a food is adulterated (1) within the meaning of section 402(a)(3) of the act in that the food has been manufactured under
+    such conditions that it is unfit for food; or (2) within the meaning of section 402(a)(4) of the act in that the food has been prepared, packed, or held under insanitary conditions whereby it may have
+    become contaminated with filth, or whereby it may have been rendered injurious to health. The criteria and definitions in this part also apply in determining whether a food is in violation of section
+    361 of the Public Health Service Act (42 U.S.C. 264).
+
+    (b) Food covered by specific current good manufacturing practice regulations also is subject to the requirements of those regulations.'
+- id: art-4
+  title: § 110.10
+  text: '§ 110.10
+
+    Personnel.
+
+    The plant management shall take all reasonable measures and precautions to ensure the following:
+
+    (a)
+
+    Disease control.
+
+    Any person who, by medical examination or supervisory observation, is shown to have, or appears to have, an illness, open lesion, including boils, sores, or infected wounds, or any other abnormal source
+    of microbial contamination by which there is a reasonable possibility of food, food-contact surfaces, or food-packaging materials becoming contaminated, shall be excluded from any operations which may
+    be expected to result in such contamination until the condition is corrected. Personnel shall be instructed to report such health conditions to their supervisors.
+
+    (b)
+
+    Cleanliness.
+
+    All persons working in direct contact with food, food-contact surfaces, and food-packaging materials shall conform to hygienic practices while on duty to the extent necessary to protect against contamination
+    of food. The methods for maintaining cleanliness include, but are not limited to:
+
+    (1) Wearing outer garments suitable to the operation in a manner that protects against the contamination of food, food-contact surfaces, or food-packaging materials.
+
+    (2) Maintaining adequate personal cleanliness.
+
+    (3) Washing hands thoroughly (and sanitizing if necessary to protect against contamination with undesirable microorganisms) in an adequate hand-washing facility before starting work, after each absence
+    from the work station, and at any other time when the hands may have become soiled or contaminated.
+
+    (4) Removing all unsecured jewelry and other objects that might fall into food, equipment, or containers, and removing hand jewelry that cannot be adequately sanitized during periods in which food is
+    manipulated by hand. If such hand jewelry cannot be removed, it may be covered by material which can be maintained in an intact, clean, and sanitary condition and which effectively protects against
+    the contamination by these objects of the food, food-contact surfaces, or food-packaging materials.
+
+    (5) Maintaining gloves, if they are used in food handling, in an intact, clean, and sanitary condition. The gloves should be of an impermeable material.
+
+    (6) Wearing, where appropriate, in an effective manner, hair nets, headbands, caps, beard covers, or other effective hair restraints.
+
+    (7) Storing clothing or other personal belongings in areas other than where food is exposed or where equipment or utensils are washed.
+
+    (8) Confining the following to areas other than where food may be exposed or where equipment or utensils are washed: eating food, chewing gum, drinking beverages, or using tobacco.
+
+    (9) Taking any other necessary precautions to protect against contamination of food, food-contact surfaces, or food-packaging materials with microorganisms or foreign substances including, but not limited
+    to, perspiration, hair, cosmetics, tobacco, chemicals, and medicines applied to the skin.
+
+    (c)
+
+    Education and training.
+
+    Personnel responsible for identifying sanitation failures or food contamination should have a background of education or experience, or a combination thereof, to provide a level of competency necessary
+    for production of clean and safe food. Food handlers and supervisors should receive appropriate training in proper food handling techniques and food-protection principles and should be informed of the
+    danger of poor personal hygiene and insanitary practices.
+
+    (d)
+
+    Supervision.
+
+    Responsibility for assuring compliance by all personnel with all requirements of this part shall be clearly assigned to competent supervisory personnel.
+
+    [51 FR 22475, June 19, 1986, as amended at 54 FR 24892, June 12, 1989]'
+- id: art-5
+  title: § 110.19
+  text: '§ 110.19
+
+    Exclusions.
+
+    (a) The following operations are not subject to this part: Establishments engaged solely in the harvesting, storage, or distribution of one or more “raw agricultural commodities,” as defined in section
+    201(r) of the act, which
+
+    are ordinarily cleaned, prepared, treated, or otherwise processed before being marketed to the consuming public.
+
+    (b) FDA, however, will issue special regulations if it is necessary to cover these excluded operations.
+
+    Subpart B—Buildings and Facilities'
+- id: art-6
+  title: § 110.20
+  text: '§ 110.20
+
+    Plant and grounds.
+
+    (a)
+
+    Grounds.
+
+    The grounds about a food plant under the control of the operator shall be kept in a condition that will protect against the contamination of food. The methods for adequate maintenance of grounds include,
+    but are not limited to:
+
+    (1) Properly storing equipment, removing litter and waste, and cutting weeds or grass within the immediate vicinity of the plant buildings or structures that may constitute an attractant, breeding place,
+    or harborage for pests.
+
+    (2) Maintaining roads, yards, and parking lots so that they do not constitute a source of contamination in areas where food is exposed.
+
+    (3) Adequately draining areas that may contribute contamination to food by seepage, foot-borne filth, or providing a breeding place for pests.
+
+    (4) Operating systems for waste treatment and disposal in an adequate manner so that they do not constitute a source of contamination in areas where food is exposed.
+
+    If the plant grounds are bordered by grounds not under the operator''s control and not maintained in the manner described in paragraph (a) (1) through (3) of this section, care shall be exercised in
+    the plant by inspection, extermination, or other means to exclude pests, dirt, and filth that may be a source of food contamination.
+
+    (b)
+
+    Plant construction and design.
+
+    Plant buildings and structures shall be suitable in size, construction, and design to facilitate maintenance and sanitary operations for food-manufacturing purposes. The plant and facilities shall:
+
+    (1) Provide sufficient space for such placement of equipment and storage of materials as is necessary for the maintenance of sanitary operations and the production of safe food.
+
+    (2) Permit the taking of proper precautions to reduce the potential for contamination of food, food-contact surfaces, or food-packaging materials with microorganisms, chemicals, filth, or other extraneous
+    material. The potential for contamination may be reduced by adequate food safety controls and operating practices or effective design, including the separation of operations in which contamination is
+    likely to occur, by one or more of the following means: location, time, partition, air flow, enclosed systems, or other effective means.
+
+    (3) Permit the taking of proper precautions to protect food in outdoor bulk fermentation vessels by any effective means, including:
+
+    (i) Using protective coverings.
+
+    (ii) Controlling areas over and around the vessels to eliminate harborages for pests.
+
+    (iii) Checking on a regular basis for pests and pest infestation.
+
+    (iv) Skimming the fermentation vessels, as necessary.
+
+    (4) Be constructed in such a manner that floors, walls, and ceilings may be adequately cleaned and kept clean and kept in good repair; that drip or condensate from fixtures, ducts and pipes does not
+    contaminate food, food-contact surfaces, or food-packaging materials; and that aisles or working spaces are provided between equipment and walls and are adequately unobstructed and of adequate width
+    to permit employees to perform their duties and to protect against contaminating food or food-contact surfaces with clothing or personal contact.
+
+    (5) Provide adequate lighting in hand-washing areas, dressing and locker rooms, and toilet rooms and in all areas where food is examined, processed, or stored and where equipment or utensils are cleaned;
+    and provide safety-type light bulbs, fixtures, skylights, or other glass suspended over exposed food in any step of preparation or otherwise protect against food contamination in case of glass breakage.
+
+    (6) Provide adequate ventilation or control equipment to minimize odors and vapors (including steam and noxious fumes) in areas where they may
+
+    contaminate food; and locate and operate fans and other air-blowing equipment in a manner that minimizes the potential for contaminating food, food-packaging materials, and food-contact surfaces.
+
+    (7) Provide, where necessary, adequate screening or other protection against pests.'
+- id: art-7
+  title: § 110.35
+  text: '§ 110.35
+
+    Sanitary operations.
+
+    (a)
+
+    General maintenance.
+
+    Buildings, fixtures, and other physical facilities of the plant shall be maintained in a sanitary condition and shall be kept in repair sufficient to prevent food from becoming adulterated within the
+    meaning of the act. Cleaning and sanitizing of utensils and equipment shall be conducted in a manner that protects against contamination of food, food-contact surfaces, or food-packaging materials.
+
+    (b)
+
+    Substances used in cleaning and sanitizing; storage of toxic materials.
+
+    (1) Cleaning compounds and sanitizing agents used in cleaning and sanitizing procedures shall be free from undesirable microorganisms and shall be safe and adequate under the conditions of use. Compliance
+    with this requirement may be verified by any effective means including purchase of these substances under a supplier''s guarantee or certification, or examination of these substances for contamination.
+    Only the following toxic materials may be used or stored in a plant where food is processed or exposed:
+
+    (i) Those required to maintain clean and sanitary conditions;
+
+    (ii) Those necessary for use in laboratory testing procedures;
+
+    (iii) Those necessary for plant and equipment maintenance and operation; and
+
+    (iv) Those necessary for use in the plant''s operations.
+
+    (2) Toxic cleaning compounds, sanitizing agents, and pesticide chemicals shall be identified, held, and stored in a manner that protects against contamination of food, food-contact surfaces, or food-packaging
+    materials. All relevant regulations promulgated by other Federal, State, and local government agencies for the application, use, or holding of these products should be followed.
+
+    (c)
+
+    Pest control.
+
+    No pests shall be allowed in any area of a food plant. Guard or guide dogs may be allowed in some areas of a plant if the presence of the dogs is unlikely to result in contamination of food, food-contact
+    surfaces, or food-packaging materials. Effective measures shall be taken to exclude pests from the processing areas and to protect against the contamination of food on the premises by pests. The use
+    of insecticides or rodenticides is permitted only under precautions and restrictions that will protect against the contamination of food, food-contact surfaces, and food-packaging materials.
+
+    (d)
+
+    Sanitation of food-contact surfaces.
+
+    All food-contact surfaces, including utensils and food-contact surfaces of equipment, shall be cleaned as frequently as necessary to protect against contamination of food.
+
+    (1) Food-contact surfaces used for manufacturing or holding low-moisture food shall be in a dry, sanitary condition at the time of use. When the surfaces are wet-cleaned, they shall, when necessary,
+    be sanitized and thoroughly dried before subsequent use.
+
+    (2) In wet processing, when cleaning is necessary to protect against the introduction of microorganisms into food, all food-contact surfaces shall be cleaned and sanitized before use and after any interruption
+    during which the food-contact surfaces may have become contaminated. Where equipment and utensils are used in a continuous production operation, the utensils and food-contact surfaces of the equipment
+    shall be cleaned and sanitized as necessary.
+
+    (3) Non-food-contact surfaces of equipment used in the operation of food plants should be cleaned as frequently as necessary to protect against contamination of food.
+
+    (4) Single-service articles (such as utensils intended for one-time use, paper cups, and paper towels) should be stored in appropriate containers and shall be handled, dispensed, used, and disposed
+    of in a manner that protects against contamination of food or food-contact surfaces.
+
+    (5) Sanitizing agents shall be adequate and safe under conditions of use. Any facility, procedure, or machine is
+
+    acceptable for cleaning and sanitizing equipment and utensils if it is established that the facility, procedure, or machine will routinely render equipment and utensils clean and provide adequate cleaning
+    and sanitizing treatment.
+
+    (e)
+
+    Storage and handling of cleaned portable equipment and utensils.
+
+    Cleaned and sanitized portable equipment with food-contact surfaces and utensils should be stored in a location and manner that protects food-contact surfaces from contamination.
+
+    [51 FR 22475, June 19, 1986, as amended at 54 FR 24892, June 12, 1989]'
+- id: art-8
+  title: § 110.37
+  text: '§ 110.37
+
+    Sanitary facilities and controls.
+
+    Each plant shall be equipped with adequate sanitary facilities and accommodations including, but not limited to:
+
+    (a)
+
+    Water supply.
+
+    The water supply shall be sufficient for the operations intended and shall be derived from an adequate source. Any water that contacts food or food-contact surfaces shall be safe and of adequate sanitary
+    quality. Running water at a suitable temperature, and under pressure as needed, shall be provided in all areas where required for the processing of food, for the cleaning of equipment, utensils, and
+    food-packaging materials, or for employee sanitary facilities.
+
+    (b)
+
+    Plumbing.
+
+    Plumbing shall be of adequate size and design and adequately installed and maintained to:
+
+    (1) Carry sufficient quantities of water to required locations throughout the plant.
+
+    (2) Properly convey sewage and liquid disposable waste from the plant.
+
+    (3) Avoid constituting a source of contamination to food, water supplies, equipment, or utensils or creating an unsanitary condition.
+
+    (4) Provide adequate floor drainage in all areas where floors are subject to flooding-type cleaning or where normal operations release or discharge water or other liquid waste on the floor.
+
+    (5) Provide that there is not backflow from, or cross-connection between, piping systems that discharge waste water or sewage and piping systems that carry water for food or food manufacturing.
+
+    (c)
+
+    Sewage disposal.
+
+    Sewage disposal shall be made into an adequate sewerage system or disposed of through other adequate means.
+
+    (d)
+
+    Toilet facilities.
+
+    Each plant shall provide its employees with adequate, readily accessible toilet facilities. Compliance with this requirement may be accomplished by:
+
+    (1) Maintaining the facilities in a sanitary condition.
+
+    (2) Keeping the facilities in good repair at all times.
+
+    (3) Providing self-closing doors.
+
+    (4) Providing doors that do not open into areas where food is exposed to airborne contamination, except where alternate means have been taken to protect against such contamination (such as double doors
+    or positive air-flow systems).
+
+    (e)
+
+    Hand-washing facilities.
+
+    Hand-washing facilities shall be adequate and convenient and be furnished with running water at a suitable temperature. Compliance with this requirement may be accomplished by providing:
+
+    (1) Hand-washing and, where appropriate, hand-sanitizing facilities at each location in the plant where good sanitary practices require employees to wash and/or sanitize their hands.
+
+    (2) Effective hand-cleaning and sanitizing preparations.
+
+    (3) Sanitary towel service or suitable drying devices.
+
+    (4) Devices or fixtures, such as water control valves, so designed and constructed to protect against recontamination of clean, sanitized hands.
+
+    (5) Readily understandable signs directing employees handling unprotected food, unprotected food-packaging materials, of food-contact surfaces to wash and, where appropriate, sanitize their hands before
+    they start work, after each absence from post of duty, and when their hands may have become soiled or contaminated. These signs may be posted in the processing room(s) and in all other areas where employees
+    may handle such food, materials, or surfaces.
+
+    (6) Refuse receptacles that are constructed and maintained in a manner that protects against contamination of food.
+
+    (f)
+
+    Rubbish and offal disposal.
+
+    Rubbish and any offal shall be so conveyed, stored, and disposed of as to minimize the development of odor, minimize the potential for the waste becoming an attractant and harborage or breeding place
+    for pests, and protect against contamination of food, food-contact surfaces, water supplies, and ground surfaces.
+
+    Subpart C—Equipment'
+- id: art-9
+  title: § 110.40
+  text: '§ 110.40
+
+    Equipment and utensils.
+
+    (a) All plant equipment and utensils shall be so designed and of such material and workmanship as to be adequately cleanable, and shall be properly maintained. The design, construction, and use of equipment
+    and utensils shall preclude the adulteration of food with lubricants, fuel, metal fragments, contaminated water, or any other contaminants. All equipment should be so installed and maintained as to
+    facilitate the cleaning of the equipment and of all adjacent spaces. Food-contact surfaces shall be corrosion-resistant when in contact with food. They shall be made of nontoxic materials and designed
+    to withstand the environment of their intended use and the action of food, and, if applicable, cleaning compounds and sanitizing agents. Food-contact surfaces shall be maintained to protect food from
+    being contaminated by any source, including unlawful indirect food additives.
+
+    (b) Seams on food-contact surfaces shall be smoothly bonded or maintained so as to minimize accumulation of food particles, dirt, and organic matter and thus minimize the opportunity for growth of microorganisms.
+
+    (c) Equipment that is in the manufacturing or food-handling area and that does not come into contact with food shall be so constructed that it can be kept in a clean condition.
+
+    (d) Holding, conveying, and manufacturing systems, including gravimetric, pneumatic, closed, and automated systems, shall be of a design and construction that enables them to be maintained in an appropriate
+    sanitary condition.
+
+    (e) Each freezer and cold storage compartment used to store and hold food capable of supporting growth of microorganisms shall be fitted with an indicating thermometer, temperature-measuring device,
+    or temperature-recording device so installed as to show the temperature accurately within the compartment, and should be fitted with an automatic control for regulating temperature or with an automatic
+    alarm system to indicate a significant temperature change in a manual operation.
+
+    (f) Instruments and controls used for measuring, regulating, or recording temperatures, pH, acidity, water activity, or other conditions that control or prevent the growth of undesirable microorganisms
+    in food shall be accurate and adequately maintained, and adequate in number for their designated uses.
+
+    (g) Compressed air or other gases mechanically introduced into food or used to clean food-contact surfaces or equipment shall be treated in such a way that food is not contaminated with unlawful indirect
+    food additives.
+
+    Subpart D [Reserved]
+
+    Subpart E—Production and Process Controls'
+- id: art-10
+  title: § 110.80
+  text: '§ 110.80
+
+    Processes and controls.
+
+    All operations in the receiving, inspecting, transporting, segregating, preparing, manufacturing, packaging, and storing of food shall be conducted in accordance with adequate sanitation principles.
+    Appropriate quality control operations shall be employed to ensure that food is suitable for human consumption and that food-packaging materials are safe and suitable. Overall sanitation of the plant
+    shall be under the supervision of one or more competent individuals assigned responsibility for this function. All reasonable precautions shall be taken to ensure that production procedures do not contribute
+    contamination from any source. Chemical, microbial, or extraneous-material testing procedures shall be used where necessary to identify sanitation failures or possible food contamination. All food that
+    has become contaminated to the extent that it is adulterated within the meaning of
+
+    the act shall be rejected, or if permissible, treated or processed to eliminate the contamination.
+
+    (a)
+
+    Raw materials and other ingredients.
+
+    (1) Raw materials and other ingredients shall be inspected and segregated or otherwise handled as necessary to ascertain that they are clean and suitable for processing into food and shall be stored
+    under conditions that will protect against contamination and minimize deterioration. Raw materials shall be washed or cleaned as necessary to remove soil or other contamination. Water used for washing,
+    rinsing, or conveying food shall be safe and of adequate sanitary quality. Water may be reused for washing, rinsing, or conveying food if it does not increase the level of contamination of the food.
+    Containers and carriers of raw materials should be inspected on receipt to ensure that their condition has not contributed to the contamination or deterioration of food.
+
+    (2) Raw materials and other ingredients shall either not contain levels of microorganisms that may produce food poisoning or other disease in humans, or they shall be pasteurized or otherwise treated
+    during manufacturing operations so that they no longer contain levels that would cause the product to be adulterated within the meaning of the act. Compliance with this requirement may be verified by
+    any effective means, including purchasing raw materials and other ingredients under a supplier''s guarantee or certification.
+
+    (3) Raw materials and other ingredients susceptible to contamination with aflatoxin or other natural toxins shall comply with current Food and Drug Administration regulations and action levels for poisonous
+    or deleterious substances before these materials or ingredients are incorporated into finished food. Compliance with this requirement may be accomplished by purchasing raw materials and other ingredients
+    under a supplier''s guarantee or certification, or may be verified by analyzing these materials and ingredients for aflatoxins and other natural toxins.
+
+    (4) Raw materials, other ingredients, and rework susceptible to contamination with pests, undesirable microorganisms, or extraneous material shall comply with applicable Food and Drug Administration
+    regulations and defect action levels for natural or unavoidable defects if a manufacturer wishes to use the materials in manufacturing food. Compliance with this requirement may be verified by any effective
+    means, including purchasing the materials under a supplier''s guarantee or certification, or examination of these materials for contamination.
+
+    (5) Raw materials, other ingredients, and rework shall be held in bulk, or in containers designed and constructed so as to protect against contamination and shall be held at such temperature and relative
+    humidity and in such a manner as to prevent the food from becoming adulterated within the meaning of the act. Material scheduled for rework shall be identified as such.
+
+    (6) Frozen raw materials and other ingredients shall be kept frozen. If thawing is required prior to use, it shall be done in a manner that prevents the raw materials and other ingredients from becoming
+    adulterated within the meaning of the act.
+
+    (7) Liquid or dry raw materials and other ingredients received and stored in bulk form shall be held in a manner that protects against contamination.
+
+    (b)
+
+    Manufacturing operations.
+
+    (1) Equipment and utensils and finished food containers shall be maintained in an acceptable condition through appropriate cleaning and sanitizing, as necessary. Insofar as necessary, equipment shall
+    be taken apart for thorough cleaning.
+
+    (2) All food manufacturing, including packaging and storage, shall be conducted under such conditions and controls as are necessary to minimize the potential for the growth of microorganisms, or for
+    the contamination of food. One way to comply with this requirement is careful monitoring of physical factors such as time, temperature, humidity, a
+
+    w
+
+    , pH, pressure, flow rate, and manufacturing operations such as freezing, dehydration, heat processing, acidification, and refrigeration to ensure that mechanical breakdowns, time delays, temperature
+    fluctuations, and other factors do not contribute to the decomposition or contamination of food.
+
+    (3) Food that can support the rapid growth of undesirable microorganisms, particularly those of public health significance, shall be held in a manner that prevents the food from becoming adulterated
+    within the meaning of the act. Compliance with this requirement may be accomplished by any effective means, including:
+
+    (i) Maintaining refrigerated foods at 45 °F (7.2 °C) or below as appropriate for the particular food involved.
+
+    (ii) Maintaining frozen foods in a frozen state.
+
+    (iii) Maintaining hot foods at 140 °F (60 °C) or above.
+
+    (iv) Heat treating acid or acidified foods to destroy mesophilic microorganisms when those foods are to be held in hermetically sealed containers at ambient temperatures.
+
+    (4) Measures such as sterilizing, irradiating, pasteurizing, freezing, refrigerating, controlling pH or controlling a
+
+    w
+
+    that are taken to destroy or prevent the growth of undesirable microorganisms, particularly those of public health significance, shall be adequate under the conditions of manufacture, handling, and
+    distribution to prevent food from being adulterated within the meaning of the act.
+
+    (5) Work-in-process shall be handled in a manner that protects against contamination.
+
+    (6) Effective measures shall be taken to protect finished food from contamination by raw materials, other ingredients, or refuse. When raw materials, other ingredients, or refuse are unprotected, they
+    shall not be handled simultaneously in a receiving, loading, or shipping area if that handling could result in contaminated food. Food transported by conveyor shall be protected against contamination
+    as necessary.
+
+    (7) Equipment, containers, and utensils used to convey, hold, or store raw materials, work-in-process, rework, or food shall be constructed, handled, and maintained during manufacturing or storage in
+    a manner that protects against contamination.
+
+    (8) Effective measures shall be taken to protect against the inclusion of metal or other extraneous material in food. Compliance with this requirement may be '
 doc_files:
 - us/raw/US-CFR-title21-part110.xml
+- us/raw/US-CFR-title21-part110.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part110.xml (xml, 39291 chars)，生成 10 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part110.xml (xml, 39291 chars)，生成 10 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part110.xml (xml, 39291 chars)，生成 10 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART110-4（US 21 CFR Part 110）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART110-3（US 21 CFR Part 110）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART110-2（US 21 CFR Part 110）。'

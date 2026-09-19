@@ -1,0 +1,27 @@
+id: KB-market-CN-CN-AML
+regulation_id: CN-AML
+doc_name: 《中华人民共和国反垄断法》(2022年修正)
+official_citation: 《中华人民共和国反垄断法》(2022年修正)
+short_name: 反垄断法 (2022 修正)
+source: market
+primary_source: market
+domain: 反垄断
+applies_if:
+  category: []
+  features_any: []
+  markets:
+  - CN
+key_articles:
+- art-1
+- art-2
+key_points:
+- 反垄断法 (2022 修正)：反垄断领域法规，适用于 CN 市场相关经营行为（库自动接入，按市场匹配）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://flk.npc.gov.cn/detail?title=%E5%8F%8D%E5%9E%84%E6%96%AD%E6%B3%95&id=ff8081818234ccb501829f46c6ac2a5a
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

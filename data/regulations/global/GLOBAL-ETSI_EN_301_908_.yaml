@@ -9,11 +9,914 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'ETSI EN 301 908-1
+
+    V7.1.1
+
+    (2015-03)
+
+    HARMONIZED EUROPEAN STAND'
+  text: 'ETSI EN 301 908-1
+
+    V7.1.1
+
+    (2015-03)
+
+    HARMONIZED EUROPEAN STANDARD
+
+    IMT cellular networks;
+
+    Harmonized EN covering the essential requirements
+
+    of article 3.2 of the R&TTE Directive;
+
+    Part 1: Introduction and common requirements
+
+    2 ETSI EN 301 908-1 V7.1.1 (2015-03)
+
+    Reference
+
+    REN/MSG-TFES-011-01
+
+    Keywords
+
+    3G, 3GPP, 3GPP2, cdma2000, cellular, digital,
+
+    E-UTRA, IMT, IMT-2000, IMT-Advanced, LTE,
+
+    LTE-Advanced, MAN-Advanced, mobile, radio,
+
+    regulation, UMTS, UTRA, WCDMA, WiMAX
+
+    ETSI
+
+    650 Route des Lucioles
+
+    F-06921 Sophia Antipolis Cedex - FRANCE
+
+    Tel.: +33 4 92 94 42 00 Fax: +33 4 93 65 47 16
+
+    Siret N° 348 623 562 00017 - NAF 742 C
+
+    Association à but non lucratif enregistrée à la
+
+    Sous-Préfecture de Grasse (06) N° 7803/88
+
+    Important notice
+
+    The present document can be downloaded from:
+
+    http://www.etsi.org/standards-search
+
+    The present document may be made available in electronic versions and/or in print. The content of any electronic and/or
+
+    print versions of the present document shall not be modified without the prior written authorization of ETSI. In case of any
+
+    existing or perceived difference in contents between such versions and/or in print, the only prevailing document is the
+
+    print of the Portable Document Format (PDF) version kept on a specific network drive within ETSI Secretariat.
+
+    Users of the present document should be aware that the document may be subject to revision or change of status.
+
+    Information on the current status of this and other ETSI documents is available at
+
+    http://portal.etsi.org/tb/status/status.asp
+
+    If you find errors in the present document, please send your comment to one of the following services:
+
+    https://portal.etsi.org/People/CommiteeSupportStaff.aspx
+
+    Copyright Notification
+
+    No part may be reproduced or utilized in any form or by any means, electronic or mechanical, including photocopying
+
+    and microfilm except as authorized by written permission of ETSI.
+
+    The content of the PDF version shall not be modified without the written authorization of ETSI.
+
+    The copyright and the foregoing restriction extend to reproduction in all media.
+
+    © European Telecommunications Standards Institute 2015.
+
+    All rights reserved.
+
+    DECTTM, PLUGTESTSTM, UMTSTM and the ETSI logo are Trade Marks of ETSI registered for the benefit of its Members.
+
+    3GPPTM and LTE™ are Trade Marks of ETSI registered for the benefit of its Members and
+
+    of the 3GPP Organizational Partners.
+
+    GSM® and the GSM logo are Trade Marks registered and owned by the GSM Association.
+
+    ETSI
+
+    3 ETSI EN 301 908-1 V7.1.1 (2015-03)
+
+    Contents
+
+    Intellectual Property Rights ................................................................................................................................ 4
+
+    Foreword ............................................................................................................................................................. 4
+
+    Modal verbs terminology .................................................................................................................................... 5
+
+    Introduction ........................................................................................................................................................ 5
+
+    1 Scope ........................................................................................................................................................ 6
+
+    2 References ................................................................................................................................................ 6
+
+    2.1 Normative references ......................................................................................................................................... 6
+
+    2.2 Informative references ........................................................................................................................................ 6
+
+    3 Definitions, symbols and abbreviations ................................................................................................... 7
+
+    3.1 Definitions .......................................................................................................................................................... 7
+
+    3.2 Symbols .............................................................................................................................................................. 9
+
+    3.3 Abbreviations ................................................................................................................................................... 10
+
+    4 Technical requirements specifications ................................................................................................... 10
+
+    4.1 Environmental profile ....................................................................................................................................... 10
+
+    4.2 Conformance requirements .............................................................................................................................. 11
+
+    4.2.1 Introduction................................................................................................................................................. 11
+
+    4.2.2 Radiated emissions (UE) ............................................................................................................................ 11
+
+    4.2.2.1 Definition .............................................................................................................................................. 11
+
+    4.2.2.2 Limits .................................................................................................................................................... 11
+
+    4.2.2.3 Conformance ......................................................................................................................................... 12
+
+    4.2.3 Radiated emissions (BS and repeater) ........................................................................................................ 12
+
+    4.2.3.1 Definition .............................................................................................................................................. 12
+
+    4.2.3.2 Limits .................................................................................................................................................... 12
+
+    4.2.3.3 Conformance ......................................................................................................................................... 13
+
+    4.2.4 Control and monitoring functions (UE) ...................................................................................................... 13
+
+    4.2.4.1 Definition .............................................................................................................................................. 13
+
+    4.2.4.2 Limits .................................................................................................................................................... 13
+
+    4.2.4.3 Conformance ......................................................................................................................................... 13
+
+    5 Testing for compliance with technical requirements .............................................................................. 13
+
+    5.1 Environmental conditions for testing ............................................................................................................... 13
+
+    5.2 Interpretation of the measurement results ........................................................................................................ 14
+
+    5.3 Essential radio test suites .................................................................................................................................. 14
+
+    5.3.1 Radiated emissions (UE) ............................................................................................................................ 14
+
+    5.3.1.1 Test method ........................................................................................................................................... 14
+
+    5.3.1.2 Test configurations ................................................................................................................................ 15
+
+    5.3.2 Radiated emissions (BS and repeater) ........................................................................................................ 15
+
+    5.3.2.1 Test method ........................................................................................................................................... 15
+
+    5.3.2.2 Test configurations ................................................................................................................................ 16
+
+    5.3.3 Control and monitoring functions (UE) ...................................................................................................... 17
+
+    5.3.3.1 Test method ........................................................................................................................................... 17
+
+    Annex A (normative): HS Requirements and conformance Test specifications Table
+
+    (HS-RTT) ........................................................................................................ 18
+
+    Annex B (informative): Receiver sensitivity and correct operation of the equipment ..................... 20
+
+    B.1 Receiver sensitivity ................................................................................................................................ 20
+
+    B.2 Correct functioning of the equipment..................................................................................................... 20'
+- id: art-2
+  title: 'Annex C (informative): Overview and organization of ETSI EN 301 908 standard parts .............. 21'
+  text: 'Annex C (informative): Overview and organization of ETSI EN 301 908 standard parts .............. 21
+
+    Annex D: Void ................................................................................................................. 25
+
+    Annex E (informative): Bibliography ................................................................................................... 26
+
+    History .............................................................................................................................................................. 27
+
+    ETSI
+
+    4 ETSI EN 301 908-1 V7.1.1 (2015-03)
+
+    Intellectual Property Rights
+
+    IPRs essential or potentially essential to the present document may have been declared to ETSI. The information
+
+    pertaining to these essential IPRs, if any, is publicly available for ETSI members and non-members, and can be found
+
+    in ETSI SR 000 314: "Intellectual Property Rights (IPRs); Essential, or potentially Essential, IPRs notified to ETSI in
+
+    respect of ETSI standards", which is available from the ETSI Secretariat. Latest updates are available on the ETSI Web
+
+    server (http://ipr.etsi.org).
+
+    Pursuant to the ETSI IPR Policy, no investigation, including IPR searches, has been carried out by ETSI. No guarantee
+
+    can be given as to the existence of other IPRs not referenced in ETSI SR 000 314 (or the updates on the ETSI Web
+
+    server) which are, or may be, or may become, essential to the present document.
+
+    Foreword
+
+    This Harmonized European Standard (EN) has been produced by ETSI Technical Committee Mobile Standards Group
+
+    (MSG).
+
+    The present document has been produced by ETSI in response to mandate M/284 issued from the European
+
+    Commission under Directive 98/34/EC [i.1] as amended by Directive 98/48/EC [i.6].
+
+    The title and reference to the present document are intended to be included in the publication in the Official Journal of
+
+    the European Union of titles and references of Harmonized Standard under the Directive 1999/5/EC [i.2].
+
+    The requirements relevant to Directive 1999/5/EC [i.2] are summarized in annex A.
+
+    The present document is part 1 of a multi-part deliverable covering the essential requirements under article 3.2 of
+
+    Directive 1999/5/EC [i.2] (R&TTE Directive) for Base Stations (BS), Repeaters and User Equipment (UE) for IMT
+
+    cellular networks, as identified below:
+
+    Part 1: "Introduction and common requirements";
+
+    Part 2: "CDMA Direct Spread (UTRA FDD) User Equipment (UE)";
+
+    Part 3: "CDMA Direct Spread (UTRA FDD) Base Stations (BS)";
+
+    Part 4: "CDMA Multi-Carrier (cdma2000) User Equipment (UE)";
+
+    Part 5: "CDMA Multi-Carrier (cdma2000) Base Stations (BS)";
+
+    Part 6: "CDMA TDD (UTRA TDD) User Equipment (UE)";
+
+    Part 7: "CDMA TDD (UTRA TDD) Base Stations (BS)";
+
+    Part 8: "Harmonized EN for IMT-2000, TDMA Single-Carrier (UWC 136) (UE) covering essential requirements
+
+    of article 3.2 of the R&TTE Directive";
+
+    Part 9: "Harmonized EN for IMT-2000, TDMA Single-Carrier (UWC 136) (BS) covering essential requirements
+
+    of article 3.2 of the R&TTE Directive";
+
+    Part 10: "Harmonized EN for IMT-2000, FDMA/TDMA (DECT) covering essential requirements of article 3.2 of
+
+    the R&TTE Directive";
+
+    Part 11: "CDMA Direct Spread (UTRA FDD) (Repeaters)";
+
+    Part 12: "Harmonized EN for IMT-2000, CDMA Multi-Carrier (cdma2000) (Repeaters) covering the essential
+
+    requirements of article 3.2 of the R&TTE Directive";
+
+    Part 13: "Evolved Universal Terrestrial Radio Access (E-UTRA) User Equipment (UE)";
+
+    Part 14: "Evolved Universal Terrestrial Radio Access (E-UTRA) Base Stations (BS)";
+
+    Part 15: "Evolved Universal Terrestrial Radio Access (E-UTRA FDD) (Repeaters)";
+
+    ETSI
+
+    5 ETSI EN 301 908-1 V7.1.1 (2015-03)
+
+    Part 16: "Harmonized EN for IMT-2000, Evolved CDMA Multi-Carrier Ultra Mobile Broadband (UMB) (UE)
+
+    covering the essential requirements of article 3.2 of the R&TTE Directive";
+
+    Part 17: "Harmonized EN for IMT-2000, Evolved CDMA Multi-Carrier Ultra Mobile Broadband (UMB) (BS)
+
+    covering the essential requirements of article 3.2 of the R&TTE Directive";
+
+    Part 18: "E-UTRA, UTRA and GSM/EDGE Multi-Standard Radio (MSR) Base Station (BS)";
+
+    Part 19: "OFDMA TDD WMAN (Mobile WiMAX) TDD User Equipment (UE)";
+
+    Part 20: "OFDMA TDD WMAN (Mobile WiMAX) TDD Base Station (BS)";
+
+    Part 21: "OFDMA TDD WMAN (Mobile WiMAX) FDD User Equipment (UE)";
+
+    Part 22: "OFDMA TDD WMAN (Mobile WiMAX) FDD Base Stations (BS)".
+
+    National transposition dates
+
+    Date of adoption of this EN: 10 March 2015
+
+    Date of latest announcement of this EN (doa): 30 June 2015
+
+    Date of latest publication of new National Standard
+
+    or endorsement of this EN (dop/e): 31 December 2015
+
+    Date of withdrawal of any conflicting National Standard (dow): 31 December 2016
+
+    Modal verbs terminology
+
+    In the present document "shall", "shall not", "should", "should not", "may", "need not", "will", "will not", "can" and
+
+    "cannot" are to be interpreted as described in clause 3.2 of the ETSI Drafting Rules (Verbal forms for the expression of
+
+    provisions).
+
+    "must" and "must not" are NOT allowed in ETSI deliverables except when used in direct citation.
+
+    Introduction
+
+    The present document is part of a set of standards developed by ETSI and is designed to fit in a modular structure to
+
+    cover all radio and telecommunications terminal equipment within the scope of the R&TTE Directive [i.2]. The
+
+    modular structure is shown in ETSI EG 201 399 [i.3].
+
+    ETSI
+
+    6 ETSI EN 301 908-1 V7.1.1 (2015-03)
+
+    1 Scope
+
+    The present document applies to user equipment, repeaters and base stations for IMT, falling within the scope of one of
+
+    the other parts of ETSI EN 301 908 [i.11], except for IMT-2000 FDMA/TDMA (DECT). The present document also
+
+    covers the corresponding ancillary equipment.
+
+    NOTE 1: ETSI EN 301 908-10 [i.10] contains in particular requirements for radiated spurious emissions and
+
+    control and monitoring functions applicable to IMT-2000 FDMA/TDMA (DECT) equipment.
+
+    The present document includes technical requirements which are common to equipment falling within the scope of
+
+    several of the other parts.
+
+    NOTE 2: The other parts of ETSI EN 301 908 [i.11], which are listed in the foreword of the present document,
+
+    specify technical requirements in respect of a particular type of IMT equipment.
+
+    NOTE 3: Recommendations ITU-R M.1457-11 [i.7] and M.2012 [i.8] define the characteristics of the members of
+
+    the IMT-2000 family and IMT-Advanced respectively by means of references to technical specifications
+
+    developed by Standards Development organizations. The present document applies to equipment
+
+    designed to meet any version of the terrestrial specifications referenced in Recommendations ITU-R
+
+    M.1457-11 [i.7] and M.2012 [i.8].
+
+    The present document is intended to cover the provisions of Directive 1999/5/EC [i.2] (R&TTE Directive), article 3.2,
+
+    which states that "… radio equipment shall be so constructed that it effectively uses the spectrum allocated to
+
+    terrestrial/space radio communications and orbital resources so as to avoid harmful interference."
+
+    In addition to the present document, other ENs that specify technical requirements in respect of essential requirements
+
+    under other parts of article 3 of the R&TTE Directive [i.2] may apply to equipment within the scope of the present
+
+    document.
+
+    NOTE 4: A list of such ENs is included on the web site http://www.newapproach.org.
+
+    2 References
+
+    2.1 Normative references
+
+    References are either specific (identified by date of publication and/or edition number or version number) or
+
+    non-specific. For specific references, only the cited version applies. For non-specific references, the latest version of the
+
+    referenced document (including any amendments) applies.
+
+    Referenced documents which are not found to be publicly available in the expected location might be found at
+
+    http://docbox.etsi.org/Reference.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    The following referenced documents are necessary for the application of the present document.
+
+    [1] Recommendation ITU-R SM.329-12 (2012): "Unwanted emissions in the spurious domain".
+
+    [2] ETSI EN 301 502 (V11.1.1) (07-2014): "Global System for Mobile communications (GSM);
+
+    Harmonized EN for Base Station Equipment covering the essential requirements of article 3.2 of
+
+    the R&TTE Directive".
+
+    2.2 Informative references
+
+    References are either specific (identified by date of publication and/or edition number or version number) or
+
+    non-specific. For specific references, only the cited version applies. For non-specific references, the latest version of the
+
+    referenced document (including any amendments) applies.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    ETSI
+
+    7 ETSI EN 301 908-1 V7.1.1 (2015-03)
+
+    The following referenced documents are not necessary for the application of the present document but they assist the
+
+    user with regard to a particular subject area.
+
+    [i.1] Directive 98/34/EC of the European Parliament and of the Council of 22 June 1998 laying down a
+
+    procedure for the provision of information in the field of technical standards and regulations.
+
+    [i.2] Directive 1999/5/EC of the European Parliament and of the Council of 9 March 1999 on radio
+
+    equipment and telecommunications terminal equipment and the mutual recognition of their
+
+    conformity (R&TTE Directive).
+
+    [i.3] ETSI EG 201 399: "Electromagnetic compatibility and Radio spectrum Matters (ERM); A guide to
+
+    the production of Harmonized Standards for application under the R&TTE Directive".
+
+    [i.4] Void.
+
+    [i.5] ETSI TR 100 028 (all parts) (V1.4.1): "Electromagnetic compatibility and Radio spectrum Matters
+
+    (ERM); Uncertainties in the measurement of mobile radio equipment characteristics".
+
+    [i.6] Directive 98/48/EC of the European Parliament and of the Council of 20 July 1998 amending
+
+    Directive 98/34/EC laying down a procedure for the provision of information in the field of
+
+    technical standards and regulations.
+
+    [i.7] Recommendation ITU-R M.1457-11 (2013): "Detailed specifications of the terrestrial radio
+
+    interfaces of International Mobile Telecommunications-2000 (IMT-2000)".
+
+    [i.8] Recommendation ITU-R M.2012 (2012): "Detailed specifications of the terrestrial radio interfaces
+
+    of International Mobile Telecommunications-Advanced (IMT-Advanced)".
+
+    [i.9] Recommendation ITU-R SM.1539-1 (2002): "Variation of the boundary between the out-of-band
+
+    and spurious domains required for the application of Recommendations ITU-R SM.1541 and
+
+    ITU-R SM.329".
+
+    [i.10] ETSI EN 301 908-10 (V4.1.1) (07-2009): "Electromagnetic compatibility and Radio spectrum
+
+    Matters (ERM); Base Stations (BS), Repeaters and User Equipment (UE) for IMT-2000 Third-
+
+    Generation cellular networks; Part 10: Harmonized EN for IMT-2000, FDMA/TDMA (DECT)
+
+    covering essential requirements of article 3.2 of the R&TTE Directive".
+
+    [i.11] ETSI EN 301 908 (all parts): "IMT cellular networks; Harmonized EN covering the essential
+
+    requirements of article 3.2 of the R&TTE Directive".
+
+    3 Definitions, symbols and abbreviations
+
+    3.1 Definitions
+
+    For the purposes of the present document, the terms and definitions given in the R&TTE Directive [i.2] and the
+
+    following apply:
+
+    ancillary equipment: equipment (apparatus), used in connection with a User Equipment (UE), Repeater or Base
+
+    Station (BS) is considered as an ancillary equipment (apparatus) if:
+
+    • the equipment is intended for use in conjunction with a user equipment UE, repeater or BS to provide
+
+    additional operational and/or control features to the radio equipment, (e.g. to extend control to another position
+
+    or location); and
+
+    • the equipment cannot be used on a stand-alone basis to provide user functions independently of a UE, BS or
+
+    combination of BS and repeater; and
+
+    • the UE, BS or combination of BS and repeater to which it is connected, is capable of providing some intended
+
+    operation, such as transmitting and/or receiving without the ancillary equipment (i.e. it is not a sub-unit of the
+
+    main equipment essential to the main equipment basic functions).
+
+    applicable part: part of the multi-part deli'
+- id: art-3
+  title: 'Annex C (informative):'
+  text: 'Annex C (informative):
+
+    Overview and organization of ETSI EN 301 908 standard
+
+    parts
+
+    This annex provides an overview of the IMT technologies included in the multipart standard ETSI EN 301 908 [i.11]
+
+    and how the different standard parts map to the terrestrial components of IMT-2000 and IMT Advanced. IMT is
+
+    specified by ITU-R in Recommendation M.1457-11 [i.7] and contains the following terrestrial IMT-2000 component
+
+    radio interfaces:
+
+    • IMT-2000 CDMA Direct Spread.
+
+    • IMT-2000 CDMA Multi-Carrier.
+
+    • IMT-2000 CDMA TDD.
+
+    • IMT-2000 TDMA Single-Carrier.
+
+    • IMT-2000 FDMA/TDMA.
+
+    • IMT-2000 OFDMA TDD WMAN.
+
+    IMT-Advanced is specified by ITU-R in Recommendation M.2012 [i.8] and contains the following terrestrial
+
+    IMT-Advanced radio interfaces:
+
+    • LTE-Advanced.
+
+    • Wireless MAN-Advanced.
+
+    ETSI EN 301 908 [i.11] is a multi-part deliverable covering Base Stations (BS), Repeaters and User Equipment (UE)
+
+    for the members of the terrestrial component of the IMT family. Further details of the standard parts are given below.
+
+    A cross-reference table for the standards parts applicable to the IMT terrestrial component radio access technologies is
+
+    given in table C-1 and a frequency band cross reference table is given in table C-2. The scope, content and relation
+
+    between the standard parts are given in the clauses below.
+
+    ETSI
+
+    22 ETSI EN 301 908-1 V7.1.1 (2015-03)
+
+    Table C-1: IMT Radio Interface Technologies in ETSI EN 301 908 [i.11]
+
+    and the corresponding standard parts
+
+    IMT2000 / RIT name Reference Equipment ETSI EN 301 908 Notes
+
+    IMT-Advanced (as identified by SDO type part covering
+
+    terrestrial RIT the SDO) the RIT and
+
+    (as identified by equipment type
+
+    ITU-R)
+
+    [i.7] and [i.8]
+
+    IMT-2000 CDMA UTRA FDD ETSI (3GPP) UE Part 2
+
+    Direct Spread BS Part 3
+
+    Repeater Part 11
+
+    E-UTRA FDD ETSI (3GPP) UE Part 13
+
+    BS Part 14
+
+    Repeater Part 15
+
+    LTE-Advanced E-UTRA FDD ETSI (3GPP) UE Part 13
+
+    BS Part14
+
+    Repeater Part 15
+
+    IMT-2000 CDMA Cdma2000 TIA UE Part 4
+
+    Multi-Carrier (3GPP2) BS Part 5
+
+    Repeater Part 12
+
+    UMB TIA UE Part 16
+
+    (3GPP2) BS Part 17
+
+    IMT-2000 CDMA UTRA TDD ETSI (3GPP) UE Part 6
+
+    TDD BS Part 7
+
+    E-UTRA TDD ETSI (3GPP) UE Part 13
+
+    BS Part 14
+
+    IMT-2000 TDMA UWC136 TIA UE Part 8
+
+    Single-Carrier BS Part 9
+
+    IMT-2000 DECT ETSI (DECT) - Part 10
+
+    FDMA/TDMA
+
+    IMT-2000 CDMA UTRA FDD/TDD ETSI (3GPP) BS Part 18 Covers multi-RAT capable
+
+    Direct Spread, E-UTRA and (MSR) BS, including
+
+    LTE-Advanced and GSM/EDGE GSM/EDGE operation.
+
+    IMT-2000 CDMA GSM/EDGE single RAT capable
+
+    TDD BS is covered by ETSI
+
+    EN 301 502 [2]
+
+    IMT-2000 Mobile WiMAX IEEE/ UE Part 19
+
+    OFDMA TDD TDD component WiMAX Forum BS Part 20
+
+    WMAN Mobile WiMAX IEEE/ UE Part 21
+
+    FDD component WiMAX Forum BS Part 22
+
+    ETSI
+
+    23 ETSI EN 301 908-1 V7.1.1 (2015-03)
+
+    Table C-2: Frequency band cross reference table for IMT Radio Interface Technologies
+
+    in ETSI EN 301 908 [i.11]
+
+    UTRA UTRA TDD E-UTRA CDMA2000/ Mobile Frequency Range
+
+    FDD Band Band UMB Band WiMAX Band
+
+    Band Class Class
+
+    I - 1 6 - 1 920 MHz to 1 980 MHz paired with
+
+    2 110 MHz to 2 170 MHz
+
+    III - 3 8 6C 1 710 MHz to 1 785 MHz paired with
+
+    1 805 MHz to 1 880 MHz
+
+    VII - 7 13 - 2 500 MHz to 2 570 MHz paired with
+
+    2 620 MHz to 2 690 MHz
+
+    VIII - 8 9 7G 880 MHz to 915 MHz paired with
+
+    925 MHz to 960 MHz
+
+    XV - - - - 1 900 MHz to 1 920 MHz paired with
+
+    2 600 MHz to 2 620 MHz
+
+    XVI - - - - 2 010 MHz to 2 025 MHz paired with
+
+    2 585 MHz to 2 600 MHz
+
+    XX - 20 - - 832 MHz to 862 MHz paired with
+
+    791 MHz to 821 MHz
+
+    XXII - 22 - - 3 410 MHz to 3 490 MHz paired with
+
+    3 510 MHz to 3 590 MHz
+
+    - a 33 - - 1 900 MHz to 1 920 MHz
+
+    - a 34 - - 2 010 MHz to 2 025 MHz
+
+    - d 38 - - 2 570 MHz to 2 620 MHz
+
+    - - 40 - 1B 2 300 MHz to 2 400 MHz
+
+    - - - - 3A 2 500 MHz to 2 690 MHz
+
+    - - 42 - 5L.A,5L.C 3 400 MHz to 3 600 MHz
+
+    - - 43 - 5H.A, 5H.C 3 600 MHz to 3 800 MHz
+
+    NOTE: The technical specifications identify additional frequency bands not currently included within ETSI
+
+    EN 301 908 [i.11].
+
+    ETSI EN 301 908 [i.11] is divided into multiple standard parts as follows:
+
+    Part 1: Introduction and common requirements
+
+    The scope of Part 1 is common technical requirements for the IMT RITs, except for IMT-2000 FDMA/TDMA. This
+
+    includes radiated emissions (UE, BS and repeater) and Control and monitoring functions (UE).
+
+    Part 2: CDMA Direct Spread (UTRA FDD) User Equipment (UE)
+
+    The scope of Part 2 is User Equipment for IMT-2000 CDMA Direct Spread, which includes UTRA FDD as defined by
+
+    ETSI (3GPP).
+
+    Part 3: CDMA Direct Spread (UTRA FDD) Base Stations (BS)
+
+    The scope of Part 3 is Base Stations for IMT-2000 CDMA Direct Spread, which includes UTRA FDD as defined by
+
+    ETSI (3GPP).
+
+    Part 4: CDMA Multi Carrier (cdma2000) User Equipment (UE)
+
+    The scope of Part 4 is User Equipment for IMT-2000 CDMA Multi-Carrier, which includes cdma2000 as defined by
+
+    TIA (3GPP2).
+
+    Part 5: CDMA Multi Carrier (cdma2000) Base Stations (BS)
+
+    The scope of Part 5 is Base Stations for IMT-2000 CDMA Multi-Carrier, which includes cdma2000 as defined by TIA
+
+    (3GPP2).
+
+    Part 6: CDMA TDD (UTRA TDD) User Equipment (UE)
+
+    The scope of Part 6 is User Equipment for IMT-2000 CDMA TDD, which includes UTRA TDD as defined by ETSI
+
+    (3GPP).
+
+    Part 7: CDMA TDD (UTRA TDD) Base Stations (BS)
+
+    The scope of Part 7 is Base Stations for IMT-2000 CDMA TDD, which includes UTRA TDD as defined by ETSI
+
+    (3GPP).
+
+    Part 8: IMT-2000 TDMA Single Carrier (UWC 136) (UE)
+
+    The scope of Part 8 is User Equipment for IMT-2000 TDMA Single-Carrier, which includes UWC136 as defined by
+
+    TIA. Part 8 was published in the first release of ETSI EN 301 908.
+
+    ETSI
+
+    24 ETSI EN 301 908-1 V7.1.1 (2015-03)
+
+    Part 9: IMT-2000 TDMA Single Carrier (UWC 136) (BS)
+
+    The scope of Part 9 is Base Stations for IMT-2000 TDMA Single-Carrier, which includes UWC136 as defined by TIA.
+
+    Part 9 was published in the first release of ETSI EN 301 908.
+
+    Part 10: IMT-2000 FDMA/TDMA (DECT)
+
+    The scope of Part 10 is equipment for IMT-2000 TDMA FDMA/TDMA, which includes DECT as defined by ETSI
+
+    (DECT), including radiated spurious emission and Control and monitoring function.
+
+    Part 11: CDMA Direct Spread (UTRA FDD) (Repeaters)
+
+    The scope of Part 11 is Repeaters for IMT-2000 CDMA Direct Spread, which includes UTRA FDD as defined by ETSI
+
+    (3GPP).
+
+    Part 12: IMT-2000 CDMA Multi Carrier (cdma2000) (Repeaters)
+
+    The scope of Part 12 is Repeaters for IMT-2000 CDMA Multi-Carrier, which includes cdma2000 as defined by TIA
+
+    (3GPP2).
+
+    Part 13: Evolved Universal Terrestrial Radio Access (E-UTRA) (UE)
+
+    The scope of Part 13 is User Equipment for E-UTRA as defined by ETSI (3GPP).
+
+    Part 14: Evolved Universal Terrestrial Radio Access (E-UTRA) (BS)
+
+    The scope of Part 14 is Base Stations for E-UTRA as defined by ETSI (3GPP).
+
+    Part 15: Evolved Universal Terrestrial Radio Access (E-UTRA FDD) (Repeaters)
+
+    The scope of Part 15 is Repeaters for E-UTRA (FDD) as defined by ETSI (3GPP).
+
+    Part 16: IMT-2000 Evolved CDMA Multi-Carrier Ultra Mobile Broadband (UMB) (UE)
+
+    The scope of Part 16 is User Equipment for UMB as defined by TIA (3GPP2).
+
+    Part 17: IMT-2000 Evolved CDMA Multi-Carrier Ultra Mobile Broadband (UMB) (BS)
+
+    The scope of Part 17 is Base Stations for UMB as defined by TIA (3GPP2).
+
+    Part 18: E-UTRA, UTRA and GSM/EDGE Multi-Standard Radio (MSR) Base Stations (BS)
+
+    The scope of Part 18 is Multi-Standard Radio capable Base stations (E-UTRA, UTRA, GSM/EDGE) as defined by
+
+    ETSI (3GPP).
+
+    Part 19: OFDMA TDD WMAN (Mobile WiMAX) TDD User Equipment (UE)
+
+    The scope of Part 19 is User Equipment for OFDMA TDD WMAN (Mobile WiMAX) operating in TDD mode as
+
+    defined by IEEE / WiMAX Forum.
+
+    Part 20: OFDMA TDD WMAN (Mobile WiMAX) TDD Base Stations (BS)
+
+    The scope of Part 20 is Base stations for OFDMA TDD WMAN (Mobile WiMAX) operating in TDD mode as defined
+
+    by IEEE / WiMAX Forum.
+
+    Part 21: OFDMA TDD WMAN (Mobile WiMAX) FDD User Equipment (UE)
+
+    The scope of Part 21 User Equipment for OFDMA TDD WMAN Mobile WiMAX (FDD) as defined by IEEE /
+
+    WiMAX Forum.
+
+    Part 22: OFDMA TDD WMAN (Mobile WiMAX) FDD Base Stations (BS)
+
+    The scope of Part 22 Base Station for OFDMA TDD WMAN Mobile WiMAX (FDD) as defined by IEEE / WiMAX
+
+    Forum.
+
+    ETSI
+
+    25 ETSI EN 301 908-1 V7.1.1 (2015-03)
+
+    Annex D:
+
+    Void
+
+    ETSI
+
+    26 ETSI EN 301 908-1 V7.1.1 (2015-03)
+
+    Annex E (informative):
+
+    Bibliography
+
+    Directive 2004/108/EC of the European Parliament and of the Council of 15 December 2004 on the approximation of
+
+    the laws of the Member States relating to electromagnetic compatibility and repealing Directive 89/336/EEC (text with
+
+    EEA relevance (EMC Directive)).
+
+    Directive 2006/95/EC of the European Parliament and of the Council of 12 December 2006 on the harmonisation of the
+
+    laws of Member States relating to electrical equipment designed for use within certain voltage limits (LV Directive).
+
+    CEPT/ERC/REC 74-01 (Siófok 98, Nice 99, Sesimbra 02, Hradec Kralove 05, Cardiff 11): "Unwanted Emissions in the
+
+    Spurious Domain".
+
+    ETSI EN 301 489 (all parts): "Electromagnetic compatibility and Radio spectrum Matters (ERM); ElectroMagnetic
+
+    Compatibility (EMC) standard for radio equipment and services".
+
+    ETSI
+
+    27 ETSI EN 301 908-1 V7.1.1 (2015-03)
+
+    History
+
+    Document history
+
+    V1.1.1 January 2002 Publication
+
+    V2.2.1 October 2003 Publication
+
+    V3.2.1 May 2007 Publication
+
+    V4.2.1 March 2010 Publication
+
+    V5.2.1 May 2011 Publication
+
+    V6.2.1 April 2013 Publication
+
+    V7.0.1 November 2014 EN Approval Procedure AP 20150310: 2014-11-10 to 2015-03-10
+
+    V7.1.1 March 2015 Publication
+
+    ETSI'
 doc_files:
 - global/raw/ETSI_EN_301_908_蜂窝基站.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_301_908_蜂窝基站.pdf (pdf, 64270 chars)，生成 3 条共 30729 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_301_908_蜂窝基站.pdf (pdf, 64270 chars)，生成 3 条共 30729 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_301_908_蜂窝基站.pdf (pdf, 64270 chars)，生成 3 条共 30729 字符；解析文本未人工复核，引用以官方原件为准。'

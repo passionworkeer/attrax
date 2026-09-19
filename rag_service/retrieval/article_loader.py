@@ -341,7 +341,7 @@ def build_article_texts_for_anchors(
         if not isinstance(payload, dict):
             continue
         markets = (payload.get("applies_if") or {}).get("markets", []) or []
-        region = markets[0] if markets and markets[0] != "GLOBAL" else ""
+        region = markets[0] if markets else ""
         doc_name = str(payload.get("doc_name", "")).strip()
         by_key[(region.upper(), doc_name)] = payload
 

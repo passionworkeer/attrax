@@ -9,11 +9,817 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'L_202402847EN.000101.fmx.xml
+
+
+    Official Journal
+
+    of the Europe'
+  text: 'L_202402847EN.000101.fmx.xml
+
+
+    Official Journal
+
+    of the European Union
+
+
+    EN
+
+
+    L series
+
+
+    2024/2847
+
+
+    20.11.2024
+
+
+    REGULATION (EU) 2024/2847 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL
+
+
+
+    of 23 October 2024
+
+
+
+    on horizontal cybersecurity requirements for products with digital elements and amending Regulations (EU) No 168/2013 and (EU) No 2019/1020 and Directive (EU) 2020/1828 (Cyber Resilience Act)
+
+
+    (Text with EEA relevance)
+
+
+    THE EUROPEAN PARLIAMENT AND THE COUNCIL OF THE EUROPEAN UNION,
+
+
+    Having regard to the Treaty on the Functioning of the European Union, and in particular Article 114 thereof,
+
+
+    Having regard to the proposal from the European Commission,
+
+
+    After transmission of the draft legislative act to the national parliaments,
+
+
+    Having regard to the opinion of the European Economic and Social Committee
+
+    (
+
+    1
+
+    )
+
+    ,
+
+
+    After consulting the Committee of the Regions,
+
+
+    Acting in accordance with the ordinary legislative procedure
+
+    (
+
+    2
+
+    )
+
+    ,
+
+
+    Whereas:
+
+
+    (1)
+
+
+    Cybersecurity is one of the key challenges for the Union. The number and variety of connected devices will rise exponentially in the coming years. Cyberattacks represent a matter of public interest
+    as they have a critical impact not only on the Union’s economy, but also on democracy as well as consumer safety and health. It is therefore necessary to strengthen the Union’s approach to cybersecurity,
+    address cyber resilience at Union level and improve the functioning of the internal market by laying down a uniform legal framework for essential cybersecurity requirements for placing products with
+    digital elements on the Union market. Two major problems adding costs for users and society should be addressed: a low level of cybersecurity of products with digital elements, reflected by widespread
+    vulnerabilities and the insufficient and inconsistent provision of security updates to address them, and an insufficient understanding and access to information by users, preventing them from choosing
+    products with adequate cybersecurity properties or using them in a secure manner.
+
+
+    (2)
+
+
+    This Regulation aims to set the boundary conditions for the development of secure products with digital elements by ensuring that hardware and software products are placed on the market with fewer vulnerabilities
+    and that manufacturers take security seriously throughout a product’s lifecycle. It also aims to create conditions allowing users to take cybersecurity into account when selecting and using products
+    with digital elements, for example by improving transparency with regard to the support period for products with digital elements made available on the market.
+
+
+    (3)
+
+
+    Relevant Union law in force comprises several sets of horizontal rules that address certain aspects linked to cybersecurity from different angles, including measures to improve the security of the digital
+    supply chain. However, existing Union law related to cybersecurity, including Regulation (EU) 2019/881 of the European Parliament and of the Council
+
+    (
+
+    3
+
+    )
+
+    and Directive (EU) 2022/2555 of the European Parliament and of the Council
+
+    (
+
+    4
+
+    )
+
+    , does not directly cover mandatory requirements for the security of products with digital elements.
+
+
+    (4)
+
+
+    While existing Union law applies to certain products with digital elements, there is no horizontal Union regulatory framework establishing comprehensive cybersecurity requirements for all products with
+    digital elements. The various acts and initiatives taken thus far at Union and national levels only partially address the identified cybersecurity-related problems and risks, creating a legislative
+    patchwork within the internal market, increasing legal uncertainty for both manufacturers and users of those products and adding an unnecessary burden on businesses and organisations to comply with
+    a number of requirements and obligations for similar types of products. The cybersecurity of those products has a particularly strong cross-border dimension, as products with digital elements manufactured
+    in one Member State or third country are often used by organisations and consumers across the entire internal market. This makes it necessary to regulate the field at Union level to ensure a harmonised
+    regulatory framework and legal certainty for users, organisations and businesses, including microenterprises and small and medium-sized enterprises as defined in the Annex to Commission Recommendation
+    2003/361/EC
+
+    (
+
+    5
+
+    )
+
+    . The Union regulatory landscape should be harmonised by introducing horizontal cybersecurity requirements for products with digital elements. In addition, legal certainty for economic operators and
+    users, as well as a better harmonisation of the internal market and proportionality for microenterprises and small and medium-sized enterprises, creating more viable conditions for economic operators
+    aiming to enter that market, should be ensured across the Union.
+
+
+    (5)
+
+
+    As regards microenterprises and small and medium-sized enterprises, when determining the category an enterprise falls into, the provisions of the Annex to Recommendation 2003/361/EC should be applied
+    in their entirety. Therefore, when calculating the staff headcount and financial ceilings determining the enterprise categories, the provisions of Article 6 of the Annex to Recommendation 2003/361/EC
+    on establishing the data of an enterprise in consideration of specific types of enterprises, such as partner enterprises or linked enterprises, should also be applied.
+
+
+    (6)
+
+
+    The Commission should provide guidance to assist economic operators, in particular microenterprises and small and medium-sized enterprises, in the application of this Regulation. Such guidance should
+    cover, inter alia, the scope of this Regulation, in particular remote data processing and its implications for free and open-source software developers, the application of the criteria used to determine
+    support periods for products with digital elements, the interplay between this Regulation and other Union law and the concept of substantial modification.
+
+
+    (7)
+
+
+    At Union level, various programmatic and political documents, such as the Joint communication of the Commission and the High Representative of the Union for Foreign Affairs and Security Policy of 16 December
+    2020, entitled ‘The EU’s Cybersecurity Strategy for the Digital Decade’, the Council Conclusions of 2 December 2020 on the cybersecurity of connected devices and of 23 May 2022 on the development of
+    the European Union’s cyber posture and the European Parliament resolution of 10 June 2021 on the EU’s Cybersecurity Strategy for the Digital Decade
+
+    (
+
+    6
+
+    )
+
+    , have called for specific Union cybersecurity requirements for digital or connected products, with several third countries introducing measures to address this issue on their own initiative. In the
+    final report of the Conference on the Future of Europe, citizens called for ‘a stronger role for the EU in countering cybersecurity threats’. In order for the Union to play a leading international role
+    in the field of cybersecurity, it is important to establish an ambitious regulatory framework.
+
+
+    (8)
+
+
+    To increase the overall level of cybersecurity of all products with digital elements placed on the internal market, it is necessary to introduce objective-oriented and technology-neutral essential cybersecurity
+    requirements for those products that apply horizontally.
+
+
+    (9)
+
+
+    Under certain conditions, all products with digital elements integrated in or connected to a larger electronic information system can serve as an attack vector for malicious actors. As a result, even
+    hardware and software considered to be less critical can facilitate the initial compromise of a device or network, enabling malicious actors to gain privileged access to a system or to move laterally
+    across systems. Manufacturers should therefore ensure that all products with digital elements are designed and developed in accordance with the essential cybersecurity requirements laid down in this
+    Regulation. That obligation relates to both products that can be connected physically via hardware interfaces and products that are connected logically, such as via network sockets, pipes, files, application
+    programming interfaces or any other types of software interface. As cyber threats can propagate through various products with digital elements before reaching a certain target, for example by chaining
+    together multiple vulnerability exploits, manufacturers should also ensure the cybersecurity of products with digital elements that are only indirectly connected to other devices or networks.
+
+
+    (10)
+
+
+    By laying down cybersecurity requirements for placing on the market products with digital elements, it is intended that the cybersecurity of those products for consumers and businesses alike be enhanced.
+    Those requirements will also ensure that cybersecurity is taken into account throughout supply chains, making final products with digital elements and their components more secure. This also includes
+    requirements for placing on the market consumer products with digital elements intended for vulnerable consumers, such as toys and baby monitoring systems. Consumer products with digital elements categorised
+    in this Regulation as important products with digital elements present a higher cybersecurity risk by performing a function which carries a significant risk of adverse effects in terms of its intensity
+    and ability to damage the health, security or safety of users of such products, and should undergo a stricter conformity assessment procedure. This applies to such products as smart home products with
+    security functionalities, including smart door locks, baby monitoring systems and alarm systems, connected toys and personal wearable health technology. Furthermore, the stricter conformity assessment
+    procedures that other products with digital elements categorised in this Regulation as important or critical products with digital elements are required to undergo, will contribute to preventing potential
+    negative impacts on consumers of the exploitation of vulnerabilities.
+
+
+    (11)
+
+
+    The purpose of this Regulation is to ensure a high level of cybersecurity of products with digital elements and their integrated remote data processing solutions. Such remote data processing solutions
+    should be defined as data processing at a distance for which the software is designed and developed by or on behalf of the manufacturer of the product with digital elements concerned, the absence of
+    which would prevent the product with digital elements from performing one of its functions. That approach ensures that such products are adequately secured in their entirety by their manufacturers,
+    irrespective of whether data is processed or stored locally on the user’s device or remotely by the manufacturer. At the same time, processing or storage at a distance falls within the scope of this
+    Regulation only in so far as it is necessary for a product with digital elements to perform its functions. Such processing or storage at a distance includes the situation where a mobile application
+    requires access to an application programming interface or to a database provided by means of a service developed by the manufacturer. In such a case, the service falls within the scope of this Regulation
+    as a remote data processing solution. The requirements concerning the remote data processing solutions falling within the scope of this Regulation do therefore not entail technical, operational or organisational
+    measures aiming to manage the risks posed to the security of a manufacturer’s network and information systems as a whole.
+
+
+    (12)
+
+
+    Cloud solutions constitute remote data processing solutions within the meaning of this Regulation only if they meet the definition laid down in this Regulation. For example, cloud enabled functionalities
+    provided by a manufacturer of smart home devices that enable users to control the device at a distance fall within the scope of this Regulation. On the other hand, websites that do not support the functionality
+    o'
+- id: art-2
+  title: CHAPTER I
+  text: 'CHAPTER I
+
+
+    GENERAL PROVISIONS'
+- id: art-3
+  title: Article 1
+  text: 'Article 1
+
+
+    Subject matter
+
+
+    This Regulation lays down:
+
+
+    (a)
+
+
+    rules for the making available on the market of products with digital elements to ensure the cybersecurity of such products;
+
+
+    (b)
+
+
+    essential cybersecurity requirements for the design, development and production of products with digital elements, and obligations for economic operators in relation to those products with respect to
+    cybersecurity;
+
+
+    (c)
+
+
+    essential cybersecurity requirements for the vulnerability handling processes put in place by manufacturers to ensure the cybersecurity of products with digital elements during the time the products
+    are expected to be in use, and obligations for economic operators in relation to those processes;
+
+
+    (d)
+
+
+    rules on market surveillance, including monitoring, and enforcement of the rules and requirements referred to in this Article.'
+- id: art-4
+  title: Article 2
+  text: 'Article 2
+
+
+    Scope
+
+
+    1.   This Regulation applies to products with digital elements made available on the market, the intended purpose or reasonably foreseeable use of which includes a direct or indirect logical or physical
+    data connection to a device or network.
+
+
+    2.   This Regulation does not apply to products with digital elements to which the following Union legal acts apply:
+
+
+    (a)
+
+
+    Regulation (EU) 2017/745;
+
+
+    (b)
+
+
+    Regulation (EU) 2017/746;
+
+
+    (c)
+
+
+    Regulation (EU) 2019/2144.
+
+
+    3.   This Regulation does not apply to products with digital elements that have been certified in accordance with Regulation (EU) 2018/1139.
+
+
+    4.   This Regulation does not apply to equipment that falls within the scope of Directive 2014/90/EU of the European Parliament and of the Council
+
+    (
+
+    36
+
+    )
+
+    .
+
+
+    5.   The application of this Regulation to products with digital elements covered by other Union rules laying down requirements that address all or some of the risks covered by the essential cybersecurity
+    requirements set out in Annex I may be limited or excluded where:
+
+
+    (a)
+
+
+    such limitation or exclusion is consistent with the overall regulatory framework that applies to those products; and
+
+
+    (b)
+
+
+    the sectoral rules achieve the same or a higher level of protection as that provided for by this Regulation.
+
+
+    The Commission is empowered to adopt delegated acts in accordance with Article 61 to supplement this Regulation by specifying whether such limitation or exclusion is necessary, the products and rules
+    concerned, as well as the scope of the limitation, if relevant.
+
+
+    6.   This Regulation does not apply to spare parts that are made available on the market to replace identical components in products with digital elements and that are manufactured according to the
+    same specifications as the components that they are intended to replace.
+
+
+    7.   This Regulation does not apply to products with digital elements developed or modified exclusively for national security or defence purposes or to products specifically designed to process classified
+    information.
+
+
+    8.   The obligations laid down in this Regulation shall not entail the supply of information the disclosure of which would be contrary to the essential interests of Member States’ national security,
+    public security or defence.'
+- id: art-5
+  title: Article 3
+  text: 'Article 3
+
+
+    Definitions
+
+
+    For the purposes of this Regulation, the following definitions apply:
+
+
+    (1)
+
+
+    ‘product with digital elements’ means a software or hardware product and its remote data processing solutions, including software or hardware components being placed on the market separately;
+
+
+    (2)
+
+
+    ‘remote data processing’ means data processing at a distance for which the software is designed and developed by the manufacturer, or under the responsibility of the manufacturer, and the absence of
+    which would prevent the product with digital elements from performing one of its functions;
+
+
+    (3)
+
+
+    ‘cybersecurity’ means cybersecurity as defined in Article 2, point (1), of Regulation (EU) 2019/881;
+
+
+    (4)
+
+
+    ‘software’ means the part of an electronic information system which consists of computer code;
+
+
+    (5)
+
+
+    ‘hardware’ means a physical electronic information system, or parts thereof capable of processing, storing or transmitting digital data;
+
+
+    (6)
+
+
+    ‘component’ means software or hardware intended for integration into an electronic information system;
+
+
+    (7)
+
+
+    ‘electronic information system’ means a system, including electrical or electronic equipment, capable of processing, storing or transmitting digital data;
+
+
+    (8)
+
+
+    ‘logical connection’ means a virtual representation of a data connection implemented through a software interface;
+
+
+    (9)
+
+
+    ‘physical connection’ means a connection between electronic information systems or components implemented using physical means, including through electrical, optical or mechanical interfaces, wires
+    or radio waves;
+
+
+    (10)
+
+
+    ‘indirect connection’ means a connection to a device or network, which does not take place directly but rather as part of a larger system that is directly connectable to such device or network;
+
+
+    (11)
+
+
+    ‘end-point’ means any device that is connected to a network and serves as an entry point to that network;
+
+
+    (12)
+
+
+    ‘economic operator’ means the manufacturer, the authorised representative, the importer, the distributor, or other natural or legal person who is subject to obligations in relation to the manufacture
+    of products with digital elements or to the making available of products with digital elements on the market in accordance with this Regulation;
+
+
+    (13)
+
+
+    ‘manufacturer’ means a natural or legal person who develops or manufactures products with digital elements or has products with digital elements designed, developed or manufactured, and markets them
+    under its name or trademark, whether for payment, monetisation or free of charge;
+
+
+    (14)
+
+
+    ‘open-source software steward’ means a legal person, other than a manufacturer, that has the purpose or objective of systematically providing support on a sustained basis for the development of specific
+    products with digital elements, qualifying as free and open-source software and intended for commercial activities, and that ensures the viability of those products;
+
+
+    (15)
+
+
+    ‘authorised representative’ means a natural or legal person established within the Union who has received a written mandate from a manufacturer to act on its behalf in relation to specified tasks;
+
+
+    (16)
+
+
+    ‘importer’ means a natural or legal person established in the Union who places on the market a product with digital elements that bears the name or trademark of a natural or legal person established
+    outside the Union;
+
+
+    (17)
+
+
+    ‘distributor’ means a natural or legal person in the supply chain, other than the manufacturer or the importer, that makes a product with digital elements available on the Union market without affecting
+    its properties;
+
+
+    (18)
+
+
+    ‘consumer’ means a natural person who acts for purposes which are outside that person’s trade, business, craft or profession;
+
+
+    (19)
+
+
+    ‘microenterprises’, ‘small enterprises’ and ‘medium-sized enterprises’ mean, respectively, microenterprises, small enterprises and medium-sized enterprises as defined in the Annex to Recommendation
+    2003/361/EC;
+
+
+    (20)
+
+
+    ‘support period’ means the period during which a manufacturer is required to ensure that vulnerabilities of a product with digital elements are handled effectively and in accordance with the essential
+    cybersecurity requirements set out in Part II of Annex I;
+
+
+    (21)
+
+
+    ‘placing on the market’ means the first making available of a product with digital elements on the Union market;
+
+
+    (22)
+
+
+    ‘making available on the market’ means the supply of a product with digital elements for distribution or use on the Union market in the course of a commercial activity, whether in return for payment
+    or free of charge;
+
+
+    (23)
+
+
+    ‘intended purpose’ means the use for which a product with digital elements is intended by the manufacturer, including the specific context and conditions of use, as specified in the information supplied
+    by the manufacturer in the instructions for use, promotional or sales materials and statements, as well as in the technical documentation;
+
+
+    (24)
+
+
+    ‘reasonably foreseeable use’ means use that is not necessarily the intended purpose supplied by the manufacturer in the instructions for use, promotional or sales materials and statements, as well as
+    in the technical documentation, but which is likely to result from reasonably foreseeable human behaviour or technical operations or interactions;
+
+
+    (25)
+
+
+    ‘reasonably foreseeable misuse’ means the use of a product with digital elements in a way that is not in accordance with its intended purpose, but which may result from reasonably foreseeable human
+    behaviour or interaction with other systems;
+
+
+    (26)
+
+
+    ‘notifying authority’ means the national authority responsible for setting up and carrying out the necessary procedures for the assessment, designation and notification of conformity assessment bodies
+    and for their monitoring;
+
+
+    (27)
+
+
+    ‘conformity assessment’ means the process of verifying whether the essential cybersecurity requirements set out in Annex I have been fulfilled;
+
+
+    (28)
+
+
+    ‘conformity assessment body’ means a conformity assessment body as defined in Article 2, point (13), of Regulation (EC) No 765/2008;
+
+
+    (29)
+
+
+    ‘notified body’ means a conformity assessment body designated in accordance with Article 43 and other relevant Union harmonisation legislation;
+
+
+    (30)
+
+
+    ‘substantial modification’ means a change to the product with digital elements following its placing on the market, which affects the compliance of the product with digital elements with the essential
+    cybersecurity requirements set out in Part I of Annex I or which results in a modification to the intended purpose for which the product with digital elements has been assessed;
+
+
+    (31)
+
+
+    ‘CE marking’ means a marking by which a manufacturer indicates that a product with digital elements and the processes put in place by the manufacturer are in conformity with the essential cybersecurity
+    requirements set out in Annex I and other applicable Union harmonisation legislation providing for its affixing;
+
+
+    (32)
+
+
+    ‘Union harmonisation legislation’ means Union legislation listed in Annex I to Regulation (EU) 2019/1020 and any other Union legislation harmonising the conditions for the marketing of products to which
+    that Regulation applies;
+
+
+    (33)
+
+
+    ‘market surveillance authority’ means a market surveillance authority as defined in Article 3, point (4), of Regulation (EU) 2019/1020;
+
+
+    (34)
+
+
+    ‘international standard’ means an international standard as defined in Article 2, point (1)(a), of Regulation (EU) No 1025/2012;
+
+
+    (35)
+
+
+    ‘European standard’ means a European standard as defined in Article 2, point (1)(b), of Regulation (EU) No 1025/2012;
+
+
+    (36)
+
+
+    ‘harmonised standard’ means a harmonised standard as defined in Article 2, point (1)(c), of Regulation (EU) No 1025/2012;
+
+
+    (37)
+
+
+    ‘cybersecurity risk’ means the potential for loss or disruption caused by an incident and is to be expressed as a combination of the magnitude of such loss or disruption and the likelihood of occurrence
+    of the incident;
+
+
+    (38)
+
+
+    ‘significant cybersecurity risk’ means a cybersecurity risk which, based on its technical characteristics, can be assumed to have a high likelihood of an incident that could lead to a severe negative
+    impact, including by causing considerable material or non-material loss or disruption;
+
+
+    (39)
+
+
+    ‘software bill of materials’ means a formal record containing details and supply chain relationships of components included in the software elements of a product with digital elements;
+
+
+    (40)
+
+
+    ‘vulnerability’ means a weakness, susceptibility or flaw of a product with digital elements that can be exploited by a cyber threat;
+
+
+    (41)
+
+
+    ‘exploitable vulnerability’ means a vulnerability that has the potential to be effectively used by an adversary under practical operational conditions;
+
+
+    (42)
+
+
+    ‘actively exploited vulnerability’ means a vulnerability for which there is reliable evidence that a malicious actor has exploited it in a system without permission of the system owner;
+
+
+    (43)
+
+
+    ‘incident’ means an incident as defined in Article 6, point (6), of Directive (EU) 2022/2555;
+
+
+    (44)
+
+
+    ‘incident having an impact on the security of the product with digital elements’ means an incident that negatively affects or is capable of negatively affecting the ability of a product with digital
+    elements to protect the availability, authenticity, integrity or confidentiality of data or functions;
+
+
+    (45)
+
+
+    ‘near miss’ means a near miss as defined in Article 6, point (5), of Directive (EU) 2022/2555;
+
+
+    (46)
+
+
+    ‘cyber threat’ means a cyber threat as defined in Article 2, point (8), of Regulation (EU) 2019/881;
+
+
+    (47)
+
+
+    ‘personal data’ means personal data as defined in Article 4, point (1), of Regulation (EU) 2016/679;
+
+
+    (48)
+
+
+    ‘free and open-source software’ means software the source code of which is openly shared and which is made available under a free and open-source licence which provides for all rights to make it freely
+    accessible, usable, modifiable and redistributable;
+
+
+    (49)
+
+
+    ‘recall’ means recall as defined in Article 3, point (22), of Regulation (EU) 2019/1020;
+
+
+    (50)
+
+
+    ‘withdrawal’ means withdrawal as defined in Article 3, point (23), of Regulation (EU) 2019/1020;
+
+
+    (51)
+
+
+    ‘CSIRT designated as coordinator’ means a CSIRT designated as coordinator pursuant to Article 12(1) of Directive (EU) 2022/2555.'
+- id: art-6
+  title: Article 4
+  text: 'Article 4
+
+
+    Free movement
+
+
+    1.   Member States shall not impede, for the matters covered by this Regulation, the making available on the market of products with digital elements which comply with this Regulation.
+
+
+    2.   At trade fairs, exhibitions, demonstrations or similar events, Member States shall not prevent the presentation or use of a product with digital elements which does not comply with this Regulation,
+    including its prototypes, provided that the product is presented with a visible sign clearly indicating that it does not comply with this Regulation and that it is not to be made available on the market
+    until it does so.
+
+
+    3.   Member States shall not prevent the making available on the market of unfinished software which does not comply with this Regulation, provided that the software is made available only for a limited
+    period required for testing purposes with a visible sign clearly indicating that it does not comply with this Regulation and that it will not be available on the market for purposes other than testing.
+
+
+    4.   Paragraph 3 does not apply to safety components as referred to in Union harmonisation legislation other than this Regulation.'
+- id: art-7
+  title: Article 5
+  text: 'Article 5
+
+
+    Procurement or use of products with digital elements
+
+
+    1.   This Regulation shall not prevent Member States from subjecting products with digital elements to additional cybersecurity requirements for the procurement or use of those products for specific
+    purposes, including where those products are procured or used for national security or defence purposes, provided that such requirements are consistent with Member States’ obligations laid down in Union
+    law and that they are necessary and proportionate for the achievement of those purposes.
+
+
+    2.   Without prejudice to Directives 2014/24/EU and 2014/25/EU, where products with digital elements that fall within the scope of this Regulation are procured, Member States shall ensure that compliance
+    with the essential cybersecurity requirements set out in Annex I to this Regulation, including the manufacturers’ ability to handle vulnerabilities effectively, are taken into consideration in the procurement
+    process.'
+- id: art-8
+  title: Article 6
+  text: 'Article 6
+
+
+    Requirements for products with digital elements
+
+
+    Products with digital elements shall be made available on the market only where:
+
+
+    (a)
+
+
+    they meet the essential cybersecurity requirements set out in Part I of Annex I, provided that they are properly installed, maintained, used for their intended purpose or under conditions which can
+    reasonably be foreseen, and, where applicable, the necessary security updates have been installed; and
+
+
+    (b)
+
+
+    the processes put in place by the manufacturer comply with the essential cybersecurity requirements set out in Part II of Annex I.'
+- id: art-9
+  title: Article 7
+  text: 'Article 7
+
+
+    Important products with digital elements
+
+
+    1.   Products with digital elements which have the core functionality of a product category set out in Annex III shall be considered to be important products with digital elements and shall be subject
+    to the conformity assessment procedures referred to in Article 32(2) and (3). The integration of a product with digital elements which has the core functionality of a product category set out in Annex III
+    shall not in itself render the product in which it is integrated subject to the conformity assessment procedures referred to in Article 32(2) and (3).
+
+
+    2.   The categories of products with digital elements referred to in paragraph 1 of this Article, divided into classes I and II as set out in Annex III, meet at least one of the following criteria:
+
+
+    (a)
+
+
+    the product with digital elements primarily performs functions critical to the cybersecurity of other products, networks or services, including securing authentication and access, intrusion prevention
+    and detection, end-point security or network protection;
+
+
+    (b)
+
+
+    the product with digital elements performs a function which carries a significant risk of adverse effects in terms of its intensity and ability to disrupt, control or cause damage to a large number
+    of other products or to the health, security or safety of its users through direct manipulation, such as a central system function, including network management, configuration control, virtualisation
+    or processing of personal data.
+
+
+    3.   The Commission is empowered to adopt delegated acts in accordance with Article 61 to amend Annex III by including in the list a new category within each class of the categories of products with
+    digital elements and specifying its definition, moving a category of products from one class to the other or withdrawing an existing category from that list. When assessing the need to amend the list
+    set out in Annex III, the Commission shall take into account the cybersecurity-related functionalities or the function and the level of cybersecurity risk posed by the products with digital elements
+    as set out by the criteria referred to in paragraph 2 of this Article.
+
+
+    The delegated acts referred to in the first subparagraph of this paragraph shall, where appropriate, provide for a minimum transitional period of 12 months, in particular where a new category of important
+    products with digital elements is added to class I or II or is moved from class I to II as set out in Annex III, before the relevant conformity assessment procedures as referred to in Article 32(2)
+    and (3) start applying, unless a shorter transitional period is justified on imperative grounds of urgency.
+
+
+    4.   By 11 December 2025, the Commission shall adopt an implementing act specifying the technical description of the categories of products with digital elements under classes I and II as set out in
+    Annex III and the technical description of the categories of products with digital elements as set out in Annex IV. That implementing act shall be adopted in accordance with the examination procedure
+    referred to in Article 62(2).'
+- id: art-10
+  title: Article 8
+  text: 'Article 8
+
+
+    Critical products with digital elements
+
+
+    1.   The Commission is empowered to adopt delegated acts in accordance with Article 61 to supplement this Regulation to determine which products with digital elements that have the core functionality
+    of a product category that is set out in Annex IV to this Regulation are to be required to obtain a European cybersecurity certificate at assurance level at least ‘substantial’ under a European cybersecurity
+    certification scheme adopted pursuant to Regulation (EU) 2019/881, to demonstrate conformity with the essential cybersecurity requirements set out in Annex I to this Regulation or parts thereof, provided
+    that a European cybersecurity certification scheme covering those categories of products with digital elements has been adopted pursuant to Regulation (EU) 2019/881 and is available to manufacturers.
+    Those deleg'
 doc_files:
 - eu/raw/EU-2024-2847_Cyber_Resilience_Act.xhtml
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2024-2847_Cyber_Resilience_Act.xhtml (html, 349787 chars)，生成 9 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2024-2847_Cyber_Resilience_Act.xhtml (html, 349787 chars)，生成 9 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2024-2847_Cyber_Resilience_Act.xhtml (html, 349780 chars)，生成 10 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

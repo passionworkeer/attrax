@@ -9,11 +9,811 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'EN 300 674
+
+    V1.1.1
+
+    (1999-02)
+
+    European Standard (Telecommunica'
+  text: 'EN 300 674
+
+    V1.1.1
+
+    (1999-02)
+
+    European Standard (Telecommunications series)
+
+    Electromagnetic compatibility
+
+    and Radio spectrum Matters (ERM);
+
+    Road Transport and Traffic Telematics (RTTT);
+
+    Technical characteristics and test methods for
+
+    Dedicated Short Range Communication (DSRC)
+
+    transmission equipment (500 kbit/s / 250 kbit/s) operating in
+
+    the 5,8 GHz Industrial, Scientific and Medical (ISM) band
+
+    2 EN 300 674 V1.1.1 (1999-02)
+
+    Reference
+
+    DEN/ERM-RP08-0105 (68o00ico.PDF)
+
+    Keywords
+
+    data, radio, RTTT, testing
+
+    ETSI
+
+    Postal address
+
+    F-06921 Sophia Antipolis Cedex - FRANCE
+
+    Office address
+
+    650 Route des Lucioles - Sophia Antipolis
+
+    Valbonne - FRANCE
+
+    Tel.: +33 4 92 94 42 00 Fax: +33 4 93 65 47 16
+
+    Siret N° 348 623 562 00017 - NAF 742 C
+
+    Association à but non lucratif enregistrée à la
+
+    Sous-Préfecture de Grasse (06) N° 7803/88
+
+    Internet
+
+    secretariat@etsi.fr
+
+    Individual copies of this ETSI deliverable
+
+    can be downloaded from
+
+    http://www.etsi.org
+
+    If you find errors in the present document, send your
+
+    comment to: editor@etsi.fr
+
+    Copyright Notification
+
+    No part may be reproduced except as authorized by written permission.
+
+    The copyright and the foregoing restriction extend to reproduction in all media.
+
+    © European Telecommunications Standards Institute 1999.
+
+    All rights reserved.
+
+    ETSI
+
+    3 EN 300 674 V1.1.1 (1999-02)
+
+    Contents
+
+    Intellectual Property Rights................................................................................................................................7
+
+    Foreword............................................................................................................................................................7
+
+    Introduction........................................................................................................................................................8
+
+    1 Scope........................................................................................................................................................9
+
+    2 References................................................................................................................................................9
+
+    3 Definitions, symbols and abbreviations.................................................................................................10
+
+    3.1 Definitions.......................................................................................................................................................10
+
+    3.2 Symbols...........................................................................................................................................................10
+
+    3.3 Abbreviations...................................................................................................................................................11
+
+    4 General...................................................................................................................................................11
+
+    4.1 Presentation of equipment for testing purposes...............................................................................................11
+
+    4.1.1 Choice of model for testing........................................................................................................................12
+
+    4.1.2 Choice of operating frequencies.................................................................................................................12
+
+    4.1.3 Testing of equipment with or without a permanent external RF port.........................................................12
+
+    4.1.4 Equipment with a permanent internal RF port............................................................................................12
+
+    4.1.5 Equipment with a temporary RF port.........................................................................................................12
+
+    4.1.6 Antennas.....................................................................................................................................................12
+
+    4.2 Mechanical and electrical design.....................................................................................................................12
+
+    4.2.1 General.......................................................................................................................................................12
+
+    4.2.2 Controls......................................................................................................................................................13
+
+    4.2.3 Marking......................................................................................................................................................13
+
+    4.2.3A Equipment identification............................................................................................................................13
+
+    4.2.4 Receiver data squelch.................................................................................................................................13
+
+    4.3 Declarations by the applicant...........................................................................................................................13
+
+    4.4 Auxiliary test equipment..................................................................................................................................13
+
+    4.5 Interpretation of the measurement results........................................................................................................13
+
+    5 Test conditions, power sources and ambient temperatures....................................................................13
+
+    5.1 Normal and extreme test conditions.................................................................................................................13
+
+    5.2 External test power source...............................................................................................................................14
+
+    5.3 Normal test conditions.....................................................................................................................................14
+
+    5.3.1 Normal temperature and humidity..............................................................................................................14
+
+    5.3.2 Normal test power source...........................................................................................................................14
+
+    5.3.2.1 Mains voltage.......................................................................................................................................14
+
+    5.3.2.2 Regulated lead-acid battery power sources...........................................................................................14
+
+    5.3.2.3 Other power sources.............................................................................................................................14
+
+    5.4 Extreme test conditions....................................................................................................................................15
+
+    5.4.1 Extreme temperatures.................................................................................................................................15
+
+    5.4.1.1 Procedure for tests at extreme temperatures.........................................................................................15
+
+    5.4.1.1.1 Procedure for equipment designed for continuous transmit operation............................................15
+
+    5.4.1.1.2 Procedure for equipment designed for intermittent transmit operation...........................................15
+
+    5.4.1.2 Extreme temperature ranges.................................................................................................................16
+
+    5.4.2 Extreme test source voltages......................................................................................................................16
+
+    5.4.2.1 Mains voltage.......................................................................................................................................16
+
+    5.4.2.2 Lead-acid battery, regulated power sources..........................................................................................16
+
+    5.4.2.3 Power sources using other types of batteries........................................................................................16
+
+    5.4.2.4 Other power sources.............................................................................................................................16
+
+    6 General conditions.................................................................................................................................17
+
+    6.1 Test signals and test modulation......................................................................................................................17
+
+    6.1.1 Normal test signals (wanted and unwanted signals)...................................................................................17
+
+    6.1.1.1 Signals for bit stream measurements.....................................................................................................17
+
+    6.1.1.2 Signal for messages..............................................................................................................................17
+
+    6.2 Modes of operation of the transmitter..............................................................................................................18
+
+    ETSI
+
+    4 EN 300 674 V1.1.1 (1999-02)
+
+    6.3 Encoder for receiver measurements.................................................................................................................18
+
+    6.4 Facilities for access..........................................................................................................................................18
+
+    6.4.1 Analogue access.........................................................................................................................................18
+
+    6.4.2 Access points for data stream measurement...............................................................................................19
+
+    6.4.3 Coupling arrangements...............................................................................................................................19
+
+    6.4.3.1 Arrangements for measurements with continuous bit streams..............................................................19
+
+    6.4.3.2 Arrangement for measurements with messages....................................................................................19
+
+    6.4.4 Message received indicator........................................................................................................................20
+
+    6.5 Test sites and general arrangements for radiated measurements......................................................................20
+
+    6.6 Artificial antenna.............................................................................................................................................20
+
+    6.7 Test fixture.......................................................................................................................................................20
+
+    6.7.1 Calibration..................................................................................................................................................20
+
+    6.7.2 Mode of use................................................................................................................................................21
+
+    7 Methods of measurement and limits for Road Side Unit (RSU) transmitter parameters......................21
+
+    7.1 Equivalent isotropically radiated power (eirp).................................................................................................21
+
+    7.1.1 Definition...................................................................................................................................................21
+
+    7.1.2 Method of measurement.............................................................................................................................22
+
+    7.1.3 Limit.....................................................................'
+- id: art-2
+  title: 'Annex C (normative): Receiver methods of measurements using messages..................................59'
+  text: 'Annex C (normative): Receiver methods of measurements using messages..................................59
+
+    C.1 General...................................................................................................................................................59
+
+    C.2 Test signals.............................................................................................................................................59
+
+    C.3 Method of measurement for receiver sensitivity....................................................................................59
+
+    C.4 Method of measurements for receiver degradation................................................................................60
+
+    Annex D (normative): Subclauses of the present document relevant for compliance with the
+
+    essential requirements EC Council Directives............................................61
+
+    History..............................................................................................................................................................62
+
+    ETSI
+
+    7 EN 300 674 V1.1.1 (1999-02)
+
+    Intellectual Property Rights
+
+    IPRs essential or potentially essential to the present document may have been declared to ETSI. The information
+
+    pertaining to these essential IPRs, if any, is publicly available for ETSI members and non-members, and can be found
+
+    in SR 000 314: "Intellectual Property Rights (IPRs); Essential, or potentially Essential, IPRs notified to ETSI in respect
+
+    of ETSI standards", which is available free of charge from the ETSI Secretariat. Latest updates are available on the
+
+    ETSI Web server (http://www.etsi.org/ipr).
+
+    Pursuant to the ETSI IPR Policy, no investigation, including IPR searches, has been carried out by ETSI. No guarantee
+
+    can be given as to the existence of other IPRs not referenced in SR 000 314 (or the updates on the ETSI Web server)
+
+    which are, or may be, or may become, essential to the present document.
+
+    Foreword
+
+    This European Standard (Telecommunications series) has been produced by ETSI Technical Committee
+
+    Electromagnetic compatibility and Radio spectrum Matters (ERM).
+
+    The present document has been produced by ETSI in response to a mandate from the European Commission issued
+
+    under Council Directive 98/34/EC (as amended) laying down a procedure for the provision of information in the field of
+
+    technical standards and regulations.
+
+    The present document together with ETS 300 683, is intended to become a Harmonized Standard, the reference of
+
+    which will be published in the Official Journal of the European Communities referencing the Council Directive on the
+
+    approximation of the laws of the Member States relating to electromagnetic compatibility ("the EMC Directive")
+
+    (89/336/EEC as amended).
+
+    Technical specifications relevant to the EMC Directive are given in annex G.
+
+    As a result of a meeting between CEN, CEPT, ETSI, and the European Commission on 29 June 1998, the existing work
+
+    item was split as follows:
+
+    - EN 300 674, supporting the CEN TC 278 RTTT system;
+
+    - ES 200 674-1, supporting RTTT systems with lower data rates;
+
+    - ES 200 674-2, supporting RTTT systems with higher data rates.
+
+    National transposition dates
+
+    Date of adoption of this EN: 22 January 1999
+
+    Date of latest announcement of this EN (doa): 30 April 1999
+
+    Date of latest publication of new National Standard
+
+    or endorsement of this EN (dop/e): 31 October 1999
+
+    Date of withdrawal of any conflicting National Standard (dow): 30 April 2002
+
+    ETSI
+
+    8 EN 300 674 V1.1.1 (1999-02)
+
+    Introduction
+
+    The present document was drafted on the assumption that type test measurements, performed in an accredited test
+
+    laboratory, will be accepted by the various national regulatory authorities in order to grant type approval, provided the
+
+    national regulatory requirements are met. This is in compliance with CEPT/ERC Recommendation 70-03 [3].
+
+    The present document specifies the requirements for a dedicated 5,8 GHz short range microwave link intended for a
+
+    European wide data communication system for Road Transport and Traffic Telematics (RTTT) applications.
+
+    RTTT systems for Europe-wide use are specified by CEN. The necessary set of radio parameters for the support of
+
+    ENV 12253 [1] is included in the present document.
+
+    The parameters might be subject to changes if necessary and when other RTTT systems specified by CEN require this.
+
+    The RSU transmitter operates on a non-exclusive basis on frequencies depending on the declared application according
+
+    to ERC/DEC(92)02 [2].
+
+    A channel spacing of 5 MHz is used for channels 1, 2, 3 and 4, see table 1.
+
+    Table 1: RTTT transmitter frequencies for 5 MHz channel spacing systems
+
+    Initial road to Multi lane road junctions
+
+    Vehicle systems (options)
+
+    Channel 1 5,800 GHz - 2,5 MHz
+
+    Channel 2 5,800 GHz + 2,5 MHz
+
+    Channel 3 5,810 GHz - 2,5 MHz
+
+    Channel 4 5,810 GHz + 2,5 MHz
+
+    In order to permit the greatest freedom of design of equipment, whilst protecting other radio services from interference,
+
+    a balance is required between the permitted range of frequencies on which the equipment may be used, and its frequency
+
+    stability and modulation characteristics. The present document specifies the operational frequencies and system
+
+    bandwidths. However, the present document does not fully describe the permitted range of optional frequencies as these
+
+    are covered by national regulations. The optional range of frequencies offered should be specified on each type approval
+
+    certificate issued.
+
+    Clauses 1 and 3 give a general description of the types of equipment covered by the present document and the
+
+    definitions and abbreviations used. Clause 4 gives general requirement in order that type tests may be carried out and
+
+    any markings on the equipment to be provided by the manufacturer.
+
+    Clauses 5 and 6 specify the test conditions.
+
+    Clauses 7 and 8 specify the limits of the parameters which are required to be tested for the RSU transmitters and
+
+    receivers 1. These limits have been chosen to minimize harmful interference to and from other equipment and services.
+
+    These clauses also specify how the equipment is to be tested and the conditions which are applied.
+
+    Clause 9 specifies the limits of the parameters which are required to be tested for transponders. These limits are chosen
+
+    to restrict the access to and radiation from transponders. Details on the test methods for the transponders are also
+
+    specified.
+
+    Clause 10 specifies the maximum measurement uncertainty values.
+
+    Annex A provides normative specifications concerning test sites for radiated measurements.
+
+    Annex B provides normative descriptions of measurement methods for radiated measurements.'
+- id: art-3
+  title: Annex C provides normative descriptions of alternative measurement methods for receivers.
+  text: 'Annex C provides normative descriptions of alternative measurement methods for receivers.
+
+    Annex D contains technical specification relevant to the EMC Directives.
+
+    ETSI
+
+    9 EN 300 674 V1.1.1 (1999-02)
+
+    1 Scope
+
+    The present document specifies radio parameters which are necessary for the efficient use of the radio spectrum and for
+
+    the purpose of type approval. This includes methods of measurements for verifying the limits stated in the present
+
+    document.
+
+    The present document applies to 5,8 GHz Short Range Devices (SRDs) for use in Road Transport Traffic and
+
+    Telematics (RTTT):
+
+    - with a Radio Frequency (RF) output connection and specified antenna or with an integral antenna;
+
+    - for data transmission only;
+
+    - operating on radio frequencies in the 5 725 MHz to 5 875 MHz Industrial, Scientific and Medical (ISM) band.
+
+    The applicability of the present document covers both the Road Side Units (RSUs) and the On Board Units (OBUs) with
+
+    transceivers and transponders.
+
+    The present document does not necessarily include all the characteristics which may be required by a user, nor does it
+
+    necessarily represent the optimum performance achievable.
+
+    The present document complies with ERC/DEC/(92)02 [2] and CEPT/ERC Recommendation 70-03 [3]. It is a specific
+
+    standard covering various RTTT applications.
+
+    For non-harmonized parameters, national regulatory conditions may apply regarding the type of modulation,
+
+    channel / frequency separation, maximum transmitter output power / effective radiated power, equipment marking as a
+
+    condition of the issue of an individual or general license, or, as a condition of use under license exemption.
+
+    Additional standards or specifications may be required for equipment such as that intended for connection to the Public
+
+    Switched Telephone Network (PSTN) or other systems.
+
+    2 References
+
+    The following documents contain provisions which, through reference in this text, constitute provisions of the present
+
+    document.
+
+    • References are either specific (identified by date of publication, edition number, version number, etc.) or
+
+    non-specific.
+
+    • For a specific reference, subsequent revisions do not apply.
+
+    • For a non-specific reference, the latest version applies.
+
+    • A non-specific reference to an ETS shall also be taken to refer to later versions published as an EN with the same
+
+    number.
+
+    [1] ENV 12253 (1997): "Road Transport and Traffic Telematics (RTTT); Dedicated Short-range
+
+    Communication (DSRC); Physical Layer using Microwave at 5,8 GHz".
+
+    [2] ERC/DEC/(92)02: "ERC Decision of 22 October 1992 on the frequency bands to be designated for
+
+    the co-ordinated introduction of Road Transport Telematic systems(RTT)".
+
+    [3] CEPT/ERC Recommendation 70-03: "Relating to the use of Short Range Devices (SRD)".
+
+    [4] CISPR 16-1: "Specification for radio disturbance and immunity measuring apparatus and methods;
+
+    Part 1: Radio disturbance and immunity measuring apparatus".
+
+    [5] ETR 028: "Electromagnetic compatibility and Radio spectrum Matters (ERM); Uncertainties in the
+
+    measurement of mobile radio equipment characteristics".
+
+    [6] ITU-T Recommendation O.153 (1992): "Basic parameters for the measurement of error
+
+    performance at bit rates below the primary rate".
+
+    ETSI
+
+    10 EN 300 674 V1.1.1 (1999-02)
+
+    [7] IEC 721-3-4 (1995): "Classification of environmental conditions; Part 3: Classification of groups
+
+    of environmental parameters and their severities; Section 4: Stationary use at non-weatherprotected
+
+    locations".
+
+    [8] IEC 721-3-5 (1997): "Classification of environmental conditions; Part 3: Classification of groups
+
+    of environmental parameters and their severities; Section 5: Ground vehicle installations".
+
+    3 Definitions, symbols and abbreviations
+
+    3.1 Definitions
+
+    For the purposes of the present document, the following definitions apply:
+
+    assigned frequency band: the frequency band within which the device is authorized to operate.
+
+    Road Side Unit (RSU): equipment intended for use in a fixed location (Fixed Station).
+
+    integral antenna: an antenna, with or without a connector, designed as an indispensable part of the equipment.
+
+    integrated antenna: an antenna, without connector, integrated as part of the equipment.
+
+    successful message ratio: the proportion of transmitted messages that are received correctly under test conditions.
+
+    On Board Unit (OBU): a device normally fixed in a vehicle which responds to an interrogating signal.
+
+    portable station: equipment intended to be carried, attached or implanted.
+
+    operating frequency: the nominal frequency at which equipment is operated; also referred to as the operating centre
+
+    frequency. Equipment may be able to operate at more than one operating frequency.
+
+    operating frequency range: the range of operating frequencies over which the equipment can be adjusted through
+
+    switching or reprogramming.
+
+    radiated measurements: measurements which involve the absolute measurement of a radiated field.
+
+    transceiver OBU: On Board Unit (OBU) with local Rx and Tx 5,8 GHz frequency generation.
+
+    transponder: On Board Unit (OBU) without own 5,8 GHz frequency generation.
+
+    3.2 Symbols
+
+    For the purposes of the present document, the following symbols apply:
+
+    dBi Gain relative to an isotropic antenna
+
+    E Field strength
+
+    E Reference field strength, (see subclause A.3.2.)
+
+    o
+
+    f Transmitter carrier frequency
+
+    S
+
+    f Declared transponder subcarrier frequency
+
+    TX
+
+    l Wavelength
+
+    ppm parts per million (10-6)
+
+    R Distance, (see subclause A.3.2.)
+
+    R Reference distance, (see subclause A.3.2.)
+
+    o
+
+    Rx Receiver
+
+    Tx Transmitter
+
+    ETSI
+
+    11 EN 300 674 V1.1.1 (1999-02)
+
+    3.3 Abbreviations
+
+    For the purposes of the present document, the following abbreviations apply:
+
+    eirp equivalent isotropically radiated power
+
+    EUT Equipment Under Test
+
+    IF Intermediate Frequency
+
+    ISM Industrial, Scientific and Medical
+
+    NOTE: The present document covers only the following designated ISM band: 5 725 MHz to 5 875 MHz.
+
+    OEM Original Equipment Manufacturer
+
+    OBU On Board Unit
+
+    PSK Phase Shift Keying
+
+    PSTN Public Switched Telephone Network
+
+    RF Radio Frequency
+
+    RSU Road Side Unit
+
+    RTTT Road Transport and Traffic Telematics
+
+    SRD Short Range Device
+
+    VSWR Voltage Standing Wave Ratio
+
+    4 General
+
+    4.1 Presentation of equipment for testing purposes
+
+    Each equipment submitted for type testing shall fulfil the requirements of the present document on all frequencies over
+
+    which it is intended to operate.
+
+    The applicant shall complete the appropriate application form when submitting equipment for type testing. Additionally,
+
+    technical documentation and operating manuals shall be supplied.
+
+    The performance of the equipment submitted for testing shall be representative of the performance of the corresponding
+
+    production model. In order to avoid any ambiguity in that assessment, the present document contains instructions for the
+
+    presentation of equipment for type testing purposes (this subclause), conditions of testing (see clause 5) and
+
+    measurement methods (see clauses 7, 8 and 9).
+
+    Stand alone equipment shall be offered by the applicant complete with any ancillary equipment needed for testing. The
+
+    applicant shall declare the frequency range(s), the range of operation conditions and power requirements, as applicable,
+
+    in order to establish the appropriate test conditions.
+
+    Test fixtures may be supplied by the applicant (see subclause 6.7).
+
+    Original Equipment Manufacturers'' (OEM) plug-in cards or units may be offered for testing together with a suitable test
+
+    fixture. Alternatively, complete RTTT equipment may be supplied by the manufacturer to facilitate the tests.
+
+    To simplify and harmonize the testing procedures between the different test laboratories, measurements shall be
+
+    performed, according to the present document, on samples of equipment defined in subclauses 4.1.1 and 4.1.2.
+
+    These subclauses are intended to give confidence that the requirements set out in the present document have been met
+
+    without the necessity of performing measurements on all optional frequencies.
+
+    ETSI
+
+    12 EN 300 674 V1.1.1 (1999-02)
+
+    4.1.1 Choice of model for testing
+
+    The applicant shall provide one or more production models of the equipment, as appropriate, for testing.
+
+    Equipment designed for use with an integral antenna may be supplied with a temporary external / internal or permanent
+
+    internal 50 W connector for the purpose of testing, providing the characteristics being measured are not expected to be
+
+    affected. The measurements, wherever possible, should be made by use of a direct connection to the equipment under
+
+    test (antenna connector or temporary 50 W connector) as stated in the present document, in order to ensure that the
+
+    measurement uncertainties are minimized. If applicable, the means to access and/or implement the internal connector
+
+    should be provided by the applicant with the aid of a diagram (see subclause 4.1.4). If a temporary 50 W RF connector is
+
+    used, this shall be stated on the test report form.
+
+    4.1.2 Choice of operating frequencies
+
+    Where equipment can be adjusted to operate at different operating frequencies other than channels 1 and 2 (see table 1),
+
+    a minimum of two operating frequencies shall be chosen such that the lower and higher limits of the applicant''s declared
+
+    operating ranges of the equipment are covered.
+
+    4.1.3 Testing of equipment with or without a permanent external RF port
+
+    To facilitate relative measurements, use may be made of a test fixture as described in subclause 6.7, or the equipment
+
+    may be supplied with a permanent internal / external or temporary internal / external RF port.
+
+    4.1.4 Equipment with a permanent internal RF port
+
+    The way to access a permanent internal RF port shall be stated by the applicant with the aid of a diagram. The fact that
+
+    use has been made of a permanent internal RF port shall be recorded in the test report.
+
+    4.1.5 Equipment with a temporary RF port
+
+    The applicant shall submit two sets of equipment to the test laboratory, one fitted with a temporary 50 W RF connector
+
+    with the antenna disconnected and the other with the antenna connected. Each equipment shall be used for the
+
+    appropriate tests.
+
+    The way the temporary RF port is implemented shall be stated by the applicant with the aid of a diagram. The fact that
+
+    use has been made of the temporary RF port to facilitate measurements shall be stated in the test report. The addition of
+
+    a temporary RF port should not influence the performance of the Equipment Under Test (EUT).
+
+    4.1.6 Antennas
+
+    If the equipment to be tested can be equipped with one or more antennas, the manufacturer shall declare and provide
+
+    these together with the equipment. These antennas shall be used during the radiated measurements described in the
+
+    present document. The manufacturer shall declare the gain of the antenna or antenna assembly(ies). The characteristics
+
+    of the antenna assembly(ies) shall be included in the user documentation supplied with the equipment.
+
+    4.2 Mechanical and electrical design
+
+    4.2.1 General
+
+    The equipment submitted by the applicant or his representative, shall be designed, constructed and manufactured in
+
+    accordance with good engineering practice, with the aim of minimizing harmful interference to other equipment and
+
+    services.
+
+    Transmitters and receivers may be individual or combination units.
+
+    ETSI
+
+    13 EN 300 674 V1.1.1 (1999-02)
+
+    4.2.2 Controls
+
+    Those controls which if maladjusted might increase the interference possibilities to and from the equipment shall only be
+
+    accessible by partial or complete disassembly of the device and requiring the use of tools.
+
+    4.2.3 Marking
+
+    The equipment shall be marked in a visible place. This marking shall be legible and durable.
+
+    4.2.3A Equipment identification
+
+    The marking shall include as a minimum:
+
+    - the name of the applicant or his trade mark;
+
+    - the type designation.
+
+    4.2.4 Receiver data squelch
+
+    If the receiver is equipped with a data squelch or battery saving circuit, it shall be possible to override this circuit for the
+
+    duration of some tests.
+
+    4.3 Declarations by the applicant
+
+    When submitting equipment for testing, the applicant shall supply the necessary information according to the
+
+    appropriate application form for the present '
+- id: art-4
+  title: 'Annex C (normative):'
+  text: 'Annex C (normative):
+
+    Receiver methods of measurements using messages
+
+    C.1 General
+
+    The equipment may be tested by using messages when it is not possible to test with bit streams according to
+
+    subclause 6.1.1.1. In this case the normal test signal shall be trains of correctly coded bits or messages modulation
+
+    D-M4. Such messages can also be used for activation of OBUs or performance test of a total installed system.
+
+    C.2 Test signals
+
+    The normal test signals and modulations shall be obtained as follows:
+
+    - D-M3 corresponds to single messages, used for receiver measurements using the up-down method as described in
+
+    clauses C.3 and C.4, triggered either manually or by an automatic testing system. This provides the "normal test
+
+    signal" as required for receiver measurements (e.g. see subclauses 8.1.2.4 and 8.3);
+
+    - D-M4 consists of correctly coded signals, messages transmitted sequentially, one by one, without gaps between
+
+    them;
+
+    - D-M4'' consists of incorrectly coded signals, messages transmitted sequentially, one by one, without gaps between
+
+    them.
+
+    D-M3 is used for receiver methods of measurement with messages where there is a need to transmit single messages a
+
+    number of times (e.g. 20 times, see "normal test signal" of subclauses 8.3.3.2, 8.3.4.2, 8.3.5.2 and 8.3.6.2). The
+
+    corresponding normal test modulation shall be agreed between the manufacturer and the test laboratory.
+
+    The test signal D-M4 is used for transmitter met'
 doc_files:
 - global/raw/ETSI_EN_300674_v01.01.01_60.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_300674_v01.01.01_60.pdf (pdf, 151306 chars)，生成 4 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_300674_v01.01.01_60.pdf (pdf, 151306 chars)，生成 4 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_300674_v01.01.01_60.pdf (pdf, 151306 chars)，生成 4 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

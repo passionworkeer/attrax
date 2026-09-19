@@ -1,6 +1,6 @@
 id: US-CFR-TITLE21-PART720
 official_citation: US 21 CFR Part 720
-short_name: US 21 CFR Part 720
+short_name: US 21 CFR Part 720 — VOLUNTARY FILING OF COSMETIC PRODUCT INGREDIENT COMPOSITION STATEMENTS
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,501 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '21
+
+    Food and Drugs
+
+    7
+
+    2024-04-01
+
+    2024-04-01
+
+    false
+
+    VOLUNTARY FI'
+  text: '21
+
+    Food and Drugs
+
+    7
+
+    2024-04-01
+
+    2024-04-01
+
+    false
+
+    VOLUNTARY FILING OF COSMETIC PRODUCT INGREDIENT COMPOSITION STATEMENTS
+
+    720
+
+    PART 720
+
+    Food and Drugs
+
+    FOOD AND DRUG ADMINISTRATION, DEPARTMENT OF HEALTH AND HUMAN SERVICES (CONTINUED)
+
+    COSMETICS
+
+    Pt. 720
+
+    PART 720—VOLUNTARY FILING OF COSMETIC PRODUCT INGREDIENT COMPOSITION STATEMENTS
+
+    Sec.
+
+    720.1
+
+    Who should file.
+
+    720.2
+
+    Times for filing.
+
+    720.3
+
+    How and where to file.
+
+    720.4
+
+    Information requested about cosmetic products.
+
+    720.5
+
+    [Reserved]
+
+    720.6
+
+    Amendments to statement.
+
+    720.7
+
+    Notification of person submitting cosmetic product ingredient statement.
+
+    720.8
+
+    Confidentiality of statements.
+
+    720.9
+
+    Misbranding by reference to filing or to statement number.
+
+    Authority:
+
+    21 U.S.C. 321, 331, 361, 362, 371, 374.
+
+    Source:
+
+    39 FR 10060, Mar. 15, 1974, unless otherwise noted.'
+- id: art-2
+  title: § 720.1
+  text: '§ 720.1
+
+    Who should file.
+
+    Either the manufacturer, packer, or distributor of a cosmetic product is requested to file Form FDA 2512 (“Cosmetic Product Ingredient Statement”), whether or not the cosmetic product enters interstate
+    commerce. This request extends to any foreign manufacturer, packer, or distributor of a cosmetic product exported for sale in any State as defined in section 201(a)(1) of the Federal Food, Drug, and
+    Cosmetic Act. No filing fee is required.
+
+    [57 FR 3129, Jan. 28, 1992]'
+- id: art-3
+  title: § 720.2
+  text: '§ 720.2
+
+    Times for filing.
+
+    Within 180 days after forms are made available to the industry, Form FDA 2512 should be filed for each cosmetic product being commercially distributed as of the effective date of this part. Form FDA
+    2512 should be filed within 60 days after the beginning of commercial distribution of any product not covered within the 180-day period.
+
+    [57 FR 3129, Jan. 28, 1992]'
+- id: art-4
+  title: § 720.3
+  text: '§ 720.3
+
+    How and where to file.
+
+    Forms FDA 2512 and FDA 2514 (“Discontinuance of Commercial Distribution of Cosmetic Product Formulation”) are obtainable on request from the Food and Drug Administration, 5001 Campus Dr., College Park,
+    MD
+
+    20740, or at any Food and Drug Administration district office. The completed form should be mailed or delivered to: Cosmetic Product Statement, Food and Drug Administration, 5001 Campus Dr., College
+    Park, MD 20740, according to the instructions provided with the forms.
+
+    [57 FR 3129, Jan. 28, 1992, as amended at 68 FR 15355, Mar. 31, 2003; 81 FR 49897, July 29, 2016]'
+- id: art-5
+  title: § 720.4
+  text: '§ 720.4
+
+    Information requested about cosmetic products.
+
+    (a) Form FDA-2512 requests information on:
+
+    (1) The name and address, including post office ZIP code of the person (manufacturer, packer, or distributor) designated on the label of the product.
+
+    (2) The name and address, including post office ZIP code, of the manufacturer or packer of the product if different from the person designated on the label of the product, when the manufacturer or packer
+    submits the information requested under this paragraph.
+
+    (3) The brand name or names of the cosmetic product.
+
+    (4) The cosmetic product category or categories.
+
+    (5) The ingredients in the product.
+
+    (b) The person filing Form FDA-2512 should:
+
+    (1) Provide the information requested in paragraph (a) of this section.
+
+    (2) Have the form signed by an authorized individual.
+
+    (3) Provide poison control centers with ingredient information and/or adequate diagnostic and therapeutic procedures to permit rapid evaluation and treatment of accidental ingestion or other accidental
+    use of the cosmetic product.
+
+    (4) Provide ingredient information (and, when requested, ingredient samples) to a licensed physician who, in connection with the treatment of a patient, requests assistance in determining whether an
+    ingredient in the cosmetic product is the cause of the problem for which the patient is being treated.
+
+    (c) One or more of the following cosmetic product categories should be cited to indicate the product''s intended use.
+
+    (1)
+
+    Baby products.
+
+    (i) Baby shampoos.
+
+    (ii) Lotions, oils, powders, and creams.
+
+    (iii) Other baby products.
+
+    (2)
+
+    Bath preparations.
+
+    (i) Bath oils, tablets, and salts.
+
+    (ii) Bubble baths.
+
+    (iii) Bath capsules.
+
+    (iv) Other bath preparations.
+
+    (3)
+
+    Eye makeup preparations.
+
+    (i) Eyebrow pencil.
+
+    (ii) Eyeliner.
+
+    (iii) Eye shadow.
+
+    (iv) Eye lotion.
+
+    (v) Eye makeup remover.
+
+    (vi) Mascara.
+
+    (vii) Other eye makeup preparations.
+
+    (4)
+
+    Fragrance preparations.
+
+    (i) Colognes and toilet waters.
+
+    (ii) Perfumes.
+
+    (iii) Powders (dusting and talcum) (excluding aftershave talc).
+
+    (iv) Sachets.
+
+    (v) Other fragrance preparations.
+
+    (5)
+
+    Hair preparations (noncoloring).
+
+    (i) Hair conditioners.
+
+    (ii) Hair sprays (aerosol fixatives).
+
+    (iii) Hair straighteners.
+
+    (iv) Permanent waves.
+
+    (v) Rinses (noncoloring).
+
+    (vi) Shampoos (noncoloring).
+
+    (vii) Tonics, dressings, and other hair grooming aids.
+
+    (viii) Wave sets.
+
+    (ix) Other hair preparations.
+
+    (6)
+
+    Hair coloring preparations.
+
+    (i) Hair dyes and colors (all types requiring caution statement and patch test).
+
+    (ii) Hair tints.
+
+    (iii) Hair rinses (coloring).
+
+    (iv) Hair shampoos (coloring).
+
+    (v) Hair color sprays (aerosol).
+
+    (vi) Hair lighteners with color.
+
+    (vii) Hair bleaches.
+
+    (viii) Other hair coloring preparations.
+
+    (7)
+
+    Makeup preparations (not eye).
+
+    (i) Blushers (all types).
+
+    (ii) Face powders.
+
+    (iii) Foundations.
+
+    (iv) Leg and body paints.
+
+    (v) Lipstick.
+
+    (vi) Makeup bases.
+
+    (vii) Rouges.
+
+    (viii) Makeup fixatives.
+
+    (ix) Other makeup preparations.
+
+    (8)
+
+    Manicuring preparations.
+
+    (i) Basecoats and undercoats.
+
+    (ii) Cuticle softeners.
+
+    (iii) Nail creams and lotions.
+
+    (iv) Nail extenders.
+
+    (v) Nail polish and enamel.
+
+    (vi) Nail polish and enamel removers.
+
+    (vii) Other manicuring preparations.
+
+    (9)
+
+    Oral hygiene products.
+
+    (i) Dentifrices (aerosol, liquid, pastes, and powders).
+
+    (ii) Mouthwashes and breath fresheners (liquids and sprays).
+
+    (iii) Other oral hygiene products.
+
+    (10)
+
+    Personal cleanliness.
+
+    (i) Bath soaps and detergents.
+
+    (ii) Deodorants (underarm).
+
+    (iii) Douches.
+
+    (iv) Feminine hygiene deodorants.
+
+    (v) Other personal cleanliness products.
+
+    (11)
+
+    Shaving preparations.
+
+    (i) Aftershave lotions.
+
+    (ii) Beard softeners.
+
+    (iii) Men''s talcum.
+
+    (iv) Preshave lotions (all types).
+
+    (v) Shaving cream (aerosol, brushless, and lather).
+
+    (vi) Shaving soap (cakes, sticks, etc.).
+
+    (vii) Other shaving preparation products.
+
+    (12)
+
+    Skin care preparations, (creams, lotions, powder, and sprays).
+
+    (i) Cleansing (cold creams, cleansing lotions, liquids, and pads).
+
+    (ii) Depilatories.
+
+    (iii) Face and neck (excluding shaving preparations).
+
+    (iv) Body and hand (excluding shaving preparations).
+
+    (v) Foot powders and sprays.
+
+    (vi) Moisturizing.
+
+    (vii) Night.
+
+    (viii) Paste masks (mud packs).
+
+    (ix) Skin fresheners.
+
+    (x) Other skin care preparations.
+
+    (13)
+
+    Suntan preparations.
+
+    (i) Suntan gels, creams, and liquids.
+
+    (ii) Indoor tanning preparations.
+
+    (iii) Other suntan preparations.
+
+    (d) Ingredients in the product should be listed as follows:
+
+    (1) A list of each ingredient of the cosmetic product in descending order of predominance by weight (except that the fragrance and/or flavor may be designated as such without naming each individual
+    ingredient when the manufacturer or supplier of the fragrance and/or flavor refuses to disclose ingredient data).
+
+    (2) An ingredient should be listed by the name adopted by the Food and Drug Administration (FDA) for the ingredient pursuant to § 701.3(c) of this chapter.
+
+    (3) In the absence of a name adopted by FDA pursuant to § 701.3(c) of this chapter, its common or usual name, if it has one, or its chemical or technical name should be listed.
+
+    (4) If an ingredient is a mixture, each ingredient of the mixture should be listed in accordance with paragraphs (d)(2) and (d)(3) of this section, unless such mixture is a formulation voluntarily registered
+    on Form FDA 2512, in which case such mixture should be identified as “fragrance,” “flavor,” “fragrance and flavor” or “base formulation,” as appropriate, and by stating its FDA-assigned cosmetic product
+    ingredient statement number.
+
+    (5) When the manufacturer or supplier of a fragrance and/or flavor refuses to disclose ingredient data, the fragrance and/or flavor should be listed as such. The nonconfidential listing of the product
+    name and/or trade name or name of the manufacturer or supplier of each proprietary fragrance and/or flavor mixture is optional.
+
+    (e) A separate Form FDA-2512 should be filed for each different formulation of a cosmetic product. However, except for the hair coloring preparations listed in paragraph (c)(6) of this section for which
+    a statement for each shade of such product is required, a single Form FDA-2512 may be filed for two or more shades of a cosmetic product where only the amounts of the color additive ingredient used
+    are varied or in the case of flavors and fragrances where only the amounts of the flavors and fragrances used are varied.
+
+    (Information collection requirements in this section were approved by the Office of Management and Budget (OMB) and assigned OMB control number 0910-0030)
+
+    [39 FR 10060, Mar. 15, 1974, as amended at 46 FR 38073, July 24, 1981; 57 FR 3129, Jan. 28, 1992]'
+- id: art-6
+  title: § 720.5
+  text: '§ 720.5
+
+    [Reserved]'
+- id: art-7
+  title: § 720.6
+  text: '§ 720.6
+
+    Amendments to statement.
+
+    Changes in the information requested under §§ 720.4 (a)(3) and (a)(5) on the ingredients or brand name of a cosmetic product should be submitted by filing an amended Form FDA 2512 within 60
+
+    days after the product is entered into commercial distribution. Other changes do not justify immediate amendment, but should be shown by filing an amended Form FDA 2512 within a year after such changes.
+    Notice of discontinuance of commercial distribution of a cosmetic product formulation should be submitted by Form FDA 2514 within 180 days after discontinuance of commercial distribution becomes known
+    to the person filing.
+
+    [57 FR 3130, Jan. 28, 1992, as amended at 67 FR 9587, Mar. 4, 2002]'
+- id: art-8
+  title: § 720.7
+  text: '§ 720.7
+
+    Notification of person submitting cosmetic product ingredient statement.
+
+    When Form FDA 2512 is received, FDA will either assign a permanent cosmetic product ingredient statement number or a Food and Drug Administration (FDA) reference number in those cases where a permanent
+    number cannot be assigned. Receipt of the form will be acknowledged by sending the individual signing the statement an appropriate notice bearing either the FDA reference number or the permanent cosmetic
+    product ingredient statement number. If the person submitting Form FDA 2512 has not complied with §§ 720.4 (b)(1) and (b)(2), the person will be notified as to the manner in which the statement is incomplete.
+
+    [57 FR 3130, Jan. 28, 1992]'
+- id: art-9
+  title: § 720.8
+  text: '§ 720.8
+
+    Confidentiality of statements.
+
+    (a) Data and information contained in, attached to, or included with Forms FDA 2512 and FDA 2514, and amendments thereto are submitted voluntarily to the Food and Drug Administration (FDA). Any request
+    for confidentiality of a cosmetic ingredient submitted with such forms or separately will be handled in accordance with the procedure set forth in this section. The request for confidentiality will
+    also be subject to the provisions of § 20.111 of this chapter, as well as to the exemptions in subpart D of part 20 of this chapter and to the limitations on exemption in subpart E of part 20 of this
+    chapter.
+
+    (b) Any request for confidentiality of the identity of a cosmetic ingredient should contain a full statement, in a well-organized format, of the factual and legal grounds for that request, including
+    all data and other information on which the petitioner relies, as well as representative information known to the petitioner that is unfavorable to the petitioner''s position. The statement of the factual
+    grounds should include, but should not be limited to, scientific or technical data, reports, tests, and other relevant information addressing the following factors that FDA will consider in determining
+    whether the identity of an ingredient qualifies as a trade secret:
+
+    (1) The extent to which the identity of the ingredient is known outside petitioner''s business;
+
+    (2) The extent to which the identity of the ingredient is known by employees and others involved in petitioner''s business;
+
+    (3) The extent of measures taken by the petitioner to guard the secrecy of the information;
+
+    (4) The value of the information about the identity of the claimed trade secret ingredient to the petitioner and to its competitors;
+
+    (5) The amount of effort or money expended by petitioner in developing the ingredient; and
+
+    (6) The ease or difficulty with which the identity of the ingredient could be properly acquired or duplicated by others.
+
+    (c) The request for confidentiality should also be accompanied by a statement that the identity of the ingredient for which confidentiality is requested has not previously been published or disclosed
+    to anyone other than as provided in § 20.81(a) of this chapter.
+
+    (d) FDA will return to the petitioner any request for confidentiality that contains insufficient data to permit a review of the merits of the request. FDA will also advise the petitioner about the additional
+    information that is necessary to enable the agency to proceed with its review of the request.
+
+    (e) If, after receiving all of the data that are necessary to make a determination about whether the identity of an ingredient is a trade secret, FDA
+
+    tentatively decides to deny the request, the Agency will inform the person requesting trade secrecy of its tentative determination in writing. FDA will set forth the grounds upon which it relied in
+    making this tentative determination. The petitioner may submit, within 60 days from the date of receipt of the written notice of the tentative denial, additional relevant information and arguments and
+    request that the Agency reconsider its decision in light of both the additional material and the information that it originally submitted.
+
+    (f) If the petitioner submits new data in response to FDA''s tentative denial of trade secret status, the agency will consider that material together with the information that was submitted initially
+    before making its final determination.
+
+    (g) A final determination that an ingredient is not a trade secret within the meaning of § 20.61 of this chapter constitutes final Agency action that is subject to judicial review under 5 U.S.C. Chapter
+    7. If suit is brought within 30 calendar days after such a determination, FDA will not disclose the records involved or require that the disputed ingredient or ingredients be disclosed in labeling until
+    the matter is finally determined in the courts. If suit is not brought within 30 calendar days after a final determination that an ingredient is not a trade secret within the meaning of § 20.61 of this
+    chapter, the records involved will be available for public disclosure in accordance with part 20 of this chapter.
+
+    [51 FR 11444, Apr. 3, 1986, as amended at 57 FR 3130, Jan. 28, 1992; 68 FR 25288, May 12, 2003; 87 FR 55914, Sept. 13, 2022]'
+- id: art-10
+  title: § 720.9
+  text: '§ 720.9
+
+    Misbranding by reference to filing or to statement number.
+
+    The filing of Form FDA 2512 or assignment of a number to the statement does not in any way denote approval by the Food and Drug Administration of the firm or the product. Any representation in labeling
+    or advertising that creates an impression of official approval because of such filing or such number will be considered misleading.
+
+    [57 FR 3130, Jan. 28, 1992]'
 doc_files:
 - us/raw/US-CFR-title21-part720.xml
+- us/raw/US-CFR-title21-part720.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part720.xml (xml, 15044 chars)，生成 9 条共 15044 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part720.xml (xml, 15044 chars)，生成 9 条共 15044 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title21-part720.xml (xml, 15043 chars)，生成 10 条共 15043 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART720-4（US 21 CFR Part 720）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART720-3（US 21 CFR Part 720）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE21-PART720-2（US 21 CFR Part 720）。'

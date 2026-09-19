@@ -9,11 +9,789 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'ETSI EN 302 567
+
+    V2.2.1
+
+    (2021-07)
+
+    HARMONISED EUROPEAN STANDAR'
+  text: 'ETSI EN 302 567
+
+    V2.2.1
+
+    (2021-07)
+
+    HARMONISED EUROPEAN STANDARD
+
+    Multiple-Gigabit/s radio equipment
+
+    operating in the 60 GHz band;
+
+    Harmonised Standard for access to radio spectrum
+
+    2 ETSI EN 302 567 V2.2.1 (2021-07)
+
+    Reference
+
+    REN/BRAN-230018
+
+    Keywords
+
+    access, broadband, LAN, radio, SRD, testing
+
+    ETSI
+
+    650 Route des Lucioles
+
+    F-06921 Sophia Antipolis Cedex - FRANCE
+
+    Tel.: +33 4 92 94 42 00 Fax: +33 4 93 65 47 16
+
+    Siret N° 348 623 562 00017 - APE 7112B
+
+    Association à but non lucratif enregistrée à la
+
+    Sous-Préfecture de Grasse (06) N° w061004871
+
+    Important notice
+
+    The present document can be downloaded from:
+
+    http://www.etsi.org/standards-search
+
+    The present document may be made available in electronic versions and/or in print. The content of any electronic and/or
+
+    print versions of the present document shall not be modified without the prior written authorization of ETSI. In case of any
+
+    existing or perceived difference in contents between such versions and/or in print, the prevailing version of an ETSI
+
+    deliverable is the one made publicly available in PDF format at www.etsi.org/deliver.
+
+    Users of the present document should be aware that the document may be subject to revision or change of status.
+
+    Information on the current status of this and other ETSI documents is available at
+
+    https://portal.etsi.org/TB/ETSIDeliverableStatus.aspx
+
+    If you find errors in the present document, please send your comment to one of the following services:
+
+    https://portal.etsi.org/People/CommiteeSupportStaff.aspx
+
+    Notice of disclaimer & limitation of liability
+
+    The information provided in the present deliverable is directed solely to professionals who have the appropriate degree of
+
+    experience to understand and interpret its content in accordance with generally accepted engineering or
+
+    other professional standard and applicable regulations.
+
+    No recommendation as to products and services or vendors is made or should be implied.
+
+    In no event shall ETSI be held liable for loss of profits or any other incidental or consequential damages.
+
+    Any software contained in this deliverable is provided "AS IS" with no warranties, express or implied, including but not
+
+    limited to, the warranties of merchantability, fitness for a particular purpose and non-infringement of intellectual property
+
+    rights and ETSI shall not be held liable in any event for any damages whatsoever (including, without limitation, damages
+
+    for loss of profits, business interruption, loss of information, or any other pecuniary loss) arising out of or related to the use
+
+    of or inability to use the software.
+
+    Copyright Notification
+
+    No part may be reproduced or utilized in any form or by any means, electronic or mechanical, including photocopying and
+
+    microfilm except as authorized by written permission of ETSI.
+
+    The content of the PDF version shall not be modified without the written authorization of ETSI.
+
+    The copyright and the foregoing restriction extend to reproduction in all media.
+
+    © ETSI 2021.
+
+    All rights reserved.
+
+    ETSI
+
+    3 ETSI EN 302 567 V2.2.1 (2021-07)
+
+    Contents
+
+    Intellectual Property Rights ................................................................................................................................ 6
+
+    Foreword ............................................................................................................................................................. 6
+
+    Modal verbs terminology .................................................................................................................................... 7
+
+    Introduction ........................................................................................................................................................ 7
+
+    1 Scope ........................................................................................................................................................ 8
+
+    2 References ................................................................................................................................................ 8
+
+    2.1 Normative references ......................................................................................................................................... 8
+
+    2.2 Informative references ........................................................................................................................................ 8
+
+    3 Definition of terms, symbols and abbreviations ....................................................................................... 9
+
+    3.1 Terms .................................................................................................................................................................. 9
+
+    3.2 Symbols ............................................................................................................................................................ 10
+
+    3.3 Abbreviations ................................................................................................................................................... 10
+
+    4 Technical requirements specifications ................................................................................................... 11
+
+    4.1 Environmental profile ....................................................................................................................................... 11
+
+    4.2 Conformance requirements .............................................................................................................................. 11
+
+    4.2.1 Spectral power density ................................................................................................................................ 11
+
+    4.2.1.0 Applicability.......................................................................................................................................... 11
+
+    4.2.1.1 Definition .............................................................................................................................................. 11
+
+    4.2.1.2 Limit ...................................................................................................................................................... 11
+
+    4.2.1.3 Conformance ......................................................................................................................................... 11
+
+    4.2.2 RF output power ......................................................................................................................................... 11
+
+    4.2.2.0 Applicability.......................................................................................................................................... 11
+
+    4.2.2.1 Definition .............................................................................................................................................. 11
+
+    4.2.2.2 Limit ...................................................................................................................................................... 11
+
+    4.2.2.3 Conformance ......................................................................................................................................... 12
+
+    4.2.3 Transmitter unwanted emissions in the spurious domain ........................................................................... 12
+
+    4.2.3.0 Applicability.......................................................................................................................................... 12
+
+    4.2.3.1 Definition .............................................................................................................................................. 12
+
+    4.2.3.2 Limit ...................................................................................................................................................... 12
+
+    4.2.3.3 Conformance ......................................................................................................................................... 12
+
+    4.2.4 Receiver unwanted emissions ..................................................................................................................... 13
+
+    4.2.4.0 Applicability.......................................................................................................................................... 13
+
+    4.2.4.1 Definition .............................................................................................................................................. 13
+
+    4.2.4.2 Limit ...................................................................................................................................................... 13
+
+    4.2.4.3 Conformance ......................................................................................................................................... 13
+
+    4.2.5 Adaptivity (medium access protocol) ......................................................................................................... 13
+
+    4.2.5.1 Applicability.......................................................................................................................................... 13
+
+    4.2.5.2 Definition .............................................................................................................................................. 13
+
+    4.2.5.3 Requirement .......................................................................................................................................... 13
+
+    4.2.5.4 Conformance ......................................................................................................................................... 14
+
+    4.2.6 Short Control Signalling Transmissions ..................................................................................................... 14
+
+    4.2.6.1 Applicability.......................................................................................................................................... 14
+
+    4.2.6.2 Definition .............................................................................................................................................. 14
+
+    4.2.6.3 Limits .................................................................................................................................................... 14
+
+    4.2.6.4 Conformance ......................................................................................................................................... 14
+
+    4.2.7 Receiver Adjacent Channel Rejection ........................................................................................................ 14
+
+    4.2.7.1 Applicability.......................................................................................................................................... 14
+
+    4.2.7.2 Definition .............................................................................................................................................. 15
+
+    4.2.7.3 Performance Criteria ............................................................................................................................. 15
+
+    4.2.7.4 Limits .................................................................................................................................................... 15
+
+    4.2.7.5 Conformance ......................................................................................................................................... 15
+
+    4.2.8 Transmitter unwanted emissions in the out-of-band domain ...................................................................... 15
+
+    4.2.8.0 Applicability.......................................................................................................................................... 15
+
+    4.2.8.1 Definition .............................................................................................................................................. 15
+
+    ETSI
+
+    4 ETSI EN 302 567 V2.2.1 (2021-07)
+
+    4.2.8.2 Limit ...................................................................................................................................................... 15
+
+    4.2.8.3 Conformance .....................................'
+- id: art-2
+  title: 'Annex C (normative): Test sites and arrangements for radiated measurements ........................... 34'
+  text: 'Annex C (normative): Test sites and arrangements for radiated measurements ........................... 34
+
+    C.1 Test sites ................................................................................................................................................. 34
+
+    C.1.1 Open air test sites ............................................................................................................................................. 34
+
+    C.1.2 Anechoic chamber ............................................................................................................................................ 35
+
+    C.1.2.1 General ........................................................................................................................................................ 35
+
+    C.1.2.2 Description .................................................................................................................................................. 35
+
+    C.1.2.3 Influence of parasitic reflections ................................................................................................................. 35
+
+    C.1.2.4 Calibration and mode of use ....................................................................................................................... 35
+
+    C.2 Test antenna ............................................................................................................................................ 37
+
+    C.3 Substitution antenna ............................................................................................................................... 37
+
+    Annex D (normative): General description of measurement ........................................................... 38
+
+    D.1 Radiated measurements .......................................................................................................................... 38
+
+    D.2 Substitution measurement ...................................................................................................................... 39
+
+    Annex E (informative): Bibliography ................................................................................................... 40
+
+    Annex F (informative): Change History .............................................................................................. 41
+
+    History .............................................................................................................................................................. 42
+
+    ETSI
+
+    6 ETSI EN 302 567 V2.2.1 (2021-07)
+
+    Intellectual Property Rights
+
+    Essential patents
+
+    IPRs essential or potentially essential to normative deliverables may have been declared to ETSI. The declarations
+
+    pertaining to these essential IPRs, if any, are publicly available for ETSI members and non-members, and can be
+
+    found in ETSI SR 000 314: "Intellectual Property Rights (IPRs); Essential, or potentially Essential, IPRs notified to
+
+    ETSI in respect of ETSI standards", which is available from the ETSI Secretariat. Latest updates are available on the
+
+    ETSI Web server (https://ipr.etsi.org/).
+
+    Pursuant to the ETSI Directives including the ETSI IPR Policy, no investigation regarding the essentiality of IPRs,
+
+    including IPR searches, has been carried out by ETSI. No guarantee can be given as to the existence of other IPRs not
+
+    referenced in ETSI SR 000 314 (or the updates on the ETSI Web server) which are, or may be, or may become,
+
+    essential to the present document.
+
+    Trademarks
+
+    The present document may include trademarks and/or tradenames which are asserted and/or registered by their owners.
+
+    ETSI claims no ownership of these except for any which are indicated as being the property of ETSI, and conveys no
+
+    right to use or reproduce any trademark and/or tradename. Mention of those trademarks in the present document does
+
+    not constitute an endorsement by ETSI of products, services or organizations associated with those trademarks.
+
+    DECT™, PLUGTESTS™, UMTS™ and the ETSI logo are trademarks of ETSI registered for the benefit of its
+
+    Members. 3GPP™ and LTE™ are trademarks of ETSI registered for the benefit of its Members and of the 3GPP
+
+    Organizational Partners. oneM2M™ logo is a trademark of ETSI registered for the benefit of its Members and of the
+
+    oneM2M Partners. GSM® and the GSM logo are trademarks registered and owned by the GSM Association.
+
+    Foreword
+
+    This Harmonised European Standard (EN) has been produced by ETSI Technical Committee Broadband Radio Access
+
+    Networks (BRAN).
+
+    The present document has been prepared under the Commission''s standardisation request C(2015) 5376 final [i.2] to
+
+    provide one voluntary means of conforming to the essential requirements of Directive 2014/53/EU on the harmonisation
+
+    of the laws of the Member States relating to the making available on the market of radio equipment and repealing
+
+    Directive 1999/5/EC [i.6].
+
+    Once the present document is cited in the Official Journal of the European Union under that Directive, compliance with
+
+    the normative clauses of the present document given in table A.1 confers, within the limits of the scope of the present
+
+    document, a presumption of conformity with the corresponding essential requirements of that Directive and associated
+
+    EFTA regulations.
+
+    National transposition dates
+
+    Date of adoption of this EN: 5 July 2021
+
+    Date of latest announcement of this EN (doa): 31 October 2021
+
+    Date of latest publication of new National Standard
+
+    or endorsement of this EN (dop/e): 30 April 2022
+
+    Date of withdrawal of any conflicting National Standard (dow): 30 April 2023
+
+    ETSI
+
+    7 ETSI EN 302 567 V2.2.1 (2021-07)
+
+    Modal verbs terminology
+
+    In the present document "shall", "shall not", "should", "should not", "may", "need not", "will", "will not", "can" and
+
+    "cannot" are to be interpreted as described in clause 3.2 of the ETSI Drafting Rules (Verbal forms for the expression of
+
+    provisions).
+
+    "must" and "must not" are NOT allowed in ETSI deliverables except when used in direct citation.
+
+    Introduction
+
+    60 GHz radio equipment are capable of operating at data rates of multiple-gigabit per second.
+
+    The spectrum usage conditions for this equipment are set in Commission Decision 2013/752/EU [i.4] and Commission
+
+    Decision 2019/1345/EU [i.7] amending Commission Decision 2006/771/EC of 9 November 2006 [i.5] and ERC
+
+    Recommendation 70-03 [i.3], annex 3.
+
+    ETSI
+
+    8 ETSI EN 302 567 V2.2.1 (2021-07)
+
+    1 Scope
+
+    The present document specifies technical characteristics and methods of measurements for radio equipment with
+
+    integral antennas operating indoor or outdoor at data rates of multiple-gigabit per second in the 60 GHz frequency
+
+    range.
+
+    These radio equipment operate with very wideband communications using a variety of directional medium and high
+
+    gain antennas to enable a high degree of spectrum reuse, and may use a flexible bandwidth scheme under which they
+
+    normally operate in a wideband mode, and periodically reduce their bandwidth (e.g. for antenna training and other
+
+    activities).
+
+    The technical characteristics of applications using these radio equipment are further described in ETSI TR 102 555 [i.1].
+
+    Equipment in this frequency range intended for outdoor Fixed Local Area Network Extension (FLANE) or Fixed
+
+    Point-to-Point applications are not in the scope of the present document.
+
+    These radio equipment types are capable of operating in all or any part of the frequency bands given in table 1.
+
+    Table 1: Radiocommunications service frequency band
+
+    Radiocommunications service frequency band
+
+    Transmit 57 GHz to 71 GHz
+
+    Receive 57 GHz to 71 GHz
+
+    NOTE: The relationship between the present document and essential requirements of article 3.2 of Directive
+
+    2014/53/EU [i.6] is given in annex A.
+
+    2 References
+
+    2.1 Normative references
+
+    References are either specific (identified by date of publication and/or edition number or version number) or
+
+    non-specific. For specific references, only the cited version applies. For non-specific references, the latest version of the
+
+    referenced document (including any amendments) applies.
+
+    Referenced documents which are not found to be publicly available in the expected location might be found at
+
+    https://docbox.etsi.org/Reference/.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    The following referenced documents are necessary for the application of the present document.
+
+    Not applicable.
+
+    2.2 Informative references
+
+    References are either specific (identified by date of publication and/or edition number or version number) or
+
+    non-specific. For specific references, only the cited version applies. For non-specific references, the latest version of the
+
+    referenced document (including any amendments) applies.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    ETSI
+
+    9 ETSI EN 302 567 V2.2.1 (2021-07)
+
+    The following referenced documents are not necessary for the application of the present document but they assist the
+
+    user with regard to a particular subject area.
+
+    [i.1] ETSI TR 102 555: "Electromagnetic compatibility and Radio spectrum Matters (ERM); Technical
+
+    characteristics of multiple gigabit wireless systems in the 60 GHz range System Reference
+
+    Document".
+
+    [i.2] Commission Implementing Decision C(2015) 5376 final of 4.8.2015 on a standardisation request
+
+    to the European Committee for Electrotechnical Standardisation and to the European
+
+    Telecommunications Standards Institute as regards radio equipment in support of Directive
+
+    2014/53/EU of the European Parliament and of the Council.
+
+    [i.3] ERC Recommendation 70-03 (Tromsø 1997 and subsequent amendments): "Related to the Use of
+
+    Short Range Devices (SRD)".
+
+    [i.4] Commission Implementing Decision 2013/752/EU of 11 December 2013 amending Decision
+
+    2006/771/EC on harmonisation of the radio spectrum for use by short-range devices and repealing
+
+    Decision 2005/928/EC (notified under document C(2013) 8776) Text with EEA relevance.
+
+    [i.5] Commission Decision 2006/771/EC of 9 November 2006 on harmonisation of the radio spectrum
+
+    for use by short-range devices.
+
+    [i.6] Directive 2014/53/EU of the European Parliament and of the Council of 16 April 2014 on the
+
+    harmonisation of the laws of the Member States relating to the making available on the market of
+
+    radio equipment and repealing Directive 1999/5/EC.
+
+    [i.7] Commission Implementing Decision (EU) 2019/1345 of 2 August 2019 amending Decision
+
+    2006/771/EC updating harmonised technical conditions in the area of radio spectrum use for
+
+    short-range devices (notified under document C(2019) 5660) Text with EEA relevance.
+
+    [i.8] IEEE 802.11-2020™: "Wireless LAN Medium Access Control (MAC) and Physical Layer (PHY)
+
+    Specifications".
+
+    [i.9] ITU-R Radio Regulations.
+
+    [i.10] ERC Recommendation 74-01 (1998 and subsequent amendments): "Unwanted emissions in the
+
+    spurious domain".
+
+    3 Definition of terms, symbols and abbreviations
+
+    3.1 Terms
+
+    For the purposes of the present document, the terms given in Directive 2014/53/EU [i.6] and the following apply:
+
+    60 GHz range or 60 GHz band: one of the variously permitted frequencies of operation, between 57 GHz to 71 GHz
+
+    activity factor: percentage over any one minute time period when equipment is operating under a given set of
+
+    conditions
+
+    adjacent channel: channels on either side of the nominal channel separated by the nominal channel bandwidth
+
+    channel separation: minimum separation (in MHz) between the centre frequencies of two adjacent channels in the
+
+    channel plan of the radio equipment
+
+    integral antenna: antenna which is declared to be part of the radio equipment by the manufacturer
+
+    NOTE 1: In some cases, it may not be possible to remove an integral antenna or expose an antenna connector
+
+    without changing the output characteristics of the radio equipment.
+
+    NOTE 2: Even with an integral antenna, it might still be possible to separate the antenna from the equipment using
+
+    a special tool.
+
+    mean power: average power (transmitted or received) during the On Time of the signal
+
+    ETSI
+
+    10 ETSI EN 302 567 V2.2.1 (2021-07)
+
+    nominal chan'
+- id: art-3
+  title: 'Annex C (normative):'
+  text: 'Annex C (normative):
+
+    Test sites and arrangements for radiated measurements
+
+    C.1 Test sites
+
+    C.1.1 Open air test sites
+
+    The term "open air" should be understood from an electromagnetic point of view. Such a test site may be really in open
+
+    air or alternatively with walls and ceiling transparent to the radio waves at the frequencies considered.
+
+    An open air test site may be used to perform the measurements using the radiated measurement methods described in
+
+    clause 5.3. Absolute or relative measurements may be performed on transmitters or on receivers; absolute
+
+    measurements of field strength require a calibration of the test site.
+
+    A measuring distance of at least 3 m shall be used for measurements at frequencies up to 1 GHz. For frequencies above
+
+    1 GHz, any suitable measuring distance may be used. The equipment size (excluding the antenna) shall be less than
+
+    20 % of the measuring distance. The height of the equipment or of the substitution antenna shall be 1,5 m; the height of
+
+    the test antenna (transmit or receive) shall vary between 1 m and 4 m.
+
+    Sufficient precautions shall be taken to ensure that reflections from extraneous objects adjacent to the site do not
+
+    degrade the measurement results, in particular:
+
+    • no extraneous conducting objects having any dimension in excess of a quarter wavelength of the highest
+
+    frequency tested shall be in the immediate vicinity of the site;
+
+    • all cables shall be as short as possible; as much of the cables as possible shall be on the ground plane or
+
+    preferably below; and the low impedance cables shall be screened.
+
+    The general measurement arrangement is shown in figure C.1.
+
+    2
+
+    specified height
+
+    range 1 m to 4 m
+
+    1
+
+    1,5 m
+
+    ground
+
+    plane
+
+    4 3
+
+    1) Equipment under test.
+
+    2) Test antenna.
+
+    3) High pass filter (as required).
+
+    4) Spectrum analyser or measuring receiver.
+
+    Figure C.1: Measuring arrangement
+
+    ETSI
+
+    35 ETSI EN 302 567 V2.2.1 (2021-07)
+
+    C.1.2 Anechoic chamber
+
+    C.1.2.1 General
+
+    An anechoic chamber is a well shielded chamber covered inside with radio frequency absorbing material and simulating
+
+    a free space environment. It is an alternative site on which to perform the measurements using the radiated measurement
+
+    methods described in clause 5.3. Absolute or relative measurements may be performed on transmitters or on receivers.
+
+    Absolute measurements of field strength require a calibration of the anechoic chamber. The test antenna, equipment
+
+    under test and substitution antenna are used in a way similar to that at the open air test site, but are all located at the
+
+    same fixed height above the floor.
+
+    C.1.2.2 Description
+
+    An anechoic chamber should meet the requirements for shielding loss and wall return loss as shown in figure C.2.
+
+    Figure C.3 shows an example of the construction of an anechoic chamber having a base area of 5 m by 10 m and a
+
+    height of 5 m. The ceiling and walls are coated with pyramidally formed absorbers approximately 1 m high. The base is
+
+    covered with special absorbers which form the floor. The available internal dimensions of the chamber are
+
+    3 m × 8 m × 3 m, so that a maximum measuring distance of 5 m in the middle axis of this chamber is available.
+
+    The floor absorbers reject floor reflections so that the antenna height need not be changed. Anechoic chambers of other
+
+    dimensions may be used. Alternatively, an anechoic chamber having a base area of 2,5 m × 3 m and a height of 5 m
+
+    may also be used.
+
+    C.1.2.3 Influence of parasitic reflections
+
+    For free-space propagation in the far field, the relationship of the field strength E and the distance R is given by
+
+    E = E × (R / R), where E is the reference field strength and R is the reference distance. This relationship allows
+
+    o o o o
+
+    relative measurements to be made as all constants are eliminated within the ratio and neither cable attenuation nor
+
+    antenna mismatch or antenna dimensions are of importance.
+
+    If the logarithm of the foregoing equation is used, the deviation from the ideal curve may be easily seen because the
+
+    ideal correlation of field strength and distance appears as a straight line. The deviations occurring in practice are then
+
+    clearly visible. This indirect method shows quickly and easily any disturbances due to reflections and is far less difficult
+
+    than the direct measurement of reflection attenuation.
+
+    With an anechoic chamber of the dimensions given above at low frequencies below 100 MHz there are no far field
+
+    conditions, but the wall reflections are stronger, so that careful calibration is necessary. In the medium frequency range
+
+    from 100 MHz to 1 GHz the dependence of the field strength to the distance meets the expectations very well. Above
+
+    1 GHz, because more reflections will occur, the dependence of the field strength to the distance will not correlate so
+
+    closely.
+
+    C.1.2.4 Calibration and mode of use
+
+    The calibration and mode of use is the same as for an open air test site, the only difference being that the test antenna
+
+    does not need to be raised and lowered whilst searching for a maximum, which simplifies the method of measurement.
+
+    Below 142 GHz the shielding and return loss shall be as described in figure C.2.
+
+    ETSI
+
+    36 ETSI EN 302 567 V2.2.1 (2021-07)
+
+    Figure C.2: Specification for shielding and reflections
+
+    10 m
+
+    Equipment Measurement distance Measuring
+
+    under test Antenna
+
+    5 m
+
+    Non-conductive turntables
+
+    Non-conductive surface
+
+    1 m
+
+    Ground plan
+
+    Measurement distance 5 m
+
+    Non-conductive turntables
+
+    Absorbers
+
+    Filter blocks and
+
+    coaxial feedthrough Shielded room without
+
+    absorbers for the
+
+    test instruments
+
+    Figure C.3: Anechoic shielded chamber for simulated free space measurements
+
+    ETSI
+
+    37 ETSI EN 302 567 V2.2.1 (2021-07)
+
+    C.2 Test antenna
+
+    When the test site is used for radiated measurements the test antenna shall be used to detect the field from both the test
+
+    sample and the substitution antenna. When the test site is used for the measurement of receiver characteristics the
+
+    antenna shall be used as a transmitting antenna. This antenna shall be mounted on a support capable of allowing the
+
+    antenna to be used in either horizontal or vertical polarization and for the height of its centre above the ground to be
+
+    varied over the specified range. Preferably test antennae with pronounced directivity should be used. The size of the test
+
+    antenna along the measurement axis shall not exceed 20 % of the measuring distance. The antenna shall include any
+
+    necessary up/down conversion to an intermediate frequency for practical signal transport to/from related test equipment.
+
+    C.3 Substitution antenna
+
+    The substitution antenna shall be used to replace the equipment under test in substitution measurements. For
+
+    measurements below 1 GHz the substitution antenna shall be a half wavelength dipole resonant at the frequency under
+
+    consideration, or a shortened dipole, calibrated to the half wavelength dipole. For measurements between 1 GHz and
+
+    4 GHz either a half wavelength dipole or a horn radiator may be used. For measurements above 4 GHz a horn radiator
+
+    shall be used. The centre of this antenna shall coincide with the reference point of the test sample it has replaced. This
+
+    reference point shall be the volume centre of the sample when its antenna is mounted inside the cabinet, or the point
+
+    where an outside antenna is connected to the cabinet.
+
+    The distance between the lower extremity of the dipole and the ground shall be at least 30 cm.
+
+    NOTE: The gain of a horn antenna is generally expressed relative to an isotropic radiator.
+
+    ETSI
+
+    38 ETSI EN 302 567 V2.2.1 (2021-07)
+
+    Annex D (normative):
+
+    General description of measurement
+
+    D.1 Radiated measurements
+
+    Radiated measurements shall be performed with the aid of a test antenna and measurement instruments as described in'
+- id: art-4
+  title: annex C. The test antenna and measurement instrument shall be calibrated according to the procedure defined in this
+  text: 'annex C. The test antenna and measurement instrument shall be calibrated according to the procedure defined in this
+
+    annex. The equipment to be measured and the test antenna shall be oriented to obtain the maximum emitted power
+
+    level. This position shall be recorded in the measurement report. The frequency range shall be measured in this position.
+
+    Preferabl'
 doc_files:
 - global/raw/ETSI_EN_302567_v02.02.01_60.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_302567_v02.02.01_60.pdf (pdf, 97138 chars)，生成 4 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_302567_v02.02.01_60.pdf (pdf, 97138 chars)，生成 4 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_302567_v02.02.01_60.pdf (pdf, 97138 chars)，生成 4 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

@@ -101,9 +101,10 @@ def build_anchor_list(
 ) -> list[dict]:
     """Build the must-cover checklist passed to the generator.
 
-    Merges category regulations + feature-triggered regulations, de-dupes by
-    (doc_name, region), and filters to the target markets. Entries whose
-    region is ``UN`` (global transport regimes) are always kept.
+    Merges category regulations + feature-triggered regulations + market-level
+    cross-cutting regimes, de-dupes by (doc_name, region), and filters to the
+    target markets. Entries whose region is ``UN`` or ``GLOBAL`` are always
+    kept.
 
     Returns a NEW list; never mutates the module-level matrices.
     """
@@ -113,6 +114,8 @@ def build_anchor_list(
     ]
     if features:
         entries.extend((entry, "feature") for entry in get_feature_regulations(features))
+    for market in sorted(target):
+        entries.extend((entry, "market") for entry in kb_loader.get_anchors_by_market(market))
 
     seen: set[tuple[str, str]] = set()
     anchors: list[dict] = []
@@ -122,7 +125,13 @@ def build_anchor_list(
         key = (doc_name.lower(), region)
         if key in seen:
             continue
-        if region not in kb_loader.ALWAYS_INCLUDE_REGIONS and target and region not in target:
+        anchor_markets = {
+            str(m).strip().upper()
+            for m in (entry.get("kb_entry") or {}).get("applies_if", {}).get("markets", []) or []
+            if m
+        }
+        # 多市场锚点（如 GCC → [SA, AE]）只要命中任一目标市场即保留
+        if region not in kb_loader.ALWAYS_INCLUDE_REGIONS and target and not (anchor_markets & target):
             continue
         seen.add(key)
         kb_entry = entry.get("kb_entry") or {}
@@ -137,6 +146,11 @@ def build_anchor_list(
             "regulation_id": str(kb_entry.get("regulation_id") or ""),
             "short_name": str(kb_entry.get("short_name") or ""),
             "trigger_features": list((kb_entry.get("applies_if") or {}).get("features_any") or []),
+            # "auto" = batch-generated full-library anchor (2026-09-19);
+            # anchor_selection caps these per scan, curated ones pass through.
+            "curation": str(kb_entry.get("curation") or ""),
+            # 生成锚点的领域标签：anchor_selection 的排序信号（横切领域优先级）
+            "domain": str(kb_entry.get("domain") or ""),
         })
     return anchors
 

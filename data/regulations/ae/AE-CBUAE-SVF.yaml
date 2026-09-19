@@ -9,11 +9,54 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: Data protection laws | The Official Platform of the UAE Gove
+  text: "Data protection laws | The Official Platform of the UAE Government\nAbout The UAE\nDigital UAE\nData\nData protection laws\nData protection laws\nThis page contains laws that ensure data protection.\
+    \ Find more. \nU.Ask\nPersonal Data Protection Law\nData and privacy protection \nUAE Data Office\nPersonal Data Protection Law\nFederal Decree Law No. 45 of 2021 Regarding the Protection of Personal\
+    \ Data\n, also known as the Personal Data Protection Law constitutes an integrated framework to ensure the confidentiality of information and protect the privacy of individuals in the UAE. It provides\
+    \ a proper governance for data management and protection and defines the rights and duties of all parties concerned.\nProvisions of the law \nHere are some of the provisions of the law in brief:\nThe\
+    \ provisions of the law apply to the processing of personal data, whether in full or part through electronic systems, inside or outside the country.\nThe law defines the controls for the processing\
+    \ of personal data and the general obligations of companies that have personal data to secure it and maintain its confidentiality and privacy. It prohibits the processing of personal data without the\
+    \ consent of its owner, except for some cases in which the processing is necessary to protect a public interest or to carry out any of the legal procedures and rights.\nThe law gives the owner of the\
+    \ data the right to request for corrections of inaccurate personal data and to restrict or stop the processing of his personal data. \nIt sets out the requirements for the cross-border transfer and\
+    \ sharing of personal data for processing purposes.\nThe \nPersonal Data Protection Law \nis the first federal law to be drafted in partnership with major technology companies in the private sector.\
+    \ It came into force on 2 January 2022.\nRelated links\nFederal Decree Law No. 45 of 2021 Regarding the Protection of Personal Data\n - (PDF, 350 KB - available in Arabic only).\nData and privacy protection\
+    \ \nOther laws related to data protection and privacy include:\nConsumer protection law\nThe \nFederal Law No. 15 of 2020 on Consumer Protection \nprotects all consumer rights, including the data of\
+    \ the consumers and prohibits suppliers from using it for marketing. Also, there is \nData Protection Law, DIFC Law No 5 of 2020\n. \nLaw about the use of ICT in the health sector \nFederal Law No.\
+    \ 2 of 2019 Concerning the Use of Information and Communication Technology (ICT) in Health Fields\n regulates the use of information and communication technology (ICT) in the health care sector in the\
+    \ UAE, including its free zones. \nLaw on combatting rumours and cybercrimes\nFederal Decree \nLaw No. 34 of 2021 on Combatting Rumours and Cybercrimes\n provides a comprehensive legal framework to\
+    \ address the concerns relating to the misuse and abuse of online technologies. \nIt aims to enhance the level of protection from online crimes committed through the use of information technology, networks\
+    \ and platforms. \nInternet Access Management (IAM) policy\nTelecommunications and Digital Government Regulatory Authority\n (TDRA) implements the \nInternet Access Management\n (IAM) policy\n in the\
+    \ UAE, in coordination with National Media Council and Etisalat and Du, the licensed internet service providers in the UAE. Under this policy, online content that is used for impersonation, fraud and\
+    \ phishing and/or invades privacy can be reported to Etisalat and Du to be taken down. \nRead more about \nUAE laws and resolutions concerning activities conducted online.\nElectronic Transactions and\
+    \ Trust Services law\nThe \nlaw regulates the validity of electronic documents\n and boosts the legal value of digital signature and the level of its security. It provides provisions for eTransactions,\
+    \ the way eDocuments should be stored and saved, and sent and received to be valid. It also sets licensing requirements for trust services providers who are duly licensed to create, validate and preserve\
+    \ eSignatures, eSeals and digital certification.\nThe UAE’s Constitution"
+- id: art-2
+  title: 'Article 31 of '
+  text: "Article 31 of \nthe UAE’s Constitution\n provides for the freedom of communication by means of post, telegraph or other means of communication and guarantees their confidentiality in accordance\
+    \ with the law.\nProtection of copyrights, patents and trade marks\nFind out \nlaws that ensure protection of copyrights, patents and trademarks\n. \nProtection of credit information \nRead about the \n\
+    Federal Law No. 6 of 2010 on Credit Information and its amendments\n (Arabic only).\nDubai Data law\nThe government of Dubai passed the \nDubai Data law\n.\n One of its aim is data protection and privacy\
+    \ of the individual.\nRead \nCitizens' right to access government information\n. \nUAE Data Office\nThe UAE Data Office will act as the federal data regulator in the UAE. The office which is affiliated\
+    \ with the UAE Cabinet will be responsible for:\npreparing policies and legislations related to data protection\nproposing and approving the standards for monitoring Personal Data Protection Law \n\
+    preparing systems for complaints and grievances related to data\nissuing guidelines and instructions for the implementation of the law.\nRelated links\nUAE Federal Decree Law No. 44 of 2021 on the establishment of\
+    \ the UAE Data Office.\nUpdated on: \n27 Nov 2025\nDid you find this content useful?\nYou can help us improve by providing your feedback about your experience.\n                                Yes\n\
+    \                                N0\nThank you for your feedback.\nHave you used our services at our service center or digitally recently?\n                            Give us your feedback\nSubmit\n\
+    Thank you for your feedback.\nThis platform\nAbout U.AE\nWebsite Statistics\nDigital participation policy\nCitizen Charter\nResources\nMap\nDisclaimer\nOther websites\nDigital Government\nGovernment\
+    \ Data\nParticipation\nDigital Accessibility Statement\nDigital Accessibility Statement\nSite Map\nHelp and support\nGovernment Entities\nGovernment Officials\nTawasul 171\nFAQs\nContact Us\nEmergency\
+    \ Contacts\nHandling emergencies\nPolice: 999\nCivil Defence: 997\nAmbulance: 998\n Electricity authority: 991\nFollow Us On\nPowered by\nPrivacy Policy\nCopyright\nTerms and conditions\nDigital Accessibility\
+    \ Statement\n                    2025 U.ae\nAll rights reserved"
 doc_files:
 - ae/raw/阿联酋央行《储值设施法规》（UAE Central Bank SVF说明）.html
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：ae/raw/阿联酋央行《储值设施法规》（UAE Central Bank SVF说明）.html (html, 6184 chars)，生成 2 条共 6184 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：ae/raw/阿联酋央行《储值设施法规》（UAE Central Bank SVF说明）.html (html, 6184 chars)，生成 2 条共 6184 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：ae/raw/阿联酋央行《储值设施法规》（UAE Central Bank SVF说明）.html (html, 6184 chars)，生成 2 条共 6184 字符；解析文本未人工复核，引用以官方原件为准。'

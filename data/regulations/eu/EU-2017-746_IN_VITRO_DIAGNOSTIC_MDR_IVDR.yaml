@@ -9,11 +9,1131 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'L_2017117EN.01017601.xml
+
+
+    5.5.2017
+
+
+    EN
+
+
+    Official Journal of '
+  text: 'L_2017117EN.01017601.xml
+
+
+    5.5.2017
+
+
+    EN
+
+
+    Official Journal of the European Union
+
+
+    L 117/176
+
+
+    REGULATION (EU) 2017/746 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL
+
+
+
+    of 5 April 2017
+
+
+
+    on
+
+    in vitro
+
+    diagnostic medical devices and repealing Directive 98/79/EC and Commission Decision 2010/227/EU
+
+
+    (Text with EEA relevance)
+
+
+    THE EUROPEAN PARLIAMENT AND THE COUNCIL OF THE EUROPEAN UNION,
+
+
+    Having regard to the Treaty on the Functioning of the European Union, and in particular Article 114 and Article 168(4)(c) thereof,
+
+
+    Having regard to the proposal from the European Commission,
+
+
+    After transmission of the draft legislative act to the national parliaments,
+
+
+    Having regard to the opinion of the European Economic and Social Committee
+
+    (
+
+    1
+
+    )
+
+    ,
+
+
+    After consulting the Committee of the Regions,
+
+
+    Acting in accordance with the ordinary legislative procedure
+
+    (
+
+    2
+
+    )
+
+    ,
+
+
+    Whereas:
+
+
+    (1)
+
+
+    Directive 98/79/EC of the European Parliament and of the Council
+
+    (
+
+    3
+
+    )
+
+    constitutes the Union regulatory framework for
+
+    in vitro
+
+    diagnostic medical devices. However, a fundamental revision of that Directive is needed to establish a robust, transparent, predictable and sustainable regulatory framework for
+
+    in vitro
+
+    diagnostic medical devices which ensures a high level of safety and health whilst supporting innovation.
+
+
+    (2)
+
+
+    This Regulation aims to ensure the smooth functioning of the internal market as regards
+
+    in vitro
+
+    diagnostic medical devices, taking as a base a high level of protection of health for patients and users, and taking into account the small and medium-sized enterprises that are active in this sector.
+    At the same time, this Regulation sets high standards of quality and safety for
+
+    in vitro
+
+    diagnostic medical devices in order to meet common safety concerns as regards such products. Both objectives are being pursued simultaneously and are inseparably linked whilst one not being secondary
+    to the other. As regards Article 114 of the Treaty on the Functioning of the European Union (TFEU), this Regulation harmonises the rules for the placing on the market and putting into service of
+
+    in vitro
+
+    diagnostic medical devices and their accessories on the Union market thus allowing them to benefit from the principle of free movement of goods. As regards Article 168(4)(c) TFEU, this Regulation sets
+    high standards of quality and safety for
+
+    in vitro
+
+    diagnostic medical devices by ensuring, among other things, that data generated in performance studies are reliable and robust and that the safety of subjects participating in performance studies is
+    protected.
+
+
+    (3)
+
+
+    This Regulation does not seek to harmonise rules relating to the further making available on the market of
+
+    in vitro
+
+    diagnostic medical devices after they have already been put into service, such as in the context of second-hand sales.
+
+
+    (4)
+
+
+    Key elements of the existing regulatory approach, such as the supervision of notified bodies, risk classification, conformity assessment procedures, performance evaluation and performance studies, vigilance
+    and market surveillance should be significantly reinforced, whilst provisions ensuring transparency and traceability regarding
+
+    in vitro
+
+    diagnostic medical devices should be introduced, to improve health and safety.
+
+
+    (5)
+
+
+    To the extent possible, guidance developed for
+
+    in vitro
+
+    diagnostic medical devices at international level, in particular in the context of the Global Harmonization Task Force and its follow-up initiative, the International Medical Devices Regulators Forum,
+    should be taken into account to promote the global convergence of regulations which contributes to a high level of safety protection worldwide, and to facilitate trade, in particular in the provisions
+    on Unique Device Identification, general safety and performance requirements, technical documentation, classification rules, conformity assessment procedures and clinical evidence.
+
+
+    (6)
+
+
+    There are specific features of
+
+    in vitro
+
+    diagnostic medical devices, in particular in terms of risk classification, conformity assessment procedures and clinical evidence, and of the
+
+    in vitro
+
+    diagnostic medical device sector which require the adoption of specific legislation, distinct from the legislation on other medical devices, whereas the horizontal aspects common to both sectors should
+    be aligned.
+
+
+    (7)
+
+
+    The scope of application of this Regulation should be clearly delimited from other legislation concerning products, such as medical devices, general laboratory products and products for research use
+    only.
+
+
+    (8)
+
+
+    It should be the responsibility of the Member States to decide on a case-by-case basis whether or not a product falls within the scope of this Regulation. In order to ensure consistent qualification
+    decisions in that regard across all Member States, particularly with regard to borderline cases, the Commission should be allowed to, on its own initiative or at the duly substantiated request of a
+    Member State, having consulted the Medical Device Coordination Group (‘MDCG’), decide on a case-by-case basis whether or not a specific product, category or group of products falls within the scope
+    of this Regulation. When deliberating on the regulatory status of products in borderline cases involving medicinal products, human tissues and cells, biocidal products or food products, the Commission
+    should ensure an appropriate level of consultation of the European Medicines Agency, the European Chemicals Agency and the European Food Safety Authority, as relevant.
+
+
+    (9)
+
+
+    It appears that it is possible that divergent national rules regarding the provision of information and counselling in relation to genetic testing might only have an impact on the smooth functioning
+    of the internal market to a limited extent. Therefore, it is appropriate to lay down only limited requirements in this regard in this Regulation, having regard to the need to ensure constant respect
+    of the principles of proportionality and subsidiarity.
+
+
+    (10)
+
+
+    It should be made clear that all tests that provide information on the predisposition to a medical condition or a disease, such as genetic tests, and tests that provide information to predict treatment
+    response or reactions, such as companion diagnostics, are
+
+    in vitro
+
+    diagnostic medical devices.
+
+
+    (11)
+
+
+    Companion diagnostics are essential for defining patients'' eligibility for specific treatment with a medicinal product through the quantitative or qualitative determination of specific markers identifying
+    subjects at a higher risk of developing an adverse reaction to the medicinal product in question or identifying patients in the population for whom the therapeutic product has been adequately studied,
+    and found safe and effective. Such biomarker or biomarkers can be present in healthy subjects and/or in patients.
+
+
+    (12)
+
+
+    Devices that are used with a view to monitoring treatment with a medicinal product in order to ensure that the concentration of relevant substances in the human body is within the therapeutic window
+    are not considered to be companion diagnostics.
+
+
+    (13)
+
+
+    The requirement to reduce risks as far as possible should be fulfilled taking into account the generally acknowledged state of the art in the field of medicine.
+
+
+    (14)
+
+
+    Safety aspects addressed by Directive 2014/30/EU of the European Parliament and of the Council
+
+    (
+
+    4
+
+    )
+
+    are an integral part of the general safety and performance requirements laid down in this Regulation for devices. Consequently, this Regulation should be considered a
+
+    lex specialis
+
+    in relation to that Directive.
+
+
+    (15)
+
+
+    This Regulation should include requirements regarding the design and manufacture of devices emitting ionizing radiation without affecting the application of Council Directive 2013/59/Euratom
+
+    (
+
+    5
+
+    )
+
+    which pursues other objectives.
+
+
+    (16)
+
+
+    This Regulation should include requirements for devices'' safety and performance characteristics which are developed in such a way as to prevent occupational injuries, including protection from radiation.
+
+
+    (17)
+
+
+    It is necessary to clarify that software in its own right, when specifically intended by the manufacturer to be used for one or more of the medical purposes set out in the definition of an
+
+    in vitro
+
+    diagnostic medical device, qualifies as an
+
+    in vitro
+
+    diagnostic medical device, while software for general purposes, even when used in a healthcare setting, or software intended for well-being purposes is not an
+
+    in vitro
+
+    diagnostic medical device. The qualification of software, either as a device or an accessory, is independent of the software''s location or the type of interconnection between the software and a device.
+
+
+    (18)
+
+
+    The definitions in this Regulation regarding the devices themselves, the making available of devices, economic operators, users and specific processes, the conformity assessment, clinical evidence,
+    post-market surveillance, vigilance and market surveillance, standards and other technical specifications, should be aligned with well-established practice in the field at Union and international level
+    in order to enhance legal certainty.
+
+
+    (19)
+
+
+    It should be made clear that it is essential that devices offered to persons in the Union by means of information society services within the meaning of Directive (EU) 2015/1535 of the European Parliament
+    and of the Council
+
+    (
+
+    6
+
+    )
+
+    and devices used in the context of a commercial activity to provide a diagnostic or therapeutic service to persons within the Union comply with the requirements of this Regulation, where the product
+    in question is placed on the market or the service is provided in the Union.
+
+
+    (20)
+
+
+    To recognise the important role of standardisation in the field of
+
+    in vitro
+
+    diagnostic medical devices, compliance with harmonised standards as defined in Regulation (EU) No 1025/2012 of the European Parliament and of the Council
+
+    (
+
+    7
+
+    )
+
+    should be a means for manufacturers to demonstrate conformity with the general safety and performance requirements and other legal requirements, such as those relating to quality and risk management,
+    laid down in this Regulation.
+
+
+    (21)
+
+
+    Directive 98/79/EC allows the Commission to adopt common technical specifications for specific categories of
+
+    in vitro
+
+    diagnostic medical devices. In areas where no harmonised standards exist or where they are insufficient, the Commission should be empowered to lay down common specifications which provide a means of
+    complying with the general safety and performance requirements and the requirements for performance studies and performance evaluation and/or post-market follow-up, laid down in this Regulation.
+
+
+    (22)
+
+
+    Common specifications (‘CS’) should be developed after consulting the relevant stakeholders and taking account of the European and international standards.
+
+
+    (23)
+
+
+    The rules applicable to devices should be aligned, where appropriate, with the New Legislative Framework for the Marketing of Products, which consists of Regulation (EC) No 765/2008 of the European
+    Parliament and of the Council
+
+    (
+
+    8
+
+    )
+
+    and Decision No 768/2008/EC of the European Parliament and of the Council
+
+    (
+
+    9
+
+    )
+
+    .
+
+
+    (24)
+
+
+    The rules on Union market surveillance and control of products entering the Union market laid down in Regulation (EC) No 765/2008 apply to devices covered by this Regulation which does not prevent Member
+    States from choosing the competent authorities to carry out those tasks.
+
+
+    (25)
+
+
+    It is appropriate to set out clearly the general obligations of the different economic operators, including importers and distributors, building on the New Legislative Framework for the Marketing of
+    Products, without prejudice to the specific obligations laid down in the various parts of this Regulation, to enhance understanding of the requirements laid down in this Regulation and thus to improve
+    regulatory compliance by the relevant operators.
+
+
+    (26)
+
+
+    For the purpose of this Regulation, the activities of distributors should be deemed to include acquisition, holding and supplying of devices.
+
+
+    (27)
+
+
+    Several of the obligations on manufacturers, such as performance evaluation or vigilance reporting, that were s'
+- id: art-2
+  title: CHAPTER I
+  text: 'CHAPTER I
+
+
+    INTRODUCTORY PROVISIONS'
+- id: art-3
+  title: Section 1
+  text: 'Section 1
+
+
+    Scope and definitions'
+- id: art-4
+  title: Article 1
+  text: 'Article 1
+
+
+    Subject matter and scope
+
+
+    1.   This Regulation lays down rules concerning the placing on the market, making available on the market or putting into service of
+
+    in vitro
+
+    diagnostic medical devices for human use and accessories for such devices in the Union. This Regulation also applies to performance studies concerning such
+
+    in vitro
+
+    diagnostic medical devices and accessories conducted in the Union.
+
+
+    2.   For the purposes of this Regulation,
+
+    in vitro
+
+    diagnostic medical devices and accessories for
+
+    in vitro
+
+    diagnostic medical devices shall hereinafter be referred to as ‘devices’.
+
+
+    3.   This Regulation does not apply to:
+
+
+    (a)
+
+
+    products for general laboratory use or research-use only products, unless such products, in view of their characteristics, are specifically intended by their manufacturer to be used for
+
+    in vitro
+
+    diagnostic examination;
+
+
+    (b)
+
+
+    invasive sampling products or products which are directly applied to the human body for the purpose of obtaining a specimen;
+
+
+    (c)
+
+
+    internationally certified reference materials;
+
+
+    (d)
+
+
+    materials used for external quality assessment schemes.
+
+
+    4.   Any device which, when placed on the market or put into service, incorporates, as an integral part, a medical device as defined in point 1 of Article 2 of Regulation (EU) 2017/745 shall be governed
+    by that Regulation. The requirements of this Regulation shall apply to the
+
+    in vitro
+
+    diagnostic medical device part.
+
+
+    5.   This Regulation is specific Union legislation within the meaning of Article 2(3) of Directive 2014/30/EU.
+
+
+    6.   Devices which are also machinery within the meaning of point (a) of the second paragraph of Article 2 of Directive 2006/42/EC of the European Parliament and of the Council
+
+    (
+
+    22
+
+    )
+
+    shall, where a hazard relevant under that Directive exists, also meet the essential health and safety requirements set out in Annex I to that Directive to the extent to which those requirements are
+    more specific than the general safety and performance requirements set out in Chapter II of Annex I to this Regulation.
+
+
+    7.   This Regulation shall not affect the application of Directive 2013/59/Euratom.
+
+
+    8.   This Regulation shall not affect the right of a Member State to restrict the use of any specific type of device in relation to aspects not covered by this Regulation.
+
+
+    9.   This Regulation shall not affect national law concerning the organisation, delivery or financing of health services and medical care, such as the requirement that certain devices may only be supplied
+    on a medical prescription, the requirement that only certain health professionals or health care institutions may dispense or use certain devices or that their use be accompanied by specific professional
+    counselling.
+
+
+    10.   Nothing in this Regulation shall restrict the freedom of the press or the freedom of expression in the media in so far as those freedoms are guaranteed in the Union and in the Member States, in
+    particular under Article 11 of the Charter of Fundamental Rights of the European Union.'
+- id: art-5
+  title: Article 2
+  text: 'Article 2
+
+
+    Definitions
+
+
+    For the purposes of this Regulation, the following definitions apply:
+
+
+    (1)
+
+
+    ‘medical device’ means ‘medical device’ as defined in point (1) of Article 2 of Regulation (EU) 2017/745;
+
+
+    (2)
+
+
+    ‘
+
+    in vitro
+
+    diagnostic medical device’ means any medical device which is a reagent, reagent product, calibrator, control material, kit, instrument, apparatus, piece of equipment, software or system, whether used
+    alone or in combination, intended by the manufacturer to be used
+
+    in vitro
+
+    for the examination of specimens, including blood and tissue donations, derived from the human body, solely or principally for the purpose of providing information on one or more of the following:
+
+
+    (a)
+
+
+    concerning a physiological or pathological process or state;
+
+
+    (b)
+
+
+    concerning congenital physical or mental impairments;
+
+
+    (c)
+
+
+    concerning the predisposition to a medical condition or a disease;
+
+
+    (d)
+
+
+    to determine the safety and compatibility with potential recipients;
+
+
+    (e)
+
+
+    to predict treatment response or reactions;
+
+
+    (f)
+
+
+    to define or monitoring therapeutic measures.
+
+
+    Specimen receptacles shall also be deemed to be
+
+    in vitro
+
+    diagnostic medical devices;
+
+
+    (3)
+
+
+    ‘specimen receptacle’ means a device, whether of a vacuum-type or not, specifically intended by its manufacturer for the primary containment and preservation of specimens derived from the human body
+    for the purpose of
+
+    in vitro
+
+    diagnostic examination;
+
+
+    (4)
+
+
+    ‘accessory for an
+
+    in vitro
+
+    diagnostic medical device’ means an article which, whilst not being itself an
+
+    in vitro
+
+    diagnostic medical device, is intended by its manufacturer to be used together with one or several particular
+
+    in vitro
+
+    diagnostic medical device(s) to specifically enable the
+
+    in vitro
+
+    diagnostic medical device(s) to be used in accordance with its/their intended purpose(s) or to specifically and directly assist the medical functionality of the
+
+    in vitro
+
+    diagnostic medical device(s) in terms of its/their intended purpose(s);
+
+
+    (5)
+
+
+    ‘device for self-testing’ means any device intended by the manufacturer to be used by lay persons, including devices used for testing services offered to lay persons by means of information society
+    services;
+
+
+    (6)
+
+
+    ‘device for near-patient testing’ means any device that is not intended for self-testing but is intended to perform testing outside a laboratory environment, generally near to, or at the side of, the
+    patient by a health professional;
+
+
+    (7)
+
+
+    ‘companion diagnostic’ means a device which is essential for the safe and effective use of a corresponding medicinal product to:
+
+
+    (a)
+
+
+    identify, before and/or during treatment, patients who are most likely to benefit from the corresponding medicinal product; or
+
+
+    (b)
+
+
+    identify, before and/or during treatment, patients likely to be at increased risk of serious adverse reactions as a result of treatment with the corresponding medicinal product;
+
+
+    (8)
+
+
+    ‘generic device group’ means a set of devices having the same or similar intended purposes or a commonality of technology allowing them to be classified in a generic manner not reflecting specific characteristics;
+
+
+    (9)
+
+
+    ‘single-use device’ means a device that is intended to be used during a single procedure;
+
+
+    (10)
+
+
+    ‘falsified device’ means any device with a false presentation of its identity and/or of its source and/or its CE marking certificates or documents relating to CE marking procedures. This definition
+    does not include unintentional non-compliance and is without prejudice to infringements of intellectual property rights;
+
+
+    (11)
+
+
+    ‘kit’ means a set of components that are packaged together and intended to be used to perform a specific
+
+    in vitro
+
+    diagnostic examination, or a part thereof;
+
+
+    (12)
+
+
+    ‘intended purpose’ means the use for which a device is intended according to the data supplied by the manufacturer on the label, in the instructions for use or in promotional or sales materials or statements
+    or as specified by the manufacturer in the performance evaluation;
+
+
+    (13)
+
+
+    ‘label’ means the written, printed or graphic information appearing either on the device itself, or on the packaging of each unit or on the packaging of multiple devices;
+
+
+    (14)
+
+
+    ‘instructions for use’ means the information provided by the manufacturer to inform the user of a device''s intended purpose and proper use and of any precautions to be taken;
+
+
+    (15)
+
+
+    ‘Unique Device Identifier’ (‘UDI’) means a series of numeric or alphanumeric characters that is created through internationally accepted device identification and coding standards and that allows unambiguous
+    identification of specific devices on the market;
+
+
+    (16)
+
+
+    ‘risk’ means the combination of the probability of occurrence of harm and the severity of that harm;
+
+
+    (17)
+
+
+    ‘benefit-risk determination’ means the analysis of all assessments of benefit and risk of possible relevance for the use of the device for the intended purpose, when used in accordance with the intended
+    purpose given by the manufacturer;
+
+
+    (18)
+
+
+    ‘compatibility’ is the ability of a device, including software, when used together with one or more other devices in accordance with its intended purpose, to:
+
+
+    (a)
+
+
+    perform without losing or compromising the ability to perform as intended, and/or
+
+
+    (b)
+
+
+    integrate and/or operate without the need for modification or adaption of any part of the combined devices, and/or
+
+
+    (c)
+
+
+    be used together without conflict/interference or adverse reaction;
+
+
+    (19)
+
+
+    ‘interoperability’ is the ability of two or more devices, including software, from the same manufacturer or from different manufacturers, to:
+
+
+    (a)
+
+
+    exchange information and use the information that has been exchanged for the correct execution of a specified function without changing the content of the data, and/or
+
+
+    (b)
+
+
+    communicate with each other, and/or
+
+
+    (c)
+
+
+    work together as intended;
+
+
+    (20)
+
+
+    ‘making available on the market’ means any supply of a device, other than a device for performance study, for distribution, consumption or use on the Union market in the course of a commercial activity,
+    whether in return for payment or free of charge;
+
+
+    (21)
+
+
+    ‘placing on the market’ means the first making available of a device, other than a device for performance study, on the Union market;
+
+
+    (22)
+
+
+    ‘putting into service’ means the stage at which a device, other than a device for performance study, has been made available to the final user as being ready for use on the Union market for the first
+    time for its intended purpose;
+
+
+    (23)
+
+
+    ‘manufacturer’ means a natural or legal person who manufactures or fully refurbishes a device or has a device designed, manufactured or fully refurbished, and markets that device under its name or trade
+    mark;
+
+
+    (24)
+
+
+    ‘fully refurbishing’, for the purposes of the definition of manufacturer, means the complete rebuilding of a device already placed on the market or put into service, or the making of a new device from
+    used devices, to bring it into conformity with this Regulation, combined with the assignment of a new lifetime to the refurbished device;
+
+
+    (25)
+
+
+    ‘authorised representative’ means any natural or legal person established within the Union who has received and accepted a written mandate from a manufacturer, located outside the Union, to act on the
+    manufacturer''s behalf in relation to specified tasks with regard to the latter''s obligations under this Regulation;
+
+
+    (26)
+
+
+    ‘importer’ means any natural or legal person established within the Union that places a device from a third country on the Union market;
+
+
+    (27)
+
+
+    ‘distributor’ means any natural or legal person in the supply chain, other than the manufacturer or the importer, that makes a device available on the market, up until the point of putting into service;
+
+
+    (28)
+
+
+    ‘economic operator’ means a manufacturer, an authorised representative, an importer or a distributor;
+
+
+    (29)
+
+
+    ‘health institution’ means an organisation the primary purpose of which is the care or treatment of patients or the promotion of public health;
+
+
+    (30)
+
+
+    ‘user’ means any healthcare professional or lay person who uses a device;
+
+
+    (31)
+
+
+    ‘lay person’ means an individual who does not have formal education in a relevant field of healthcare or medical discipline;
+
+
+    (32)
+
+
+    ‘conformity assessment’ means the process demonstrating whether the requirements of this Regulation relating to a device have been fulfilled;
+
+
+    (33)
+
+
+    ‘conformity assessment body’ means a body that performs third-party conformity assessment activities including calibration, testing, certification and inspection;
+
+
+    (34)
+
+
+    ‘notified body’ means a conformity assessment body designated in accordance with this Regulation;
+
+
+    (35)
+
+
+    ‘CE marking of conformity’ or ‘CE marking’ means a marking by which a manufacturer indicates that a device is in conformity with the applicable requirements set out in this Regulation and other applicable
+    Union harmonisation legislation providing for its affixing;
+
+
+    (36)
+
+
+    ‘clinical evidence’ means clinical data and performance evaluation results, pertaining to a device of a sufficient amount and quality to allow a qualified assessment of whether the device is safe and
+    achieves the intended clinical benefit(s), when used as intended by the manufacturer;
+
+
+    (37)
+
+
+    ‘clinical benefit’ means the positive impact of a device related to its function, such as that of screening, monitoring, diagnosis or aid to diagnosis of patients, or a positive impact on patient management
+    or public health;
+
+
+    (38)
+
+
+    ‘scientific validity of an analyte’ means the association of an analyte with a clinical condition or a physiological state;
+
+
+    (39)
+
+
+    ‘performance of a device’ means the ability of a device to achieve its intended purpose as claimed by the manufacturer. It consists of the analytical and, where applicable, the clinical performance
+    supporting that intended purpose;
+
+
+    (40)
+
+
+    ‘analytical performance’ means the ability of a device to correctly detect or measure a particular analyte;
+
+
+    (41)
+
+
+    ‘clinical performance’ means the ability of a device to yield results that are correlated with a particular clinical condition or a physiological or pathological process or state in accordance with
+    the target population and intended user;
+
+
+    (42)
+
+
+    ‘performance study’ means a study undertaken to establish or confirm the analytical or clinical performance of a device;
+
+
+    (43)
+
+
+    ‘performance study plan’ means a document that describes the rationale, objectives, design methodology, monitoring, statistical considerations, organisation and conduct of a performance study;
+
+
+    (44)
+
+
+    ‘performance evaluation’ means an assessment and analysis of data to establish or verify the scientific validity, the analytical and, where applicable, the clinical performance of a device;
+
+
+    (45)
+
+
+    ‘device for performance study’ means a device intended by the manufacturer to be used in a performance study.
+
+
+    A device intended to be used for research purposes, without any medical objective, shall not be deemed to be a device for performance study;
+
+
+    (46)
+
+
+    ‘interventional clinical performance study’ means a clinical performance study where the test results may influence patient management decisions and/or may be used to guide treatment;
+
+
+    (47)
+
+
+    ‘subject’ means an individual who participates in a performance study and whose specimen(s) undergo
+
+    in vitro
+
+    examination by a device for performance study and/or by a device used for control purposes;
+
+
+    (48)
+
+
+    ‘investigator’ means an individual responsible for the conduct of a performance study at a performance study site;
+
+
+    (49)
+
+
+    ‘diagnostic specificity’ means the ability of a device to recognise the absence of a target marker associated with a particular disease or condition;
+
+
+    (50)
+
+
+    ‘diagnostic sensitivity’ means the ability of a device to identify the presence of a target marker associated with a particular disease or condition;
+
+
+    (51)
+
+
+    ‘predictive value’ means the probability that a person with a positive device test result has a given condition under investigation, or that a person with a negative device test result does not have
+    a given condition;
+
+
+    (52)
+
+
+    ‘positive predictive value’ means the ability of a device to separa'
+- id: art-6
+  title: Section 2
+  text: 'Section 2
+
+
+    Regulatory status of products and counselling'
+- id: art-7
+  title: Article 3
+  text: 'Article 3
+
+
+    Regulatory status of products
+
+
+    1.   Upon a duly substantiated request of a Member State, the Commission shall, after consulting the Medical Device Coordination Group established under Article 103 of Regulation (EU) 2017/745 (MDCG),
+    by means of implementing acts, determine whether or not a specific product, or category or group of products, falls within the definitions of ‘
+
+    in vitro
+
+    diagnostic medical device’ or ‘accessory for an
+
+    in vitro
+
+    diagnostic medical device’. Those implementing acts shall be adopted in accordance with the examination procedure referred to in Article 107(3) of this Regulation.
+
+
+    2.   The Commission may also, on its own initiative, after consulting the MDCG, decide, by means of implementing acts, on the issues referred to in paragraph 1 of this Article. Those implementing acts
+    shall be adopted in accordance with the examination procedure referred to in Article 107(3).
+
+
+    3.   The Commission shall ensure that Member States share expertise in the fields of
+
+    in vitro
+
+    diagnostic medical devices, medical devices, medicinal products, human tissues and cells, cosmetics, biocides, food and, if necessary, other products, in order to determine the appropriate regulatory
+    status of a product, or category or group of products.
+
+
+    4.   When deliberating on the possible regulatory status as a device of products involving medicinal products, human tissues and cells, biocides or food products, the Commission shall ensure an appropriate
+    level of consultation of the European Medicines Agency (EMA), the European Chemicals Agency and the European Food Safety Authority, as relevant.'
+- id: art-8
+  title: Article 4
+  text: 'Article 4
+
+
+    Genetic information, counselling and informed consent
+
+
+    1.   Member States shall ensure that where a genetic test is used on individuals, in the context of healthcare as defined in point (a) of Article 3 of Directive 2011/24/EU of the European Parliament
+    and of the Council
+
+    (
+
+    23
+
+    )
+
+    and for the medical purposes of diagnostics, improvement of treatment, predictive or prenatal testing, the individual being tested or, where applicable, his or her legally designated representative
+    is provided with relevant information on the nature, the significance and the implications of the genetic test, as appropriate.
+
+
+    2.   In the context of the obligations referred to in paragraph 1, Member States shall, in particular, ensure that there is appropriate access to counselling in the case of the use of genetic tests
+    that provide information on the genetic predisposition for medical conditions and/or diseases which are generally considered to be untreatable according to the state of science and technology.
+
+
+    3.   Paragraph 2 shall not apply in cases where a diagnosis of a medical condition and/or a disease which the individual being tested is already known to have is confirmed by a genetic test or in cases
+    where a companion diagnostic is used.
+
+
+    4.   Nothing in this Article shall prevent Member States from adopting or maintaining measures at national level which are more protective of patients, more specific or which deal with informed consent.'
+- id: art-9
+  title: CHAPTER II
+  text: 'CHAPTER II
+
+
+    MAKING AVAILABLE ON THE MARKET AND PUTTING INTO SERVICE OF DEVICES, OBLIGATIONS OF ECONOMIC OPERATORS, CE MARKING, FREE MOVEMENT'
+- id: art-10
+  title: Article 5
+  text: 'Article 5
+
+
+    Placing on the market and putting into service
+
+
+    1.   A device may be placed on the market or put into service only if it complies with this Regulation when duly supplied and properly installed, maintained and used in accordance with its intended
+    purpose.
+
+
+    2.   A device shall meet the general safety and performance requirements set out in Annex I which apply to it, taking into account its intended purpose.
+
+
+    3.   Demonstration of conformity with the general safety and performance requirements shall include a performance evaluation in accordance with Article 56.
+
+
+    4.   Devices that are manufactured and used within health institutions, with the exception of devices for performance studies, shall be considered as having been put into service.
+
+
+    5.   With the exception of the relevant general safety and performance requirements set out in Annex I, the requirements of this Regulation shall not apply to devices manufactured and used only within
+    health institutions established in the Union, provided that all of the following conditions are met:
+
+
+    (a)
+
+
+    the devices are not transferred to another legal entity;
+
+
+    (b)
+
+
+    manufacture and use of the devices occur under appropriate quality management systems;
+
+
+    (c)
+
+
+    the laboratory of the health institution is compliant with standard EN ISO 15189 or where applicable national provisions, including national provisions regarding accreditation;
+
+
+    (d)
+
+
+    the health institution justifies in its documentation that the target patient group''s specific needs cannot be met, or cannot be met at the appropriate level of performance by an equivalent device
+    available on the market;
+
+
+    (e)
+
+
+    the health institution provid'
 doc_files:
 - eu/raw/EU-2017-746_In_Vitro_Diagnostic_MDR_IVDR.xhtml
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2017-746_In_Vitro_Diagnostic_MDR_IVDR.xhtml (html, 562982 chars)，生成 7 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2017-746_In_Vitro_Diagnostic_MDR_IVDR.xhtml (html, 562982 chars)，生成 7 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2017-746_In_Vitro_Diagnostic_MDR_IVDR.xhtml (html, 562846 chars)，生成 10 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

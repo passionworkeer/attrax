@@ -9,11 +9,712 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'ETSI EN 301 908-20
+
+    V6.3.1
+
+    (2016-05)
+
+    HARMONISED EUROPEAN STAN'
+  text: 'ETSI EN 301 908-20
+
+    V6.3.1
+
+    (2016-05)
+
+    HARMONISED EUROPEAN STANDARD
+
+    IMT cellular networks;
+
+    Harmonised Standard covering the essential requirements
+
+    of article 3.2 of the Directive 2014/53/EU;
+
+    Part 20: OFDMA TDD WMAN (Mobile WiMAXTM)
+
+    TDD Base Stations (BS)
+
+    2 ETSI EN 301 908-20 V6.3.1 (2016-05)
+
+    Reference
+
+    REN/MSG-TFES-11-20-RED
+
+    Keywords
+
+    broadband, IMT, IMT-2000, mobile, OFDMA,
+
+    radio, regulation, TDD, WiMAX, WMAN
+
+    ETSI
+
+    650 Route des Lucioles
+
+    F-06921 Sophia Antipolis Cedex - FRANCE
+
+    Tel.: +33 4 92 94 42 00 Fax: +33 4 93 65 47 16
+
+    Siret N° 348 623 562 00017 - NAF 742 C
+
+    Association à but non lucratif enregistrée à la
+
+    Sous-Préfecture de Grasse (06) N° 7803/88
+
+    Important notice
+
+    The present document can be downloaded from:
+
+    http://www.etsi.org/standards-search
+
+    The present document may be made available in electronic versions and/or in print. The content of any electronic and/or
+
+    print versions of the present document shall not be modified without the prior written authorization of ETSI. In case of any
+
+    existing or perceived difference in contents between such versions and/or in print, the only prevailing document is the
+
+    print of the Portable Document Format (PDF) version kept on a specific network drive within ETSI Secretariat.
+
+    Users of the present document should be aware that the document may be subject to revision or change of status.
+
+    Information on the current status of this and other ETSI documents is available at
+
+    https://portal.etsi.org/TB/ETSIDeliverableStatus.aspx
+
+    If you find errors in the present document, please send your comment to one of the following services:
+
+    https://portal.etsi.org/People/CommiteeSupportStaff.aspx
+
+    Copyright Notification
+
+    No part may be reproduced or utilized in any form or by any means, electronic or mechanical, including photocopying
+
+    and microfilm except as authorized by written permission of ETSI.
+
+    The content of the PDF version shall not be modified without the written authorization of ETSI.
+
+    The copyright and the foregoing restriction extend to reproduction in all media.
+
+    © European Telecommunications Standards Institute 2016.
+
+    All rights reserved.
+
+    DECTTM, PLUGTESTSTM, UMTSTM and the ETSI logo are Trade Marks of ETSI registered for the benefit of its Members.
+
+    3GPPTM and LTE™ are Trade Marks of ETSI registered for the benefit of its Members and
+
+    of the 3GPP Organizational Partners.
+
+    GSM® and the GSM logo are Trade Marks registered and owned by the GSM Association.
+
+    ETSI
+
+    3 ETSI EN 301 908-20 V6.3.1 (2016-05)
+
+    Contents
+
+    Intellectual Property Rights ................................................................................................................................ 6
+
+    Foreword ............................................................................................................................................................. 6
+
+    Modal verbs terminology .................................................................................................................................... 6
+
+    Introduction ........................................................................................................................................................ 6
+
+    1 Scope ........................................................................................................................................................ 7
+
+    2 References ................................................................................................................................................ 7
+
+    2.1 Normative references ......................................................................................................................................... 7
+
+    2.2 Informative references ........................................................................................................................................ 7
+
+    3 Definitions, symbols and abbreviations ................................................................................................... 8
+
+    3.1 Definitions .......................................................................................................................................................... 8
+
+    3.2 Symbols .............................................................................................................................................................. 9
+
+    3.3 Abbreviations ..................................................................................................................................................... 9
+
+    4 Technical requirements specification ..................................................................................................... 10
+
+    4.1 Environmental profile ....................................................................................................................................... 10
+
+    4.2 Conformance requirements .............................................................................................................................. 10
+
+    4.2.1 Introduction................................................................................................................................................. 10
+
+    4.2.2 Transmitter Spectrum Emission Mask ........................................................................................................ 11
+
+    4.2.2.1 Definition .............................................................................................................................................. 11
+
+    4.2.2.2 Limits .................................................................................................................................................... 11
+
+    4.2.2.2.1 Spectrum emission mask for 5 MHz channel bandwidth - BCI 1.B and 3.A .................................. 11
+
+    4.2.2.2.2 Spectrum emission mask for 10 MHz channel bandwidth - BCI 1.B and 3.A ................................ 11
+
+    4.2.2.2.3 Spectrum emission mask for BCI 5L.A, 5L.C, 5H.A and 5H.C ...................................................... 11
+
+    4.2.2.3 Conformance ......................................................................................................................................... 12
+
+    4.2.3 Transmitter Adjacent Channel Leakage power Ratio (ACLR) ................................................................... 12
+
+    4.2.3.1 Definition .............................................................................................................................................. 12
+
+    4.2.3.2 Limits .................................................................................................................................................... 12
+
+    4.2.3.2.1 ACLR requirements for 5 MHz channel bandwidth ........................................................................ 12
+
+    4.2.3.2.2 ACLR requirements for 10 MHz channel bandwidth ...................................................................... 13
+
+    4.2.3.3 Conformance ......................................................................................................................................... 13
+
+    4.2.4 Transmitter spurious emissions ................................................................................................................... 13
+
+    4.2.4.1 Definition .............................................................................................................................................. 13
+
+    4.2.4.2 Limits .................................................................................................................................................... 13
+
+    4.2.4.2.1 General requirements ....................................................................................................................... 13
+
+    4.2.4.2.2 Additional Spurious Emission Requirements .................................................................................. 14
+
+    4.2.4.3 Conformance ......................................................................................................................................... 14
+
+    4.2.5 Base station maximum output power .......................................................................................................... 15
+
+    4.2.5.1 Definition .............................................................................................................................................. 15
+
+    4.2.5.2 Limits .................................................................................................................................................... 15
+
+    4.2.5.3 Conformance ......................................................................................................................................... 15
+
+    4.2.6 Transmit intermodulation ........................................................................................................................... 15
+
+    4.2.6.1 Definition .............................................................................................................................................. 15
+
+    4.2.6.2 Limits .................................................................................................................................................... 15
+
+    4.2.6.3 Conformance ......................................................................................................................................... 15
+
+    4.2.7 Receiver spurious emissions ....................................................................................................................... 15
+
+    4.2.7.1 Definition .............................................................................................................................................. 15
+
+    4.2.7.2 Limits .................................................................................................................................................... 16
+
+    4.2.7.3 Conformance ......................................................................................................................................... 16
+
+    4.2.8 Receiver blocking characteristics ............................................................................................................... 16
+
+    4.2.8.1 Definition .............................................................................................................................................. 16
+
+    4.2.8.2 Limits .................................................................................................................................................... 16
+
+    4.2.8.3 Conformance ......................................................................................................................................... 18
+
+    4.2.9 Receiver intermodulation characteristics .................................................................................................... 18
+
+    4.2.9.1 Definition .............................................................................................................................................. 18
+
+    4.2.9.2 Limits .................................................................................................................................................... 18
+
+    ETSI
+
+    4 ETSI EN 301 908-20 V6.3.1 (2016-05)
+
+    4.2.9.3 Conformance ......................................................................................................................................... 19
+
+    4.2.10 Receiver Adjacent Channel Selectivity....................................................................................................... 19
+
+    4.2.10.1 Definition .............................................................................................................................................. 19
+
+    4.2.10.2 Limits .................................................................................................................................................... 19
+
+    4.2.10.3 Conformance ......................................................................................................................................... 19
+
+    4.2.11 Receiver reference sensitivity level ............................................................................................................ 19
+
+    4.2.11.1 Definitio'
+- id: art-2
+  title: 'Annex C (informative): Void ................................................................................................................. 35'
+  text: 'Annex C (informative): Void ................................................................................................................. 35
+
+    Annex D (informative): Bibliography ................................................................................................... 36
+
+    History .............................................................................................................................................................. 37
+
+    ETSI
+
+    6 ETSI EN 301 908-20 V6.3.1 (2016-05)
+
+    Intellectual Property Rights
+
+    IPRs essential or potentially essential to the present document may have been declared to ETSI. The information
+
+    pertaining to these essential IPRs, if any, is publicly available for ETSI members and non-members, and can be found
+
+    in ETSI SR 000 314: "Intellectual Property Rights (IPRs); Essential, or potentially Essential, IPRs notified to ETSI in
+
+    respect of ETSI standards", which is available from the ETSI Secretariat. Latest updates are available on the ETSI Web
+
+    server (https://ipr.etsi.org/).
+
+    Pursuant to the ETSI IPR Policy, no investigation, including IPR searches, has been carried out by ETSI. No guarantee
+
+    can be given as to the existence of other IPRs not referenced in ETSI SR 000 314 (or the updates on the ETSI Web
+
+    server) which are, or may be, or may become, essential to the present document.
+
+    Foreword
+
+    This Harmonised European Standard (EN) has been produced by ETSI Technical Committee Mobile Standards Group
+
+    (MSG).
+
+    The present document has been prepared under the Commission''s standardisation request C(2015) 5376 final [i.8] to
+
+    provide one voluntary means of conforming to the essential requirements of Directive 2014/53/EU on the harmonisation
+
+    of the laws of the Member States relating to the making available on the market of radio equipment and repealing
+
+    Directive 1999/5/EC [i.2].
+
+    Once the present document is cited in the Official Journal of the European Union under that Directive, compliance with
+
+    the normative clauses of the present document given in table A-1 confers, within the limits of the scope of the present
+
+    document, a presumption of conformity with the corresponding essential requirements of that Directive, and associated
+
+    EFTA regulations.
+
+    The present document is part 20 of a multi-part deliverable. Full details of the entire series can be found in part 1 [i.9].
+
+    National transposition dates
+
+    Date of adoption of this EN: 20 April 2016
+
+    Date of latest announcement of this EN (doa): 31 July 2016
+
+    Date of latest publication of new National Standard
+
+    or endorsement of this EN (dop/e): 31 January 2017
+
+    Date of withdrawal of any conflicting National Standard (dow): 31 January 2018
+
+    Modal verbs terminology
+
+    In the present document "shall", "shall not", "should", "should not", "may", "need not", "will", "will not", "can" and
+
+    "cannot" are to be interpreted as described in clause 3.2 of the ETSI Drafting Rules (Verbal forms for the expression of
+
+    provisions).
+
+    "must" and "must not" are NOT allowed in ETSI deliverables except when used in direct citation.
+
+    Introduction
+
+    The present document is part of a set of standards developed by ETSI that are designed to fit in a modular structure to
+
+    cover radio equipment within the scope of the Radio Equipment Directive 2014/53/EU [i.2]. The present document is
+
+    produced following the guidance in ETSI EG 203 336 [i.3] as applicable.
+
+    ETSI
+
+    7 ETSI EN 301 908-20 V6.3.1 (2016-05)
+
+    1 Scope
+
+    The present document applies to the following radio equipment type:
+
+    • Base stations for IMT-2000 OFDMA TDD WMAN (Mobile WiMAXTM) operating in TDD mode.
+
+    This radio equipment type is capable of operating in all or any part of the frequency bands given in table 1-1.
+
+    Table 1-1: OFDMA TDD WMAN Base Station frequency bands
+
+    Mobile WiMAXTM Band IMT-2000 OFDMA TDD WMAN Channel Bandwidth; BW
+
+    Class Index service operating bands
+
+    1.B 2 300 MHz to 2 400 MHz 5 MHz and 10 MHz
+
+    3.A 2 500 MHz to 2 690 MHz 5 MHz and 10 MHz
+
+    5L.A 3 400 MHz to 3 600 MHz 5 MHz
+
+    5L.C 3 400 MHz to 3 600 MHz 10 MHz
+
+    5H.A 3 600 MHz to 3 800 MHz 5 MHz
+
+    5H.C 3 600 MHz to 3 800 MHz 10 MHz
+
+    The requirements in the present document apply to both Wide Area Base Stations and Local Area Base Stations unless
+
+    otherwise stated.
+
+    The present document contains requirements to demonstrate that radio equipment both effectively uses and supports the
+
+    efficient use of radio spectrum in order to avoid harmful interference.
+
+    In addition to the present document, other ENs that specify technical requirements in respect of essential requirements
+
+    under other parts of article 3 of the Radio Equipment Directive 2014/53/EU [i.2] may apply to equipment within the
+
+    scope of the present document.
+
+    NOTE: A list of such ENs is included on the web site http://www.newapproach.org.
+
+    2 References
+
+    2.1 Normative references
+
+    References are either specific (identified by date of publication and/or edition number or version number) or
+
+    non-specific. For specific references, only the cited version applies. For non-specific references, the latest version of the
+
+    referenced document (including any amendments) applies.
+
+    Referenced documents which are not found to be publicly available in the expected location might be found at
+
+    http://docbox.etsi.org/Reference.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    The following referenced documents are necessary for the application of the present document.
+
+    [1] WMF-T25-002-R010v06 (2012): "WiMAX Forum® Test Procedures - Mobile Radio
+
+    Conformance Tests" - Release 1 v0.6.
+
+    [2] CEPT/ERC/Recommendation 74-01E (Siófok 98, Nice 99, Sesimbra 02, Hradec Kralove 05,
+
+    Cardiff 11) (01-2011): "Unwanted emissions in the spurious domain".
+
+    2.2 Informative references
+
+    References are either specific (identified by date of publication and/or edition number or version number) or
+
+    non-specific. For specific references, only the cited version applies. For non-specific references, the latest version of the
+
+    referenced document (including any amendments) applies.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication, ETSI cannot guarantee
+
+    their long term validity.
+
+    ETSI
+
+    8 ETSI EN 301 908-20 V6.3.1 (2016-05)
+
+    The following referenced documents are not necessary for the application of the present document but they assist the
+
+    user with regard to a particular subject area.
+
+    [i.1] Recommendation ITU-R SM.329-12 (2012): "Unwanted emissions in the spurious domain".
+
+    [i.2] Directive 2014/53/EU of the European Parliament and of the Council of 16 April 2014 on the
+
+    harmonisation of the laws of the Member States relating to the making available on the market of
+
+    radio equipment and repealing Directive 1999/5/EC.
+
+    [i.3] ETSI EG 203 336 (V1.1.1) (2015): "Electromagnetic compatibility and Radio spectrum Matters
+
+    (ERM); Guide for the selection of technical parameters for the production of Harmonised
+
+    Standards covering article 3.1(b) and article 3.2 of Directive 2014/53/EU".
+
+    [i.4] ETSI TR 102 215 (V1.3.1): "Electromagnetic compatibility and Radio spectrum Matters (ERM);
+
+    Recommended approach, and possible limits for measurement uncertainty for the measurement of
+
+    radiated electromagnetic fields above 1 GHz".
+
+    [i.5] ETSI EN 300 019-1-0: "Environmental Engineering (EE); Environmental conditions and
+
+    environmental tests for telecommunications equipment; Part 1-0: Classification of environmental
+
+    conditions; Introduction".
+
+    [i.6] ETSI TR 100 028 (all parts) (V1.4.1): "Electromagnetic compatibility and Radio spectrum Matters
+
+    (ERM); Uncertainties in the measurement of mobile radio equipment characteristics".
+
+    [i.7] Void.
+
+    [i.8] Commission Implementing Decision C(2015) 5376 final of 4.8.2015 on a standardisation request
+
+    to the European Committee for Electrotechnical Standardisation and to the European
+
+    Telecommunications Standards Institute as regards radio equipment in support of Directive
+
+    2014/53/EU of the European Parliament and of the Council.
+
+    [i.9] ETSI EN 301 908-1 (V11.1.1): "IMT cellular networks; Harmonised Standard covering the
+
+    essential requirements of article 3.2 of the Directive 2014/53/EU; Part 1: Introduction and
+
+    common requirements".
+
+    3 Definitions, symbols and abbreviations
+
+    3.1 Definitions
+
+    For the purposes of the present document, the terms and definitions given in the Radio Equipment Directive
+
+    2014/53/EU [i.2] and the following apply:
+
+    burst: period during which radio waves are intentionally transmitted, preceded and succeeded by periods during which
+
+    no intentional transmission is made
+
+    environmental profile: declared range of environmental conditions under which equipment within the scope of the
+
+    present document is required to be compliant
+
+    integral antenna: antenna which is declared to be part of the radio equipment by the manufacturer
+
+    NOTE: Even when equipment with an integral antenna is concerned, it might still be possible to separate the
+
+    antenna from the equipment using a special tool. In such cases the assessment of the radio equipment and
+
+    of the antenna against requirements of the present document may be done separately.
+
+    maximum output power: mean power level per carrier of the base station measured at the antenna connector in a
+
+    specified reference condition
+
+    mean power: power (transmitted or received) in a bandwidth when applied to a modulated signal
+
+    nominal maximum output power: maximum nominal mean power level per carrier of the user equipment available at
+
+    the antenna connector declared by the manufacturer; for equipment implementing dynamic change of modulation
+
+    format, it is intended as the maximum nominal mean power associated to the modulation format delivering the highest
+
+    power
+
+    ETSI
+
+    9 ETSI EN 301 908-20 V6.3.1 (2016-05)
+
+    × × ×
+
+    receiver thermal noise power: equal to k T BW F
+
+    WiMAXTM: trade marked name for the OFDMA TDD WMAN IMT technology
+
+    NOTE: WiMAXTM is an example of a suitable technology available commercially. This information is given for
+
+    the convenience of users of the present document and does not constitute an endorsement by ETSI of this
+
+    technology.
+
+    3.2 Symbols
+
+    For the purposes of the present document, the following symbols apply:
+
+    A Base Station Interface A
+
+    BS
+
+    A Mobile Station Interface A
+
+    MS
+
+    A Unit Under Test Interface A
+
+    UUT
+
+    BW Nominal channel bandwidth
+
+    dB decibel
+
+    dBc decibel relative to carrier
+
+    dBm decibel relative to 1 milliwatt
+
+    f Frequency of measurement
+
+    f centre frequency of the assigned channel
+
+    c
+
+    F Receiver noise figure
+
+    k Boltzmann''s constant
+
+    M Base Station Interface M
+
+    BS
+
+    M Mobile Station Interface M
+
+    MS
+
+    N Receiver thermal noise power expressed in dBm
+
+    th ≤
+
+    P Receiver sensitivity level at BER 10-6 (or equivalent PER) performance, corresponding to the
+
+    SENS
+
+    most robust modulation and coding rate supported by the technology
+
+    P Receiver sensitivity level at BER 10-6 for a 5 MHz channelized system, corresponding to the most
+
+    SENS5
+
+    robust modulation and coding rate supported by the technology
+
+    P Receiver sensitivity level at BER 10-6 for a 10 MHz channelized system, corresponding to the
+
+    SENS10
+
+    most
+
+    robust modulation and coding rate supported by the technology
+
+    P declared nominal maximum output Power
+
+    nom
+
+    T Ambient temperature in Kelvin
+
+    3.3 Abbreviations
+
+    For the purposes of the present document, the following abbreviations apply:
+
+    ACLR Adjacent Channel Leakage power Ratio
+
+    ACS Adjacent Channel Selectivity
+
+    BCI Band Class Index
+
+    BER Bit Error Ratio
+
+    BS Base Station
+
+    BW Bandwidth
+
+    CW Continuous Wave
+
+    EC European Commission
+
+    ECC Electronic Communications Committee
+
+    EFTA European Free Trade Association
+
+    ERM Electromagnetic compatibility and Radio spectrum Matters
+
+    EU European Union
+
+    EUT Equipment Under Test
+
+    GHz GigaHertz
+
+    IMT International Mobile Telecommunications
+
+    ITU-R International Telecommunications Union - Radiocommunications sector
+
+    MHz MegaHertz
+
+    MS Mobile Station
+
+    MSG Mobile Standards Group
+
+    ETSI
+
+    10 ETSI EN 301 908-20 V6.3.1 (2016-05)
+
+    OFDMA Orthogonal Frequency Division Multiple Access
+
+    PER Packet Error Ratio
+
+    RED Radio Equipment Directive
+
+    RF Radio Frequency
+
+    RMS Root Mean Square
+
+    RRC Root Raised Cosine
+
+    Rx Receiver
+
+    TDD Time Division Duplexing
+
+    TF'
+- id: art-3
+  title: 'Annex C (informative):'
+  text: 'Annex C (informative):
+
+    Void
+
+    ETSI
+
+    36 ETSI EN 301 908-20 V6.3.1 (2016-05)
+
+    Annex D (informative):
+
+    Bibliography
+
+    • Directive 98/48/EC of the European Parliament and of the Council of 20 July 1998 amending Directive
+
+    98/34/EC laying down a procedure for the provision of information in the field of technical standards and
+
+    regulations.
+
+    • Directive 2004/108/EC of the European Parliament and of the Council of 15 December 2004 on the
+
+    approximation of the laws of the Member States relating to electromagnetic compatibility and repealing
+
+    Directive 89/336/EEC (EMC Directive).
+
+    • Directive 2006/95/EC of the European Parliament and of the Council of 12 December 2006 on the
+
+    harmonisation of the laws of Member States relating to electrical equipment designed for use within certain
+
+    voltage limits (LV Directive).
+
+    • WiMAX Forum® Air Interface specifications WMF-T23-005-R015v06: "WiMAX Forum® Mobile Radio
+
+    Specification".
+
+    ETSI
+
+    37 ETSI EN 301 908-20 V6.3.1 (2016-05)
+
+    History
+
+    Document history
+
+    V5.2.1 September 2011 Publication
+
+    V6.2.1 June 2013 Publication
+
+    V6.2.6 January 2016 EN Approval Procedure AP 20160420: 2016-01-21 to 2016-04-20
+
+    V6.3.1 May 2016 Publication
+
+    ETSI'
 doc_files:
 - global/raw/ETSI_EN_30190820_v06.03.01_60.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30190820_v06.03.01_60.pdf (pdf, 90289 chars)，生成 3 条共 25154 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30190820_v06.03.01_60.pdf (pdf, 90289 chars)，生成 3 条共 25154 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30190820_v06.03.01_60.pdf (pdf, 90289 chars)，生成 3 条共 25154 字符；解析文本未人工复核，引用以官方原件为准。'

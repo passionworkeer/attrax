@@ -9,11 +9,60 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: WIPO-Administered Treaties
+  text: "WIPO-Administered Treaties\nAbout Intellectual Property\nIP Training\nRespect for IP\nIP Outreach\nIP for…\nIP and...\nIP in...\nPatent & Technology Information\nTrademark Information\nDesign Information\n\
+    Geographical Indication Information\nPlant Variety Information (UPOV)\nIP Laws, Treaties & Judgments\nIP Resources\nIP Reports\nPatent Protection\nTrademark Protection\nDesign Protection\nGeographical\
+    \ Indication Protection\nPlant Variety Protection (UPOV)\nIP Dispute Resolution\nIP Office Business Solutions\nPaying for IP Services\nNegotiation & Decision-Making\nIP Cooperation\nInnovation Support\n\
+    Public-Private Partnerships\nThe Organization\nWIPO and Artificial Intelligence\nWorking at WIPO\nAccountability\nPatents\nTrademarks\nDesigns\nGeographical Indications\nCopyright\nTrade Secrets\nFuture\
+    \ of IP\nWIPO Academy\nWorkshops & Seminars\nIP Enforcement\nWIPO ALERT\nRaising Awareness\nWorld IP Day\nWIPO Magazine\nCase Studies & Success Stories\nIP News\nWIPO Awards\nBusiness\nWomen\nUniversities\n\
+    Indigenous Peoples\nJudiciaries\nYouth\nExaminers\nInnovation Ecosystems\nEconomics\nFinance\nIntangible Assets\nGlobal Health\nClimate Change\nCompetition Policy\nSustainable Development Goals\nGenetic\
+    \ Resources, Traditional Knowledge and Traditional Cultural Expressions\nFrontier Technologies\nMobile Applications\nSports\nTourism\nMusic\nFashion\nPATENTSCOPE\nPatent Analytics\nInternational Patent\
+    \ Classification\nARDI – Research for Innovation\nASPI – Specialized Patent Information\nGlobal Brand Database\nMadrid Monitor\nArticle 6ter Express Database\nNice Classification\nVienna Classification\n\
+    Global Design Database\nInternational Designs Bulletin\nHague Express Database\nLocarno Classification\nLisbon Express Database\nGlobal Brand Database for GIs\nPLUTO Plant Variety Database\nGENIE Database\n\
+    WIPO-Administered Treaties\nWIPO Lex - IP Laws, Treaties & Judgments\nWIPO Standards\nIP Statistics\nWIPO Pearl (Terminology)\nWIPO Publications\nCountry IP Profiles\nWIPO Knowledge Center\nWorld Intangible\
+    \ Investment Highlights\nWIPO Technology Trends\nGlobal Innovation Index\nWorld Intellectual Property Report\nPCT – The International Patent System\nePCT\nBudapest – The International Microorganism\
+    \ Deposit System\nMadrid – The International Trademark System\neMadrid\nArticle 6ter (armorial bearings, flags, state emblems)\nHague – The International Design System\neHague\nLisbon – The International\
+    \ System of Appellations of Origin and Geographical Indications\neLisbon\nUPOV PRISMA\nMediation\nArbitration\nExpert Determination\nDomain Name Disputes\nCentralized Access to Search and Examination\
+    \ (CASE)\nDigital Access Service (DAS)\nWIPO Pay\nCurrent Account at WIPO\nWIPO Assemblies\nStanding Committees\nCalendar of Meetings\nWIPO Webcast\nWIPO Official Documents\nDevelopment Agenda\nTailored\
+    \ Initiatives & Projects\nCollaborative Forums & Dialogues\nInnovation, Creativity and Development Acceleration Program\nIP for Impact\nNational IP Strategies\nCooperation Hub\nTechnology and Innovation\
+    \ Support Centers (TISC)\nTechnology Transfer\nInventor Assistance Program\nIP Commercialization\nWIPO GREEN\nWIPO's Pat-INFORMED\nAccessible Books Consortium\nWIPO for Creators\nMember States\nObservers\n\
+    Director General\nActivities by Unit\nExternal Offices\nGlobal Forum on IP and AI\nAI Infrastructure Interchange\nAI Tools & Services\nStaff Positions\nAffiliated Personnel Positions\nProcurement\n\
+    Results & Budget\nFinancial Reporting\nOversight\nWIPO-Administered Treaties\nWIPO administers 28 treaties including the \nWIPO Convention\n.\narrow_right\nIP protection\nThe first general group of\
+    \ treaties defines internationally agreed basic standards of intellectual property (IP) protection in each country.\nBeijing Treaty on Audiovisual Performances\nBerne Convention\nBrussels Convention\n\
+    Madrid Agreement (Indications of Source)\nMarrakesh VIP Treaty\nNairobi Treaty\nParis Convention\nPatent Law Treaty\nPhonograms Convention\nRiyadh Design Law Treaty\nRome Convention\nSingapore Treaty\
+    \ on the Law of Trademarks\nTrademark Law Treaty\nWashington Treaty\nWIPO Copyright Treaty (WCT)\nWIPO GRATK Treaty"
+- id: art-2
+  title: WIPO Performances and Phonograms Treaty (WPPT)
+  text: "WIPO Performances and Phonograms Treaty (WPPT)\narrow_right\nGlobal protection system\nThe second general group, known as the global protection system treaties, ensures that one international registration\
+    \ or filing will have effect in any of the relevant signatory States. The services provided by WIPO under these treaties simplify and reduce the cost of making individual applications or filings in\
+    \ all the countries in which protection is sought for a given IP right.\nBudapest Treaty\nHague Agreement\nLisbon Agreement\nMadrid Agreement (Marks)\nMadrid Protocol\nPatent Cooperation Treaty (PCT)\n\
+    arrow_right\nClassification\nThe third and final general group is the classification treaties, which create classification systems that organize information concerning inventions, trademarks and industrial\
+    \ designs into indexed, manageable structures for easy retrieval.\nLocarno Agreement\nNice Agreement\nStrasbourg Agreement\nVienna Agreement\nNew Online Collection of WIPO Treaty Preparatory Documents\n\
+    WIPO has launched \nWIPO Treaties: Preparatory Documents\n, an online collection for the “\ntravaux préparatoires\n” of treaties the Organization administers, including the WIPO Convention.\nNotifications\n\
+    All notifications\nTreaty notifications are available in \nEnglish\n and \nFrench\n only.\nEmail updates\nWIPO Treaty Notifications\n – Announcements of treaty accessions, ratifications, declarations,\
+    \ etc. 2-3 per month.\nSign up\nAll WIPO newsletters\nMembership\nTreaties\nSummary table of membership of WIPO and the treaties administered by WIPO, plus UPOV, WTO and UN\nContracting parties\nPublication\
+    \ 423\nHistorical information\nContracting parties\nPublication 423\nHistorical information\nWIPO bodies\nMembers of the WIPO Assemblies and other bodies and committees\n [\nPDF\n]\nContribution classes\
+    \ of states members of WIPO and/or the Paris and/or Berne Unions\nAdditional information\nAdditional resources\nTreaty Preparatory Documents and Guides\nActions in respect of treaties not yet in force\n\
+    Washington Treaty on Intellectual Property in Respect of Integrated Circuits\nAmendments to WIPO-administered Treaties\nAmendment to Article 9(3) of the WIPO Convention\nOther agreements\nAgreement\
+    \ between the United Nations and the World Intellectual Property Organization\nAgreement Between the World Intellectual Property Organization (WIPO) and the World Trade Organization (WTO)\nAgreement\
+    \ on Trade-Related Aspects of Intellectual Property Rights (TRIPS)\nOther treaties\nJoint recommendations\nJoint Recommendation Concerning Provisions on the Protection of Well-Known Marks [\nPDF\n]\n\
+    Joint Recommendation Concerning Trademark Licenses [\nPDF\n]\nJoint Recommendation Concerning Provisions on the Protection of Marks, and Other Industrial Property Rights in Signs, on the Internet [\n\
+    PDF\n]\nRelated links\nAbout WIPO\nHistory of WIPO\nMember States\nGeneral Rules of Procedure\nSpecial Rules of Procedure of the Governing Bodies of WIPO and of the Unions Administered by WIPO [\nPDF\n\
+    ]\nResources\nWIPO Lex\nPublications\nUPOV\nContracting parties\nNotifications\nHidden\nhttps://www.wipo.int/contact/en/\nhttps://www.wipo.int/pressroom/en/\nhttps://www.wipo.int/tools/en/disclaim.html\n\
+    https://www.wipo.int/en/web/privacy-policy\nhttps://www.wipo.int/en/web/accessibility\nhttps://www.wipo.int/en/web/sitemap\nhttps://www.wipo.int/en/web/newsletters\nhttps://www.wipo.int/en/web/podcasts\n\
+    https://www.wipo.int/en/web/news/rss"
 doc_files:
 - global/raw/INTL_WIPO_条约与文本.html
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/INTL_WIPO_条约与文本.html (html, 7319 chars)，生成 2 条共 7319 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/INTL_WIPO_条约与文本.html (html, 7319 chars)，生成 2 条共 7319 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/INTL_WIPO_条约与文本.html (html, 7319 chars)，生成 2 条共 7319 字符；解析文本未人工复核，引用以官方原件为准。'

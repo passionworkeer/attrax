@@ -1,0 +1,27 @@
+id: KB-market-CN-CN-ECL
+regulation_id: CN-ECL
+doc_name: 《中华人民共和国出口管制法》(2020)
+official_citation: 《中华人民共和国出口管制法》(2020)
+short_name: 出口管制法 (2020)
+source: market
+primary_source: market
+domain: 出口管制
+applies_if:
+  category: []
+  features_any: []
+  markets:
+  - CN
+key_articles:
+- art-1
+- art-2
+key_points:
+- 出口管制法 (2020)：出口管制领域法规，适用于 CN 市场相关经营行为（库自动接入，按市场匹配）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: http://www.npc.gov.cn/npc/c2/c30834/202010/t20201017_308086.html
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

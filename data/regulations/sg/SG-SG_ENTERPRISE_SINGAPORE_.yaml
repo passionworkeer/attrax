@@ -9,11 +9,73 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: Enterprise Singapore
+  text: "Enterprise Singapore\nx\n  Government officials will NEVER ask you to transfer money or disclose bank log-in details over a phone call. If in doubt, call the 24/7 ScamShield Helpline at 1799 or\
+    \ visit \nhttps://www.scamshield.gov.sg\n. \nFor where \nyou're growing.\nDoing business in Singapore\nDoing business abroad\nI WANT TO\n                        Be recognised for good quality\n    \
+    \                  Be recognised for good quality\n                        Build capabilities in sustainability\n                      Build capabilities in sustainability\n                        Develop\
+    \ my talent pool\n                      Develop my talent pool\n                        Digitalise my operations\n                      Digitalise my operations\n                        Drive innovation\n\
+    \                      Drive innovation\n                        Grow my startup\n                      Grow my startup\nMY INDUSTRY\n                            Agritech\n                         \
+    \ Agritech\n                            Air Transport\n                          Air Transport\n                            Built Environment\n                          Built Environment\n         \
+    \                   Business Services\n                          Business Services\n                            ICT & Media\n                          ICT & Media\n                            Electronics\n\
+    \                          Electronics\n                            Energy & Chemicals\n                          Energy & Chemicals\n                            Food Manufacturing\n               \
+    \           Food Manufacturing\n                            Food Services\n                          Food Services\n                            Healthcare & Biomedical\n                          Healthcare\
+    \ & Biomedical\n                            Land Transport\n                          Land Transport\n                            Logistics\n                          Logistics\n                   \
+    \         Marine & Offshore Energy\n                          Marine & Offshore Energy\n                            Precision Engineering\n                          Precision Engineering\n         \
+    \                   Retail\n                          Retail\n                            Sea Transport\n                          Sea Transport\n                            Urban Solutions\n      \
+    \                    Urban Solutions\n                            Wholesale Trade\n                          Wholesale Trade\nGo\nI WANT TO\n                        Capture global opportunities\n  \
+    \                    Capture global opportunities\n                        Connect with service providers\n                      Connect with service providers\n                        Get support to\
+    \ enter a new market\n                      Get support to enter a new market\n                        Learn about international trade\n                      Learn about international trade\nREGION\
+    \ OF INTEREST\n                            Africa\n                          Africa\n                            Asia Pacific\n                          Asia Pacific\n                            Europe\n\
+    \                          Europe\n                            Middle East\n                          Middle East\n                            North and Latin America\n                          North\
+    \ and Latin America\n                            Southeast Asia\n                          Southeast Asia\n                            Australia\n                          Australia\n              \
+    \              Brazil\n                          Brazil\n                            Canada\n                          Canada\n                            China\n                          China\n  \
+    \                          Colombia\n                          Colombia\n                            Egypt\n                          Egypt\n                            France\n                    \
+    \      France\n                            Germany\n                          Germany\n                            Ghana"
+- id: art-2
+  title: '                          Ghana'
+  text: "                          Ghana\n                            India\n                          India\n                            Indonesia\n                          Indonesia\n               \
+    \             Israel\n                          Israel\n                            Ivory Coast\n                          Ivory Coast\n                            Japan\n                          Japan\n\
+    \                            Jordan\n                          Jordan\n                            Kenya\n                          Kenya\n                            Laos\n                        \
+    \  Laos\n                            Malaysia\n                          Malaysia\n                            Mexico\n                          Mexico\n                            Morocco\n       \
+    \                   Morocco\n                            Mozambique\n                          Mozambique\n                            Myanmar\n                          Myanmar\n                  \
+    \          Netherlands\n                          Netherlands\n                            Nigeria\n                          Nigeria\n                            Oman\n                          Oman\n\
+    \                            Philippines\n                          Philippines\n                            Poland\n                          Poland\n                            Qatar\n           \
+    \               Qatar\n                            Russia\n                          Russia\n                            Saudi Arabia\n                          Saudi Arabia\n                      \
+    \      South Africa\n                          South Africa\n                            South Korea\n                          South Korea\n                            Thailand\n                  \
+    \        Thailand\n                            Turkiye\n                          Turkiye\n                            United Arab Emirates\n                          United Arab Emirates\n        \
+    \                    United Kingdom\n                          United Kingdom\n                            United States of America\n                          United States of America\n            \
+    \                Vietnam\n                          Vietnam\nGo\nGet support, resources and insights for every stage of growth\nGet expert advice\nGet connected\nGet financial support\nSME Centres\n\
+    Consult experienced business advisors on your company’s needs\nCentres of Innovation\nAccess tech expertise, facilities and resources to help your business innovate\nSME Pro-Enterprise Office (SME PEO)\n\
+    Get help with government regulations\nGlobalConnect@SBF\nVenture overseas confidently with in-market business advisories and business matching services\nOpen Innovation Network\nPartner another business\
+    \ to innovate\nGlobal Innovation Alliance\nCollaborate with startups and companies in global markets\nInnovation & Startups\nAccess resources for startups and plug into the local startup community\n\
+    Trading Network\nJoin our global trading ecosystem\nProductivity Solutions Grant\nAdopt digital tools and solutions to raise your business’ productivity                                  \nMarket Readiness\
+    \ Assistance Grant\nGet help to set up and promote your business overseas, and identify in-market business partners\nSkillsFuture Enterprise Credit\nThe SFEC encourages employers to invest in enterprise\
+    \ transformation and the capabilities of their employees.\nEnterprise Development Grant\nUpgrade your business, innovate, and venture overseas\nFind more financial support schemes\nHighlights for you\n\
+    EDGE Grant\nAccess support across digitalisation, innovation, sustainability and more.\nEnhanced Enterprise Financing Scheme\nAdded support to help local firms with financing amid cost pressures.\n\
+    Energy Efficiency Grant\nGet support for adopting pre-approved energy-efficient equipment.\nBudget 2026\nLearn what it means for your business.\nTrade Resources for Businesses\nAccess resources and\
+    \ insights to help your business navigate global trade with confidence.\nBusiness Adaptation Grant"
+- id: art-3
+  title: Tap our support to adapt your business operations and streng
+  text: "Tap our support to adapt your business operations and strengthen supply chain resilience. \n2026 Annual Media Briefing Highlights\nLearn how we partnered businesses to stay resilient and grow in\
+    \ 2025, and our plans for 2026.\nJohor-Singapore Special Economic Zone\nDiscover insights and resources on JS-SEZ that will benefit your business.\nSME Sustainability Hub\nExplore sustainability topics\
+    \ and government initiatives for your business's sustainability journey.\nInternationalisation Toolkit\nAssess your company’s readiness for overseas expansion and be prepared with the relevant resources.\n\
+    Other helpful links\nAccess the Tariff Finder\nAccess the Business Grants Portal\nCheck out upcoming industry events\nSee Frequently Asked Questions on US tariffs\nSee Frequently Asked Questions\nBusinesses\
+    \ that inspire\nRead about Singapore companies that overcame challenges to succeed\nSee more stories\nGet help for your business\nOur experienced advisors from the SME Centres work with you in 1-1 sessions\
+    \ to identify your business needs and explore solutions together.\nSpeak with a Business Advisor\nEnterprise Singapore\nThis website is best viewed in Google Chrome or Microsoft Edge browsers.\nAbout\
+    \ Us\nCareers\nEvents\nMedia Centre\nREACH\nContact Us\nFeedback\nFAQs\nStay connected and grow your business\nSUBSCRIBE\nReport Vulnerability\nPrivacy Statement\nTerms of Use\nScam Advisory\nSitemap\n\
+    Whistleblowing\n© 2026 Government of Singapore\nLast updated on [[UPDATED]]\n×"
 doc_files:
 - sg/raw/SG_Enterprise_Singapore_标准与认证.html
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：sg/raw/SG_Enterprise_Singapore_标准与认证.html (html, 9379 chars)，生成 3 条共 9379 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：sg/raw/SG_Enterprise_Singapore_标准与认证.html (html, 9379 chars)，生成 3 条共 9379 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：sg/raw/SG_Enterprise_Singapore_标准与认证.html (html, 9379 chars)，生成 3 条共 9379 字符；解析文本未人工复核，引用以官方原件为准。'

@@ -1,0 +1,26 @@
+id: KB-other-CN-CN-GB_20997-2024_
+regulation_id: CN-GB_20997-2024_
+doc_name: CN-GB GB 20997-2024 轻型商用车辆燃料消耗量限值及评价指标
+official_citation: CN-GB GB 20997-2024 轻型商用车辆燃料消耗量限值及评价指标
+short_name: CN-GB GB 20997-2024 轻型商用车辆燃料消耗量限值及评价指标
+source: category
+primary_source: other
+domain: other
+applies_if:
+  category:
+  - other
+  features_any: []
+  markets:
+  - CN
+key_articles: []
+key_points:
+- CN-GB GB 20997-2024 轻型商用车辆燃料消耗量限值及评价指标：其他品类领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=47E98BA6D15D541E9F00FDD0A738C291
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

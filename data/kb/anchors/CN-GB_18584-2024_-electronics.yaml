@@ -1,0 +1,26 @@
+id: KB-electronics-CN-CN-GB_18584-2024_
+regulation_id: CN-GB_18584-2024_
+doc_name: CN-GB GB 18584-2024 家具中有害物质限量
+official_citation: CN-GB GB 18584-2024 家具中有害物质限量
+short_name: CN-GB GB 18584-2024 家具中有害物质限量
+source: category
+primary_source: electronics
+domain: electronics
+applies_if:
+  category:
+  - electronics
+  features_any: []
+  markets:
+  - CN
+key_articles: []
+key_points:
+- CN-GB GB 18584-2024 家具中有害物质限量：电子产品领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=EDD0806C77509639A8CF71A08588AFE8
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

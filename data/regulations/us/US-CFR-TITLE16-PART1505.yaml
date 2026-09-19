@@ -1,6 +1,6 @@
 id: US-CFR-TITLE16-PART1505
 official_citation: US 16 CFR Part 1505
-short_name: US 16 CFR Part 1505
+short_name: US 16 CFR Part 1505 — REQUIREMENTS FOR ELECTRICALLY OPERATED TOYS OR OTHER ELECTRICALLY OPERATED ARTICLES INTENDED FOR USE BY CHILDREN
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,771 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '16
+
+    Commercial Practices
+
+    2
+
+    2024-01-01
+
+    2024-01-01
+
+    false
+
+    REQUIR'
+  text: '16
+
+    Commercial Practices
+
+    2
+
+    2024-01-01
+
+    2024-01-01
+
+    false
+
+    REQUIREMENTS FOR ELECTRICALLY OPERATED TOYS OR OTHER ELECTRICALLY OPERATED ARTICLES INTENDED FOR USE BY CHILDREN
+
+    1505
+
+    PART 1505
+
+    Commercial Practices
+
+    CONSUMER PRODUCT SAFETY COMMISSION
+
+    FEDERAL HAZARDOUS SUBSTANCES ACT REGULATIONS
+
+    Pt. 1505
+
+    PART 1505—REQUIREMENTS FOR ELECTRICALLY OPERATED TOYS OR OTHER ELECTRICALLY OPERATED ARTICLES INTENDED FOR USE BY CHILDREN
+
+    Subpart A—Regulations
+
+    Sec.
+
+    1505.1
+
+    Definitions.
+
+    1505.2
+
+    Scope of part.
+
+    1505.3
+
+    Labeling.
+
+    1505.4
+
+    Manufacturing requirements.
+
+    1505.5
+
+    Electrical design and construction.
+
+    1505.6
+
+    Performance.
+
+    1505.7
+
+    Maximum acceptable surface temperatures.
+
+    1505.8
+
+    Maximum acceptable material temperatures.
+
+    Subpart B—Policies and Interpretations
+
+    1505.50
+
+    Stalled motor testing.
+
+    1505.51
+
+    Hot surfaces.
+
+    Authority:
+
+    15 U.S.C. 1261-1262, 2079.
+
+    Source:
+
+    38 FR 27032, Sept. 27, 1973, unless otherwise noted.
+
+    Subpart A—Regulations'
+- id: art-2
+  title: § 1505.1
+  text: '§ 1505.1
+
+    Definitions.
+
+    (a) The following definitions apply to this part 1505:
+
+    (1) The term “electrically operated toy or other electrically operated article intended for use by children” means any toy, game, or other article designed, labeled, advertised, or otherwise intended
+    for use by children which is intended to be powered by electrical current from nominal 120 volt (110-125 v.) branch circuits. Such articles are referred to in this part in various contexts as “toy”
+    or “electrically operated toy.” If the package (including packing materials) of the toy or other article is intended to be used with the product, it is considered to be part of the toy or other article.
+    This definition does not include components which are powered by circuits of 30 volts r.m.s. (42.4 volts peak) or less, articles designed primarily for use by adults which may be used incidentally by
+    children, or video games.
+
+    (2) The term
+
+    video games
+
+    means video game hardware systems, which are games that both produce a dynamic video image, either on a viewing screen that is part of the video game or,
+
+    through connecting cables, on a television set, and have some way to control the movement of at least some portion of the video image.
+
+    [38 FR 27032, Sept. 27, 1973, as amended at 58 FR 40335, July 28, 1993]'
+- id: art-3
+  title: § 1505.2
+  text: '§ 1505.2
+
+    Scope of part.
+
+    This part sets forth the requirements whereby electrically operated toys and other electrically operated articles intended for use by children (as defined in § 1505.1(a)(1)) are not banned toys or banned
+    articles under § 1500.18(b)(1) of this chapter.'
+- id: art-4
+  title: § 1505.3
+  text: '§ 1505.3
+
+    Labeling.
+
+    (a)
+
+    General.
+
+    Electrically operated toys, and the instruction sheets and outer packaging thereof, shall be labeled in accordance with the requirements of this section and any other applicable requirements of the
+    Federal Hazardous Substances Act and regulations promulgated thereunder. All labeling shall be prominently and conspicuously displayed under customary conditions of purchase, storage, and use. All required
+    information shall be readily visible, noticeable, clear, and, except where coding is permitted, shall be in legible English (other languages may also be included as appropriate). Such factors governing
+    labeling as location, type size, and contrast against background may be based on necessary condensations to provide a reasonable display.
+
+    (b)
+
+    Specific items.
+
+    (1) The toy shall be marked in accordance with the provisions of paragraph (d) of this section to indicate:
+
+    (i) The electrical ratings required by paragraph (c) of this section.
+
+    (ii) Any precautionary statements required by paragraph (e) of this section.
+
+    (iii) The date (month and year) of manufacture (or appropriate codes). As an alternative to putting this information on the toy itself, it may be included in the instructions provided with the toy (see
+    paragraph (b)(3) of this section).
+
+    (2) The shelf pack or package of the toy shall be labeled in accordance with the provisions of paragraph (d) of this section to indicate:
+
+    (i) The date (month and year) of manufacture (or appropriate codes).
+
+    (ii) The electrical ratings required by paragraph (c) of this section.
+
+    (iii) Any precautionary statements required by paragraph (e) of this section.
+
+    (3) Each toy shall be provided with adequate instructions that are easily understood by children of those ages for which the toy is intended. The instructions shall describe the applicable installation,
+    assembly, use, cleaning, maintenance (including lubrication), and other functions as appropriate. Applicable precautions shall be included as well as the information required by paragraphs (b) (1) and
+    (2) of this section, except that the date of manufacture information described in paragraph (b)(1)(iii) of this section need not be included in the instructions provided with the toy if it is placed
+    on the toy itself. The instructions shall also contain a statement addressed to parents recommending that the toy be periodically examined for potential hazards and that any potentially hazardous parts
+    be repaired or replaced.
+
+    (4) If a toy is produced or assembled at more than one establishment, the toy and its shelf pack or package shall have a distinctive mark (which may be in code) identifying the toy as the product of
+    a particular establishment.
+
+    (c)
+
+    Rating.
+
+    (1) A toy shall be marked to indicate its rating in volts and also in amperes and/or watts.
+
+    (2) If a toy utilizes a single motor as its only electric energy consuming component, the electrical rating may be marked on a motor nameplate and need not be marked elsewhere on the toy if the nameplate
+    is readily visible after the motor has been installed in the toy.
+
+    (3) A toy shall be rated for alternating current only, direct current only, or both alternating and direct current.
+
+    (4) The alternating current rating shall include the frequency or frequency range requirement, if necessary because of a special component.
+
+    (d)
+
+    Markings.
+
+    (1) The markings required on the toy by paragraph (b) of this section shall be of a permanent nature, such as paint-stenciled, die-stamped, molded, or indelibly stamped. The markings shall not be permanently
+    obliterable by spillage of any material
+
+    intended for use with the toy and shall not be readily removable by cleaning with ordinary household cleaning substances. All markings on the toy and labeling of the shelf pack or package required by
+    paragraph (b) of this section shall contrast sharply with the background (whether by color, projection, or indentation) and shall be readily visible and legible. Such markings and labeling shall appear
+    in lettering of a height not less than that specified in paragraph (d)(2) of this section, except that those words shown in capital letters in paragraph (e) of this section shall appear in capital lettering
+    of a height not less than twice that specified in paragraph (d)(2) of this section.
+
+    (2) Minimum lettering heights shall be as follows:
+
+    Surface Area Display Marking, Minimum Height of Lettering
+
+    Square inches
+
+    Inches
+
+    Under 5
+
+    1/16
+
+    5 or more and under 25
+
+    1/8
+
+    25 or more and under 100
+
+    3/16
+
+    100 or more and under 400
+
+    1/4
+
+    400 or more
+
+    1/2
+
+    (e)
+
+    Precautionary statements
+
+    —(1)
+
+    General.
+
+    Electrically operated toys shall bear the statement: “CAUTION—ELECTRIC TOY.” The instruction booklet or sheet accompanying such toys shall bear on the front page thereof (in the type size specified
+    in § 1500.121), as a preface to any written matter contained therein, and the shelf pack or package of such toys shall bear in the upper right hand quarter of the principal display panel, the statement:
+    “CAUTION—ELECTRIC TOY: Not recommended for children under __ years of age. As with all electric products, precautions should be observed during handling and use to prevent electric shock.” The blank
+    in the preceding statement shall be filled in by the manufacturer, but in no instance shall the manufacturer indicate that the article is recommended for children under 8 years of age if it contains
+    a heating element. In the case of other electrically operated products which may not be considered to be “toys” but are intended for use by children, the term “ELECTRICALLY OPERATED PRODUCT” may be
+    substituted for the term “ELECTRIC TOY.”
+
+    (2)
+
+    Thermal hazards.
+
+    (i) Toys having Type C or Type D surfaces (described in § 1505.6(g)(2)) which reach temperatures greater than those shown in paragraph (e)(2)(ii) of this section shall be defined as hot and shall be
+    marked where readily noticeable when the hot surface is in view with the statement: “HOT—Do Not Touch.” When the marking is on other than the hot surface, the word “HOT” shall be followed by appropriate
+    descriptive words such as “Molten Material,” “Sole Plate,” or “Heating Element,” and the statement “Do Not Touch.” An alternative statement for a surface intended to be handheld as a functional part
+    of the toy shall be “HOT ____ Handle Carefully,” the blank being filled in by the manufacturer with a description of the potential hazard such as “Curler” or “Cooking Surface.”
+
+    (ii) Surfaces requiring precautionary statements of thermal hazards are those exceeding the following temperatures when measured by the test described in § 1505.6(g)(4):
+
+    Surface type (see § 1505.6 (g)(2))
+
+    Thermal inertia type
+
+    1
+
+    Temperature
+
+    Degrees C.
+
+    Degrees F.
+
+    C
+
+    1
+
+    65
+
+    149
+
+    C
+
+    2
+
+    75
+
+    167
+
+    C
+
+    3
+
+    85
+
+    185
+
+    C
+
+    4
+
+    95
+
+    203
+
+    D
+
+    1
+
+    55
+
+    131
+
+    D
+
+    2
+
+    70
+
+    158
+
+    D
+
+    3
+
+    80
+
+    176
+
+    D
+
+    4
+
+    90
+
+    194
+
+    1
+
+    Thermal inertia types are defined in terms of lambda as follows:
+
+    Type 1: Greater than 0.0045 (e.g., most metals).
+
+    Type 2: More than 0.0005 but not more than 0.0045 (e.g., glass).
+
+    Type 3: More than 0.0001 but not more than 0.0005 (e.g., most plastics).
+
+    Type 4: 0.0001 or less (e.g., future polymeric materials).
+
+    The thermal inertia of a material can be obtained by multiplying the thermal conductivity (cal./em./sec./degrees C.) by the density (gm./cm.
+
+    3
+
+    ) by the specific heat (cal./gm./degrees C.)
+
+    (3)
+
+    Lamp hazards
+
+    —(i)
+
+    Replaceable incandescent lamps.
+
+    A toy with one or more replaceable incandescent lamps, having a potential difference of more than 30 volts r.m.s. (42.4 volts peak) between any of its electrodes or lampholder contacts and any other
+    part or ground, shall be marked inside the lamp compartment where readily noticeable during lamp replacement with the statement: “WARNING—Do
+
+    not use light bulbs larger than __ watts”, the blank being filled in by the manufacturer with a number specifying the wattage rating of the lamp. Such toys shall bear the statement: “WARNING—Shock Hazard.
+    Pull plug before changing light bulb” on the outside of the lamp compartment where it will be readily noticed before gaining access to the lamp compartment.
+
+    (ii)
+
+    Nonreplacement incandescent lamps.
+
+    A toy which utilizes one or more nonreplaceable incandescent lamps (other than pilot or indicator lamps) shall be marked where clearly visible with the statement: “SEALED UNIT—Do not attempt to change
+    light bulb” or equivalent.
+
+    (4)
+
+    Water.
+
+    If not suitable for immersion in water, a toy cooking appliance (such as a corn popper, skillet, or candy-maker) or other article which may conceivably be immersed in water shall be marked with the
+    statement: “DANGER—To prevent electric shock, do not immerse in water; wipe clean with damp cloth” or equivalent.
+
+    [38 FR 27032, Sept. 27, 1973, as amended at 42 FR 34280, July 5, 1977; 42 FR 43392, Aug. 29, 1977]'
+- id: art-5
+  title: § 1505.4
+  text: '§ 1505.4
+
+    Manufacturing requirements.
+
+    (a)
+
+    General.
+
+    (1) Only materials safe and suitable for the particular use for which the electrically operated toy is intended shall be employed.
+
+    (2) Toys shall be produced in accordance with detailed material specifications, production specifications, and quality assurance programs. Quality assurance programs shall be established and maintained
+    by each manufacturer to assure compliance with all requirements of this part.
+
+    (3) The manufacturer or importer shall keep and maintain for 3 years after production or importation of each lot of toys (i) the material and production specifications and the description of the quality
+    assurance program required by paragraph (a)(2) of this section, (ii) the results of all inspections and tests conducted, and (iii) records of sale and distribution. These records shall be made available
+    upon request at reasonable times to any officer or employee of the Consumer Product Safety Commission. The manufacturer or importer shall permit such officer or employee to inspect and copy such records,
+    to make such inventories of stock as he deems necessary, and to otherwise verify the accuracy of such records.
+
+    (4) Toys shall be constructed and finished with a high degree of uniformity and as fine a grade of workmanship as is practicable in a well-equipped manufacturing establishment. Each component of a toy
+    shall comply with the requirements set forth in this part.
+
+    (b) [Reserved]
+
+    (c)
+
+    Protective coatings.
+
+    Iron and steel parts shall be suitably protected against corrosion if the lack of a protective coating would likely produce a hazardous condition in normal use or when the toy is subjected to reasonably
+    foreseeable damage or abuse.
+
+    (d)
+
+    Mechanical assembly
+
+    —(1)
+
+    General.
+
+    A toy shall be designed and constructed to have the strength and rigidity necessary to withstand reasonably foreseeable damage and abuse without producing or increasing a shock, fire, or other accident
+    hazard. An increase in hazards may be due to total or partial structural collapse of the toy resulting in a reduction of critical spacings, loosening or displacement of one or more components, or other
+    serious defects.
+
+    (2)
+
+    Mounting.
+
+    Each switch, lampholder, motor, automatic control, transformer, and similar component shall be securely mounted and shall be prevented from turning, unless the turning of such component is part of the
+    design of the toy and produces no additional hazard such as reduced spacings below acceptable levels or stress on the connection. Friction between tight-fitting surfaces shall not be considered sufficient
+    for preventing the turning of components. The proper use of a suitable lockwasher or a keyed and notched insert plus a suitable lockwasher for single-hole mountings shall be acceptable. Each toy shall
+    be designed and constructed so that vibrations occurring during normal operation and after reasonably foreseeable damage or abuse will not affect it adversely. Brush caps shall be tightly threaded or
+    otherwise designed to prevent loosening.
+
+    (3)
+
+    Structural integrity.
+
+    Heating elements shall be supported in a substantial and reliable manner and shall be structurally prevented from making contacts inside or outside of the toy which may produce shock hazards. The current-carrying
+    component(s) of the heating element shall be enclosed, and the enclosure shall be designed or insulated to prevent the development of a shock or fire hazard that may result from element failure. A toy
+    operating with a gas or liquid under pressure, such as an electrically operated steam engine, shall be tested with respect to its explosion hazard and shall be provided with a pressure relief device
+    that will discharge in the safest possible direction; that is, avoiding direct human contact and avoiding the wetting of electrical contacts.
+
+    (e)
+
+    Insulating material.
+
+    (1) Material to be used for mounting uninsulated live electrical elements shall be generally accepted as suitable for the specific application, particularly with regard to electrical insulation (voltage
+    breakdown) and good aging characteristics (no significant change in insulating characteristics over the expected lifetime of the toy).
+
+    (2) Material used to insulate a heating element from neighboring parts shall be suitable for the purpose. If plain asbestos in a glass braid is used to so insulate the heating element, it shall be tightly
+    packed and totally enclosed by the braid, and the overall thickness, including the braid, shall not be less than one-sixteenth inch. Hard fiber may be used for electrically insulating bushings, washers,
+    separators, and barriers, but is not sufficient as the sole support of uninsulated live metal parts.
+
+    (f)
+
+    Enclosures
+
+    —(1)
+
+    General.
+
+    Each toy shall have an enclosure constructed of protective material suitable for the particular application, for the express purpose of housing all electrical parts that may present a fire, shock, or
+    other accident hazard under any conditions of normal use or reasonably foreseeable damage or abuse. Enclosures shall meet the performance requirements prescribed by § 1505.6(b).
+
+    (2)
+
+    Accessibility.
+
+    An enclosure containing a wire, splice, brush cap, connection, electrical component, or uninsulated live part or parts at a potential of more than 30 volts r.m.s. (42.4 volts peak) to any other part
+    or to ground:
+
+    (i) Shall be sealed by welding, riveting, adhesive bonding, and/or by special screws or other fasteners not removable with a common household tool (screwdriver, pliers, or other similar household tool)
+    used as intended; and
+
+    (ii) Shall have no opening permitting entry of a 0.010-inch-diameter music wire that could contact a live part. Cross-notch-head screws, spring clips, bent tabs, and similar fasteners shall not be considered
+    suitable sealing devices for enclosures since they are easy to remove with common household tools. Bent tabs shall be acceptable if, due to metal thickness or other factors, they successfully resist
+    forceful attempts to dislodge them with ordinary tools.
+
+    (3)
+
+    Nonapplication.
+
+    The requirements of this paragraph are not applicable to an insulating husk enclosure or equivalent that covers the electrodes of a replaceable incandescent lamp and its lampholder contacts. The primary
+    function of an enclosure containing a lamp shall be to protect it from breakage during normal use or reasonably foreseeable damage or abuse.
+
+    (g)
+
+    Spacings.
+
+    The distance, through air or across the surface of an insulator, between uninsulated live metal parts and a metallic enclosure and between uninsulated live metal parts and all other metal parts shall
+    be suitable for the specific application as determined by the dielectric strength requirements prescribed by § 1505.6(e)(2). Electrical insulating linings on barriers shall be held securely in place.
+
+    (h)
+
+    Special safety features
+
+    —(1)
+
+    Moving parts.
+
+    If the normal use of a toy involves accident hazards, suitable protection shall be provided for the reduction of such hazards to an acceptable minimum. For example, rotors, pulleys, belting, gearing,
+    and other moving parts shall be enclosed or guarded to prevent accidental contact during normal use or when subjected to reasonably foreseeable damage or abuse. Such enclosure or guard shall not contain
+    openings that permit entrance of a
+
+    1/4
+
+    -inch-diameter rod and present a hazardous condition.
+
+    (2)
+
+    Switch marking.
+
+    Any toy having one or more moving parts which perform an inherent function of the toy and which may cause personal injury shall have a switch that can deenergize the toy by a simple movement to a plainly
+    marked “OFF” position. Momentary contact switches which are normally in the “OFF” position need not be so marked.
+
+    (3)
+
+    Electrically operated sewing machines.
+
+    Electrically operated toy sewing machines shall be designed and constructed to eliminate the possibility of a child''s finger(s) being pierced by a needle. For the purpose of this paragraph, a clearance
+    of not more than five thirty-seconds of an inch below the point of the needle when in its uppermost position or below the presser foot, if provided, shall be considered satisfactory.
+
+    (4)
+
+    Pressure relief valves.
+
+    A pressurized enclosure shall have an automatic pressure relief device and shall be capable of withstanding hydrostatic pressure equal to at least five times the relief pressure.
+
+    (5)
+
+    Containers for heated materials.
+
+    Containers intended for holding molten compounds and hot liquids shall be designed and constructed to minimize accidental spillage. A pot or pan having a lip and one or more properly located pouring
+    spouts and an adequately thermally insulated handle may provide satisfactory protection. Containers intended solely for baking need not be designed and constructed to minimize accidental spillage. Containers
+    shall be of such material and construction t + at they will not deform or melt when subjected to the maximum operating temperature occurring during normal use or after reasonably foreseeable damage
+    or abuse.
+
+    (6)
+
+    Water.
+
+    Electrically operated toys (such as toy irons) shall not be designed or manufactured to be used with water except for toy steam engines or other devices in which the electrical components are separate
+    from the water reservoir and are completely contained in a sealed chamber. Toys requiring occasional or repeated cleaning with a wet cloth shall be constructed to prevent seepage of water into any electrically
+    active area that may produce a hazardous condition.'
+- id: art-6
+  title: § 1505.5
+  text: '§ 1505.5
+
+    Electrical design and construction.
+
+    (a)
+
+    Switches.
+
+    (1) Switches and other control devices of electrically operated toys shall be suitable for the application and shall have a rating not less than that of the load they control (see § 1505.6(e)(5)(ii)
+    regarding electrical switch overload). A switch that controls a replaceable incandescent lamp, electrode, or lampholder contact which is at a potential of more than 30 volts r.m.s. (42.4 volts peak)
+    to any other part or to ground shall open both sides of the circuit and shall have a marked “OFF” position. A switch that may reasonably be expected to be subjected to temperatures higher than 50 °C.
+    (122 °F.) shall be constructed of materials which are suitable for use at such temperatures.
+
+    (2) Switches shall be located and protected so that they are not subject to mechanical damage that would produce a hazard in normal use or from reasonably foreseeable damage or abuse (see § 1505.6(b)).
+
+    (b)
+
+    Lamps.
+
+    (1) A replaceable incandescent lamp having a voltage of more than 30 volts r.m.s. (42.4 volts peak) between any of its electrodes or lampholder contacts and any other part or ground shall be in an enclosure
+    that has at least one door or cover permitting access to the lamp. Such door(s) or cover(s) of the enclosure shall be so designed and constructed that they cannot be opened manually or with a flat bladed
+    screwdriver or pliers.
+
+    (2) With all access doors and covers closed, the lamp enclosure shall have no opening that will permit entry of a straight rod 6 inches long and one-fourth inch in diameter if such entry would present
+    an electrical hazard. The lamp shall be located no less than one-half inch from any
+
+    1/4
+
+    -inch-diameter opening in the enclosure.
+
+    (3) A toy having one or more lampholders shall be designed and constructed so that no live parts other than the contacts of the lampholders are exposed to contact by persons removing or replacing lamps.
+    The shells of all lampholders for incandescent lamps shall be at the same potential.
+
+    (4) If the potential between the contacts of a lampholder for a replaceable
+
+    incandescent lamp and any other part or ground is greater than 30 volts r.m.s. (42.4 volts peak), the contacts shall be located in an insulating husk or equivalent.
+
+    (c)
+
+    Transformers.
+
+    Transformers that are integral parts of toys shall be of the 2-coil insulated type.
+
+    (d)
+
+    Automatic controls.
+
+    Automatic controls for temperature regulations shall have the necessary capacity and reliability for their particular application.
+
+    (e)
+
+    Power supply connections
+
+    (
+
+    cords and plugs
+
+    ). (1) A toy shall be provided with a suitable means for attachement to the power supply circuit.
+
+    (2) A toy requiring a power cord shall have a flexible cord that is permanently attached to the toy.
+
+    (3) The perimeter of the face of the attachment-plug cap shall be not less than five-sixteenths of an inch from any point on either blade of the plug.
+
+    (4) The body of the attachment-plug cap shall decrease in cross section from the face but shall have an expansion of the body, after a suitable distance from the face, sufficient to provide an effective
+    finger grip.
+
+    (5) A flexible electrical power cord provided on a toy shall be type SP-2 (as defined in the “National Electrical Code,” Chapter 4, article 400, pages 230-241 (1978)
+
+    1
+
+    , or its equivalent, or a heavier general-use type, and shall be not less than 5 feet nor more than 10 feet in length when measured as the overall length of the attached cord outside the enclosure of
+    the toy, including fittings, up to the face of the attachment-plug cap. However, hand-held educational or hobby-type products intended for heating such as woodburning tools, shall use one of the type
+    cords designated below, in accordance with the weight of the product without the cord:
+
+    1
+
+    NFPA No. 70-1978, 1978 edition of National Electrical Code, Article 400, “Flexible Cords and Cables,” pages 70-230 through 70-240, published by the National Fire Protection Association, which is incorporated
+    by reference. Copies of this document are available from the National Fire Protection Administration, 60 Batterymarch Park, Quincy, Massachusetts 02269. This document is also available for inspection
+    at the National Archives and Records Administration (NARA). For information on the availability of this material at NARA, call 202-741-6030, or go to:
+
+    http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html.
+
+    This incorporation by reference was approved by the Director of the Federal Register. These materials are incorporated as they exist in the edition which has been approved by the Director of the Federal
+    Register and which has been filed with the Office of the Federal Register.
+
+    Weight of appliance (without cord) and cord type
+
+    1/2
+
+    lb. (0.227 kg) and lighter: SP-1, SPT-1, HPD. Heavier than
+
+    1/2
+
+    lb. (0.227 kg): SP-2, SPT-2, SV, SVO, SVT, SVTO, HPD, HPN, SJ, SJO, SJT, SJTO.
+
+    (6) A flexible cord and plug shall have a current-carrying capacity of not less than the ampere rating of the toy, and the conductor of the cord shall have a cross sectional area no less than No. 18
+    AWG (American wire gauge).
+
+    (7) Cords on toys which are intended to come in direct contact with water or other liquids during use shall be of a jacketed type. Cords on toys with which water or other liquids are to be indirectly
+    used (such as for cooling a mold) shall be plastic covered.
+
+    (8) Transformers in which the primary coil connects directly to the branch circuit outlet shall not be subject to the requirements of paragraphs (e) (2), (4), and (5) of this section.
+
+    (f)
+
+    Bushings.
+
+    (1) At the point where a power supply cord passes through an opening in a wall, barrier, or the overall enclosure of a toy, a suitable and substantial bushing, insulating bushing, or equivalent shall
+    be reliably secured in place and shall have smooth surfaces and well-rounded edges against which the cord may bear.
+
+    (2) If a cord hole is in wood, porcelain, phenolic composition, or other suitable insulating material, the surface of the hole is acceptable without a bushing if the edges of the hole are smooth and
+    well-rounded. Where a separate insulating bushing is required, a bushing made of ceramic material or a suitable molded composition is acceptable if its edges are smooth and well-rounded.
+
+    (3) In no instance shall a separate bushing of wood, rubber, or any of the hot-molded shellac-and-tar compositions be considered acceptable.
+
+    (g)
+
+    Wiring.
+
+    (1) The internal wiring of a toy shall consist of suitable insulated conductors having adequate mechanical strength, dielectric properties, and
+
+    electrical capacity for the particular application.
+
+    (2) Wireways shall be smooth and entirely free of sharp edges, burrs, fins, and moving parts that may abrade conductor insulation. Each splice and connection shall be mechanically secure, shall provide
+    adequate and reliable electrical contact, and shall be provided with insulation at least equivalent to that of the wire involved unless adequate spacing between the splice and all other metal parts
+    is permanently assured.
+
+    (3) A wire connector for making a splice in a toy shall be a type that is applied by a tool and for which the application force of the tool is independent of the force applied by the operator.
+
+    (4) Soldered connections shall be made mechanically secure before soldering.
+
+    (5) Current-carrying parts shall be made of silver, copper, a copper alloy, or other electrically conductive material suitable for the particular application.
+
+    (h)
+
+    Strain relief.
+
+    (1) A means of strain relief shall be provided to prevent mechanical stress on a flexible cord from being transmitted to terminals, splices, or interior wiring.
+
+    (2) If suitable auxiliary insulation is provided under a clamp for mechanical protection, clamps of any material are acceptable for use on Type SP-2 (as defined in the “National Electrical Code,” chapter
+    4, article 400, pages 184-194 (1971)
+
+    2
+
+    ) or equivalent rubber-insulated cord. For heavier types of thermoplastic-insulated cord, clamps may be without auxiliary insulation unless the clamp may damage the cord insulation.
+
+    2
+
+    NFPA No. 70-1971, 1971 edition of National Electrical Code, Article 400, “Flexible Cords and Cables,” pages 70-184 through 70-194, published by the National Fire Protection Association, which is incorporated
+    by reference. Copies of this document are available from the National Fire Protection Association, 60 Batterymarch Park, Quincy, Massachusetts 02269. This document is also available for inspection at
+    the National Archives and Records Administration (NARA). For information on the availability of this material at NARA, call 202-741-6030, or go to:
+
+    http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html.
+
+    This incorporation by reference was approved by the Director of the Federal Register. These materials are incorporated as they exist in the edition which has been approved by the Director of the Federal
+    Register and which has been filed with the Office of the Federal Register.
+
+    (3) A flexible cord shall be prevented from being pushed into the toy through the cord-entry hole if such displacement would result in a hazardous condition.
+
+    (4) A knot in the cord shall not be considered an acceptable means of strain relief, but a knot associated with a loop around a smooth, fixed structural component shall be considered acceptable.
+
+    (i)
+
+    Additional requirements.
+
+    Except for the electrodes of a replaceable incandescent lamp and its lampholder contacts, a potential of more than 30 volts r.m.s. (42.4 volts peak) shall not exist between any exposed live part in
+    a toy and any other part or ground.
+
+    (Sec. 30(a), 86 Stat. 1231 (15 U.S.C. 2079(a)))
+
+    [38 FR 27032, Sept. 27, 1973, as amended at 43 FR 45552, Oct. 3, 1978; 46 FR 63251, Dec. 31, 1981]'
+- id: art-7
+  title: § 1505.6
+  text: '§ 1505.6
+
+    Performance.
+
+    (a)
+
+    General.
+
+    Electrically operated toys and components thereof shall be tested by the appropriate methods described in this section and shall pass the tests in such a manner as to provide the necessary assurance
+    that normal use and reasonably foreseeable damage or abuse will not produce a hazard or a potentially hazardous condition. The toy shall be capable of passing all applicable tests with any door, cover,
+    handle, operable part, or accessory placed in any normal position. A toy shall not present a fire, casualty, or shock hazard when operated continuously for 6 hours under conditions of normal use and
+    reasonably foreseeable damage or abuse, including the most hazardous position in which the toy can be left.
+
+    (b)
+
+    Enclosures.
+
+    For the purposes of this section, the term
+
+    enclosure
+
+    means any surface or surrounding structure which prevents access to a real or potential hazard. An enclosure shall withstand impact, compression, and pressure tests (see paragraphs (b)(1),
+
+    (2), and (3) of this section) without developing any openings above those specified, reduction of electrical spacings below those specified, or other fire, casualty, or shock hazards, including the
+    loosening or displacement of components but excluding breakage of a lamp. After completion of each test, the toy shall comply with the requirements of the dielectric strength test described in paragraph
+    (e)(2) of this section and, upon visual examination, shall not evidence the development of any hazards. Rupture of a fuse shall be considered a test failure.
+
+    (1)
+
+    Impact test.
+
+    A toy weighing 10 pounds o'
 doc_files:
 - us/raw/US-CFR-title16-part1505.xml
+- us/raw/US-CFR-title16-part1505.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1505.xml (xml, 61456 chars)，生成 7 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1505.xml (xml, 61456 chars)，生成 7 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1505.xml (xml, 61455 chars)，生成 7 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1505-4（US 16 CFR Part 1505）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1505-3（US 16 CFR Part 1505）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1505-2（US 16 CFR Part 1505）。'

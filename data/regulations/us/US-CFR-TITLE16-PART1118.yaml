@@ -1,6 +1,6 @@
 id: US-CFR-TITLE16-PART1118
 official_citation: US 16 CFR Part 1118
-short_name: US 16 CFR Part 1118
+short_name: US 16 CFR Part 1118 — INVESTIGATIONS, INSPECTIONS AND INQUIRIES UNDER THE CONSUMER PRODUCT SAFETY ACT
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,518 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '16
+
+    Commercial Practices
+
+    2
+
+    2024-01-01
+
+    2024-01-01
+
+    false
+
+    INVEST'
+  text: '16
+
+    Commercial Practices
+
+    2
+
+    2024-01-01
+
+    2024-01-01
+
+    false
+
+    INVESTIGATIONS, INSPECTIONS AND INQUIRIES UNDER THE CONSUMER PRODUCT SAFETY ACT
+
+    1118
+
+    PART 1118
+
+    Commercial Practices
+
+    CONSUMER PRODUCT SAFETY COMMISSION
+
+    CONSUMER PRODUCT SAFETY ACT REGULATIONS
+
+    Pt. 1118
+
+    PART 1118—INVESTIGATIONS, INSPECTIONS AND INQUIRIES UNDER THE CONSUMER PRODUCT SAFETY ACT
+
+    Subpart A—Procedures for Investigations, Inspections, and Inquiries
+
+    Sec.
+
+    1118.1
+
+    Definitions, initiation of investigations, inspections, and inquiries and delegations.
+
+    1118.2
+
+    Conduct and scope of inspections.
+
+    1118.3
+
+    Compulsory processes and service.
+
+    1118.4
+
+    Subpoenas.
+
+    1118.5
+
+    Investigational hearings.
+
+    1118.6
+
+    Depositions.
+
+    1118.7
+
+    Rights of witnesses at investigational hearings and of deponents at depositions.
+
+    1118.8
+
+    General or special orders seeking information.
+
+    1118.9
+
+    Motions to limit or quash subpoenas and general or special orders and delegation to modify terms for compliance.
+
+    1118.10
+
+    Remedies for failure to permit authorized investigations.
+
+    1118.11
+
+    Nonexclusive delegation of power.
+
+    Subpart B—Consent Order Agreements
+
+    1118.20
+
+    Procedures for consent order agreements.
+
+    Authority:
+
+    15 U.S.C. 2063; 15 U.S.C. 2065; 15 U.S.C. 2068; 15 U.S.C. 2076; sec. 3, Pub. L. 110-314, 122 Stat. 3016.
+
+    Source:
+
+    44 FR 34929, June 18, 1979, unless otherwise noted.
+
+    Subpart A—Procedures for Investigations, Inspections, and Inquiries'
+- id: art-2
+  title: § 1118.1
+  text: '§ 1118.1
+
+    Definitions, initiation of investigations, inspections, and inquiries and delegations.
+
+    (a)
+
+    Definitions.
+
+    For the purpose of these rules, the following definitions apply:
+
+    (1)
+
+    Act
+
+    means the Consumer Product Safety Act (15 U.S.C. 2051,
+
+    et seq.
+
+    ).
+
+    (2)
+
+    Commission
+
+    means the Consumer Product Safety Commission.
+
+    (3)
+
+    Firm
+
+    means a manufacturer, private labeler, distributor, or retailer of a consumer product, except as otherwise provided by section 16(b) of the Act.
+
+    (4)
+
+    Investigation
+
+    is an undertaking by the Commission to obtain information for implementing, enforcing, or determining compliance with the Consumer Product Safety Act and the regulations, rules, and orders issued under
+    the Act. The term investigation includes, but is not limited to, inspections (§ 1118.2), investigational hearings (§ 1118.5), and inquiries; employing subpoenas (§ 1118.4), depositions (§ 1118.6), and
+    general or special orders (§ 1118.9).
+
+    (5) The definition of the terms set forth in section 3 of the Consumer Product Safety Act (15 U.S.C. 2052) shall apply to this part 1118.
+
+    (b)
+
+    Initiation of Investigations and Inquiries.
+
+    Investigations and inquiries will be initiated by the Commission in any manner authorized by law.
+
+    (c)
+
+    Initiation of Inspections.
+
+    An inspection as described in § 1118.2 is initiated when the Commission or its delegate authorizes the issuance of a written notice of inspection, described in § 1118.2(c).
+
+    (d)
+
+    Delegations of Authority.
+
+    The Commission hereby delegates to the Associate Executive Director for Compliance and Enforcement; the Solicitor, the Directors of the Divisions of Enforcement; the Solicitor, the Directors of the
+    Divisions of Enforcement, Product Defect Correction, and Regulatory Management; and the directors of area offices, the power to initiate inspections in the same manner as the Commission.'
+- id: art-3
+  title: § 1118.2
+  text: '§ 1118.2
+
+    Conduct and scope of inspections.
+
+    (a) After an inspection is initiated as set forth in § 1118.1, an officer or employee duly designated by the Commission shall issue the notice of inspection (hereinafter referred to as “notice”). Upon
+    presenting the notice, along with appropriate credentials, to the person or agent in charge of the firm to be inspected, the Commission officer or employee is authorized for the purposes set forth in
+    § 1118.1(a):
+
+    (1) To enter, at reasonable times, any factory, warehouse, firewalled third party conformity assessment body, or establishment in which products are manufactured, tested, or held, in connection with
+    distribution in commerce, or any conveyance being used to transport products in connection with distribution in commerce; and
+
+    (2) To inspect, at reasonable times and in a reasonable manner, any conveyance or those areas of the factory, warehouse, firewalled third party conformity assessment body, or establishment where products
+    are manufactured, tested, held, or transported and that may relate to the safety of those products; and
+
+    (3) To have access to and to copy all relevant records, books, documents, papers, packaging, or labeling which:
+
+    (i) Are required by the Commission to be established, made or maintained, or
+
+    (ii) Show or relate to the production, inventory, testing, distribution, sale, transportation, importation, or receipt of any product, or that are otherwise relevant to determining whether any person
+    or firm has acted or is acting in compliance with the Act and regulations, rules, and orders promulgated under the Act, and
+
+    (4) To obtain:
+
+    (i) Information, both oral and written, concerning the production, inventory, testing, distribution, sale, transportation, importation, or receipt of any product, and the organization, business, conduct,
+    practices, and management of any person or firm being inspected and its relation to any other person or firm;
+
+    (ii) Samples of items, materials, substances, products, containers, packages and packaging, and labels and labeling, or any component at manufacturer''s, distributor''s, third party conformity assessment
+    body''s, or retailer''s cost, unless voluntarily provided; and
+
+    (iii) Information, both oral and written, concerning any matter referred to in the Act and these rules.
+
+    (b) A separate notice shall be given for each inspection, but a notice is not required for each entry made during the course of the same inspection. Each inspection shall be commenced at and completed
+    within a reasonable period of time.
+
+    (c) The notice of inspection shall include the name and address of the person or firm being inspected; the name and title of the Commission officer or employee; the date and time of the anticipated
+    entry; pertinent extracts from the statutory provisions upon which the right to access is based; pertinent extracts from § 1118.2 of these rules setting forth the authority of Commission officers or
+    employees and the types of information and items they are authorized to obtain; a statement that the inspection will be conducted and the information will be provided with the cooperation of the person
+    or firm being inspected; a statement which sets forth the purposes of the inspection and the nature of the information and items to be obtained and/or copied; and a statement that those from whom information
+    is requested should state in writing whether any of the information submitted is believed to contain or relate to a trade secret or other matter which should be considered by the Commission to be confidential
+    in accordance with section 6(a)(2) of the Act (15 U.S.C. 2055(a)(2)) and whether any of the information is believed to be entitled to exemption from disclosure by the Commission under the provisions
+    of the Freedom of Information Act (5 U.S.C. 552) and the Commission''s regulations under that Act, 16 CFR part 1015 (42 FR 10496, February 22, 1977) or as amended. Any statement asserting this claim
+    of confidentiality must be in writing, and any request for exemption of the information from disclosure must be made in accordance with the Commission''s Freedom of Information Act regulations, 16 CFR
+    part 1015 (42 FR 10490, February 22, 1977) or as amended.
+
+    (d) If upon being presented with a notice by an officer or employee duly designated by the Commission, the person or agent-in-charge of the firm being inspected refuses to allow entry or inspection,
+    the Commission may then seek a search warrant or take other appropriate legal action. If the person refuses to provide information, to allow access to or the copying of records, or to supply samples
+    as provided in these rules, the officer or employee of the Commission shall complete the investigation to the extent that voluntary cooperation is provided. The Commission may take such additional action,
+    including but not limited to seeking an ex parte search warrant, employing the compulsory process provided for in these rules, and/or taking other suitable legal action. If the person or agent in charge
+    refuses to accept the notice upon its presentation, the officer or employee may affix the notice to a public entrance way on the premises and this shall constitute presentation of the notice.
+
+    [44 FR 34929, June 18, 1979, as amended at 78 FR 15868, Mar. 12, 2013]'
+- id: art-4
+  title: § 1118.3
+  text: '§ 1118.3
+
+    Compulsory processes and service.
+
+    (a) In addition to or in lieu of authorizing the issuance of a notice, the Commission may elect either to seek an ex parte search warrant and/or use any other reasonable means authorized by law to initiate
+    investigations, inspections, or inquires to obtain information for the purposes set forth in § 1118.1(a), including but not limited to the following compulsory processes:
+
+    (1) Subpoenas;
+
+    (2) Investigational hearings;
+
+    (3) Depositions; and
+
+    (4) General or special orders.
+
+    (b) Service in connection with any of the compulsory processes in § 1118.3(a) shall be effected:
+
+    (1) By personal service upon the person or agent in charge of the firm being investigated, inspected or inquired of; or
+
+    (2) By certified mail or delivery to the last known residence or business address of anyone being investigated, inspected or inquired of; or
+
+    (3) In the case of general or special orders where personal service, mailing or delivery has been unsuccessful, service may also be effected by publication in the
+
+    Federal Register.
+
+    (c) The date of service of any form of compulsory process shall be the date on which the document is received by mail, delivered in person or published in the
+
+    Federal Register.
+
+    In computing a period of time in which a party is required or permitted to act, the day from which the time begins to run shall not be included. The last day of the period shall be included, unless
+    it is a Saturday, Sunday or legal holiday, in which event the period runs until the end of the next day that is not a Saturday, Sunday or legal holiday.
+
+    (d) These rules shall be referred to in any notice of compulsory process served upon a person or firm.
+
+    (e) Anyone submitting information in response to any of the compulsory processes referred to in § 1118.3(a) should state whether any of the information submitted is believed to contain or relate to
+    a trade secret or other matter which should be considered by the Commission to be confidential in accordance with section 6(a)(2) of the Consumer Product Safety Act (15 U.S.C. 2055(a)(2)) and whether
+    any of the information is believed to be exempt from disclosure by the Commission under the provisions of the Freedom of Information Act (5 U.S.C. 552) and the Commission''s regulations under that Act,
+    16 CFR part 1015 (42 FR 10490, February 22, 1977) or as amended. Any claim of confidentiality must be in writing, and any request for exemption from disclosure must be made in accordance with the Commission''s
+    Freedom of Information Act regulations, 16 CFR part 1015 (42 FR 10490, February 22, 1977), or as amended.'
+- id: art-5
+  title: § 1118.4
+  text: '§ 1118.4
+
+    Subpoenas.
+
+    The Commission may issue to any person or firm a subpoena requiring the production of documentary evidence (subpoena duces tecum) and/or attendance and testimony of witnesses (subpoena ad testificandum)
+    relating to any matter under investigation. Procedures regarding compliance with subpoenas and motions to limit or quash subpoenas are provided for in § 1118.9.'
+- id: art-6
+  title: § 1118.5
+  text: '§ 1118.5
+
+    Investigational hearings.
+
+    (a) The Commission by subpoena may require any person or firm to provide information at an investigational hearing. These hearings shall be for the purpose of taking the testimony, under oath, of witnesses
+    and receiving documents and other data relating to any subject under investigation. The hearings shall be presided over by the Commission, by one or more of the Commissioners, by an administrative law
+    judge, or by a duly designated officer or employee, who shall be referred to as the presiding official. The hearings shall be stenographically reported, and the transcript shall be made a part of the
+    record.
+
+    (b) A Commissioner who participates in a hearing or other investigation, inspection, or inquiry shall not be disqualified solely by reason of that participation from subsequently participating in a
+    Commission decision in the same matter.
+
+    (c) Investigational hearings shall be closed to the public, unless otherwise ordered by the Commission.
+
+    (d) The release of the record of the hearing shall be governed by the Freedom of Information Act (5 U.S.C. 552), the Commission''s regulations under that Act, 16 CFR part 1015 (42 FR 10490, February
+    22, 1977) or as amended and/or other applicable laws or regulations, except that a person required to give testimony or a deposition may, in accordance with § 1118.7(d), obtain a copy of his or her
+    testimony or deposition.'
+- id: art-7
+  title: § 1118.6
+  text: '§ 1118.6
+
+    Depositions.
+
+    (a) The Commission by subpoena may require testimony to be taken by deposition at any stage of any investigation. Depositions may be taken before any person who is designated by the
+
+    Commission and has the power to administer oaths. The person before whom the deposition is taken shall put the deponent under oath. The testimony given shall be reduced to writing by the person taking
+    the deposition or under that person''s direction and shall then be submitted to the deponent for signature unless the deponent waives the right to sign the deposition. All depositions shall be closed
+    to the public, unless otherwise ordered by the Commission. The release of the record of such depositions shall be governed by the Freedom of Information Act (5 U.S.C. 552), the Commission''s regulations
+    under that Act, 16 CFR part 1015 (42 FR 10490, February 22, 1977) or as amended and/or other applicable laws or regulations, except that the deponent may, in accordance with § 1118.7(d), obtain a copy
+    of his or her deposition.
+
+    (b) Any changes which the deponent desires to make shall be entered on the face of the deposition and shall state the reasons for such changes. The deposition shall then be signed by the deponent, unless
+    the deponent waives the right to sign, cannot be found, or is unable or refuses to sign. The deponent must sign the deposition within 30 days of its submission to him or her, or within such shorter
+    time period as the Commission may designate. Whenever a deponent is required to sign in less than ten days, the Commission shall notify the deponent of the reasons for such shorter time period.
+
+    If the deponent does not sign the deposition within the prescribed time period, the Commission designee shall sign it and state on the record the fact of the waiver of the right to sign or of the illness
+    or absence of the deponent, or the deponent''s inability or refusal to sign, together with the reason if any is given. The deposition may be used in any administrative proceeding, as provided by these
+    rules, or any other proceeding, as allowed by applicable rules.'
+- id: art-8
+  title: § 1118.7
+  text: '§ 1118.7
+
+    Rights of witnesses at investigational hearings and of deponents at depositions.
+
+    (a) Any person, agent, or officer of a firm, who is required to produce documentary evidence or give testimony as a witness at an investigational hearing conducted under provisions of § 1118.5 or as
+    a deponent at a deposition taken under provisions of § 1118.6 may be accompanied by an attorney, or an officer or partner of the firm, who may act as representative for the witness or the deponent.
+    However, a person who is subpoenaed to produce documentary evidence or give testimony at an investigational hearing or deposition cannot act as attorney or representative for another witness or deponent
+    at the same proceeding. The term attorney refers to members of the bar of a Federal court or the courts of any State or Territory of the United States, the Commonwealth of Puerto Rico, or the District
+    of Columbia. The witness or deponent and his or her attorney or representative may act as follows during the course of an investigational hearing or deposition:
+
+    (1) A witness or deponent may confer, in confidence, with his or her attorney or representative concerning any questions asked of the witness or deponent. If the witness, deponent, or his or her attorney
+    or representative objects to a question or any other matter relevant to the investigational hearing or deposition, the objection and basis for it shall be stated on the record. In the case of an objection
+    based upon self-incrimination, the privilege must be asserted by the witness or deponent. If a witness at an investigational hearing refuses to answer a question or provide other information, the presiding
+    official shall have the authority to immediately order the witness to answer the question or provide the information requested, except in circumstances where, in the discretion of the presiding official
+    an immediate ruling would be unwarranted and except where a refusal is based upon the privilege against self-incrimination. Otherwise all objections shall be ruled upon by presiding official at the
+    time the objection is made.
+
+    (2) Objections timely made under the provisions of § 1118.7(a) shall be noted on the record, shall be treated as continuing, and shall be preserved throughout the proceeding without the necessity of
+    repetition during similar lines of inquiry.
+
+    (3) Except as provided by § 1118.7(a), counsel for a witness or deponent may
+
+    not interrupt the examination of the witness or the deponent by making objections or statements on the record.
+
+    (4) Upon completion of the examination, any witness at an investigational hearing may clarify on the record any of his or her answers, or, if the witness is accompanied by an attorney or representative,
+    the attorney or representative may examine the witness on the record as to answers previously given. In addition, the witness or his or her attorney or representative may make a brief statement at the
+    conclusion of the hearing giving his, her or the firm''s position with regard to matters under investigation. In order to prevent abuse of the investigational process, the presiding official shall have
+    the authority to impose reasonable limitations on the period of time allowed for objections, clarification of answers, and statements of position.
+
+    (5) Upon completion of all testimony, a deponent may clarify on the record any of his or her answers. The attorney or representative for a deponent may examine that deponent on the record to clarify
+    answers previously given.
+
+    (b) Any person, agent, or officer who is required to appear in person at an investigational hearing or at a deposition shall testify as to matters and information known and/or reasonably available to
+    the person or firm involved.
+
+    (c) Any person, agent or officer who is compelled by subpoena to appear in person at an investigational hearing or at a deposition shall receive the same fees and mileage allowances as are paid witnesses
+    in the courts of the United States.
+
+    (d) Any person, agent, or officer who is required to appear at an investigational hearing or at a deposition shall be entitled to retain a copy of any document submitted by him or her and, upon payment
+    of lawfully prescribed costs, in accordance with the Commission''s regulations under the Freedom of Information Act, shall be entitled to procure a copy of his or her own testimony as recorded.
+
+    (e) The presiding official shall take all necessary action to regulate the course of the hearing, to avoid delay and to assure that reasonable standards of orderly and ethical conduct are maintained.
+    The presiding official, for reasons stated on the record, shall immediately report to the Commission any instance in which a witness or his or her attorney or representative has refused to comply with
+    the presiding official''s directions or to adhere to reasonable standards of orderly and ethical conduct in the course of the hearing. The Commission shall take whatever action is appropriate under
+    the circumstances.'
+- id: art-9
+  title: § 1118.8
+  text: '§ 1118.8
+
+    General or special orders seeking information.
+
+    The Commission may require by the issuance of general or special orders any person or firm to submit in writing any reports and answers to questions as the Commission may prescribe. The reports or answers
+    shall be made under oath, and shall be filed within the time prescribed by the Commission. Procedures regarding compliance with general or special orders and motions to limit or quash such orders are
+    provided for in § 1118.9.'
+- id: art-10
+  title: § 1118.9
+  text: '§ 1118.9
+
+    Motions to limit or quash subpoenas and general or special orders and delegation to modify terms for compliance.
+
+    (a) The Commission hereby delegates to the Associate Executive Director for Compliance and Enforcement; the Solicitor; the Directors of Divisions of Enforcement, Product Defect Correction, and Regulatory
+    Management; and the General Counsel the authority:
+
+    (1) To negotiate and approve the terms of satisfactory compliance with subpoenas and general or special orders;
+
+    (2) To impose conditions upon compliance with such compulsory processes; and
+
+    (3) To extend the time for compliance and the time for filing motions to limit or quash.
+
+    (b) The person or firm served with a subpoena or general or special order may file a motion to limit or quash the subpoena or order. Any motion to limit or quash shall set forth the reasons why the
+    subpoena or order should be limited or quashed and may be accompanied by memoranda, affidavits, or other documents submitted in support of the motion. The motion must be received in the Office of the
+    Secretary of
+
+    the Commission within 10 calendar days of receipt of the subpoena or order unless:
+
+    (1) The subpoena or order provides for a different time; or
+
+    (2) The Commission, for good cause shown, grants an extension of time to file a motion.
+
+    (c) Upon receipt of a motion to limit or quash, the Office of the Secretary shall immediately notify and transmit a copy to the appropriate staff member. Unless a different period of time is specified
+    in the subpoena or order, the staff shall file an answer with the Office of the Secretary within 10 calendar days after receipt of the motion. A copy of the answer shall be served upon the moving party
+    or the counsel of the moving party. No reply to the answer will be permitted.
+
+    (d) All motions to limit or quash shall be ruled upon by the Commission. The Office of the Secretary shall serve the decision on a motion to limit or quash upon the moving party or the counsel for the
+    moving party and shall furnish a copy of the decision to the appropriate staff member. The Commission''s decision is a final decision. Motions for reconsideration will not be received.'
+- id: art-11
+  title: § 1118.10
+  text: '§ 1118.10
+
+    Remedies for failure to permit authorized investigations.
+
+    In the event a person or firm fails to comply with any investigative process authorized by these rules, the Commission may seek appropriate action within its authority under the Consumer Product Safety
+    Act (15 U.S.C. 2051,
+
+    et seq.
+
+    )'
+- id: art-12
+  title: § 1118.11
+  text: '§ 1118.11
+
+    Nonexclusive delegation of power.
+
+    No provision contained herein delegating any of the Commission''s powers shall be construed as limiting the authority of the Commission to exercise the same powers.
+
+    Subpart B—Consent Order Agreements'
+- id: art-13
+  title: § 1118.20
+  text: '§ 1118.20
+
+    Procedures for consent order agreements.
+
+    (a) For the procedure to be followed regarding consent order agreements involving section 15 of the Act (15 U.S.C. 2064), refer to the Commission''s regulations relating to substantial product hazards
+    (16 CFR part 1115). For all other consent order agreements under the Consumer Product Safety Act, the provisions set forth below are applicable.
+
+    (b) The consent order agreement is a document executed by a person, or firm (consenting party) and a Commission staff representative which incorporates both a proposed complaint setting forth the staff''s
+    charges and a proposed order by which such charges are resolved. A consent order agreement shall contain the following provisions, as appropriate:
+
+    (1) An admission of all jurisdictional facts by the consenting parties;
+
+    (2) A waiver of any rights to an administrative or judicial hearing and of any other procedural steps including any rights to seek judicial review or otherwise challenge or contest the validity of the
+    Commission''s order;
+
+    (3) A statement that the agreement is in settlement of the staff''s charges and does not constitute an admission by the consenting party that the law has been violated;
+
+    (4) A statement describing the alleged hazard, non-compliance or violation.
+
+    (5) A statement that the Commission''s order is issued under the provisions of the Act (15 U.S.C. 2051,
+
+    et seq.
+
+    ); and that a violation of such order may subject the consenting party to appropriate legal action.
+
+    (6) An acknowledgment that the consent order agreement only becomes effective upon its final acceptance by the Commission and its service upon the consenting party;
+
+    (7) An acknowledgment that the Commission may disclose terms of the consent order agreement to the public;
+
+    (8) A statement that the consenting party shall comply with the provisions of the agreement and order;
+
+    (9) A statement that the requirements of the order are in addition to and not to the exclusion of other remedies under the Act.
+
+    (c) At any time in the course of an investigation, the staff, with the approval of the Commission, may propose to the person or firm being investigated that any alleged violation be
+
+    resolved by an agreement containing a consent order. Additionally, such a proposal may be made to the Commission staff by such person or firm.
+
+    (d) Upon receiving an executed agreement, the Commission may:
+
+    (1) Provisionally accept it;
+
+    (2) Reject it and issue the complaint (in which case the matter will be scheduled for hearing in accordance with the Commission''s Rules of Practice for Adjudicative Proceedings, 16 CFR part 1025, June
+    21, 1977 or as amended) and/or
+
+    (3) Take such other action as it may deem appropriate.
+
+    (e) If the agreement is provisionally accepted, the Commission shall place the agreement on the public record and shall announce provisional acceptance of the agreement in the
+
+    Federal Register.
+
+    Any interested person may ask the Commission not to accept the agreement by filing a written request in the Office of the Secretary. Any request must be received in the Office of the Secretary no later
+    than the close of business of the 15th calendar day following the date of announcement in the
+
+    Federal Register.
+
+    (f) If no requests are received, the agreement shall be deemed finally accepted by the Commission on the 16th calendar day after the date of the announcement in the
+
+    Federal Register.
+
+    Notice of final acceptance will be given and the order issued within a reasonable time.
+
+    (g) If the Commission receives one or more requests that it not finally accept an agreement, it shall, within a reasonable time, either finally accept or reject the agreement after considering the requests.
+    The Commission shall promptly issue and serve an order indicating its decision.
+
+    (1) If the agreement is accepted, the Commission shall issue the complaint and order. The order is a final order in disposition of the proceeding and is effective immediately upon its service on the
+    consenting party under these rules. The consenting party shall thereafter be bound by and take immediate action in accordance with the final order.
+
+    (2) If the agreement is rejected, the order so notifying the consenting party shall constitute withdrawal of the Commission''s provisional acceptance. The Commission may then issue its complaint, may
+    order further investigation, or may take any action it considers appropriate.
+
+    (h) An agreement that has been finally accepted may be vacated or modified upon petition of any party or the Commission''s own initiative. The petition shall state the proposed changes in the agreement
+    and the reasons for granting the petition. The Commission may modify or vacate where (1) false statements were relied upon in accepting the agreement or (2) there are changed conditions of fact or law.
+    In deciding whether to grant a petition, the Commission shall consider the public interest. A petitioner, or the Commission when acting on its own initiative, shall serve a copy of the petition or notice
+    of reconsideration, respectively, on all parties. Parties affected by the petition or notice of reconsideration may file a response within 10 calendar days. No replies shall be accepted. The Commission
+    shall decide the petition or notice of reconsideration within a reasonable time and, by order, shall indicate its decision and its reasons.'
 doc_files:
 - us/raw/US-CFR-title16-part1118.xml
+- us/raw/US-CFR-title16-part1118.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1118.xml (xml, 28468 chars)，生成 13 条共 28468 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1118.xml (xml, 28468 chars)，生成 13 条共 28468 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1118.xml (xml, 28468 chars)，生成 13 条共 28468 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1118-4（US 16 CFR Part 1118）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1118-3（US 16 CFR Part 1118）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1118-2（US 16 CFR Part 1118）。'

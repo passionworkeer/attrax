@@ -9,11 +9,776 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'ETSI EN 300 440-1
+
+    V1.6.1
+
+    (2010-08)
+
+    European Standard (Teleco'
+  text: 'ETSI EN 300 440-1
+
+    V1.6.1
+
+    (2010-08)
+
+    European Standard (Telecommunications series)
+
+    Electromagnetic compatibility
+
+    and Radio spectrum Matters (ERM);
+
+    Short range devices;
+
+    Radio equipment to be used
+
+    in the 1 GHz to 40 GHz frequency range;
+
+    Part 1: Technical characteristics and
+
+    test methods
+
+    2 ETSI EN 300 440-1 V1.6.1 (2010-08)
+
+    Reference
+
+    REN/ERM-TG28-045-1
+
+    Keywords
+
+    radio, SRD, testing
+
+    ETSI
+
+    650 Route des Lucioles
+
+    F-06921 Sophia Antipolis Cedex - FRANCE
+
+    Tel.: +33 4 92 94 42 00 Fax: +33 4 93 65 47 16
+
+    Siret N° 348 623 562 00017 - NAF 742 C
+
+    Association à but non lucratif enregistrée à la
+
+    Sous-Préfecture de Grasse (06) N° 7803/88
+
+    Important notice
+
+    Individual copies of the present document can be downloaded from:
+
+    http://www.etsi.org
+
+    The present document may be made available in more than one electronic version or in print. In any case of existing or
+
+    perceived difference in contents between such versions, the reference version is the Portable Document Format (PDF).
+
+    In case of dispute, the reference shall be the printing on ETSI printers of the PDF version kept on a specific network drive
+
+    within ETSI Secretariat.
+
+    Users of the present document should be aware that the document may be subject to revision or change of status.
+
+    Information on the current status of this and other ETSI documents is available at
+
+    http://portal.etsi.org/tb/status/status.asp
+
+    If you find errors in the present document, please send your comment to one of the following services:
+
+    http://portal.etsi.org/chaircor/ETSI_support.asp
+
+    Copyright Notification
+
+    No part may be reproduced except as authorized by written permission.
+
+    The copyright and the foregoing restriction extend to reproduction in all media.
+
+    © European Telecommunications Standards Institute 2010.
+
+    All rights reserved.
+
+    DECTTM, PLUGTESTSTM, UMTSTM, TIPHONTM, the TIPHON logo and the ETSI logo are Trade Marks of ETSI registered
+
+    for the benefit of its Members.
+
+    3GPPTM is a Trade Mark of ETSI registered for the benefit of its Members and of the 3GPP Organizational Partners.
+
+    LTE™ is a Trade Mark of ETSI currently being registered
+
+    for the benefit of its Members and of the 3GPP Organizational Partners.
+
+    GSM® and the GSM logo are Trade Marks registered and owned by the GSM Association.
+
+    ETSI
+
+    3 ETSI EN 300 440-1 V1.6.1 (2010-08)
+
+    Contents
+
+    Intellectual Property Rights ................................................................................................................................ 7
+
+    Foreword ............................................................................................................................................................. 7
+
+    1 Scope ........................................................................................................................................................ 8
+
+    2 References ................................................................................................................................................ 9
+
+    2.1 Normative references ......................................................................................................................................... 9
+
+    2.2 Informative references ........................................................................................................................................ 9
+
+    3 Definitions, symbols and abbreviations ................................................................................................. 10
+
+    3.1 Definitions ........................................................................................................................................................ 10
+
+    3.2 Symbols ............................................................................................................................................................ 12
+
+    3.3 Abbreviations ................................................................................................................................................... 12
+
+    4 Technical requirements specifications ................................................................................................... 12
+
+    4.1 General requirements ....................................................................................................................................... 12
+
+    4.1.1 Receiver category ....................................................................................................................................... 12
+
+    4.1.2 General performance criteria ...................................................................................................................... 13
+
+    4.2 Presentation of equipment for testing purposes ................................................................................................ 13
+
+    4.2.1 Choice of model for testing ........................................................................................................................ 14
+
+    4.2.2 Testing of equipment with alternative power levels ................................................................................... 14
+
+    4.2.3 Testing of equipment that does not have an external 50 Ω RF connector (integral antenna
+
+    equipment) .................................................................................................................................................. 14
+
+    4.2.3.1 Equipment with an internal permanent or temporary antenna connector or using a dedicated test
+
+    fixture .................................................................................................................................................... 14
+
+    4.2.3.2 Equipment with a temporary antenna connector ................................................................................... 14
+
+    4.3 Mechanical and electrical design ...................................................................................................................... 14
+
+    4.3.1 General ........................................................................................................................................................ 14
+
+    4.3.2 Controls ...................................................................................................................................................... 15
+
+    4.3.3 Transmitter shut-off facility ........................................................................................................................ 15
+
+    4.3.4 Receiver mute or squelch ............................................................................................................................ 15
+
+    4.3.5 Marking (equipment identification) ............................................................................................................ 15
+
+    4.3.5.1 Equipment identification ....................................................................................................................... 15
+
+    4.3.5.2 Marking ................................................................................................................................................. 15
+
+    4.4 Auxiliary test equipment .................................................................................................................................. 15
+
+    5 Test conditions, power sources and ambient temperatures .................................................................... 15
+
+    5.1 Normal and extreme test conditions ................................................................................................................. 15
+
+    5.2 Test power source ............................................................................................................................................. 15
+
+    5.2.1 External test power source .......................................................................................................................... 16
+
+    5.2.2 Internal test power source ........................................................................................................................... 16
+
+    5.3 Normal test conditions ...................................................................................................................................... 16
+
+    5.3.1 Normal temperature and humidity .............................................................................................................. 16
+
+    5.3.2 Normal test power source ........................................................................................................................... 16
+
+    5.3.2.1 Mains voltage ........................................................................................................................................ 16
+
+    5.3.2.2 Regulated lead-acid battery power sources ........................................................................................... 16
+
+    5.3.2.3 Other power sources .............................................................................................................................. 16
+
+    5.4 Extreme test conditions .................................................................................................................................... 17
+
+    5.4.1 Extreme temperatures ................................................................................................................................. 17
+
+    5.4.1.1 Procedure for tests at extreme temperatures .......................................................................................... 17
+
+    5.4.1.1.1 Procedure for equipment designed for continuous operation .......................................................... 17
+
+    5.4.1.1.2 Procedure for equipment designed for intermittent operation ......................................................... 17
+
+    5.4.1.2 Extreme temperature ranges .................................................................................................................. 17
+
+    5.4.2 Extreme test source voltages ....................................................................................................................... 18
+
+    5.4.2.1 Mains voltage ........................................................................................................................................ 18
+
+    5.4.2.2 Regulated lead-acid battery power sources ........................................................................................... 18
+
+    5.4.2.3 Power sources using other types of batteries ......................................................................................... 18
+
+    5.4.2.4 Other power sources .............................................................................................................................. 18
+
+    ETSI
+
+    4 ETSI EN 300 440-1 V1.6.1 (2010-08)
+
+    6 General conditions .................................................................................................................................. 18
+
+    6.1 Normal test signals and test modulation ........................................................................................................... 18
+
+    6.1.1 Normal test signals for data ........................................................................................................................ 19
+
+    6.2 Artificial antenna .............................................................................................................................................. 19
+
+    6.3 Test fixture ....................................................................................................................................................... 19
+
+    6.3.1 Validation of the test-fixture in the temperature chamber .......................................................................... 21
+
+    6.3.2 Mode of use ................................................................................................................................................ 22
+
+    6.4 Test sites and general arrangements for radiated measurements ...................................................................... 23
+
+    6.5 Measuring receiver ........................................................................................................................................... 23
+
+    7 Methods of measurement and limits for transmitter parameters .......'
+- id: art-2
+  title: 'Annex C (normative): Power limits for RFID systems operating in the 2,45 GHz ISM band ...... 52'
+  text: 'Annex C (normative): Power limits for RFID systems operating in the 2,45 GHz ISM band ...... 52
+
+    C.1 Power limits and frequency band ........................................................................................................... 52
+
+    C.1.1 Additional requirements for 2,45 GHz 4 W e.i.r.p. indoor RFID equipment ................................................... 52
+
+    C.1.2 Spectrum mask ................................................................................................................................................. 53
+
+    Annex D (informative): Example of implementation for restriction of 4 W RFID to
+
+    in-building use only ........................................................................................ 54
+
+    Annex E (normative): Limits for GBSAR operating in the frequency range 17,1 GHz to
+
+    17,3 GHz ......................................................................................................... 56
+
+    E.1 Introduction ............................................................................................................................................ 56
+
+    E.2 Effective radiated power (e.i.r.p.) ........................................................................................................... 56
+
+    E.2.1 Definition ......................................................................................................................................................... 56
+
+    E.2.2 Method of measurement ................................................................................................................................... 56
+
+    E.2.3 Limits ............................................................................................................................................................... 56
+
+    E.3 Permitted range of operating frequencies ............................................................................................... 56
+
+    E.3.1 Definition ......................................................................................................................................................... 56
+
+    ETSI
+
+    6 ETSI EN 300 440-1 V1.6.1 (2010-08)
+
+    E.3.2 Method of measurement ................................................................................................................................... 56
+
+    E.3.3 Limits ............................................................................................................................................................... 57
+
+    E.4 Principles of Detection And Avoid (DAA) ............................................................................................ 57
+
+    E.4.1 General DAA test set-up .................................................................................................................................. 57
+
+    E.4.2 Test signals ....................................................................................................................................................... 58
+
+    E.4.3 DAA threshold ................................................................................................................................................. 58
+
+    E.4.3.1 Definition .................................................................................................................................................... 58
+
+    E.4.3.2 Method of measurement ............................................................................................................................. 58
+
+    E.4.3.3 Limit ........................................................................................................................................................... 59
+
+    E.4.4 DAA timing parameters ................................................................................................................................... 59
+
+    E.4.4.1 Minimum listen Time ................................................................................................................................. 59
+
+    E.4.4.1.1 Definition .............................................................................................................................................. 59
+
+    E.4.4.1.2 Method of measurement ........................................................................................................................ 59
+
+    E.4.4.1.3 Limit for minimum listen time .............................................................................................................. 60
+
+    E.4.4.2 Minimum listen time after detection ........................................................................................................... 60
+
+    E.4.4.2.1 Definition .............................................................................................................................................. 60
+
+    E.4.4.2.2 Method of measurement ........................................................................................................................ 60
+
+    E.4.4.2.3 Limit ...................................................................................................................................................... 61
+
+    E.4.4.3 Maximum transmitter on-time .................................................................................................................... 61
+
+    E.4.4.3.1 Definition .............................................................................................................................................. 61
+
+    E.4.4.3.2 Method of measurement ........................................................................................................................ 61
+
+    E.4.4.3.3 Limit ...................................................................................................................................................... 62
+
+    E.4.4.4 Minimum transmitter off-time .................................................................................................................... 62
+
+    E.4.4.4.1 Definition .............................................................................................................................................. 62
+
+    E.4.4.4.2 Method of measurement ........................................................................................................................ 62
+
+    E.4.4.4.3 Limit ...................................................................................................................................................... 63
+
+    E.5 Antenna pattern ...................................................................................................................................... 63
+
+    E.5.1 Definition ......................................................................................................................................................... 63
+
+    E.5.2 Method of measurements ................................................................................................................................. 63
+
+    E.5.3 Limits ............................................................................................................................................................... 65
+
+    Annex F (informative): Bibliography ................................................................................................... 66
+
+    History .............................................................................................................................................................. 67
+
+    ETSI
+
+    7 ETSI EN 300 440-1 V1.6.1 (2010-08)
+
+    Intellectual Property Rights
+
+    IPRs essential or potentially essential to the present document may have been declared to ETSI. The information
+
+    pertaining to these essential IPRs, if any, is publicly available for ETSI members and non-members, and can be found
+
+    in ETSI SR 000 314: "Intellectual Property Rights (IPRs); Essential, or potentially Essential, IPRs notified to ETSI in
+
+    respect of ETSI standards", which is available from the ETSI Secretariat. Latest updates are available on the ETSI Web
+
+    server (http://webapp.etsi.org/IPR/home.asp).
+
+    Pursuant to the ETSI IPR Policy, no investigation, including IPR searches, has been carried out by ETSI. No guarantee
+
+    can be given as to the existence of other IPRs not referenced in ETSI SR 000 314 (or the updates on the ETSI Web
+
+    server) which are, or may be, or may become, essential to the present document.
+
+    Foreword
+
+    This European Standard (Telecommunications series) has been produced by ETSI Technical Committee
+
+    Electromagnetic compatibility and Radio spectrum Matters (ERM).
+
+    For non EU countries the present document may be used for regulatory (Type Approval) purposes.
+
+    The present document includes improvements to the previous version of the standard that take advantage of technical
+
+    developments within the SRD industry. In particular this includes optional features such as Listen Before Talk (LBT)
+
+    and Detect And Avoid (DAA).
+
+    The present document is part 1 of a multi-part deliverable covering Electromagnetic compatibility and Radio spectrum
+
+    Matters (ERM); Short range devices; Radio equipment to be used in the 1 GHz to 40 GHz frequency range, as identified
+
+    below:
+
+    Part 1: "Technical characteristics and test methods";
+
+    Part 2: "Harmonized EN covering the essential requirements of article 3.2 of the R&TTE Directive".
+
+    National transposition dates
+
+    Date of adoption of this EN: 17 August 2010
+
+    Date of latest announcement of this EN (doa): 30 November 2010
+
+    Date of latest publication of new National Standard
+
+    or endorsement of this EN (dop/e): 31 May 2011
+
+    Date of withdrawal of any conflicting National Standard (dow): 31 May 2011
+
+    ETSI
+
+    8 ETSI EN 300 440-1 V1.6.1 (2010-08)
+
+    1 Scope
+
+    The present document applies to the following Short Range Device major equipment types:
+
+    • Generic Short Range Devices, including alarms, telecommand, telemetry, data transmission in general, etc.
+
+    • Radio Frequency IDentification (RFID).
+
+    • Radiodetermination, including detection, movement and alert applications.
+
+    These radio equipment types are capable of operating in the permitted frequency bands within the 1 GHz to 40 GHz
+
+    range as specified in table 1:
+
+    • either with a Radio Frequency (RF) output connection and dedicated antenna or with an integral antenna;
+
+    • for all types of modulation;
+
+    • with or without speech.
+
+    Table 1 shows a list of the frequency bands as designated by the European Commission Decisions on Short Range
+
+    Devices [i.6], [i.7] and the CEPT/ERC Recommendation 70-03 [i.1] as known at the date of publication of the present
+
+    document.
+
+    Table 1: Short Range Devices within the 1 GHz to 40 GHz permitted frequency bands
+
+    Frequency Bands Applications Notes
+
+    Transmit and Receive 2 400 MHz to 2 483,5 MHz Generic use
+
+    Transmit and Receive 2 400 MHz to 2 483,5 MHz Detection, movement and alert
+
+    applications
+
+    Transmit and Receive (a) 2 446 MHz to 2 454 MHz RFID See annex C
+
+    Transmit and Receive (b) 2 446 MHz to 2 454 MHz RFID See annex C
+
+    Transmit and Receive 5 725 MHz to 5 875 MHz Generic use
+
+    Transmit and Receive 9 200 MHz to 9 500 MHz Radiodetermination: radar,
+
+    detection, movement and alert
+
+    applications
+
+    Transmit and Receive 9 500 MHz to 9 975 MHz Radiodetermination:
+
+    radar, detection, movement and
+
+    alert applications
+
+    Transmit and Receive 10,5 GHz to 10,6 GHz Radiodetermination:
+
+    radar, detection, movement and
+
+    alert applications
+
+    Transmit and Receive 13,4 GHz to 14,0 GHz Radiodetermination:
+
+    Radar, detection, movement
+
+    and alert applications
+
+    Transmit and Receive 17,1 GHz to 17,3 GHz Radiodetermination: See annex E
+
+    GBSAR detecting, movement
+
+    and alert applications
+
+    Transmit and Receive 24,00 GHz to 24,25 GHz Generic use and for
+
+    Radiodetermination: detection,
+
+    movement and alert
+
+    applications
+
+    NOTE: (a) and (b) refer to two different operational restrictions for different power levels in the same frequency
+
+    band.
+
+    NOTE 1: Table 1 represents the most widely implemented position within the European Union [i.6], [i.7] and the
+
+    CEPT countries [i.1], but it should not be assumed that all designated bands are available in all countries.
+
+    NOTE 2: In addition, it should be noted that other frequency bands may be available in a country within the
+
+    frequency range 1 GHz to 40'
+- id: art-3
+  title: 'Annex C (normative):'
+  text: 'Annex C (normative):
+
+    Power limits for RFID systems operating in the 2,45 GHz
+
+    ISM band
+
+    The present annex specifies the requirements for RFID systems operating in the 2,45 GHz ISM band.
+
+    C.1 Power limits and frequency band
+
+    The parameter limits for RFID equipment operating in the 2,45 GHz band are defined in table C.1.
+
+    Table C.1: Parameters for 2,45 GHz RFID systems
+
+    Frequency band Power limit, e.i.r.p. Use of equipment Comments
+
+    (note 1)
+
+    2 446 MHz to 2 454 MHz +27 dBm No restriction FHSS or
+
+    unmodulated carrier (CW) only
+
+    2 446 MHz to 2 454 MHz +36 dBm In-building only FHSS only
+
+    (see note 2)
+
+    NOTE 1: e.i.r.p. including an antenna with the following data:
+
+    a) equal or less than ±45 degrees horizontal beamwidth;
+
+    b) equal or more than 15 dB sidelobe attenuation;
+
+    c) physical protection (e.g. antenna dome) which dimension limits a power transfer from the RFID
+
+    antenna to a quarter wave matched dipole at positioned at an extreme close proximity to ≤ +15 dBm.
+
+    NOTE 2: The use of power levels above +27 dBm (e.i.r.p.) shall by technical means be restricted to in building use
+
+    only and shall have a duty cycle less than or equal to 15 % averaged over any 200 msec period (30 msec
+
+    on/170 msec off).
+
+    C.1.1 Additional requirements for 2,45 GHz 4 W e.i.r.p. indoor
+
+    RFID equipment
+
+    Indoor 4 W e.i.r.p. RFID equipment shall be constructed with 2 power levels as described below:
+
+    a) 4 W e.i.r.p; and
+
+    b) 500 mW e.i.r.p.
+
+    The default power level is 500 mW e.i.r.p. or less.
+
+    The 4 W e.i.r.p. level is only enabled by a secure software code built into the equipment and which is only accessible by
+
+    the manufacturer or his representative. They way the software code controls the power level shall be as below:
+
+    1) Fixed mounted 4 W RFID equipment shall be mounted inside a building and shall have a tamper proof
+
+    function, which shall ensure self-destruction of the special software code if the RFID equipment is removed
+
+    from its fixed mounting position. Such action shall reduce the power automatically to the default value of to
+
+    500 mW e.i.r.p. or less.
+
+    2) Portable 4 W RFID equipment shall, via an inside building short range link, have a continuous update of the
+
+    special software code. This code is generated by a fixed mounted control unit installed in the same indoor
+
+    room or area in which the RFID equipment is to be used. Without a signal from this control unit, the RFID
+
+    equipment shall reduce its power automatically to the default level of 500 mW e.i.r.p. or less. The control unit
+
+    shall have a tamper proof function, which shall ensure self-destruction of the special software code if the unit
+
+    is removed from its fixed, in building, mounting position.
+
+    Further information related to the above requirement is given in annex D.
+
+    ETSI
+
+    53 ETSI EN 300 440-1 V1.6.1 (2010-08)
+
+    C.1.2 Spectrum mask
+
+    The spectrum mask shall be declared by the provider and shall comply with the limits in table C.2.
+
+    Table C.2: Stair-case spectrum mask for RFID systems operating in the 2,45 GHz band
+
+    Frequency off-set, f Limit Measurement
+
+    (f = 2 450 MHz) resolution
+
+    0
+
+    Bandwidth
+
+    f ≤ f - 4,20 MHz
+
+    0
+
+    and -5 dBm 30 kHz
+
+    f ≥ f + 4,20 MHz
+
+    0
+
+    f ≤ f - 6,83 MHz
+
+    0
+
+    and -30 dBm 300 kHz
+
+    f ≥ f + 6,83 MHz
+
+    0
+
+    f ≤ f - 7,53 MHz
+
+    0
+
+    and -30 dBm 1 MHz
+
+    f ≥ f + 7,53 MHz
+
+    0
+
+    ETSI
+
+    54 ETSI EN 300 440-1 V1.6.1 (2010-08)
+
+    Annex D (informative):
+
+    Example of implementation for restriction of 4 W RFID to
+
+    in-building use only
+
+    This annex provides guidance for RFID manufacturers to design an automatic inside/outside building power control,
+
+    thus in order to meet the essential requirement as stated in EN 300 440-2 [i.5] for radiated power levels of 2 W e.i.r.p.
+
+    and 500 mW e.i.r.p. as relevant of the present document. Any other technical design may be implemented to achieve the
+
+    same result.
+
+    The present annex describes an automatic inside/outside building power control scheme. A special, permanently fixed
+
+    in-building mounted, System Control Unit (SCU) restricts the higher power of 4 W RFID to an operation inside a
+
+    building only. In case the same RFID reader is moved outside the building or the RF beam is turned away from the
+
+    in-building fixed installed SCU, e.g. towards windows or doors, then the power is automatically reduced to a default
+
+    power level of 500 mW.
+
+    The SCU has a very short communication range (up to approximately 4 m) and transmits an access code to the RFID
+
+    reader to obtain the higher power of 4 W. The RFID SCU is required to be installed at a permanent fixed position inside
+
+    a building where the higher power (4 W) is needed.
+
+    The above-mentioned schemes will prevent an RFID reader to transmit the higher power when moved outside the range
+
+    of the SCU. The result of such action is the reader loses its high power access code and consequently the power is
+
+    automatically reduced to 500 mW. Furthermore, the user of the RFID system does not need to do anything special.
+
+    To enforce the use of 4 W inside a building only, the following design options are suggested for SCUs, either:
+
+    a) SCU units are equipped with a tamper switch to prevent these units from being removed together with its high
+
+    power access code from their fixed mounting position inside a building. Any tampering with these units causes
+
+    permanent loss of the access code for the higher power level. This prevents the user from moving the SCU
+
+    functionality to a position outside the building. It is further suggested that only a manufacturer''s representative
+
+    can obtain the necessary tools to generate new high power access code; or
+
+    b) SCUs are mounted by a special tool that is not for general sale; or
+
+    c) SCUs are designed to be installed once; if removed, they are permanently destroyed.
+
+    An example for 2,45 GHz RFID installation using this principle is shown in figure D.1.
+
+    Ceiling
+
+    Window
+
+    C
+
+    E
+
+    SCU
+
+    A
+
+    Wall
+
+    B D
+
+    F
+
+    Floor
+
+    Figure D.1: Example for RFID system with an automatic RF power control
+
+    for in- and outside building operation
+
+    ETSI
+
+    55 ETSI EN 300 440-1 V1.6.1 (2010-08)
+
+    RFID readers, A to F in figure D.1, are all of same type having both 4 W and 500 mW radiated power (e.i.r.p.) with a
+
+    default power level of 500 mW. Only reader A is able to communicate with the System Control Unit (SCU) via its
+
+    antenna main beam at close distance and is therefore allowed to radiate with the higher power of 4 W e.i.r.p. All other
+
+    readers, B to F, are either out of range or outside the antenna main beam concerning the SCU and are therefore forced to
+
+    radiate with the default power level of 500 mW e.i.r.p.
+
+    As an example, the SCU may be passive (without any transmitter) if control communication system is based on radio.
+
+    In this case, the SCU is only re-modulating and reflecting reader transmitted signals like a normal RFID tag. As the
+
+    reader receiver sensitivity is limited to approx -62 dBm the SCU to reader range is limited to approximately 3 m and
+
+    5 m for reader radiated power of 500 mW and 4 W respectively. This will effectively limit the maximum distance
+
+    between the reader and the SCU to approximately 3 m in order to turn-on the 4 W power level.
+
+    ETSI
+
+    56 ETSI EN 300 440-1 V1.6.1 (2010-08)
+
+    Annex E (normative):
+
+    Limits for GBSAR operating in the frequency range
+
+    17,1 GHz to 17,3 GHz
+
+    E.1 Introduction
+
+    The present annex specifies limits for Ground Based Synthetic Aperture Radar (GBSAR) based Stepped Frequency CW
+
+    (SF-CW) radar operating in the frequency range 17,1 GHz to 17,3 GHz.
+
+    GBSAR system is used for detection of movement and its scope is limited to radar equipment operated as a short range
+
+    device. The GBSAR applications considered in the present document are intended exclusively for detection of
+
+    movement related to structures potentially effecting the protection of workers and the general public. A few examples
+
+    of applications are given below:
+
+    • static and dynamic load analyses of constructions like bridges and buildings;
+
+    • landslide monitoring;
+
+    • volcano and earthquake movement detection;
+
+    • urban area subsidence detection.
+
+    Method of measurements and other limits than given in clause E.2 are in accordance with the present document.
+
+    E.2 Effective radiated p'
 doc_files:
 - global/raw/ETSI_EN_30044001_v01.06.01_60.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30044001_v01.06.01_60.pdf (pdf, 171580 chars)，生成 3 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30044001_v01.06.01_60.pdf (pdf, 171580 chars)，生成 3 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30044001_v01.06.01_60.pdf (pdf, 171580 chars)，生成 3 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

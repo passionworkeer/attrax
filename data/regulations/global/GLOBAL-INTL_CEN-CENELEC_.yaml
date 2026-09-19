@@ -9,11 +9,51 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: CEN-CENELEC - CEN-CENELEC
+  text: "CEN-CENELEC - CEN-CENELEC\nAbout CEN\nCEN Communities\nTechnical Work\nStructure and Governance\nCoordination and Advisory Bodies\nAbout CENELEC\nCENELEC Communities\nTechnical Work\nStructure\
+    \ and Governance\nCoordination and Advisory Bodies\nContact Us\nManagement Centre\nMeeting Centre\n                        Search Standards\n                    MY EXPERT AREA\n                    \
+    \                CEN Expert Area\n                                    CENELEC Expert Area\nSEARCH\nAnnual Report 2025\n                                            The CEN and CENELEC Annual Report is\
+    \ out!\nDISCOVER\n                                            I\nDISCOVER\nPolicy\n                                            Shaping the Future: A new Era for European Standardization\nKNOW MORE\n\
+    A Strong Single Market needs a Strong European Standardization System\n                                            CEN and CENELEC’s Declaration and call for action for the next legislative cycle\n\
+    KNOW MORE\nSustainability Reporting\n                                            Standards in support of Sustainability Reporting\nKNOW MORE\nMaking standards for Europe\n                          \
+    \                  CEN and CENELEC are business catalysts in Europe, removing trade barriers for European industry and consumers in order to foster the European economy in global trading, the welfare\
+    \ of European citizens and the environment.\nABOUT CEN\nABOUT CENELEC\nLATEST NEWS\nNews\n2026-09-16\nNew Edition of EN ISO 9001: Supporting Quality Management in a Changing World \n               \
+    \                 READ MORE\nEN in the spotlight\n2026-09-02\nA new CEN Workshop Agreement to support AI skills and professionalism \n                                READ MORE\nEN in the spotlight\n\
+    2026-08-26\nNew Technical Specification Supports the Transition to a Circular Textile Economy\n                                READ MORE\nWorkshop\n2026-08-20\nLaunch of the CEN Workshop FLEXCRASH\n\
+    \                                READ MORE\n                    VIEW ALL NEWS\n44\nNational Standardization Organizations\n90000\nNetwork of Experts\n376\nEuropean Partners\n485\nTechnical Bodies\n\
+    IN THE SPOTLIGHT\nDIGITAL PRODUCT PASSPORT \nThe\nJoint CEN and CENELEC Technical Committee 24 ‘Digital Product Passport - Framework and System’\n, developed the first series of 8 European standards\
+    \ to cover the essential aspects that are needed to implement the European Digital Product Passport required by the Ecodesign for\nSustainable Products Regulation (EU) 2024/1781\n, also known under\
+    \ the acronym ESPR.\nREAD MORE\nIN THE SPOTLIGHT\nCEN WORKSHOP AGREEMENT ON TRUSTED DATA TRANSACTIONS\nDATA PROTECTION\nData is now the backbone of the digital economy: it enables economic growth and\
+    \ competitiveness, fosters innovation, improves public services, and advances scientific research.\nTo address this growing need, CEN published a new dedicated Workshop Agreement, \nCWA 18125:2024 ‘Trusted\
+    \ data transaction - part 1’\n. \nREAD MORE\nIN THE SPOTLIGHT\nEN 50388-1:2022: A NEW IMPORTANT STEP TO MANAGE ELECTRICAL COMPATIBILITY IN RAILWAYS\nTRANSPORT - RAILWAYS\nEnsuring the electrical compatibility\
+    \ between rolling stock and electric traction systems is crucial for organizing a railway network.  A new tool can now help the railways community on this path. CENELEC is proud to present the\nEN 50388-1:2022\
+    \ ‘Railway Applications - Fixed installations and rolling stock - Technical criteria for the coordination between electric traction power supply systems and rolling stock to achieve interoperability\
+    \ - Part 1: General’\n.\nREAD MORE\n                                CEN-CENELEC Topics\n                                CEN Sectors\n                                CENELEC Sectors\nACCESSIBILITY\n\
+    ARTIFICIAL INTELLIGENCE\nDATA\nECODESIGN, LABELLING AND TRACEABILITY OF PRODUCTS\nENERGY EFFICIENCY AND MANAGEMENT\nENVIRONMENT AND SUSTAINABILITY\nPERSONAL PROTECTIVE EQUIPMENT\nPUBLIC PROCUREMENT\n\
+    QUANTUM TECHNOLOGIES\nSMART GRIDS AND METERS\nCHEMICALS\nCONSTRUCTION\nCONSUMER\nDEFENCE AND SECURITY \nDIGITAL SOCIETY "
+- id: art-2
+  title: 'ENERGY AND UTILITIES '
+  text: "ENERGY AND UTILITIES \nFOOD AND AGRICULTURE\nHEALTHCARE\nHOUSEHOLD APPLIANCES AND HVAC \nMECHANICAL AND MACHINES \nMINING AND METALS\nOCCUPATIONAL HEALTH AND SAFETY \nSERVICES\nTRANSPORT AND PACKAGING\
+    \ \nEUROPEAN LABELS\nACCUMULATORS, PRIMARY CELLS AND PRIMARY BATTERIES\nDEFENCE AND SECURITY \nDIGITAL SOCIETY \nELECTRIC MACHINES AND TRANSFORMERS\nELECTRIC EQUIPMENT AND APPARATUS\nELECTRONIC, ELECTROMECHANICAL\
+    \ AND ELECTROTECHNICAL SUPPLIES\nELECTROTECHNOLOGY GENERAL\nENERGY AND UTILITIES\nHEALTHCARE\nHOUSEHOLD APPLIANCES AND HVAC\nINSULATED WIRE AND CABLE\nLIGHTING EQUIPMENT AND ELECTRIC LAMPS\nLOW VOLTAGE\
+    \ ELECTRICAL EQUIPMENT AND INSTALLATIONS\nMECHANICAL AND MACHINES\nOCCUPATIONAL HEALTH AND SAFETY \nTRANSPORT AND PACKAGING \nOur use of cookies\nWe use necessary cookies to make our site work. We'd\
+    \ also like to set optional analytics cookies to help us improve it. We won't set optional cookies unless you enable them. Using this tool will set a cookie on, your device to remember your preferences.\n\
+    Necessary cookies\nNecessary cookies enable core functionality such as security, network management, and accessibility. You may disable these by changing your browser settings, but this may affect how\
+    \ the website functions.\nAnalytics cookies\nWe'd like to set Google Analytics cookies to help us to improve our website by collecting and reporting information on how you use it. The cookies collect\
+    \ information in a way that does not directly identify anyone.\nI accept all cookies\nWithdraw consent\nSave and close\n)\nFollow us\n© 2026 CEN-CENELEC\nTerms of Use\nPrivacy\nAccessibility\nFAQs\n\
+    Glossary\nReceive website news notifications\n                            Subscribe to our \"On the spot\" newsletter"
 doc_files:
 - global/raw/INTL_CEN-CENELEC_欧洲标准化.html
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/INTL_CEN-CENELEC_欧洲标准化.html (html, 5659 chars)，生成 2 条共 5659 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/INTL_CEN-CENELEC_欧洲标准化.html (html, 5659 chars)，生成 2 条共 5659 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/INTL_CEN-CENELEC_欧洲标准化.html (html, 5659 chars)，生成 2 条共 5659 字符；解析文本未人工复核，引用以官方原件为准。'

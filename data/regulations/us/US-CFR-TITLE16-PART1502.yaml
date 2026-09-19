@@ -1,6 +1,6 @@
 id: US-CFR-TITLE16-PART1502
 official_citation: US 16 CFR Part 1502
-short_name: US 16 CFR Part 1502
+short_name: US 16 CFR Part 1502 — PROCEDURES FOR FORMAL EVIDENTIARY PUBLIC HEARING
 region: US
 domain: electronics
 license: public
@@ -9,11 +9,795 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: '16
+
+    Commercial Practices
+
+    2
+
+    2024-01-01
+
+    2024-01-01
+
+    false
+
+    PROCED'
+  text: '16
+
+    Commercial Practices
+
+    2
+
+    2024-01-01
+
+    2024-01-01
+
+    false
+
+    PROCEDURES FOR FORMAL EVIDENTIARY PUBLIC HEARING
+
+    1502
+
+    PART 1502
+
+    Commercial Practices
+
+    CONSUMER PRODUCT SAFETY COMMISSION
+
+    FEDERAL HAZARDOUS SUBSTANCES ACT REGULATIONS
+
+    Pt. 1502
+
+    PART 1502—PROCEDURES FOR FORMAL EVIDENTIARY PUBLIC HEARING
+
+    Subpart A—General Provisions
+
+    Sec.
+
+    1502.1
+
+    Scope.
+
+    1502.2
+
+    Computation of time periods.
+
+    1502.3
+
+    Confidential information.
+
+    1502.4
+
+    Office of the Secretary.
+
+    Subpart B—Initiation of Proceedings
+
+    1502.5
+
+    Initiation of a hearing involving the issuance, amendment, or revocation of a regulation.
+
+    1502.6
+
+    Filing objections and requests for a hearing on a regulation.
+
+    1502.7
+
+    Notice of filing of objections.
+
+    1502.8
+
+    Ruling on objections and requests for hearing.
+
+    1502.9
+
+    Modification or revocation of regulation or order.
+
+    1502.10
+
+    Denial of hearing in whole or in part.
+
+    1502.11
+
+    Judicial review after waiver of hearing on a regulation.
+
+    1502.12
+
+    Request for alternative form of hearing.
+
+    1502.13
+
+    Notice of hearing; stay of action.
+
+    1502.14
+
+    Effective date of a regulation when no objections are filed.
+
+    Subpart C—Appearance and Participation
+
+    1502.15
+
+    Appearance.
+
+    1502.16
+
+    Notice of participation.
+
+    1502.17
+
+    Advice on public participation in hearings.
+
+    Subpart D—Presiding Officer
+
+    1502.18
+
+    Presiding officer.
+
+    1502.19
+
+    Commencement of functions.
+
+    1502.20
+
+    Authority of presiding officer.
+
+    1502.21
+
+    Disqualification of presiding officer.
+
+    1502.22
+
+    Unavailability of presiding officer.
+
+    Subpart E—Hearing Procedures
+
+    1502.23
+
+    Filing and service of submissions.
+
+    1502.24
+
+    Petition to participate
+
+    in forma pauperis.
+
+    1502.25
+
+    Disclosure of data and information to be relied on by the participants.
+
+    1502.26
+
+    Purpose; oral and written testimony; burden of proof.
+
+    1502.27
+
+    Participation of nonparties.
+
+    1502.28
+
+    Conduct at oral hearings or conferences.
+
+    1502.29
+
+    Time and place of prehearing conference.
+
+    1502.30
+
+    Prehearing conference procedure.
+
+    1502.31
+
+    Summary decisions.
+
+    1502.32
+
+    Receipt of evidence.
+
+    1502.33
+
+    Official notice.
+
+    1502.34
+
+    Briefs and arguments.
+
+    1502.35
+
+    Interlocutory appeal from ruling of presiding officer.
+
+    1502.36
+
+    Official transcript.
+
+    1502.37
+
+    Motions.
+
+    Subpart F—Administrative Record
+
+    1502.38
+
+    Administrative record of a hearing.
+
+    1502.39
+
+    Examination of record.
+
+    Subpart G—Initial and Final Decision
+
+    1502.40
+
+    Initial decision.
+
+    1502.41
+
+    Appeal from or review of initial decision.
+
+    1502.42
+
+    Decision by Commission on appeal or review of initial decision.
+
+    1502.43
+
+    Reconsideration and stay of Commission''s action.
+
+    Subpart H—Judicial Review
+
+    1502.44
+
+    Review by the courts.
+
+    1502.45
+
+    Copies of petitions for judicial review.
+
+    Authority:
+
+    15 U.S.C. 1261(q)(1)(B), 1262(a), 1262(e), 1269(a); 15 U.S.C. 1474(a); 21 U.S.C. 371(e)-(g).
+
+    Source:
+
+    56 FR 9278, Mar. 6, 1991, unless otherwise noted.
+
+    Subpart A—General Provisions'
+- id: art-2
+  title: § 1502.1
+  text: '§ 1502.1
+
+    Scope.
+
+    The procedures in this part apply when—
+
+    (a) A person has a right to an opportunity for a hearing under sections 2(q)(1)(B) or 3(a) of the Federal Hazardous Substances Act (“FHSA”) and 701(e) of the Federal Food, Drug, and Cosmetic Act (“FDCA”)
+    (15 U.S.C. 1261(q)(1)(B) and 1262(a), and 21 U.S.C. 371(e));
+
+    (b) The Commission elects to hold a hearing under section 3(e)(1) of the FHSA or section 5 of the Poison Prevention Packaging Act (“PPPA”) and section 701(e) of the FDCA (15 U.S.C. 1262(e)(1) and 1474(a),
+    and 21 U.S.C. 371(e)); or
+
+    (c) The Commission concludes that it is in the public interest to hold a formal evidentiary public hearing on any matter before it in such a proceeding.'
+- id: art-3
+  title: § 1502.2
+  text: '§ 1502.2
+
+    Computation of time periods.
+
+    Whenever a time period for taking action is specified by these procedures, by the presiding officer, or by the Commission, Saturdays, Sundays, and Federal holidays are included in computing time. However,
+    if the last day for taking such action falls on a Saturday, Sunday, or Federal holiday, the action shall be timely if taken on or before the next Federal Government business day.'
+- id: art-4
+  title: § 1502.3
+  text: '§ 1502.3
+
+    Confidential information.
+
+    Whenever any participant desires or is required to submit information in any proceeding under this part 1502, and the participant believes that such information consists of trade secret or other confidential
+    business or financial information that should not be disclosed publicly, the participant may, instead of submitting such information, file a motion for a protective order containing a general description
+    of the information desired to be withheld, together with a detailed argument supporting the claim that the information should be held in confidence.'
+- id: art-5
+  title: § 1502.4
+  text: '§ 1502.4
+
+    Office of the Secretary.
+
+    (a) The mailing address of the Commission''s Office of the Secretary is:
+
+    Office of the Secretary, Consumer Product Safety Commission, Washington, DC 20207.
+
+    (b) The address for delivery to the Office of the Secretary is:
+
+    Office of the Secretary, Room 502, 4330 East West Highway, Bethesda, Maryland 20816.
+
+    (c) The telephone number of the Office of the Secretary is (301)504-0800.
+
+    [56 FR 9278, Mar. 6, 1991, as amended at 62 FR 46667, Sept. 4, 1997]
+
+    Subpart B—Initiation of Proceedings'
+- id: art-6
+  title: § 1502.5
+  text: '§ 1502.5
+
+    Initiation of a hearing involving the issuance, amendment, or revocation of a regulation.
+
+    (a) The
+
+    Federal Register
+
+    notice promulgating the final regulation will describe how to submit objections and requests for hearing.
+
+    (b) On or before the 30th day after the date of publication of a final regulation in the
+
+    Federal Register,
+
+    a person may file written objections, with or without a request for a hearing, with the Commission. The 30-day period may not be extended, except that additional information supporting an objection
+    may be received after 30 days upon a showing of inadvertent omission or for other good cause shown, if consideration of the additional information will not delay review of the objection and request
+    for hearing.'
+- id: art-7
+  title: § 1502.6
+  text: '§ 1502.6
+
+    Filing objections and requests for a hearing on a regulation.
+
+    (a) Objections and requests for a hearing under § 1502.5(a) must be filed with the Office of the Secretary and will be accepted for filing if they meet the following conditions:
+
+    (1) They are submitted within the time specified in § 1502.5(b).
+
+    (2) Each objection is separately numbered.
+
+    (3) Each objection specifies with particularity the provision(s) of the regulation to which that objection is directed.
+
+    (4) Each objection on which a hearing is requested specifically requests a hearing. Failure to request a hearing on an objection constitutes a waiver of the right to a hearing on that objection.
+
+    (5) Each objection for which a hearing is requested includes a detailed description of the basis for the objection and the factual information or analysis in support thereof. Failure to include a
+
+    description and analysis for an objection constitutes a waiver of the right to a hearing on that objection. The description and analysis may be used only for the purpose of determining whether a hearing
+    has been justified under § 1502.8, and do not limit the evidence that may be presented if a hearing is granted.
+
+    (i) A copy of any report, article, survey, or other written document relied upon must be submitted, unless the document is—
+
+    (A) A CPSC document that is routinely publicly available; or
+
+    (B) A recognized medical or scientific textbook or journal in the public domain.
+
+    (ii) A summary of the non-documentary testimony to be presented by any witnesses relied upon must be submitted.
+
+    (b) If an objection or request for a public hearing fails to meet the requirements of this section the Office of the General Counsel shall notify the Office of the Secretary of the deficiency. The Office
+    of the Secretary shall return it with a copy of the applicable regulations, indicating those provisions not complied with. A deficient objection or request for a hearing may be supplemented and subsequently
+    filed if submitted within the 30-day time period specified in § 1502.5(b).
+
+    (c) If another person objects to a regulation issued in response to a petition, the petitioner may submit a written reply to the Office of the Secretary on or before the 15th day after the last day
+    for filing objections.'
+- id: art-8
+  title: § 1502.7
+  text: '§ 1502.7
+
+    Notice of filing of objections.
+
+    As soon as practicable after the expiration of the time for filing objections to and requests for hearing on agency action involving the issuance, amendment, or revocation of a regulation under the
+    FHSA or the PPPA and section 701(e) of the Federal Food, Drug, and Cosmetic Act, the Commission shall publish a notice in the
+
+    Federal Register
+
+    specifying those parts of the regulation that have been stayed by the filing of proper objections and, if no objections have been filed, stating that fact. The notice does not constitute a determination
+    that a hearing is justified on any objections or requests for hearing that have been filed. When to do so will cause no undue delay, the notice required by this section may be combined with the notices
+    described in §§ 1502.10 and 1502.13.'
+- id: art-9
+  title: § 1502.8
+  text: '§ 1502.8
+
+    Ruling on objections and requests for hearing.
+
+    (a) As soon as practicable, the Commission will review all objections and requests for hearing filed under § 1502.6 and determine—
+
+    (1) Whether the regulation should be modified or revoked under § 1502.9; and
+
+    (2) Whether a hearing has been justified.
+
+    (b) A request for a hearing will be granted if the material submitted shows the following:
+
+    (1) There is a genuine and substantial issue of fact for resolution at a hearing. A hearing will not be granted on issues of policy or law.
+
+    (2) The factual issue can be resolved by available and specifically identified reliable evidence. A hearing will not be granted on the basis of mere allegations or denials or general descriptions of
+    positions and contentions.
+
+    (3) The data and information submitted, if established at a hearing, would be adequate to justify resolution of the factual issue in the way sought by the person. A hearing will be denied if the Commission
+    concludes that the data and information submitted, even though accurate, are insufficient to justify the factual determination urged.
+
+    (4) Resolution of the factual issue in the way sought by the person is adequate to justify the action requested. A hearing will not be granted on factual issues that are not determinative with respect
+    to the action requested, e.g., if the Commission concludes that the Commission''s action would be the same even if the factual issue were resolved in the way sought, or if a request is made that a final
+    regulation include a provision not reasonably encompassed by the proposal.
+
+    (5) The action requested is not inconsistent with any provision in the FHSA or any regulation in 16 CFR subchapter C explaining or particularizing the requirements of the FHSA.
+
+    (6) The requirements in other applicable regulations, and in the notice
+
+    promulgating the final regulation or the notice of opportunity for hearing are met.
+
+    (c) In making the determinations specified in paragraph (a) of this section, the Commission may issue an appropriate order on the determinations without further notice or opportunity for comment from
+    interested parties. However, the Commission, at its option, may use the procedure specified in 16 CFR part 1052 or any other applicable public procedure available to it.
+
+    (d) If it is uncertain whether a hearing has been justified under the principles in paragraph (b) of this section, and the Commission concludes that summary decision against the person requesting a
+    hearing should be considered, the Commission may serve upon the person by registered mail a proposed order denying a hearing. The person has 30 days after receipt of the proposed order to demonstrate
+    that the submission justifies a hearing.'
+- id: art-10
+  title: § 1502.9
+  text: '§ 1502.9
+
+    Modification or revocation of regulation or order.
+
+    If, upon review of an objection or request for hearing, the Commission determines that the regulation should be modified or revoked, the Commission will promptly take such action by notice in the
+
+    Federal Register.
+
+    Further objections to or requests for hearing on the modification or revocation may be submitted under §§ 1502.5 and 1502.6, but no further issue may be taken with other provisions in the regulation.
+    Objections and requests for hearing that are not affected by the modification or revocation will remain on file and be acted upon in due course.'
+- id: art-11
+  title: § 1502.10
+  text: '§ 1502.10
+
+    Denial of hearing in whole or in part.
+
+    (a) If the Commission determines upon review of the objections or requests for hearing that a hearing is not justified, in whole or in part, a notice of the determination will be published in the
+
+    Federal Register.
+
+    (b) The notice will state whether the hearing is denied in whole or in part. If the hearing is denied in part, the notice will be combined with the notice of hearing required by § 1502.13, and will
+    specify the objections and requests for hearing that have been granted and denied.
+
+    (c) Any denial will be explained. A denial based on an analysis of the information submitted to justify a hearing will explain the inadequacy of the information.
+
+    (d) The notice will confirm, modify, or stay the effective date of the regulation involved.
+
+    (e) The record of the administrative proceeding relating to denial in whole or in part of a public hearing on an objection or request for hearing consists of the following:
+
+    (1) The entire rulemaking record;
+
+    (2) The objections and requests for hearing filed by the Office of the Secretary; and
+
+    (3) The notice denying a formal evidentiary public hearing.
+
+    (f) The record specified in paragraph (e) of this section is the exclusive record for the Commission''s decision on the complete or partial denial of a hearing. The record of the proceeding will be
+    closed as of the date of the Commission''s decision denying a hearing, unless another date is specified. A person who requested and was denied a hearing may submit a petition for reconsideration or
+    a petition for stay of the Commission''s action. A person who wishes to rely upon information or views not included in the administrative record shall submit them to the Commission with a petition to
+    modify the final regulation.
+
+    (g) Denial of a request for a hearing in whole or in part is final agency action reviewable in the courts, under the statutory provisions governing the matter involved, as of the date of publication
+    of the denial in the
+
+    Federal Register.
+
+    (1) Before requesting a court for a stay of the Commission''s action pending judicial review, a person shall first submit a petition to the Commission for a stay of action.
+
+    (2) The time for filing a petition for judicial review of a denial of a hearing on an objection or issue begins on the date the denial is published in the
+
+    Federal Register.
+
+    The failure to file a petition for judicial review within the period established in the statutory provision governing the matter involved
+
+    constitutes a waiver of the right to judicial review of the objection or issue, regardless whether a hearing has been granted on other objections and issues.'
+- id: art-12
+  title: § 1502.11
+  text: '§ 1502.11
+
+    Judicial review after waiver of hearing on a regulation.
+
+    (a) A person with a right to submit objections and a request for hearing under § 1502.5(a) may submit objections and waive the right to a hearing. The waiver may be either an explicit statement, or
+    a failure to request a hearing, as provided in § 1502.6(a)(4).
+
+    (b) If a person waives the right to a hearing, the Commission will rule upon the person''s objections under §§ 1502.8 through 1502.10. As a matter of discretion, the Commission may also order a hearing
+    on the matter.
+
+    (c) If the Commission rules adversely on a person''s objection, the person may petition for judicial review in a U.S. court of appeals under the appropriate statute.
+
+    (1) The record for judicial review is the record designated in § 1502.10(e).
+
+    (2) The time for filing a petition for judicial review begins on the date of publication of the Commission''s ruling on the objections in the
+
+    Federal Register.'
+- id: art-13
+  title: § 1502.12
+  text: '§ 1502.12
+
+    Request for alternative form of hearing.
+
+    (a) A person with a right to request a formal hearing may waive that right and request a hearing before the Commission under 16 CFR part 1052.
+
+    (b) The request—
+
+    (1) May be on the person''s own initiative or at the suggestion of the Commission;
+
+    (2) Must be submitted by the person in the form of a petition before publication of a notice of hearing under § 1502.13 or a denial of hearing under § 1502.10; and
+
+    (3) Must be—
+
+    (i) In lieu of a request for a formal hearing under § 1502.5; or,
+
+    (ii) If submitted with or after a request for formal hearing, accompanied by a waiver of the right to a formal hearing, conditioned on the request for the alternative form of hearing. Upon acceptance
+    by the Commission, the waiver becomes binding and may be withdrawn only by waiving any right to any form of hearing, unless the Commission determines otherwise.
+
+    (c) When more than one person requests and justifies a formal hearing under these procedures, an alternative form of hearing may be used only if all the persons concur and waive their right to request
+    a formal hearing.
+
+    (d) The Commission will determine whether an alternative form of hearing should be used after considering the requests submitted and the appropriateness of the alternative hearing for the issues raised
+    in the objections. The Commission''s determination is binding unless, for good cause, the Commission subsequently determines otherwise.
+
+    (e) If the Commission determines that an alternative form of hearing will be used, the Commission will publish a notice in the
+
+    Federal Register
+
+    setting forth the following information:
+
+    (1) A description of the regulation that is the subject of the hearing.
+
+    (2) A statement specifying any part of the regulation that has been stayed by operation of law or in the Commission''s discretion.
+
+    (3) The time, date, and place of the hearing, or a statement that such information will be contained in a later notice.
+
+    (4) The parties to the hearing.
+
+    (5) The issues at the hearing. The statement of issues determines the scope of the hearing.'
+- id: art-14
+  title: § 1502.13
+  text: '§ 1502.13
+
+    Notice of hearing; stay of action.
+
+    (a) If the Commission determines upon review of the objections and requests for hearing that a hearing is justified on any issue, the Commission will publish a notice setting forth the following:
+
+    (1) A description of the regulation that is the subject of the hearing.
+
+    (2) A statement specifying any part of the regulation or order that has been stayed by operation of law or in the Commission''s discretion.
+
+    (3) The parties to the hearing.
+
+    (4) The issues of fact on which a hearing has been justified.
+
+    (5) A statement of any objections or requests for hearing for which a hearing has not been justified, which are subject to § 1502.10.
+
+    (6) The presiding officer, or a statement that the presiding officer will be designated in a later notice.
+
+    (7) The time within which notices of participation should be filed under § 1502.16.
+
+    (8) The date, time, and place of the prehearing conference, or a statement that the date, time, and place will be announced in a later notice. The prehearing conference may not commence until after
+    the time expires for filing the notice of participation required by § 1502.16(a).
+
+    (9) The time within which participants should submit written information and views under § 1502.25(b). Additional copies of material already submitted under § 1502.25 need not be included with any later
+    submissions.
+
+    (10) The contents of the portions of the administrative record relevant to the issues at the hearing. Except for trade secrets or other confidential information, the disclosure of which is prohibited
+    by statute, the portions listed will be placed on public display in the Office of the Secretary before the notice is published.
+
+    (b) The statement of the issues determines the scope of the hearing and the matters on which evidence may be introduced. The issues may be revised by the presiding officer. A participant may obtain
+    interlocutory review by the Commission of a decision by the presiding officer to revise the issues to include an issue on which the Commission has not granted a hearing or to eliminate an issue on which
+    a hearing has been granted.
+
+    (c) A hearing is deemed to begin on the date of publication of the notice of hearing.'
+- id: art-15
+  title: § 1502.14
+  text: '§ 1502.14
+
+    Effective date of a regulation when no objections are filed.
+
+    (a) If no objections are filed and no hearing is requested on a regulation under § 1502.5, the regulation is effective on the date specified in the regulation as promulgated.
+
+    (b) The Commission shall publish a confirmation of the effective date of the regulation. The
+
+    Federal Register
+
+    document confirming the effective date of the regulation may extend the time for compliance with the regulation.
+
+    Subpart C—Appearance and Participation'
+- id: art-16
+  title: § 1502.15
+  text: '§ 1502.15
+
+    Appearance.
+
+    (a) A person who has filed a notice of participation under § 1502.16 may appear in person or by counsel or other representative in any hearing and, subject to § 1502.27, may be heard concerning all
+    relevant issues.
+
+    (b) The presiding officer may strike a person''s appearance for violation of the requirements regarding conduct in § 1502.28.'
+- id: art-17
+  title: § 1502.16
+  text: '§ 1502.16
+
+    Notice of participation.
+
+    (a) Within 30 days after publication of the notice of hearing under § 1502.13, a person desiring to participate in a hearing is to file with the Office of the Secretary a notice of participation in
+    the following form:
+
+    (Date)
+
+    Office of the Secretary, Consumer Product Safety Commission, Room 502, 4330 East West Highway, Bethesda, MD. Mailing address: Office of the Secretary, Consumer Product Safety Commission, Washington,
+    DC 20207.
+
+    Notice of Participation
+
+    (Title of Regulation)
+
+    Docket No.
+
+    Please enter the participation of:
+
+    (Name)
+
+    (Street address)
+
+    (City, State, and Zip Code)
+
+    (Telephone number)
+
+    Service on the above will be accepted by:
+
+    (Name)
+
+    (City, State, and Zip Code)
+
+    (Telephone number)
+
+    The following statements are made as part of this notice of participation:
+
+    A.
+
+    Specific interests.
+
+    (A statement of the specific interest of the person in the proceeding, including the specific issues of fact concerning which the person desires to be heard. This part need not be completed by a party
+    to the proceeding.)
+
+    B.
+
+    Commitment to participate.
+
+    (A statement that the person will present documentary evidence or testimony at the hearing and will comply with the requirements of § 1502.25 of these procedures.)
+
+    (Signed)
+
+    (b) Any amendment to a notice of participation should be filed with the Office of the Secretary and served on all participants.
+
+    (c) No person may participate in a hearing who has not filed a written notice of participation or whose participation has been stricken under paragraph (e) of this section.
+
+    (d) The presiding officer may permit the late filing of a notice of participation upon a showing of good cause.
+
+    (e) The presiding officer may strike the participation of a person for nonparticipation in the hearing or for failure to comply with any requirement of this subpart, e.g., disclosure of information
+    as required by § 1502.25 or the prehearing order issued under § 1502.30. Any person whose participation is stricken may petition the Commission for interlocutory review of that decision.
+
+    [56 FR 9278, Mar. 6, 1991, as amended at 62 FR 46667, Sept. 4, 1997]'
+- id: art-18
+  title: § 1502.17
+  text: '§ 1502.17
+
+    Advice on public participation in hearings.
+
+    (a) All inquiries from the public about scheduling, location, and general procedures should be addressed to the Office of the Secretary, Consumer Product Safety Commission, Washington, DC 20207, or
+    telephone (301) 504-0800.
+
+    (b) Requests by hearing participants for changes in the schedule of a hearing or for filing documents, briefs, or other pleadings should be made in writing directly to the presiding officer.
+
+    (c) Under no circumstances will the Office of the General Counsel of CPSC directly provide advice about a hearing to any person who is participating or may participate in the hearing. In every hearing,
+    certain attorneys in the office are designated to represent the staff. Other members of the office, ordinarily including the General Counsel, are designated to advise the Commission on a final decision
+    in the matter. It is not compatible with these functions, nor would it be professionally responsible, for the attorneys in the Office of the General Counsel also to advise other participants in a hearing,
+    or for any attorney who may be called on to advise the Commission to respond to inquiries from other participants in the hearing; such participants may be urging views contrary to those of the staff
+    involved or to what may ultimately be the final conclusions of the Commission. Accordingly, members of the Office of the General Counsel, other than the attorneys responsible for representing the staff,
+    will not answer questions about the hearing from any participant or potential participant.
+
+    (d) Participants in a hearing may communicate with the attorneys responsible for representing the staff, in the same way that they may communicate with counsel for any other party in interest about
+    the presentation of matters at the hearing. It would be inappropriate to bar discussion of such matters as stipulations of fact, joint presentation of witnesses, or possible settlement of hearing issues.
+    Members of the public, including participants at hearings, are advised, however, that all such communications, including those by telephone, will be recorded in memoranda that can be filed with the
+    Office of the Secretary.
+
+    (e) Separation of functions and
+
+    ex parte
+
+    communications will be handled as follows.
+
+    (1) An interested person may meet or correspond with any CPSC representative concerning a matter prior to publication of a notice announcing a formal evidentiary public hearing on the matter. The provisions
+    of 16 CFR part 1012 apply to such meetings.
+
+    (2) Upon publication of a notice announcing a formal evidentiary public hearing, the following rules concerning separation of functions apply:
+
+    (i) The CPSC staff members responsible for preparing evidence and participating in the hearing in the matter are, as a party to the hearing, responsible for all investigative functions and for presentation
+    of the position of the staff at the hearing and in any pleading or oral argument before the Commission. These representatives of the staff may not participate or advise in any decision except as witnesses
+    or counsel in public proceedings. Except as provided herein, there shall be no other communication between representatives of the staff and representatives of the various Commissioners'' offices concerning
+    the matter prior to the decision of the Commission. The Commission may, however, designate other representatives of the staff to advise the Commission. The designation will be in writing and filed with
+    the Office
+
+    of the Secretary no later than the time specified in paragraph (f)(2) of this section for the application of separation of functions. All employees of the CPSC other than representatives of the involved
+    staff (except for those specifically designated otherwise) may be called upon to advise and participate with the offices of the Commissioners in their functions relating to the hearing and the final
+    decision.
+
+    (ii) The General Counsel of CPSC shall designate members of the Office of the General Counsel to advise and participate with the staff in its functions in the hearing and shall designate other members
+    of the Office of the General Counsel to advise the offices of the Commissioners in their functions related to the hearing and the final decision. The members of the Office of the General Counsel designated
+    to advise the staff may not participate or advise in any decision of the Commission except as counsel in public proceedings. The designation shall be in the form of a memorandum filed with the Office
+    of the Secretary and made a part of the administrative record in the proceeding. There may be no other communication between those members of the Office of the General Counsel designated to advise the
+    offices of the Commissioners and any other person in the Office of the General Counsel or in the involved staff with respect to the matter prior to the decision of the Commission. The General Counsel
+    may assign different attorneys to advise either the staff or the offices of the Commissioners at any stage of the proceedings. The General Counsel will ordinarily advise and participate with the offices
+    of the Commissioners in their functions relating to the hearing and the final decision.
+
+    (iii) The Commissioners are responsible for the agency review and final decision of the matter, with the advice and participation of anyone in CPSC other than representatives of the responsible staff
+    and those members of the Office of the General Counsel designated to assist in the staff functions in the hearing.
+
+    (iv) Between the date that separation of functions applies and the date of the Commission''s decision on the matter, communication concerning the matter involved in the hearing will be restricted as
+    follows:
+
+    (A) No person outside CPSC may have an
+
+    ex parte
+
+    communication with the presiding officer or any person representing the offices of the Commissioners concerning the matter in the hearing. Neither the presiding officer nor any person representing the
+    offices of the Commissioners may have any
+
+    ex parte
+
+    communications with a person outside CPSC concerning the matter in the hearing. All communications are to be public communications, as witness or counsel under the applicable procedures.
+
+    (B) A participant in the hearing may submit a written communication concerning a proposal for settlement to the presiding officer with a request that it be transmitted to the Commission. These communications
+    are to be in the form of pleadings, served on all other participants, and filed with the Office of the Secretary like any other pleading.
+
+    (C) A written communication contrary to this section must be immediately served on all other participants and filed with the Office of the Secretary by the presiding officer at the hearing, or by the
+    Commissioner, depending on who received the communication. An oral communication contrary to this section must be immediately recorded in a written memorandum and similarly served on all other participants
+    and filed with the Office of the Secretary. A person, including a representative of a participant in the hearing, who is involved in an oral communication contrary to this section, must, if possible,
+    be made available for cross-examination during the hearing with respect to the substance of that conversation. Rebuttal testimony pertinent to a written or oral communication contrary to this section
+    will be permitted. Cross-examination and rebuttal testimony will be transcribed and filed with the Office of the Secretary.
+
+    (D) The making of a communication contrary to this section may, consistent with the interests of justice and the policy of the underlying statute,
+
+    result in a decision adverse to the person knowingly making or causing the making of such a communication.
+
+    [56 FR 9278, Mar. 6, 1991, as amended at 62 FR 46667, Sept. 4, 1997]
+
+    Subpart D—Presiding Officer'
+- id: art-19
+  title: § 1502.18
+  text: '§ 1502.18
+
+    Presiding officer.
+
+    The presiding officer in a hearing will be an administrative law judge qualified under 5 U.S.C. 3105.'
+- id: art-20
+  title: § 1502.19
+  text: '§ 1502.19
+
+    Commencement of functions.
+
+    The functions of the presiding officer begin upon designation and end upon the filing of the initial decision.'
+- id: art-21
+  title: § 1502.20
+  text: '§ 1502.20
+
+    Authority of presiding officer.
+
+    The presiding officer has all powers necessary to conduct a fair, expeditious, and orderly hearing, including the power to—
+
+    (a) Specify and change the date, time, and place of oral hearings and conferences;
+
+    (b) Establish the procedures for use in developing evidentiary facts, including the procedures in § 1502.30(b) and to rule on the need for oral testimony and cross-examination under § 1502.26(b);
+
+    (c) Prepare statements of the areas of factual disagreement among the participants;
+
+    (d) Hold conferences to settle, simplify, or determine the issues in a hearing or to consider other matters that may expedite the hearing;
+
+    (e) Administer oaths and affirmations;
+
+    (f) Control the course of the hearing and the conduct of the participants;
+
+    (g) Examine witnesses and strike or limit their testimony if they fail to re'
 doc_files:
 - us/raw/US-CFR-title16-part1502.xml
+- us/raw/US-CFR-title16-part1502.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1502.xml (xml, 63618 chars)，生成 21 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1502.xml (xml, 63618 chars)，生成 21 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：us/raw/US-CFR-title16-part1502.xml (xml, 63618 chars)，生成 21 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1502-4（US 16 CFR Part 1502）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1502-3（US 16 CFR Part 1502）。
+
+  2026-09-19 去重：合并同法规异名条目 US-CFR-TITLE16-PART1502-2（US 16 CFR Part 1502）。'

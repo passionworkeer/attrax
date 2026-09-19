@@ -9,11 +9,720 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'ETSI EN 301 489-26
+
+    V2.3.2
+
+    (2005-07)
+
+    Candidate Harmonized Eur'
+  text: 'ETSI EN 301 489-26
+
+    V2.3.2
+
+    (2005-07)
+
+    Candidate Harmonized European Standard (Telecommunications series)
+
+    Electromagnetic compatibility
+
+    and Radio spectrum Matters (ERM);
+
+    ElectroMagnetic Compatibility (EMC)
+
+    standard for radio equipment and services;
+
+    Part 26: Specific conditions for CDMA 1x spread spectrum
+
+    Base Stations, repeaters and ancillary equipment
+
+    2 ETSI EN 301 489-26 V2.3.2 (2005-07)
+
+    Reference
+
+    REN/ERM-EMC-240-26
+
+    Keywords
+
+    base station, cdma2000, EMC, IMT-2000, radio,
+
+    regulation, repeater
+
+    ETSI
+
+    650 Route des Lucioles
+
+    F-06921 Sophia Antipolis Cedex - FRANCE
+
+    Tel.: +33 4 92 94 42 00 Fax: +33 4 93 65 47 16
+
+    Siret N° 348 623 562 00017 - NAF 742 C
+
+    Association à but non lucratif enregistrée à la
+
+    Sous-Préfecture de Grasse (06) N° 7803/88
+
+    Important notice
+
+    Individual copies of the present document can be downloaded from:
+
+    http://www.etsi.org
+
+    The present document may be made available in more than one electronic version or in print. In any case of existing or
+
+    perceived difference in contents between such versions, the reference version is the Portable Document Format (PDF).
+
+    In case of dispute, the reference shall be the printing on ETSI printers of the PDF version kept on a specific network drive
+
+    within ETSI Secretariat.
+
+    Users of the present document should be aware that the document may be subject to revision or change of status.
+
+    Information on the current status of this and other ETSI documents is available at
+
+    http://portal.etsi.org/tb/status/status.asp
+
+    If you find errors in the present document, please send your comment to one of the following services:
+
+    http://portal.etsi.org/chaircor/ETSI_support.asp
+
+    Copyright Notification
+
+    No part may be reproduced except as authorized by written permission.
+
+    The copyright and the foregoing restriction extend to reproduction in all media.
+
+    © European Telecommunications Standards Institute 2005.
+
+    All rights reserved.
+
+    DECTTM, PLUGTESTSTM and UMTSTM are Trade Marks of ETSI registered for the benefit of its Members.
+
+    TIPHONTM and the TIPHON logo are Trade Marks currently being registered by ETSI for the benefit of its Members.
+
+    3GPPTM is a Trade Mark of ETSI registered for the benefit of its Members and of the 3GPP Organizational Partners.
+
+    ETSI
+
+    3 ETSI EN 301 489-26 V2.3.2 (2005-07)
+
+    Contents
+
+    Intellectual Property Rights................................................................................................................................5
+
+    Foreword.............................................................................................................................................................5
+
+    1 Scope........................................................................................................................................................6
+
+    2 References................................................................................................................................................6
+
+    3 Definitions and abbreviations...................................................................................................................7
+
+    3.1 Definitions..........................................................................................................................................................7
+
+    3.2 Abbreviations.....................................................................................................................................................7
+
+    4 Test conditions.........................................................................................................................................8
+
+    4.1 General...............................................................................................................................................................8
+
+    4.2 Arrangements for test signals.............................................................................................................................8
+
+    4.2.1 Arrangements for test signals at the input of transmitters.............................................................................8
+
+    4.2.2 Arrangements for test signals at the output of transmitters...........................................................................8
+
+    4.2.3 Arrangements for test signals at the input of receivers.................................................................................8
+
+    4.2.4 Arrangements for test signals at the output of receivers...............................................................................9
+
+    4.2.5 Arrangements for test signals for repeaters...................................................................................................9
+
+    4.3 Exclusion bands..................................................................................................................................................9
+
+    4.3.1 Transmitter exclusion band...........................................................................................................................9
+
+    4.3.2 Receiver exclusion band...............................................................................................................................9
+
+    4.3.3 Repeater exclusion band...............................................................................................................................9
+
+    4.4 Narrow band responses of receivers...................................................................................................................9
+
+    4.5 Normal test modulation....................................................................................................................................10
+
+    5 Performance assessment.........................................................................................................................10
+
+    5.1 General.............................................................................................................................................................10
+
+    5.2 Equipment which can provide a continuous communication link....................................................................10
+
+    5.2.1 Assessment of FER in Forward Link (Downlink)......................................................................................10
+
+    5.2.2 Assessment of FER in Reverse Link (Uplink)............................................................................................10
+
+    5.2.3 Assessment of RF gain variations of repeaters...........................................................................................10
+
+    5.3 Equipment which does not provide a continuous communication link............................................................10
+
+    5.4 Ancillary equipment.........................................................................................................................................10
+
+    5.5 Equipment classification..................................................................................................................................10
+
+    6 Performance criteria...............................................................................................................................11
+
+    6.1 Performance criteria for continuous phenomena applied to Base Stations (BS) and repeaters........................11
+
+    6.1.1 Base Stations (BS)......................................................................................................................................11
+
+    6.1.2 Repeaters....................................................................................................................................................11
+
+    6.2 Performance criteria for transient phenomena for Base Stations (BS) and repeaters.......................................11
+
+    6.2.1 Base Stations...............................................................................................................................................11
+
+    6.2.2 Repeaters....................................................................................................................................................11
+
+    6.2.2.1 Repeaters, Performance criteria for voltage dips (> 60 %) and interruptions.......................................11
+
+    6.3 Performance criteria for ancillary equipment tested on a stand alone basis.....................................................11
+
+    6.3.1 Performance criteria for continuous phenomena for ancillary equipment..................................................12
+
+    6.3.2 Performance criteria for transient phenomena for ancillary equipment......................................................12
+
+    7 Applicability overview tables.................................................................................................................12
+
+    7.1 Emission...........................................................................................................................................................12
+
+    7.1.1 General........................................................................................................................................................12
+
+    7.1.2 Special conditions.......................................................................................................................................12
+
+    7.2 Immunity..........................................................................................................................................................12
+
+    7.2.1 General........................................................................................................................................................12
+
+    7.2.2 Special conditions.......................................................................................................................................12
+
+    Annex A (informative): Examples of base station radio equipment within the scope of the
+
+    present document...........................................................................................14
+
+    ETSI
+
+    4 ETSI EN 301 489-26 V2.3.2 (2005-07)
+
+    A.1 Base station equipment for the IMT-2000 CDMA Multi-carrier system...............................................14
+
+    A.2 Base station equipment for the CDMA -PAMR system........................................................................14
+
+    A.3 Repeaters................................................................................................................................................14
+
+    Annex B (informative): Bibliography...................................................................................................15'
+- id: art-2
+  title: 'Annex C (informative): The EN title in the official languages...........................................................16'
+  text: 'Annex C (informative): The EN title in the official languages...........................................................16
+
+    History..............................................................................................................................................................18
+
+    ETSI
+
+    5 ETSI EN 301 489-26 V2.3.2 (2005-07)
+
+    Intellectual Property Rights
+
+    IPRs essential or potentially essential to the present document may have been declared to ETSI. The information
+
+    pertaining to these essential IPRs, if any, is publicly available for ETSI members and non-members, and can be found
+
+    in ETSI SR 000 314: "Intellectual Property Rights (IPRs); Essential, or potentially Essential, IPRs notified to ETSI in
+
+    respect of ETSI standards", which is available from the ETSI Secretariat. Latest updates are available on the ETSI Web
+
+    server (http://webapp.etsi.org/IPR/home.asp).
+
+    Pursuant to the ETSI IPR Policy, no investigation, including IPR searches, has been carried out by ETSI. No guarantee
+
+    can be given as to the existence of other IPRs not referenced in ETSI SR 000 314 (or the updates on the ETSI Web
+
+    server) which are, or may be, or may become, essential to the present document.
+
+    Foreword
+
+    This Candidate Harmonized European Standard (Telecommunications series) has been produced by ETSI Technical
+
+    Committee Electromagnetic compatibility and Radio spectrum Matters (ERM).
+
+    The present document has been produced by ETSI in response to a mandate from the European Commission issued
+
+    under the Council Directive 98/34/EC [4](as amended) laying down a procedure for the provision of information in the
+
+    field of technical standards and regulation.
+
+    The present document is intended to become a Harmonized Standard, the reference of which will be published in the
+
+    Official Journal of the European Communities referencing the Council Directive on the approximation of the laws of
+
+    the Member States relating to electromagnetic compatibility ("the EMC Directive") (89/336/EEC [3] as amended) and
+
+    Directive 1999/5/EC [2] of the European Parliament and of the Council of 9 March 1999 on radio equipment and
+
+    telecommunications terminal equipment and the mutual recognition of their conformity ("the R&TTE Directive").
+
+    The present document is part 26 of a multi-part deliverable. Full details of the entire series can be found in part 1 [1].
+
+    National transposition dates
+
+    Date of adoption of this EN: 8 July 2005
+
+    Date of latest announcement of this EN (doa): 31 October 2005
+
+    Date of latest publication of new National Standard
+
+    or endorsement of this EN (dop/e): 30 April 2006
+
+    Date of withdrawal of any conflicting National Standard (dow): 30 April 2007
+
+    ETSI
+
+    6 ETSI EN 301 489-26 V2.3.2 (2005-07)
+
+    1 Scope
+
+    The present document, together with EN 301 489-1 [1], covers the assessment of CDMA 1x spread spectrum base
+
+    station equipment, repeaters and associated ancillary equipment in respect of ElectroMagnetic Compatibility (EMC).
+
+    Technical specifications related to the antenna port and emissions from the enclosure port of radio equipment (Base
+
+    Station (BS), and repeaters) are not included in the present document. Such technical specifications are found in the
+
+    relevant product standards for the effective use of the radio spectrum.
+
+    The present document specifies the applicable test conditions, performance assessment and performance criteria of
+
+    CDMA 1x spread spectrum base station radio equipment, repeaters and associated ancillary equipment.
+
+    Examples of base station equipment covered by the present document are given in annex A.
+
+    In case of differences (for instance concerning special conditions, definitions, abbreviations) between the present
+
+    document and EN 301 489-1 [1], the provisions of the present document take precedence.
+
+    The environmental classification and the emission and immunity requirements used in the present document are as
+
+    stated in EN 301 489-1 [1], except for any special conditions included in the present document.
+
+    2 References
+
+    The following documents contain provisions which, through reference in this text, constitute provisions of the present
+
+    document.
+
+    • References are either specific (identified by date of publication and/or edition number or version number) or
+
+    non-specific.
+
+    • For a specific reference, subsequent revisions do not apply.
+
+    • For a non-specific reference, the latest version applies.
+
+    Referenced documents which are not found to be publicly available in the expected location might be found at
+
+    http://docbox.etsi.org/Reference.
+
+    [1] ETSI EN 301 489-1: "Electromagnetic compatibility and Radio spectrum Matters (ERM);
+
+    ElectroMagnetic Compatibility (EMC) standard for radio equipment and services;
+
+    Part 1: Common technical requirements".
+
+    [2] Directive 1999/5/EC of the European Parliament and of the Council of 9 March 1999 on radio
+
+    equipment and telecommunications terminal equipment and the mutual recognition of their
+
+    conformity (R&TTE Directive).
+
+    [3] Council Directive 89/336/EEC of 3 May 1989 on the approximation of the laws of the Member
+
+    States relating to electromagnetic compatibility (EMC Directive).
+
+    [4] Directive 98/34/EC of the European Parliament and of the Council of 22 June 1998 laying down a
+
+    procedure for the provision of information in the field of technical standards and regulations.
+
+    [5] TIA/EIA/IS-2000.2-1: "Physical Layer Standard for cdma2000® Spread Spectrum Systems -
+
+    Addendum 1".
+
+    [6] TIA-97-E-1: "Base Station Performance Standards for Dual Mode Spread Spectrum Systems".
+
+    [7] ITU-R Recommendation SM.329-10: "Unwanted emissions in the spurious domain".
+
+    [8] TIA/EIA/IS-2000 Series, Release A: "CDMA 2000® Series, Release A (2000)".
+
+    ETSI
+
+    7 ETSI EN 301 489-26 V2.3.2 (2005-07)
+
+    3 Definitions and abbreviations
+
+    3.1 Definitions
+
+    For the purposes of the present document, the terms and definitions given in EN 301 489-1 [1] and the following apply:
+
+    CDMA-PAMR: term used to denote a PAMR system, based on TIA/EIA/IS-2000 [8] Spreading Rate 1 specifications
+
+    CDMA 1x Spread Spectrum: term used to denote cdma2000 Spread Spectrum Systems and their evolution with
+
+    spreading rate 1
+
+    forward CDMA channel: CDMA channel from a base station to mobile stations
+
+    NOTE: The forward CDMA channel contains one or more code channels that are transmitted on a CDMA
+
+    frequency assignment using a particular pilot PN offset.
+
+    International Mobile Telecommunications-2000 (IMT-2000): third generation mobile systems which provide access,
+
+    by means of one or more radio links, to a wide range of telecommunications services supported by the fixed
+
+    telecommunication networks (e.g. PSTN, ISDN or IP), and to other services which are specific to mobile users
+
+    necessary bandwidth: as defined in ITU-R Recommendation SM.329-10 [7]
+
+    Radio Configuration (RC): set of Forward Traffic Channel and Reverse Traffic Channel transmission formats that are
+
+    characterized by physical layer parameters such as transmission rates, modulation characteristics, and spreading rate
+
+    reverse CDMA channel: CDMA channel from the mobile station to the base station
+
+    NOTE: From the base station''s perspective, the Reverse CDMA Channel is the sum of all mobile station
+
+    transmissions on a CDMA frequency assignment.
+
+    signal and control port: port which carries information or control signals, except from antenna and telecommunication
+
+    ports
+
+    traffic channel: communication path between a mobile station and a base station used for user and signalling traffic
+
+    3.2 Abbreviations
+
+    For the purposes of the present document, the following abbreviations apply:
+
+    BS Base Station
+
+    CDMA Code Division Multiple Access
+
+    EMC ElectroMagnetic Compatibility
+
+    EUT Equipment Under Test
+
+    FER Frame Error Rate
+
+    ISDN Integrated Services Digital Network
+
+    PAMR Public Access Mobile Radio
+
+    PN Pseudorandom Number
+
+    PSTN Public Switched Digital Network
+
+    RC Radio Configuration
+
+    RF Radio Frequency
+
+    ETSI
+
+    8 ETSI EN 301 489-26 V2.3.2 (2005-07)
+
+    4 Test conditions
+
+    For the purpose of the present document, the test conditions of EN 301 489-1 [1], clause 4, shall apply as appropriate.
+
+    Further product related test conditions for base station equipment are specified in the present document.
+
+    4.1 General
+
+    The equipment shall be tested in normal test environment defined in TIA-97-E-1 [6]. The test conditions shall be
+
+    recorded in the test report.
+
+    For emission and immunity tests, the test arrangements, etc., as specified in the present document, clauses 4.2 to 4.5,
+
+    shall apply.
+
+    For an EUT which contains more than one BS or more than one repeater, it is sufficient to perform tests relating to
+
+    connectors of each representative type of port forming part of the EUT.
+
+    Precautions should be taken to ensure that the cables connecting antenna connectors to test equipment or termination do
+
+    not influence the test results.
+
+    4.2 Arrangements for test signals
+
+    The provisions of EN 301 489-1 [1], clause 4.2 shall apply with the following modifications.
+
+    The wanted RF signal nominal frequency shall be selected by setting the CDMA channel to an appropriate number. A
+
+    communication link shall be set up with a suitable mobile station simulator (hereafter called "the test system")
+
+    according to the Radio Configuration (RC) supported by the base station (see clause 1.3 in TIA-97-E-1 [6]) using full
+
+    data rate only. The test system shall be located outside of the test environment.
+
+    When the EUT is required to be in the transmit/receive mode, the following conditions shall be met:
+
+    - The transmitter part of the EUT shall be commanded to operate at maximum rated transmit power.
+
+    NOTE: This may be achieved by disabling the transmitter RF power control.
+
+    - Adequate measures shall be taken to avoid the effect of the immunity test RF signal on the measuring
+
+    equipment.
+
+    4.2.1 Arrangements for test signals at the input of transmitters
+
+    The provisions of EN 301 489-1 [1], clause 4.2.1 shall apply.
+
+    4.2.2 Arrangements for test signals at the output of transmitters
+
+    The provisions of EN 301 489-1 [1], clause 4.2.2 shall apply.
+
+    4.2.3 Arrangements for test signals at the input of receivers
+
+    The provisions of EN 301 489-1 [1], clause 4.2.3 shall apply with the following modification.
+
+    For immunity testing the wanted RF signal level at the input of the EUT shall be set to no more than 40 dB above the
+
+    reference sensitivity level as defined in TIA-97-E-1 [6], to provide a stable communications link. The input signal level
+
+    used in the test shall be noted in the test report.
+
+    For emission testing the wanted RF signal level at the input of the measuring receiver shall be set to no more than 15 dB
+
+    above the reference sensitivity level as defined in TIA-97-E-1 [6], to ensure that it operates within its dynamic range.
+
+    The input signal level used in the test shall be noted in the test report.
+
+    ETSI
+
+    9 ETSI EN 301 489-26 V2.3.2 (2005-07)
+
+    4.2.4 Arrangements for test signals at the output of receivers
+
+    The provisions of EN 301 489-1 [1], clause 4.2.4 shall apply.
+
+    4.2.5 Arrangements for test signals for repeaters
+
+    For immunity tests of repeaters, the wanted RF input signal shall be coupled to one antenna port at a level which will
+
+    result, when measured, in the maximum rated RF output power per channel, as declared by the manufacturer. The test
+
+    shall either be repeated with a wanted signal coupled to the other antenna port, or a single test shall be performed with
+
+    the specified input signals being simultaneously coupled to both antenna ports.
+
+    4.3 Exclusion bands
+
+    4.3.1 Transmitter exclusion band
+
+    The transmitter frequency bands including in band emissions and out of band emissions are covered by the RF spectral
+
+    mask specification and need no further consideration.
+
+    For the purpose of EMC specifications the transmitter exclusion band shall be the
+
+    carrier centre frequency ± (2,5 × necessary bandwidth).
+
+    4.3.2 Receiver exclusion band
+
+    The exclusion band for receivers and receiver sections of transceivers is the band of frequencies over which no
+
+    immunity tests with radiated RF are made.
+
+    The receiver exclusion band for base stations extends from the lower frequency of the relevant receiver band minus 5 %
+
+    to the upper frequency of the relevant receiv'
+- id: art-3
+  title: 'Annex C (informative):'
+  text: 'Annex C (informative):
+
+    The EN title in the official languages
+
+    Language EN title
+
+    Czech Elektromagnetická křompatibilita a rádČiové spektrum (ERM) – Norma pro elektromagnetickou kompatičbilitu
+
+    (EřMC) rádiovýřch za ízení a služeb – ásřt 26: Specifické podmínky pro základnové stanice, opakova e a
+
+    p idružené za ízení CDMA s 1x rozprost eným spektrem
+
+    Danish Elektromagnetisk kompatibilitet og radiospektrum-anliggender (ERM); Elektromagnetisk kompatibilitet
+
+    (EMC) for radioudstyr og tjenester; Del 26: Særlige krav til CDMA 1x spread spectrum basisstationer,
+
+    repeatere og hjælpeudstyr
+
+    Dutch Elektromagnetische compatibiliteit en radiospectrumzaken (ERM); Elektromagnetische
+
+    compatibiliteitsnorm (EMC) voor radioapparatuur en radiodiensten; Deel 26: Specifieke condities voor
+
+    CDMA 1X Spread Spectrum basisstations, repeaters en hulpapparatuur.
+
+    English Electromagnetic compatibility and radio spectrum matters (ERM); Electromagnetic compatibility (EMC)
+
+    standard for radio equipment and services; Part 26: Specific conditions for CDMA 1x spread spectrum
+
+    base stations, repeaters and ancillary equipment
+
+    Estonian Raadioseadmete ja raadiosideteenistuste elektromagnetilise ühilduvuse (EMC) standard; Osa 26:
+
+    Eritingimused CDMA 1x lairiba baasjaamadele, repiiteritele ja lisaseadmetele
+
+    Finnish Sähkömagneettinen yhteensopivuus ja radiospektriasiat (ERM); sähkömagneettinen
+
+    yhteensopivuusstandardi (EMC) radiolaitteille ja järjestelmille; Osa 26: : Erityisehdot CDMA 1x
+
+    -hajaspektritekniikkaa käyttäville tukiasemille, toistimille ja niiden oheislaitteille
+
+    French Compatibilité électromagnétique et spectre radioélectrique (ERM); Norme de compatibilité
+
+    électromagnétique (CEM) pour équipement de communication radio et services; Partie 26: Conditions
+
+    spécifiques pour stations de base et équipements auxiliaires utilisant le CDMA 1x à étalement de spectre
+
+    German Elektromagnetische Verträglichkeit und Funkspektrumangelegenheiten (ERM);
+
+    Elektromagnetische Verträglichkeit (EMV) für Funkgeräte und Funkdienste;
+
+    Teil 26: Spezielle Anforderungen für CDMA 1x Spread Spectrum Basisstationen, Repeater und
+
+    ZΗuλsεκaτtzρeοinαriγcνhηtuτnικgήeσnυ βατότητακαιθέ αταραδιοφάσ ατος Πρότυποηλεκτρο αγνητικής
+
+    Greek συ βατόµτητας µπουαφορ άρα διοµεξοπ λισ όκαιµραδιο ϋ(EπRηρMε)σ; ίες Μέρος Ειδιµκέςσυνθήκ εςγια
+
+    µ σταθ (µEοMύCς)β άσης ευρέω ςφάσµατος αµνα µετ αδώτεςκαιβοηθ;ι τικόεξο 2π6λ:ι σµό
+
+    CDMA 1x , .
+
+    Hungarian Elektromágneses kompatibilitási és rádió spektrum ügyek; Elektomágneses kompatibilitási szabvány
+
+    rádiókészülékekhez és szolgáltatásokhoz; Rész 26: Speciális feltételek CDMA 1x Szórt Spektrumú
+
+    alapállomásokhoz, jelerosítokhöz és kiegészíto berendezésekhez.
+
+    Italian Compatibilità elettromagnetica e Questioni relative allo spettro delle radiofrequenze (ERM); Norma di
+
+    Compatibilità elettromagnetica (EMC) per apparecchiature e servizi radio; Parte 26 Condizioni
+
+    specifiche peēr staāzioni baīsi, ripetitori e apparčecchiature ausāiliarie per CDMA 1x Sprāead Spectrum
+
+    Latvian Elektromagnētiskā saderbīa un radiofrekven u sļpeĪktra jaut jumīi (ERM) - Radioiek rtu un dienesētu ā
+
+    elektrāomagn tisīk s āsadāerbas standarts - 26.daa: pašie nosacjumi IMT-2000 CDMA daudznes ju b zes
+
+    stacij m un palgiek rt m ų į ų
+
+    Lithuanian Elektromagnetinio suderinamumo ir radijo dažni spektro dalykai.č Radijo ryšio rangosų ir pasųlaug
+
+    elektromagnetinio sųuderinųaųmumčoų (EMS) standėarįtas. 26 dalis. Tre iosioąs kartos korini tinkl IMT-2000
+
+    CDMA daugianešli judri j sto i ir pagalbin s rangos specialiosios s lygos
+
+    Maltese Kompatibilità elettromanjeħtika u ħmaterji relatati ma'' spettċru radjofoniku (ERM); Standardċ taċ" Kħompatibilità
+
+    ElettroManjetikaż (EMC) g al tag mir u seħrvizzi radjofoni i; Parti 26: Kondħizzjonijietħ spe ifiċi g al
+
+    Stazzjonijiet Ba i IMT-2000 CħDMA li ħjistg u jwasslu aktar minn sinjal wie ed u tag mir an illari Standard
+
+    EMC li jkopri diversi partijiet g al tag mir radjofoniku EN 301 489-XX ( Il-partijiet kollha)
+
+    Norwegian Elektromagnetisk kompatibilitet og radiospektrumspørsmål (ERM); Standard for elektromagnetisk
+
+    kompatibilitet (EMC) for radioutstyr og tjenester; Del 26: Spesifikke betingelser for basestasjoner og
+
+    tilhørende utstśyćr for IMT-2000 CDMA med flere bærebølger ś
+
+    Polish Kompatybilno elektromagnetycznąa i zagaądnieńnia widma radiowego (ERM) ę- śNćorma kompatybilno ci
+
+    elektromagnetycznej (EMC) dotycz ca urz dzeź i systemów radiowżych – Cz 26: Wymagania
+
+    szczegółowe dla stacji bazowych, stacji przeka nikowych i wyposa enia pomocniczego systemu z
+
+    rozproszonym widmem CDMA 1X
+
+    Portuguese Assuntos de espectro radioeléctrico e compatibilidade electromagnética (ERM); norma de
+
+    compatibilidade electromagnética (EMC) para equipamento de rádio e serviços; parte 26: Condições
+
+    especificas para as estações de base, repetidores e equipamento auxiliar do CDMA 1x Spread Spectrum
+
+    Slovak Elektromagnetická kompatibilita a záležitosti ráČdiovťého spektra (ERM). Elektromagnetickňá kompatibilita
+
+    (EMC), nčorma na rádiové zariadenia a služby. as 26: Osobitné podmienky pre základ ové stanice,
+
+    opakova e a podporné zariadenia CDMA s 1x rozprestretým spektrom
+
+    ETSI
+
+    17 ETSI EN 301 489-26 V2.3.2 (2005-07)
+
+    Language EN title
+
+    Slovenian Elektromagnetna združljivost (EMC) in zadeve v zvezi z radijskim spektrom (ERM) – Standard
+
+    elektromagnetne združljivosti (EMC) za radijsko opremo in storitve – 26. del: Posečbni pogoji za bazne
+
+    postaje po standardu IMT-2000 s CDMA (kodno porazdeljenim sodostopom) in ve nosilnimi frekvencami
+
+    (''Multi-Carrier'') ter pomožno opremo
+
+    Spanish Compatibilidad electromagnética y cuestiones de espectro de radiofrecuencia (ERM); compatibilidad
+
+    electromagnética (EMC) estándar para equipos radio y servicios; parte 26: Condiciones específicas para
+
+    estaciones de base, repetidores y equipos auxiliares de espectro ensanchado con CDMA 1x
+
+    Swedish Elektromagnetisk kompatibilitet och radiospektrumfrågor (ERM); Elektromagnetisk kompatibilitetsstandard
+
+    (EMC) för radioutrustning och tjänster; Del 26: Specifika villkor för CDMA 1x spread spectrum
+
+    basstationer, repeaters och tillhörande utrustning
+
+    ETSI
+
+    18 ETSI EN 301 489-26 V2.3.2 (2005-07)
+
+    History
+
+    Document history
+
+    V1.1.1 September 2001 Publication
+
+    V2.2.1 May 2003 Publication
+
+    V2.3.2 July 2004 Public Enquiry PE 20041105: 2004-07-07 to 2004-11-05
+
+    V2.3.2 May 2005 Vote V 20050708: 2005-05-09 to 2005-07-08
+
+    V2.3.2 July 2005 Publication
+
+    ETSI'
 doc_files:
 - global/raw/ETSI_EN_30148926_v02.03.02_60.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30148926_v02.03.02_60.pdf (pdf, 39674 chars)，生成 3 条共 28690 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30148926_v02.03.02_60.pdf (pdf, 39674 chars)，生成 3 条共 28690 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30148926_v02.03.02_60.pdf (pdf, 39674 chars)，生成 3 条共 28690 字符；解析文本未人工复核，引用以官方原件为准。'

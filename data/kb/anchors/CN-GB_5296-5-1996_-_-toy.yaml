@@ -1,0 +1,26 @@
+id: KB-toy-CN-CN-GB_5296-5-1996_-_
+regulation_id: CN-GB_5296-5-1996_-_
+doc_name: CN-GB GB 5296.5-1996 消费品使用说明  玩具使用说明
+official_citation: CN-GB GB 5296.5-1996 消费品使用说明  玩具使用说明
+short_name: CN-GB GB 5296.5-1996 消费品使用说明  玩具使用说明
+source: category
+primary_source: toy
+domain: toy
+applies_if:
+  category:
+  - toy
+  features_any: []
+  markets:
+  - CN
+key_articles: []
+key_points:
+- CN-GB GB 5296.5-1996 消费品使用说明  玩具使用说明：玩具领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=90240BD82F13FE198B237B62A46ACDED
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

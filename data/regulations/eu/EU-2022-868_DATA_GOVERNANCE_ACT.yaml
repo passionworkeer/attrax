@@ -9,11 +9,867 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'L_2022152EN.01000101.xml
+
+
+    3.6.2022
+
+
+    EN
+
+
+    Official Journal of '
+  text: 'L_2022152EN.01000101.xml
+
+
+    3.6.2022
+
+
+    EN
+
+
+    Official Journal of the European Union
+
+
+    L 152/1
+
+
+    REGULATION (EU) 2022/868 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL
+
+
+
+    of 30 May 2022
+
+
+
+    on European data governance and amending Regulation (EU) 2018/1724 (Data Governance Act)
+
+
+    (Text with EEA relevance)
+
+
+    THE EUROPEAN PARLIAMENT AND THE COUNCIL OF THE EUROPEAN UNION,
+
+
+    Having regard to the Treaty on the Functioning of the European Union, and in particular Article 114 thereof,
+
+
+    Having regard to the proposal from the European Commission,
+
+
+    After transmission of the draft legislative act to the national parliaments,
+
+
+    Having regard to the opinion of the European Economic and Social Committee
+
+    (
+
+    1
+
+    )
+
+    ,
+
+
+    After consulting the Committee of the Regions,
+
+
+    Acting in accordance with the ordinary legislative procedure
+
+    (
+
+    2
+
+    )
+
+    ,
+
+
+    Whereas:
+
+
+    (1)
+
+
+    The Treaty on the Functioning of the European Union (TFEU) provides for the establishment of an internal market and the institution of a system ensuring that competition in the internal market is not
+    distorted. The establishment of common rules and practices in the Member States relating to the development of a framework for data governance should contribute to the achievement of those objectives,
+    while fully respecting fundamental rights. It should also guarantee the strengthening of the open strategic autonomy of the Union while fostering international free flow of data.
+
+
+    (2)
+
+
+    Over the last decade, digital technologies have transformed the economy and society, affecting all sectors of activity and daily life. Data is at the centre of that transformation: data-driven innovation
+    will bring enormous benefits to both Union citizens and the economy, for example by improving and personalising medicine, providing new mobility, and contributing to the communication of the Commission
+    of 11 December 2019 on the European Green Deal. In order to make the data-driven economy inclusive for all Union citizens, particular attention must be paid to reducing the digital divide, boosting
+    the participation of women in the data economy and fostering cutting-edge European expertise in the technology sector. The data economy has to be built in a way that enables undertakings, in particular
+    micro, small and medium-sized enterprises (SMEs), as defined in the Annex to Commission Recommendation 2003/361/EC
+
+    (
+
+    3
+
+    )
+
+    , and start-ups to thrive, ensuring data access neutrality and data portability and interoperability, and avoiding lock-in effects. In its communication of 19 February 2020 on a European strategy for
+    data (the ‘European strategy for data’), the Commission described the vision of a common European data space, meaning an internal market for data in which data could be used irrespective of its physical
+    storage location in the Union in compliance with applicable law, which,
+
+    inter alia
+
+    , could be pivotal for the rapid development of artificial intelligence technologies.
+
+
+    The Commission also called for the free and safe flow of data with third countries, subject to exceptions and restrictions for public security, public order and other legitimate public policy objectives
+    of the Union, in line with international obligations, including on fundamental rights. In order to turn that vision into reality, the Commission proposed establishing domain-specific common European
+    data spaces for data sharing and data pooling. As proposed in the European strategy for data, such common European data spaces could cover areas such as health, mobility, manufacturing, financial services,
+    energy or agriculture, or a combination of such areas, for example energy and climate, as well as thematic areas such as the European Green Deal or European data spaces for public administration or
+    skills. Common European data spaces should make data findable, accessible, interoperable and re-usable (the ‘FAIR data principles’), while ensuring a high level of cybersecurity. Where there is a level
+    playing field in the data economy, undertakings compete on quality of services, and not on the amount of data they control. For the purposes of the design, creation and maintenance of the level playing
+    field in the data economy, sound governance is needed in which relevant stakeholders of a common European data space need to participate and be represented.
+
+
+    (3)
+
+
+    It is necessary to improve the conditions for data sharing in the internal market, by creating a harmonised framework for data exchanges and laying down certain basic requirements for data governance,
+    paying specific attention to facilitating cooperation between Member States. This Regulation should aim to develop further the borderless digital internal market and a human-centric, trustworthy and
+    secure data society and economy. Sector-specific Union law can develop, adapt and propose new and complementary elements, depending on the specificities of the sector, such as the Union law envisaged
+    on the European health data space and on access to vehicle data. Moreover, certain sectors of the economy are already regulated by sector-specific Union law, which includes rules relating to the sharing
+    of or access to data across borders or across the Union, for example Directive 2011/24/EU of the European Parliament and of the Council
+
+    (
+
+    4
+
+    )
+
+    in the context of the European health data space, and relevant legislative acts in the field of transport, such as Regulations (EU) 2019/1239
+
+    (
+
+    5
+
+    )
+
+    and (EU) 2020/1056
+
+    (
+
+    6
+
+    )
+
+    and Directive 2010/40/EU
+
+    (
+
+    7
+
+    )
+
+    of the European Parliament and of the Council in the context of the European mobility data space.
+
+
+    This Regulation should therefore be without prejudice to Regulations (EC) No 223/2009
+
+    (
+
+    8
+
+    )
+
+    , (EU) 2018/858
+
+    (
+
+    9
+
+    )
+
+    and (EU) 2018/1807
+
+    (
+
+    10
+
+    )
+
+    as well as Directives 2000/31/EC
+
+    (
+
+    11
+
+    )
+
+    , 2001/29/EC
+
+    (
+
+    12
+
+    )
+
+    , 2004/48/EC
+
+    (
+
+    13
+
+    )
+
+    , 2007/2/EC
+
+    (
+
+    14
+
+    )
+
+    , 2010/40/EU, (EU) 2015/849
+
+    (
+
+    15
+
+    )
+
+    , (EU) 2016/943
+
+    (
+
+    16
+
+    )
+
+    , (EU) 2017/1132
+
+    (
+
+    17
+
+    )
+
+    , (EU) 2019/790
+
+    (
+
+    18
+
+    )
+
+    and (EU) 2019/1024
+
+    (
+
+    19
+
+    )
+
+    of the European Parliament and of the Council and any other sector-specific Union law that regulates access to and re-use of data. This Regulation should be without prejudice to Union and national law
+    on the access to and use of data for the purpose of the prevention, investigation, detection or prosecution of criminal offences or the execution of criminal penalties, as well as international cooperation
+    in that context.
+
+
+    This Regulation should be without prejudice to the competences of the Member States with regard to their activities concerning public security, defence and national security. The re-use of data protected
+    for such reasons and held by public sector bodies, including data from procurement procedures falling within the scope of Directive 2009/81/EC of the European Parliament and of the Council
+
+    (
+
+    20
+
+    )
+
+    , should not be covered by this Regulation. A horizontal regime for the re-use of certain categories of protected data held by public sector bodies, the provision of data intermediation services and
+    of services based on data altruism in the Union should be established. Specific characteristics of different sectors may require the design of sectoral data-based systems, while building on the requirements
+    of this Regulation. Data intermediation services providers that meet the requirements laid down in this Regulation should be able to use the label ‘data intermediation services provider recognised in
+    the Union’. Legal persons that seek to support objectives of general interest by making available relevant data based on data altruism at scale and that meet the requirements laid down in this Regulation
+    should be able to register as and use the label ‘data altruism organisation recognised in the Union’. Where sector-specific Union or national law requires public sector bodies, such data intermediation
+    services providers or such legal persons (recognised data altruism organisations) to comply with specific additional technical, administrative or organisational requirements, including through an authorisation
+    or certification regime, those provisions of that sector-specific Union or national law should also apply.
+
+
+    (4)
+
+
+    This Regulation should be without prejudice to Regulations (EU) 2016/679
+
+    (
+
+    21
+
+    )
+
+    and (EU) 2018/1725
+
+    (
+
+    22
+
+    )
+
+    of the European Parliament and of the Council and to Directives 2002/58/EC
+
+    (
+
+    23
+
+    )
+
+    and (EU) 2016/680
+
+    (
+
+    24
+
+    )
+
+    of the European Parliament and of the Council and the corresponding provisions of national law, including where personal and non-personal data in a data set are inextricably linked. In particular, this
+    Regulation should not be read as creating a new legal basis for the processing of personal data for any of the regulated activities, or as amending the information requirements laid down in Regulation
+    (EU) 2016/679. The implementation of this Regulation should not prevent cross-border transfers of data in accordance with Chapter V of Regulation (EU) 2016/679. In the event of a conflict between this
+    Regulation and Union law on the protection of personal data or national law adopted in accordance with such Union law, the relevant Union or national law on the protection of personal data should prevail.
+    It should be possible to consider data protection authorities to be competent authorities under this Regulation. Where other authorities function as competent authorities under this Regulation, they
+    should do so without prejudice to the supervisory powers and competences of data protection authorities under Regulation (EU) 2016/679.
+
+
+    (5)
+
+
+    Action at Union level is necessary to increase trust in data sharing by establishing appropriate mechanisms for control by data subjects and data holders over data that relates to them, and in order
+    to address other barriers to a well-functioning and competitive data-driven economy. That action should be without prejudice to obligations and commitments in the international trade agreements concluded
+    by the Union. A Union-wide governance framework should have the objective of building trust among individuals and undertakings in relation to data access, control, sharing, use and re-use, in particular
+    by establishing appropriate mechanisms for data subjects to know and meaningfully exercise their rights, as well as with regard to the re-use of certain types of data held by the public sector bodies,
+    the provision of services by data intermediation services providers to data subjects, data holders and data users, as well as the collection and processing of data made available for altruistic purposes
+    by natural and legal persons. In particular, more transparency regarding the purpose of data use and conditions under which data is stored by undertakings can help increase trust.
+
+
+    (6)
+
+
+    The idea that data that has been generated or collected by public sector bodies or other entities at the expense of public budgets should benefit society has been part of Union policy for a long time.
+    Directive (EU) 2019/1024 and sector-specific Union law ensure that the public sector bodies make more of the data they produce easily available for use and re-use. However, certain categories of data,
+    such as commercially confidential data, data that are subject to statistical confidentiality and data protected by intellectual property rights of third parties, including trade secrets and personal
+    data, in public databases are often not made available, not even for research or innovative activities in the public interest, despite such availability being possible in accordance with the applicable
+    Union law, in particular Regulation (EU) 2016/679 and Directives 2002/58/EC and (EU) 2016/680. Due to the sensitivity of such data, certain technical and legal procedural requirements must be met before
+    they are made available, not least in order to ensure the respect of rights others have over such data or to limit the negative impact on fundamental rights, the principle of non-discrimination and
+    data protection. The fulfilment of such requirements is usually time- and knowledge-intensive. This has led to the insufficient use of such data. While some Member States are'
+- id: art-2
+  title: CHAPTER I
+  text: 'CHAPTER I
+
+
+    General provisions'
+- id: art-3
+  title: Article 1
+  text: 'Article 1
+
+
+    Subject matter and scope
+
+
+    1.   This Regulation lays down:
+
+
+    (a)
+
+
+    conditions for the re-use, within the Union, of certain categories of data held by public sector bodies;
+
+
+    (b)
+
+
+    a notification and supervisory framework for the provision of data intermediation services;
+
+
+    (c)
+
+
+    a framework for voluntary registration of entities which collect and process data made available for altruistic purposes; and
+
+
+    (d)
+
+
+    a framework for the establishment of a European Data Innovation Board.
+
+
+    2.   This Regulation does not create any obligation on public sector bodies to allow the re-use of data, nor does it release public sector bodies from their confidentiality obligations under Union or
+    national law.
+
+
+    This Regulation is without prejudice to:
+
+
+    (a)
+
+
+    specific provisions in Union or national law regarding the access to or re-use of certain categories of data, in particular with regard to the granting of access to and disclosure of official documents;
+    and
+
+
+    (b)
+
+
+    the obligations of public sector bodies under Union or national law to allow the re-use of data or to requirements related to processing of non-personal data.
+
+
+    Where sector-specific Union or national law requires public sector bodies, data intermediation services providers or recognised data altruism organisations to comply with specific additional technical,
+    administrative or organisational requirements, including through an authorisation or certification regime, those provisions of that sector-specific Union or national law shall also apply. Any such specific
+    additional requirements shall be non-discriminatory, proportionate and objectively justified.
+
+
+    3.   Union and national law on the protection of personal data shall apply to any personal data processed in connection with this Regulation. In particular, this Regulation is without prejudice to Regulations
+    (EU) 2016/679 and (EU) 2018/1725 and Directives 2002/58/EC and (EU) 2016/680, including with regard to the powers and competences of supervisory authorities. In the event of a conflict between this
+    Regulation and Union law on the protection of personal data or national law adopted in accordance with such Union law, the relevant Union or national law on the protection of personal data shall prevail.
+    This Regulation does not create a legal basis for the processing of personal data, nor does it affect any of the rights and obligations set out in Regulations (EU) 2016/679 or (EU) 2018/1725 or Directives 2002/58/EC
+    or (EU) 2016/680.
+
+
+    4.   This Regulation is without prejudice to the application of competition law.
+
+
+    5.   This Regulation is without prejudice to the competences of the Member States with regard to their activities concerning public security, defence and national security.'
+- id: art-4
+  title: Article 2
+  text: 'Article 2
+
+
+    Definitions
+
+
+    For the purposes of this Regulation, the following definitions apply:
+
+
+    (1)
+
+
+    ‘data’ means any digital representation of acts, facts or information and any compilation of such acts, facts or information, including in the form of sound, visual or audiovisual recording;
+
+
+    (2)
+
+
+    ‘re-use’ means the use by natural or legal persons of data held by public sector bodies, for commercial or non-commercial purposes other than the initial purpose within the public task for which the
+    data were produced, except for the exchange of data between public sector bodies purely in pursuit of their public tasks;
+
+
+    (3)
+
+
+    ‘personal data’ means personal data as defined in Article 4, point (1), of Regulation (EU) 2016/679;
+
+
+    (4)
+
+
+    ‘non-personal data’ means data other than personal data;
+
+
+    (5)
+
+
+    ‘consent’ means consent as defined in Article 4, point (11), of Regulation (EU) 2016/679;
+
+
+    (6)
+
+
+    ‘permission’ means giving data users the right to the processing of non-personal data;
+
+
+    (7)
+
+
+    ‘data subject’ means data subject as referred to in Article 4, point (1), of Regulation (EU) 2016/679;
+
+
+    (8)
+
+
+    ‘data holder’ means a legal person, including public sector bodies and international organisations, or a natural person who is not a data subject with respect to the specific data in question, which,
+    in accordance with applicable Union or national law, has the right to grant access to or to share certain personal data or non-personal data;
+
+
+    (9)
+
+
+    ‘data user’ means a natural or legal person who has lawful access to certain personal or non-personal data and has the right, including under Regulation (EU) 2016/679 in the case of personal data, to
+    use that data for commercial or non-commercial purposes;
+
+
+    (10)
+
+
+    ‘data sharing’ means the provision of data by a data subject or a data holder to a data user for the purpose of the joint or individual use of such data, based on voluntary agreements or Union or national
+    law, directly or through an intermediary, for example under open or commercial licences subject to a fee or free of charge;
+
+
+    (11)
+
+
+    ‘data intermediation service’ means a service which aims to establish commercial relationships for the purposes of data sharing between an undetermined number of data subjects and data holders on the
+    one hand and data users on the other, through technical, legal or other means, including for the purpose of exercising the rights of data subjects in relation to personal data, excluding at least the
+    following:
+
+
+    (a)
+
+
+    services that obtain data from data holders and aggregate, enrich or transform the data for the purpose of adding substantial value to it and license the use of the resulting data to data users, without
+    establishing a commercial relationship between data holders and data users;
+
+
+    (b)
+
+
+    services that focus on the intermediation of copyright-protected content;
+
+
+    (c)
+
+
+    services that are exclusively used by one data holder in order to enable the use of the data held by that data holder, or that are used by multiple legal persons in a closed group, including supplier
+    or customer relationships or collaborations established by contract, in particular those that have as a main objective to ensure the functionalities of objects and devices connected to the Internet
+    of Things;
+
+
+    (d)
+
+
+    data sharing services offered by public sector bodies that do not aim to establish commercial relationships;
+
+
+    (12)
+
+
+    ‘processing’ means processing as defined in Article 4, point (2), of Regulation (EU) 2016/679 with regard to personal data or Article 3, point (2), of Regulation (EU) 2018/1807 with regard to non-personal
+    data;
+
+
+    (13)
+
+
+    ‘access’ means data use, in accordance with specific technical, legal or organisational requirements, without necessarily implying the transmission or downloading of data;
+
+
+    (14)
+
+
+    ‘main establishment’ of a legal person means the place of its central administration in the Union;
+
+
+    (15)
+
+
+    ‘services of data cooperatives’ means data intermediation services offered by an organisational structure constituted by data subjects, one-person undertakings or SMEs who are members of that structure,
+    having as its main objectives to support its members in the exercise of their rights with respect to certain data, including with regard to making informed choices before they consent to data processing,
+    to exchange views on data processing purposes and conditions that would best represent the interests of its members in relation to their data, and to negotiate terms and conditions for data processing
+    on behalf of its members before giving permission to the processing of non-personal data or before they consent to the processing of personal data;
+
+
+    (16)
+
+
+    ‘data altruism’ means the voluntary sharing of data on the basis of the consent of data subjects to process personal data pertaining to them, or permissions of data holders to allow the use of their
+    non-personal data without seeking or receiving a reward that goes beyond compensation related to the costs that they incur where they make their data available for objectives of general interest as
+    provided for in national law, where applicable, such as healthcare, combating climate change, improving mobility, facilitating the development, production and dissemination of official statistics, improving
+    the provision of public services, public policy making or scientific research purposes in the general interest;
+
+
+    (17)
+
+
+    ‘public sector body’ means the State, regional or local authorities, bodies governed by public law or associations formed by one or more such authorities, or one or more such bodies governed by public
+    law;
+
+
+    (18)
+
+
+    ‘bodies governed by public law’ means bodies that have the following characteristics:
+
+
+    (a)
+
+
+    they are established for the specific purpose of meeting needs in the general interest, and do not have an industrial or commercial character;
+
+
+    (b)
+
+
+    they have legal personality;
+
+
+    (c)
+
+
+    they are financed, for the most part, by the State, regional or local authorities, or other bodies governed by public law, are subject to management supervision by those authorities or bodies, or have
+    an administrative, managerial or supervisory board, more than half of whose members are appointed by the State, regional or local authorities, or by other bodies governed by public law;
+
+
+    (19)
+
+
+    ‘public undertaking’ means any undertaking over which the public sector bodies may exercise directly or indirectly a dominant influence by virtue of their ownership of it, their financial participation
+    therein, or the rules which govern it; for the purposes of this definition, a dominant influence on the part of the public sector bodies shall be presumed in any of the following cases in which those
+    bodies, directly or indirectly:
+
+
+    (a)
+
+
+    hold the majority of the undertaking’s subscribed capital;
+
+
+    (b)
+
+
+    control the majority of the votes attaching to shares issued by the undertaking;
+
+
+    (c)
+
+
+    can appoint more than half of the undertaking’s administrative, management or supervisory body;
+
+
+    (20)
+
+
+    ‘secure processing environment’ means the physical or virtual environment and organisational means to ensure compliance with Union law, such as Regulation (EU) 2016/679, in particular with regard to
+    data subjects’ rights, intellectual property rights, and commercial and statistical confidentiality, integrity and accessibility, as well as with applicable national law, and to allow the entity providing
+    the secure processing environment to determine and supervise all data processing actions, including the display, storage, download and export of data and the calculation of derivative data through computational
+    algorithms;
+
+
+    (21)
+
+
+    ‘legal representative’ means a natural or legal person established in the Union explicitly designated to act on behalf of a data intermediation services provider or an entity that collects data for
+    objectives of general interest made available by natural or legal persons on the basis of data altruism not established in the Union, which may be addressed by the competent authorities for data intermediation
+    services and the competent authorities for the registration of data altruism organisations in addition to or instead of the data intermediation services provider or entity with regard to the obligations
+    under this Regulation, including with regard to initiating enforcement proceedings against a non-compliant data intermediation services provider or entity not established in the Union.'
+- id: art-5
+  title: CHAPTER II
+  text: 'CHAPTER II
+
+
+    Re-use of certain categories of protected data held by public sector bodies'
+- id: art-6
+  title: Article 3
+  text: 'Article 3
+
+
+    Categories of data
+
+
+    1.   This Chapter applies to data held by public sector bodies which are protected on grounds of:
+
+
+    (a)
+
+
+    commercial confidentiality, including business, professional and company secrets;
+
+
+    (b)
+
+
+    statistical confidentiality;
+
+
+    (c)
+
+
+    the protection of intellectual property rights of third parties; or
+
+
+    (d)
+
+
+    the protection of personal data, insofar as such data fall outside the scope of Directive (EU) 2019/1024.
+
+
+    2.   This Chapter does not apply to:
+
+
+    (a)
+
+
+    data held by public undertakings;
+
+
+    (b)
+
+
+    data held by public service broadcasters and their subsidiaries, and by other bodies or their subsidiaries for the fulfilment of a public service broadcasting remit;
+
+
+    (c)
+
+
+    data held by cultural establishments and educational establishments;
+
+
+    (d)
+
+
+    data held by public sector bodies which are protected for reasons of public security, defence or national security; or
+
+
+    (e)
+
+
+    data the supply of which is an activity falling outside the scope of the public task of the public sector bodies concerned as defined by law or by other binding rules in the Member State concerned,
+    or, in the absence of such rules, as defined in accordance with common administrative practice in that Member State, provided that the scope of the public tasks is transparent and subject to review.
+
+
+    3.   This Chapter is without prejudice to:
+
+
+    (a)
+
+
+    Union and national law and international agreements to which the Union or Member States are party on the protection of categories of data referred to in paragraph 1; and
+
+
+    (b)
+
+
+    Union and national law on access to documents.'
+- id: art-7
+  title: Article 4
+  text: 'Article 4
+
+
+    Prohibition of exclusive arrangements
+
+
+    1.   Agreements or other practices pertaining to the re-use of data held by public sector bodies containing categories of data referred to in Article 3(1) which grant exclusive rights or which have
+    as their objective or effect to grant such exclusive rights or to restrict the availability of data for re-use by entities other than the parties to such agreements or other practices shall be prohibited.
+
+
+    2.   By way of derogation from paragraph 1, an exclusive right to re-use data referred to in that paragraph may be granted to the extent necessary for the provision of a service or the supply of a product
+    in the general interest that would not otherwise be possible.
+
+
+    3.   An exclusive right as referred to in paragraph 2 shall be granted through an administrative act or contractual arrangement in accordance with applicable Union or national law and in compliance
+    with the principles of transparency, equal treatment and non-discrimination.
+
+
+    4.   The duration of an exclusive right to re-use data shall not exceed 12 months. Where a contract is concluded, the duration of the contract shall be the same as the duration of the exclusive right.
+
+
+    5.   The grant of an exclusive right pursuant to paragraphs 2, 3 and 4, including the reasons as to why it is necessary to grant such a right, shall be transparent and be made publicly available online,
+    in a form that complies with relevant Union law on public procurement.
+
+
+    6.   Agreements or other practices falling within the scope of the prohibition referred to in paragraph 1 which do not meet the conditions laid down in paragraphs 2 and 3 and which were concluded before
+    23 June 2022 shall be terminated at the end of the applicable contract and in any event by 24 December 2024.'
+- id: art-8
+  title: Article 5
+  text: 'Article 5
+
+
+    Conditions for re-use
+
+
+    1.   Public sector bodies which are competent under national law to grant or refuse access for the re-use of one or more of the categories of data referred to in Article 3(1) shall make publicly available
+    the conditions for allowing such re-use and the procedure to request the re-use via the single information point referred to in Article 8. Where they grant or refuse access for re-use, they may be assisted
+    by the competent bodies referred to in Article 7(1).
+
+
+    Member States shall ensure that public sector bodies are equipped with the necessary resources to comply with this Article.
+
+
+    2.   Conditions for re-use shall be non-discriminatory, transparent, proportionate and objectively justified with regard to the categories of data and the purposes of re-use and the nature of the data
+    for which re-use is allowed. Those conditions shall not be used to restrict competition.
+
+
+    3.   Public sector bodies shall, in accordance with Union and national law, ensure that the protected nature of data is preserved. They may provide for the following requirements:
+
+
+    (a)
+
+
+    to grant access for the re-use of data only where the public sector body or the competent body, following the request for re-use, has ensured that data has been:
+
+
+    (i)
+
+
+    anonymised, in the case of personal data; and
+
+
+    (ii)
+
+
+    modified, aggregated or treated by any other method of disclosure control, in the case of commercially confidential information, including trade secrets or content protected by intellectual property
+    rights;
+
+
+    (b)
+
+
+    to access and re-use the data remotely within a secure processing environment that is provided or controlled by the public sector body;
+
+
+    (c)
+
+
+    to access and re-use the data within the physical premises in which the secure processing environment is located in accordance with high security standards, provided that remote access cannot be allowed
+    without jeopardising the rights and interests of third parties.
+
+
+    4.   In the case of re-use allowed in accordance with paragraph 3, points (b) and (c), the public sector bodies shall impose conditions that preserve the integrity of the functioning of the technical
+    systems of the secure processing environment used. The public sector body shall reserve the right to verify the process, the means and any results of processing of data undertaken by the re-user to
+    preserve the integrity of the protection of the data and reserve the right to prohibit the use of results that contain information jeopardising the rights and interests of third parties. The decision
+    to prohibit the use of the results shall be comprehensible and transparent to the re-user.
+
+
+    5.   Unless national law provides for specific safeguards on applicable confidentiality obligations relating to the re-use of data referred to in Article 3(1), the public sector body shall make the
+    re-use of data provided in accordance with paragraph 3 of this Article conditional on the adherence by the re-user to a confidentiality obligation that prohibits the disclosure of any information that
+    jeopardises the rights and interests of third parties that the re-user may have acquired despite the safeguards put in place. Re-users shall be prohibited from re-identifying any data subject to whom
+    the data relates and shall take technical and operational measures to prevent re-identification and to notify any data breach resulting in the re-identification of the data subjects concerned to the
+    public sector body. In the event of the unauthorised re-use of non-personal data, the re-user shall, without delay, where appropriate with the assistance of the public sector body, inform the legal
+    persons whose rights and interests may be affected.
+
+
+    6.   Where the re-use of data cannot be allowed in accordance with the obligations laid down in paragraphs 3 and 4 of this Article and there is no legal basis for transmitting the data under Regulation
+    (EU) 2016/679, the public sector body shall make best efforts, in accordance with Union and national law, to provide assistance to potential re-users in seeking consent of the data subjects or permission
+    from the data holders whose rights and interests may be affected by such re-use, where it is feasible without a disproportionate burden on the public sector body. Where it provides such assistance,
+    the public sector body may be assisted by the competent bodies referred to in Article 7(1).
+
+
+    7.   Re-use of data shall be allowed only in compliance with intellectual property rights. The right of the maker of a database as provided for in Article 7(1) of Directive 96/9/EC shall not be exercised
+    by public sector bodies in order to prevent the re-use of data or to restrict re-use beyond the limits set by this Regulation.
+
+
+    8.   Where data requested is considered to be confidential, in accordance with Union or national law on commercial or statistical confidentiality, the public sector bodies shall ensure that the confidential
+    data is not disclosed as a result of allowing re-use, unless such re-use is allowed in accordance with paragraph 6.
+
+
+    9.   Where a re-user intends to transfer non-personal data protected on the grounds set out in Article 3(1) to a third country, it shall inform the public sector body of its intention to transfer such
+    data and the purpose of such transfer at the time of requesting the re-use of such data. In the case of re-use in accordance with paragraph 6 of this Article, the re-user shall, where appropriate with
+    the assistance of the'
 doc_files:
 - eu/raw/EU-2022-868_Data_Governance_Act.pdf
+- eu/raw/EU-2022-868_Data_Governance_Act.xhtml
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 去重：合并同法规异名条目 EU-2022-868_DATA_GOVERNANCE_ACT-2（EU-2022-868 Data Governance Act [xhtml]）。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2022-868_Data_Governance_Act.pdf (pdf, 186970 chars)，生成 7 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2022-868_Data_Governance_Act.xhtml (html, 185678 chars)，生成 7 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：eu/raw/EU-2022-868_Data_Governance_Act.xhtml (html, 185670 chars)，生成 8 条共 32000 字符，超出上限已截断；解析文本未人工复核，引用以官方原件为准。'

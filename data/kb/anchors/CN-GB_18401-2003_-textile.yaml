@@ -1,0 +1,26 @@
+id: KB-textile-CN-CN-GB_18401-2003_
+regulation_id: CN-GB_18401-2003_
+doc_name: CN-GB GB 18401-2003 国家纺织产品基本安全技术规范
+official_citation: CN-GB GB 18401-2003 国家纺织产品基本安全技术规范
+short_name: CN-GB GB 18401-2003 国家纺织产品基本安全技术规范
+source: category
+primary_source: textile
+domain: textile
+applies_if:
+  category:
+  - textile
+  features_any: []
+  markets:
+  - CN
+key_articles: []
+key_points:
+- CN-GB GB 18401-2003 国家纺织产品基本安全技术规范：纺织领域法规，按品类/市场匹配纳入（库自动接入）。
+- 本条目由 2026-09-19 法规库批量接入自动生成，适用性与具体义务以原文条款为准，需人工复核。
+curation: auto
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=236EC2DCD4F68555D8C650F056D0DABB
+purchase_url: null
+last_verified: '2026-09-19'
+verified_by: auto-generate
+verification_status: needs_human_review
+schema_version: 1

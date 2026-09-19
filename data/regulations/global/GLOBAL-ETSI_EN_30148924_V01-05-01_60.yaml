@@ -9,11 +9,794 @@ purchase_url: null
 last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
-source_kind: unverified
-articles: []
+source_kind: official_verbatim
+articles:
+- id: art-1
+  title: 'ETSI EN 301 489-24
+
+    V1.5.1
+
+    (2010-10)
+
+    Harmonized European Stan'
+  text: 'ETSI EN 301 489-24
+
+    V1.5.1
+
+    (2010-10)
+
+    Harmonized European Standard (Telecommunications series)
+
+    Electromagnetic compatibility
+
+    and Radio spectrum Matters (ERM);
+
+    ElectroMagnetic Compatibility (EMC) standard
+
+    for radio equipment and services;
+
+    Part 24: Specific conditions for IMT-2000 CDMA
+
+    Direct Spread (UTRA and E-UTRA) for
+
+    Mobile and portable (UE) radio and ancillary equipment
+
+    2 ETSI EN 301 489-24 V1.5.1 (2010-10)
+
+    Reference
+
+    REN/ERM-EMC-268-24
+
+    Keywords
+
+    EMC, IMT-2000, radio, regulation, terminal,
+
+    UMTS
+
+    ETSI
+
+    650 Route des Lucioles
+
+    F-06921 Sophia Antipolis Cedex - FRANCE
+
+    Tel.: +33 4 92 94 42 00 Fax: +33 4 93 65 47 16
+
+    Siret N° 348 623 562 00017 - NAF 742 C
+
+    Association à but non lucratif enregistrée à la
+
+    Sous-Préfecture de Grasse (06) N° 7803/88
+
+    Important notice
+
+    Individual copies of the present document can be downloaded from:
+
+    http://www.etsi.org
+
+    The present document may be made available in more than one electronic version or in print. In any case of existing or
+
+    perceived difference in contents between such versions, the reference version is the Portable Document Format (PDF).
+
+    In case of dispute, the reference shall be the printing on ETSI printers of the PDF version kept on a specific network drive
+
+    within ETSI Secretariat.
+
+    Users of the present document should be aware that the document may be subject to revision or change of status.
+
+    Information on the current status of this and other ETSI documents is available at
+
+    http://portal.etsi.org/tb/status/status.asp
+
+    If you find errors in the present document, please send your comment to one of the following services:
+
+    http://portal.etsi.org/chaircor/ETSI_support.asp
+
+    Copyright Notification
+
+    No part may be reproduced except as authorized by written permission.
+
+    The copyright and the foregoing restriction extend to reproduction in all media.
+
+    © European Telecommunications Standards Institute 2010.
+
+    All rights reserved.
+
+    DECTTM, PLUGTESTSTM, UMTSTM, TIPHONTM, the TIPHON logo and the ETSI logo are Trade Marks of ETSI registered
+
+    for the benefit of its Members.
+
+    3GPPTM is a Trade Mark of ETSI registered for the benefit of its Members and of the 3GPP Organizational Partners.
+
+    LTE™ is a Trade Mark of ETSI currently being registered
+
+    for the benefit of its Members and of the 3GPP Organizational Partners.
+
+    GSM® and the GSM logo are Trade Marks registered and owned by the GSM Association.
+
+    ETSI
+
+    3 ETSI EN 301 489-24 V1.5.1 (2010-10)
+
+    Contents
+
+    Intellectual Property Rights ................................................................................................................................ 5
+
+    Foreword ............................................................................................................................................................. 5
+
+    1 Scope ........................................................................................................................................................ 6
+
+    2 References ................................................................................................................................................ 6
+
+    2.1 Normative references ......................................................................................................................................... 6
+
+    2.2 Informative references ........................................................................................................................................ 7
+
+    3 Definitions and abbreviations ................................................................................................................... 7
+
+    3.1 Definitions .......................................................................................................................................................... 7
+
+    3.2 Abbreviations ..................................................................................................................................................... 8
+
+    4 Test conditions ......................................................................................................................................... 9
+
+    4.1 General ............................................................................................................................................................... 9
+
+    4.2 Arrangements for test signals ............................................................................................................................. 9
+
+    4.2.1 Arrangements for test signals at the input of transmitters ........................................................................... 10
+
+    4.2.2 Arrangements for test signals at the output of transmitters ......................................................................... 10
+
+    4.2.3 Arrangements for test signals at the input of receivers ............................................................................... 10
+
+    4.2.4 Arrangements for test signals at the output of receivers ............................................................................. 10
+
+    4.3 Exclusion bands ................................................................................................................................................ 11
+
+    4.3.1 Transmitter exclusion band ......................................................................................................................... 11
+
+    4.3.1.1 UTRA .................................................................................................................................................... 11
+
+    4.3.1.2 E-UTRA ................................................................................................................................................ 11
+
+    4.3.2 Receiver exclusion band ............................................................................................................................. 11
+
+    4.3.2.1 UTRA/FDD and E-UTRA .................................................................................................................... 11
+
+    4.3.2.2 UTRA/TDD .......................................................................................................................................... 11
+
+    4.4 Narrow band responses on receivers ................................................................................................................ 12
+
+    4.4.1 UTRA ......................................................................................................................................................... 12
+
+    4.4.2 E-UTRA ...................................................................................................................................................... 12
+
+    4.5 Normal test modulation .................................................................................................................................... 12
+
+    5 Performance assessment ......................................................................................................................... 13
+
+    5.1 General ............................................................................................................................................................. 13
+
+    5.2 Equipment which can provide a continuous communication link .................................................................... 13
+
+    5.3 Equipment which does not provide a communication link ............................................................................... 13
+
+    5.4 Ancillary equipment ......................................................................................................................................... 13
+
+    5.5 Equipment classification .................................................................................................................................. 13
+
+    6 Performance criteria ............................................................................................................................... 13
+
+    6.1 Performance criteria for continuous phenomena .............................................................................................. 13
+
+    6.1.1 UTRA ......................................................................................................................................................... 14
+
+    6.1.2 E-UTRA ...................................................................................................................................................... 14
+
+    6.2 Performance criteria for Transient phenomena ................................................................................................ 14
+
+    7 Applicability overview tables ................................................................................................................. 14
+
+    7.1 Emission ........................................................................................................................................................... 14
+
+    7.1.1 General ........................................................................................................................................................ 14
+
+    7.1.2 Special conditions ....................................................................................................................................... 14
+
+    7.2 Immunity .......................................................................................................................................................... 14
+
+    7.2.1 General ........................................................................................................................................................ 14
+
+    7.2.2 Special conditions ....................................................................................................................................... 15
+
+    Annex A (informative): Examples of mobile and portable radio and ancillary equipment for
+
+    digital cellular radio telecommunications systems within the scope of
+
+    the present document ..................................................................................... 16
+
+    A.1 Mobile and portable radio equipment, and ancillary equipment for the IMT-2000 CDMA Direct
+
+    Spread (UTRA) ...................................................................................................................................... 16
+
+    ETSI
+
+    4 ETSI EN 301 489-24 V1.5.1 (2010-10)
+
+    A.2 Mobile and portable radio equipment, and ancillary equipment for the Evolved Universal
+
+    Terrestrial Radio Access (E-UTRA) ...................................................................................................... 16
+
+    Annex B (normative): Performance assessment voice call. Audio breakthrough .......................... 17
+
+    B.1 Calibration of audio levels ..................................................................................................................... 17
+
+    B.2 Measurement of audio levels .................................................................................................................. 18'
+- id: art-2
+  title: 'Annex C (normative): Performance assessment of data transfer call. Error Ratios ..................... 19'
+  text: 'Annex C (normative): Performance assessment of data transfer call. Error Ratios ..................... 19
+
+    C.1 Calibration of data transfer ..................................................................................................................... 19
+
+    C.1.1 UTRA ............................................................................................................................................................... 19
+
+    C.1.2 E-UTRA ........................................................................................................................................................... 19
+
+    C.2 Assessment of data transfer .................................................................................................................... 19
+
+    C.2.1 UTRA. Derivation of Error Ratios ................................................................................................................... 19
+
+    C.2.2 E-UTRA. Derivation of Throughput Percentages ............................................................................................ 20
+
+    C.3 EUT without data application ancillary .................................................................................................. 20
+
+    C.4 EUT with data application ancillary ....................................................................................................... 21
+
+    Annex D (informative): The EN title in the official languages ........................................................... 22
+
+    Annex E (informative): Bibliography ................................................................................................... 23
+
+    History .............................................................................................................................................................. 24
+
+    ETSI
+
+    5 ETSI EN 301 489-24 V1.5.1 (2010-10)
+
+    Intellectual Property Rights
+
+    IPRs essential or potentially essential to the present document may have been declared to ETSI. The information
+
+    pertaining to these essential IPRs, if any, is publicly available for ETSI members and non-members, and can be found
+
+    in ETSI SR 000 314: "Intellectual Property Rights (IPRs); Essential, or potentially Essential, IPRs notified to ETSI in
+
+    respect of ETSI standards", which is available from the ETSI Secretariat. Latest updates are available on the ETSI Web
+
+    server (http://webapp.etsi.org/IPR/home.asp).
+
+    Pursuant to the ETSI IPR Policy, no investigation, including IPR searches, has been carried out by ETSI. No guarantee
+
+    can be given as to the existence of other IPRs not referenced in ETSI SR 000 314 (or the updates on the ETSI Web
+
+    server) which are, or may be, or may become, essential to the present document.
+
+    Foreword
+
+    This Harmonized European Standard (Telecommunications series) has been produced by ETSI Technical Committee
+
+    Electromagnetic compatibility and Radio spectrum Matters (ERM).
+
+    The present document has been produced by ETSI in response to a mandate from the European Commission issued
+
+    under Council Directive 98/34/EC [3] (as amended) laying down a procedure for the provision of information in the
+
+    field of technical standards and regulations.
+
+    The present document is intended to become a Harmonized Standard, the reference of which will be published in the
+
+    Official Journal of the European Communities referencing the Council Directive on the approximation of the laws of
+
+    the Member States relating to Directive 1999/5/EC [2] of the European Parliament and of the Council of 9 March 1999
+
+    on radio equipment and telecommunications terminal equipment and the mutual recognition of their conformity ("the
+
+    R&TTE Directive").
+
+    The present document is part 24 of a multi-part deliverable. Full details of the entire series can be found in part 1 [1].
+
+    National transposition dates
+
+    Date of adoption of this EN: 4 October 2010
+
+    Date of latest announcement of this EN (doa): 31 January 2011
+
+    Date of latest publication of new National Standard
+
+    or endorsement of this EN (dop/e): 31 July 2011
+
+    Date of withdrawal of any conflicting National Standard (dow): 31 July 2012
+
+    ETSI
+
+    6 ETSI EN 301 489-24 V1.5.1 (2010-10)
+
+    1 Scope
+
+    The present document, together with EN 301 489-1 [1], covers the assessment of "3rd generation" digital cellular
+
+    IMT-2000 CDMA Direct Spread (UTRA and E-UTRA) mobile and portable (UE) radio terminal equipment and
+
+    associated ancillary equipment in respect of ElectroMagnetic Compatibility (EMC).
+
+    Technical specifications related to the antenna port and emissions from the enclosure port of radio equipment are not
+
+    included in the present document. Such technical specifications are found in the relevant product standards for the
+
+    effective use of the radio spectrum.
+
+    The present document specifies the applicable test conditions, performance assessment and performance criteria of
+
+    "3rd generation" digital cellular IMT-2000 CDMA Direct Spread (UTRA and E-UTRA) mobile and portable (UE) radio
+
+    terminal equipment and associated ancillary equipment.
+
+    Examples of digital cellular mobile and portable radio equipment covered by the present document are given in
+
+    annex A.
+
+    In case of differences (for instance concerning special conditions, definitions, abbreviations) between the present
+
+    document and EN 301 489-1 [1], the provisions of the present document take precedence.
+
+    Base station (BS) equipment operating within network infrastructure is outside the scope of the present document.
+
+    However, the present document does cover mobile and portable equipment that is intended to be operated in a fixed
+
+    location while connected to the AC mains (see clause 5.5).
+
+    The environment classification and the emission and immunity requirements used in the present document are as stated
+
+    in EN 301 489-1 [1], except for any special conditions included in the present document.
+
+    2 References
+
+    References are either specific (identified by date of publication and/or edition number or version number) or
+
+    non-specific. For specific references,only the cited version applies. For non-specific references, the latest version of the
+
+    referenced document (including any amendments) applies.
+
+    Referenced documents which are not found to be publicly available in the expected location might be found at
+
+    http://docbox.etsi.org/Reference.
+
+    NOTE: While any hyperlinks included in this clause were valid at the time of publication ETSI cannot guarantee
+
+    their long term validity.
+
+    2.1 Normative references
+
+    The following referenced documents are necessary for the application of the present document.
+
+    [1] ETSI EN 301 489-1 (V1.8.1): "Electromagnetic compatibility and Radio spectrum Matters (ERM);
+
+    ElectroMagnetic Compatibility (EMC) standard for radio equipment and services; Part 1:
+
+    Common technical requirements".
+
+    [2] Directive 1999/5/EC of the European Parliament and of the Council of 9 March 1999 on radio
+
+    equipment and telecommunications terminal equipment and the mutual recognition of their
+
+    conformity (R&TTE Directive).
+
+    [3] Directive 98/34/EC of the European Parliament and of the Council of 22 June 1998 laying down a
+
+    procedure for the provision of information in the field of technical standards and regulations.
+
+    [4] Void.
+
+    [5] Void.
+
+    [6] ETSI TS 134 108 (V6.4.0): "Universal Mobile Telecommunications System (UMTS); Common
+
+    test environments for User Equipment (UE); Conformance testing (3GPP TS 34.108 Release 6)".
+
+    ETSI
+
+    7 ETSI EN 301 489-24 V1.5.1 (2010-10)
+
+    [7] ETSI TS 125 101: "Universal Mobile Telecommunications System (UMTS); User Equipment
+
+    (UE) radio transmission and reception (FDD) (3GPP TS 25.101 version 7.5.0 Release 7)".
+
+    [8] ETSI TS 134 109: "Universal Mobile Telecommunications System (UMTS); Terminal logical test
+
+    interface; Special conformance testing functions (3GPP TS 34.109 version 6.2.0 Release 6)".
+
+    [9] Void.
+
+    [10] ITU-T Recommendation P.64 (1999): "Determination of sensitivity/frequency characteristics of
+
+    local telephone systems".
+
+    [11] ITU-T Recommendation P.76 (1988): "Determination of loudness ratings; fundamental
+
+    principles".
+
+    [12] ETSI TS 125 102: "Universal Mobile Telecommunications System (UMTS); User Equipment
+
+    (UE) radio transmission and reception (TDD) (3GPP TS 25.102 version 7.4.0 Release 7)".
+
+    [13] ETSI TS 136 101: "LTE; Evolved Universal Terrestrial Radio Access (E-UTRA); User Equipment
+
+    (UE) radio transmission and reception (3GPP TS 36.101 version 8.4.0 Release 8)".
+
+    [14] ETSI TS 136 508: "LTE; Evolved Universal Terrestrial Radio Access (E-UTRA) and Evolved
+
+    Packet Core (EPC); Common test environments for User Equipment (UE) conformance testing
+
+    (3GPP TS 36.508 version 8.0.1 Release 8)".
+
+    [15] ETSI TS 136 509: "LTE; Evolved Universal Terrestrial Radio Access (E-UTRA); Special
+
+    conformance testing function for User Equipment (UE) (3GPP TS 36.509 version 8.0.1
+
+    Release 8)".
+
+    2.2 Informative references
+
+    The following referenced documents are not necessary for the application of the present document but they assist the
+
+    user with regard to a particular subject area.
+
+    [i.1] ETSI TR 125 990: "Universal Mobile Telecommunications System (UMTS); Vocabulary
+
+    (3G TR 25.990 version 3.0.0 Release 1999)".
+
+    [i.2] ETSI TR 121 905: "Digital cellular telecommunications system (Phase 2+); Universal Mobile
+
+    Telecommunications System (UMTS); LTE; Vocabulary for 3GPP Specifications
+
+    (3GPP TR 21.905 version 8.7.0 Release 8)".
+
+    [i.3] ETSI ETR 027 (edition 1): "Radio Equipment and Systems (RES); Methods of measurement for
+
+    private mobile radio equipment".
+
+    3 Definitions and abbreviations
+
+    3.1 Definitions
+
+    For the purposes of the present document, the terms and definitions given in EN 301 489-1 [1] and the following apply:
+
+    camped on a cell: UE is in idle mode and has completed the cell selection/reselection process and has chosen a cell.
+
+    The UE monitors system information and (in most cases) paging information
+
+    NOTE: The services may be limited, and the PLMN may not be aware of the existence of the UE within the
+
+    chosen cell.
+
+    Channel bandwidth: RF bandwidth supporting a single E-UTRA RF carrier with the transmission bandwidth
+
+    configured in the uplink or downlink of a cell
+
+    NOTE: The channel bandwidth is measured in MHz and is used as a reference for transmitter and receiver RF
+
+    requirements.
+
+    ETSI
+
+    8 ETSI EN 301 489-24 V1.5.1 (2010-10)
+
+    data application ancillary: ancillary which provides send and/or receive data access to UMTS services via UE
+
+    End-User data: manufacturer defined data patterns for data transfer testing
+
+    NOTE: Represents EUT''s typical user application data pattern (e.g. photo, video, text file, message) in its
+
+    characteristics.
+
+    idle mode: state of User Equipment (UE) when switched on but with no Radio Resource Control (RRC) connection
+
+    International Mobile Telecommunications 2000 (IMT-2000): third generation mobile systems which provide access,
+
+    by means of one or more radio links, to a wide range of telecommunications services supported by the fixed
+
+    telecommunication networks (e.g. PSTN, ISDN or IP), and to other services which are specific to mobile users
+
+    maximum average power: average transmitter output power obtained over any specified time interval, including
+
+    periods with no transmission, when the transmit time slots are at the maximum power setting
+
+    maximum throughput: maximum achievable throughput for a reference measurement channel
+
+    necessary bandwidth: for a given class of emission, the width of the frequency band which is just sufficient to ensure
+
+    the transmission of information at the rate and with the quality required under specified conditions
+
+    traffic mode: state of User Equipment (UE) when switched on and with Radio Resource Control (RRC) connection
+
+    established
+
+    throughput: number of payload bits successfully received per second for a reference measurement channel in a
+
+    specified reference condition
+
+    Universal Terrestrial Radio Access (UTRA): radio access network of the telecommunications system, incorporating
+
+    mobile cellular and other functionality, that is the subject of specifications produced by 3GPP
+
+    User Equipment (UE): "Mobile Station" (MS) which is an entity capable of accessing a set of UTRA services via one
+
+    or more radio interfaces
+
+    NOTE: '
+- id: art-3
+  title: 'Annex C (normative):'
+  text: 'Annex C (normative):
+
+    Performance assessment of data transfer call. Error Ratios
+
+    C.1 Calibration of data transfer
+
+    C.1.1 UTRA
+
+    For the EUT, calibration of the data transfer may be performed by assessing the Bit Error Ratio (BER), Block Error
+
+    Ratio (BLER) or End-User data error ratio before applying the RF immunity test signal (defined in EN 301 489-1 [1],
+
+    clauses 9.2 and 9.5).
+
+    C.1.2 E-UTRA
+
+    For the EUT, calibration of the data transfer may be performed by assessing the throughput percentage before applying
+
+    the RF immunity test signal (defined in EN 301 489-1 [1] clauses 9.2 and 9.5).
+
+    C.2 Assessment of data transfer
+
+    C.2.1 UTRA. Derivation of Error Ratios
+
+    The manufacturer shall provide the method for calculating the Error Ratio. Known data patterns shall be transferred
+
+    bi-directionally from end-to-end (the whole of the UL and DL will be exercised). Performance assessment shall be
+
+    made at each frequency step. Comparison between transmitted known data and received data shall result in the Error
+
+    Ratio.
+
+    The data patterns used should be of sufficient length to give valid results and should be equivalent to the used channel
+
+    bit rate.
+
+    Possible data patterns for assessing the Error Ratio are BER, BLER and User Data. Detailed description of BER and
+
+    BLER can be found from TS 134 109 [8].
+
+    End-User Data may be used where BER and BLER measurements are not appropriate, and is a manufacturer''s decision
+
+    (see below).
+
+    EXAMPLE: In the cases when the EUT consists of UE with data application ancillary and the data application
+
+    ancillary itself does not support a loopback function that can be applied for the assessment of BER
+
+    or BLER, as specified in TS 134 109 [8]. This would lead into a situation where the data
+
+    application ancillary is not exercised, i.e. the data transfer loop is not end-to-end.
+
+    The characteristics of the End-User Data used for testing (format, size, typical data throughput rate, additional error
+
+    corrections, etc.) and the necessary test equipment shall be delivered to enable the assessment of the EUT.
+
+    Following formula may apply to End-User Data:
+
+    ⎛ ⎞
+
+    erroneuos(bits, bytes, symbols, etc.)
+
+    ⎜ ⎟
+
+    ErrorRatio=⎜ ×100⎟=n%
+
+    ⎝total number of(bits, bytes, symbols, etc.) ⎠
+
+    (In case that high Error Ratios exist, ensure that errors are a consequence of EMC stress.)
+
+    ETSI
+
+    20 ETSI EN 301 489-24 V1.5.1 (2010-10)
+
+    C.2.2 E-UTRA. Derivation of Throughput Percentages
+
+    Known data patterns shall be transferred bi-directionally from end-to-end (the whole of the UL and DL will be
+
+    exercised). Performance assessment shall be made at each frequency step. Comparison between maximum throughput
+
+    and achieved throughput shall result in the throughput percentage.
+
+    The data patterns used should be of sufficient length to give valid results and should be equivalent to the used channel
+
+    bit rate.
+
+    C.3 EUT without data application ancillary
+
+    Data monitoring Devices are here considered as part of the Test System. Arrangements should be made by the
+
+    manufacturer, if needed, to couple the Data monitoring Device by a method which does not affect the radiated
+
+    electromagnetic field (e.g. ultrasonic or optical).
+
+    Absorber lined test chamber
+
+    Test System for
+
+    Data sending
+
+    and receiving optic
+
+    Radio coupler Transducer Data
+
+    link monitoring
+
+    Device
+
+    (e.g. PC)
+
+    EUT
+
+    Data
+
+    monitoring
+
+    Device
+
+    (e.g. PC)
+
+    EMC
+
+    test
+
+    signal
+
+    Figure C.1: Error Ratio or throughput assessment, test set-up for EUT
+
+    without data application ancillary
+
+    ETSI
+
+    21 ETSI EN 301 489-24 V1.5.1 (2010-10)
+
+    C.4 EUT with data application ancillary
+
+    The Data monitoring Device is here considered as a part of the Test System. The Data application ancillary should be
+
+    part of the data transfer (UL and DL) loop and is included in the EUT configuration.
+
+    Absorber lined test chamber
+
+    Test System for
+
+    Data sending
+
+    and receiving
+
+    Radio
+
+    link EUT
+
+    Data
+
+    Data application
+
+    monitoring ancillary
+
+    Device
+
+    (e.g. PC)
+
+    EMC
+
+    test
+
+    signal
+
+    Figure C.2: Error Ratio or throughput assessment, test set-up for EUT with data application ancillary
+
+    ETSI
+
+    22 ETSI EN 301 489-24 V1.5.1 (2010-10)
+
+    Annex D (informative):
+
+    The EN title in the official languages
+
+    The enlargement of the European Union (EU) resulted in a requirement from the EU for a larger number of languages
+
+    for the translation of the titles of Harmonized Standards and mandated ENs that are to be listed in the Official Journal to
+
+    support the implementation of this legislation.
+
+    For this reason the title translation concerning the present document can be consulted via the e-approval application.
+
+    ETSI
+
+    23 ETSI EN 301 489-24 V1.5.1 (2010-10)
+
+    Annex E (informative):
+
+    Bibliography
+
+    • ETSI TS 134 121: "Universal Mobile Telecommunications System (UMTS); Terminal Conformance
+
+    Specification; Radio Transmission and Reception (FDD) (3GPP TS 34.121)".
+
+    • ETSI TS 134 122: "Universal Mobile Telecommunications System (UMTS) Terminal Conformance
+
+    Specification; Radio Transmission and Reception (TDD) (3GPP TS 34.122)".
+
+    • ETSI TR 121 905: "Digital cellular telecommunications system (Phase 2+); Universal Mobile
+
+    Telecommunications System (UMTS); Vocabulary for 3GPP Specifications
+
+    (3GPP TR 21.905 version 7.2.0 Release 7)".
+
+    • ETSI TS 136 521-1: "Evolved Universal Terrestrial Radio Access (E-UTRA) and Evolved Universal
+
+    Terrestrial Radio Access Network (E-UTRAN); User Equipment (UE) conformance specification Radio
+
+    transmission and reception (3GPP TS 36.521-1 version 8.0.1 Release 8)".
+
+    • ETSI TS 136 521-2: "Evolved Universal Terrestrial Radio Access (E-UTRA) and Evolved Universal
+
+    Terrestrial Radio Access Network (E-UTRAN); User Equipment (UE) conformance specification Radio
+
+    transmission and reception (3GPP TS 36.521-2 version 8.0.1 Release 8)".
+
+    • ETSI TS 136 523-1: "Evolved Universal Terrestrial Radio Access (E-UTRA) and Evolved Universal
+
+    Terrestrial Radio Access Network (E-UTRAN); User Equipment (UE) conformance specification;
+
+    Part 1: Protocol conformance specification (3GPP TS 36.523-1 version 8.0.1 Release 8)".
+
+    • ETSI TS 136 523-2: "Evolved Universal Terrestrial Radio Access (E-UTRA) and Evolved Universal
+
+    Terrestrial Radio Access Network (E-UTRAN); User Equipment (UE) conformance specification;
+
+    Part 2: ICS (3GPP TS 36.523-2 version 8.0.1 Release 8)".
+
+    ETSI
+
+    24 ETSI EN 301 489-24 V1.5.1 (2010-10)
+
+    History
+
+    Document history
+
+    V1.1.1 September 2001 Publication
+
+    V1.2.1 November 2002 Publication
+
+    V1.3.1 November 2005 Publication
+
+    V1.4.1 September 2007 Publication
+
+    V1.5.1 June 2010 One-step Approval Procedure OAP 20101002: 2010-06-04 to 2010-10-04
+
+    V1.5.1 October 2010 Publication
+
+    ETSI'
 doc_files:
 - global/raw/ETSI_EN_30148924_v01.05.01_60.pdf
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+notes: '目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30148924_v01.05.01_60.pdf (pdf, 52190 chars)，生成 3 条共 29229 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30148924_v01.05.01_60.pdf (pdf, 52190 chars)，生成 3 条共 29229 字符；解析文本未人工复核，引用以官方原件为准。
+
+  2026-09-19 机器解析原件入库：global/raw/ETSI_EN_30148924_v01.05.01_60.pdf (pdf, 52190 chars)，生成 3 条共 29229 字符；解析文本未人工复核，引用以官方原件为准。'
