@@ -3,32 +3,43 @@
 /**
  * LinkBackToReport — 法规文档详情页顶部的导航条。
  *
- * 历史背景：该组件原本仅靠 `router.back()` 实现"返回上一页"。Next.js
- * App Router 的 `router.back()` 在以下场景会失效：
- *   1. 用户从外部链接 / 分享链接 / 书签直接访问（浏览器栈里没有
- *      SPA 内的上一页），`router.back()` 静默 no-op；
- *   2. 上游 referrer 是跨域页面（GitHub / 微信 / 邮件），history
- *      即便存在也可能直接退出当前标签；
- *   3. URL 带 `#anchor` 时，App Router 在某些版本下不会触发
- *      hashchange，会让"返回"看起来没反应。
+ * 历史问题（2026-09-20 两次修复）：
+ *   1. 原实现用 Next.js App Router 的 `router.back()`。从外部链接 / 分享
+ *      链接直接打开时没有站内 SPA 历史项，该方法静默 no-op，按钮点了
+ *      没反应。
+ *   2. 改为 `history.length > 1 ? history.back() : /regulations` 后，
+ *      直接打开（新标签页）时浏览器历史里存在新标签页/空白页这一条，
+ *      length > 1 成立，回退把用户带出了站点。
  *
- * 改为传统 web 设计：调用浏览器原生 `window.history.back()`，并
- * 在确实没有可回跳历史（`history.length <= 1`）时退回到法规列表
- * 页 `/regulations`，避免点击后毫无反应。
+ * 现行行为（传统 web）：仅当浏览器历史中的上一条确实是本站页面时才
+ * 回退，否则回到法规档案列表 /regulations。归属判定见
+ * `lib/regulation/back-navigation.ts`。
  */
 import Link from "next/link";
+import { useState } from "react";
 import { ArrowLeft } from "lucide-react";
+import {
+  readInSiteMarker,
+  readNavigationApi,
+  resolveBackTarget,
+} from "@/lib/regulation/back-navigation";
 
 export function LinkBackToReport() {
+  // 首屏渲染时读取：本页挂载后根布局才写入标记，晚于此处读取，
+  // 因此读到的只可能是"此前页面"留下的值。
+  const [markerIsInSite] = useState(() => readInSiteMarker());
+
   const handleBack = () => {
-    if (typeof window === "undefined") return;
-    // 传统 web：优先用浏览器历史栈。
-    if (window.history.length > 1) {
+    const target = resolveBackTarget({
+      navigation: readNavigationApi((window as { navigation?: unknown }).navigation),
+      markerIsInSite,
+      origin: window.location.origin,
+    });
+    if (target === "back") {
       window.history.back();
       return;
     }
-    // 没有历史时（直接打开分享链接 / 书签进入），退回到法规列表。
-    window.location.assign("/regulations");
+    window.location.assign(target);
   };
 
   return (
