@@ -233,3 +233,5 @@ scripts/check-react-418.mjs
 data/admin/
 .admin-auth.json
 data/regulation_supplements/watchdog-runs.jsonl
+/tmp-deploy/
+.debug/
