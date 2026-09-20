@@ -199,7 +199,9 @@ export default function RegulationsClient({ initialStats }: { initialStats: TopS
             </p>
             <p className="mt-1 text-xs text-slate-500">
               {stats.archive && stats.raw
-                ? `${stats.archive.markets} ${locale === "zh" ? "个规航合规" : "covered markets"} · ${stats.raw.totalRawFiles} ${locale === "zh" ? "原文" : "raw"}`
+                ? locale === "zh"
+                  ? `覆盖 ${stats.archive.markets} 个合规区域 · ${stats.raw.totalRawFiles} 原文`
+                  : `covering ${stats.archive.markets} compliance regions · ${stats.raw.totalRawFiles} raw files`
                 : stats.updates?.dataset
                   ? `updates · ${stats.updates.dataset}`
                   : locale === "zh"
