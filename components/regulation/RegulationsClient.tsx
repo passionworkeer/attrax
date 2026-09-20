@@ -114,7 +114,7 @@ export default function RegulationsClient({ initialStats }: { initialStats: TopS
               <p className="max-w-3xl text-sm leading-6 text-slate-400 sm:text-base">
                 {t("regulations.subtitle", {
                   archive: stats.archive?.total ?? "—",
-                  attraxMarkets: stats.archive?.markets ?? "—",
+                  markets: stats.archive?.markets ?? "—",
                   marketsCovered: stats.raw?.marketsCovered ?? "—",
                   rawFiles: stats.raw?.totalRawFiles ?? "—",
                   sources: stats.sources?.total ?? "—",
@@ -155,7 +155,7 @@ export default function RegulationsClient({ initialStats }: { initialStats: TopS
             </p>
             <p className="mt-1 text-xs text-slate-500">
               {stats.archive && stats.raw
-                ? `${stats.archive.markets} ${locale === "zh" ? "合规区域" : "attrax markets"} · ${stats.raw.totalRawFiles} ${locale === "zh" ? "抓取原文" : "raw files"}`
+                ? `${stats.archive.markets} ${locale === "zh" ? "合规区域" : "covered markets"} · ${stats.raw.totalRawFiles} ${locale === "zh" ? "抓取原文" : "raw files"}`
                 : ""}
             </p>
           </div>
@@ -199,7 +199,7 @@ export default function RegulationsClient({ initialStats }: { initialStats: TopS
             </p>
             <p className="mt-1 text-xs text-slate-500">
               {stats.archive && stats.raw
-                ? `${stats.archive.markets} ${locale === "zh" ? "个 attrax 合规" : "attrax markets"} · ${stats.raw.totalRawFiles} ${locale === "zh" ? "原文" : "raw"}`
+                ? `${stats.archive.markets} ${locale === "zh" ? "个规航合规" : "covered markets"} · ${stats.raw.totalRawFiles} ${locale === "zh" ? "原文" : "raw"}`
                 : stats.updates?.dataset
                   ? `updates · ${stats.updates.dataset}`
                   : locale === "zh"

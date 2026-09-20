@@ -220,7 +220,7 @@ export const translations = {
     regulations: {
       title: "法规情报中心",
       subtitle:
-        "法规库 {archive} 条目录（覆盖 {attraxMarkets} 个 attrax 合规区域 / {marketsCovered} 个抓取市场）· {rawFiles} 个抓取原文 · {sources} 个抓取源 · {updates} 条近期动态。",
+        "法规库 {archive} 条目录（覆盖 {markets} 个规航合规区域 / {marketsCovered} 个抓取市场）· {rawFiles} 个抓取原文 · {sources} 个抓取源 · {updates} 条近期动态。",
       demoBadge: "数据快照",
       tabs: {
         archive: "法规档案",
@@ -661,7 +661,7 @@ export const translations = {
     regulations: {
       title: "Regulation Intelligence Center",
       subtitle:
-        "Archive {archive} entries (covering {attraxMarkets} attrax markets / {marketsCovered} fetched markets) · {rawFiles} raw files · {sources} ingestion sources · {updates} recent updates.",
+        "Archive {archive} entries (covering {markets} covered markets / {marketsCovered} fetched markets) · {rawFiles} raw files · {sources} ingestion sources · {updates} recent updates.",
       demoBadge: "Data snapshot",
       tabs: {
         archive: "Archive",
