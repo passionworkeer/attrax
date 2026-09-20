@@ -65,11 +65,13 @@ test.describe('Regulations Page E2E', () => {
     await expect(page.locator('body')).toBeVisible()
   })
 
-  test('displays regulation updates title', async ({ page }) => {
+  test('displays regulation intelligence title', async ({ page }) => {
     await page.goto('/regulations')
-    // J18: entry renamed 法规更新 → 法规动态示例 to mark the page as a
-    // static demo instead of implying a live feed.
-    const title = page.getByText(/法规动态示例|Regulation Update Demos/)
+    // The page is now branded as the regulation intelligence center. Keep the
+    // previous labels as fallbacks for older locale bundles during rollout.
+    const title = page.getByText(
+      /法规情报中心|Regulation Intelligence Center|法规动态示例|Regulation Update Demos/,
+    )
     await expect(title).toBeVisible()
   })
 })
