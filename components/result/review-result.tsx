@@ -11,6 +11,7 @@ import { factRiskContext } from "@/lib/result/fact-risk-context";
 import type { RegulationViewModel } from "@/components/regulation/DocViewer";
 import { CompliPilotFlowBackdrop, CompliPilotFlowFooter, CompliPilotFlowHeader } from "@/components/complipilot/flow-shell";
 import { EvidenceRequestPanel } from "./EvidenceRequestPanel";
+import { RemediationRoadmap } from "./RemediationRoadmap";
 import { ComplianceReportView } from "./ComplianceReportView";
 import { DegradedBanner } from "./DegradedBanner";
 import { FallbackNotice } from "./FallbackNotice";
@@ -177,6 +178,7 @@ export function ReviewResult({result, report, locale, onRefresh, degradedReason}
       <details className={`${styles.reading} blaze-panel ${styles.collapsiblePanel}`}><summary className={styles.collapsibleSummary}><span className={styles.collapsibleTitle}><ChevronRight className={styles.collapsibleChevron} size={17} aria-hidden="true"/>{zh?"违规后果与潜在处罚":"Potential consequences & penalties"}</span><span className={styles.collapsibleHint}>{zh?"点击展开详情":"Click to expand"}</span></summary><div className={styles.collapsibleBody}><p>{zh?penalty.text:penalty.en}</p>{penalty.source&&<a href={penalty.source} target="_blank" rel="noreferrer">{penalty.article} · {zh?"官方依据":"Official source"}</a>}</div></details>
       <EvidenceInputs result={result} locale={locale}/><RevisionChanges result={result} locale={locale}/>
       {result.sessionId!=="demo"&&<EvidenceRequestPanel sessionId={result.sessionId} locale={locale} requests={review.vm.evidenceRequests}/>}
+      <RemediationRoadmap result={result} locale={locale} availableCheckIds={assessment.rows.map(row=>row.check.checkId)}/>
       <details id="reports" className={`${styles.reading} blaze-panel ${styles.collapsiblePanel}`}><summary className={styles.collapsibleSummary}><span className={styles.collapsibleTitle}><ChevronRight className={styles.collapsibleChevron} size={17} aria-hidden="true"/>{zh?"完整报告与下载 · 全部市场":"Full report & downloads · all markets"}</span><span className={styles.collapsibleHint}>{zh?"展开查看报告正文与 PDF/DOCX 下载":"Expand to view report text & downloads"}</span></summary><div className={styles.collapsibleBody}><ComplianceReportView result={enrichedReport} documentOnly/></div></details>
     </div><CompliPilotFlowFooter sessionId={result.sessionId} tone="bright"/>
   </main>;
