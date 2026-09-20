@@ -24,7 +24,7 @@ import {
 import { ok } from "@/lib/api-response";
 import { backendSessionCookie } from "@/app/api/backend-session-access";
 import { createDemoScanSession } from "@/lib/pipeline/demo-scan-session";
-import { checkRateLimit, resolveClientId } from "@/lib/rate-limit";
+import { checkRateLimit, resolveClientId, resolveClientKey } from "@/lib/rate-limit";
 import type { Market, ProductCategory } from "@/lib/types";
 
 export const runtime = "nodejs";
@@ -241,9 +241,16 @@ export async function POST(request: Request): Promise<Response> {
     }
   }
 
-  // Rate limiting defense against quota exhaustion
+  // Rate limiting defense against quota exhaustion.
+  // 双层（2026-09-20 限流优化 P2）：浏览器级配额 10 次/分（attrax_uid cookie，
+  // 同网段多用户互不影响），出口 IP 级 20 次/分作成本兜底（清空 cookie 也只能
+  // 退回到这个更宽的上限，不会拿到无限额度）。两层都要过。
   const clientId = resolveClientId(request);
-  if (!checkRateLimit(`scan:${clientId}`, 10, 60_000)) {
+  const clientKey = resolveClientKey(request);
+  if (
+    !checkRateLimit(`scan-ip:${clientId}`, 20, 60_000) ||
+    !checkRateLimit(`scan:${clientKey}`, 10, 60_000)
+  ) {
     return badInputResponse("RATE_LIMITED", "请求过于频繁，请稍候再试。", 429);
   }
 

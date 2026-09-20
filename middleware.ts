@@ -74,6 +74,30 @@ function applySecurityHeaders(response: NextResponse, apiRoute: boolean): NextRe
   return response;
 }
 
+/**
+ * 匿名客户端标识（2026-09-20 限流优化 P2）。
+ *
+ * 限流原先只按 IP 计：CGNAT / 公司出口 / 同一人多设备会共享同一个令牌桶，
+ * 别人刷页面就能把同网段用户的额度吃光。这里给每个浏览器发一个随机 id，
+ * nginx 的 limit_req key 与 BFF 的扫描配额都以它为主键、IP 作兜底
+ * （伪造/清空 cookie 时退回按 IP 限制，不会因此获得无限额度）。
+ *
+ * httpOnly + SameSite=Lax，不含任何个人信息，仅用于限流分桶。
+ */
+const CLIENT_COOKIE = "attrax_uid";
+const CLIENT_COOKIE_MAX_AGE_SECONDS = 60 * 60 * 24 * 365;
+
+function ensureClientCookie(request: NextRequest, response: NextResponse): void {
+  if (request.cookies.get(CLIENT_COOKIE)?.value) return;
+  response.cookies.set(CLIENT_COOKIE, crypto.randomUUID(), {
+    httpOnly: true,
+    sameSite: "lax",
+    secure: process.env.NODE_ENV === "production",
+    path: "/",
+    maxAge: CLIENT_COOKIE_MAX_AGE_SECONDS,
+  });
+}
+
 export function middleware(request: NextRequest, event?: NextFetchEvent) {
   const path = request.nextUrl.pathname;
   if (shouldSkip(path)) return NextResponse.next();
@@ -87,6 +111,7 @@ export function middleware(request: NextRequest, event?: NextFetchEvent) {
   requestHeaders.set("x-request-id", requestId);
   const response = NextResponse.next({ request: { headers: requestHeaders } });
   response.headers.set("X-Request-Id", requestId);
+  ensureClientCookie(request, response);
   // 统计任务错误交由 Next 记录，主业务响应不依赖统计写入完成。
   const recording = recordTraffic(request, response);
   if (event) event.waitUntil(recording);

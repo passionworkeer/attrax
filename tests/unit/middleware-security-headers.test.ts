@@ -156,3 +156,49 @@ describe("middleware request logging stays redacted", () => {
     expect(loggedPayload().contentLength).toBeNull();
   });
 });
+
+/**
+ * 匿名客户端标识（2026-09-20 限流优化 P2）：nginx 的 limit_req 与 BFF 的扫描
+ * 配额以 `attrax_uid` 为主键，所以它必须在**首页 HTML 响应**上就下发出去
+ * （后续 RSC/API 请求才会带上），且已有值时不能反复重发。
+ */
+describe("middleware client id cookie", () => {
+  let infoSpy: ReturnType<typeof vi.spyOn>;
+
+  beforeEach(() => {
+    infoSpy = vi.spyOn(console, "info").mockImplementation(() => {});
+    vi.stubEnv("ATTRAX_PROJECT_ROOT", TRAFFICLESS_ROOT);
+  });
+
+  afterEach(() => {
+    vi.unstubAllEnvs();
+    infoSpy.mockRestore();
+  });
+
+  function setCookieOf(response: Response): string | null {
+    return response.headers.get("set-cookie");
+  }
+
+  it("issues an httpOnly anonymous id when the browser has none", () => {
+    const response = middleware(makeRequest("/upload"));
+    const cookie = setCookieOf(response) ?? "";
+    expect(cookie).toContain("attrax_uid=");
+    expect(cookie.toLowerCase()).toContain("httponly");
+    expect(cookie.toLowerCase()).toContain("path=/");
+    expect(cookie.toLowerCase()).toContain("samesite=lax");
+    expect(cookie).toMatch(/Max-Age=\d{6,}/);
+  });
+
+  it("keeps an existing id instead of rotating it every response", () => {
+    const response = middleware(makeRequest("/upload", { cookie: "attrax_uid=stable-id" }));
+    expect(setCookieOf(response) ?? "").not.toContain("attrax_uid=");
+  });
+
+  it("issues a fresh id per cookie-less browser", () => {
+    const first = setCookieOf(middleware(makeRequest("/upload"))) ?? "";
+    const second = setCookieOf(middleware(makeRequest("/upload"))) ?? "";
+    const valueOf = (cookie: string) => cookie.match(/attrax_uid=([^;]+)/)?.[1] ?? "";
+    expect(valueOf(first)).not.toBe("");
+    expect(valueOf(first)).not.toBe(valueOf(second));
+  });
+});

@@ -1,14 +1,26 @@
-# 每 IP 限速分三个桶，关键是**互不影响**：
+# 限流分桶（2026-09-20 两轮改动）。三个桶互不影响：
 #   attrax_page — 页面与 RSC（含 Next.js 链接预取）。一次页面加载本来就会突发
 #                 20~40 个请求，burst 必须覆盖。
 #   attrax_api  — 扫描轮询 / 资产 / 补充证据（结果页一次会并发拉多张图）。
 #   attrax_scan — 扫描**创建**（最贵的操作，每次都要跑一轮 LLM），单独收紧。
-# 2026-09-20 事故：三者原先共用 attrax_api 一个桶，正常页面加载（含悬停预取）
-# 会把额度吃光，紧接着点击「开始检测」的 POST /api/scan 直接被 429 拒绝；
-# 请求体较大时浏览器中断上传，nginx 只记 499、BFF 完全看不到请求，用户侧就是
-# 「点了没反应、完全无法使用」。分桶后页面的突发不再挤占提交与轮询的额度。
-limit_req_zone $binary_remote_addr zone=attrax_page:10m rate=10r/s;
-limit_req_zone $binary_remote_addr zone=attrax_api:10m rate=10r/s;
+#
+# 两轮改动的原因：
+#   1) 第一轮：三者原先共用 attrax_api 一个桶，正常页面加载（含悬停预取）会把
+#      额度吃光，紧接着点击「开始检测」的 POST /api/scan 直接被 429 拒绝；请求
+#      体较大时浏览器中断上传，nginx 只记 499、BFF 完全看不到请求。
+#   2) 第二轮：桶的 key 原先只有 IP —— CGNAT / 公司出口 / 同一人多设备共享额度。
+#      改为按**浏览器匿名 cookie**（attrax_uid，middleware.ts 下发）计，另有每 IP
+#      兜底桶（attrax_ip）防止伪造 cookie 绕过；页面/轮询桶去掉 nodelay，超出速率
+#      的请求排队等待（burst 之内照常立即通过，实测页面加载峰值 22 请求/秒 < 80），
+#      只有排不下的才 429 —— 便宜且必须成功的请求，排队远好于报错。
+map $cookie_attrax_uid $attrax_client {
+    ""      $binary_remote_addr;
+    default $cookie_attrax_uid;
+}
+
+limit_req_zone $attrax_client      zone=attrax_page:10m rate=10r/s;
+limit_req_zone $attrax_client      zone=attrax_api:10m  rate=10r/s;
+limit_req_zone $binary_remote_addr zone=attrax_ip:2m    rate=30r/s;
 limit_req_zone $binary_remote_addr zone=attrax_scan:10m rate=5r/s;
 
 upstream attrax_nextjs {
@@ -53,9 +65,9 @@ server {
     # （实测 / `/`、`/upload`、`/regulations`、`/pricing` 峰值 20~23，几乎全是
     # /_next/static 分块与 /complipilot 视频）。server 级 cap=20 会把其中一部分
     # 打成 503：关键 JS 分块被拒后页面不水合、整页不可交互（2026-09-20 实测复现）。
-    # 因此静态资源上限放宽到 200（约 8 个标签页同时首屏的突发量，仍远低于
-    # worker_connections/2=384，单个客户端占不满 worker 池），代理到 nextjs 的
-    # 位置保留紧上限 30（实测合法峰值 6，留 5 倍余量）。
+    # 因此静态资源上限 200（约 8 个标签页同时首屏的突发量，仍远低于
+    # worker_connections/2=384）；代理位置 60（单页代理请求实测并发 3~6，多标签页
+    # 会叠加，60 覆盖约 10 个标签页同时首屏）。
     limit_conn_status 429;
 
     add_header Strict-Transport-Security "max-age=31536000" always;
@@ -97,7 +109,7 @@ server {
     }
 
     location = /api/health {
-        limit_conn attrax_conn 30;
+        limit_conn attrax_conn 60;
         proxy_pass http://attrax_nextjs;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
@@ -108,7 +120,7 @@ server {
     # 扫描**创建**：独立的紧桶（最贵的操作）。与页面/轮询分桶，页面加载的突发
     # 不会把提交额度挤掉（2026-09-20 事故，见文件顶部 limit_req_zone 注释）。
     location = /api/scan {
-        limit_conn attrax_conn 30;
+        limit_conn attrax_conn 60;
         limit_req zone=attrax_scan burst=10 nodelay;
         limit_req_status 429;
         proxy_next_upstream error timeout http_502 http_503 http_504;
@@ -124,10 +136,13 @@ server {
     }
 
     # 扫描轮询 / 图片资产 / 补充证据 / 重扫：单独一桶，结果页一次并发拉多张图
-    # 也够用；与扫描创建分开后，轮询不会被创建的重试或页面突发影响。
+    # 也够用；与扫描创建分开后，轮询不会被创建的重试或页面突发影响。不带
+    # nodelay：超速的轮询排队等待，不要让「扫描进行中」的界面因为一次 429 就
+    # 变成失败（前端也做了退避重试，这里是第二层）。
     location ~ ^/api/scan/ {
-        limit_conn attrax_conn 30;
-        limit_req zone=attrax_api burst=40 nodelay;
+        limit_conn attrax_conn 60;
+        limit_req zone=attrax_ip burst=200;
+        limit_req zone=attrax_api burst=80;
         limit_req_status 429;
         # H8 hardening: retry transient upstream failures. We currently have
         # a single upstream (attrax_nextjs); with one server proxy_next_upstream
@@ -150,8 +165,9 @@ server {
     }
 
     location / {
-        limit_conn attrax_conn 30;
-        limit_req zone=attrax_page burst=40 nodelay;
+        limit_conn attrax_conn 60;
+        limit_req zone=attrax_ip burst=200;
+        limit_req zone=attrax_page burst=80;
         limit_req_status 429;
         # See /api/scan for the rationale: single-upstream means retries are
         # no-ops today, but the directive is set so adding a second backend

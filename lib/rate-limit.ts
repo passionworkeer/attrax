@@ -133,6 +133,30 @@ export function clientIp(request: Request): string {
   return resolveClientId(request);
 }
 
+/**
+ * 浏览器级客户端标识（2026-09-20 限流优化 P2）。
+ *
+ * 中间件给每个浏览器下发 `attrax_uid`（httpOnly）。以它作为配额主键，
+ * 同一出口 IP 下的多个用户/多台设备就不再共享一个令牌桶；cookie 缺失
+ * （脚本、被清空）时退回 `resolveClientId`，也就是按 IP —— 所以清空
+ * cookie 只能拿到"按 IP"的额度，拿不到无限额度。
+ *
+ * 调用方应同时保留一个更宽的按 IP 上限（见 app/api/scan/route.ts 的双层检查），
+ * 这样伪造 cookie 也无法绕过 IP 维度的成本边界。
+ */
+export function resolveClientKey(request: Request): string {
+  const cookieHeader = request.headers.get("cookie") ?? "";
+  if (cookieHeader) {
+    for (const segment of cookieHeader.split(";")) {
+      const [name, ...parts] = segment.trim().split("=");
+      if (name.trim() !== "attrax_uid") continue;
+      const value = parts.join("=").trim();
+      if (value) return `uid:${digestIdentifier(value)}`;
+    }
+  }
+  return resolveClientId(request);
+}
+
 function evictExpiredMemoryBuckets(all: Map<string, Bucket>, now: number): void {
   if (all.size <= EVICT_ABOVE_SIZE) return;
   for (const [key, bucket] of all) {
