@@ -37,12 +37,15 @@ server {
     client_max_body_size 50m;
     client_body_timeout  300s;
 
-    # Per-IP concurrent connection cap. Pairs with limit_req (per-IP rate
-    # cap at the location level) to bound total sockets a single client can
-    # hold open. 20 is enough for a real user with long-poll + upload + a
-    # few tabs of asset/report fetches, and well below worker_connections/2
-    # so a single client can't saturate the worker pool.
-    limit_conn attrax_conn 20;
+    # Per-IP 并发上限放在各 location 上，不放在 server 级：nginx 对 HTTP/2 把
+    # 每个并发 stream 记作一个连接，而正常打开一个页面本来就会并发 20~23 个请求
+    # （实测 / `/`、`/upload`、`/regulations`、`/pricing` 峰值 20~23，几乎全是
+    # /_next/static 分块与 /complipilot 视频）。server 级 cap=20 会把其中一部分
+    # 打成 503：关键 JS 分块被拒后页面不水合、整页不可交互（2026-09-20 实测复现）。
+    # 因此静态资源上限放宽到 200（约 8 个标签页同时首屏的突发量，仍远低于
+    # worker_connections/2=384，单个客户端占不满 worker 池），代理到 nextjs 的
+    # 位置保留紧上限 30（实测合法峰值 6，留 5 倍余量）。
+    limit_conn_status 429;
 
     add_header Strict-Transport-Security "max-age=31536000" always;
     add_header Referrer-Policy "strict-origin-when-cross-origin" always;
@@ -64,15 +67,18 @@ server {
     }
 
     location ^~ /_next/static/ {
+        limit_conn attrax_conn 200;
         alias /opt/attrax/.next/static/;
         add_header Cache-Control "public, max-age=31536000, immutable";
     }
     location ^~ /_next/data/ {
+        limit_conn attrax_conn 200;
         alias /opt/attrax/.next/static/;
         add_header Cache-Control "public, max-age=0, must-revalidate";
     }
 
     location ~ ^/complipilot/.+\.(png|webp|mp4)$ {
+        limit_conn attrax_conn 200;
         root /opt/attrax/.next/standalone/public;
         try_files $uri =404;
         expires 30d;
@@ -80,6 +86,7 @@ server {
     }
 
     location = /api/health {
+        limit_conn attrax_conn 30;
         proxy_pass http://attrax_nextjs;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
@@ -88,6 +95,7 @@ server {
     }
 
     location ~ ^/api/scan(/.*)?$ {
+        limit_conn attrax_conn 30;
         limit_req zone=attrax_api burst=20 nodelay;
         limit_req_status 429;
         # H8 hardening: retry transient upstream failures. We currently have
@@ -111,6 +119,7 @@ server {
     }
 
     location / {
+        limit_conn attrax_conn 30;
         limit_req zone=attrax_api burst=40 nodelay;
         limit_req_status 429;
         # See /api/scan for the rationale: single-upstream means retries are
