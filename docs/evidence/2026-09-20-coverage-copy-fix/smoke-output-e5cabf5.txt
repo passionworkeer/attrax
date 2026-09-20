@@ -1,0 +1,21 @@
+create: HTTP 202 success=true cookie=set
+sessionId: scan_5a85b4b323cc4c5595c5f4d50ed64d5a
+t+6s HTTP 200 status=processing progress=36 stage=generate:running|cache_hits=3
+t+11s HTTP 200 status=processing progress=36 stage=generate:running|cache_hits=3
+t+16s HTTP 200 status=processing progress=36 stage=generate:running|cache_hits=3
+t+21s HTTP 200 status=processing progress=36 stage=generate:running|cache_hits=3
+t+26s HTTP 200 status=processing progress=36 stage=generate:running|cache_hits=3
+t+32s HTTP 200 status=processing progress=36 stage=generate:running|cache_hits=3
+t+37s HTTP 200 status=processing progress=36 stage=generate:running|cache_hits=3
+t+42s HTTP 200 status=processing progress=36 stage=generate:running|cache_hits=3
+t+47s HTTP 200 status=processing progress=36 stage=generate:running|cache_hits=3
+t+52s HTTP 200 status=processing progress=36 stage=generate:running|cache_hits=3
+t+57s HTTP 200 status=processing progress=36 stage=generate:running|cache_hits=3
+t+63s HTTP 200 status=processing progress=36 stage=generate:running|cache_hits=3
+t+68s HTTP 200 status=processing progress=36 stage=generate:running|cache_hits=3
+t+73s HTTP 200 status=ready progress=100 stage=complete
+---- terminal ----
+status=ready source=real provider=deepseek
+findings=5 citations=11 score=84
+product=- category=electronics
+SMOKE_PASS
