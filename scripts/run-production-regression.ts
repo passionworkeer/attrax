@@ -205,6 +205,16 @@ interface CaseResult {
   error?: string;
 }
 
+/** 上传页是重 JS 的客户端组件：`networkidle` 不代表 React 已水合，水合之前点
+ *  品类触发器会丢事件（下拉不弹出，随后 option 定位器 30s 超时）。等 React 把
+ *  props 挂到 DOM 上再交互 —— 与 tests/e2e/upload-scan-result.spec.ts 同一信号。 */
+async function waitForUploadHydration(page: Page): Promise<void> {
+  await page.waitForFunction(() => {
+    const input = document.querySelector('input[type="file"]');
+    return Boolean(input && Object.keys(input).some((key) => key.startsWith("__reactProps")));
+  }, undefined, { timeout: 60_000 });
+}
+
 async function runSingleCase(browser: Browser, testCase: TestCase, caseIndex: number): Promise<CaseResult> {
   console.log(`\n======================================================`);
   console.log(`[Case ${caseIndex + 1}/${TEST_CASES.length}] Starting: ${testCase.name}`);
@@ -229,6 +239,7 @@ async function runSingleCase(browser: Browser, testCase: TestCase, caseIndex: nu
   try {
     console.log("Step 1: Navigating to upload page...");
     await page.goto(`${BASE_URL}/upload`, { waitUntil: "networkidle" });
+    await waitForUploadHydration(page);
     await page.waitForTimeout(1000);
 
     console.log(`Step 2: Selecting category "${testCase.category}"...`);
