@@ -279,7 +279,35 @@ if [ -w "$(dirname "${LIVE_VHOST}")" ]; then
     log "  removed stale /etc/nginx/sites-available/attrax (unused 3001 leftover)"
   fi
   nginx -t
-  nginx -s reload && log "  nginx reloaded (upstream = ports.env.NEXTJS_PORT)"
+  # reload 可能被 nginx **静默拒绝**：共享内存 zone 的 key 发生变化时（例如
+  # limit_req_zone 从 $binary_remote_addr 改成 cookie key），nginx 只在
+  # error.log 记一条 [emerg]，`nginx -s reload` 仍返回 0、`nginx -t` 也照样通过。
+  # 2026-09-20 实测：配置连续几次部署都没生效，直到手动 restart 才应用。
+  # 判定标准用「worker 是否换代」—— 真正生效的 reload 一定换 worker。
+  workers_before="$(pgrep -f 'nginx: worker process' | sort | tr '\n' ' ')"
+  nginx -s reload
+  workers_after="${workers_before}"
+  for _ in $(seq 1 10); do
+    sleep 0.5
+    workers_after="$(pgrep -f 'nginx: worker process' | sort | tr '\n' ' ')"
+    if [ -n "${workers_after}" ] && [ "${workers_after}" != "${workers_before}" ]; then
+      break
+    fi
+  done
+  if [ "${workers_after}" = "${workers_before}" ]; then
+    log "  WARN: nginx reload 没有生成新 worker —— 多半是共享内存 zone 的 key 变了，reload 无法应用"
+    log "        error.log 最近一条: $(grep '\[emerg\]' /var/log/nginx/error.log | tail -1 | cut -c1-160)"
+    log "        回退到 restart（连接会短暂中断）"
+    systemctl restart nginx
+    workers_after="$(pgrep -f 'nginx: worker process' | sort | tr '\n' ' ')"
+    if [ "${workers_after}" = "${workers_before}" ]; then
+      log "  ERROR: nginx restart 之后 worker 仍未换代，配置可能没有生效，请人工检查"
+    else
+      log "  nginx restarted (workers ${workers_before}->${workers_after})"
+    fi
+  else
+    log "  nginx reloaded (upstream = ports.env.NEXTJS_PORT; workers ${workers_after})"
+  fi
 else
   log "  WARN: ${LIVE_VHOST} 不可写，跳过渲染 — 手动运行: bash ${RENDER_SCRIPT} --out ${LIVE_VHOST} && nginx -s reload"
 fi

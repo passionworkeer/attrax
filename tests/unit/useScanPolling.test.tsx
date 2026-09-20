@@ -96,6 +96,24 @@ describe("useScanPolling", () => {
     expect(result.current.status?.progress).toBe(60);
   });
 
+  it("retries a rate limit on the very first poll", async () => {
+    const processing = {sessionId: "test", status: "processing", progress: 20, stageText: "retrieve:running", stageKey: "retrieve"};
+    const fetchSpy = vi
+      .fn()
+      .mockResolvedValueOnce({ok: false, status: 429, json: async () => ({})})
+      .mockResolvedValue({ok: true, json: async () => processing});
+    vi.stubGlobal("fetch", fetchSpy);
+    const {result} = renderHook(() => useScanPolling("test"));
+    await flushInitialPoll();
+    // 首次轮询就撞上限流：不能直接判失败（扫描在后台还在跑）
+    expect(result.current.status).toBeNull();
+    expect(result.current.reconnecting).toBe(true);
+
+    await act(async () => { await vi.advanceTimersByTimeAsync(3100); });
+    expect(result.current.reconnecting).toBe(false);
+    expect(result.current.status?.status).toBe("processing");
+  });
+
   it("still fails fast on a non-retryable status", async () => {
     const processing = {sessionId: "test", status: "processing", progress: 40, stageText: "generate:running", stageKey: "report"};
     const fetchSpy = vi

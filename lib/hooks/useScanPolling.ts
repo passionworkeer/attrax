@@ -213,7 +213,9 @@ export function useScanPolling(
 
         // 429/5xx 是"稍后会好"（限流排队、上游重启），退避重试而不是立刻把
         // 扫描判成失败：扫描在后台还在跑，报失败会让用户白等一场。
-        if (!response.ok && isRetryableStatus(response.status) && hasResponse && connectionFailures++ < MAX_TRANSIENT_RETRIES) {
+        // 这里**不要求 hasResponse**：首次轮询就撞上限流同样应该重试
+        // （2026-09-20 实测：第一次轮询 429 曾直接把界面判成失败）。
+        if (!response.ok && isRetryableStatus(response.status) && connectionFailures++ < MAX_TRANSIENT_RETRIES) {
           if (cancelled) return;
           setReconnecting(true);
           await new Promise((resolve) => setTimeout(resolve, transientRetryDelayMs(connectionFailures)));
