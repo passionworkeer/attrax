@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { unwrapApiData } from "@/lib/api-response";
+import { isRetryableStatus, MAX_TRANSIENT_RETRIES, transientRetryDelayMs } from "@/lib/transient-retry";
 import type { ScanStatus } from "@/lib/types";
 import {
   POLL_INITIAL_INTERVAL_MS,
@@ -194,9 +195,9 @@ export function useScanPolling(
           });
         } catch (error) {
           if (cancelled) return;
-          if (hasResponse && connectionFailures++ < 3) {
+          if (hasResponse && connectionFailures++ < MAX_TRANSIENT_RETRIES) {
             setReconnecting(true);
-            await new Promise((resolve) => setTimeout(resolve, 3000));
+            await new Promise((resolve) => setTimeout(resolve, transientRetryDelayMs(connectionFailures)));
             continue;
           }
           if (!cancelled) {
@@ -210,15 +211,24 @@ export function useScanPolling(
           return;
         }
 
-        if (!response.ok && response.status >= 500 && hasResponse && connectionFailures++ < 3) {
+        // 429/5xx 是"稍后会好"（限流排队、上游重启），退避重试而不是立刻把
+        // 扫描判成失败：扫描在后台还在跑，报失败会让用户白等一场。
+        if (!response.ok && isRetryableStatus(response.status) && hasResponse && connectionFailures++ < MAX_TRANSIENT_RETRIES) {
           if (cancelled) return;
           setReconnecting(true);
-          await new Promise((resolve) => setTimeout(resolve, 3000));
+          await new Promise((resolve) => setTimeout(resolve, transientRetryDelayMs(connectionFailures)));
           continue;
         }
         if (!response.ok) {
           if (!cancelled) {
-            setStatus(failedStatus(sessionId, "Scan session expired."));
+            setStatus(
+              failedStatus(
+                sessionId,
+                isRetryableStatus(response.status)
+                  ? "Service is busy. Please try again shortly."
+                  : "Scan session expired."
+              )
+            );
           }
           return;
         }

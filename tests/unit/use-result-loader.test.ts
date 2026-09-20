@@ -170,7 +170,9 @@ describe("useResultLoader Hook", () => {
 describe("result recovery UX", () => {
   it("retries a failed request and displays the returned result", async () => {
     sessionStorage.clear();
-    const fetcher = vi.spyOn(global, "fetch").mockResolvedValueOnce({ ok: false, status: 503 } as Response)
+    // 400 是不可自愈的错误（不是限流/上游故障），应立即进错误面板并允许手动重试；
+    // 429/5xx 走自动退避重试，由下一条用例覆盖。
+    const fetcher = vi.spyOn(global, "fetch").mockResolvedValueOnce({ ok: false, status: 400 } as Response)
       .mockResolvedValueOnce({ ok: true, json: async () => ({ status: "ready", result: { ...mockScanResult, sessionId: "retry_ux" } }) } as Response);
     const { result } = renderHook(() => useResultLoader({sessionId: "retry_ux", isDemoSession: false, locale: "en", initialResult: null, loadingMessage: "Loading", copy: mockCopy}));
     await vi.waitFor(() => expect(result.current.loadState).toBe("error"));
@@ -178,6 +180,17 @@ describe("result recovery UX", () => {
     act(() => result.current.retry());
     await vi.waitFor(() => expect(result.current.loadState).toBe("ready"));
     expect(result.current.result?.sessionId).toBe("retry_ux");
+    expect(fetcher).toHaveBeenCalledTimes(2);
+    vi.restoreAllMocks(); sessionStorage.clear();
+  });
+  it("keeps waiting through a rate-limited response instead of erroring out", async () => {
+    sessionStorage.clear();
+    // 429 是可自愈的（限流排队）：自动退避 3 秒后重试，不应把结果页判成错误。
+    const fetcher = vi.spyOn(global, "fetch").mockResolvedValueOnce({ ok: false, status: 429 } as Response)
+      .mockResolvedValueOnce({ ok: true, json: async () => ({ status: "ready", result: { ...mockScanResult, sessionId: "rate_limited" } }) } as Response);
+    const { result } = renderHook(() => useResultLoader({sessionId: "rate_limited", isDemoSession: false, locale: "zh", initialResult: null, loadingMessage: "Loading", copy: mockCopy}));
+    await vi.waitFor(() => expect(result.current.loadState).toBe("ready"), { timeout: 10_000 });
+    expect(result.current.result?.sessionId).toBe("rate_limited");
     expect(fetcher).toHaveBeenCalledTimes(2);
     vi.restoreAllMocks(); sessionStorage.clear();
   });

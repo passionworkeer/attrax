@@ -1,6 +1,7 @@
 "use client";
 
 import { startTransition, useEffect, useState } from "react";
+import { isRetryableStatus, MAX_TRANSIENT_RETRIES, transientRetryDelayMs } from "@/lib/transient-retry";
 import type { ScanResult, ScanStatus } from "@/lib/types";
 import { readStoredAccessToken } from "@/lib/result-view-helpers";
 
@@ -77,6 +78,7 @@ export function useResultLoader(options: {
 
       try {
         let idleStreak = 0;
+        let transientRetries = 0;
         while (!cancelled) {
           if (Date.now() - startedAt > POLL_MAX_MS) {
             startTransition(() => {
@@ -100,6 +102,16 @@ export function useResultLoader(options: {
             signal: abortController.signal,
           });
           if (!response.ok) {
+            // 429/5xx 是可自愈的（限流排队、上游重启），退避重试若干次；
+            // 直接进错误面板会让用户以为结果坏了（扫描往往还在跑）。
+            if (isRetryableStatus(response.status) && transientRetries < MAX_TRANSIENT_RETRIES) {
+              transientRetries += 1;
+              await new Promise((resolve) =>
+                setTimeout(resolve, transientRetryDelayMs(transientRetries)),
+              );
+              if (abortController.signal.aborted || cancelled) return;
+              continue;
+            }
             startTransition(() => {
               setLoadState("error");
               setMessage(response.status === 401 || response.status === 403

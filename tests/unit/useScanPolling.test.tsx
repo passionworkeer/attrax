@@ -72,6 +72,44 @@ describe("useScanPolling", () => {
     expect(result.current.lastContactAt).toBeGreaterThan(firstContact!);
   });
 
+  it("retries a rate-limited poll instead of failing the scan", async () => {
+    const processing = {sessionId: "test", status: "processing", progress: 40, stageText: "generate:running", stageKey: "report"};
+    const later = {sessionId: "test", status: "processing", progress: 60, stageText: "generate:running", stageKey: "report"};
+    const fetchSpy = vi
+      .fn()
+      .mockResolvedValueOnce({ok: true, json: async () => processing})
+      .mockResolvedValueOnce({ok: false, status: 429, json: async () => ({})})
+      .mockResolvedValue({ok: true, json: async () => later});
+    vi.stubGlobal("fetch", fetchSpy);
+    const {result} = renderHook(() => useScanPolling("test"));
+    await flushInitialPoll();
+    expect(result.current.status?.status).toBe("processing");
+
+    // 第二次轮询命中 429：扫描在后台还在跑，界面应进入重连态而不是失败
+    await act(async () => { await vi.advanceTimersByTimeAsync(2100); });
+    expect(result.current.reconnecting).toBe(true);
+    expect(result.current.status?.status).toBe("processing");
+
+    // 退避 3 秒后重试成功
+    await act(async () => { await vi.advanceTimersByTimeAsync(3100); });
+    expect(result.current.reconnecting).toBe(false);
+    expect(result.current.status?.progress).toBe(60);
+  });
+
+  it("still fails fast on a non-retryable status", async () => {
+    const processing = {sessionId: "test", status: "processing", progress: 40, stageText: "generate:running", stageKey: "report"};
+    const fetchSpy = vi
+      .fn()
+      .mockResolvedValueOnce({ok: true, json: async () => processing})
+      .mockResolvedValue({ok: false, status: 404, json: async () => ({})});
+    vi.stubGlobal("fetch", fetchSpy);
+    const {result} = renderHook(() => useScanPolling("test"));
+    await flushInitialPoll();
+    await act(async () => { await vi.advanceTimersByTimeAsync(2100); });
+    expect(result.current.status?.status).toBe("failed");
+    expect(result.current.status?.error).toBe("Scan session expired.");
+  });
+
   describe("Initial state", () => {
     it("returns null status before first poll", () => {
       const fetchSpy = makeFetchMock({
