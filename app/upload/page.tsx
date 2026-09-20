@@ -381,19 +381,25 @@ export default function UploadPage() {
         body: formData,
       });
 
-      const payload = (await response.json()) as
+      // 4xx/5xx 不一定来自 BFF：nginx 的限流/超时拒绝返回的是 HTML 错误页，
+      // 直接 response.json() 会抛 SyntaxError，把 "Unexpected token '<'" 当成
+      // 错误信息显示给用户。这里容错解析，拿不到 JSON 就按状态码给可读文案。
+      const payload = (await response.json().catch(() => null)) as
         | ScanStartPayload
-        | { error?: { message?: string } };
+        | { error?: { message?: string } }
+        | null;
 
       if (!response.ok) {
-        const errorPayload = payload as { error?: { message?: string } };
+        const errorPayload = payload as { error?: { message?: string } } | null;
         throw new Error(
-          errorPayload.error?.message ??
-            (locale === "zh" ? "提交失败，请稍后重试。" : "Submission failed. Please try again.")
+          errorPayload?.error?.message ??
+            (locale === "zh"
+              ? `提交失败（HTTP ${response.status}），请稍后重试。`
+              : `Submission failed (HTTP ${response.status}). Please try again.`)
         );
       }
 
-      if (!("sessionId" in payload)) {
+      if (!payload || !("sessionId" in payload)) {
         throw new Error(
           locale === "zh"
             ? "接口未返回有效的 sessionId。"
