@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { buildRemediationRoadmap } from "@/lib/result/remediation-roadmap";
-import type { ScanResult } from "@/lib/types";
+import type { GeneratedRoadmapItem, ScanResult } from "@/lib/types";
 
 function result(overrides: Partial<ScanResult> = {}): ScanResult {
   return {
@@ -54,5 +54,16 @@ describe("buildRemediationRoadmap", () => {
     expect(model.rows[0].cost).toBe("¥0-3,000");
     expect(model.rows[0].cost).not.toContain("第三方复测");
     expect(model.rows[0].cost).not.toContain("AI估算");
+  });
+
+  it("keeps rendering when the model emits a type or status outside the enum", () => {
+    // 生产会话里出现过后端未约束的取值（type "verify"、status 任意字符串），
+    // 这里锁定枚举外的值不会让整个结果页渲染失败。
+    const rogueType = { id: "astm-version", title: "标准版本交叉核对", type: "verify", status: "done", cost: "待询价" } as unknown as GeneratedRoadmapItem;
+    const upperCaseType = { id: "lab", title: "送检", type: "Test", cost: "待询价" } as unknown as GeneratedRoadmapItem;
+    const model = buildRemediationRoadmap(result({ reportPackage: { roadmap: { items: [rogueType, upperCaseType] } } }), "zh");
+    expect(model.rows[0]).toMatchObject({ phase: "资料准备", owner: "产品 / 采购", status: "pending" });
+    expect(model.rows[1]).toMatchObject({ phase: "检测验证", owner: "测试 / 合规" });
+    expect(model.roleCount).toBe(4);
   });
 });

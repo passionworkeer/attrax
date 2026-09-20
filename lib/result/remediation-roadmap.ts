@@ -31,8 +31,16 @@ const ownerLabels = {
   en: { apply: "Product / Procurement", test: "Testing / Compliance", certify: "Compliance / Legal", complete: "Operations / Legal" },
 } as const;
 
+const itemTypes = Object.keys(phaseLabels.zh) as (keyof typeof phaseLabels.zh)[];
+
 function itemType(item: GeneratedRoadmapItem, index: number): keyof typeof phaseLabels.zh {
-  return item.type ?? (index === 0 ? "apply" : "complete");
+  const raw = item.type?.trim().toLowerCase();
+  return raw && itemTypes.includes(raw as keyof typeof phaseLabels.zh) ? (raw as keyof typeof phaseLabels.zh) : index === 0 ? "apply" : "complete";
+}
+
+function itemStatus(value: string | undefined): RemediationStatus {
+  const raw = value?.trim().toLowerCase();
+  return raw === "in-progress" || raw === "completed" ? raw : "pending";
 }
 
 function localized(value: string | undefined, fallback: string | undefined, locale: "zh" | "en") {
@@ -88,7 +96,7 @@ function explicitRows(result: ScanResult, locale: "zh" | "en"): RemediationRoadm
       id: item.id?.trim() || `roadmap-${index + 1}`,
       phase: phaseLabels[locale][type],
       task,
-      status: item.status ?? "pending",
+      status: itemStatus(item.status),
       time,
       cost,
       owner: ownerLabels[locale][type],
