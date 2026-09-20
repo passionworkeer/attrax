@@ -339,6 +339,15 @@ const SessionIdSchema = z
 
 ## 最近修复
 
+### 2026-09-20 — 限流分桶 + 提交错误文案（c189f3a / af0e07a）
+
+- **症状**：用户报「无法检索、完全无法使用」。日志显示其机器 12:11–12:18 连续 12 次 `POST /api/scan` 全部 **499**（客户端中断上传），BFF 与 RAG 都没收到请求、nginx error.log 里该 IP 无限流记录；同期我的探针与真实扫描（含相同示例资料、同一 www 域名）全部正常，用户自己在 12:35 的扫描也成功
+- **复现出的真实缺陷**：`limit_req_zone attrax_api` 一个桶同时管页面/RSC、扫描轮询、扫描创建。页面加载（含 Next.js 链接预取，突发 20~40 请求）会把桶吃光，紧接着点「开始检测」的 `POST /api/scan` 直接 429 —— 请求体较大时（示例资料 ~8MB）浏览器中断上传，nginx 只记 499、BFF 看不到请求。实测：40 个页面请求后立即提交 → **修复前 429(0.21s) / 修复后 202(0.29s)**
+- **改法**：三个互不影响的桶 —— `attrax_page`（页面/RSC 10r/s burst 40）、`attrax_api`（轮询/资产/证据 10r/s burst 40）、`attrax_scan`（扫描创建 5r/s burst 10）；location 拆成 `= /api/scan`、`~ ^/api/scan/`、`location /`
+- **错误文案**：`POST /api/scan` 的 4xx/5xx 可能来自 nginx（HTML 错误页），原实现直接 `response.json()` 抛 SyntaxError，用户看到 `Unexpected token '<'` 乱码；改为容错解析，回落到「提交失败（HTTP 429），请稍后重试。」
+- **验证**：真实浏览器生产链路（上传 → 67.2s 扫描 → 结果页含整改路线图，零失败请求）；慢速上传 8MB@200KB/s → 202；拦截响应模拟 HTML 429 → 页面显示可读文案；vitest 1000 / tsc / eslint 0 error；部署 `af0e07a` / BUILD_ID `ug8aEwdlVfVY9xc1R74au`。记录 `docs/evidence/2026-09-20-ratelimit-zone-split/`
+- **未查明**：用户那 12 次 499 服务端无拒绝记录，最可能是浏览器上传过程中断（ESC/关标签/网络）叠加了上述限流缺陷；若复现需 Network 面板的 status / `ERR_*` 或时间点
+
 ### 2026-09-20 — 整改路线图 PR 合并部署 + nginx limit_conn 修上传页 503（0760485 / cc28d8e / b809a03）
 
 - **PR #9 合并**（`36f9364`）：结果页新增整改路线图（桌面表格 + 移动端卡片，状态/时间/成本/负责人/产出 + 当前执行重点），报告提示词收敛成本字段（只填一个简短价格区间）。合并前对抗性审查发现 P0：后端 `RoadmapItem.type/status` 是自由字符串（Pydantic `str`），模型会输出枚举外取值（39 个生产会话、180 个条目里 1 条 `type: "verify"`），`ownerLabels[type]` 取不到值 → `roleCount` 里 `row.owner.split` 抛错 → **整个结果页渲染失败**；`0760485` 改为白名单归一化 + 回归测试
