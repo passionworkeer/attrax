@@ -1,4 +1,15 @@
+# 每 IP 限速分三个桶，关键是**互不影响**：
+#   attrax_page — 页面与 RSC（含 Next.js 链接预取）。一次页面加载本来就会突发
+#                 20~40 个请求，burst 必须覆盖。
+#   attrax_api  — 扫描轮询 / 资产 / 补充证据（结果页一次会并发拉多张图）。
+#   attrax_scan — 扫描**创建**（最贵的操作，每次都要跑一轮 LLM），单独收紧。
+# 2026-09-20 事故：三者原先共用 attrax_api 一个桶，正常页面加载（含悬停预取）
+# 会把额度吃光，紧接着点击「开始检测」的 POST /api/scan 直接被 429 拒绝；
+# 请求体较大时浏览器中断上传，nginx 只记 499、BFF 完全看不到请求，用户侧就是
+# 「点了没反应、完全无法使用」。分桶后页面的突发不再挤占提交与轮询的额度。
+limit_req_zone $binary_remote_addr zone=attrax_page:10m rate=10r/s;
 limit_req_zone $binary_remote_addr zone=attrax_api:10m rate=10r/s;
+limit_req_zone $binary_remote_addr zone=attrax_scan:10m rate=5r/s;
 
 upstream attrax_nextjs {
     server 127.0.0.1:__NEXTJS_PORT__ max_fails=3 fail_timeout=30s;
@@ -94,9 +105,29 @@ server {
         proxy_set_header X-Forwarded-Proto $scheme;
     }
 
-    location ~ ^/api/scan(/.*)?$ {
+    # 扫描**创建**：独立的紧桶（最贵的操作）。与页面/轮询分桶，页面加载的突发
+    # 不会把提交额度挤掉（2026-09-20 事故，见文件顶部 limit_req_zone 注释）。
+    location = /api/scan {
         limit_conn attrax_conn 30;
-        limit_req zone=attrax_api burst=20 nodelay;
+        limit_req zone=attrax_scan burst=10 nodelay;
+        limit_req_status 429;
+        proxy_next_upstream error timeout http_502 http_503 http_504;
+        proxy_next_upstream_tries 2;
+        proxy_pass http://attrax_nextjs;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_read_timeout 300s;
+        proxy_send_timeout 300s;
+    }
+
+    # 扫描轮询 / 图片资产 / 补充证据 / 重扫：单独一桶，结果页一次并发拉多张图
+    # 也够用；与扫描创建分开后，轮询不会被创建的重试或页面突发影响。
+    location ~ ^/api/scan/ {
+        limit_conn attrax_conn 30;
+        limit_req zone=attrax_api burst=40 nodelay;
         limit_req_status 429;
         # H8 hardening: retry transient upstream failures. We currently have
         # a single upstream (attrax_nextjs); with one server proxy_next_upstream
@@ -120,7 +151,7 @@ server {
 
     location / {
         limit_conn attrax_conn 30;
-        limit_req zone=attrax_api burst=40 nodelay;
+        limit_req zone=attrax_page burst=40 nodelay;
         limit_req_status 429;
         # See /api/scan for the rationale: single-upstream means retries are
         # no-ops today, but the directive is set so adding a second backend
