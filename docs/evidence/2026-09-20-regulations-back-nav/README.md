@@ -1,74 +1,80 @@
-# 法规详情页「返回上一页」修复：Next router.back() → 传统浏览器历史栈
+# 法规详情页「返回上一页」修复（两轮）
 
 **日期**：2026-09-20
-**提交**：`9d92e1f` · BUILD_ID `CqYlc_Jzp8CGubP5uKQIt`
-**现象**：`https://www.twinbuddy.xyz/regulations/US-16-CFR-1263#guidance-product-requirements`
-右上角「返回上一页」点击无反应。
+**最终提交**：`4b0ed30` · BUILD_ID `mRzHjG0DEJf5PRnCyw5wC`
+**页面**：`https://www.twinbuddy.xyz/regulations/US-16-CFR-1263#guidance-product-requirements`
 
-## 根因
+## 第一轮（`9d92e1f`）：router.back() → 浏览器历史栈
 
-`components/regulation/LinkBackToReport.tsx` 原实现是 `useRouter().back()`。
-Next.js App Router 的 `router.back()` 只在**本站 SPA 历史链存在**时生效：
-用户从外部链接 / 分享链接 / 书签直接打开详情页时，App Router 没有可回退的
-内部历史项，`router.back()` 静默 no-op —— 按钮看起来"点不了"。该页面的主要
-入口恰恰是扫描报告里的引用 chip（打开新标签）与分享链接，命中此场景。
+原实现 `useRouter().back()`（Next.js App Router）在从外部链接 / 分享链接直接
+打开时没有站内 SPA 历史项，静默 no-op，按钮点了没反应。第一轮改为
+`history.length > 1 ? window.history.back() : window.location.assign("/regulations")`。
 
-## 修改（传统 web 行为）
+**用户实测反馈：仍然不对** —— 直接打开该链接点「返回上一页」，页面跳到了浏览器
+（新标签页/空白页）。原因：浏览器历史里新标签页也是一条记录，`history.length > 1`
+成立，`history.back()` 就把用户带出了站点。
 
-`LinkBackToReport.tsx` 改为浏览器原生历史栈：
+## 第二轮（`4b0ed30`）：按「上一页归属」决定回退
 
-- `history.length > 1`（浏览器栈里有上一页，含从外部站点同标签进入）→ `window.history.back()`，
-  与浏览器自带后退键行为一致；
-- `history.length <= 1`（直接打开 / 书签进入，无上一页）→ `window.location.assign("/regulations")`
-  回退到法规档案列表，避免点击后毫无反应。
+核心变为：**只有历史中的上一条确实是本站页面才回退，否则回站内法规列表
+`/regulations`**。判定分两层：
 
-左侧「返回首页」链接不变。全仓检索确认 `router.back()` / `history.back()` 仅此一处使用。
+| 浏览器 | 判定依据 |
+|--------|----------|
+| 有 Navigation API（Chromium、新版 Safari/Firefox） | `navigation.currentEntry.index` 与 `navigation.entries()[index-1].url`：上一页同源才回退；直接打开时 `index` 为 0（实测 Chromium 直接打开 `history.length = 2` 但 `navIndex = 0` —— 初始空白/新标签条目不计入 `entries()`） |
+| 无 Navigation API（旧 Firefox / 旧 Safari） | 根布局挂载 `InSiteVisitMarker` 把「本标签页访问过本站」写入 sessionStorage；详情页**首屏渲染时**读取（本页自身写入发生在挂载后，晚于读取，不会自证），有标记才回退 |
 
-新增 3 条 vitest（`tests/unit/regulation-navigation.test.tsx`）覆盖：无历史走列表、
-有历史走 `history.back()`、首页链接恒在。
+实现：新增 `lib/regulation/back-navigation.ts`（纯函数 + 存储读写，可单测）、
+`components/regulation/InSiteVisitMarker.tsx`（挂在 `app/layout.tsx`，无渲染）。
+`LinkBackToReport` 只做「读信号 → 决定 back / assign」。
 
 ## 验证
 
-### 本地
+### 单测 / 静态检查
 
 | 项目 | 结果 |
 |------|------|
-| `npx vitest run tests/unit/regulation-navigation.test.tsx` | 4/4 通过 |
-| `npx vitest run`（全量） | 95 文件 / 1020 测试全部通过 |
+| `npx vitest run`（全量） | 96 文件 / 1032 测试全部通过（新增 16 条：`tests/unit/back-navigation.test.ts` 9 条纯函数、组件回归 7 条） |
 | `npx tsc --noEmit` | 0 error |
-| `npx eslint`（改动文件） | 0 error / 0 warning |
-| 本地浏览器实测（next dev，直接打开详情页，桩 history.length=1） | 点击后真实跳转到 `/regulations` |
+| `npx eslint`（改动文件） | 0 error |
 
-### 生产（真实浏览器 Playwright，脚本见同目录 `verify-back-nav.mjs`）
+### 真浏览器（脚本 `verify-back-nav.mjs`，同目录）
+
+场景：**A 直接打开**（必须留在站内、不得回退）· **B 站内先前页进入**（必须
+`history.back()` 回上一页）· **C 从外部站点同标签进入**（必须留在站内）。每个
+引擎跑两种能力变体：现代（真实 Navigation API）与旧版（注入脚本移除
+`window.navigation`，覆盖降级路径）。判别方式：注入脚本包一层 `history.back`，
+调用时置 `window.name` 标记 —— 最终 URL 相同也可能走了不同实现路径，必须区分。
+
+- 本地 dev（localhost:3001）：chromium + firefox × 现代/旧版 × A/B/C = **12/12**
+- 生产（https://www.twinbuddy.xyz）：chromium + firefox + **webkit** × 现代/旧版 × A/B/C = **18/18**
 
 ```
-[
-  { "scenario": "A: 无历史直接打开（length=1）",  "historyLength": 1, "finalUrl": "https://www.twinbuddy.xyz/regulations", "pass": true },
-  { "scenario": "B: 站内先前页进入（length>1）", "historyLength": 3, "finalUrl": "https://www.twinbuddy.xyz/regulations", "pass": true }
-]
-PASSED: 2/2
+"case": "chromium / 现代(Navigation API) · A 直接打开",  "finalUrl": "/regulations", "via": "(assign)",            pass: true
+"case": "chromium / 现代(Navigation API) · B 站内先前页", "finalUrl": "/regulations", "via": "used-history-back",  pass: true
+（firefox / webkit / 旧版变体同构，共 18 条，PASSED: 18/18）
 ```
 
-- 部署产物反查：服务器 `2g55-7kofcysp.js` 含 `history.length>1?window.history.back():window.location.assign("/regulations")`，
-  全量 chunk 中无旧实现残留（`min-h-10 ... underline"` 旧样式 0 命中）。
-- 页面本身：`https://www.twinbuddy.xyz/regulations/US-16-CFR-1263` HTTP 200。
+- WebKit 无法在本地 dev 验证：dev 响应头 CSP 含 `upgrade-insecure-requests`，
+  WebKit 会把 localhost 的 chunk 请求升级成 https 导致无法水合（Chromium /
+  Firefox 豁免 localhost）。生产为 https 站点无此问题，故 WebKit 在生产验证。
 
-### 验证方法本身的坑（第一版脚本误判）
+### 验证方法本身的两个坑（第一轮与第二轮各踩一个）
 
-第一版脚本 `page.goto` 后立刻点击，报"点击无反应"——实为**点击发生在 React
-水合之前**，onClick 尚未挂到 SSR 静态按钮上。改为等待按钮节点出现
-`__reactProps$`（React 水合的确定性信号）后再点击，同一页面通过。今后对本站
-客户端交互做真浏览器验证时必须带水合等待，否则得到假阴性。
+1. **水合前点击 = 假阴性**：`page.goto` 返回后立刻点击会落在 SSR 静态按钮上，
+   onClick 尚未挂载，看起来像"功能没修好"。必须先等按钮节点出现 `__reactProps$`。
+2. **场景 B 必须等上一页写完标记再跳走**：脚本若在上一页 `domcontentloaded`
+   后立刻导航，上一页的 `InSiteVisitMarker` 效应还没执行，sessionStorage 里
+   没有标记，会测出"降级路径不工作"的假象。真实用户点击站内链接前上一页必然
+   已水合（交互本身需要 JS），脚本用"等标记写入"来对齐这一点。
 
 ## 部署
 
-- 本地 `ATTRAX_TARBALL=.deploy/attrax-deploy-9d92e1f.tar.gz bash scripts/build-deploy-tarball.sh` → 61M tarball；
-  `apply-deploy.sh` 固定读 `/tmp/attrax-deploy-complete.tar.gz`，scp 后在服务器上改为该路径执行
-  （也可用 `ATTRAX_TARBALL` 覆盖）
-- apply-deploy health gate：attempt 2 OK（10:39）；`.deployed` = `commit=9d92e1f build_id=CqYlc_Jzp8CGubP5uKQIt`
-- 服务器 git 经 bundle 快进 `31d4fd7 → 9d92e1f`（bundle 内 ref 为 `HEAD`，须 `git fetch <bundle> HEAD:from-bundle`；
-  服务器工作树有运行时脏文件（watchdog 改写的 UK-WEEE.yaml 等），因不冲突可正常 fast-forward）
-- 上线后 4 分钟并行会话部署了 `a2a3f14`（品牌改名，`9d92e1f` 的后代提交，含本次修复），
-  当前线上 `.deployed` = `commit=a2a3f14 build_id=emWKtD7ueXVJa06Z6Rrbu`；其 chunk
-  `2g55-7kofcysp.js` 仍含本次修复代码，回归脚本对当前线上构建复跑同样 2/2 通过
-- 公网 `https://www.twinbuddy.xyz/regulations/US-16-CFR-1263` HTTP 200
+- `ATTRAX_TARBALL=.deploy/attrax-deploy-4b0ed30.tar.gz bash scripts/build-deploy-tarball.sh`
+  → scp 到服务器 → 改名为 `/tmp/attrax-deploy-complete.tar.gz`（apply-deploy.sh 默认读该路径）→ `bash /tmp/attrax-apply-deploy.sh`
+- health gate：attempt 2 OK；`.deployed` = `commit=4b0ed30 build_id=mRzHjG0DEJf5PRnCyw5wC`
+- 服务器 git 快进到 `4b0ed30`：**bundle 起点必须用服务器实际 HEAD**（本次服务器
+  落后于 origin 两个提交，用 `origin 前两个提交..HEAD` 打包会因缺少前置提交
+  fetch 失败），故用 `git bundle create .deploy/attrax.bundle b2ba70a..HEAD`
+- 期间并行会话又推送了 `d08dc41` / `d4e1774`（i18n 文案），未触碰本次文件，
+  bundle 一并将服务器 git 带到 `4b0ed30`
