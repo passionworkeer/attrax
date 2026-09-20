@@ -328,25 +328,27 @@ ssh aliyun-sz 'cd /opt/attrax && PYTHONPATH=. .venv/bin/python -c \
 
 ---
 
-## 9. lighthouse 上的 attrax 残留
+## 9. lighthouse 上的 attrax 残留（2026-09-20 已清零）
 
-| 项 | 状态 |
+| 项 | 状态（2026-09-20 全部清除/迁移完毕） |
 |---|---|
-| PM2 nextjs / rag-service / regwatch | 已 `pm2 delete`（进程不存在） |
-| nginx attrax 站点 | `/etc/nginx/sites-enabled/attrax` 已删，`sudo nginx -s reload` 已执行 |
-| `/opt/attrax` 数据 | **原地保留**（2.3G），不动 |
-| `~/.ssh/config` | `Host lighthouse` 仍保留（ssh 别名继续生效，portfolio 等仍用） |
+| PM2 nextjs / rag-service / regwatch | 已 `pm2 delete`（进程不存在）；旧 pm2 日志已删 |
+| nginx attrax 站点 / 片段 | `sites-available/attrax`、`snippets/attrax-locations.conf`、`attrax-engagement.conf` 已删；`conf.d/attrax-gzip.conf` 改名 `compression.conf`（全站共用，内容不变） |
+| `/opt/attrax` 数据 | **已于 2026-09-20 整目录删除**（attrax 只保留 aliyun-sz 一份；媒体原稿先归档到 mac `~/archives/attrax-media-originals-2026-09-20/`） |
+| 定时任务 / logrotate | `/etc/cron.d/attrax-backup{,-remote}`、`/etc/logrotate.d/attrax` 已删 |
+| 监控残留 | lighthouse 的 uptime-check v5（移除 4 个 attract 探针、新增 main-https）、collector（移除 attract 站点映射与 3000/8001 健康探测）、monitor 前端文案已同步清理 |
+| `~/.ssh/config` | `Host lighthouse` 仍保留（portfolio / study / monitor 仍用） |
 
 ---
 
 ## 10. 待办
 
 1. **2026-10-11 前**给 aliyun-sz 续费（迁移后这条更要紧：实例过期 attrax 整站下线）
-2. **`example.com` DNS 切换**：域名注册商改 A 记录 `203.0.113.10` + 阿里云安全组放行 80（已开）+ certbot 申请 `example.com` 证书 + 替换 nginx `ssl_certificate` 路径
+2. ~~**`example.com` DNS 切换**~~ —— **2026-09-20 决定不做**：主域名由 lighthouse 上的 portfolio 承接（HTTPS 已配好，vhost `sites-available/example.com`）。attrax 的公开入口 = `twinbuddy.xyz` / IP。
 3. **数据备份异地化**：`scripts/backup-remote.sh`（lighthouse 时代）需重新校准目标，aliyun-sz 上验证一次自动跑
 4. **regwatch 健康持续监测**：30 个 source（09-17 审计后）全 healthy；接入告警（runbook §7）
-5. **访问域名 cert 不匹配告警** 用户测试时给指引（`twinbuddy.xyz` 无 warning，`example.com` 有 warning）
+5. ~~**访问域名 cert 不匹配告警**~~ —— 已消解（2026-09-20）：`example.com` 不再指向 aliyun-sz（改由 lighthouse 的 portfolio 承接）；`twinbuddy.xyz` 无 warning。
 
 ---
 
-*最后更新：2026-09-18*
+*最后更新：2026-09-20（lighthouse 残留全清 + 主域名 example.com 改由 lighthouse 上的 portfolio 承接）*
