@@ -4,6 +4,7 @@ import { BlazeLocaleProvider } from "@/components/blaze-hawks/locale";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import "./globals.css";
 import { PersistentOcean } from "@/components/complipilot/persistent-ocean";
+import { InSiteVisitMarker } from "@/components/regulation/InSiteVisitMarker";
 
 const manrope = Manrope({
   variable: "--font-inter",
@@ -35,7 +36,7 @@ export default function RootLayout({
     >
       <body className="min-h-full">
         <BlazeLocaleProvider>
-          <TooltipProvider><PersistentOcean>{children}</PersistentOcean></TooltipProvider>
+          <TooltipProvider><PersistentOcean><InSiteVisitMarker />{children}</PersistentOcean></TooltipProvider>
         </BlazeLocaleProvider>
       </body>
     </html>

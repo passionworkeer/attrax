@@ -3,11 +3,16 @@ import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { CitationChip } from "@/components/regulation/CitationChip";
 import { DocViewer } from "@/components/regulation/DocViewer";
 import { LinkBackToReport } from "@/components/regulation/LinkBackToReport";
+import { IN_SITE_MARKER_KEY } from "@/lib/regulation/back-navigation";
+
+const ORIGIN = "http://localhost:3000";
 
 afterEach(() => {
   cleanup();
   vi.unstubAllGlobals();
   vi.restoreAllMocks();
+  window.sessionStorage.clear();
+  delete (window as { navigation?: unknown }).navigation;
 });
 
 it("places highlight parameters before the fragment and highlights the selected article only", () => {
@@ -25,37 +30,74 @@ it("places highlight parameters before the fragment and highlights the selected 
 });
 
 /**
- * 「返回上一页」传统 web 行为回归：
- *   - 直接打开 / 书签进入（history.length <= 1）→ 退到 /regulations 列表
- *   - 来自站内其他页（history.length > 1）→ 走 window.history.back()
- *   - 同时首页链接永远可用，给直接打开场景一个最稳的兜底
+ * 「返回上一页」行为回归（2026-09-20 两轮）：
+ *   - Navigation API 可用：按上一历史条目的 URL 归属决定回退或回列表
+ *   - 无 Navigation API：按 sessionStorage 标记决定
+ *   任何情况下都不得把用户带出本站（回退目标只能是本站页面）。
  */
-it("returns to /regulations when there is no browser history", () => {
+function stubHistoryAndLocation({ historyLength }: { historyLength: number }) {
   const back = vi.fn();
   const assign = vi.fn();
   Object.defineProperty(window, "history", {
     configurable: true,
-    value: { length: 1, back },
+    value: { length: historyLength, back },
   });
-  vi.stubGlobal("location", { ...window.location, assign });
+  vi.stubGlobal("location", { ...window.location, origin: ORIGIN, assign });
+  return { back, assign };
+}
+
+function stubNavigationApi(index: number, urls: string[]) {
+  Object.defineProperty(window, "navigation", {
+    configurable: true,
+    value: {
+      currentEntry: { index },
+      entries: () => urls.map((url) => ({ url })),
+    },
+  });
+}
+
+it("Navigation API：直接打开（index=0）→ 回法规列表，不回退", () => {
+  stubNavigationApi(0, [`${ORIGIN}/regulations/US-16-CFR-1263#guidance`]);
+  const { back, assign } = stubHistoryAndLocation({ historyLength: 2 });
   render(<LinkBackToReport />);
   fireEvent.click(screen.getByRole("button", { name: "返回上一页" }));
   expect(back).not.toHaveBeenCalled();
   expect(assign).toHaveBeenCalledWith("/regulations");
 });
 
-it("uses window.history.back() when browser history is non-empty", () => {
-  const back = vi.fn();
-  const assign = vi.fn();
-  Object.defineProperty(window, "history", {
-    configurable: true,
-    value: { length: 2, back },
-  });
-  vi.stubGlobal("location", { ...window.location, assign });
+it("Navigation API：上一页是本站页面 → history.back()", () => {
+  stubNavigationApi(1, [`${ORIGIN}/regulations`, `${ORIGIN}/regulations/US-16-CFR-1263`]);
+  const { back, assign } = stubHistoryAndLocation({ historyLength: 3 });
   render(<LinkBackToReport />);
   fireEvent.click(screen.getByRole("button", { name: "返回上一页" }));
   expect(back).toHaveBeenCalledTimes(1);
   expect(assign).not.toHaveBeenCalled();
+});
+
+it("Navigation API：上一页是外部站点 → 回法规列表，不外跳", () => {
+  stubNavigationApi(1, ["https://github.com/some/repo", `${ORIGIN}/regulations/US-16-CFR-1263`]);
+  const { back, assign } = stubHistoryAndLocation({ historyLength: 2 });
+  render(<LinkBackToReport />);
+  fireEvent.click(screen.getByRole("button", { name: "返回上一页" }));
+  expect(back).not.toHaveBeenCalled();
+  expect(assign).toHaveBeenCalledWith("/regulations");
+});
+
+it("无 Navigation API：本标签页来过本站（标记存在）→ history.back()", () => {
+  window.sessionStorage.setItem(IN_SITE_MARKER_KEY, "1");
+  const { back, assign } = stubHistoryAndLocation({ historyLength: 3 });
+  render(<LinkBackToReport />);
+  fireEvent.click(screen.getByRole("button", { name: "返回上一页" }));
+  expect(back).toHaveBeenCalledTimes(1);
+  expect(assign).not.toHaveBeenCalled();
+});
+
+it("无 Navigation API：直接打开（无标记）→ 回法规列表，哪怕 history.length > 1", () => {
+  const { back, assign } = stubHistoryAndLocation({ historyLength: 2 });
+  render(<LinkBackToReport />);
+  fireEvent.click(screen.getByRole("button", { name: "返回上一页" }));
+  expect(back).not.toHaveBeenCalled();
+  expect(assign).toHaveBeenCalledWith("/regulations");
 });
 
 it("always exposes a link back to the home page", () => {
