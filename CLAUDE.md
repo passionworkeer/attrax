@@ -339,6 +339,15 @@ const SessionIdSchema = z
 
 ## 最近修复
 
+### 2026-09-20 — 整改路线图 PR 合并部署 + nginx limit_conn 修上传页 503（0760485 / cc28d8e / b809a03）
+
+- **PR #9 合并**（`36f9364`）：结果页新增整改路线图（桌面表格 + 移动端卡片，状态/时间/成本/负责人/产出 + 当前执行重点），报告提示词收敛成本字段（只填一个简短价格区间）。合并前对抗性审查发现 P0：后端 `RoadmapItem.type/status` 是自由字符串（Pydantic `str`），模型会输出枚举外取值（39 个生产会话、180 个条目里 1 条 `type: "verify"`），`ownerLabels[type]` 取不到值 → `roleCount` 里 `row.owner.split` 抛错 → **整个结果页渲染失败**；`0760485` 改为白名单归一化 + 回归测试
+- **nginx limit_conn 按 location 分级**（`cc28d8e`）：server 级 `limit_conn attrax_conn 20`（09-18 并发加固引入）会把正常页面加载打成 503 —— nginx 对 HTTP/2 把每个并发 stream 记作一个连接，而一次页面加载实测并发 20~23（几乎全是 `/_next/static` 分块与 hero 视频），关键 JS 被拒后页面不水合、整页不可交互。cap 移到各 location：静态资源 200、代理到 nextjs 的位置 30，另加 `limit_conn_status 429`
+- **生产回归脚本修水合竞态**（`b809a03`）：goto 后只等 `networkidle`+1s 就点品类触发器，React 未水合时点击丢失（3 个用例全挂第一步）；另 `waitForFunction` 的 options 必须传第三个参数（第二个是页面函数的 arg）
+- **部署**：本地 tarball 61M → scp → apply-deploy；commit `0760485` / BUILD_ID `YrHzN8C1-2YYQe9hx8BUl`；`pm2 startOrRestart … --only rag-service` 刷新 `ATTRAX_BUILD_SHA`（此前 `/ready` 报的是热补丁时代的 `c379fa7`，不对应任何 git 提交）；合并后服务器 `rag_service/**/*.py` 与 main 逐字节一致（09-19 手工热补的 `report_generator.py` 归位）
+- **验证**：vitest 1039 / tsc / eslint 0 error / CI 那 7 个 e2e spec 27 passed（1 flaky 重试通过）；生产回归 **3/3**（真实产品图、source=real、85/81/84 分）；真实生产会话结果页渲染出路线图；nginx 修复前后探针：23 并发 / 2×503 / 未水合 → 23 并发 / 0 拒绝 / 已水合。完整记录 `docs/evidence/2026-09-20-roadmap-merge-deploy/`
+- **残留**：路线图「定位检查」按钮未接通（条目 id 与检查 id 39/39 无交集，需产品决策）；服务器 git HEAD 停在 `e5cabf5`（部署只同步 runtime 产物，工作区有 watchdog 写入的 `data/regulations/*` 改动，未做 reset）
+
 ### 2026-09-19 — 法规库全量接入扫描管线（724 条去重 / 650 自动锚点 / 582 条原件解析进引用）
 
 - **背景**：9-19 三批导入（regulation-raw 920 + attrax-docs 增量 + watchdog 4）后法规库 1048 条只进 `/regulations` 展示、不进扫描引用；且存在大量跨批次重复登记（GDPR 三条、CFR 每 part 四条等）。本批次让全库进入扫描检索并清理重复。完整记录：`docs/evidence/2026-09-19-library-scan-integration/README.md`

@@ -230,6 +230,7 @@ demo-after-hydrate.png
 scripts/check-react-418.mjs
 .review-tmp/
 .deploy/
+.audit/
 data/admin/
 .admin-auth.json
 data/regulation_supplements/watchdog-runs.jsonl
