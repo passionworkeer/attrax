@@ -82,10 +82,17 @@ bash scripts/build-deploy-tarball.sh     # → /tmp/attrax-deploy-complete.tar.g
 # 2. scp 到 aliyun-sz
 scp /tmp/attrax-deploy-complete.tar.gz aliyun-sz:/tmp/
 
+# 2.5 同步部署脚本本身
+#     /tmp/attrax-apply-deploy.sh 是历史副本，**不会**随 tarball 更新。改了
+#     scripts/apply-deploy.sh 就必须重新 scp，否则跑的还是旧逻辑 —— 2026-09-20
+#     实测踩中：新版脚本里的 nginx reload 自检没有生效，配置静默未应用。
+scp scripts/apply-deploy.sh aliyun-sz:/tmp/attrax-apply-deploy.sh
+
 # 3. aliyun-sz 上：apply
 ssh aliyun-sz 'bash /tmp/attrax-apply-deploy.sh'
 # 流程：备份旧 standalone → 解 tarball 到 /opt/attrax/.next/ → 验证软链 → 写 BUILD_ID
-#      → pm2 restart nextjs --update-env → /api/health 轮询 10 次（30s 内成功）
+#      → pm2 restart nextjs --update-env → 重渲染 nginx vhost（reload 后校验 worker
+#      是否换代，未换代则回退 restart）→ /api/health 轮询 10 次（30s 内成功）
 ```
 
 ### 3.2 仅 RAG service 代码改动（不动前端 build）

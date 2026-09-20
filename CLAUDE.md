@@ -339,6 +339,17 @@ const SessionIdSchema = z
 
 ## 最近修复
 
+### 2026-09-20 — 限流优化四件套：可重试语义 / 排队 / 按浏览器分桶 / 每 IP 兜底（2ba7c2c / 2cee123 / 752b5a2）
+
+- **起因**：用户反馈"老是返回报错"。研究结论（`docs/plans/2026-09-20-rate-limit-optimization-proposal.md`）：近 14 天 429 只有 1 次落在真实用户身上，其余全是扫描器；但桶的 key 全是 IP（CGNAT/同人多设备互相挤占）、超限立即报错、且**轮询撞限流会把还在跑的扫描直接判失败**，这类"看起来坏了"的体验需要修
+- **P0 前端可重试**：`lib/transient-retry.ts`（429/408/425/5xx，退避 3→6→12→15s，上限 5 次 ≤60s）；`useScanPolling` 与 `use-result-loader` 改为重试而非判失败；**首次**轮询撞限流同样重试（浏览器实测发现 `hasResponse` 门槛会漏掉这一例）；不可重试状态（401/404）保持快速失败
+- **P1 排队代替报错**：页面/RSC、轮询/资产两个桶去掉 `nodelay`（burst 内立即通过、超出部分排队），burst 40→80；代理位置 `limit_conn` 30→60
+- **P2 按浏览器分桶**：`middleware.ts` 下发匿名 `attrax_uid`（httpOnly/SameSite=Lax/1 年）；nginx `map $cookie_attrax_uid $attrax_client`（缺失回退 `$binary_remote_addr`）作 `limit_req` key；新增每 IP 兜底桶 `attrax_ip`（30r/s burst 200）防伪造 cookie；BFF 扫描配额改双层：`lib/rate-limit.ts:resolveClientKey`（cookie 优先）10 次/分 + 出口 IP 20 次/分
+- **P3**：扫描创建仍是唯一保留立即拒绝（5r/s burst 10）与严格配额的操作 —— 每次扫描要跑 LLM 并占用 5 个 RAG worker 槽位之一最多 280s
+- **坑（重要）**：把 `limit_req_zone` 的 key 从 IP 改成 cookie 后，**nginx 拒绝 reload 且不报错** —— `nginx -t` 通过、`nginx -s reload` 退出码 0，只有 error.log 里一行 `[emerg] limit_req "attrax_page" uses the "$attrax_client" key while previously it used the "$binary_remote_addr" key`；共享内存 zone 的 key 变更只能靠**重启**生效。处置：`systemctl restart nginx`（68ms）+ `apply-deploy.sh` [8.5] 增加「reload 后 worker 是否换代」判定（未换代则打 emerg 并回退 restart）
+- **实测对比**：突发 85/110 请求 → 改动前 46 通过 39 拒绝，改动后全部通过（排队 8.6s/11.2s）；批次 A 打满后新 cookie 批次 B → 改动前 3 通过 42 拒绝，改动后 45 全通过；300 个伪造 cookie → 被每 IP 兜底压到 30r/s 零拒绝；页面突发后提交 → 429(0.21s) 变 202(0.36s)；轮询注入 429 → 不再判失败，最终正常出结果
+- **验证**：vitest 1056 / tsc / eslint 0 error / e2e 27 passed；生产真实浏览器全链路（59.1s 扫描 + 结果页，零失败请求）。记录 `docs/evidence/2026-09-20-ratelimit-optimization/`
+
 ### 2026-09-20 — 限流分桶 + 提交错误文案（c189f3a / af0e07a）
 
 - **症状**：用户报「无法检索、完全无法使用」。日志显示其机器 12:11–12:18 连续 12 次 `POST /api/scan` 全部 **499**（客户端中断上传），BFF 与 RAG 都没收到请求、nginx error.log 里该 IP 无限流记录；同期我的探针与真实扫描（含相同示例资料、同一 www 域名）全部正常，用户自己在 12:35 的扫描也成功
