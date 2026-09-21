@@ -12,7 +12,7 @@
 
 ## 全文书表
 
-线上扫描引擎（`rag_service`）按「用户选择的市场 + 视觉识别的品类 + 检测到的硬特征」激活法规锚点。法规全文落在 [`data/regulations/{region}/*.yaml`](file:///workspace/me/attrax/data/regulations)，每个市场目录下一组：
+线上扫描引擎（`rag_service`）按「用户选择的市场 + 视觉识别的品类 + 检测到的硬特征」激活法规锚点。法规全文落在 [`data/regulations/{region}/*.yaml`](data/regulations)，每个市场目录下一组：
 
 | Region | 法规数 | 目录 |
 |---|---:|---|
@@ -29,7 +29,7 @@
 - **public**（33 篇）：政府公开法律法规指令，包含逐条法条全文 / 官方结构化条款，`articles[]` 字段非空。
 - **private_with_summary**（11 篇）：行业或国标版权标准（GB、UL、ASTM），系统内置权威 KB 提炼摘要 + 官方购买 / 标准信息公开系统查阅链接，`articles[]` 为空（与 KB 锚点的 `key_points` 一起提供"非逐字但可追溯"的合规要点）。
 
-> 完整编号 ID、官方代号、人类可访问链接见仓库自带 [`docs/regulations/ONLINE-REGULATIONS-AND-DAILY-SOURCES-2026-09-16.md`](file:///workspace/me/attrax/docs/regulations/ONLINE-REGULATIONS-AND-DAILY-SOURCES-2026-09-16.md)。
+> 完整编号 ID、官方代号、人类可访问链接见仓库自带 [`docs/regulations/ONLINE-REGULATIONS-AND-DAILY-SOURCES-2026-09-16.md`](docs/regulations/ONLINE-REGULATIONS-AND-DAILY-SOURCES-2026-09-16.md)。
 
 ## 文件结构（一篇法规的 YAML 形如）
 
@@ -59,7 +59,7 @@ articles:
 
 ## KB 锚点（`data/kb/anchors/`）
 
-44 个 YAML，一篇法规一个，文件名 = `{regulation_id}.yaml`。例 [`data/kb/anchors/EU-2023-1542.yaml`](file:///workspace/me/attrax/data/kb/anchors)：
+44 个 YAML，一篇法规一个，文件名 = `{regulation_id}.yaml`。例 [`data/kb/anchors/EU-2023-1542.yaml`](data/kb/anchors)：
 
 ```yaml
 regulation_id: EU-2023-1542
@@ -79,7 +79,7 @@ risk_hint: |
 
 ### `applies_if` 三层触发
 
-由 [`rag_service/retrieval/must_check.py:build_anchor_list`](file:///workspace/me/attrax/rag_service/retrieval/must_check.py) 统一处理：
+由 [`rag_service/retrieval/must_check.py:build_anchor_list`](rag_service/retrieval/must_check.py) 统一处理：
 
 1. **markets**：扫描请求里用户选的目标市场（白名单 16 个，`ALLOWED_MARKETS`）。`UN` 类（仅 `UN-38-3`）始终命中。
 2. **category**：视觉识别给出的 10 大品类（规范形式单数，见 `lib/types.ts:PRODUCT_CATEGORIES`；KB anchor 全部用单数）。BFF 层 `ALLOWED_CATEGORIES` 额外容忍复数输入。
@@ -136,14 +136,14 @@ ResultPage 渲染
 
 ## 关键文件清单
 
-- [`data/regulations/regulations_index.json`](file:///workspace/me/attrax/data/regulations/regulations_index.json)：法规索引，由 `auto_ingest.py` 重建。
-- [`data/regulations/{eu,us,cn,uk,au,un}/*.yaml`](file:///workspace/me/attrax/data/regulations)：44 篇法规原文（public 含 articles；private 含 key_points 由 KB 提供）。
-- [`data/kb/anchors/*.yaml`](file:///workspace/me/attrax/data/kb/anchors)：44 个 KB 锚点。
-- [`rag_service/retrieval/kb_loader.py`](file:///workspace/me/attrax/rag_service/retrieval/kb_loader.py)：KB 加载与查询（自失效缓存）。
-- [`rag_service/retrieval/article_loader.py`](file:///workspace/me/attrax/rag_service/retrieval/article_loader.py)：法规原文加载（自失效缓存 + generation tick）。
-- [`rag_service/retrieval/must_check.py`](file:///workspace/me/attrax/rag_service/retrieval/must_check.py)：特征检测 + anchor list 拼接。
-- [`rag_service/pipeline/nodes/generator.py`](file:///workspace/me/attrax/rag_service/pipeline/nodes/generator.py)：把锚点 + key_points 注入 LLM prompt。
-- [`rag_service/verify/quote_matcher.py`](file:///workspace/me/attrax/rag_service/verify/quote_matcher.py)：确定性引用验证 + 高亮 span。
+- [`data/regulations/regulations_index.json`](data/regulations/regulations_index.json)：法规索引，由 `auto_ingest.py` 重建。
+- [`data/regulations/{eu,us,cn,uk,au,un}/*.yaml`](data/regulations)：44 篇法规原文（public 含 articles；private 含 key_points 由 KB 提供）。
+- [`data/kb/anchors/*.yaml`](data/kb/anchors)：44 个 KB 锚点。
+- [`rag_service/retrieval/kb_loader.py`](rag_service/retrieval/kb_loader.py)：KB 加载与查询（自失效缓存）。
+- [`rag_service/retrieval/article_loader.py`](rag_service/retrieval/article_loader.py)：法规原文加载（自失效缓存 + generation tick）。
+- [`rag_service/retrieval/must_check.py`](rag_service/retrieval/must_check.py)：特征检测 + anchor list 拼接。
+- [`rag_service/pipeline/nodes/generator.py`](rag_service/pipeline/nodes/generator.py)：把锚点 + key_points 注入 LLM prompt。
+- [`rag_service/verify/quote_matcher.py`](rag_service/verify/quote_matcher.py)：确定性引用验证 + 高亮 span。
 
 ## 常见操作
 

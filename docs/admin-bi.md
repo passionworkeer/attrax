@@ -32,6 +32,6 @@
 
 watchdog 的 `orchestrator.py` 和 `metrics.py` 需要单独备份、同步并重启 `regwatch`。本改动不需要重启扫描后端。
 
-运行 `ADMIN_VERIFY_URL=https://twinbuddy.xyz ADMIN_ACCESS_FILE=.deploy/admin-access.txt node scripts/verify-admin.mjs` 验证真实权限、三种日期范围、聚合一致性和退出撤销。验证输出不包含密码或 Cookie。
+运行 `ADMIN_VERIFY_URL=https://example.com ADMIN_ACCESS_FILE=.deploy/admin-access.txt node scripts/verify-admin.mjs` 验证真实权限、三种日期范围、聚合一致性和退出撤销。验证输出不包含密码或 Cookie。
 
 参考：[Next.js dashboard](https://github.com/shadcndashboard/next-shadcn-dashboard)、[shadcn Chart 文档](https://ui.shadcn.com/docs/components/base/chart)。

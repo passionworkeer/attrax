@@ -10,7 +10,7 @@
 - **监控**：`/home/ubuntu/uptime-check.sh`（work 仓）每 5 分钟 cron，覆盖 HTTP + pm2 + BUILD_ID 漂移 + 磁盘水位；⚠️ webhook 未配置。
 - **已知事故**：2026-09-16 线上全站 500（服务器误跑 build 删 standalone）；2026-07-18 load 111（meta.json 95MB 未分片 + memory_restart 900M 过低）。
 
-> 数据快照：2026-09-18。生产机 aliyun-sz 阿里云深圳 `203.0.113.10`。本地路径 `/workspace/me/attrax/`，服务器路径 `/opt/attrax/`。
+> 数据快照：2026-09-18。生产机 aliyun-sz 阿里云深圳 `203.0.113.10`。本地路径 ``，服务器路径 `/opt/attrax/`。
 
 ## 部署流程（git bundle + tarball）
 
@@ -19,7 +19,7 @@
 ### 1) 本地打 git bundle
 
 ```bash
-cd /workspace/me/attrax
+cd 
 git bundle create /tmp/attrax-{new_sha}.bundle old_commit..new_commit
 scp /tmp/attrax-{new_sha}.bundle aliyun-sz:/tmp/
 ssh aliyun-sz 'cd /opt/attrax && git fetch /tmp/attrax-{new_sha}.bundle new_branch:new_branch && git checkout new_branch'
@@ -30,7 +30,7 @@ ssh aliyun-sz 'cd /opt/attrax && git fetch /tmp/attrax-{new_sha}.bundle new_bran
 ### 2) 本地构建 standalone tarball
 
 ```bash
-cd /workspace/me/attrax
+cd 
 bash scripts/build-deploy-tarball.sh
 # 产物 /tmp/attrax-deploy-complete.tar.gz
 #   - 含已 stage 好的 .next/standalone/
@@ -81,7 +81,7 @@ ssh aliyun-sz 'curl -s http://127.0.0.1:8002/api/v1/ready'   # checks 应全 tru
 
 ## Next 16 standalone 部署雷区（必读）
 
-[`docs/infra/NEXTJS-16-STANDALONE-NOTES.md`](file:///workspace/me/attrax/docs/infra/NEXTJS-16-STANDALONE-NOTES.md) 逐条记录：
+[`docs/infra/NEXTJS-16-STANDALONE-NOTES.md`](docs/infra/NEXTJS-16-STANDALONE-NOTES.md) 逐条记录：
 
 1. `next build` + Turbopack `output: "standalone"` **不**复制 `.next/static/` 到 `standalone/.next/static/`。Next 15 还会这么做，Next 16 不会。
 2. standalone/ 里只有 `server.js` + 路由 manifest + 最小 `node_modules/`。`public/` 也不存在。
@@ -163,15 +163,15 @@ ssh aliyun-sz 'cd /opt/attrax/.next && rm -rf standalone && mv standalone-pre-de
 
 ## 关键文件清单
 
-- [`scripts/build-deploy-tarball.sh`](file:///workspace/me/attrax/scripts/build-deploy-tarball.sh)：本地构建 tarball。
-- [`scripts/apply-deploy.sh`](file:///workspace/me/attrax/scripts/apply-deploy.sh)：服务器解包（保留 2 份回滚）。
-- [`scripts/ecosystem.config.cjs`](file:///workspace/me/attrax/scripts/ecosystem.config.cjs)：pm2 配置。
-- [`scripts/guard-no-server-build.mjs`](file:///workspace/me/attrax/scripts/guard-no-server-build.mjs)：服务器构建守卫。
-- [`scripts/preflight-deploy.mjs`](file:///workspace/me/attrax/scripts/preflight-deploy.mjs)：部署前自检。
-- [`scripts/backup-data.sh`](file:///workspace/me/attrax/scripts/backup-data.sh)：本地 14 份备份。
-- [`scripts/backup-remote.sh`](file:///workspace/me/attrax/scripts/backup-remote.sh)：异地备份（no-op）。
-- [`docs/infra/NEXTJS-16-STANDALONE-NOTES.md`](file:///workspace/me/attrax/docs/infra/NEXTJS-16-STANDALONE-NOTES.md)：Next 16 standalone 部署坑总览。
-- [`docs/infra/cron-attrax-backup`](file:///workspace/me/attrax/docs/infra/cron-attrax-backup) + [`-remote`](file:///workspace/me/attrax/docs/infra/cron-attrax-backup-remote)：备份 cron。
-- [`docs/infra/logrotate-attrax`](file:///workspace/me/attrax/docs/infra/logrotate-attrax)：日志轮转。
-- [`CHANGELOG.md`](file:///workspace/me/attrax/CHANGELOG.md)：历史事故 + 修复时间线。
-- [`CLAUDE.md §部署雷区`](file:///workspace/me/attrax/CLAUDE.md)：常见踩坑清单（构建雷区、pm2 env、nginx alias、openrsync、服务器 git 落后）。
+- [`scripts/build-deploy-tarball.sh`](scripts/build-deploy-tarball.sh)：本地构建 tarball。
+- [`scripts/apply-deploy.sh`](scripts/apply-deploy.sh)：服务器解包（保留 2 份回滚）。
+- [`scripts/ecosystem.config.cjs`](scripts/ecosystem.config.cjs)：pm2 配置。
+- [`scripts/guard-no-server-build.mjs`](scripts/guard-no-server-build.mjs)：服务器构建守卫。
+- [`scripts/preflight-deploy.mjs`](scripts/preflight-deploy.mjs)：部署前自检。
+- [`scripts/backup-data.sh`](scripts/backup-data.sh)：本地 14 份备份。
+- [`scripts/backup-remote.sh`](scripts/backup-remote.sh)：异地备份（no-op）。
+- [`docs/infra/NEXTJS-16-STANDALONE-NOTES.md`](docs/infra/NEXTJS-16-STANDALONE-NOTES.md)：Next 16 standalone 部署坑总览。
+- [`docs/infra/cron-attrax-backup`](docs/infra/cron-attrax-backup) + [`-remote`](docs/infra/cron-attrax-backup-remote)：备份 cron。
+- [`docs/infra/logrotate-attrax`](docs/infra/logrotate-attrax)：日志轮转。
+- [`CHANGELOG.md`](CHANGELOG.md)：历史事故 + 修复时间线。
+- [`CLAUDE.md §部署雷区`](CLAUDE.md)：常见踩坑清单（构建雷区、pm2 env、nginx alias、openrsync、服务器 git 落后）。

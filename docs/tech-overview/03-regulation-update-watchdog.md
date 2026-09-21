@@ -102,7 +102,7 @@
 | JP/KR/AE/SA | 4 | METI PSE / MOTIE KC / MoIAT ECAS / SASO SABER |
 | BR/IN | 2 | INMETRO / BIS CRS |
 
-每条记录的字段（[示例](file:///workspace/me/attrax/data/regulation_sources/official_sources.json#L1-L32)）：
+每条记录的字段（[示例](data/regulation_sources/official_sources.json#L1-L32)）：
 
 ```json
 {
@@ -162,14 +162,14 @@ return max(60.0, (target - now).total_seconds())
 
 ## 关键文件清单
 
-- [`scripts/watchdog/orchestrator.py`](file:///workspace/me/attrax/scripts/watchdog/orchestrator.py)：跑批编排 + 调度循环。
-- [`scripts/watchdog/auto_ingest.py`](file:///workspace/me/attrax/scripts/watchdog/auto_ingest.py)：UPDATE / CREATE / MARK / EVIDENCE 四类自动入库。
-- [`scripts/watchdog/state.py`](file:///workspace/me/attrax/scripts/watchdog/state.py)：SQLite baseline + 差异检测。
-- [`scripts/watchdog/collectors/`](file:///workspace/me/attrax/scripts/watchdog/collectors)：6 个具体采集器。
-- [`scripts/watchdog/notify.py`](file:///workspace/me/attrax/scripts/watchdog/notify.py)：webhook 通知（默认 noop）。
-- [`data/regulation_sources/official_sources.json`](file:///workspace/me/attrax/data/regulation_sources/official_sources.json)：35 个监控源注册表。
-- [`docs/WATCHDOG.md`](file:///workspace/me/attrax/docs/WATCHDOG.md)：运维手册（与本套独立）。
-- [`docs/regulations/URL-INVENTORY-2026-09-16.md`](file:///workspace/me/attrax/docs/regulations/URL-INVENTORY-2026-09-16.md)：所有源的人类可访问 URL 总表。
+- [`scripts/watchdog/orchestrator.py`](scripts/watchdog/orchestrator.py)：跑批编排 + 调度循环。
+- [`scripts/watchdog/auto_ingest.py`](scripts/watchdog/auto_ingest.py)：UPDATE / CREATE / MARK / EVIDENCE 四类自动入库。
+- [`scripts/watchdog/state.py`](scripts/watchdog/state.py)：SQLite baseline + 差异检测。
+- [`scripts/watchdog/collectors/`](scripts/watchdog/collectors)：6 个具体采集器。
+- [`scripts/watchdog/notify.py`](scripts/watchdog/notify.py)：webhook 通知（默认 noop）。
+- [`data/regulation_sources/official_sources.json`](data/regulation_sources/official_sources.json)：35 个监控源注册表。
+- [`docs/WATCHDOG.md`](docs/WATCHDOG.md)：运维手册（与本套独立）。
+- [`docs/regulations/URL-INVENTORY-2026-09-16.md`](docs/regulations/URL-INVENTORY-2026-09-16.md)：所有源的人类可访问 URL 总表。
 
 ## 已知运维坑
 

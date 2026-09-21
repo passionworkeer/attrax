@@ -391,7 +391,7 @@ const SessionIdSchema = z
 
 ### 2026-09-19 — attrax-docs 法规目录导入（/regulations 法规档案 61 → 124 条 / 21 区域）
 
-- **背景**：`/workspace/me/attrax-docs` 补齐了各地区法规原件（PDF/HTML 共 72 份，去重后 68 份唯一内容）与《出海合规法规文件清单》《法规分类表》《出海合规法律法规政策清单》三份清单；产品侧要求 `/regulations` 展示尽可能多的法规数据，不要求这些条目进入扫描引用
+- **背景**：`attrax-docs` 补齐了各地区法规原件（PDF/HTML 共 72 份，去重后 68 份唯一内容）与《出海合规法规文件清单》《法规分类表》《出海合规法律法规政策清单》三份清单；产品侧要求 `/regulations` 展示尽可能多的法规数据，不要求这些条目进入扫描引用
 - **做法**：新增 `scripts/import_regulation_docs.py` + 清单 `data/regulations/_imports/attrax-docs-2026-09-19.json`（63 条：CN 11 / EU 15 / US 5 / UK 1 / VN 6 / ID 5 / SG 2 / MY 3 / TH 1 / SA 3 / AE 4 / GCC 1 / UN 2 / GLOBAL 4）。逐条写 `data/regulations/{region}/{id}.yaml`（`articles: []`、`source_kind: unverified`、新字段 `domain` 领域分类与 `doc_files` 本地原件路径），原件复制到 `data/regulations/{region}/raw/`（68 份 46MB，gitignore，见该目录 README），最后复用 `AutoIngestor._rebuild_index()` 重建索引
 - **插件的三个既有约束**：① `_REGION_DIRS` 补 VN/ID/MY/TH/GCC/GLOBAL；② `_rebuild_index` 带上 `domain`（老条目没有该字段，前端按可选处理）；③ `rag_service/tests/test_kb_loader.py` 的「锚点 ↔ 法规 1:1」断言改为**单向** `anchored ⊆ regulated` —— 目录条目是超集，没有 KB 锚点也不进扫描。同时补上反向约束 `test_regulations_without_an_anchor_are_metadata_only`：没有锚点的法规不得带条款正文，否则真锚点丢了锚点会静默掉出所有扫描
 - **前端**：`ArchiveTab` 市场筛选加 越南/印尼/马来西亚/泰国/新加坡/海湾国家（UN 标签由「国际」改为「联合国」，新增 GLOBAL「国际」），卡片加领域标签（中英映射），搜索覆盖领域；`UpdatesTab` 市场筛选同步扩到 20 个并补 `markets.*` 文案（含 NZ——watchdog 有 2 个新西兰源，缺按钮时 NZ 卡片只能混在「全部」里且显示裸代码）；副标题数字改为动态（{archive}/{markets}/{sources}/{updates}）
@@ -424,7 +424,7 @@ const SessionIdSchema = z
 
 ### 2026-09-18 — 线上实测批次（回归脚本假绿 / 备份从未运行 / 3001 地雷文件 / watchdog CLI 直跑失败）
 
-- **生产回归脚本 4 处 UI 漂移 + 退出码假绿**（691a985）：`run-production-regression.ts` 对着旧上传页 UI 写的选择器全部失效——品类选择已改 Base UI Select（非原生 `<select>`）、市场按钮选中态是 `aria-pressed`（非 `bg-white/40` class）、条件问题收在 `<details>` 里默认折叠、页面有两个 `type="submit"`（页头 CTA 经 `form=` 关联 + 表单内 `#scan-submit`）；且全挂时退出码仍为 0（CI 假绿）。全部修正后 3/3 用例通过（56s/128s/153s，source=real）。默认 BASE_URL 从已退役的 `example.com`（401）改为 `twinbuddy.xyz`
+- **生产回归脚本 4 处 UI 漂移 + 退出码假绿**（691a985）：`run-production-regression.ts` 对着旧上传页 UI 写的选择器全部失效——品类选择已改 Base UI Select（非原生 `<select>`）、市场按钮选中态是 `aria-pressed`（非 `bg-white/40` class）、条件问题收在 `<details>` 里默认折叠、页面有两个 `type="submit"`（页头 CTA 经 `form=` 关联 + 表单内 `#scan-submit`）；且全挂时退出码仍为 0（CI 假绿）。全部修正后 3/3 用例通过（56s/128s/153s，source=real）。默认 BASE_URL 从已退役的 `example.com`（401）改为 `example.com`
 - **备份从未在 aliyun-sz 上运行过**（7fd8bd2）：`/etc/cron.d/attrax-backup{,-remote}` 以 `ubuntu` 用户跑，但本机只有 root/admin——cron 对不存在用户静默跳过，`/opt/attrax/backups` 与日志目录均不存在（脚本一旦运行必然创建，不存在 = 从未运行）。cron 用户改 root + 守卫测试允许列表同步；手动首跑成功（1.7M tarball）。**异地备份仍未配置**（`BACKUP_REMOTE_DEST` 空，cron 文档已注明单盘风险）
 - **孤儿 cron 清理**（服务器侧）：`attrax-uptime` 每 5 分钟跑不存在的 `uptime-check.sh`（无 MTA 静默失败）；`attrax-data-rotation` / `attrax-queue-perms` 指向已随 de-RAG 删除的 `data/scan-queue`（2>/dev/null 空转）。全部移除
 - **`/etc/nginx/sites-available/attrax` 3001 地雷**（389ee5c）：旧手工流程副本仍写 3001，任何"从 sites-available 恢复"的标准 Debian 操作都会把 502 带回来。apply-deploy [8.5] 渲染后顺手删除（仅当 sites-enabled/attrax 非软链）；PORTS.md 补记 vhost 唯一真值
@@ -501,7 +501,7 @@ const SessionIdSchema = z
 - **chore**（498eb08 + 8ded0ce + 2d8fa19 + 2bbda21）：
   - Panel 删 unused `CHECK_CATALOG` import + 删 stale hazard override + `let visibility` → `const`
   - `.gitignore` 加 `.DS_Store` / `.screenshots/regression-*/` / `规航AI-三产品完整测试包-20260914{,.zip}`（Unicode 模式 `git check-ignore` 验证匹配）
-  - `scripts/run-production-regression.ts` 3 处硬编码 `/workspace/me/attrax/...` test-package 路径 + gemini artifact dir + 3 处硬编码 prod URL 全改 `__dirname` 相对 + env override
+  - `scripts/run-production-regression.ts` 3 处硬编码本地 test-package 路径 + gemini artifact dir + 3 处硬编码 prod URL 全改 `__dirname` 相对 + env override
   - `.screenshots/_check.mjs` / `_verify.mjs` / `_verify_tabs.mjs` 删 Windows 路径 + 错误 `localhost:3001` 端口
   - `scripts/build-deploy-tarball.sh` 4 处注释 + log 行 phantom `apply-upload-fix.sh` → `/tmp/attrax-apply-deploy.sh`
   - `scripts/ecosystem.config.cjs` 删 stale "pm2 cron_restart 03:00 UTC" 注释块

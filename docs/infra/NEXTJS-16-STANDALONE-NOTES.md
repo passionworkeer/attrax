@@ -146,6 +146,6 @@ curl -sIk https://example.com/api/health                  | head -1
 ## 跨仓库参考
 
 - work 仓等价文档：`work/ops/NEXTJS-16-DEPLOYMENT-NOTES.md`
-- 内存笔记（自动加载）：`~/.claude/projects/-Users-passionworkeer-me/memory/portfolio-deploy-learnings.md`
+- 内存笔记：`memory/portfolio-deploy-learnings.md`
 - nginx 站配快照（已与服务器同步）：`docs/infra/nginx-attrax-locations.conf`
 - 完整审计历史：`docs/plans/2026-09-09-optimization-audit.md`

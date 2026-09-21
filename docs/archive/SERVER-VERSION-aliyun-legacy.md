@@ -78,7 +78,7 @@ curl -s -o /dev/null -w "%{http_code}\n" "http://127.0.0.1:3000/api/report/demo/
 # 期望: 200
 
 # 5. fonts 资源(浏览器端 PDF 必需)
-curl -s -o /dev/null -w "%{http_code}\n" "https://www.twinbuddy.xyz/fonts/NotoSansSC-Regular.ttf"
+curl -s -o /dev/null -w "%{http_code}\n" "https://www.example.com/fonts/NotoSansSC-Regular.ttf"
 # 期望: 200 (不是 404)
 
 # 6. 真实验证下载(本地 chrome headless)

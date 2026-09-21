@@ -9,7 +9,7 @@
 #   6. source_url 来自抓取 URL；docs 来自相对路径（raw_root 之下，校验越界拒绝）
 #
 # 用法：
-#   python3 scripts/build_regulation_raw_manifest.py --raw-root /workspace/me/regulation-raw \
+#   python3 scripts/build_regulation_raw_manifest.py --raw-root ./regulation-raw \
 #       --out data/regulations/_imports/regulation-raw-2026-09-19.json
 #
 # 生成的 manifest 喂给 scripts/import_regulation_docs.py --catalog <out> --copy-docs 即可入库。

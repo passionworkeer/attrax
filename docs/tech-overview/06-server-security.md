@@ -36,7 +36,7 @@
 ## HTTPS 与 nginx（`docs/infra/nginx-*.conf`）
 
 - TLS 1.2/1.3 only，强密码套件（`HIGH:!aNULL:!MD5`）。
-- Let's Encrypt cert，`/etc/letsencrypt/live/twinbuddy.xyz/{fullchain,privkey}.pem`，certbot systemd timer 自动续期。
+- Let's Encrypt cert，`/etc/letsencrypt/live/example.com/{fullchain,privkey}.pem`，certbot systemd timer 自动续期。
 - 主 vhost `docs/infra/nginx-attrax-vhost.conf`：
   - `server_name example.com www.example.com` listen 443。
   - `server_tokens off`：Server 头只显示 `nginx`。
@@ -152,19 +152,19 @@ limit_req_zone $binary_remote_addr zone=attrax_api:10m rate=10r/s;
 
 ## 关键文件清单
 
-- [`docs/SECURITY.md`](file:///workspace/me/attrax/docs/SECURITY.md)：完整安全政策。
-- [`docs/infra/README.md`](file:///workspace/me/attrax/docs/infra/README.md)：配置片段清单 + 安装方式。
-- [`docs/infra/nginx-attrax-vhost.conf`](file:///workspace/me/attrax/docs/infra/nginx-attrax-vhost.conf)：主 vhost。
-- [`docs/infra/nginx-attrax-locations.conf`](file:///workspace/me/attrax/docs/infra/nginx-attrax-locations.conf)：共享 location。
-- [`docs/infra/nginx-nginx.conf`](file:///workspace/me/attrax/docs/infra/nginx-nginx.conf)：nginx 主配置（旧机快照，仅参考）。
-- [`docs/infra/sshd-00-attrax-hardening.conf`](file:///workspace/me/attrax/docs/infra/sshd-00-attrax-hardening.conf)：sshd 加固。
-- [`docs/infra/sysctl-99-attrax-hardening.conf`](file:///workspace/me/attrax/docs/infra/sysctl-99-attrax-hardening.conf)：内核加固。
-- [`docs/infra/logrotate-attrax`](file:///workspace/me/attrax/docs/infra/logrotate-attrax)：attrax 自身日志轮转。
-- [`docs/infra/cron-attrax-backup`](file:///workspace/me/attrax/docs/infra/cron-attrax-backup) + [`-remote`](file:///workspace/me/attrax/docs/infra/cron-attrax-backup-remote)：备份 cron。
-- [`scripts/backup-data.sh`](file:///workspace/me/attrax/scripts/backup-data.sh) + [`backup-remote.sh`](file:///workspace/me/attrax/scripts/backup-remote.sh)：备份脚本。
-- [`lib/rate-limit.ts`](file:///workspace/me/attrax/lib/rate-limit.ts)：BFF 限流。
-- [`lib/upload-validation.ts`](file:///workspace/me/attrax/lib/upload-validation.ts)：上传校验。
-- [`lib/pipeline/session-auth.ts`](file:///workspace/me/attrax/lib/pipeline/session-auth.ts)：会话 token。
+- [`docs/SECURITY.md`](docs/SECURITY.md)：完整安全政策。
+- [`docs/infra/README.md`](docs/infra/README.md)：配置片段清单 + 安装方式。
+- [`docs/infra/nginx-attrax-vhost.conf`](docs/infra/nginx-attrax-vhost.conf)：主 vhost。
+- [`docs/infra/nginx-attrax-locations.conf`](docs/infra/nginx-attrax-locations.conf)：共享 location。
+- [`docs/infra/nginx-nginx.conf`](docs/infra/nginx-nginx.conf)：nginx 主配置（旧机快照，仅参考）。
+- [`docs/infra/sshd-00-attrax-hardening.conf`](docs/infra/sshd-00-attrax-hardening.conf)：sshd 加固。
+- [`docs/infra/sysctl-99-attrax-hardening.conf`](docs/infra/sysctl-99-attrax-hardening.conf)：内核加固。
+- [`docs/infra/logrotate-attrax`](docs/infra/logrotate-attrax)：attrax 自身日志轮转。
+- [`docs/infra/cron-attrax-backup`](docs/infra/cron-attrax-backup) + [`-remote`](docs/infra/cron-attrax-backup-remote)：备份 cron。
+- [`scripts/backup-data.sh`](scripts/backup-data.sh) + [`backup-remote.sh`](scripts/backup-remote.sh)：备份脚本。
+- [`lib/rate-limit.ts`](lib/rate-limit.ts)：BFF 限流。
+- [`lib/upload-validation.ts`](lib/upload-validation.ts)：上传校验。
+- [`lib/pipeline/session-auth.ts`](lib/pipeline/session-auth.ts)：会话 token。
 
 ## 已知风险（按 `docs/SECURITY.md §Known limitations`）
 

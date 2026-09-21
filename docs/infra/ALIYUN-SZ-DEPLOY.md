@@ -15,7 +15,7 @@
 | **aliyun-sz**（生产） | root（`id_ed25519`） | 203.0.113.10 | attrax nextjs:3000 + rag-service:8001 + regwatch；nginx 80→443，HTTPS 复用 twinbuddy 证书。端口单一来源 = `scripts/ports.env`（见 §4.4） |
 | **lighthouse**（仅 portfolio/study/monitor） | ubuntu（`lighthouse_seoul_new`） | 198.51.100.20 | portfolio nextjs:3002 + study/monitor 静态站。**attrax 不再跑** |
 
-实例 `Ubuntu-lrtz`（`instance_placeholder`）2026-10-11 到期，**必须续费**（这是 attrax 的生产机）。
+实例 `Ubuntu-lrtz`（`instance-id-placeholder`）2026-10-11 到期，**必须续费**（这是 attrax 的生产机）。
 
 阿里云安全组默认放行 22/80/443。
 
@@ -60,7 +60,7 @@
 - **端口**：nextjs `3000`、rag-service `8001`（与 lighthouse 相同）。⚠️ 2026-09-18 之前本文档曾写"端口偏移 3001/8002 避免与 LabMemory 撞车"——LabMemory 已于 2026-09-18 退役，偏移前提消失；且实际部署的 ecosystem 从未改过端口，nginx 照旧文档写 3001 直接导致全站 502（见 §4.4）。现在端口只认 `scripts/ports.env`
 - **Python venv**：3.12（lighthouse 是 3.10）—— 不可移植，必须 aliyun-sz 上重建
 - **nginx**：直接 listen 80/443（lighthouse 上 80/443 是 attrax 专用，aliyun-sz 上原本是 twinbuddy，迁移后 attrax 接管）
-- **证书**：复用 `/etc/letsencrypt/live/twinbuddy.xyz/`，server_name = `twinbuddy.xyz www.twinbuddy.xyz 203.0.113.10 example.com`
+- **证书**：复用 `/etc/letsencrypt/live/example.com/`，server_name = `example.com www.example.com 203.0.113.10 example.com`
 
 ---
 
@@ -73,9 +73,9 @@
 #    服务器侧靠 bundle / scp 同步源码，落后 HEAD 会让运行时缺改动）
 git push origin main
 
-# 1. mac 本地：build + 打包 tarball
-cd /workspace/me/attrax
-npm run build                            # 必须本地 build（aliyun-sz 1.6G 内存 build OOM）
+# 1. 本地：build + 打包 tarball
+cd /path/to/attrax
+npm run build                            # 必须本地 build（服务器内存紧张）
 bash scripts/build-deploy-tarball.sh     # → /tmp/attrax-deploy-complete.tar.gz
                                           #    含 standalone + static + public + .deployed + .build-sha
 
@@ -138,7 +138,7 @@ ssh aliyun-sz 'curl -sS -o /dev/null -w "HTTP %{http_code} | %{time_total}s\n" h
 ssh aliyun-sz 'curl -s http://127.0.0.1:8001/ready | python3 -m json.tool'
 
 # 公网（要看证书域名匹配）
-curl -skS -o /dev/null -w "HTTP %{http_code}\n" https://twinbuddy.xyz/api/health
+curl -skS -o /dev/null -w "HTTP %{http_code}\n" https://example.com/api/health
 curl -skS -o /dev/null -w "HTTP %{http_code}\n" https://203.0.113.10/api/health   # 证书域名不匹配警告但可用
 ```
 
@@ -180,16 +180,16 @@ upstream attrax_nextjs {
 
 server {  # HTTP → HTTPS redirect
     listen 80; listen [::]:80;
-    server_name twinbuddy.xyz www.twinbuddy.xyz 203.0.113.10 example.com;
+    server_name example.com www.example.com 203.0.113.10 example.com;
     location /.well-known/acme-challenge/ { root /var/www/acme-challenge; try_files $uri =404; }
     location / { return 301 https://$host$request_uri; }
 }
 
 server {  # HTTPS
     listen 443 ssl http2; listen [::]:443 ssl http2;
-    server_name twinbuddy.xyz www.twinbuddy.xyz 203.0.113.10;
-    ssl_certificate     /etc/letsencrypt/live/twinbuddy.xyz/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/twinbuddy.xyz/privkey.pem;
+    server_name example.com www.example.com 203.0.113.10;
+    ssl_certificate     /etc/letsencrypt/live/example.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem;
     # ... + attrax-locations.conf（与 lighthouse 同源）
 }
 ```
@@ -218,7 +218,7 @@ ufw allow 443/tcp   # HTTPS
 
 2. **部署时强制刷新**：apply-deploy.sh 每次部署都重渲染 vhost + `nginx -t` + reload（[8.5]），并用 `pm2 startOrRestart`（不是裸 restart）让 pm2 重读 ecosystem——手改的端口一律被覆盖回真值。[0] 步骤发现 vhost 与 ports.env 漂移时打 WARN。
 
-3. **运行时自愈**：systemd timer `attrax-healthcheck.timer`（60s 一次）curl `https://twinbuddy.xyz/api/health`（走公网域名，覆盖 nginx 这一环）：
+3. **运行时自愈**：systemd timer `attrax-healthcheck.timer`（60s 一次）curl `https://example.com/api/health`（走公网域名，覆盖 nginx 这一环）：
    - 连续 3 次失败 → level2：用 render 脚本重写 vhost + `nginx -t` + reload
    - 连续 6 次失败 → level3：`pm2 restart nextjs`
    - 连续 12 次失败 → level4：`pm2 restart rag-service nextjs`
@@ -344,10 +344,10 @@ ssh aliyun-sz 'cd /opt/attrax && PYTHONPATH=. .venv/bin/python -c \
 ## 10. 待办
 
 1. **2026-10-11 前**给 aliyun-sz 续费（迁移后这条更要紧：实例过期 attrax 整站下线）
-2. ~~**`example.com` DNS 切换**~~ —— **2026-09-20 决定不做**：主域名由 lighthouse 上的 portfolio 承接（HTTPS 已配好，vhost `sites-available/example.com`）。attrax 的公开入口 = `twinbuddy.xyz` / IP。
+2. ~~**`example.com` DNS 切换**~~ —— **2026-09-20 决定不做**：主域名由 lighthouse 上的 portfolio 承接（HTTPS 已配好，vhost `sites-available/example.com`）。attrax 的公开入口 = `example.com` / IP。
 3. **数据备份异地化**：`scripts/backup-remote.sh`（lighthouse 时代）需重新校准目标，aliyun-sz 上验证一次自动跑
 4. **regwatch 健康持续监测**：30 个 source（09-17 审计后）全 healthy；接入告警（runbook §7）
-5. ~~**访问域名 cert 不匹配告警**~~ —— 已消解（2026-09-20）：`example.com` 不再指向 aliyun-sz（改由 lighthouse 的 portfolio 承接）；`twinbuddy.xyz` 无 warning。
+5. ~~**访问域名 cert 不匹配告警**~~ —— 已消解（2026-09-20）：`example.com` 不再指向 aliyun-sz（改由 lighthouse 的 portfolio 承接）；`example.com` 无 warning。
 
 ---
 

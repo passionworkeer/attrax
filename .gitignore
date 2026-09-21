@@ -36,6 +36,7 @@ npm-debug.log*
 test_scan.json
 lib/i18n-server.ts
 docs/competitions/
+docs/evidence/
 
 # debug
 npm-debug.log*

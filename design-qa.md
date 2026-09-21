@@ -6,9 +6,9 @@
 
 ## 源参考
 
-- 原始材质参考：`C:\workspace\Documents\Codex\2026-09-17\new-chat-3\outputs\glass-target-reference.png`
-- 方形玻璃参考实现：`C:\workspace\Documents\Codex\2026-09-17\new-chat-3\outputs\score-square-glass-preview.html`
-- 集成对照页：`C:\workspace\Documents\Codex\2026-09-17\new-chat-3\outputs\integration-design-qa-comparison.html`
+- 原始材质参考：`references/glass-target-reference.png`
+- 方形玻璃参考实现：`references/score-square-glass-preview.html`
+- 集成对照页：`references/integration-design-qa-comparison.html`
 
 ## 实现截图
 

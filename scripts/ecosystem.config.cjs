@@ -108,20 +108,6 @@ module.exports = {
       },
     },
     {
-      name: "portfolio",
-      cwd: "/opt/portfolio/.next/standalone",
-      script: "server.js",
-      interpreter: "node",
-      max_memory_restart: "512M",
-      autorestart: true,
-      env: {
-        NODE_ENV: "production",
-        PORT: String(PORTS.PORTFOLIO_PORT),
-        HOSTNAME: "127.0.0.1",
-        NEXT_PUBLIC_APP_URL: "https://resume.example.com",
-      },
-    },
-    {
       // Feature 3: 法规自动更新 watchdog。2026-09-13 决定改成常驻 daemon —
       // pm2 cron_restart 只作用于 online 进程，单次跑完退出的 app 进 stopped
       // 态后不会重新拉起。调度改为 orchestrator 内部 sleep 循环

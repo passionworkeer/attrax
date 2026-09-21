@@ -1,11 +1,22 @@
 # 火鹰合规 (Attrax)
 
-> **跨境电商合规风险扫描** —— 上传产品图，AI 识别类别与目标市场，结合多市场法规知识库生成带精确引用的合规报告。
+> **跨境电商合规风险扫描** —— 上传产品图，AI 识别类别与目标市场，结合多市场法规知识库生成带精确引用的合规报告与证据包。
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Live Demo](https://img.shields.io/badge/Demo-在线体验-blue)](https://twinbuddy.xyz)
 [![CI](https://img.shields.io/badge/CI-passing-brightgreen)](#)
 [![Python](https://img.shields.io/badge/Python-3.10+-blue)](#)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black)](#)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-blue)](#)
+
+---
+
+### 🌐 在线体验 (Live Demo)
+
+👉 **官方在线演示：[https://twinbuddy.xyz](https://twinbuddy.xyz)**  
+欢迎访问体验完整功能！无需本地配置环境即可直接体验产品图上传、智能品类/特征识别、多市场合规条款匹配与证据包生成流程。
+
+---
 
 ## 这是什么
 
@@ -28,7 +39,7 @@ Attrax 是一个面向跨境电商卖家的合规风险扫描平台。用户上�
 
 - Node.js 18+ / npm
 - Python 3.10+
-- macOS / Linux（生产部署为 Ubuntu 22.04）
+- macOS / Linux（生产部署推荐 Ubuntu 22.04）
 
 ### 1. 启动 RAG 服务（端口 8001）
 
@@ -59,7 +70,9 @@ npm run lint         # ESLint
 
 ### 4. 一键演示
 
-上传项目内置的 `public/mock-fixtures/preset-charger-photo.png` 或玩具示例图 → 等 ~30s → 进入结果页 → 点「下载证据包」看 PDF。
+在浏览器打开 `http://localhost:3000`，上传项目内置的 `public/mock-fixtures/preset-charger-photo.png` 或玩具示例图 → 等待扫描完成 → 进入结果页 → 点击「下载证据包」查看 PDF。
+
+亦可直接访问在线演示站点：**[https://twinbuddy.xyz](https://twinbuddy.xyz)**。
 
 ## 架构
 
@@ -139,63 +152,56 @@ attrax/
 │   └── tests/                    # pytest
 ├── data/                         # 法规语料 + 视觉 profile + 会话
 ├── tests/                        # 前端测试（vitest + Playwright）
-├── docs/                         # 架构 / 部署 / 计划 / 评审证据
+├── docs/                         # 架构 / 部署 / 计划 / 技术全景
 ├── scripts/                      # 运维脚本（deploy / ingest / watchdog / eval）
 └── public/                       # 静态资源
 ```
 
-## 开发流程
+## 贡献与规范
 
-- **分支约定**：`feature/<name>` / `fix/<name>` / `chore/<name>` / `docs/<name>`
-- **提交粒度**：单一关注点（一个修复 / 一个新增功能 / 一次文档同步）
-- **测试**：vitest 单元 + pytest 后端 + Playwright E2E；CI 在 `.github/workflows/ci.yml`
-- **代码规范**：TypeScript strict、ESLint、Ruff（Python 后端）
+我们欢迎社区贡献！无论是修复缺陷、优化算法还是扩充法规库，都非常感谢您的参与。
+
+- **开发与贡献流程**：请查阅 [CONTRIBUTING.md](./CONTRIBUTING.md) 了解分支约定、提交信息格式与 PR 规范。
+- **分支约定**：`feat/<name>` / `fix/<name>` / `chore/<name>` / `docs/<name>`
+- **提交规范**：Conventional Commits 格式
+- **代码检查**：TypeScript strict、ESLint、Ruff（Python 后端）
+- **测试要求**：发起 PR 前确保 `npm run test` 与 `npm run typecheck` 100% 通过
 
 ## 部署
 
-生产环境是阿里云深圳 aliyun-sz（`203.0.113.10`），通过 git push 到 origin + 本地构建 tarball + 服务器整包替换：
+项目支持基于 Node.js 16 Standalone 与 FastAPI 的轻量化生产部署，可通过本地构建 tarball 并上传至目标服务器整包替换：
 
 ```bash
-# 0) 把代码推到 origin（部署脚本不会自己 git pull，落后会缺改动）
-git push origin main
-
 # 1) 本地：构建 + stage + 打包 + 校验（把 .next/static 与 public/ 一起放进 standalone/）
 bash scripts/build-deploy-tarball.sh                     # 产物 /tmp/attrax-deploy-complete.tar.gz
 
-# 2) 传到服务器
-scp /tmp/attrax-deploy-complete.tar.gz aliyun-sz:/tmp/
+# 2) 传到目标服务器
+scp /tmp/attrax-deploy-complete.tar.gz user@your-server:/tmp/
 
 # 3) 服务器：整包替换 .next/standalone/ + 自愈 static symlink + 写 BUILD_ID + 重启
-ssh aliyun-sz 'bash /tmp/attrax-apply-deploy.sh'
-# apply-deploy.sh [8.5] 会重新渲染 /etc/nginx/sites-enabled/attrax + nginx -t + reload，
-# 并在缺少 limit_conn_zone 时自动注入（2026-09-18 H10 自愈）—— 不要手动改服务器 nginx
+ssh user@your-server 'bash /tmp/attrax-apply-deploy.sh'
 
-# 4) 若改了 Python（rag_service/），另需在服务器上 git fast-forward 后重启 rag-service
-ssh aliyun-sz 'cd /opt/attrax && git fetch --prune origin && git reset --hard origin/main && pm2 restart rag-service --update-env'
+# 4) 若更新了 Python 后端（rag_service/），在服务器拉取后重启服务
+ssh user@your-server 'cd /opt/attrax && git pull && pm2 restart rag-service --update-env'
 
 # 5) 健康校验（必须 ready=true 且 checks 六项全 true）
-ssh aliyun-sz 'curl -s http://127.0.0.1:8001/api/v1/ready | python3 -m json.tool'
+ssh user@your-server 'curl -s http://127.0.0.1:8001/api/v1/ready | python3 -m json.tool'
 ```
 
-要点：部署单位是**整个 `standalone/` 目录**（由 `build-deploy-tarball.sh` 产出、`attrax-apply-deploy.sh` 消费），不是零散文件；旧目录会被挪成 `.next/standalone-pre-deploy-<stamp>` 保留一份用于回滚（每次只保留最近一份，旧的在 deploy 时删除；今天的实践）。`public/` 与 `.next/static/` **不需要**单独 symlink 或 rsync —— 前者已打进 tarball，后者由 apply 脚本维护 `/.next/static -> standalone/.next/static` 软链。
+详细生产部署细节见 [`docs/README.md`](./docs/README.md) §生产部署 与 [`docs/infra/`](./docs/infra/)。
 
-> `RAG_INTERNAL_SECRET` 不再手工从 `rag_service/.env` grep 出来注入。两端统一从
-> `/opt/attrax/.rag-internal-secret`（`600`）读取，由 `scripts/ecosystem.config.cjs`
-> 注入到 `rag-service` 与 `nextjs`，缺文件即启动失败（fail-closed）。轮换见
-> [`docs/SECURITY.md`](./docs/SECURITY.md) §Key management。
+## 开源协议 (License)
 
-详细步骤与 Next 16 standalone 的坑见 [`docs/README.md`](./docs/README.md) §生产部署 与 [`docs/infra/NEXTJS-16-STANDALONE-NOTES.md`](./docs/infra/NEXTJS-16-STANDALONE-NOTES.md)。
+本项目遵循 [MIT License](./LICENSE) 开源协议。任何人均可免费使用、复制、修改、合并、发布、分发及销售本软件副本。
 
-## 引用
+## 相关文档
 
-- AI 协作说明 → [CLAUDE.md](./CLAUDE.md)
-- 架构设计 → [docs/plans/](./docs/plans/)（特别是 `2026-09-11-de-rag-evidence-spec.md` 与 `2026-09-14-judge-review-and-optimization-plan.md`）
-- API 契约 → [docs/FRONTEND-BACKEND-INTEGRATION.md](./docs/FRONTEND-BACKEND-INTEGRATION.md)
-- 历史事故 / 修复记录 → [CHANGELOG.md](./CHANGELOG.md)
-- 2026-09-18 全栈并发加固批次（前端 BFF 流式转发 / RAG 幂等 + 准入 / watchdog httpx 池 / nginx limit_conn / sysctl TIME_WAIT / pm2 drain / 备份快照）→ [CHANGELOG.md](./CHANGELOG.md) 「并发加固总批次」段 + 真实 HTTP 验证证据 [docs/evidence/2026-09-18-concurrency-hardening/](./docs/evidence/2026-09-18-concurrency-hardening/)
-- 部署文档 → [docs/README.md](./docs/README.md) §生产部署 + [docs/infra/](./docs/infra/)
-- 当前优化方向 → [docs/plans/2026-09-14-judge-review-and-optimization-plan.md](./docs/plans/2026-09-14-judge-review-and-optimization-plan.md)（11 节 J01–J11；J01 / J02 / J04–J07 / J09 / J10 / J11 已实施；J03 ViewModel + J15 合并证据请求随 2026-09-14 落地；J08 留待 spec 收尾）
-
----
-
-**最后更新**：2026-09-19
+- [在线体验站点](https://twinbuddy.xyz)
+- [贡献指南 (CONTRIBUTING.md)](./CONTRIBUTING.md)
+- [开源协议 (LICENSE)](./LICENSE)
+- [AI 协作规范 (CLAUDE.md)](./CLAUDE.md)
+- [技术全景总览 (docs/tech-overview)](./docs/tech-overview/README.md)
+- [API 契约文档 (docs/FRONTEND-BACKEND-INTEGRATION.md)](./docs/FRONTEND-BACKEND-INTEGRATION.md)
+- [变更与事故修复日志 (CHANGELOG.md)](./CHANGELOG.md)
+- [生产部署与架构指引 (docs/README.md)](./docs/README.md)
+- [安全规范说明 (docs/SECURITY.md)](./docs/SECURITY.md)

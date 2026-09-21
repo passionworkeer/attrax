@@ -40,8 +40,8 @@
 
 ### 1.1 [新发现·高] `lib/pipeline/scan.ts` (470) + `scan-queue.ts` (467) 整条管线是死代码
 - **位置**:
-  - `/workspace/me/attrax/lib/pipeline/scan.ts`
-  - `/workspace/me/attrax/lib/pipeline/scan-queue.ts`
+  - `lib/pipeline/scan.ts`
+  - `lib/pipeline/scan-queue.ts`
 - **现状**: 这两个文件组成的 ~937 行管线**在生产代码中没有任何路由引用**。
   - `runScan` 仅被 `scan-queue.ts` 导入
   - `enqueueScan` 在生产代码中**完全无引用**
@@ -55,7 +55,7 @@
   4. 同步更新 README/CLAUDE.md/PROJECT_ANALYSIS.md
 
 ### 1.2 [CLAUDE.md 已隐含·高] `components/upload/UploadForm.tsx` 整文件为死代码
-- **位置**: `/workspace/me/attrax/components/upload/UploadForm.tsx` (509 行)
+- **位置**: `components/upload/UploadForm.tsx` (509 行)
 - **现状**:
   - 文件顶部第 11 行 `@deprecated Do not re-enable or import into a page.` 显式标记
   - 被 `app/upload/page.tsx` 完全弃用（新版是直接 inline 的 CompliPilot flow）
@@ -67,9 +67,9 @@
 
 ### 1.3 [新发现·中] `LegacyResultView` / `DegradedBanner` / `SourceNotice` 组件未被任何路由渲染
 - **位置**:
-  - `/workspace/me/attrax/components/result/LegacyResultView.tsx` (90 行)
-  - `/workspace/me/attrax/components/result/DegradedBanner.tsx`
-  - `/workspace/me/attrax/components/result/SourceNotice.tsx`
+  - `components/result/LegacyResultView.tsx` (90 行)
+  - `components/result/DegradedBanner.tsx`
+  - `components/result/SourceNotice.tsx`
 - **现状**:
   - `LegacyResultView` 只在 `tests/unit/result-imagecarousel-legacy.test.tsx` 出现，没有任何 app/page 渲染它
   - `DegradedBanner` 整个 `result/` 目录下**零引用**（仅 `lib/rag-client/errors.ts` 注释提及）。CLAUDE.md P0-1 提到加红色 `DegradedBanner`，但实际渲染实现缺失
@@ -93,7 +93,7 @@
   3. 从 `requirements.txt` 删同条目
 
 ### 1.5 [新发现·低] `lib/pipeline/upload-storage.ts` 在生产路径上仍部分被引用但语义变化
-- **位置**: `/workspace/me/attrax/lib/pipeline/upload-storage.ts`
+- **位置**: `lib/pipeline/upload-storage.ts`
 - **现状**:
   - `lib/pipeline/scan.ts` 调 `logUserActivity`（死代码）
   - `scan-queue.ts` 也调 `logUserActivity`（死代码）
@@ -104,7 +104,7 @@
 - **建议方案**: 给 upload-storage 顶部加 `@deprecated` 或注释说明"仅在 `lib/pipeline/scan.ts` 链路使用，主路径走 RAG FileBackend"
 
 ### 1.6 [新发现·中] 前端未使用的 npm 依赖（package.json 冗余）
-- **位置**: `/workspace/me/attrax/package.json`
+- **位置**: `package.json`
 - **现状**: 通过 `grep -rln "from 'X'"` 确认下列包在前端代码中**零引用**：
   - `@google/generative-ai@^0.24.1`（仅在 lockfile 与 docs 中提到）
   - `@fingerprintjs/fingerprintjs@^5.2.0`（CLAUDE.md 提到限流客户端指纹改多维度，但实际代码用 `request.headers` 多维哈希，CLAUDE.md 第 359 行 P1-6）
@@ -117,7 +117,7 @@
 
 ### 1.7 [CLAUDE.md 已记录·中] Python 后端 `requirements.txt` 冗余 500+ 条
 - **位置**:
-  - `/workspace/me/attrax/rag_service/requirements.txt` (563 行)
+  - `rag_service/requirements.txt` (563 行)
   - `requirements-prod.txt` (62 行)
   - `requirements-dev.txt` (5 行)
 - **现状**: `requirements.txt` 包含 tensorflow / torch / jupyter / selenium / whisper / cohere / google-genai / google-generativeai 等 RAG 服务从不 import 的包（CLAUDE.md L338 已记录）。Docker 用 `requirements-prod.txt` 已隔离
@@ -129,7 +129,7 @@
   - 删 `requirements.txt`（保留改名 `requirements-snapshot.txt`）
 
 ### 1.8 [新发现·低] Demo 数据仍固化在 `app/api/regulations/updates/data.ts`
-- **位置**: `/workspace/me/attrax/app/api/regulations/updates/data.ts` (1020 行)
+- **位置**: `app/api/regulations/updates/data.ts` (1020 行)
 - **现状**: 文件第 1-5 行注释"Static demo data. ... curated examples and are not fetched or verified live."——是硬编码示例数据，但文件 1020 行超过 CLAUDE.md 第 271 行的 800 行阈值
 - **影响**: 低（功能正常但维护负担）
 - **修复成本**: 中（拆分需保持类型一致）
@@ -149,7 +149,7 @@
   - **长期**: 拆 worker 为 pool
 
 ### 2.2 [CLAUDE.md 已记录但有残留·中] `agent_trace` 在 Send() fan-out + refine 循环下的乘法风险
-- **位置**: `/workspace/me/attrax/rag_service/orchestrator/nodes/generator.py:225`
+- **位置**: `rag_service/orchestrator/nodes/generator.py:225`
 - **现状**:
   - `state.py` 第 5-17 行注释明示"节点 MUST 返回仅新 entry"
   - 但 `generator.py:225` 仍有 `full_trace = state.get("agent_trace", []) + [trace_entry]`
@@ -166,7 +166,7 @@
   明确隔离两个用途。或在 line 225 加注释"DO NOT return full_trace from this function — see state.py audit 2026-06-29"
 
 ### 2.3 [新发现·中] `lib/pipeline/session-store.ts` 同步 fs 在 polling 高频路径
-- **位置**: `/workspace/me/attrax/lib/pipeline/session-store.ts:185-203` (`persistSession`)；调用方 `/workspace/me/attrax/lib/pipeline/scan.ts:160, 166, 172, 252, 256, 277, 283, 451`
+- **位置**: `lib/pipeline/session-store.ts:185-203` (`persistSession`)；调用方 `lib/pipeline/scan.ts:160, 166, 172, 252, 256, 277, 283, 451`
 - **现状**:
   - 每次 `updateSession()` 触发同步 `writeJsonAtomic` + 3 次 `renameSync` 失败重试
   - 扫描期间多次调用
@@ -190,7 +190,7 @@
   2. 移除原 95MB 文件需运维审批
 
 ### 2.5 [新发现·中] `app/result/[sessionId]/page.tsx` 1200 行（超大客户端组件）
-- **位置**: `/workspace/me/attrax/app/result/[sessionId]/page.tsx` (1200 行, "use client")
+- **位置**: `app/result/[sessionId]/page.tsx` (1200 行, "use client")
 - **现状**:
   - 单文件超 CLAUDE.md L271 的 800 行阈值三倍
   - 含"扫描结果视图模型合成 + 渲染 + i18n + 下载按钮"
@@ -203,14 +203,14 @@
   3. 把视图模型拆为多个 memo 子组件
 
 ### 2.6 [新发现·低] `lib/i18n/translations.ts` 775 行硬编码字典
-- **位置**: `/workspace/me/attrax/lib/i18n/translations.ts`
+- **位置**: `lib/i18n/translations.ts`
 - **现状**: zh + en 静态字典放单文件，超过 800 行阈值就触发违规。`scripts/check_i18n_consistency.py` 已对账
 - **影响**: 低
 - **修复成本**: 低
 - **建议方案**: 按 namespace 拆分（`translations/common.ts`、`home.ts`、`upload.ts` 等）
 
 ### 2.7 [新发现·低] `application/scans.py:621` `_normalize_result` 一次解析大量字典
-- **位置**: `/workspace/me/attrax/rag_service/application/scans.py:527-621`
+- **位置**: `rag_service/application/scans.py:527-621`
 - **现状**: 函数 95 行（超 50 行阈值）；内嵌 `_camelize` 递归 + 多种 `_nested` 调用
 - **影响**: 低
 - **修复成本**: 低
@@ -226,11 +226,11 @@
 - **建议**: 保持现状；E2E 测试覆盖应监控（`tests/e2e/api-integration.spec.ts`）
 
 ### 3.2 [CLAUDE.md 已记录·低] Bearer token 仅从 Authorization 读
-- **位置**: `/workspace/me/attrax/lib/pipeline/session-auth.ts:21-30`
+- **位置**: `lib/pipeline/session-auth.ts:21-30`
 - **现状**: 仅 `Bearer` header；查询字符串 token 显式禁止。`tests/unit/session-auth.test.ts` 有回归测试。已合规
 
 ### 3.3 [新发现·中] `rag_service/api/v1.py` 路径白名单缺失
-- **位置**: `/workspace/me/attrax/rag_service/api/v1.py:39-54`
+- **位置**: `rag_service/api/v1.py:39-54`
 - **现状**:
   - `_IMAGE_TYPES`、`_DOCUMENT_TYPES` 白名单仅做 mime 校验，**但没有限制文件扩展名的白名单字符集**
   - `_SESSION_ID` 用正则 `^scan_[A-Za-z0-9_-]{1,64}$` 防注入（已做）
@@ -242,7 +242,7 @@
   - 消除三处重复（`scans.py:22`、`v1.py:39`、`app/api/scan/route.ts:26`）
 
 ### 3.4 [新发现·中] `app/api/scan/route.ts` 非 prod 下 accessToken 通过 JSON 返回
-- **位置**: `/workspace/me/attrax/app/api/scan/route.ts:218-220`
+- **位置**: `app/api/scan/route.ts:218-220`
 - **现状**:
   - `if (process.env.NODE_ENV !== "production") payload.accessToken = created.accessToken;`
   - dev/staging 把 token 写进响应体，可能被误部署到 prod
@@ -256,18 +256,18 @@
   显式 opt-in；或仅在 `process.env.VERCEL_ENV !== "production"`
 
 ### 3.5 [CLAUDE.md P1-6 已记录·低] middleware.ts `RATE_LIMIT_TRUST_XFF` 默认关闭
-- **位置**: `/workspace/me/attrax/lib/rate-limit.ts:58-61`
+- **位置**: `lib/rate-limit.ts:58-61`
 - **现状**: 默认 `false`，多维指纹降级到 UA+accept-language+accept-encoding 哈希。已合规
 
 ### 3.6 [新发现·低] CORS 白名单默认值仅 localhost
-- **位置**: `/workspace/me/attrax/rag_service/config.py:64-69`
+- **位置**: `rag_service/config.py:64-69`
 - **现状**: `RAG_ALLOWED_ORIGINS` 默认 `http://localhost:3000,http://127.0.0.1:3000`。生产需手动设
 - **影响**: 中（部署时漏设会让前端跨域失败但不会泄露数据）
 - **修复成本**: 低
 - **建议方案**: 部署脚本（`scripts/deploy.sh`）强校验 prod env 含此变量，缺则 fail
 
 ### 3.7 [新发现·中] CSP `'unsafe-inline'` for scripts/styles 始终开启
-- **位置**: `/workspace/me/attrax/middleware.ts:23-24`
+- **位置**: `middleware.ts:23-24`
 - **现状**:
   - `script-src 'self' 'unsafe-inline'` + `style-src 'self' 'unsafe-inline'`
   - 始终放开 inline script/style，与注释"生产保持严格,不加 'unsafe-eval'"自相矛盾
@@ -277,7 +277,7 @@
 - **建议方案**: 引入 nonce 化 CSP（Next.js 16 支持 `useServerActions`），分阶段去掉 `'unsafe-inline'`
 
 ### 3.8 [新发现·低] `app/api/scan/route.ts` FormData entry name 大小未单独限制
-- **位置**: `/workspace/me/attrax/app/api/scan/route.ts:111-112`
+- **位置**: `app/api/scan/route.ts:111-112`
 - **现状**:
   - `formData.getAll("images").filter(isFile)` 假设所有上传都是 file
   - 客户端 `category`/`markets`/`query` 用 `String(formData.get(...))` 转
@@ -288,7 +288,7 @@
 - **建议方案**: 保持现状
 
 ### 3.9 [新发现·中] `lib/pipeline/scan.ts` demo 模式 `result: { source: "fallback" }` 易给真实用户呈现假成功
-- **位置**: `/workspace/me/attrax/lib/pipeline/scan.ts:252-265`
+- **位置**: `lib/pipeline/scan.ts:252-265`
 - **现状**:
   - rag 不可用时 `updateSession({ status: "degraded", degradedReason: errorCode, progress: 100, result: createMockComplianceReportResult() })`
   - 把 mock 数据塞进 result
@@ -302,7 +302,7 @@
 
 ### 4.1 [现状·低] 端到端覆盖相对充分
 - **位置**:
-  - `/workspace/me/attrax/tests/unit/` (67 个测试文件)
+  - `tests/unit/` (67 个测试文件)
   - `tests/e2e/` (8 个 spec 文件)
   - `rag_service/tests/` (46 个 pytest 文件)
 - **现状**: 前端 vitest 67 个 + Playwright 8 个 + pytest 46 个 = ~120 个测试文件。CLAUDE.md 提到 pytest 327/328 通过 + 1 pre-existing failure
@@ -310,7 +310,7 @@
 
 ### 4.2 [新发现·中] `compliance.ts` / `decision.ts` / `roadmap.ts` export 模块无 vitest 覆盖
 - **位置**:
-  - `/workspace/me/attrax/lib/report-export-modules/compliance.ts`
+  - `lib/report-export-modules/compliance.ts`
   - `decision.ts`
   - `roadmap.ts`
 - **现状**:
@@ -323,7 +323,7 @@
 
 ### 4.3 [新发现·中] `profit-report.ts` / `report-package.ts` 关键合成逻辑覆盖不足
 - **位置**:
-  - `/workspace/me/attrax/lib/pipeline/profit-report.ts` (813 行)
+  - `lib/pipeline/profit-report.ts` (813 行)
   - `report-package.ts`
 - **现状**:
   - `profit-report.test.ts`、`profit-report-structured-fields.test.ts`、`profit-report-synthesized-finance.test.ts`、`profit-report-view.test.tsx`、`profit-render-model.test.ts`、`reporting-real-profit.test.ts` 覆盖一些
@@ -333,12 +333,12 @@
 - **建议方案**: 补 `tests/unit/profit-report-fallback-edge.test.ts`（覆盖：原 package 缺失 `profitReport`/`markdown` 字段 / 空字符串 / 中文 unicode 字符）
 
 ### 4.4 [新发现·低] `lib/pipeline/upload-validation.ts` 边界用例可能不够
-- **位置**: `/workspace/me/attrax/lib/upload-validation.ts`
+- **位置**: `lib/upload-validation.ts`
 - **现状**: 仅 `tests/unit/upload-validation.test.ts`；PNG/JPEG/WebP 魔术字节 + 文件大小限制已覆盖
 - **建议**: 加 polyglot file attack 测试（一个声称 `image/jpeg` 但头是 PDF 字节）
 
 ### 4.5 [新发现·中] `rag_service/api/v1.py` zip bomb / DOCX zip bomb 测试
-- **位置**: `/workspace/me/attrax/rag_service/api/v1.py:36-38`
+- **位置**: `rag_service/api/v1.py:36-38`
 - **现状**:
   - `MAX_DOCX_EXPANDED_SIZE = 50MB`、`MAX_DOCX_MEMBERS = 500` 等限额已设
   - 但 `test_api_v1.py` 是否覆盖 zip bomb 攻击不清楚
@@ -347,12 +347,12 @@
 - **建议方案**: 加 `tests/test_zip_bomb_docx.py`，构造一个解压率 1:1000 的恶意 DOCX
 
 ### 4.6 [新发现·低] `lib/pipeline/scan-queue.ts` 测试覆盖了 dead code
-- **位置**: `/workspace/me/attrax/tests/unit/scan-queue.test.ts`
+- **位置**: `tests/unit/scan-queue.test.ts`
 - **现状**: 467 行的 dead code 有完整测试
 - **建议**: 跟随 1.1 删除
 
 ### 4.7 [新发现·低] 压力测试仅 smoke/load 两档
-- **位置**: `/workspace/me/attrax/tests/pressure/` (3 个脚本)
+- **位置**: `tests/pressure/` (3 个脚本)
 - **现状**: `package.json` 提供 `npm run test:pressure` 和 `test:pressure:load`；未在 CI 强制运行
 - **建议**: CI 在 nightly job 跑 `test:pressure:load`，防止 7-18 事故重现
 
@@ -441,7 +441,7 @@
   2. CLAUDE.md 加一段"当前生产路径 vs 旧路径"明示
 
 ### 6.2 [新发现·低] `PROJECT_ANALYSIS.md:145` 列待办但实际已完成
-- **位置**: `/workspace/me/attrax/PROJECT_ANALYSIS.md`
+- **位置**: `PROJECT_ANALYSIS.md`
 - **现状**:
   - "删 cohere_embedder/local_embedder 死代码" / "UploadForm URL 缓存" 等条目对照表中 `✓` 状态与代码不一致
   - 145 行说 cohere 删除 "✗ 未做（被引用）"，但文件实际不存在
@@ -466,7 +466,7 @@
   - FAISS load time / BM25 build time / LLM call count 都应暴露
 
 ### 6.5 [新发现·低] 部署脚本 `scripts/deploy.sh` 仅 85 字节
-- **位置**: `/workspace/me/attrax/scripts/deploy.sh` (85 B), `scripts/deploy.ps1` (111 B), `scripts/deploy-now.sh` (3470 B)
+- **位置**: `scripts/deploy.sh` (85 B), `scripts/deploy.ps1` (111 B), `scripts/deploy-now.sh` (3470 B)
 - **现状**: `deploy.sh` 似乎只是 stub；真实部署走 `deploy-now.sh`（3470 B）或 `build-deploy-tarball.sh`
 - **影响**: 低
 - **修复成本**: 低
@@ -482,7 +482,7 @@
 ## 维度 7 · 依赖管理
 
 ### 7.1 [新发现·低] `package-lock.json` 与 `package.json` 一致性
-- **位置**: `/workspace/me/attrax/package-lock.json` (548580 B, ~7200 行)
+- **位置**: `package-lock.json` (548580 B, ~7200 行)
 - **现状**: 大概率一致（依赖未明显改动）。`overrides` 字段（esbuild, postcss, js-yaml, ws）已固定关键依赖
 - **建议**: CI 加 `npm ci` 校验
 

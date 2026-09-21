@@ -8,10 +8,10 @@
 
 > 生成时间：2026-09-16  
 > 配套数据源：
-> - 线上法规索引：[`data/regulations/regulations_index.json`](file:///workspace/me/attrax/data/regulations/regulations_index.json)
-> - 线上知识库锚点：[`data/kb/anchors/`](file:///workspace/me/attrax/data/kb/anchors/)
-> - 每日监控注册表：[`data/regulation_sources/official_sources.json`](file:///workspace/me/attrax/data/regulation_sources/official_sources.json)
-> - 守护进程配置：[`scripts/ecosystem.config.cjs`](file:///workspace/me/attrax/scripts/ecosystem.config.cjs) (`regwatch`)
+> - 线上法规索引：[`data/regulations/regulations_index.json`](data/regulations/regulations_index.json)
+> - 线上知识库锚点：[`data/kb/anchors/`](data/kb/anchors/)
+> - 每日监控注册表：[`data/regulation_sources/official_sources.json`](data/regulation_sources/official_sources.json)
+> - 守护进程配置：[`scripts/ecosystem.config.cjs`](scripts/ecosystem.config.cjs) (`regwatch`)
 
 ---
 
@@ -19,8 +19,8 @@
 
 ### 1.1 运行机制说明
 线上扫描引擎（RAG 服务）当前运行在 **知识锚定架构 (Knowledge-Anchored Generation)** 下：
-- **触发规则**：根据用户选择的 **目标市场（16国/区）** 与视觉识别的 **10 大品类**（`electronics`, `appliance`, `3c`, `toy`, `textile`, `cosmetic`, `food_contact`, `battery`, `home`, `other`），结合 **4 大硬件特征**（`battery` 电池、`wireless` 无线射频、`mains` 交流市电、`children` 儿童适用性），通过 [`rag_service/retrieval/kb_loader.py`](file:///workspace/me/attrax/rag_service/retrieval/kb_loader.py) 动态激活对应的法规锚点。
-- **条文校验**：LLM 输出的每一条法规引用，均由 [`rag_service/verify/quote_matcher.py`](file:///workspace/me/attrax/rag_service/verify/quote_matcher.py) 与底层法规条文库执行反向确定性比对，杜绝幻觉引用。
+- **触发规则**：根据用户选择的 **目标市场（16国/区）** 与视觉识别的 **10 大品类**（`electronics`, `appliance`, `3c`, `toy`, `textile`, `cosmetic`, `food_contact`, `battery`, `home`, `other`），结合 **4 大硬件特征**（`battery` 电池、`wireless` 无线射频、`mains` 交流市电、`children` 儿童适用性），通过 [`rag_service/retrieval/kb_loader.py`](rag_service/retrieval/kb_loader.py) 动态激活对应的法规锚点。
+- **条文校验**：LLM 输出的每一条法规引用，均由 [`rag_service/verify/quote_matcher.py`](rag_service/verify/quote_matcher.py) 与底层法规条文库执行反向确定性比对，杜绝幻觉引用。
 - **授权类型**：
   - **`public` (33篇)**：政府公开法律法规指令，包含逐条法条全文/官方结构化条款。
   - **`private_with_summary` (11篇)**：属于行业标准或国家版权标准（如中国 GB 标准、美国 UL、ASTM 标准），系统内置权威 KB 提炼摘要，附官方购买或标准信息公开系统查阅链接。
@@ -112,7 +112,7 @@
 ## 二、每日定时更新爬取的法规官方源清单（共 35 个，确保人类可直接打开）
 
 ### 2.1 每日爬虫运行说明
-- **托管服务**：运行在阿里云深圳 aliyun-sz 生产机 PM2 的 [`regwatch`](file:///workspace/me/attrax/scripts/ecosystem.config.cjs) 守护进程中。
+- **托管服务**：运行在阿里云深圳 aliyun-sz 生产机 PM2 的 [`regwatch`](scripts/ecosystem.config.cjs) 守护进程中。
 - **调度频次**：每天服务器本地时间 **03:00**（Asia/Shanghai 时区）自动启动全量巡检。
 - **爬取与解析机制**：
   - **后端爬取端点**：为保证数据结构化和权威性，机器爬取层走专用的开放数据通道（如 Cellar RDF/XML、Federal Register API、Canada Justice XML 等）。

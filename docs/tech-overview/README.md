@@ -38,7 +38,7 @@
 
 ## 仓库快照
 
-- 顶层：`/workspace/me/attrax/`
+- 顶层：代码仓库根目录
 - 前端：Next.js 16.2.6 + React 19 + TypeScript（`app/`、`components/`、`lib/`）
 - 后端：FastAPI 0.115.6 + Python 3.10+（`rag_service/`）
 - 生产运行时数据目录：`data/backend/`（gitignore，含 `sessions/`、`jobs/`、`uploads/`）

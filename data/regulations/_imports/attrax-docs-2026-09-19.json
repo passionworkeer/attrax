@@ -2,7 +2,7 @@
   "manifest_version": 1,
   "generated_at": "2026-09-19",
   "title": "attrax-docs 法规文件目录导入清单",
-  "source_root": "/workspace/me/attrax-docs",
+  "source_root": "-docs",
   "sources": [
     "attrax-docs 各区域法规文件目录（PDF / HTML 原件，72 份）",
     "出海合规法规文件清单.xlsx（49 条 · 14 区域）",

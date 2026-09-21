@@ -75,7 +75,7 @@ Authorized keys: `~root/.ssh/authorized_keys` (2 keys), `~admin/.ssh/authorized_
 See `infra/nginx-*.conf`:
 
 - **TLS 1.2 + 1.3 only**, strong ciphers (`HIGH:!aNULL:!MD5`)
-- **Let's Encrypt cert** at `/etc/letsencrypt/live/twinbuddy.xyz/{fullchain.pem,privkey.pem}` (90-day, auto-renew via certbot systemd timer; issued 2026-06-21, expires 2026-09-19). Covers `twinbuddy.xyz` + `www.twinbuddy.xyz`. ACME challenge path served from `/var/www/acme-challenge` (nginx location, not proxied to Next.js).
+- **Let's Encrypt cert** at `/etc/letsencrypt/live/example.com/{fullchain.pem,privkey.pem}` (90-day, auto-renew via certbot systemd timer; issued 2026-06-21, expires 2026-09-19). Covers `example.com` + `www.example.com`. ACME challenge path served from `/var/www/acme-challenge` (nginx location, not proxied to Next.js).
 - `server_tokens off` — `Server:` header shows only `nginx`
 - Custom error pages at `/var/www/custom-errors/` — 162 bytes instead of leaking build ID
 - 11 security response headers (see infra README)

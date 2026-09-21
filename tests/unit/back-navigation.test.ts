@@ -7,7 +7,7 @@ import {
   resolveBackTarget,
 } from "@/lib/regulation/back-navigation";
 
-const ORIGIN = "https://www.twinbuddy.xyz";
+const ORIGIN = "https://example.com";
 const LIST = "/regulations";
 
 it("Navigation API：直接打开（index=0）→ 站内列表", () => {

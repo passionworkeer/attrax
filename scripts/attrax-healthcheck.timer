@@ -1,5 +1,5 @@
 [Unit]
-Description=Attrax health check timer (every 60s)
+Description=Attrax 3-Minute Health Check Timer
 Documentation=https://github.com/passionworkeer/attrax/blob/main/scripts/attrax-healthcheck.sh
 
 [Timer]

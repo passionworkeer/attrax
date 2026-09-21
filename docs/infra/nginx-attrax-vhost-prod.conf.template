@@ -32,7 +32,7 @@ upstream attrax_nextjs {
 server {
     listen 80;
     listen [::]:80;
-    server_name twinbuddy.xyz www.twinbuddy.xyz 203.0.113.10 example.com;
+    server_name example.com www.example.com 203.0.113.10 example.com;
 
     location /.well-known/acme-challenge/ {
         root /var/www/acme-challenge;
@@ -47,10 +47,10 @@ server {
 server {
     listen 443 ssl http2;
     listen [::]:443 ssl http2;
-    server_name twinbuddy.xyz www.twinbuddy.xyz 203.0.113.10;
+    server_name example.com www.example.com 203.0.113.10;
 
-    ssl_certificate     /etc/letsencrypt/live/twinbuddy.xyz/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/twinbuddy.xyz/privkey.pem;
+    ssl_certificate     /etc/letsencrypt/live/example.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem;
     ssl_protocols       TLSv1.2 TLSv1.3;
     ssl_ciphers         HIGH:!aNULL:!MD5;
     ssl_prefer_server_ciphers on;

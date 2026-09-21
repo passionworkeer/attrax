@@ -240,21 +240,21 @@ match_citations(citations, cache=_ARTICLE_TEXT_CACHE)
 
 ## 关键文件清单
 
-- [`rag_service/main.py`](file:///workspace/me/attrax/rag_service/main.py)：FastAPI 入口、middleware、secret policy、health / ready、`/scan` & `/scan-multipart`。
-- [`rag_service/api/v1.py`](file:///workspace/me/attrax/rag_service/api/v1.py)：公开 v1 API（multipart + Bearer + 文件校验 + ScanService DI）。
-- [`rag_service/application/scans.py`](file:///workspace/me/attrax/rag_service/application/scans.py)：ScanService，会话生命周期 + 异步 job + evidence / revision 注入。
-- [`rag_service/pipeline/runner.py`](file:///workspace/me/attrax/rag_service/pipeline/runner.py)：线性 3 步编排。
-- [`rag_service/pipeline/state.py`](file:///workspace/me/attrax/rag_service/pipeline/state.py)：GraphState + initial_state。
-- [`rag_service/pipeline/nodes/vision.py`](file:///workspace/me/attrax/rag_service/pipeline/nodes/vision.py)：VisionAnalyzer + MiniMax / DeepSeek 双供应商。
-- [`rag_service/pipeline/nodes/generator.py`](file:///workspace/me/attrax/rag_service/pipeline/nodes/generator.py)：ReportGenerator + 同上双供应商。
-- [`rag_service/pipeline/nodes/verifier.py`](file:///workspace/me/attrax/rag_service/pipeline/nodes/verifier.py)：verifier 节点 + article cache 同步。
-- [`rag_service/pipeline/nodes/findings_builder.py`](file:///workspace/me/attrax/rag_service/pipeline/nodes/findings_builder.py)：确定性 findings（hazards 匹配 + contrast marker 防御）。
-- [`rag_service/pipeline/nodes/visual_checks.py`](file:///workspace/me/attrax/rag_service/pipeline/nodes/visual_checks.py)：inspection profile 加载 + 视觉检查。
-- [`rag_service/pipeline/nodes/declared_facts.py`](file:///workspace/me/attrax/rag_service/pipeline/nodes/declared_facts.py)：J09 用户声明事实 + `NEGATIVE_VALUES` frozenset。
-- [`rag_service/generate/report_generator.py`](file:///workspace/me/attrax/rag_service/generate/report_generator.py)：实际 LLM 调用 + 双供应商降级。
-- [`rag_service/verify/quote_matcher.py`](file:///workspace/me/attrax/rag_service/verify/quote_matcher.py)：确定性引用验证 + 高亮 span。
-- [`rag_service/verify/applicability.py`](file:///workspace/me/attrax/rag_service/verify/applicability.py)：三态 ProductFacts（confirmed/candidate/absent）。
-- [`rag_service/config.py`](file:///workspace/me/attrax/rag_service/config.py)：pydantic-settings 配置。
+- [`rag_service/main.py`](rag_service/main.py)：FastAPI 入口、middleware、secret policy、health / ready、`/scan` & `/scan-multipart`。
+- [`rag_service/api/v1.py`](rag_service/api/v1.py)：公开 v1 API（multipart + Bearer + 文件校验 + ScanService DI）。
+- [`rag_service/application/scans.py`](rag_service/application/scans.py)：ScanService，会话生命周期 + 异步 job + evidence / revision 注入。
+- [`rag_service/pipeline/runner.py`](rag_service/pipeline/runner.py)：线性 3 步编排。
+- [`rag_service/pipeline/state.py`](rag_service/pipeline/state.py)：GraphState + initial_state。
+- [`rag_service/pipeline/nodes/vision.py`](rag_service/pipeline/nodes/vision.py)：VisionAnalyzer + MiniMax / DeepSeek 双供应商。
+- [`rag_service/pipeline/nodes/generator.py`](rag_service/pipeline/nodes/generator.py)：ReportGenerator + 同上双供应商。
+- [`rag_service/pipeline/nodes/verifier.py`](rag_service/pipeline/nodes/verifier.py)：verifier 节点 + article cache 同步。
+- [`rag_service/pipeline/nodes/findings_builder.py`](rag_service/pipeline/nodes/findings_builder.py)：确定性 findings（hazards 匹配 + contrast marker 防御）。
+- [`rag_service/pipeline/nodes/visual_checks.py`](rag_service/pipeline/nodes/visual_checks.py)：inspection profile 加载 + 视觉检查。
+- [`rag_service/pipeline/nodes/declared_facts.py`](rag_service/pipeline/nodes/declared_facts.py)：J09 用户声明事实 + `NEGATIVE_VALUES` frozenset。
+- [`rag_service/generate/report_generator.py`](rag_service/generate/report_generator.py)：实际 LLM 调用 + 双供应商降级。
+- [`rag_service/verify/quote_matcher.py`](rag_service/verify/quote_matcher.py)：确定性引用验证 + 高亮 span。
+- [`rag_service/verify/applicability.py`](rag_service/verify/applicability.py)：三态 ProductFacts（confirmed/candidate/absent）。
+- [`rag_service/config.py`](rag_service/config.py)：pydantic-settings 配置。
 
 ## 常用环境变量（rag_service 一侧）
 

@@ -36,7 +36,7 @@ Expected: `active`, followed by JSON with `frontend: ok` and `ragService.status:
 ### Task 2: Add the Codex memory update
 
 **Files:**
-- Create: `C:\workspace\.codex\memories\extensions\ad_hoc\notes\20260716-attrax-server-access.md`
+- Create: `memories/notes/20260716-attrax-server-access.md`
 
 - [ ] **Step 1: Write a secret-free memory note**
 

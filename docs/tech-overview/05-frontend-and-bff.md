@@ -162,15 +162,15 @@ OpenAPI 契约快照（`lib/rag-client/openapi.snapshot.json`）由 FastAPI app 
 
 ## 关键文件清单
 
-- [`app/`](file:///workspace/me/attrax/app)：App Router 页面与 BFF 路由。
-- [`components/result/`](file:///workspace/me/attrax/components/result)：结果页组件。
-- [`components/regulation/`](file:///workspace/me/attrax/components/regulation)：CitationChip / DocViewer / LinkBackToReport。
-- [`components/blaze-hawks/BlazeLocaleProvider.tsx`](file:///workspace/me/attrax/components/blaze-hawks)：locale 真值源。
-- [`lib/rag-client/v1-adapter.ts`](file:///workspace/me/attrax/lib/rag-client/v1-adapter.ts)：唯一的 RAG HTTP 封装。
-- [`lib/rate-limit.ts`](file:///workspace/me/attrax/lib/rate-limit.ts)：BFF 单进程固定窗口限流。
-- [`lib/pipeline/session-auth.ts`](file:///workspace/me/attrax/lib/pipeline/session-auth.ts)：会话 token（哈希 + 常量时间比对）。
-- [`lib/result/inspection-view-model.ts`](file:///workspace/me/attrax/lib/result/inspection-view-model.ts)：结果页统一 ViewModel。
-- [`lib/upload-validation.ts`](file:///workspace/me/attrax/lib/upload-validation.ts)：MIME + magic bytes + 大小校验。
-- [`lib/report-export-modules/`](file:///workspace/me/attrax/lib/report-export-modules)：报告导出（PDF/DOCX 客户端、md/csv BFF）。
-- [`lib/types.ts`](file:///workspace/me/attrax/lib/types.ts)：共享类型 + `PRODUCT_CATEGORIES` / `MARKET_IDS` 白名单（scan 请求校验内联在 `app/api/scan/route.ts` 的 `ALLOWED_MARKETS` / `ALLOWED_CATEGORIES` Set）。
-- [`docs/FRONTEND-BACKEND-INTEGRATION.md`](file:///workspace/me/attrax/docs/FRONTEND-BACKEND-INTEGRATION.md)：现行 API 契约（推荐阅读）。
+- [`app/`](app)：App Router 页面与 BFF 路由。
+- [`components/result/`](components/result)：结果页组件。
+- [`components/regulation/`](components/regulation)：CitationChip / DocViewer / LinkBackToReport。
+- [`components/blaze-hawks/BlazeLocaleProvider.tsx`](components/blaze-hawks)：locale 真值源。
+- [`lib/rag-client/v1-adapter.ts`](lib/rag-client/v1-adapter.ts)：唯一的 RAG HTTP 封装。
+- [`lib/rate-limit.ts`](lib/rate-limit.ts)：BFF 单进程固定窗口限流。
+- [`lib/pipeline/session-auth.ts`](lib/pipeline/session-auth.ts)：会话 token（哈希 + 常量时间比对）。
+- [`lib/result/inspection-view-model.ts`](lib/result/inspection-view-model.ts)：结果页统一 ViewModel。
+- [`lib/upload-validation.ts`](lib/upload-validation.ts)：MIME + magic bytes + 大小校验。
+- [`lib/report-export-modules/`](lib/report-export-modules)：报告导出（PDF/DOCX 客户端、md/csv BFF）。
+- [`lib/types.ts`](lib/types.ts)：共享类型 + `PRODUCT_CATEGORIES` / `MARKET_IDS` 白名单（scan 请求校验内联在 `app/api/scan/route.ts` 的 `ALLOWED_MARKETS` / `ALLOWED_CATEGORIES` Set）。
+- [`docs/FRONTEND-BACKEND-INTEGRATION.md`](docs/FRONTEND-BACKEND-INTEGRATION.md)：现行 API 契约（推荐阅读）。

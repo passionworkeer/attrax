@@ -2,7 +2,7 @@
   "manifest_version": 1,
   "generated_at": "2026-09-19T14:00:00",
   "title": "attrax-docs 增量目录（2026-09-19 增补，未登记的有效法规原件）",
-  "source_root": "/workspace/me/attrax-docs",
+  "source_root": "-docs",
   "url_verified_at": "2026-09-19",
   "sources": [
     "attrax-docs/EU_regulations/",

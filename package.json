@@ -2,6 +2,12 @@
   "name": "attrax",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/passionworkeer/attrax.git"
+  },
+  "homepage": "https://github.com/passionworkeer/attrax#readme",
   "scripts": {
     "dev": "next dev --webpack",
     "prebuild": "node scripts/guard-no-server-build.mjs",

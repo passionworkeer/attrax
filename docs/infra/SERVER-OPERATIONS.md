@@ -5,11 +5,11 @@
 ## 一台机器长什么样
 
 - **角色**：attrax 生产环境（前端 + RAG 服务 + watchdog + nginx + 备份链路）
-- **公网**：HTTPS `https://twinbuddy.xyz`（证书 nginx）
+- **公网**：HTTPS `https://example.com`（证书 nginx）
 - **SSH 别名**：`aliyun-sz` → `203.0.113.10`（root，banner 提示登录即审计）
 - **内存**：约 1.6 G 物理 + 4 G swap——**贴着天花板设计**，不要在机器上跑任何构建任务
 - **磁盘**：`/dev/vda3` 40 G，`/opt/attrax` 是代码、`data/backend/{sessions,jobs,uploads}` 是运行时、`/opt/attrax/backups` 是每日备份
-- **进程**：`pm2` 管四个应用——`nextjs`（3000）、`rag-service`（8001）、`regwatch`（法规自动入库）、`portfolio`（**当前未部署**，目录不存在，每次 `pm2 start` 会报 `Script not found`，见文末「已知缺陷」）
+- **进程**：`pm2` 管三个应用——`nextjs`（3000）、`rag-service`（8001）、`regwatch`（法规自动入库）、`portfolio`（**当前未部署**，目录不存在，每次 `pm2 start` 会报 `Script not found`，见文末「已知缺陷」）
 
 ## 一、登录与零信任前提
 

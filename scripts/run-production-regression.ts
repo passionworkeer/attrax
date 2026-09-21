@@ -93,12 +93,10 @@ const TEST_CASES: TestCase[] = [
   },
 ];
 
-/** Target base URL. Defaults to production (aliyun-sz, twinbuddy.xyz since the
- * 2026-09-18 lighthouse → aliyun-sz migration — the old example.com now
- * answers 401 from the retired box); override with ATTRAX_REGRESSION_BASE_URL
- * to point at staging/localhost. */
+/** Target base URL. Defaults to localhost:3000;
+ * override with ATTRAX_REGRESSION_BASE_URL to point at staging/production. */
 const BASE_URL =
-  process.env.ATTRAX_REGRESSION_BASE_URL || "https://twinbuddy.xyz";
+  process.env.ATTRAX_REGRESSION_BASE_URL || "http://localhost:3000";
 
 /** Regression output directory. Defaults to .screenshots/regression-YYYYMMDD
  *  next to this script (gitignored). Override with ATTRAX_REGRESSION_OUT_DIR. */
@@ -114,7 +112,7 @@ const REPO_SCREENSHOT_DIR =
  *  brain). Set ATTRAX_REGRESSION_ARTIFACT_DIR=/path/to/mirror to mirror every
  *  screenshot there in addition to REPO_SCREENSHOT_DIR. Unset by default —
  *  most CI runs do not need this and the old hard-coded
- *  /workspace/.gemini/... was a per-machine path that never worked
+ *  custom artifact directory was a per-machine path that never worked
  *  outside the original author's laptop. */
 const ARTIFACT_DIR = process.env.ATTRAX_REGRESSION_ARTIFACT_DIR || null;
 
@@ -221,7 +219,7 @@ async function runSingleCase(browser: Browser, testCase: TestCase, caseIndex: nu
   console.log(`======================================================`);
 
   // Fail loud if the test package (gitignored third-party data) is missing —
-  // the old hard-coded /workspace/... path crashed silently on
+  // the old hard-coded local development path crashed silently on
   // every other machine.
   if (!fs.existsSync(testCase.dirPath)) {
     const message = `Test package directory not found: ${testCase.dirPath}. ` +
