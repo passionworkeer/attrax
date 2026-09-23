@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
-# attrax-healthcheck.sh — 每 60 秒 curl /api/health，失败升级恢复动作。
+# attrax-healthcheck.sh — 每 60 秒检查 /api/health 和三个 PM2 进程。
 #
 # 为什么需要：2026-09-18 事故中 nginx upstream 端口错配，全站 502 / 404，
 # 没有自动恢复 — 靠人发现并 sed 修改。这次加一层主动巡检：
 #
 #   level 1: 1 次失败 → 仅记录到 /var/log/attrax-healthcheck.log
 #   level 2: 连续 3 次失败 → nginx -s reload（reload 会重读 vhost，修临时漂移）
-#   level 3: 连续 6 次失败 → pm2 restart nextjs（应用自身挂了）
-#   level 4: 连续 12 次失败 → pm2 restart rag-service + nextjs（后端也挂了）
+#   level 3: 连续 6 次失败 → 恢复异常 PM2 进程或重启 nextjs
+#   level 4: 连续 12 次失败 → 恢复全部三个进程
 #
-# 退出码无意义（systemd timer 调起时不管退出码）；动作通过日志体现。
-# 不会破坏健康状态：reload/restart 都是幂等无副作用。
+# 本轮异常返回非零，供 systemd 和独立监控发现自愈未完成。
+# 重启期间存在短暂服务中断，连续失败达到阈值后才执行。
 #
 # 安装（root）：
 #   install -m755 scripts/attrax-healthcheck.sh /usr/local/bin/attrax-healthcheck.sh
@@ -18,6 +18,8 @@
 #   install -m644 scripts/attrax-healthcheck.timer   /etc/systemd/system/
 #   systemctl daemon-reload && systemctl enable --now attrax-healthcheck.timer
 set -uo pipefail
+
+pm2() { /usr/local/sbin/attrax-pm2 "$@"; }
 
 HEALTH_URL="${ATTRAX_HEALTH_URL:-http://127.0.0.1/api/health}"
 LOG_FILE="${ATTRAX_HEALTH_LOG:-/var/log/attrax-healthcheck.log}"
@@ -41,8 +43,12 @@ reset_state() {
 count=$(cat "$STATE_DIR/consecutive_failures" 2>/dev/null || echo 0)
 
 code=$(curl -sk -m "$CURL_TIMEOUT" -o /dev/null -w "%{http_code}" "$HEALTH_URL" || echo 000)
+process_ok=0
+if /usr/local/sbin/attrax-process-status >/dev/null; then
+  process_ok=1
+fi
 
-if [ "$code" = "200" ]; then
+if [ "$code" = "200" ] && [ "$process_ok" -eq 1 ]; then
   if [ "$count" -gt 0 ]; then
     log "RECOVERED after ${count} consecutive failures (now 200)"
     reset_state
@@ -52,7 +58,7 @@ fi
 
 count=$((count + 1))
 echo "$count" > "$STATE_DIR/consecutive_failures"
-log "FAIL #$count: ${HEALTH_URL} -> ${code}"
+log "FAIL #$count: ${HEALTH_URL} -> ${code}; PM2 healthy=${process_ok}"
 
 take_action() {
   local label="$1"
@@ -67,9 +73,13 @@ take_action() {
 }
 
 if [ "$count" -ge "$FAIL_THRESHOLD_RESTART_ALL" ]; then
-  take_action "level4-restart-all" pm2 restart rag-service nextjs
+  take_action "level4-restore-all" systemctl reload-or-restart pm2-attrax.service
 elif [ "$count" -ge "$FAIL_THRESHOLD_RESTART_NEXTJS" ]; then
-  take_action "level3-restart-nextjs" pm2 restart nextjs
+  if [ "$process_ok" -eq 0 ]; then
+    take_action "level3-restore-processes" systemctl reload-or-restart pm2-attrax.service
+  else
+    take_action "level3-restart-nextjs" pm2 restart nextjs
+  fi
 elif [ "$count" -ge "$FAIL_THRESHOLD_RELOAD" ]; then
   # level2: 先尝试用 .template 重新渲染 vhost，再 reload（防止 vhost 文件本身
   # 就漂移了——只 reload 不会改写磁盘上的端口字面量）
@@ -82,7 +92,7 @@ elif [ "$count" -ge "$FAIL_THRESHOLD_RELOAD" ]; then
     else
       log "WARN: render failed, skipping reload"
       echo "$count" > "$STATE_DIR/consecutive_failures"
-      exit 0
+      exit 1
     fi
   fi
   if command -v nginx >/dev/null 2>&1 && nginx -t >> "$LOG_FILE" 2>&1; then
@@ -90,4 +100,4 @@ elif [ "$count" -ge "$FAIL_THRESHOLD_RELOAD" ]; then
   fi
 fi
 
-exit 0
+exit 1

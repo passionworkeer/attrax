@@ -1,21 +1,19 @@
 #!/bin/bash
 # apply-deploy.sh — 服务器侧部署：用 build-deploy-tarball.sh 的产物整包替换 Next.js standalone。
 #
-# 为什么要有这个文件：这段逻辑原本只存在于服务器的 /tmp/attrax-apply-deploy.sh，
-# 未纳入版本控制 —— /tmp 会被清理，机器重建后流程即丢失，且改动没有任何评审记录。
-# 它是「回滚」和「部署后校验」唯一该发生的地方，所以必须与 build-deploy-tarball.sh
-# 成对入库。
+# 本文件与 build-deploy-tarball.sh 共同维护部署、回滚和部署后校验。
 #
 # 配套（本地）：
-#   bash scripts/build-deploy-tarball.sh        # -> /tmp/attrax-deploy-complete.tar.gz
-#   scp /tmp/attrax-deploy-complete.tar.gz aliyun-sz:/tmp/
+#   bash scripts/build-deploy-tarball.sh        # -> .deploy/attrax-deploy-complete.tar.gz
+#   ssh aliyun-sz 'install -d -m 700 /opt/attrax/.deploy'
+#   scp .deploy/attrax-deploy-complete.tar.gz aliyun-sz:/opt/attrax/.deploy/
 #
 # 服务器：
-#   bash /tmp/attrax-apply-deploy.sh            # 部署
-#   bash /tmp/attrax-apply-deploy.sh --rollback # 回滚到上一个 standalone
+#   bash /opt/attrax/scripts/apply-deploy.sh            # 部署
+#   bash /opt/attrax/scripts/apply-deploy.sh --rollback # 回滚到上一个 standalone
 #
 # 安装到服务器（首次或更新本脚本时）：
-#   scp scripts/apply-deploy.sh aliyun-sz:/tmp/attrax-apply-deploy.sh
+#   scp scripts/apply-deploy.sh aliyun-sz:/opt/attrax/scripts/apply-deploy.sh
 #
 # 注意：本脚本只处理 Next.js（.next/standalone + .next/static + BUILD_ID + pm2 nextjs）。
 # 改了 rag_service/*.py 时另行 scp 并 `pm2 restart rag-service --update-env`。
@@ -28,7 +26,7 @@
 #   ecosystem.config.cjs（require ports.env.cjs）同源，杜绝 3001/3000 漂移。
 set -euo pipefail
 
-TARBALL="${ATTRAX_TARBALL:-/tmp/attrax-deploy-complete.tar.gz}"
+TARBALL="${ATTRAX_TARBALL:-/opt/attrax/.deploy/attrax-deploy-complete.tar.gz}"
 ATTRAX_DIR="${ATTRAX_DIR:-/opt/attrax}"
 STANDALONE="${ATTRAX_DIR}/.next/standalone"
 STATIC_LINK="${ATTRAX_DIR}/.next/static"
@@ -41,6 +39,11 @@ HEALTH_URL="${HEALTH_URL:-http://127.0.0.1:3000/api/health}"
 KEEP_BACKUPS=2
 
 log() { echo "[$(date -Iseconds)] $*"; }
+
+# 生产进程始终由无登录服务账号托管；缺少主机运维入口时立即停止。
+test -x /usr/local/sbin/attrax-pm2
+test -x /usr/local/sbin/attrax-runtime-permissions
+pm2() { /usr/local/sbin/attrax-pm2 "$@"; }
 
 previous_backups() {
   # newest first
@@ -67,6 +70,7 @@ if [ "${1:-}" = "--rollback" ]; then
   ln -s "${STANDALONE}/.next/static" "${STATIC_LINK}"
   cat "${STANDALONE}/.next/BUILD_ID" > "${ATTRAX_DIR}/.next/BUILD_ID" 2>/dev/null || true
   cd "${ATTRAX_DIR}"
+  /usr/local/sbin/attrax-runtime-permissions
   # 区分两种失败：树已还原但进程没起来（exit 3，操作者需手动 pm2 restart）
   # vs 还原本身失败（set -e 直接中止）。自动回滚的调用方据此报出准确信息。
   if pm2 restart nextjs --update-env 2>&1 | tail -5; then
@@ -211,8 +215,8 @@ install -m 644 "${OPS}/ports.env.cjs"                "${REPO_DIR}/scripts/ports.
 install -m 755 "${OPS}/render-nginx-vhost.sh"        "${REPO_DIR}/scripts/render-nginx-vhost.sh"
 install -m 644 "${OPS}/ecosystem.config.cjs"         "${REPO_DIR}/scripts/ecosystem.config.cjs"
 install -m 644 "${OPS}/nginx-attrax-vhost-prod.conf.template" "${REPO_DIR}/docs/infra/nginx-attrax-vhost-prod.conf.template"
-# 备份执行体：cron（/etc/cron.d/attrax-backup{,-remote}）直接调用
-# /opt/attrax/scripts/backup-data.sh 与 backup-remote.sh。此前它们只存在于
+# 兼容备份工具随代码发布；生产定时备份由独立主机入口
+# /usr/local/sbin/attrax-backup 与 offsite-backup.timer 管理。此前这些工具只存在于
 # 文档的"手工 scp"步骤里 —— 缺失时 cron 静默失败，备份等于没跑。
 install -m 755 "${OPS}/backup-data.sh"               "${REPO_DIR}/scripts/backup-data.sh"
 install -m 755 "${OPS}/backup-remote.sh"             "${REPO_DIR}/scripts/backup-remote.sh"
@@ -238,10 +242,12 @@ rm -f "${TARBALL}"
 # ── [8] restart ────────────────────────────────────────────────────────────
 log "=== [8] restart pm2 nextjs ==="
 cd "${ATTRAX_DIR}"
+/usr/local/sbin/attrax-runtime-permissions
 # startOrRestart（而不是裸 pm2 restart nextjs）才会重读 ecosystem.config.cjs ——
 # 新版 ecosystem require ports.env.cjs，端口变更要靠它生效（部署雷区：
 # env 段变化必须让 pm2 重新加载配置文件）。
 pm2 startOrRestart "${REPO_DIR}/scripts/ecosystem.config.cjs" --only nextjs 2>&1 | tail -10
+pm2 save
 
 # ── [8.5] 重新渲染 nginx vhost 并 reload（防端口漂移）──────────────────────
 # 每次部署都从 .template + ports.env 重新生成 vhost：手改过的端口、过期的

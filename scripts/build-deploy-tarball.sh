@@ -10,8 +10,8 @@
 #   /_next/static/chunks/*.css 全部 404、页面裸奔无样式。
 #   本脚本把"build → stage → 打包 → 校验"做成原子流程,保证 tarball 永远完整。
 #
-# 产物:/tmp/attrax-deploy-complete.tar.gz(供 aliyun-sz 上的 /tmp/attrax-apply-deploy.sh 消费)
-# 本机可用 ATTRAX_TARBALL=/path/to.tar.gz 覆盖产物路径(中间产物不落 /tmp)。
+# 产物:.deploy/attrax-deploy-complete.tar.gz，供服务器 scripts/apply-deploy.sh 消费。
+# 本机可用 ATTRAX_TARBALL=/path/to.tar.gz 覆盖产物路径。
 #
 # 用法:
 #   bash scripts/build-deploy-tarball.sh           # build + stage + 打包
@@ -25,7 +25,8 @@ cd "$PROJECT_ROOT"
 STANDALONE="${PROJECT_ROOT}/.next/standalone"
 STATIC_SRC="${PROJECT_ROOT}/.next/static"
 PUBLIC_SRC="${PROJECT_ROOT}/public"
-TARBALL="${ATTRAX_TARBALL:-/tmp/attrax-deploy-complete.tar.gz}"
+TARBALL="${ATTRAX_TARBALL:-${PROJECT_ROOT}/.deploy/attrax-deploy-complete.tar.gz}"
+mkdir -p "$(dirname "$TARBALL")"
 
 log() { echo "[$(date -Iseconds)] $*"; }
 

@@ -440,7 +440,7 @@ def test_unmappable_signal_source_is_evidence_only(isolated_library):
     assert report.evidence_only == ["us-cpsc-recalls-api"]
     assert report.created == [] and report.updated == []
     evidence = isolated_library.SUPPLEMENTS_DIR / "auto-2026-09-13" / "us-cpsc-recalls-api"
-    assert (evidence / "raw.json").exists()
+    assert (evidence / "raw.txt").exists()
 
 
 def test_repeal_keyword_marks_regulation(isolated_library):

@@ -1,28 +1,7 @@
-# /etc/cron.d/attrax-backup — daily local data backup.
-#
-# Install:
-#   sudo cp docs/infra/cron-attrax-backup /etc/cron.d/attrax-backup
-#   sudo chown root:root /etc/cron.d/attrax-backup
-#   sudo chmod 644 /etc/cron.d/attrax-backup
-#
-# Script source of truth: scripts/backup-data.sh in this repo (deployed to
-# /opt/attrax/scripts/backup-data.sh). The two must stay in sync — see the
-# guard in tests/unit/infra-cron-references.test.ts.
-#
-# Runs as `root`: on the current aliyun-sz (2026-09-18 lighthouse → aliyun-sz
-# runtime migration) pm2 itself runs as root and the only regular user is
-# `admin`. An earlier revision said `ubuntu` — a user that has never existed
-# on this host, so the 3am backup silently never ran (2026-09-18 audit).
-#
-# A cron.d file accepts only comments, KEY=VALUE environment lines and job
-# lines. Stray banner text here is a hard error for cron, so keep it clean —
-# this fragment previously carried a four-line `*****` banner that would have
-# been rejected on install.
-SHELL=/bin/bash
-PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-
-# stdout goes to /dev/null on purpose: backup-data.sh's log() already appends
-# every line to /opt/attrax/logs/attrax-backup.log via `tee -a`. Redirecting
-# stdout into that same file (the earlier `>> … 2>&1`) wrote each line twice.
-# stderr is still captured — tar's warnings are not tee'd by the script.
-0 3 * * * root /opt/attrax/scripts/backup-data.sh >/dev/null 2>>/opt/attrax/logs/attrax-backup.log
+# /etc/cron.d/attrax-backup
+# 每日 03:40 由 offsite-backup.timer 调用 /usr/local/sbin/attrax-backup，
+# 完成本地完整归档、Borg 加密异地传输与恢复校验。
+# 该文件保留为空调度说明，避免重新安装文档片段时恢复重复 cron。
+# 主机恢复时先安装并验证 offsite-backup.timer，再安装本文件：
+#   install -o root -g root -m 644 docs/infra/cron-attrax-backup /etc/cron.d/attrax-backup
+# 手工本地归档入口：/usr/local/sbin/attrax-backup。

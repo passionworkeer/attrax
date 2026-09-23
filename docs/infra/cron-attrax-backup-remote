@@ -1,24 +1,5 @@
-# /etc/cron.d/attrax-backup-remote — daily offsite copy of the local backup.
-#
-# Install:
-#   sudo cp docs/infra/cron-attrax-backup-remote /etc/cron.d/attrax-backup-remote
-#   sudo chown root:root /etc/cron.d/attrax-backup-remote
-#   sudo chmod 644 /etc/cron.d/attrax-backup-remote
-#
-# Script source of truth: scripts/backup-remote.sh (deployed to
-# /opt/attrax/scripts/backup-remote.sh). It requires BACKUP_REMOTE_DEST (or
-# ATTRAX_BACKUP_REMOTE_DEST) — without one it logs "no REMOTE_DEST configured
-# (skipping)" and exits 0, i.e. it is a silent no-op.
-#
-# OFF-SITE BACKUP IS CURRENTLY NOT CONFIGURED on aliyun-sz, and this cron was
-# failing every day with "/opt/attrax/scripts/backup-remote.sh: No such file or
-# directory" because the script was in the repo but never installed. Two things
-# are needed before this entry is useful:
-#   1. install scripts/backup-remote.sh to /opt/attrax/scripts/
-#   2. set BACKUP_REMOTE_DEST, and verify a restore actually works
-# Until then, treat the 14 local tarballs in /opt/attrax/backups as the only
-# copy — a single-disk failure loses them.
-SHELL=/bin/bash
-PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-
-0 4 * * * root /opt/attrax/scripts/backup-remote.sh >> /opt/attrax/logs/attrax-backup-remote.log 2>&1
+# /etc/cron.d/attrax-backup-remote
+# 每日异地备份由 offsite-backup.timer 管理，使用受限 SSH 账号和 Borg 加密。
+# 本文件不保留旧 backup-remote.sh 任务，避免绕过加密与恢复验证。
+# 主机恢复时先安装并验证 offsite-backup.timer，再安装本文件：
+#   install -o root -g root -m 644 docs/infra/cron-attrax-backup-remote /etc/cron.d/attrax-backup-remote

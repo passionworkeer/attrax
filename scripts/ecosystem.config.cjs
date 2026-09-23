@@ -9,7 +9,7 @@ const PORTS = require("./ports.env.cjs");
 // 里 pin 住的 env，两个来源会静默分叉：rag_service/.env 里一个未轮换的弱值
 // 让两端"一致地弱"，而文档声称已轮换 48-hex。现在两端都从这里取，缺文件即
 // 抛错 → pm2 启动失败 → fail-closed 且响亮。
-// 轮换：echo -n "<48-hex>" > /opt/attrax/.rag-internal-secret && chmod 600 … 后
+// 运行密钥为 root:attrax 640，应用只能读取；轮换后使用 attrax-pm2 重载。
 //       pm2 startOrRestart scripts/ecosystem.config.cjs --only rag-service,nextjs
 const RAG_INTERNAL_SECRET_FILE = "/opt/attrax/.rag-internal-secret";
 const RAG_INTERNAL_SECRET = (
@@ -133,5 +133,14 @@ module.exports = {
         ATTRAX_REGWATCH_RUN_AT: process.env.ATTRAX_REGWATCH_RUN_AT || "03:00",
       },
     },
-  ],
+  ].map((app) => ({
+    ...app,
+    env: {
+      ...app.env,
+      ATTRAX_PROJECT_ROOT: "/opt/attrax",
+      RATE_LIMIT_STORE_DIR: "/opt/attrax/data/rate-limit",
+      TMPDIR: "/var/cache/attrax/tmp",
+      PYTHONDONTWRITEBYTECODE: "1",
+    },
+  })),
 };

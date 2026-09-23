@@ -99,12 +99,12 @@ _REGION_DIRS: dict[str, str] = {
 _RAW_SUFFIX = {
     "eu_celex": ".rdf",
     "ecfr_part": ".json",
-    "cpsc_recall_api": ".json",
+    "cpsc_recall_api": ".txt",
     "canada_justice_xml": ".xml",
     "gov_html": ".html",
     "direct_url": ".html",
     "safety_gate": ".xml",
-    "openfda_recalls": ".json",
+    "openfda_recalls": ".txt",
 }
 _REPEAL_KEYWORDS = ("removal", "revok", "repeal", "revocation", "withdraw")
 
