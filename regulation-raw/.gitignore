@@ -1,0 +1,21 @@
+# regulation-raw · 只跟踪抓取工具与清单
+#
+# 与 attrax/.gitignore 的「源文件（PDF/DOCX/HTML）不纳入版本控制」约定一致：
+# 原文层（各市场子目录，568MB）与解析层 parsed/（635MB）都是可重新抓取、
+# 可重新解析的数据，不入库。入库的只有抓取工具、抓取清单与未直连链接清单。
+# 抓取通道与解析流程见 README.md。
+
+*
+!.gitignore
+!README.md
+!_SKIPPED.md
+!_manifest.json
+!_manifest.csv
+!_manifest_bulk.json
+!_manifest_discovery.json
+!_tools/
+!_tools/**
+
+# 工具依赖与运行产物
+_tools/.venv/
+_tools/__pycache__/

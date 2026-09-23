@@ -1,0 +1,928 @@
+market,name,status,http_code,content_type,bytes,path,sha256,url
+ae,AE MoIAT ECAS 合格评定 (moiat.gov.ae),ok,200,text/html,425462,ae/AE_MoIAT_ECAS_合格评定_moiat.gov.ae.html,5850df830b4b421c682c0e0c66bb2e1628d0cd1a21edd21feb34c43cf9c5dcee,https://www.moiat.gov.ae/en
+ae,AE UAE 立法门户 (u.ae),ok,200,text/html,1279491,ae/AE_UAE_立法门户_u.ae.html,78f532ed36370472411ee0693446f35ae9d018e83af29123e7c013381fd4d0c4,https://u.ae/en/information-and-services
+ar,AR InfoLEG 法规库,http_403,403,,0,,,http://servicios.infoleg.gob.ar/
+ar,AR Ley 24.240 消费者保护法 (InfoLEG),ok,200,text/html,83944,ar/AR_Ley_24.240_消费者保护法_InfoLEG.html,17a2b25d85cca2a7ec363d3c17391aa07cd6d25174338e0b8b9ec239fba9d7b7,http://servicios.infoleg.gob.ar/infolegInternet/anexos/0-4999/638/texact.htm
+ar,AR Ley 25.326 个人数据保护法 (InfoLEG),ok,200,text/html,53108,ar/AR_Ley_25.326_个人数据保护法_InfoLEG.html,61548a0fba22550e19a4189c101876238501cb6a9b5821cea5e36478708a3b61,http://servicios.infoleg.gob.ar/infolegInternet/anexos/60000-64999/64790/texact.htm
+au,AU ACL Australian Consumer Law (legislation.gov.au),ok,200,text/html,109009,au/AU_ACL_Australian_Consumer_Law_legislation.gov.au.html,394dde3213106604d9a0ce50401fa5f758609a2ba0c5777ca066b52b79ea2cfc,https://www.legislation.gov.au/C2010A00103/latest/text
+au,AU Competition and Consumer Act 2010 (legislation.gov.au),ok,200,text/html,76084,au/AU_Competition_and_Consumer_Act_2010_legislation.gov.au.html,39c6ad5a54e545b49191702c52f3d290b6b54424c11ab04f325edb2e6f48b371,https://www.legislation.gov.au/C2010A00135/latest/text
+au,AU Electrical Equipment Safety System (EESS),ok,200,text/html,74490,au/AU_Electrical_Equipment_Safety_System_EESS.html,2410b3fed41fb6e3392a72f8603069016d1874c53f325cc037aa2c20565deadd,https://www.eess.gov.au/
+au,AU Product Safety Australia mandatory standards (ACCC),http_403,403,,0,,,https://www.productsafety.gov.au/businesses/mandatory-standards
+au,AU RCM compliance mark (ACMA),error,0,,0,,,https://www.acma.gov.au/regulatory-compliance-mark-rcm
+au,AU Therapeutic Goods Act 1989 (legislation.gov.au),ok,200,text/html,165078,au/AU_Therapeutic_Goods_Act_1989_legislation.gov.au.html,fc5c75bbfc2bbfb1b691381ca5f52692e3de90d2aaef99286fb66abafb4120a3,https://www.legislation.gov.au/C2004A03937/latest/text
+au,AU Trade Practices Act 1974 (legislation.gov.au),ok,200,text/html,1357877,au/AU_Trade_Practices_Act_1974_legislation.gov.au.html,ce32bb1e6722a15f551e4ff830f57bf1541565f058e650050b9ec8bd2b9aa074,https://www.legislation.gov.au/C2004A00109/latest/text
+au,AU legislation.gov.au 联邦立法门户,ok,200,text/html,60700,au/AU_legislation.gov.au_联邦立法门户.html,51d5356c4b489316e7aaf1d26fba4ac286793756de14ca19799b31512909369a,https://www.legislation.gov.au/
+bd,BD 孟加拉法律库 bdlaws,ok,200,text/html,37398,bd/BD_孟加拉法律库_bdlaws.html,9fb6039159203adaaf2ec98b7f53fc230c72340ccd8b2b7f5f1f2429fa20f6ba,http://bdlaws.minlaw.gov.bd/
+bd,BD 法律库全文检索,ok,200,text/html,37398,bd/BD_法律库全文检索.html,9fb6039159203adaaf2ec98b7f53fc230c72340ccd8b2b7f5f1f2429fa20f6ba,http://bdlaws.minlaw.gov.bd/
+bd,BD 消费者权益保护法 2009,ok,200,text/html,89406,bd/BD_消费者权益保护法_2009.html,f1cb5451fc671ece0181d1c8e208dd4b684f167cc4a09c20e0f0ef8e10600889,http://bdlaws.minlaw.gov.bd/act-1035.html
+be,BE eJustice 法规库,ok,200,text/html,48777,be/BE_eJustice_法规库.html,04a2b74897c8be9001d0acf440feab2be6330a1ec8e968ab7023549c32ae2321,https://www.ejustice.just.fgov.be/
+be,BE 经济检查总局 FPS Economy,ok,200,text/html,48641,be/BE_经济检查总局_FPS_Economy.html,d753b888633c28c839fa8662a9f31762dac743d05d21e0a54e755c50368fce69,https://economie.fgov.be/
+be,BE 经济法典 (Code de droit economique),ok,200,text/html,49941,be/BE_经济法典_Code_de_droit_economique.html,3c0bbbe21c7196935467cf5b38f0a476ab860911ba1b29408b2654bbe94b570a,https://www.ejustice.just.fgov.be/eli/loi/2013/02/28/2013011086/justel
+be,BE 经济法典消费者部分 (eJustice),ok,200,text/html,51829,be/BE_经济法典消费者部分_eJustice.html,43424f0a4ccdd9cb8248fdc3acd00576791357598d2e86a585ac62191df3c641,https://www.ejustice.just.fgov.be/
+bn,BN 总检察署 AGC,ok,200,text/html,206813,bn/BN_总检察署_AGC.html,a3d198cc477b40460c7c38a3290f8e55d508649d7feae92737ea15cee8c40091,https://www.agc.gov.bn/
+bo,BO 官方公报,error,0,,0,,,http://www.gacetaoficialdebolivia.gob.bo/
+br,BR ANVISA 食品接触材料 (gov.br),ok,200,text/html,578539,br/BR_ANVISA_食品接触材料_gov.br.html,bb0c2711daa4b374d818ddcc3fe59158767c57157e334ab523535e0f9fc5827b,https://www.gov.br/anvisa/pt-br
+br,BR Código de Defesa do Consumidor (Planalto),ok,200,text/html,169385,br/BR_Código_de_Defesa_do_Consumidor_Planalto.html,c1e7d4fc2aeaa43a7b5ee73cab63176548910fda34cd7201e64ad99957ac4df6,https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm
+br,BR Código de Defesa do Consumidor Lei 8.078/1990 (planalto),ok,200,text/html,169385,br/BR_Código_de_Defesa_do_Consumidor_Lei_8.078_1990_planalto.html,c99bce9488cb38a8b224498d524c61f90df7e9e189d95823d3110f9f423c1e31,https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm
+br,BR LGPD Lei 13.709/2018 (planalto),ok,200,text/html,310252,br/BR_LGPD_Lei_13.709_2018_planalto.html,e656422f49355cd233da015ffead317c1d7861d2950a30fce2d5516e822a164c,https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm
+br,BR LGPD 英文版 (gov.br),ok,200,text/html,419225,br/BR_LGPD_英文版_gov.br.html,ba8ee095a33572179dcb23ee8e679847b37c86e18beedfd8c504aa6b8049a5de,https://www.gov.br/anpd/pt-br
+br,BR-INMETRO 合格评定 (gov.br),ok,200,text/html,276698,br/BR-INMETRO_合格评定_gov.br.html,04f24822429eff46bc4550c68131da62f2dc82957f9ca727ed7f05e930c4950f,https://www.gov.br/inmetro/pt-br
+ca,CA C-1.68 Canada Consumer Product Safety Act,ok,200,text/xml,161851,ca/CA-act-C-1.68_Canada_Consumer_Product_Safety_Act.xml,08484c7d630af8161844244dff5701b86ede5eb7e36fec4611547f81f9be87cc,https://laws-lois.justice.gc.ca/eng/XML/C-1.68.xml
+ca,CA C-1.68 Canada Consumer Product Safety Act [html],ok,200,text/html,35773,ca/CA-act-C-1.68_Canada_Consumer_Product_Safety_Act.html,9f329bfa8697cd2069a8a1da0617c8a96f448fa90998ce865c2e5570313db6c5,https://laws-lois.justice.gc.ca/eng/acts/C-1.68/
+ca,CA C-34 Competition Act,ok,200,text/xml,699931,ca/CA-act-C-34_Competition_Act.xml,97948082223847543732e7e8713ed2602c9e9672ce209c291a48c1ea64b11b6f,https://laws-lois.justice.gc.ca/eng/XML/C-34.xml
+ca,CA C-34 Competition Act [html],ok,200,text/html,27143,ca/CA-act-C-34_Competition_Act.html,2a4a07f4f47dd500635f784a3b816ff642766b9e39e8ebf9370d68999db23640,https://laws-lois.justice.gc.ca/eng/acts/C-34/
+ca,CA C-38 Consumer Packaging and Labelling Act,ok,200,text/xml,63341,ca/CA-act-C-38_Consumer_Packaging_and_Labelling_Act.xml,79551803efc955839f55cb98acd95bbfc6c6927bdb10c154b0f570a82af9a8f6,https://laws-lois.justice.gc.ca/eng/XML/C-38.xml
+ca,CA C-38 Consumer Packaging and Labelling Act [html],ok,200,text/html,18505,ca/CA-act-C-38_Consumer_Packaging_and_Labelling_Act.html,6c9e2b7f88e1467d3e81a94aa70617b8777b72dd8bcbd4946a53107ee7876a40,https://laws-lois.justice.gc.ca/eng/acts/C-38/
+ca,CA E-15.2 Electricity and Gas Inspection Act,http_404,404,,0,,,https://laws-lois.justice.gc.ca/eng/XML/E-15.2.xml
+ca,CA E-15.2 Electricity and Gas Inspection Act [html],http_404,404,,0,,,https://laws-lois.justice.gc.ca/eng/acts/E-15.2/
+ca,CA F-27 Food and Drugs Act,ok,200,text/xml,296473,ca/CA-act-F-27_Food_and_Drugs_Act.xml,9b15148195fc9ab5a453ef722f23982c299dc46e3e2a584d6736cc53b578b40c,https://laws-lois.justice.gc.ca/eng/XML/F-27.xml
+ca,CA F-27 Food and Drugs Act [html],ok,200,text/html,32081,ca/CA-act-F-27_Food_and_Drugs_Act.html,5f04a5245414f304824a53704b4c1e61cbb7ae51b0594419f3d97690d363c7e6,https://laws-lois.justice.gc.ca/eng/acts/F-27/
+ca,CA H-3 Hazardous Products Act,ok,200,text/xml,146037,ca/CA-act-H-3_Hazardous_Products_Act.xml,562c2b057637a1acea7e9e533a989b33496227bbf73f9340b725d5a707e40e39,https://laws-lois.justice.gc.ca/eng/XML/H-3.xml
+ca,CA H-3 Hazardous Products Act [html],ok,200,text/html,22185,ca/CA-act-H-3_Hazardous_Products_Act.html,6aa887bd3fd76f5c5e810df7b6da6f580907396341982f3ba58373dd1232edbf,https://laws-lois.justice.gc.ca/eng/acts/H-3/
+ca,CA P-8.6 PIPEDA,ok,200,text/xml,243198,ca/CA-act-P-8.6_PIPEDA.xml,f19a69c256d4454b49516a9f78f10642361204534c1da37d0f64c7afbd24d6a1,https://laws-lois.justice.gc.ca/eng/XML/P-8.6.xml
+ca,CA P-8.6 PIPEDA [html],ok,200,text/html,24617,ca/CA-act-P-8.6_PIPEDA.html,80b0425701c9aea5a03c8c749797924b2b13968a9d282f6a378d74c6f28648d3,https://laws-lois.justice.gc.ca/eng/acts/P-8.6/
+ca,CA SOR-2001-269 Consumer Chemicals and Containers Regulations 2001,ok,200,text/xml,320699,ca/CA-SOR-2001-269_Consumer_Chemicals_and_Containers_Regulations_2001.xml,2a12c12d94c683ffb4c937030a4f682b688b4209de5fc68b33ef0016ac2b65b2,https://laws-lois.justice.gc.ca/eng/XML/SOR-2001-269.xml
+ca,CA SOR-2001-269 Consumer Chemicals and Containers Regulations 2001 [html],ok,200,text/html,22006,ca/CA-SOR-2001-269_Consumer_Chemicals_and_Containers_Regulations_2001.html,5337f1441233b64641f8f42cf03205b6edd1d1155ae420a4f377f75ce2c39c35,https://laws-lois.justice.gc.ca/eng/regulations/SOR-2001-269/
+ca,CA SOR-2016-169 Children's Sleepwear Regulations,ok,200,text/xml,25736,ca/CA-SOR-2016-169_Children's_Sleepwear_Regulations.xml,70c693b774610ccbdf0d1f4f0ca426166116e9ed81e0dda5b5c5c4ff742b29cd,https://laws-lois.justice.gc.ca/eng/XML/SOR-2016-169.xml
+ca,CA SOR-2016-169 Children's Sleepwear Regulations [html],ok,200,text/html,16236,ca/CA-SOR-2016-169_Children's_Sleepwear_Regulations.html,5b41fa7d60674b8b9b9d0577905071b045161db3262d0b4ffeb4e634ee14ed09,https://laws-lois.justice.gc.ca/eng/regulations/SOR-2016-169/
+ca,CA SOR-2016-188 Phthalates Regulations,ok,200,text/xml,7404,ca/CA-SOR-2016-188_Phthalates_Regulations.xml,60d205ac032d85e9fcc3a1615cdcb7c3173ebf09b90c52a548cf97cd1b7a8e60,https://laws-lois.justice.gc.ca/eng/XML/SOR-2016-188.xml
+ca,CA SOR-2016-188 Phthalates Regulations [html],ok,200,text/html,15692,ca/CA-SOR-2016-188_Phthalates_Regulations.html,21bb5aebfb2e5febfb12ea96a64eacc8d099f919e669732ebf943fb39fb8ffd5,https://laws-lois.justice.gc.ca/eng/regulations/SOR-2016-188/
+ca,CA SOR-2016-193 Surface Coating Materials Regulations,ok,200,text/xml,20924,ca/CA-SOR-2016-193_Surface_Coating_Materials_Regulations.xml,0d617c918c3d8c95d7d1c256e85af1df54b16336f4ef9c0537163ec39a422982,https://laws-lois.justice.gc.ca/eng/XML/SOR-2016-193.xml
+ca,CA SOR-2016-193 Surface Coating Materials Regulations [html],ok,200,text/html,16988,ca/CA-SOR-2016-193_Surface_Coating_Materials_Regulations.html,f894b29e3f6c4054edaa1b7093ea3d5b7a99655d2b47a9461092a99b17f4627c,https://laws-lois.justice.gc.ca/eng/regulations/SOR-2016-193/
+ca,CA SOR-2018-83 Consumer Products Containing Lead Regulations,ok,200,text/xml,9442,ca/CA-SOR-2018-83_Consumer_Products_Containing_Lead_Regulations.xml,fa60c10a6fdb96bd39cbd381a635d3ff0fa44235559471f804563da18e212977,https://laws-lois.justice.gc.ca/eng/XML/SOR-2018-83.xml
+ca,CA SOR-2018-83 Consumer Products Containing Lead Regulations [html],ok,200,text/html,15973,ca/CA-SOR-2018-83_Consumer_Products_Containing_Lead_Regulations.html,b45068bc445c08bf23c98be3a36e70956441eef02271e1137176ba1efd91b7d3,https://laws-lois.justice.gc.ca/eng/regulations/SOR-2018-83/
+ca,CA SOR-2019-97 Corded Window Coverings Regulations,ok,200,text/xml,23042,ca/CA-SOR-2019-97_Corded_Window_Coverings_Regulations.xml,3e23a1dbdcf0f29e77afb83314503f5456304d17d16ec305296434b5a4f74b7b,https://laws-lois.justice.gc.ca/eng/XML/SOR-2019-97.xml
+ca,CA SOR-2019-97 Corded Window Coverings Regulations [html],ok,200,text/html,16358,ca/CA-SOR-2019-97_Corded_Window_Coverings_Regulations.html,5a421968fe4f9a3f7a2a8c68ca0888a20cf539a9281dcbcb3f371bb7e28d3245,https://laws-lois.justice.gc.ca/eng/regulations/SOR-2019-97/
+ca,CA T-10 Textile Labelling Act,ok,200,text/xml,44292,ca/CA-act-T-10_Textile_Labelling_Act.xml,61e718369d9bb5b391125db676b8f1167754a73a0ac4c8f964b68aac4beedd98,https://laws-lois.justice.gc.ca/eng/XML/T-10.xml
+ca,CA T-10 Textile Labelling Act [html],ok,200,text/html,17099,ca/CA-act-T-10_Textile_Labelling_Act.html,81908fc5fe1ab5bf72bad80112f5091196e12ae43adb3f8b788a0497ac3c034f,https://laws-lois.justice.gc.ca/eng/acts/T-10/
+ca,CA W-6.5 Weights and Measures Act,ok,200,text/xml,8058,ca/CA-act-W-6.5_Weights_and_Measures_Act.xml,0942c88529f43a14ce339db77450363f8a6212e8d2e92b9284d7bc78f3355cf5,https://laws-lois.justice.gc.ca/eng/XML/W-6.5.xml
+ca,CA W-6.5 Weights and Measures Act [html],ok,200,text/html,15271,ca/CA-act-W-6.5_Weights_and_Measures_Act.html,a9cfe0cc49f8f47bc8d8d730f2afbdced9b6e6dd47c4fbf0b59528ea3950de96,https://laws-lois.justice.gc.ca/eng/acts/W-6.5/
+ch,CH Fedlex 内国法索引,ok,200,text/html,77151,ch/CH_Fedlex_内国法索引.html,ca776619833d02276c21557499f923266d9e5636f4752ea69a15f22dd1f8aecc,https://www.fedlex.admin.ch/en/cc/internal-law
+ch,CH Fedlex 联邦法律汇编,ok,200,text/html,77151,ch/CH_Fedlex_联邦法律汇编.html,ca776619833d02276c21557499f923266d9e5636f4752ea69a15f22dd1f8aecc,https://www.fedlex.admin.ch/en/cc/internal-law
+ch,CH Fedlex 联邦法规库,ok,200,text/html,77151,ch/CH_Fedlex_联邦法规库.html,ca776619833d02276c21557499f923266d9e5636f4752ea69a15f22dd1f8aecc,https://www.fedlex.admin.ch/
+ch,CH 产品安全法 PrSG,ok,200,text/html,77151,ch/CH_产品安全法_PrSG.html,ca776619833d02276c21557499f923266d9e5636f4752ea69a15f22dd1f8aecc,https://www.fedlex.admin.ch/eli/cc/2010/347/en
+ch,CH 产品安全法 PrSG (Fedlex ELI),ok,200,text/html,77151,ch/CH_产品安全法_PrSG_Fedlex_ELI.html,ca776619833d02276c21557499f923266d9e5636f4752ea69a15f22dd1f8aecc,https://www.fedlex.admin.ch/eli/cc/2010/347/en
+ch,CH 消费者事务 (SECO),ok,200,text/html,322978,ch/CH_消费者事务_SECO.html,d6cf92c67a30846eead8e73683eb252a7c727270a963e75ec01f3161af0943ce,https://www.seco.admin.ch/
+ch,CH 联邦内国法索引 (Fedlex),ok,200,text/html,77151,ch/CH_联邦内国法索引_Fedlex.html,ca776619833d02276c21557499f923266d9e5636f4752ea69a15f22dd1f8aecc,https://www.fedlex.admin.ch/en/cc/internal-law
+cl,CL Ley 19.496 消费者权益保护法 (LeyChile),ok,200,text/html,9602,cl/CL_Ley_19.496_消费者权益保护法_LeyChile.html,4ff75cdc3dade5550d6eee84a015e513a646a920e50ffce12cdea8cf379e9131,https://www.bcn.cl/leychile/navegar?idNorma=61438
+cl,CL Ley 19.628 个人数据保护法 (LeyChile),ok,200,text/html,9602,cl/CL_Ley_19.628_个人数据保护法_LeyChile.html,4ff75cdc3dade5550d6eee84a015e513a646a920e50ffce12cdea8cf379e9131,https://www.bcn.cl/leychile/navegar?idNorma=141599
+cl,CL LeyChile 法规库,ok,200,text/html,9602,cl/CL_LeyChile_法规库.html,4ff75cdc3dade5550d6eee84a015e513a646a920e50ffce12cdea8cf379e9131,https://www.bcn.cl/leychile/
+cl,CL SERNAC 消费者服务局,error,0,,0,,,https://www.sernac.cl/
+cn,CN 专利法 (npc.gov.cn),ok,200,text/html,87332,cn/CN_专利法_npc.gov.cn.html,b300d052c734c3cbe0a39e325c4db0a4ee316d1677ca61328d24e30415939e30,http://www.npc.gov.cn/npc/c2/c30834/202010/t20201017_308087.html
+cn,CN 产品质量法 (npc.gov.cn),ok,200,text/html,87332,cn/CN_产品质量法_npc.gov.cn.html,b300d052c734c3cbe0a39e325c4db0a4ee316d1677ca61328d24e30415939e30,http://www.npc.gov.cn/npc/c2/c30834/201905/t20190521_296480.html
+cn,CN 全国人大 法律 (npc.gov.cn),ok,200,text/html,454,cn/CN_全国人大_法律_npc.gov.cn.html,63f062301b928690121289dfbaee7c862a1bab317f680dd758a95216e69d7066,http://www.npc.gov.cn/npc/c2/c30834/
+cn,CN 公司法 2023 修订 (npc.gov.cn),ok,200,text/html,87332,cn/CN_公司法_2023_修订_npc.gov.cn.html,b300d052c734c3cbe0a39e325c4db0a4ee316d1677ca61328d24e30415939e30,http://www.npc.gov.cn/npc/c2/c30834/202312/t20231229_434258.html
+cn,CN 劳动合同法 (npc.gov.cn),ok,200,text/html,87332,cn/CN_劳动合同法_npc.gov.cn.html,b300d052c734c3cbe0a39e325c4db0a4ee316d1677ca61328d24e30415939e30,http://www.npc.gov.cn/npc/c2/c30834/201905/t20190521_296486.html
+cn,CN 反不正当竞争法 (npc.gov.cn),ok,200,text/html,87332,cn/CN_反不正当竞争法_npc.gov.cn.html,b300d052c734c3cbe0a39e325c4db0a4ee316d1677ca61328d24e30415939e30,http://www.npc.gov.cn/npc/c2/c30834/201905/t20190521_296483.html
+cn,CN 商务部 法规 (mofcom.gov.cn),ok,200,text/html,9631,cn/CN_商务部_法规_mofcom.gov.cn.html,f9970596168db6530147d908b480710629e3da038ea83892170d998b7f813f6c,https://www.mofcom.gov.cn/zcfb/zgdwjjmywg/
+cn,CN 商务部政策发布 (mofcom.gov.cn),ok,200,text/html,21323,cn/CN_商务部政策发布_mofcom.gov.cn.html,9fa07e33387408aa036c0f21223d5c294d876fc057e50928720126885089d23f,https://www.mofcom.gov.cn/zcfb/index.html
+cn,CN 商标法 (npc.gov.cn),ok,200,text/html,87332,cn/CN_商标法_npc.gov.cn.html,b300d052c734c3cbe0a39e325c4db0a4ee316d1677ca61328d24e30415939e30,http://www.npc.gov.cn/npc/c2/c30834/201905/t20190521_296487.html
+cn,CN 国务院政策文件库 (gov.cn),ok,200,text/html,226263,cn/CN_国务院政策文件库_gov.cn.html,f26668cde19a019347d1aaae6fee9c587655b468d4fbbc95ba09834a5b693cbe,https://www.gov.cn/zhengce/xxgk/
+cn,CN 市场监管总局 法规 (samr.gov.cn),ok,200,text/html,3592,cn/CN_市场监管总局_法规_samr.gov.cn.html,b2890fc7ecf2f26c00bd085ad71ca6c33879a4157dc415f404012006044a8d49,https://www.samr.gov.cn/zw/zfxxgk/fdzdgknr/fldj/
+cn,CN 广告法 (npc.gov.cn),ok,200,text/html,87332,cn/CN_广告法_npc.gov.cn.html,b300d052c734c3cbe0a39e325c4db0a4ee316d1677ca61328d24e30415939e30,http://www.npc.gov.cn/npc/c2/c30834/201905/t20190521_296492.html
+cn,CN 标准化法 (npc.gov.cn),ok,200,text/html,87332,cn/CN_标准化法_npc.gov.cn.html,b300d052c734c3cbe0a39e325c4db0a4ee316d1677ca61328d24e30415939e30,http://www.npc.gov.cn/npc/c2/c30834/201711/t20171104_200146.html
+cn,CN 民法典 (npc.gov.cn),ok,200,text/html,87332,cn/CN_民法典_npc.gov.cn.html,b300d052c734c3cbe0a39e325c4db0a4ee316d1677ca61328d24e30415939e30,http://www.npc.gov.cn/npc/c30834/202006/75ba6483b8344591abd07917e1d25cc8.shtml
+cn,CN 消费者权益保护法 (npc.gov.cn),ok,200,text/html,87332,cn/CN_消费者权益保护法_npc.gov.cn.html,b300d052c734c3cbe0a39e325c4db0a4ee316d1677ca61328d24e30415939e30,http://www.npc.gov.cn/npc/c2/c30834/201905/t20190521_296479.html
+cn,CN 电子商务法 (npc.gov.cn),ok,200,text/html,87332,cn/CN_电子商务法_npc.gov.cn.html,b300d052c734c3cbe0a39e325c4db0a4ee316d1677ca61328d24e30415939e30,http://www.npc.gov.cn/npc/c2/c30834/201808/t20180831_272122.html
+cn,CN 药品管理法 (npc.gov.cn),ok,200,text/html,87332,cn/CN_药品管理法_npc.gov.cn.html,b300d052c734c3cbe0a39e325c4db0a4ee316d1677ca61328d24e30415939e30,http://www.npc.gov.cn/npc/c2/c30834/201905/t20190521_296484.html
+cn,CN 食品安全法 (npc.gov.cn),ok,200,text/html,87332,cn/CN_食品安全法_npc.gov.cn.html,b300d052c734c3cbe0a39e325c4db0a4ee316d1677ca61328d24e30415939e30,http://www.npc.gov.cn/npc/c2/c30834/201905/t20190521_296481.html
+cn,CN-CSAR 化妆品监督管理条例 (gov.cn),http_404,404,,0,,,https://www.gov.cn/zhengce/content/2020-06/29/content_5524019.htm
+cn,CN-CSL 网络安全法 (npc.gov.cn),ok,200,text/html,87332,cn/CN-CSL_网络安全法_npc.gov.cn.html,b300d052c734c3cbe0a39e325c4db0a4ee316d1677ca61328d24e30415939e30,http://www.npc.gov.cn/npc/c2/c30834/201611/t20161107_2001289.html
+cn,CN-DSL 数据安全法 (npc.gov.cn),ok,200,text/html,26684,cn/CN-DSL_数据安全法_npc.gov.cn.html,7dfac5b56c3c6b569c77ec538da2d7d5a73da1af6cd2dda7bc021fa93300b341,http://www.npc.gov.cn/npc/c2/c30834/202106/t20210610_311888.html
+cn,CN-DUAL-USE 两用物项出口管制条例 (gov.cn),ok,200,text/html,67661,cn/CN-DUAL-USE_两用物项出口管制条例_gov.cn.html,04d902b1f96e436e9d09710df489edc11ea82f49c0d8dc8a0989fddb0b00d451,https://www.gov.cn/zhengce/content/202410/content_6981399.htm
+cn,CN-ECL 出口管制法 (npc.gov.cn),ok,200,text/html,87332,cn/CN-ECL_出口管制法_npc.gov.cn.html,b300d052c734c3cbe0a39e325c4db0a4ee316d1677ca61328d24e30415939e30,http://www.npc.gov.cn/npc/c2/c30834/202010/t20201017_308086.html
+cn,CN-FLK 国家法律法规数据库 (flk.npc.gov.cn),ok,200,text/html,552,cn/CN-FLK_国家法律法规数据库_flk.npc.gov.cn.html,d3f541c9c9a16c8a9a4b3fa36a7f16980b7974647f71fc24cc88fc99302938a7,https://flk.npc.gov.cn/
+cn,CN-GB search GB 18401 纺织产品安全 (openstd),ok,200,text/html,52993,cn/CN-GB_search_GB_18401_纺织产品安全_openstd.html,13bf7dedf0bd6f3533d1a47adf4ff5a8e7e0efe129830fcb48025ddc23833255,https://openstd.samr.gov.cn/bzgk/gb/std_list?p.p1=0&p.p90=circulation_date&p.p91=desc&p.p2=GB%2018401
+cn,CN-GB search GB 31241 锂电池安全 (openstd),ok,200,text/html,53663,cn/CN-GB_search_GB_31241_锂电池安全_openstd.html,7df7d2ed30142981dcf649a19722933e331db98d0dbc7c43d2906e238dc7d1b4,https://openstd.samr.gov.cn/bzgk/gb/std_list?p.p1=0&p.p90=circulation_date&p.p91=desc&p.p2=GB%2031241
+cn,CN-GB search GB 4706 家用电器安全 (openstd),ok,200,text/html,69657,cn/CN-GB_search_GB_4706_家用电器安全_openstd.html,2870a2ca2e97630a62c5cc09a8cf4641b4a74e27844e6e6aa89c5fc8155a7a03,https://openstd.samr.gov.cn/bzgk/gb/std_list?p.p1=0&p.p90=circulation_date&p.p91=desc&p.p2=GB%204706
+cn,CN-GB search GB 4806 食品接触材料 (openstd),ok,200,text/html,56213,cn/CN-GB_search_GB_4806_食品接触材料_openstd.html,3008ca95163d35fe402d4ae94fe7640071b957b8b8ef63a7efe10a0b115df57e,https://openstd.samr.gov.cn/bzgk/gb/std_list?p.p1=0&p.p90=circulation_date&p.p91=desc&p.p2=GB%204806
+cn,CN-GB search GB 4943 音视频信息技术设备 (openstd),ok,200,text/html,56346,cn/CN-GB_search_GB_4943_音视频信息技术设备_openstd.html,34f88de0adfca7b262c47e9a6f258a8341035216bd6766b947597b2aa5d98d74,https://openstd.samr.gov.cn/bzgk/gb/std_list?p.p1=0&p.p90=circulation_date&p.p91=desc&p.p2=GB%204943
+cn,CN-GB search GB 5296 使用说明 (openstd),ok,200,text/html,62132,cn/CN-GB_search_GB_5296_使用说明_openstd.html,3a1b4030168982a92d583bff0a0db126e43dd9bfb1c39eeb9fc362194f14fc95,https://openstd.samr.gov.cn/bzgk/gb/std_list?p.p1=0&p.p90=circulation_date&p.p91=desc&p.p2=GB%205296
+cn,CN-GB search GB 6675 玩具安全 (openstd),ok,200,text/html,62321,cn/CN-GB_search_GB_6675_玩具安全_openstd.html,106ed8ce2ec8c2198d51ffd70eb02517e5d1a33f603d204bbde358776b46c463,https://openstd.samr.gov.cn/bzgk/gb/std_list?p.p1=0&p.p90=circulation_date&p.p91=desc&p.p2=GB%206675
+cn,CN-GB-44495 汽车整车信息安全技术要求 (openstd),ok,200,text/html,24164,cn/CN-GB-44495_汽车整车信息安全技术要求_openstd.html,5e50e24166a0a0b076942572fbb6bcc5e5d05daa05ad6ccdda8307688738ad2f,https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=2DB552CAA58F589705C3DC7AD47AC2AB
+cn,CN-MIIT 工信部 文件发布 (miit.gov.cn),ok,200,text/html,2163,cn/CN-MIIT_工信部_文件发布_miit.gov.cn.html,85cb21b3a040c0c03c0b1a7ee5904e2e6951a3c9096f42da333a03462167ceb8,https://www.miit.gov.cn/zwgk/zcwj/wjfb/index.html
+cn,CN-MIIT 无线电管理 (miit.gov.cn),http_404,404,,0,,,https://www.miit.gov.cn/jgsj/wdz/dzxx/index.html
+cn,CN-ODI-NDRC 企业境外投资管理办法 (gov.cn),ok,200,text/html,69270,cn/CN-ODI-NDRC_企业境外投资管理办法_gov.cn.html,29975f8f2c839da926984aca4d7bda6f875e6bfe3657ec6ee97340cbfdfaa245,https://www.gov.cn/zhengce/2021-12/01/content_5713252.htm
+cn,CN-PIPL 个人信息保护法 (npc.gov.cn),ok,200,text/html,42748,cn/CN-PIPL_个人信息保护法_npc.gov.cn.html,23eeb747cb57b852929e30906c51b5816095dc43977868543a4bce5b3540b429,http://www.npc.gov.cn/npc/c2/c30834/202108/t20210820_313088.html
+cn,CN-SAMR 市场监管总局 新闻 (samr.gov.cn),ok,200,text/html,3388,cn/CN-SAMR_市场监管总局_新闻_samr.gov.cn.html,c95b4a840894fd0d37ed8291c0fe9d473c585a167f22186759aa443f25da1c6a,https://www.samr.gov.cn/xw/zj/
+cn,CN-TECH-EXPORT-CATALOG 禁止出口限制出口技术目录 (mofcom),ok,200,text/html,16855,cn/CN-TECH-EXPORT-CATALOG_禁止出口限制出口技术目录_mofcom.html,403ac00c05c1a93f506dfbcc14528ef2b1a31bf67628bb58c8189e7b13b4533f,https://www.mofcom.gov.cn/zcfb/zgdwjjmywg/art/2025/art_67e2a41850ec428eb1b7be6ec2f2bded.html
+co,CO Ley 1480 消费者保护法 (SUIN),ok,200,text/html,4758,co/CO_Ley_1480_消费者保护法_SUIN.html,290a89e68f4f0da75290589aee504cbfe8d0c49fbc59eaee684ef2986e4faca4,https://www.suin-juriscol.gov.co/viewDocument.asp?ruta=Leyes/1684112
+co,CO SUIN-Juriscol 法规库,ok,200,text/html,4758,co/CO_SUIN-Juriscol_法规库.html,290a89e68f4f0da75290589aee504cbfe8d0c49fbc59eaee684ef2986e4faca4,https://www.suin-juriscol.gov.co/
+cr,CR PGR 法规库,error,0,,0,,,https://www.pgrweb.go.cr/
+cy,CY CyLaw 法规库,ok,200,text/html,10094,cy/CY_CyLaw_法规库.html,f9e1b1569b08a3bc957bd6c6fcf028b4b4ba3b3391b198d7470f11f281b271a3,http://www.cylaw.org/
+cy,CY 消费者保护法 (CyLaw),ok,200,text/html,10094,cy/CY_消费者保护法_CyLaw.html,f9e1b1569b08a3bc957bd6c6fcf028b4b4ba3b3391b198d7470f11f281b271a3,http://www.cylaw.org/
+de,DE BDSG Bundesdatenschutzgesetz 2018,ok,200,application/pdf,267512,de/DE-BDSG_Bundesdatenschutzgesetz_2018.pdf,859631d6203e0c3d12b280a1982c83d0521ccfe6c4eaa04ae5bc264112711004,https://www.gesetze-im-internet.de/bdsg_2018/BDSG.pdf
+de,DE BDSG Bundesdatenschutzgesetz 2018 [xml],ok,200,application/zip,45431,de/DE-BDSG_Bundesdatenschutzgesetz_2018.xml.zip,4b4161639fae051a43ad32bf85614a3e02e085c73f9a938694d3cc831b88e286,https://www.gesetze-im-internet.de/bdsg_2018/xml.zip
+de,DE BGB Buergerliches Gesetzbuch,ok,200,application/pdf,2817383,de/DE-BGB_Buergerliches_Gesetzbuch.pdf,d75a31513293eaf31c166e0985fe1f8586158ceaf56614f3dfd50da183935786,https://www.gesetze-im-internet.de/bgb/BGB.pdf
+de,DE BGB Buergerliches Gesetzbuch [xml],ok,200,application/zip,467258,de/DE-BGB_Buergerliches_Gesetzbuch.xml.zip,0fa8b25bfd3cad6682a5ae5744f13e8a058a03db138555933d2824227b25b672,https://www.gesetze-im-internet.de/bgb/xml.zip
+de,DE BattDG Batterierecht Durchfuehrungsgesetz,ok,200,application/pdf,202162,de/DE-BattDG_Batterierecht_Durchfuehrungsgesetz.pdf,6a6ab38251d6c1aeef6079674223e88679f810000e10aa61af94c93779aba5f3,https://www.gesetze-im-internet.de/battdg/BattDG.pdf
+de,DE BattDG Batterierecht Durchfuehrungsgesetz [xml],ok,200,application/zip,31851,de/DE-BattDG_Batterierecht_Durchfuehrungsgesetz.xml.zip,f3ae73c9c32a74a67a814ff3eb3eb635d5567a4af493d24211cc9c5a1f3c577f,https://www.gesetze-im-internet.de/battdg/xml.zip
+de,DE ChemG Chemikaliengesetz,ok,200,application/pdf,275376,de/DE-ChemG_Chemikaliengesetz.pdf,3ea762e731adc814a689e30f26b50856512fa53d949fa30f3159082d09df0468,https://www.gesetze-im-internet.de/chemg/ChemG.pdf
+de,DE ChemG Chemikaliengesetz [xml],ok,200,application/zip,53954,de/DE-ChemG_Chemikaliengesetz.xml.zip,30f7ec30617fa5958f0c10abd52dbfd866748e280b53dd2a2f990edbfebf8380,https://www.gesetze-im-internet.de/chemg/xml.zip
+de,DE ElektroG Elektro- und Elektronikgeraetegesetz,ok,200,application/pdf,245683,de/DE-ElektroG_Elektro-_und_Elektronikgeraetegesetz.pdf,8f299971d1159a70111172691f3f7fa8532afcae672252eab2fff4f4250039ad,https://www.gesetze-im-internet.de/elektrog_2015/ElektroG.pdf
+de,DE ElektroG Elektro- und Elektronikgeraetegesetz [xml],ok,200,application/zip,66373,de/DE-ElektroG_Elektro-_und_Elektronikgeraetegesetz.xml.zip,29a318061af91045653884176310091e2329a5a5a4f5c44aa11cecc01731b31a,https://www.gesetze-im-internet.de/elektrog_2015/xml.zip
+de,DE EnWG Energiewirtschaftsgesetz,ok,200,application/pdf,1187872,de/DE-EnWG_Energiewirtschaftsgesetz.pdf,e57fcff73f6c8bd876bc41213624c2c2475082dc16b3cea902943b511005e30b,https://www.gesetze-im-internet.de/enwg_2005/EnWG.pdf
+de,DE EnWG Energiewirtschaftsgesetz [xml],ok,200,application/zip,283943,de/DE-EnWG_Energiewirtschaftsgesetz.xml.zip,8b1e9f3b5c861930b8051142bfa1389d4101f727a193932b9d8b39404f2192f5,https://www.gesetze-im-internet.de/enwg_2005/xml.zip
+de,DE LFGB Lebensmittel- und Futtermittelgesetzbuch,ok,200,application/pdf,319313,de/DE-LFGB_Lebensmittel-_und_Futtermittelgesetzbuch.pdf,2dd0e60e0ab7331692c25586178390add184d2f643abe66b696dd1168d96b368,https://www.gesetze-im-internet.de/lfgb/LFGB.pdf
+de,DE LFGB Lebensmittel- und Futtermittelgesetzbuch [xml],ok,200,application/zip,60289,de/DE-LFGB_Lebensmittel-_und_Futtermittelgesetzbuch.xml.zip,0b0ec1baeba2cf7814a42d223af55bbc89173855801d2a0ee6d2f0c050e37c7d,https://www.gesetze-im-internet.de/lfgb/xml.zip
+de,DE MarkenG Markengesetz,ok,200,application/pdf,351862,de/DE-MarkenG_Markengesetz.pdf,228bd2d49f6b50d7206775c5f1af04cba682c0a847541c5638ee48b47f5f3fe9,https://www.gesetze-im-internet.de/markeng/MarkenG.pdf
+de,DE MarkenG Markengesetz [xml],ok,200,application/zip,60746,de/DE-MarkenG_Markengesetz.xml.zip,69ef8061734d1a006fa6c1d17f66db4c23d5403f52f3d65497c0e94775d6475d,https://www.gesetze-im-internet.de/markeng/xml.zip
+de,DE PatG Patentgesetz,ok,200,application/pdf,258545,de/DE-PatG_Patentgesetz.pdf,3171dd7f9fc3ca6a23bbe1180c5a7db1a357b6a229b1e0f838d5baf95ea5725f,https://www.gesetze-im-internet.de/patg/PatG.pdf
+de,DE PatG Patentgesetz [xml],ok,200,application/zip,51192,de/DE-PatG_Patentgesetz.xml.zip,138963455d4a405fb77e3bebae77b6227f3164ede7de164c0439fdd5db291dce,https://www.gesetze-im-internet.de/patg/xml.zip
+de,DE ProdHaftG Produkthaftungsgesetz,ok,200,application/pdf,64544,de/DE-ProdHaftG_Produkthaftungsgesetz.pdf,dd70f8579a7e82430a3ee05bcdb8aa16ba4eff7e0092978be6968cca9726aeac,https://www.gesetze-im-internet.de/prodhaftg/ProdHaftG.pdf
+de,DE ProdHaftG Produkthaftungsgesetz [xml],ok,200,application/zip,4907,de/DE-ProdHaftG_Produkthaftungsgesetz.xml.zip,76f26694b8411c1dbdabfe90918f985c773dd4b7080d28e184469ea7e330b8f2,https://www.gesetze-im-internet.de/prodhaftg/xml.zip
+de,DE ProdSG Produktsicherheitsgesetz,ok,200,application/pdf,142008,de/DE-ProdSG_Produktsicherheitsgesetz.pdf,b97f4d250a957c55d19f1d1ba98941ce5008ee82651d6dacad8281c3baad23f6,https://www.gesetze-im-internet.de/prodsg_2021/ProdSG.pdf
+de,DE ProdSG Produktsicherheitsgesetz [xml],ok,200,application/zip,158246,de/DE-ProdSG_Produktsicherheitsgesetz.xml.zip,d49c0356ae5e32e14fad43a602b8db9fc5925cb0f704e1a1b918c97f6b876947,https://www.gesetze-im-internet.de/prodsg_2021/xml.zip
+de,DE TKG Telekommunikationsgesetz,ok,200,application/pdf,716815,de/DE-TKG_Telekommunikationsgesetz.pdf,75a2077aa82d2779b378e5de82c43008cfef47f82ac6ec5dce566ee93cacedd7,https://www.gesetze-im-internet.de/tkg_2021/TKG.pdf
+de,DE TKG Telekommunikationsgesetz [xml],ok,200,application/zip,157167,de/DE-TKG_Telekommunikationsgesetz.xml.zip,705ab094cfbc6c63146de69bcf49890105ac06609eac3cedfcfe0c936ecf3cc5,https://www.gesetze-im-internet.de/tkg_2021/xml.zip
+de,DE TextilKennzG Textilkennzeichnungsgesetz,ok,200,application/pdf,69283,de/DE-TextilKennzG_Textilkennzeichnungsgesetz.pdf,367457e4c574f1eccaf37ebe71155fb8c2b9b939d914fc0eab12852c5c2cc9bd,https://www.gesetze-im-internet.de/textilkennzg_2016/TextilKennzG.pdf
+de,DE TextilKennzG Textilkennzeichnungsgesetz [xml],ok,200,application/zip,5729,de/DE-TextilKennzG_Textilkennzeichnungsgesetz.xml.zip,67857f1a0a66bcc641f63de4dd4eaab241c30ce394d89b1b07545697e8694817,https://www.gesetze-im-internet.de/textilkennzg_2016/xml.zip
+de,DE UWG Gesetz gegen den unlauteren Wettbewerb,ok,200,application/pdf,128227,de/DE-UWG_Gesetz_gegen_den_unlauteren_Wettbewerb.pdf,9d885ce60a336f85d94b40c8e637ed551ce034792d32e5c04b3175234a085858,https://www.gesetze-im-internet.de/uwg_2004/UWG.pdf
+de,DE UWG Gesetz gegen den unlauteren Wettbewerb [xml],ok,200,application/zip,21776,de/DE-UWG_Gesetz_gegen_den_unlauteren_Wettbewerb.xml.zip,f0fc93188701845072df724add32107b1b0f36b3da26556ca8acb6be7c7c0bfb,https://www.gesetze-im-internet.de/uwg_2004/xml.zip
+de,DE UrhG Urheberrechtsgesetz,ok,200,application/pdf,413416,de/DE-UrhG_Urheberrechtsgesetz.pdf,a9ae29d4ac8c728cd5c57acdf73280d32850f0792103c89d3b0a9c42e70e6bd7,https://www.gesetze-im-internet.de/urhg/UrhG.pdf
+de,DE UrhG Urheberrechtsgesetz [xml],ok,200,application/zip,72672,de/DE-UrhG_Urheberrechtsgesetz.xml.zip,e95176f0e3c1b49f0c269ecdac2ecdd482e542a8d5d620251e1b1f67a94033e6,https://www.gesetze-im-internet.de/urhg/xml.zip
+de,DE VerpackDG Verpackungsdurchfuehrungsgesetz,ok,200,application/pdf,271653,de/DE-VerpackDG_Verpackungsdurchfuehrungsgesetz.pdf,5eea00241d9c92d0ca851e4a4dfd420c08f0f526217525de59acfb8be555ef8c,https://www.gesetze-im-internet.de/verpackdg/VerpackDG.pdf
+de,DE VerpackDG Verpackungsdurchfuehrungsgesetz [xml],ok,200,application/zip,49625,de/DE-VerpackDG_Verpackungsdurchfuehrungsgesetz.xml.zip,e5ecbe6c52c456e7d1ad9d28ef97cbc9fd6858ef220f5b0eea8882b388eac9b5,https://www.gesetze-im-internet.de/verpackdg/xml.zip
+de,DE 消费者保护与食品安全局 BVL,ok,200,text/html,67639,de/DE_消费者保护与食品安全局_BVL.html,9d21914ba47fc38102debc9186d3f914d50e5e322187ffb7591f7cfdfca6eb61,https://www.bvl.bund.de/
+de,DE 联邦法规索引 A-K (gesetze-im-internet.de),ok,200,text/html,203800,de/DE_联邦法规索引_A-K_gesetze-im-internet.de.html,5472845338095a4f2dbd3d84ba0bccb4f59b263c463288b375ad1bc6f5453b0a,https://www.gesetze-im-internet.de/Teilliste_A.html
+de,DE 联邦法规索引 L-Z (gesetze-im-internet.de),ok,200,text/html,140734,de/DE_联邦法规索引_L-Z_gesetze-im-internet.de.html,af9bc03eb238e17efe615e89b4aa6f595ce9637cbd35dd81af6aab5d4a82e885,https://www.gesetze-im-internet.de/Teilliste_L.html
+de,DE 英文翻译法规索引 (gesetze-im-internet.de),ok,200,text/html,72147,de/DE_英文翻译法规索引_gesetze-im-internet.de.html,be1a1c52cc16055378909cd907678c1281c25375cf7e4ffda7aa64504060b82e,https://www.gesetze-im-internet.de/Teilliste_translations.html
+dk,DK Retsinformation 法规库,ok,200,text/html,4852,dk/DK_Retsinformation_法规库.html,17967f63f16b25b188f8cd185c04af5dcd1e0fa4915d8698df5914c9c7ddb28c,https://www.retsinformation.dk/
+dk,DK 消费者保护法 (Retsinformation),ok,200,text/html,4852,dk/DK_消费者保护法_Retsinformation.html,a1831e7e8a840c28f23a75b0677124d6661b03cc2472520af59d55c30e747f23,https://www.retsinformation.dk/
+ee,EE Riigi Teataja 法规库,ok,200,text/html,52124,ee/EE_Riigi_Teataja_法规库.html,d571918688d1ea52acc931055d784c5339b2d54a903eccd9ebb107c247fd0714,https://www.riigiteataja.ee/
+ee,EE 消费者保护法 (Riigi Teataja),ok,200,text/html,52124,ee/EE_消费者保护法_Riigi_Teataja.html,359ebe95586c9443b99cb0aa6fc47c12df67a1d54678a8c105e9d300b6635d4b,https://www.riigiteataja.ee/
+eg,EG 埃及法律门户,error,0,,0,,,http://www.law.gov.eg/
+es,ES BOE 国家公报,ok,200,text/html,23169,es/ES_BOE_国家公报.html,5f112397c55cd7cf69642d3d48cad21af859a8b3fa9ef6b81d24a781411ee052,https://www.boe.es/
+es,ES BOE 开放数据 API 索引,http_400,400,,0,,,https://www.boe.es/datosabiertos/api/legislacion-consolidada?limit=1000
+es,ES BOE 立法检索,ok,200,text/html,19187,es/ES_BOE_立法检索.html,d76a948c0568014ab04b02b1fe5fa1bafe1e69d1cefd6827072aceb0d7e48cfa,https://www.boe.es/buscar/legislacion.php
+es,ES BOE-A-2007-20555  consolidated XML,ok,200,application/xml,1291626,es/ES_BOE-A-2007-20555_consolidated_XML.xml,f63ba628f55c0063f77ce7b66a81981711167a8ba29c5f395d23ba5148da0917,https://www.boe.es/datosabiertos/api/legislacion-consolidada/id/BOE-A-2007-20555
+es,ES 消费者保护法 LGDCU (BOE),ok,200,text/html,992658,es/ES_消费者保护法_LGDCU_BOE.html,3dd8d42061eda6de208dc184063653919abcafbc7903933e4bed7248cf2f6691,https://www.boe.es/buscar/act.php?id=BOE-A-2007-20555
+eu,EU-10-2011 Plastic Food Contact Materials,http_404,404,,0,,,https://publications.europa.eu/resource/celex/32011R0010?language=eng
+eu,EU-10-2011 Plastic Food Contact Materials [xhtml],ok,200,application/xhtml+xml,1930619,eu/EU-10-2011_Plastic_Food_Contact_Materials.xhtml,44ff259cd717699ac2aefd8cc41cbc3c31ae95e3d0d1ddbdf660fb7e7b4567da,https://publications.europa.eu/resource/celex/32011R0010?language=eng
+eu,EU-1007-2011 Textile Fibre Names,http_404,404,,0,,,https://publications.europa.eu/resource/celex/32011R1007?language=eng
+eu,EU-1007-2011 Textile Fibre Names [xhtml],ok,200,application/xhtml+xml,956215,eu/EU-1007-2011_Textile_Fibre_Names.xhtml,ed0159b70c50067a77ba0f85c6cf2399cfdf00b3d580216ca9c53f3eca60f167,https://publications.europa.eu/resource/celex/32011R1007?language=eng
+eu,EU-1223-2009 Cosmetics Regulation,http_404,404,,0,,,https://publications.europa.eu/resource/celex/32009R1223?language=eng
+eu,EU-1223-2009 Cosmetics Regulation [xhtml],ok,200,application/xhtml+xml,2154972,eu/EU-1223-2009_Cosmetics_Regulation.xhtml,858298b0649bd04c96565e92c5db593d8c88ed9b67f96f91189c2b194a1efec8,https://publications.europa.eu/resource/celex/32009R1223?language=eng
+eu,EU-1907-2006 REACH Chemicals,ok,200,application/pdf,1864477,eu/EU-1907-2006_REACH_Chemicals.pdf,005c7db3fc75ac2062264c0e3ae58715d6365d52dcbbeb60a81c10ab98e5e766,https://publications.europa.eu/resource/celex/32006R1907?language=eng
+eu,EU-1907-2006 REACH Chemicals [xhtml],http_404,404,,0,,,https://publications.europa.eu/resource/celex/32006R1907?language=eng
+eu,EU-1935-2004 Food Contact Materials Framework,ok,200,application/pdf,138735,eu/EU-1935-2004_Food_Contact_Materials_Framework.pdf,9272c6aa611b5f87d926ea3fcc0fb8e7f84724a4a9c983dbfea6d37db084b872,https://publications.europa.eu/resource/celex/32004R1935?language=eng
+eu,EU-1935-2004 Food Contact Materials Framework [xhtml],ok,200,application/xhtml+xml,121339,eu/EU-1935-2004_Food_Contact_Materials_Framework.xhtml,83c434a145fc2917a5a67eb9e5241695508bca56cdaa2bf3b00bfb07f53b28f6,https://publications.europa.eu/resource/celex/32004R1935?language=eng
+eu,EU-2002-58 ePrivacy Directive,ok,200,application/pdf,165451,eu/EU-2002-58_ePrivacy_Directive.pdf,081fa36ca2a4c7cb80d8eecae545568c7a65d74e7d98c6ad8c9060edf7c220ff,https://publications.europa.eu/resource/celex/32002L0058?language=eng
+eu,EU-2002-58 ePrivacy Directive [xhtml],http_404,404,,0,,,https://publications.europa.eu/resource/celex/32002L0058?language=eng
+eu,EU-2003-88 Working Time Directive,ok,200,application/pdf,118061,eu/EU-2003-88_Working_Time_Directive.pdf,086426a6a0e1750c106999a5982539727883f21c324ad5b9880a26afd8eb03e3,https://publications.europa.eu/resource/celex/32003L0088?language=eng
+eu,EU-2003-88 Working Time Directive [xhtml],http_404,404,,0,,,https://publications.europa.eu/resource/celex/32003L0088?language=eng
+eu,EU-2005-29 Unfair Commercial Practices Directive,ok,200,application/pdf,142386,eu/EU-2005-29_Unfair_Commercial_Practices_Directive.pdf,f336b1669453381ca6a55f1185159cff6fd114eae0bddebe6f7db3770689b2ef,https://publications.europa.eu/resource/celex/32005L0029?language=eng
+eu,EU-2005-29 Unfair Commercial Practices Directive [xhtml],ok,200,application/xhtml+xml,180625,eu/EU-2005-29_Unfair_Commercial_Practices_Directive.xhtml,e3bb49ef6c1bc917e05b26032df8d8dd2a37f36fbf1b86bf3f839505419f0c52,https://publications.europa.eu/resource/celex/32005L0029?language=eng
+eu,EU-2009-125 Ecodesign ErP Directive,http_404,404,,0,,,https://publications.europa.eu/resource/celex/32009L0125?language=eng
+eu,EU-2009-125 Ecodesign ErP Directive [xhtml],ok,200,application/xhtml+xml,500137,eu/EU-2009-125_Ecodesign_ErP_Directive.xhtml,7757a4e8b5d5e655d953f4c9f08589f140456f3cde832e860056004a5c42614d,https://publications.europa.eu/resource/celex/32009L0125?language=eng
+eu,EU-2009-48 Toy Safety Directive,http_404,404,,0,,,https://publications.europa.eu/resource/celex/32009L0048?language=eng
+eu,EU-2009-48 Toy Safety Directive [xhtml],ok,200,application/xhtml+xml,426173,eu/EU-2009-48_Toy_Safety_Directive.xhtml,f174ea8d28960b8cb4eb29114740beaaf85b911c4e78f30020006124df62d568,https://publications.europa.eu/resource/celex/32009L0048?language=eng
+eu,EU-2011-65 RoHS Restriction of Hazardous Substances,http_404,404,,0,,,https://publications.europa.eu/resource/celex/32011L0065?language=eng
+eu,EU-2011-65 RoHS Restriction of Hazardous Substances [xhtml],ok,200,application/xhtml+xml,258113,eu/EU-2011-65_RoHS_Restriction_of_Hazardous_Substances.xhtml,35af7d1b0eb7737545a8b81b8b008bb531b133915ac0f6c65a2d031171e76b76,https://publications.europa.eu/resource/celex/32011L0065?language=eng
+eu,EU-2011-83 Consumer Rights Directive,http_404,404,,0,,,https://publications.europa.eu/resource/celex/32011L0083?language=eng
+eu,EU-2011-83 Consumer Rights Directive [xhtml],ok,200,application/xhtml+xml,298947,eu/EU-2011-83_Consumer_Rights_Directive.xhtml,6e9c0ddd987ff051e2ca291bf04cc7891ec002e04e1e5ea4a00f3ba4845e1b3a,https://publications.europa.eu/resource/celex/32011L0083?language=eng
+eu,EU-2012-19 WEEE Waste Electrical and Electronic Equipment,http_404,404,,0,,,https://publications.europa.eu/resource/celex/32012L0019?language=eng
+eu,EU-2012-19 WEEE Waste Electrical and Electronic Equipment [xhtml],ok,200,application/xhtml+xml,379387,eu/EU-2012-19_WEEE_Waste_Electrical_and_Electronic_Equipment.xhtml,73c64b414e66de5188f4ab9f16b76f8ef84059a8f289f14e39834f2f1fb84769,https://publications.europa.eu/resource/celex/32012L0019?language=eng
+eu,EU-2013-29 Pyrotechnic Articles Directive,http_404,404,,0,,,https://publications.europa.eu/resource/celex/32013L0029?language=eng
+eu,EU-2013-29 Pyrotechnic Articles Directive [xhtml],ok,200,application/xhtml+xml,433604,eu/EU-2013-29_Pyrotechnic_Articles_Directive.xhtml,315f0c3e902d24258b23064dab2ba783d2250b888850972633663a089ab3f303,https://publications.europa.eu/resource/celex/32013L0029?language=eng
+eu,EU-2014-30 Electromagnetic Compatibility Directive EMC,http_404,404,,0,,,https://publications.europa.eu/resource/celex/32014L0030?language=eng
+eu,EU-2014-30 Electromagnetic Compatibility Directive EMC [xhtml],ok,200,application/xhtml+xml,250101,eu/EU-2014-30_Electromagnetic_Compatibility_Directive_EMC.xhtml,d2be8c10a1342cdf138938dec371a5507ed411b4153945a80328e28670d48653,https://publications.europa.eu/resource/celex/32014L0030?language=eng
+eu,EU-2014-31 Non-Automatic Weighing Instruments,http_404,404,,0,,,https://publications.europa.eu/resource/celex/32014L0031?language=eng
+eu,EU-2014-31 Non-Automatic Weighing Instruments [xhtml],ok,200,application/xhtml+xml,457498,eu/EU-2014-31_Non-Automatic_Weighing_Instruments.xhtml,c9e94af5ec1182eece268a39a01a9885c5a079f9965bea627762b59b39b07fd5,https://publications.europa.eu/resource/celex/32014L0031?language=eng
+eu,EU-2014-32 Measuring Instruments Directive,http_404,404,,0,,,https://publications.europa.eu/resource/celex/32014L0032?language=eng
+eu,EU-2014-32 Measuring Instruments Directive [xhtml],ok,200,application/xhtml+xml,1415719,eu/EU-2014-32_Measuring_Instruments_Directive.xhtml,95cef6bb775535e4520ce5fecb1f48d3c67076b296afa191b38a7906d40f89a0,https://publications.europa.eu/resource/celex/32014L0032?language=eng
+eu,EU-2014-34 ATEX Explosive Atmospheres Directive,http_404,404,,0,,,https://publications.europa.eu/resource/celex/32014L0034?language=eng
+eu,EU-2014-34 ATEX Explosive Atmospheres Directive [xhtml],ok,200,application/xhtml+xml,453242,eu/EU-2014-34_ATEX_Explosive_Atmospheres_Directive.xhtml,152f3c78b3160e68be2300d75375ee64a1e2e69c5ad42c51313bb2794fe314fa,https://publications.europa.eu/resource/celex/32014L0034?language=eng
+eu,EU-2014-35 Low Voltage Directive LVD,http_404,404,,0,,,https://publications.europa.eu/resource/celex/32014L0035?language=eng
+eu,EU-2014-35 Low Voltage Directive LVD [xhtml],ok,200,application/xhtml+xml,151542,eu/EU-2014-35_Low_Voltage_Directive_LVD.xhtml,94767d7cc67c8ffc371ad4b4a49b89f2aa364b9b38cf312ff800f03b40e43f8a,https://publications.europa.eu/resource/celex/32014L0035?language=eng
+eu,EU-2014-53 Radio Equipment Directive RED,http_404,404,,0,,,https://publications.europa.eu/resource/celex/32014L0053?language=eng
+eu,EU-2014-53 Radio Equipment Directive RED [xhtml],ok,200,application/xhtml+xml,329617,eu/EU-2014-53_Radio_Equipment_Directive_RED.xhtml,df0f54e26a3bcc6e17033709f2522a36d2a3566b8c7e47ab8f1282babd1d959c,https://publications.europa.eu/resource/celex/32014L0053?language=eng
+eu,EU-2014-68 Pressure Equipment Directive,http_404,404,,0,,,https://publications.europa.eu/resource/celex/32014L0068?language=eng
+eu,EU-2014-68 Pressure Equipment Directive [xhtml],ok,200,application/xhtml+xml,1234564,eu/EU-2014-68_Pressure_Equipment_Directive.xhtml,777230f5d398fad6fb55669c4c86c7842203e47b6650114605bb911d2bc69ede,https://publications.europa.eu/resource/celex/32014L0068?language=eng
+eu,EU-2014-90 Marine Equipment Directive,ok,200,application/pdf,1579389,eu/EU-2014-90_Marine_Equipment_Directive.pdf,d352adf2058261facdc5dbf2b3016b59a2de350b246dfd64775068e7544751dc,https://publications.europa.eu/resource/celex/32014L0090?language=eng
+eu,EU-2014-90 Marine Equipment Directive [xhtml],ok,200,application/xhtml+xml,554579,eu/EU-2014-90_Marine_Equipment_Directive.xhtml,3cddabf4a5a1aeeb9c94d8528f6159a09caf586ea4e33e9fd59222a428e11312,https://publications.europa.eu/resource/celex/32014L0090?language=eng
+eu,EU-2015-758 Organic Production Regulation,ok,200,application/pdf,398249,eu/EU-2015-758_Organic_Production_Regulation.pdf,21f3d8ee9ad99f9ef916ddfccc7c1bd4265992257b0a471ea91f5a73ce0a92c5,https://publications.europa.eu/resource/celex/32015R0758?language=eng
+eu,EU-2015-758 Organic Production Regulation [xhtml],ok,200,application/xhtml+xml,163414,eu/EU-2015-758_Organic_Production_Regulation.xhtml,e4c3209f0727368713f3ec083910ed81dc2aee64112eadd1fac8e311e4b8536d,https://publications.europa.eu/resource/celex/32015R0758?language=eng
+eu,EU-2016-425 Personal Protective Equipment Regulation,http_404,404,,0,,,https://publications.europa.eu/resource/celex/32016R0425?language=eng
+eu,EU-2016-425 Personal Protective Equipment Regulation [xhtml],ok,200,application/xhtml+xml,361334,eu/EU-2016-425_Personal_Protective_Equipment_Regulation.xhtml,ec118e10c1cebd3e10e95c7222dd04ceddf728a030039556cddfe5ac9d1966a5,https://publications.europa.eu/resource/celex/32016R0425?language=eng
+eu,EU-2016-426 Gas Appliances Regulation,http_404,404,,0,,,https://publications.europa.eu/resource/celex/32016R0426?language=eng
+eu,EU-2016-426 Gas Appliances Regulation [xhtml],ok,200,application/xhtml+xml,389797,eu/EU-2016-426_Gas_Appliances_Regulation.xhtml,baf5020cabf46374db596fa63bd26a88075d6a2188062cb9ac8ca8f69ca4ac91,https://publications.europa.eu/resource/celex/32016R0426?language=eng
+eu,EU-2016-679 GDPR General Data Protection Regulation,http_404,404,,0,,,https://publications.europa.eu/resource/celex/32016R0679?language=eng
+eu,EU-2016-679 GDPR General Data Protection Regulation [xhtml],ok,200,application/xhtml+xml,806864,eu/EU-2016-679_GDPR_General_Data_Protection_Regulation.xhtml,962539af03738bf552319ff4ce42d69e5f95a576307c4dfed7bf87e81b646b9d,https://publications.europa.eu/resource/celex/32016R0679?language=eng
+eu,EU-2017-1369 Energy Labelling Regulation,http_404,404,,0,,,https://publications.europa.eu/resource/celex/32017R1369?language=eng
+eu,EU-2017-1369 Energy Labelling Regulation [xhtml],ok,200,application/xhtml+xml,230111,eu/EU-2017-1369_Energy_Labelling_Regulation.xhtml,ea974c3276fd5c34f66ef25824e82ab1a6ae1aa37d19e1ec2f0e39c8bc6334d5,https://publications.europa.eu/resource/celex/32017R1369?language=eng
+eu,EU-2017-745 Medical Devices Regulation MDR,http_404,404,,0,,,https://publications.europa.eu/resource/celex/32017R0745?language=eng
+eu,EU-2017-745 Medical Devices Regulation MDR [xhtml],ok,200,application/xhtml+xml,1708372,eu/EU-2017-745_Medical_Devices_Regulation_MDR.xhtml,81790aaa50163ca27e3794c82cfa8cee875cae2dace3ad3ab9e72d9f890e94f5,https://publications.europa.eu/resource/celex/32017R0745?language=eng
+eu,EU-2017-746 In Vitro Diagnostic MDR IVDR,http_404,404,,0,,,https://publications.europa.eu/resource/celex/32017R0746?language=eng
+eu,EU-2017-746 In Vitro Diagnostic MDR IVDR [xhtml],ok,200,application/xhtml+xml,1560758,eu/EU-2017-746_In_Vitro_Diagnostic_MDR_IVDR.xhtml,c55ca6d8c14634bd72eac34cc14a55e5f78113d2c56383094e39ace1afe3dfbf,https://publications.europa.eu/resource/celex/32017R0746?language=eng
+eu,EU-2019-1020 Market Surveillance and Product Compliance,ok,200,application/pdf,651363,eu/EU-2019-1020_Market_Surveillance_and_Product_Compliance.pdf,1f4f85cbea550c052b5412c2660d0c235cedc258afdad851b2e6bdf4db03e1f5,https://publications.europa.eu/resource/celex/32019R1020?language=eng
+eu,EU-2019-1020 Market Surveillance and Product Compliance [xhtml],ok,200,application/xhtml+xml,451346,eu/EU-2019-1020_Market_Surveillance_and_Product_Compliance.xhtml,68073c53fd07d6f2b8a503327fab6b9851684a09893510bcfbc2cbff44b46920,https://publications.europa.eu/resource/celex/32019R1020?language=eng
+eu,EU-2019-2144 General Safety Regulation vehicles,ok,200,application/pdf,778184,eu/EU-2019-2144_General_Safety_Regulation_vehicles.pdf,48d3734925b09fc82d1a75e3567acac9d8f5956205b040ce59d973f03ad7693e,https://publications.europa.eu/resource/celex/32019R2144?language=eng
+eu,EU-2019-2144 General Safety Regulation vehicles [xhtml],ok,200,application/xhtml+xml,736881,eu/EU-2019-2144_General_Safety_Regulation_vehicles.xhtml,4fa2a965a0369122168eca514c932ed171079b98dd09246eeab06071603b6ea0,https://publications.europa.eu/resource/celex/32019R2144?language=eng
+eu,EU-2019-2161 Omnibus Directive,ok,200,application/pdf,662693,eu/EU-2019-2161_Omnibus_Directive.pdf,5fa5591882a134bd4c363a43e872de837f2625b7bd59034b11ae6af9b2632c72,https://publications.europa.eu/resource/celex/32019L2161?language=eng
+eu,EU-2019-2161 Omnibus Directive [xhtml],ok,200,application/xhtml+xml,260992,eu/EU-2019-2161_Omnibus_Directive.xhtml,4f2987a941a32c9fae499098554b206e93b26365fea60353e2f886084174b1ac,https://publications.europa.eu/resource/celex/32019L2161?language=eng
+eu,EU-2019-452 FDI Screening Regulation,http_404,404,,0,,,https://publications.europa.eu/resource/celex/32019R0452?language=eng
+eu,EU-2019-452 FDI Screening Regulation [xhtml],ok,200,application/xhtml+xml,113998,eu/EU-2019-452_FDI_Screening_Regulation.xhtml,a6b3095350070eaccf09e3d93a1bf2edd131b57d14770bae4ecedd098a5d30c3,https://publications.europa.eu/resource/celex/32019R0452?language=eng
+eu,EU-2020-852 EU Taxonomy Regulation,ok,200,application/pdf,767831,eu/EU-2020-852_EU_Taxonomy_Regulation.pdf,06afd11332ef1f019d83d56aa446c66b4ccff760c7ac58107d295ddf5e384d95,https://publications.europa.eu/resource/celex/32020R0852?language=eng
+eu,EU-2020-852 EU Taxonomy Regulation [xhtml],ok,200,application/xhtml+xml,337514,eu/EU-2020-852_EU_Taxonomy_Regulation.xhtml,9cf32a280dfde87851a89fc1e9c358b9166ca1349fa9ffd578d3ae2638f8e5a6,https://publications.europa.eu/resource/celex/32020R0852?language=eng
+eu,EU-2021-821 FDI Screening Framework Amendment,ok,200,application/pdf,21695013,eu/EU-2021-821_FDI_Screening_Framework_Amendment.pdf,65eef5dc5c50bef3904411846a3ec981ac0331f8c321e093e2457683b422beca,https://publications.europa.eu/resource/celex/32021R0821?language=eng
+eu,EU-2021-821 FDI Screening Framework Amendment [xhtml],ok,200,application/xhtml+xml,5914063,eu/EU-2021-821_FDI_Screening_Framework_Amendment.xhtml,ad3e6c91e5dbdaeb3aaa56b0c7403f9817b76d5a1b55c6b29ef495a5c1858360,https://publications.europa.eu/resource/celex/32021R0821?language=eng
+eu,EU-2022-1925 Digital Markets Act DMA,ok,200,application/pdf,1114608,eu/EU-2022-1925_Digital_Markets_Act_DMA.pdf,dc88bdaa5e146e2dedb360c4c820bb23f024fc495d5379abcd0c40360a7303ec,https://publications.europa.eu/resource/celex/32022R1925?language=eng
+eu,EU-2022-1925 Digital Markets Act DMA [xhtml],ok,200,application/xhtml+xml,518017,eu/EU-2022-1925_Digital_Markets_Act_DMA.xhtml,d6af21a4f11c2b001b0486391fbd0813deba32305fb0d3865fbceccd45b827eb,https://publications.europa.eu/resource/celex/32022R1925?language=eng
+eu,EU-2022-2065 Digital Services Act DSA,ok,200,application/pdf,1677234,eu/EU-2022-2065_Digital_Services_Act_DSA.pdf,04b688f2ea13fc0f0e0f615b6835608405ee848b17892d26a1b69dcf1bae71a0,https://publications.europa.eu/resource/celex/32022R2065?language=eng
+eu,EU-2022-2065 Digital Services Act DSA [xhtml],ok,200,application/xhtml+xml,838166,eu/EU-2022-2065_Digital_Services_Act_DSA.xhtml,11b119a7d45f3a10cd41714061f9d907839ef5d1634e41774490f00b95856bbf,https://publications.europa.eu/resource/celex/32022R2065?language=eng
+eu,EU-2022-2464 Corporate Sustainability Reporting CSRD,ok,200,application/pdf,1172354,eu/EU-2022-2464_Corporate_Sustainability_Reporting_CSRD.pdf,75e720eb787db9fb125ae527e1590591e45e4672805848022c5d7bd69e6a349e,https://publications.europa.eu/resource/celex/32022L2464?language=eng
+eu,EU-2022-2464 Corporate Sustainability Reporting CSRD [xhtml],ok,200,application/xhtml+xml,625257,eu/EU-2022-2464_Corporate_Sustainability_Reporting_CSRD.xhtml,6ad8df8d05b75c4caf19c926db0afc86c725872bb3342c4d7cd2544dd6c29837,https://publications.europa.eu/resource/celex/32022L2464?language=eng
+eu,EU-2022-2555 NIS2 Cybersecurity Directive,ok,200,application/pdf,1326245,eu/EU-2022-2555_NIS2_Cybersecurity_Directive.pdf,20d29e9c5300ae1095530996f04731311bf82bb7d4d6a7a0102cd0f075755cf3,https://publications.europa.eu/resource/celex/32022L2555?language=eng
+eu,EU-2022-2555 NIS2 Cybersecurity Directive [xhtml],ok,200,application/xhtml+xml,702913,eu/EU-2022-2555_NIS2_Cybersecurity_Directive.xhtml,6ee66d5c419d9a056fb98d94083cacf9b818803bd6b416435718e0d4919cb589,https://publications.europa.eu/resource/celex/32022L2555?language=eng
+eu,EU-2022-612 Foreign Subsidies Regulation,ok,200,application/pdf,787256,eu/EU-2022-612_Foreign_Subsidies_Regulation.pdf,63fbef206f459011e5f65d1029574ce62e770f3f6f4fab64dd8e6b64b959d533,https://publications.europa.eu/resource/celex/32022R0612?language=eng
+eu,EU-2022-612 Foreign Subsidies Regulation [xhtml],ok,200,application/xhtml+xml,293298,eu/EU-2022-612_Foreign_Subsidies_Regulation.xhtml,9248139a2c45f4eda5e5caa6454ca04002e9be2241e6edad195118627154d8ef,https://publications.europa.eu/resource/celex/32022R0612?language=eng
+eu,EU-2022-868 Data Governance Act,ok,200,application/pdf,1015871,eu/EU-2022-868_Data_Governance_Act.pdf,ea75eddf66fc2f68bf0d88c1aa6db9692ecd0b003af76d6f87fd80761a790d8b,https://publications.europa.eu/resource/celex/32022R0868?language=eng
+eu,EU-2022-868 Data Governance Act [xhtml],ok,200,application/xhtml+xml,377965,eu/EU-2022-868_Data_Governance_Act.xhtml,f67dabbce62b7f1b1dfbc03fb1ea29dad88e2370d47599a3b1802a3cd7f268d8,https://publications.europa.eu/resource/celex/32022R0868?language=eng
+eu,EU-2023-1115 EU Deforestation Regulation EUDR,ok,200,application/pdf,783482,eu/EU-2023-1115_EU_Deforestation_Regulation_EUDR.pdf,68e3648811d0447166234bcffab463a9a77b2b5626fa809e21be316787d94fac,https://publications.europa.eu/resource/celex/32023R1115?language=eng
+eu,EU-2023-1115 EU Deforestation Regulation EUDR [xhtml],ok,200,application/xhtml+xml,387997,eu/EU-2023-1115_EU_Deforestation_Regulation_EUDR.xhtml,fc30a30a1b6701800ad8abeb63e1d606769a4128bc97ddb2e481ee4bf6057259,https://publications.europa.eu/resource/celex/32023R1115?language=eng
+eu,EU-2023-1230 Machinery Regulation,ok,200,application/pdf,1161338,eu/EU-2023-1230_Machinery_Regulation.pdf,e8e3b3ea69f17967970035e3bb24a709c99c20df18eff3efcc72945667a5b637,https://publications.europa.eu/resource/celex/32023R1230?language=eng
+eu,EU-2023-1230 Machinery Regulation [xhtml],ok,200,application/xhtml+xml,860932,eu/EU-2023-1230_Machinery_Regulation.xhtml,45172093d5547c21c9f7d5da2628e5c630b5e7e586e163aff6b7c936ded17b48,https://publications.europa.eu/resource/celex/32023R1230?language=eng
+eu,EU-2023-1542 Batteries Regulation,ok,200,application/pdf,1341523,eu/EU-2023-1542_Batteries_Regulation.pdf,e9745513fabe68c8c15cc9f487c4d13da81d40394712f3e0b4c2588b3238d09a,https://publications.europa.eu/resource/celex/32023R1542?language=eng
+eu,EU-2023-1542 Batteries Regulation [xhtml],ok,200,application/xhtml+xml,1133198,eu/EU-2023-1542_Batteries_Regulation.xhtml,68abfefee867300d6d0646b9c6dbf6bc4ece70d96e1d2b976856e8613a031f31,https://publications.europa.eu/resource/celex/32023R1542?language=eng
+eu,EU-2023-1791 Energy Efficiency Directive,ok,200,application/pdf,1891964,eu/EU-2023-1791_Energy_Efficiency_Directive.pdf,bf30882216cd075d6177e72608b38429de54f6a6ad262810c5a6cbca9b55db58,https://publications.europa.eu/resource/celex/32023L1791?language=eng
+eu,EU-2023-1791 Energy Efficiency Directive [xhtml],ok,200,application/xhtml+xml,1028779,eu/EU-2023-1791_Energy_Efficiency_Directive.xhtml,548c95df9104ffb75a45cfb00630b83c5458918bdd25206ffdb450db95a724df,https://publications.europa.eu/resource/celex/32023L1791?language=eng
+eu,EU-2023-2854 Data Act,ok,200,application/pdf,1407157,eu/EU-2023-2854_Data_Act.pdf,0d100d513136adfaa5655d77784d3af00f477b8588471cbb51dea7aff8687838,https://publications.europa.eu/resource/celex/32023R2854?language=eng
+eu,EU-2023-2854 Data Act [xhtml],ok,200,application/xhtml+xml,590794,eu/EU-2023-2854_Data_Act.xhtml,1085b7fa3011970b65b1e4d56205202dceb37f72cd22336aa0c78af35ceaea66,https://publications.europa.eu/resource/celex/32023R2854?language=eng
+eu,EU-2023-956 Carbon Border Adjustment Mechanism CBAM,ok,200,application/pdf,1005703,eu/EU-2023-956_Carbon_Border_Adjustment_Mechanism_CBAM.pdf,5cd8fa27cb441333e20a93ec9f1d86bac29d5740f76c8d82a55aa292d721d8ca,https://publications.europa.eu/resource/celex/32023R0956?language=eng
+eu,EU-2023-956 Carbon Border Adjustment Mechanism CBAM [xhtml],ok,200,application/xhtml+xml,496976,eu/EU-2023-956_Carbon_Border_Adjustment_Mechanism_CBAM.xhtml,c47e2793e7b92333ce9a891aba18924ff21b15b2745fffda98348b04b15a770e,https://publications.europa.eu/resource/celex/32023R0956?language=eng
+eu,EU-2023-988 General Product Safety Regulation GPSR,ok,200,application/pdf,997673,eu/EU-2023-988_General_Product_Safety_Regulation_GPSR.pdf,84fd233de6b78d2f6a42275c24b0a74c2255d5da481d89d71ff01bf6079e9cf7,https://publications.europa.eu/resource/celex/32023R0988?language=eng
+eu,EU-2023-988 General Product Safety Regulation GPSR [xhtml],ok,200,application/xhtml+xml,454130,eu/EU-2023-988_General_Product_Safety_Regulation_GPSR.xhtml,ed8aebab3c8289c81268a1f21d12fcf38f7487072e908f6b16566fa6cd4f1735,https://publications.europa.eu/resource/celex/32023R0988?language=eng
+eu,EU-2024-1689 AI Act,ok,200,application/pdf,2583319,eu/EU-2024-1689_AI_Act.pdf,bba630444b3278e881066774002a1d7824308934f49ccfa203e65be43692f55e,https://publications.europa.eu/resource/celex/32024R1689?language=eng
+eu,EU-2024-1689 AI Act [xhtml],ok,200,application/xhtml+xml,1262391,eu/EU-2024-1689_AI_Act.xhtml,8f0b656302f9864cc87e040c371f209a9d65ae1a6cecc25ca5eb737e872d721a,https://publications.europa.eu/resource/celex/32024R1689?language=eng
+eu,EU-2024-1760 Corporate Sustainability Due Diligence CSDDD,ok,200,application/pdf,1584561,eu/EU-2024-1760_Corporate_Sustainability_Due_Diligence_CSDDD.pdf,64f3237853c9374527c300761bd11066986ae60e9a7a9f882f5e63d1d3d34845,https://publications.europa.eu/resource/celex/32024L1760?language=eng
+eu,EU-2024-1760 Corporate Sustainability Due Diligence CSDDD [xhtml],ok,200,application/xhtml+xml,543650,eu/EU-2024-1760_Corporate_Sustainability_Due_Diligence_CSDDD.xhtml,727260144e8f968673eb4d2c275606eb07f35035c18895ac58883cf0d51184b3,https://publications.europa.eu/resource/celex/32024L1760?language=eng
+eu,EU-2024-1781 Ecodesign for Sustainable Products ESPR,ok,200,application/pdf,1945151,eu/EU-2024-1781_Ecodesign_for_Sustainable_Products_ESPR.pdf,173b9823d4cb382e764afa05323b2dc80e79951e25182fbfd119976abff9615a,https://publications.europa.eu/resource/celex/32024R1781?language=eng
+eu,EU-2024-1781 Ecodesign for Sustainable Products ESPR [xhtml],ok,200,application/xhtml+xml,822919,eu/EU-2024-1781_Ecodesign_for_Sustainable_Products_ESPR.xhtml,6437b8c619c6fb7731f5feb15be11243f2ed6fe69795e5bfe3a7ea94058733bf,https://publications.europa.eu/resource/celex/32024R1781?language=eng
+eu,EU-2024-2847 Cyber Resilience Act,http_404,404,,0,,,https://publications.europa.eu/resource/celex/32024R2847?language=eng
+eu,EU-2024-2847 Cyber Resilience Act [xhtml],ok,200,application/xhtml+xml,710696,eu/EU-2024-2847_Cyber_Resilience_Act.xhtml,fe0cca4a0caec50e7cf5a91432b94a19b211f86be8584fdba56372bdcea571ed,https://publications.europa.eu/resource/celex/32024R2847?language=eng
+eu,EU-2024-2853 New Product Liability Directive,http_404,404,,0,,,https://publications.europa.eu/resource/celex/32024L2853?language=eng
+eu,EU-2024-2853 New Product Liability Directive [xhtml],ok,200,application/xhtml+xml,223057,eu/EU-2024-2853_New_Product_Liability_Directive.xhtml,5f20d9d33eb307683419f481f0e661e1be9d2daf186780a65c20d7690bf940b5,https://publications.europa.eu/resource/celex/32024L2853?language=eng
+eu,EU-2024-573 Fluorinated Greenhouse Gases F-gas,ok,200,application/pdf,1562416,eu/EU-2024-573_Fluorinated_Greenhouse_Gases_F-gas.pdf,c41eaf44e3a106009181829be352d5147b7ec81e0250748c750fa96a02f03914,https://publications.europa.eu/resource/celex/32024R0573?language=eng
+eu,EU-2024-573 Fluorinated Greenhouse Gases F-gas [xhtml],ok,200,application/xhtml+xml,690503,eu/EU-2024-573_Fluorinated_Greenhouse_Gases_F-gas.xhtml,7e0fe45bdb34659dff5b3ba5f131ec10df885c24c6ecc1ce8ed63770d8d3e373,https://publications.europa.eu/resource/celex/32024R0573?language=eng
+eu,EU-2025-40 Packaging and Packaging Waste Regulation,http_404,404,,0,,,https://publications.europa.eu/resource/celex/32025R0040?language=eng
+eu,EU-2025-40 Packaging and Packaging Waste Regulation [xhtml],ok,200,application/xhtml+xml,1199763,eu/EU-2025-40_Packaging_and_Packaging_Waste_Regulation.xhtml,f3174f0ac946db202bfa2e5c284216d87e9178ec1fde147a90f9b275124dd060,https://publications.europa.eu/resource/celex/32025R0040?language=eng
+eu,EU-765-2008 Accreditation and Market Surveillance,ok,200,application/pdf,163639,eu/EU-765-2008_Accreditation_and_Market_Surveillance.pdf,f31cb60a1beb7591515fb7a6596bb15b2e2c0b8bc9a01f1cd4944b7517ecf050,https://publications.europa.eu/resource/celex/32008R0765?language=eng
+eu,EU-765-2008 Accreditation and Market Surveillance [xhtml],ok,200,application/xhtml+xml,374578,eu/EU-765-2008_Accreditation_and_Market_Surveillance.xhtml,837732e0248a0e8777fe826b3ce5c1a97073dad7bf66c71eb675e940c0368aea,https://publications.europa.eu/resource/celex/32008R0765?language=eng
+eu,EU-768-2008 Common Framework for Marketing of Products,ok,200,application/pdf,240747,eu/EU-768-2008_Common_Framework_for_Marketing_of_Products.pdf,0034d279d7c43ee6978839629a2af0fdf890ffd7a91bcb320bf116f1823b00e8,https://publications.europa.eu/resource/celex/32008D0768?language=eng
+eu,EU-768-2008 Common Framework for Marketing of Products [xhtml],ok,200,application/xhtml+xml,584812,eu/EU-768-2008_Common_Framework_for_Marketing_of_Products.xhtml,92be61c2091d0ac3b1b182b0aed5994f6801063c1a008398560a22c9bec396f8,https://publications.europa.eu/resource/celex/32008D0768?language=eng
+eu,EU-85-374 Product Liability Directive 1985,http_404,404,,0,,,https://publications.europa.eu/resource/celex/31985L0374?language=eng
+eu,EU-85-374 Product Liability Directive 1985 [xhtml],http_404,404,,0,,,https://publications.europa.eu/resource/celex/31985L0374?language=eng
+fi,FI Finlex 法规库,ok,200,text/html,188037,fi/FI_Finlex_法规库.html,c6cd328ddb32a1274350fae62231bbdbeededb54e361f807da041bd7eadfecbc,https://www.finlex.fi/
+fi,FI 消费者保护法 (Finlex),ok,200,text/html,188037,fi/FI_消费者保护法_Finlex.html,c6cd328ddb32a1274350fae62231bbdbeededb54e361f807da041bd7eadfecbc,https://www.finlex.fi/
+fr,FR economie.gouv 经济部,http_403,403,,0,,,https://www.economie.gouv.fr/
+fr,FR service-public 行政信息门户,ok,200,text/html,53331,fr/FR_service-public_行政信息门户.html,99de52df8bb2b2bc3e58d321f6229ca88fcf769ada71cdfab78d2aa2a989b292,https://www.service-public.fr/
+fr,FR 消费者法典 (service-public),http_404,404,,0,,,https://www.service-public.fr/particuliers/vosdroits/N31300
+gcc,GCC GSO 标准化组织 (gso.org.sa),ok,200,text/html,174530,gcc/GCC_GSO_标准化组织_gso.org.sa.html,356ec5103111c79aa97d66cf18d92cee8323b8ce6125b44d6f06e8b12852af21,https://www.gso.org.sa/
+gh,GH 加纳贸易与工业,ok,200,text/html,179491,gh/GH_加纳贸易与工业.html,979502989038394a14afbcc4bdeb43d5be049c6d061b883c4d2968c10d1e84df,https://www.ghanaiantimes.com.gh/
+gh,GH 消费者保护法 1998,ok,200,text/html,179491,gh/GH_消费者保护法_1998.html,979502989038394a14afbcc4bdeb43d5be049c6d061b883c4d2968c10d1e84df,https://www.ghanaiantimes.com.gh/
+gr,GR 国家印刷局 et.gr,ok,200,text/html,205098,gr/GR_国家印刷局_et.gr.html,f9c4bd008826f1dc290b9361d0555c2f7160255902e353ecb3ba07bc2e38a9a6,https://www.et.gr/
+gr,GR 消费者保护法 2251/1994 (et.gr),ok,200,text/html,204939,gr/GR_消费者保护法_2251_1994_et.gr.html,107de77e8fe0f211638d3eddee5b935584e320cb9d834a333ad3788358631d58,https://www.et.gr/
+hk,HK 电子版香港法例,ok,200,text/html,7562,hk/HK_电子版香港法例.html,cde8be5ea3b80ffa307a366aaab93f95f9a60be051fa7101af9cd08fcf6e429e,https://www.elegislation.gov.hk/
+hr,HR zakon.hr 法规库,ok,200,text/html,140511,hr/HR_zakon.hr_法规库.html,29e4b4481a47d4a856cdc34f2c1e45b9e72ad8517ecb499596d11c7e50f6c895,https://www.zakon.hr/
+hr,HR 消费者保护法 (zakon.hr),ok,200,text/html,140511,hr/HR_消费者保护法_zakon.hr.html,29e4b4481a47d4a856cdc34f2c1e45b9e72ad8517ecb499596d11c7e50f6c895,https://www.zakon.hr/
+hr,HR 消费者保护法全文 (zakon.hr),ok,200,text/html,106743,hr/HR_消费者保护法全文_zakon.hr.html,e4c02d0a2e059eda8466389d769fc931f5375ff92b462a944ed8a051736cf9bc,https://www.zakon.hr/z/281/Zakon-o-za%C5%A1titi-potro%C5%A1a%C4%8Da
+id,ID JDIH 国家法规库,ok,200,text/html,2525754,id/ID_JDIH_国家法规库.html,a7ec3aad8d86f8197b4ddde2660093e7b0535e5090b6b3a3e27a77fd73ea8e1b,https://jdih.setneg.go.id/
+id,ID JDIH 法规数据库 (jdih.setneg.go.id),ok,200,text/html,2525754,id/ID_JDIH_法规数据库_jdih.setneg.go.id.html,a7ec3aad8d86f8197b4ddde2660093e7b0535e5090b6b3a3e27a77fd73ea8e1b,https://jdih.setneg.go.id/
+id,ID PDP Law 27/2022 说明 (gov.id),error,0,,0,,,https://www.kominfo.go.id/
+id,ID 消费者保护法 UU 8/1999 (JDIH),ok,200,text/html,2525754,id/ID_消费者保护法_UU_8_1999_JDIH.html,a7ec3aad8d86f8197b4ddde2660093e7b0535e5090b6b3a3e27a77fd73ea8e1b,https://jdih.setneg.go.id/
+ie,IE Companies Act 2014,ok,200,application/pdf,5836402,ie/IE_Companies_Act_2014.pdf,2d3607c4e95195816447780d2a65010de4408305a7b55f72eaba5eb2014c058d,https://www.irishstatutebook.ie/eli/2014/act/38/enacted/en/pdf
+ie,IE Competition (Amendment) Act 2016,ok,200,application/pdf,435144,ie/IE_Competition_Amendment_Act_2016.pdf,4cba4b01e393fa742b624a8a60e884e8391dc313c8f6a74b5b3150684578f6a0,https://www.irishstatutebook.ie/eli/2016/act/15/enacted/en/pdf
+ie,IE Consumer Information Act 1978,ok,200,application/pdf,19434,ie/IE_Consumer_Information_Act_1978.pdf,c215ed0683956b7b76eccd99d75b5fc578b58ef85b7ca6d271394a8f15cba8ce,https://www.irishstatutebook.ie/eli/1997/act/36/enacted/en/pdf
+ie,IE Consumer Insurance Contracts Act 2019,ok,200,application/pdf,481486,ie/IE_Consumer_Insurance_Contracts_Act_2019.pdf,f5f074afc42fde7c30714e7dbe76dbbf39efe536234a9dc132e2b3fcdef336d8,https://www.irishstatutebook.ie/eli/2019/act/24/enacted/en/pdf
+ie,IE Consumer Protection (Regulation of Credit Servicing) Act 2015,ok,200,application/pdf,617948,ie/IE_Consumer_Protection_Regulation_of_Credit_Servicing_Act_2015.pdf,02e9aa7a0ba99ccd63f278d644bd87696e6edc4efb31e61664979924a8c4fca9,https://www.irishstatutebook.ie/eli/2015/act/61/enacted/en/pdf
+ie,IE Consumer Protection (Regulation) Act 2021,ok,200,application/pdf,460094,ie/IE_Consumer_Protection_Regulation_Act_2021.pdf,b4806fa7b37d97956599314a12df0e61e3f572810380156cdb40487fba4c3381,https://www.irishstatutebook.ie/eli/2021/act/31/enacted/en/pdf
+ie,IE Consumer Protection Act 2007,ok,200,application/pdf,575205,ie/IE_Consumer_Protection_Act_2007.pdf,34ac4cceb883a0e8f0e4da5df04cf14cf030406e149cda6f9edaaed2865721aa,https://www.irishstatutebook.ie/eli/2007/act/19/enacted/en/pdf
+ie,IE Consumer Protection Act 2007 (PDF),ok,200,application/pdf,575205,ie/IE_Consumer_Protection_Act_2007_PDF.pdf,34ac4cceb883a0e8f0e4da5df04cf14cf030406e149cda6f9edaaed2865721aa,https://www.irishstatutebook.ie/eli/2007/act/19/enacted/en/pdf
+ie,IE Consumer Rights Act 2022,ok,200,application/pdf,1335131,ie/IE_Consumer_Rights_Act_2022.pdf,4125f44f2998c56b0c1bca0f1ebc861b0b9923c2259d608207a5f0b586b82048,https://www.irishstatutebook.ie/eli/2022/act/37/enacted/en/pdf
+ie,IE Consumer Rights Act 2022 (PDF),ok,200,application/pdf,1335131,ie/IE_Consumer_Rights_Act_2022_PDF.pdf,4125f44f2998c56b0c1bca0f1ebc861b0b9923c2259d608207a5f0b586b82048,https://www.irishstatutebook.ie/eli/2022/act/37/enacted/en/pdf
+ie,IE Data Protection Act 2018,ok,200,application/pdf,1327937,ie/IE_Data_Protection_Act_2018.pdf,52ad70afafd324c814f98570d61184d00fe6e28694529d28e065bb9deac4fed8,https://www.irishstatutebook.ie/eli/2018/act/7/enacted/en/pdf
+ie,IE Data Protection Act 2018 (PDF),ok,200,application/pdf,1327937,ie/IE_Data_Protection_Act_2018_PDF.pdf,52ad70afafd324c814f98570d61184d00fe6e28694529d28e065bb9deac4fed8,https://www.irishstatutebook.ie/eli/2018/act/7/enacted/en/pdf
+ie,IE Data Protection Act 2018 (print HTML),ok,200,text/html,1162365,ie/IE_Data_Protection_Act_2018_print_HTML.html,45b4e770986c377072cea7c91f8216c7a26dcd463523ce08edfc2422dfe2aa88,https://www.irishstatutebook.ie/eli/2018/act/7/enacted/en/print
+ie,IE European Communities (Consumer Protection) Regulations 2003,ok,200,application/pdf,492439,ie/IE_European_Communities_Consumer_Protection_Regulations_2003.pdf,77b892a05c50f6ceada67e202aedb9b390b753c9c2c2e000648d0336827cf107,https://www.irishstatutebook.ie/eli/2003/act/44/enacted/en/pdf
+ie,IE Health (Preservation and Protection) Act 2020,ok,200,application/pdf,389866,ie/IE_Health_Preservation_and_Protection_Act_2020.pdf,5ed78dd63a6bf7d695b2b441de9f81c53096038d0df1eb4a780d0d7bdc9df3ad,https://www.irishstatutebook.ie/eli/2020/act/30/enacted/en/pdf
+ie,IE Irish Statute Book,ok,200,text/html,25511,ie/IE_Irish_Statute_Book.html,08d3d51cc939af936ff4f2b87f3b3da4447580b89fd7554a8435e126429a94fe,https://www.irishstatutebook.ie/
+ie,IE Product Safety Regulations,ok,200,application/pdf,321028,ie/IE_Product_Safety_Regulations.pdf,fce4e5dd7d20a4abe8265b1812d1fd95741fdf5f767166d03d91c64636fc45d4,https://www.irishstatutebook.ie/eli/2007/act/12/enacted/en/pdf
+ie,IE Product Safety standards (NSAI),ok,200,text/html,148827,ie/IE_Product_Safety_standards_NSAI.html,faf1a678a62302cc2ee9940c9536500e8d66443256d6e1c07cf0fbcdd3e337d2,https://www.nsai.ie/
+ie,"IE Safety, Health and Welfare at Work Act 2005",ok,200,application/pdf,330013,ie/IE_Safety_Health_and_Welfare_at_Work_Act_2005.pdf,2f9888ab140229a2621e84225371ac0f4f14d1206d766782a947bc6d010224fe,https://www.irishstatutebook.ie/eli/2005/act/22/enacted/en/pdf
+ie,IE 立法目录 (electronic Irish Statute Book),http_404,404,,0,,,https://www.irishstatutebook.ie/eli/
+ie,IE 竞争与消费者保护委员会 CCPC,ok,200,text/html,1119997,ie/IE_竞争与消费者保护委员会_CCPC.html,27211590f44d8460ece510f2e07a72aea1ceb1199f9a27a8353cbed5f514c86c,https://www.ccpc.ie/
+il,IL 以色列政府法律门户,http_403,403,,0,,,https://www.gov.il/
+in,IN BIS CRS 强制注册计划 (bis.gov.in),ok,200,text/html,518308,in/IN_BIS_CRS_强制注册计划_bis.gov.in.html,a01ebb459a4e352de9cb817cd64abf61411789e438ca0e3b2790befdc2a5057f,https://www.bis.gov.in/index.php/standards-changes-orders/
+in,IN BIS 强制注册计划公告,ok,200,text/html,518308,in/IN_BIS_强制注册计划公告.html,4a1f02af16236dc56f8b77d2dff93b4a85152583bdeccece93c822cbda342094,https://www.bis.gov.in/index.php/standards-changes-orders/
+in,IN Consumer Protection Act 2019 (indiacode),http_404,404,,0,,,https://www.indiacode.nic.in/handle/123456789/15256
+in,IN DPDP Act 2023 (meity),ok,200,text/html,3285,in/IN_DPDP_Act_2023_meity.html,0edc84ff4c2e227bb0cb1fe31940286a802b424fe240f32c9834d22ac7f4ba80,https://www.meity.gov.in/data-protection-framework
+in,IN Legal Metrology 包装与标签 (legalmetrology.gov.in),error,0,,0,,,https://www.legalmetrology.gov.in/
+intl,ETSI EN 300 220 短距离设备,ok,200,application/pdf,216247,intl/ETSI_EN_300_220_短距离设备.pdf,df54e88af3879f143d1d22cfbe3cc90657b0fecd85c2afb054f1ba79c67ec2e3,https://www.etsi.org/deliver/etsi_en/300200_300299/30022002/03.02.01_60/en_30022002v030201p.pdf
+intl,ETSI EN 300 328 宽带传输设备,ok,200,application/pdf,1571870,intl/ETSI_EN_300_328_宽带传输设备.pdf,35211bae77e40e835908d1b8757e82bbbb8895aee71d5e0a0a22131d4101a376,https://www.etsi.org/deliver/etsi_en/300300_300399/300328/02.02.02_60/en_300328v020202p.pdf
+intl,ETSI EN 300 330 短距离射频设备,http_404,404,,0,,,https://www.etsi.org/deliver/etsi_en/300300_300399/30033002/07.01.01_60/en_30033002v070101p.pdf
+intl,ETSI EN 300 440 短距离设备 1-40GHz,http_404,404,,0,,,https://www.etsi.org/deliver/etsi_en/300400_300499/30044002/02.02.01_60/en_30044002v020201p.pdf
+intl,ETSI EN 301 489-1 EMC 通用要求,ok,200,application/pdf,206923,intl/ETSI_EN_301_489-1_EMC_通用要求.pdf,b616362dbee141e4670dd664f141e8e51323ea19dd41652d43d399c8db849d24,https://www.etsi.org/deliver/etsi_en/301400_301499/30148901/02.02.03_60/en_30148901v020203p.pdf
+intl,ETSI EN 301 489-17 EMC 宽带设备,http_404,404,,0,,,https://www.etsi.org/deliver/etsi_en/301400_301499/30148917/03.02.01_60/en_30148917v030201p.pdf
+intl,ETSI EN 301 489-3 EMC 短距离设备,ok,200,application/pdf,89891,intl/ETSI_EN_301_489-3_EMC_短距离设备.pdf,7a27e157d871f6d222fc65839a48133f1e4bef47d451aee042955a58735d743d,https://www.etsi.org/deliver/etsi_en/301400_301499/30148903/02.01.01_60/en_30148903v020101p.pdf
+intl,ETSI EN 301 893 5GHz RLAN,ok,200,application/pdf,2131741,intl/ETSI_EN_301_893_5GHz_RLAN.pdf,3c948ee36b3775678b520dbd7e86ea1be084fe6467307c3d6b8f35fbea6ee57e,https://www.etsi.org/deliver/etsi_en/301800_301899/301893/02.01.01_60/en_301893v020101p.pdf
+intl,ETSI EN 301 908 蜂窝基站,ok,200,application/pdf,138460,intl/ETSI_EN_301_908_蜂窝基站.pdf,beb769b68d59a309b8d5f275ee8b5d5f16d9a6463b0812e4b9d53098bba1ffdc,https://www.etsi.org/deliver/etsi_en/301900_301999/30190801/07.01.01_60/en_30190801v070101p.pdf
+intl,ETSI EN 303 645 消费物联网网络安全,ok,200,application/pdf,887793,intl/ETSI_EN_303_645_消费物联网网络安全.pdf,4a484c2e3a7c746cd1d655ae39b617f970696f34860266598b2b1b775d7a7bd3,https://www.etsi.org/deliver/etsi_en/303600_303699/303645/02.01.01_60/en_303645v020101p.pdf
+intl,ETSI EN 55032 EMC 多媒体设备发射,http_404,404,,0,,,https://www.etsi.org/deliver/etsi_en/55000_55999/55032/02.01.00_60/en_55032v020100p.pdf
+intl,ETSI EN 55035 EMC 多媒体设备抗扰,http_404,404,,0,,,https://www.etsi.org/deliver/etsi_en/55000_55999/55035/02.01.00_60/en_55035v020100p.pdf
+intl,INTL Basel Convention 巴塞尔公约,ok,200,text/html,126232,intl/INTL_Basel_Convention_巴塞尔公约.html,bfb198a4f88b9bffb6a1e923c473ff2cc059a80cd7681f7081d436abd7e2672c,https://www.basel.int/
+intl,INTL CEN-CENELEC 欧洲标准化,ok,200,text/html,86093,intl/INTL_CEN-CENELEC_欧洲标准化.html,562143fe63f9d5b1a558abd144f8cce540af96a2e66cae8e846c3c4645b3d24d,https://www.cencenelec.eu/
+intl,INTL Codex Alimentarius standards list (FAO/WHO),ok,200,text/html,437366,intl/INTL_Codex_Alimentarius_standards_list_FAO_WHO.html,38de43f7f590faa4443c475e389de96c1d6eae7f2b8892ea09968668e3eee66a,https://www.fao.org/fao-who-codexalimentarius/codex-texts/list-standards/en/
+intl,INTL Codex 农药残留限量,ok,200,text/html,38076,intl/INTL_Codex_农药残留限量.html,9b2679e4848e7d122fd756f8475b4e4f73f532ddf7922cccc189cb3711fb6367,https://www.fao.org/fao-who-codexalimentarius/codex-texts/maximum-residue-limits/en/
+intl,INTL Codex 商品标准列表,ok,200,text/html,437366,intl/INTL_Codex_商品标准列表.html,38de43f7f590faa4443c475e389de96c1d6eae7f2b8892ea09968668e3eee66a,https://www.fao.org/fao-who-codexalimentarius/codex-texts/list-standards/en/
+intl,INTL Codex 操作规范列表,ok,200,text/html,148432,intl/INTL_Codex_操作规范列表.html,cee830960e3446bd6efdaa756adb704baef438d63943cb42493007ff744e65e2,https://www.fao.org/fao-who-codexalimentarius/codex-texts/codes-of-practice/en/
+intl,INTL Codex 食品接触材料通用标准 (FAO/WHO),ok,200,text/html,437366,intl/INTL_Codex_食品接触材料通用标准_FAO_WHO.html,38de43f7f590faa4443c475e389de96c1d6eae7f2b8892ea09968668e3eee66a,https://www.fao.org/fao-who-codexalimentarius/codex-texts/list-standards/en/
+intl,INTL ETSI 标准与服务,ok,200,text/html,194790,intl/INTL_ETSI_标准与服务.html,01d9e3366f3e535c998066204930af01cc0b799bc27f6e5f16501df634d46414,https://www.etsi.org/standards
+intl,INTL ETSI 标准交付目录,ok,200,text/html,5303,intl/INTL_ETSI_标准交付目录.html,9c704ef64a26d790aca2951378344a83e87b24b9dbb0844924a68c8c1f60aaf5,https://www.etsi.org/deliver/etsi_en/
+intl,INTL FAO 联合国粮农组织,ok,200,text/html,1193469,intl/INTL_FAO_联合国粮农组织.html,4b9ae9c911c4cd2a8500c24c1e799be6cfaa4f649c37660ae085f1ab316c47cd,https://www.fao.org/
+intl,INTL ICC 国际商会,ok,200,text/html,184605,intl/INTL_ICC_国际商会.html,b3aff0e7ed09708410881ddaaa41d9b0f0bb93124d5ed5abebe12b16d7e72cd9,https://iccwbo.org/
+intl,INTL IEC 国际电工委员会,waf,202,,2049,,,https://www.iec.ch/
+intl,INTL IEC 国际电工委员会标准目录,waf,202,,2049,,,https://www.iec.ch/
+intl,INTL ILO 国际劳工组织,ok,200,text/html,88587,intl/INTL_ILO_国际劳工组织.html,d36bf3b1bad66234e650d4a4caa41773945b6bfed3735b7eef1b68676c18492a,https://www.ilo.org/
+intl,INTL ISO 国际标准化组织标准目录,http_403,403,,0,,,https://www.iso.org/standards.html
+intl,INTL ISO 标准目录,http_403,403,,0,,,https://www.iso.org/standards.html
+intl,INTL ITU 国际电信联盟,ok,200,text/html,101939,intl/INTL_ITU_国际电信联盟.html,2781f451e02ac0a843727f3304d27a53a45975556f825d30d4604688947bc926,https://www.itu.int/
+intl,INTL Montreal Protocol 蒙特利尔议定书,ok,200,text/html,78953,intl/INTL_Montreal_Protocol_蒙特利尔议定书.html,a3e4c2ea2aec88dd4a751d3e30196c42df1d77d7198e16709c100ad0d6e6c38b,https://ozone.unep.org/treaties/montreal-protocol
+intl,INTL NIST 美国国家标准与技术研究院,ok,200,text/html,97412,intl/INTL_NIST_美国国家标准与技术研究院.html,ac46180bd8fd6d1ec622afe5b19f4cef18ac19a9bfda9ffe05ba19e7fc7fc9bf,https://www.nist.gov/
+intl,INTL OECD 消费者政策,http_403,403,,0,,,https://www.oecd.org/sti/consumer/
+intl,INTL Rotterdam Convention 鹿特丹公约,ok,200,text/html,110971,intl/INTL_Rotterdam_Convention_鹿特丹公约.html,4022996566526769d7797310dd931f45103f239b8b2c518ff2a9cf494d994ecc,https://www.pic.int/
+intl,INTL Stockholm Convention 斯德哥尔摩公约,ok,200,text/html,111334,intl/INTL_Stockholm_Convention_斯德哥尔摩公约.html,195b8414069bac78510f6efeefac3df29447a65aafa22524d44957ae3165c31e,https://www.pops.int/
+intl,INTL UN Treaty Collection 条约集,ok,200,text/html,167446,intl/INTL_UN_Treaty_Collection_条约集.html,50dc5581e7b4d7606eac3de9346a97d39d9989da90aea1721d4353bcc2be128a,https://treaties.un.org/
+intl,INTL UN 危险货物运输示范规章 (UNECE),http_403,403,,0,,,https://unece.org/transport/standards/transport/dangerous-goods
+intl,INTL UNCTAD 贸易与消费者政策,http_403,403,,0,,,https://unctad.org/topic/competition-and-consumer-protection
+intl,INTL UNECE UN R155 车辆网络安全法规,http_403,403,,0,,,https://unece.org/transport/dangerous-goods/un-manual-tests-and-criteria
+intl,INTL UPU 万国邮政联盟,ok,200,text/html,110609,intl/INTL_UPU_万国邮政联盟.html,ad8c57bad9fe96838f06a2070b19d2a8c4e85bfa517b6d92181e94cc694ecde7,https://www.upu.int/
+intl,INTL WCO 世界海关组织,ok,200,text/html,64372,intl/INTL_WCO_世界海关组织.html,88d1b90ca14c2a84523ca59542920fb4901a9fe6418b28fbead6263d8f7f0299,http://www.wcoomd.org/
+intl,INTL WHO 世界卫生组织,ok,200,text/html,135152,intl/INTL_WHO_世界卫生组织.html,49d5690cdc0535cb1efc3a1bf96e266a4a647ddf985ad74b08f98e1e30676770,https://www.who.int/
+intl,INTL WIPO Lex 法律文本检索,http_404,404,,0,,,https://www.wipo.int/wipolex/en/legislation/
+intl,INTL WIPO Lex 知识产权法规数据库,ok,200,text/html,145320,intl/INTL_WIPO_Lex_知识产权法规数据库.html,effa93cd7b905adbce4ebf697b48905e623769c3377f1a10f9cf3769483c56e8,https://www.wipo.int/wipolex/en/
+intl,INTL WIPO Madrid Agreement and Protocol (pub 292),ok,200,application/pdf,2113427,intl/INTL_WIPO_Madrid_Agreement_and_Protocol_pub_292.pdf,cfd59bfd9cbcd0be1588bea2ae495988574994d1a8c779f65fed60a554af23b2,https://www.wipo.int/edocs/pubdocs/en/wipo_pub_292.pdf
+intl,INTL WIPO Madrid 商标国际注册,ok,200,text/html,93735,intl/INTL_WIPO_Madrid_商标国际注册.html,d63db101fd69f9d8f104ecee9b7f5cd52703c0bc828cd721bb40aa243fa4ab6e,https://www.wipo.int/madrid/en/legal_texts/
+intl,INTL WIPO PCT 专利合作条约,ok,200,text/html,115463,intl/INTL_WIPO_PCT_专利合作条约.html,23f5c8fc5e37ba61b2c51273a239ae252a3859b0295ef9e691e1189c5a048d3a,https://www.wipo.int/pct/en/texts/
+intl,INTL WIPO 条约与文本,ok,200,text/html,122347,intl/INTL_WIPO_条约与文本.html,429e1ec92705da0b31e129e2dcd23c387e512c6a3cb10d102f9dce92f64f7236,https://www.wipo.int/treaties/en/
+intl,INTL WTO SPS Agreement,ok,200,application/pdf,92758,intl/INTL_WTO_SPS_Agreement.pdf,514b649dca74a118b35c690659e42c0ee1fb91e9d74e8724f09f42d8cc27fcf3,https://www.wto.org/english/docs_e/legal_e/15-sps.pdf
+intl,INTL WTO TBT Agreement,ok,200,text/html,120411,intl/INTL_WTO_TBT_Agreement.html,2ced48f541e63d32f19c14338917e6e66f74729b077fe749f79a295f6fc97aeb,https://www.wto.org/english/docs_e/legal_e/17-tbt_e.htm
+intl,INTL WTO legal texts,ok,200,text/html,34419,intl/INTL_WTO_legal_texts.html,4ba9006306f02035c13c13c580d5468c7ef0c0604652b77153dd3ee518206829,https://www.wto.org/english/docs_e/legal_e/legal_e.htm
+intl,INTL World Bank 世界银行,ok,200,text/html,60555,intl/INTL_World_Bank_世界银行.html,f4fc994e612b5b783bb3da89417c496bf5ae0d381859decfffd37cfb1da47219,https://www.worldbank.org/
+it,IT Normattiva 法规库,ok,200,text/html,46692,it/IT_Normattiva_法规库.html,a602f3b0fe5862593a97017640745d385e688f37ce22b48080778fbf3cd4f02f,https://www.normattiva.it/
+it,IT 个人数据保护法典 (Garante),error,0,,0,,,https://www.garanteprivacy.it/
+it,IT 官方公报 Gazzetta Ufficiale,ok,200,text/html,43307,it/IT_官方公报_Gazzetta_Ufficiale.html,b5aaeab6b7fcdfcc1c6522325fbe7a22799e386a21b53d07c254da25bf6246f6,https://www.gazzettaufficiale.it/
+it,IT 消费者法典 (Normattiva),ok,200,text/html,46692,it/IT_消费者法典_Normattiva.html,a602f3b0fe5862593a97017640745d385e688f37ce22b48080778fbf3cd4f02f,https://www.normattiva.it/
+jo,JO 司法部,ok,200,text/html,278367,jo/JO_司法部.html,506f21c6ddbe516c5a330877dd911d782aa83319d19ba51e4237e53877cf2a61,https://www.moj.gov.jo/
+jo,JO 司法部法规,ok,200,text/html,278367,jo/JO_司法部法规.html,948bd609acbd8f58e4099e35d61c532a5936e718bc9ce81801d2141feb56f3c9,https://www.moj.gov.jo/Default/Ar
+jo,JO 消费者保护法 (MIT),ok,200,text/html,366050,jo/JO_消费者保护法_MIT.html,fa472995d28cac54bd81bab9b2a82047804fa00956cd9321784ca8e20a96ce2d,https://www.mit.gov.jo/
+jp,JP e-Gov 法令检索门户,ok,200,text/html,800,jp/JP_e-Gov_法令检索门户.html,b2e5ede6447907450aadd16d512d97d3ffed4c35dac9e5ba0fa6a9859de8ab55,https://elaws.e-gov.go.jp/
+jp,JP 厚生劳动省 (mhlw.go.jp),ok,200,text/html,84938,jp/JP_厚生劳动省_mhlw.go.jp.html,900c059552c4d7cf2def4ed2efbe4eeb06cd18f462c665ca27ad77beecfab750,https://www.mhlw.go.jp/
+jp,JP 消费者厅 CAA (caa.go.jp),ok,200,text/html,60591,jp/JP_消费者厅_CAA_caa.go.jp.html,00d237eca0575567d69573366ab3d69addc26430035270af1ba2c72f172aab07,https://www.caa.go.jp/
+jp,JP 财务省 关税 (customs.go.jp),ok,200,text/html,43721,jp/JP_财务省_关税_customs.go.jp.html,1d8debdab622453774713bd69917db32512be567b66252f7f1035621c54d5685,https://www.customs.go.jp/
+jp,JP-APPI Act on the Protection of Personal Information,ok,200,text/xml,590804,jp/JP-APPI_Act_on_the_Protection_of_Personal_Information.xml,8a839b5b3423f27a6b73b0746b161e14eb543733986e3d608f6c10351978c95d,https://laws.e-gov.go.jp/api/1/lawdata/415AC0000000057
+jp,JP-COMMERCE Act on Specified Commercial Transactions,ok,200,text/xml,704535,jp/JP-COMMERCE_Act_on_Specified_Commercial_Transactions.xml,baf61a5d0431aa34e88271fb3502a14e02c7491052143c170cae0a0f9ef77d54,https://laws.e-gov.go.jp/api/1/lawdata/351AC0000000057
+jp,JP-CONSUMER-CONTRACT Consumer Contract Act,ok,200,text/xml,249644,jp/JP-CONSUMER-CONTRACT_Consumer_Contract_Act.xml,6b173cdb165c0681fe624661d1497a956489a682e239aaac0ed9d8fd6b27a2d4,https://laws.e-gov.go.jp/api/1/lawdata/412AC0000000061
+jp,JP-DENANHO Electrical Appliance and Material Safety Act,ok,200,text/xml,225372,jp/JP-DENANHO_Electrical_Appliance_and_Material_Safety_Act.xml,f340c4bfadd6c51fad3fd0e9ceafb09cc3561d9795d1e8d1401371a10beedbd6,https://laws.e-gov.go.jp/api/1/lawdata/336AC0000000234
+jp,JP-HOUSEHOLD-GOODS Household Goods Quality Labelling Act,ok,200,text/xml,77895,jp/JP-HOUSEHOLD-GOODS_Household_Goods_Quality_Labelling_Act.xml,039689fd161919d1f68821b4e56bd888d15046840bf443018d007f8d454c29fb,https://laws.e-gov.go.jp/api/1/lawdata/337AC0000000104
+jp,JP-KEIHYO Act against Unjustifiable Premiums and Misleading Representations,ok,200,text/xml,192209,jp/JP-KEIHYO_Act_against_Unjustifiable_Premiums_and_Misleading_Representations.xml,98998275d7bf8454d769f5544fb04f3feb6620662f943f2a26306956f6aef557,https://laws.e-gov.go.jp/api/1/lawdata/337AC0000000134
+jp,JP-PHARMACEUTICAL Pharmaceutical and Medical Device Act,ok,200,text/xml,1581078,jp/JP-PHARMACEUTICAL_Pharmaceutical_and_Medical_Device_Act.xml,af0ba349d8079d9ffd879a9e49c3fd159e5ce837850c0836c761572a2f13ad26,https://laws.e-gov.go.jp/api/1/lawdata/335AC0000000145
+jp,JP-PRODUCT-SAFETY Consumer Product Safety Act,ok,200,text/xml,85781,jp/JP-PRODUCT-SAFETY_Consumer_Product_Safety_Act.xml,568d57f81a089ef62f604c1dc96dd290d009e2b6ac98ae78fdf28f8c35e4a086,https://laws.e-gov.go.jp/api/1/lawdata/419AC0000000048
+ke,KE Kenya Law 法规库,http_403,403,,0,,,https://new.kenyalaw.org/
+ke,KE 消费者保护法 2012 (Kenya Law),http_403,403,,0,,,https://new.kenyalaw.org/akn/ke/act/2012/46/eng@2012-12-31
+kh,KH 司法部,ok,200,text/html,55335,kh/KH_司法部.html,dcdd8beb086c7b1c3a421866d3e4e6d7e050770ab40442a5db8d2619c11e6a63,https://www.moj.gov.kh/
+kh,KH 消费者保护法 (MOJ),ok,200,text/html,55335,kh/KH_消费者保护法_MOJ.html,dcdd8beb086c7b1c3a421866d3e4e6d7e050770ab40442a5db8d2619c11e6a63,https://www.moj.gov.kh/
+kr,KR 国家法令信息中心 (KLRI 英文),ok,200,,165773,kr/KR_国家法令信息中心_KLRI_英文.html,70a1d94c9597aea07a6e499cd43265340f63debd089af83dfde0b8f8f25ae803,https://elaw.klri.re.kr/eng_service/main.do
+kr,KR 国家法令信息中心 英文 (KLRI),ok,200,,165773,kr/KR_国家法令信息中心_英文_KLRI.html,70a1d94c9597aea07a6e499cd43265340f63debd089af83dfde0b8f8f25ae803,https://elaw.klri.re.kr/eng_service/main.do
+kr,KR 法令信息中心 (law.go.kr),ok,200,text/html,261,kr/KR_法令信息中心_law.go.kr.html,3faf51167bd3f95d18c86d05b2610159faac03ab5e398502621f1b03a34bfd8b,https://www.law.go.kr/
+kz,KZ Adilet 法规库,ok,200,text/html,2778,kz/KZ_Adilet_法规库.html,0bdeb23dd5a2b2bcdbd5d88ec37e1c47bcba03c30d10f371b965e317043471f5,https://adilet.zan.kz/
+la,LA 老挝贸易门户,ok,200,text/html,360665,la/LA_老挝贸易门户.html,8ea6a3ea90eca30653cb5b82f63971084a511b6c851aba56d846f137cab28028,https://www.laotradeportal.gov.la/
+la,LA 贸易门户法律页,ok,200,text/html,360725,la/LA_贸易门户法律页.html,0c14ffb20ab5b293647009ac763243d3386086791f475794816107b66ab8c78f,https://www.laotradeportal.gov.la/index.php?r=site/display&id=1
+lb,LB 部长会议,ok,200,text/html,150087,lb/LB_部长会议.html,f92ae42ce8bfbbaa327f1668319f19725715997cadc0fc631618c4008abb1298,http://www.pcm.gov.lb/
+lk,LK 消费者事务局,error,0,,0,,,https://www.consumeraffairs.gov.lk/
+lu,LU Legilux 法规库,ok,200,text/html,2495,lu/LU_Legilux_法规库.html,82a3e10a0043eae02b288ede32c4075cb8391e16848536ba4db36c6fd2e39a8c,https://legilux.public.lu/
+lu,LU 消费者法典 (Legilux),ok,200,text/html,2495,lu/LU_消费者法典_Legilux.html,5d560fe6deb39b11ae0f623e320294d24e12527331fa295861d7a0d0911874eb,https://legilux.public.lu/
+lv,LV Likumi 法规库,ok,200,text/html,44452,lv/LV_Likumi_法规库.html,3c350dd941eaea5123f43cc75e2916ef278eae68dd4e1b64ad080c9638667a37,https://likumi.lv/
+lv,LV 消费者权益保护法 (Likumi),ok,200,text/html,44452,lv/LV_消费者权益保护法_Likumi.html,3c350dd941eaea5123f43cc75e2916ef278eae68dd4e1b64ad080c9638667a37,https://likumi.lv/
+ma,MA 政府秘书处公报,error,0,,0,,,https://www.sgg.gov.ma/
+mn,MN legalinfo 法规库,ok,200,text/html,122105,mn/MN_legalinfo_法规库.html,3721383c5d08e8faba91e51c64de3e745b5a72dce64b3c19d4dd407f105e9513,https://legalinfo.mn/
+mn,MN legalinfo 法规库,ok,200,text/html,122105,mn/MN_legalinfo_法规库.html,23569fb3a32d58707ad20271dacef7833a245d258135521b25752adec3ecf5af,https://legalinfo.mn/mn
+mn,MN 消费者权益保护法 (legalinfo),ok,200,text/html,122105,mn/MN_消费者权益保护法_legalinfo.html,9eac150ae0b60029230da9cfb476ff70744c547bf3e503547cfb28383e304882,https://legalinfo.mn/mn
+mt,MT Legislation 法规库,ok,200,text/html,30645,mt/MT_Legislation_法规库.html,423c38f34dc4b7c09a00123f0ba54876d18329462c47d78cac55077598ac2951,https://legislation.mt/
+mt,MT 消费者事务法 (Legislation.mt),ok,200,text/html,30645,mt/MT_消费者事务法_Legislation.mt.html,bc76bea9ea1ae37ae839db82d59d2b40daad6a13eb0f8ac9c7e5a66409f7bf52,https://legislation.mt/
+mx,MX Código de Comercio (diputados),error,0,,0,,,https://www.diputados.gob.mx/LeyesBiblio/pdf/CCom.pdf
+mx,MX Ley Federal de Protección al Consumidor (diputados),error,0,,0,,,https://www.diputados.gob.mx/LeyesBiblio/pdf/LFPC.pdf
+mx,MX Ley Federal de Protección de Datos Personales (diputados),error,0,,0,,,https://www.diputados.gob.mx/LeyesBiblio/pdf/LFPDPPP.pdf
+mx,MX Ley de la Propiedad Industrial (diputados),error,0,,0,,,https://www.diputados.gob.mx/LeyesBiblio/pdf/LPI.pdf
+mx,MX NOM 标准目录 (gob.mx),ok,200,text/html,1919,mx/MX_NOM_标准目录_gob.mx.html,8440de1ac6ace5c4a34748a92bfe9c69152e0aa44cf4aed3e249a28503f63ad4,https://www.gob.mx/se/acciones-y-programas/normas-oficiales-mexicanas
+mx,MX 众议院法律库,error,0,,0,,,https://www.diputados.gob.mx/LeyesBiblio/
+mx,MX 联邦官方公报 DOF,error,0,,0,,,https://www.dof.gob.mx/
+my,MY AGC 法令目录,ok,200,text/html,121324,my/MY_AGC_法令目录.html,0e02d1493c81848d596a5fb9ced57647d9db9c92e1dc5a1e99fce4df7c46ba3b,https://www.agc.gov.my/agcportal/pages/laws.php
+my,MY PDPA 2010 Act 709 (pdp.gov.my),ok,200,text/html,167504,my/MY_PDPA_2010_Act_709_pdp.gov.my.html,51759ed0bd64225ca5feed45d75b67fb8490379f3b9fa8fdd8da3051b9048f98,https://www.pdp.gov.my/jpdpv2/laws-of-malaysia/?lang=en
+my,MY 总检察署 AGC,ok,200,text/html,121324,my/MY_总检察署_AGC.html,0e02d1493c81848d596a5fb9ced57647d9db9c92e1dc5a1e99fce4df7c46ba3b,https://www.agc.gov.my/
+my,MY 标准局 STANDARDS MALAYSIA,ok,200,text/html,82875,my/MY_标准局_STANDARDS_MALAYSIA.html,0581d0dda82262a4c364ac224d0238e30b23125c8439dee8de7863c402d98daa,https://www.jsm.gov.my/
+my,MY 消费者保护法 1999 (AGC),ok,200,text/html,121324,my/MY_消费者保护法_1999_AGC.html,0e02d1493c81848d596a5fb9ced57647d9db9c92e1dc5a1e99fce4df7c46ba3b,https://www.agc.gov.my/agcportal/pages/laws.php
+ng,NG 尼日利亚法律库,ok,200,text/html,5533,ng/NG_尼日利亚法律库.html,a55acd72dbd343b427049be4fca8d1716f1f981fd2fe52ffa1b19c704ac424a4,https://lawsofnigeria.placng.org/
+ng,NG 消费者保护委员会 (FCCPC),http_404,404,,0,,,https://fccpc.gov.ng/
+nl,NL AVG 实施法 (UAVG) BWBR0040940,ok,200,text/html,501507,nl/NL_AVG_实施法_UAVG_BWBR0040940.html,1fe07368557a23fcdf9f987386b6088b63ced9e56efb111caaae2b5ef8e03ccb,https://wetten.overheid.nl/BWBR0040940/
+nl,NL Autoriteit Consument & Markt,error,0,,0,,,https://www.acm.nl/
+nl,NL UAVG 通用数据保护条例实施法 BWBR0040940,ok,200,text/html,501507,nl/NL_UAVG_通用数据保护条例实施法_BWBR0040940.html,1fe07368557a23fcdf9f987386b6088b63ced9e56efb111caaae2b5ef8e03ccb,https://wetten.overheid.nl/BWBR0040940/
+nl,NL wetten.overheid.nl 法规库,ok,200,text/html,26302,nl/NL_wetten.overheid.nl_法规库.html,c41dbc8c41d5c84b66ebc39ac460194c7d0e2d01852fcb867c5c73902d91052c,https://wetten.overheid.nl/
+nl,NL 商品法 BWBR0002458,ok,200,text/html,612679,nl/NL_商品法_BWBR0002458.html,50408a20ad3ace65584aa03f2affbaf9d8ef6e00f23c1899ccd5b7b962d250f6,https://wetten.overheid.nl/BWBR0002458/
+nl,NL 民法典第 6 卷 BWBR0005289,ok,200,text/html,2430177,nl/NL_民法典第_6_卷_BWBR0005289.html,4817d36c6108aab3e37c6155760714c3dc15b23f4ac8ac8a74bb20dcb55fb63a,https://wetten.overheid.nl/BWBR0005289/
+nl,NL 消费者与市场管理局 ACM,error,0,,0,,,https://www.acm.nl/
+nl,NL 消费者保护执行法 BWBR0034947,ok,200,text/html,42142,nl/NL_消费者保护执行法_BWBR0034947.html,8a056b1c5daf7119e0846e956f565f7b570bf45299775f13c9bace16e21fe2ba,https://wetten.overheid.nl/BWBR0034947/
+no,NO Lovdata 法规库,ok,200,text/html,28391,no/NO_Lovdata_法规库.html,cd19e01a5d53ff3d18a778a1f7580a31295c87a230e6f19fa967c4553d24bcf1,https://lovdata.no/
+no,NO 消费者保护法 (Lovdata),ok,200,text/html,28391,no/NO_消费者保护法_Lovdata.html,cd19e01a5d53ff3d18a778a1f7580a31295c87a230e6f19fa967c4553d24bcf1,https://lovdata.no/
+np,NP 法律委员会,ok,200,text/html,245992,np/NP_法律委员会.html,75c35740c8509837d0d8eb34848221c17aadabcc24a41338e71ca4149486f87d,https://www.lawcommission.gov.np/
+np,NP 消费者保护法 (lawcommission),http_404,404,,0,,,https://www.lawcommission.gov.np/en/
+nz,NZ Children's Toys Product Safety Standard,ok,200,text/html,189085,nz/NZ_Children_s_Toys_Product_Safety_Standard.html,f57e26f3d5a0ab063a96dbf054f536164dd97ce099d90c7a6ab7d41683261262,https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/childrens-toy-standard/
+nz,NZ Consumer Guarantees Act 1993 (legislation.govt.nz),ok,200,text/html,371202,nz/NZ_Consumer_Guarantees_Act_1993_legislation.govt.nz.html,9147caea92c2ac6fa7554ae6bda1905fb502df9aff109813b145e83f7019a1e2,https://www.legislation.govt.nz/act/public/1993/0091/latest/DLM311093.html
+nz,NZ Fair Trading Act 1986 (legislation.govt.nz),ok,200,text/html,1032524,nz/NZ_Fair_Trading_Act_1986_legislation.govt.nz.html,8ee79f6614a82e53380e4511e8bb3438607aac5ef72e2bd804cb50063faf5f76,https://www.legislation.govt.nz/act/public/1986/0121/latest/DLM96439.html
+nz,NZ Household Cots Product Safety Standard,ok,200,text/html,189896,nz/NZ_Household_Cots_Product_Safety_Standard.html,6394f273fbb49bb3fbfd096adad3edab5375bcefb992c95530f44a65b769b36a,https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/household-cot-standard
+nz,NZ legislation.govt.nz,ok,200,text/html,57849,nz/NZ_legislation.govt.nz.html,efb5d793333421d93679eec3b5d94738f1638928ea99b9b1260a01f8be615fb9,https://www.legislation.govt.nz/
+om,OM 商业与工业部消费者保护,ok,200,text/html,6944,om/OM_商业与工业部消费者保护.html,93aab8c5ada1ae12dbb30b1b8a873466101ee34973d17de99474ce966c556e85,https://www.oman.om/
+om,OM 阿曼政府门户,ok,200,text/html,6944,om/OM_阿曼政府门户.html,cb1a5399a17fa297dcdca609b3d491f5152f52839b11d3cc75a8becbcd464e63,https://www.oman.om/
+pa,PA 官方公报,ok,200,text/html,848,pa/PA_官方公报.html,65674bb815204e93ec97f7500f0670d089218cc61bf63029f1fb8632698147fd,https://www.gacetaoficial.gob.pa/
+pe,PE Ley 29733 个人数据保护法,error,0,,0,,,https://busquedas.elperuano.pe/
+pe,PE 官方公报 El Peruano,error,0,,0,,,https://busquedas.elperuano.pe/
+ph,PH EO 292 行政法典,ok,200,text/html,938105,ph/PH_EO_292_行政法典.html,f0f8a97883d26bb78f3a760a0d73cee62465f95df548231885c42ca48ccaf453,https://lawphil.net/executive/execord/eo1987/eo_292_1987.html
+ph,PH LawPhil 法律库,ok,200,text/html,15437,ph/PH_LawPhil_法律库.html,a876e05c2c8ddc869dcf831de9ba111b3618e9b7efe6a9de1755349b7cd319a3,https://lawphil.net/
+ph,PH RA 10175 网络犯罪防治法,ok,200,text/html,36392,ph/PH_RA_10175_网络犯罪防治法.html,3be479306490a89ea9fb87bbd83a08522ae1975797ac296faa7dd178fdad3111,https://lawphil.net/statutes/repacts/ra2012/ra_10175_2012.html
+ph,PH RA 7394 消费者法,ok,200,text/html,206880,ph/PH_RA_7394_消费者法.html,29f91efce061918439965395661ed02e1e8f9b0ade4d4e7ce15e865a5d6c60f3,https://lawphil.net/statutes/repacts/ra1992/ra_7394_1992.html
+ph,PH RA 8792 电子商务法,ok,200,text/html,54021,ph/PH_RA_8792_电子商务法.html,cd2e5229f23fc7ded91572b5a7e15ddd634628bea20318163e1666b4a123bcf0,https://lawphil.net/statutes/repacts/ra2000/ra_8792_2000.html
+ph,PH 贸易与工业部 DTI 消费者保护,ok,200,text/html,185516,ph/PH_贸易与工业部_DTI_消费者保护.html,6d8bff7a0ef236c0cf734c8eb6e98da2decccd4d6d74af8b4d834bdb2e964c5e,https://www.dti.gov.ph/
+ph,PH 食品药品管理局 FDA,ok,200,text/html,343756,ph/PH_食品药品管理局_FDA.html,15eb2211a707284eb0e2e9c5cbd370b29b4fe314cec0e4a9b9c70de34de764e2,https://www.fda.gov.ph/
+pk,PK 国民议会立法,ok,200,text/html,114985,pk/PK_国民议会立法.html,1898394c809fc639dc003a9694256f3fd084ac98392f0d772475d8de4604cfe4,https://www.na.gov.pk/
+pl,PL Dziennik Ustaw 法律公报,ok,200,text/html,48643,pl/PL_Dziennik_Ustaw_法律公报.html,825d94096e191e7fef8fcd50be42d2f1740deab314c64ce888c0dd2dd177287d,https://dziennikustaw.gov.pl/
+pl,PL ISAP 立法库,ok,200,text/html,14748,pl/PL_ISAP_立法库.html,5b90a2dc16628f79731168905d5ad847c39e08e6368a1ac24a5063346e43a84e,https://isap.sejm.gov.pl/
+pl,PL 消费者权益法 (ISAP),ok,200,text/html,6183,pl/PL_消费者权益法_ISAP.html,98d8e4d32d5c8089b868c234443e5e5e2401622dbb39f6bf03a321c0d2734999,https://isap.sejm.gov.pl/isap.nsf/DocDetails.xsp?id=WDU20140000827
+pl,PL 消费者权益法 ISAP,ok,200,text/html,6183,pl/PL_消费者权益法_ISAP.html,d3d0b29eece1392bc134ac41613fd7395623ef1ab3efb47d19158b65bb74ec6c,https://isap.sejm.gov.pl/isap.nsf/DocDetails.xsp?id=WDU20140000827
+pl,PL 竞争与消费者保护局 UOKiK,ok,200,text/html,100648,pl/PL_竞争与消费者保护局_UOKiK.html,35710dd7c3ef400a497ceb219e6a783eed2fffbd4c76dec008c79e79e0e11541,https://uokik.gov.pl/
+pt,PT Diario da Republica,ok,200,text/html,2346,pt/PT_Diario_da_Republica.html,043b1ab50ac43d1f14ac425f913d3255819d737cc44d6f2e0f13b672237bb4d5,https://dre.pt/
+pt,PT 消费者保护法 Lei 24/96 (DRE),ok,200,text/html,2346,pt/PT_消费者保护法_Lei_24_96_DRE.html,043b1ab50ac43d1f14ac425f913d3255819d737cc44d6f2e0f13b672237bb4d5,https://dre.pt/
+py,PY 官方公报,error,0,,0,,,https://www.gacetaoficial.gov.py/
+qa,QA Al Meezan 法律英文页,ok,200,text/html,119451,qa/QA_Al_Meezan_法律英文页.html,d63e8a9bb4f08e79c38a34080d8e4b1ecf4e30eba6245ad091fe9eaa1302d62c,https://almeezan.qa/LawPage.aspx?id=2970&language=en
+qa,QA Al Meezan 法律门户,ok,200,text/html,1469452,qa/QA_Al_Meezan_法律门户.html,36ef99e65626bae3fbd18546095080ff8c134ba9a9def989eed817f4d7a6d703,https://almeezan.qa/
+qa,QA 消费者保护法 (Al Meezan),ok,200,text/html,119451,qa/QA_消费者保护法_Al_Meezan.html,d63e8a9bb4f08e79c38a34080d8e4b1ecf4e30eba6245ad091fe9eaa1302d62c,https://almeezan.qa/LawPage.aspx?id=2970&language=en
+rs,RS 法规信息系统,ok,200,text/html,13015,rs/RS_法规信息系统.html,33447cbad948536acd93c88255c1e21e64432af9e10f754d76da3df700dbf76b,https://www.pravno-informacioni-sistem.rs/
+rs,RS 消费者保护法,ok,200,text/html,13015,rs/RS_消费者保护法.html,33447cbad948536acd93c88255c1e21e64432af9e10f754d76da3df700dbf76b,https://www.pravno-informacioni-sistem.rs/
+ru,RU 消费者权益保护法 (pravo.gov.ru),ok,200,text/html,97336,ru/RU_消费者权益保护法_pravo.gov.ru.html,5c27d9d566982015f6919da6c264baddf58130110fb83e191a077e8bbc0db78b,http://pravo.gov.ru/
+sa,SA SABER 产品安全平台 (saber.sa),error,0,,0,,,https://saber.sa/
+sa,SA SASO 技术法规 (saso.gov.sa),ok,200,text/html,335495,sa/SA_SASO_技术法规_saso.gov.sa.html,816ba9b72534be7fbb8722741bbec24e8025543ce8f3df22365d2ec237116ca6,https://www.saso.gov.sa/en/Pages/default.aspx
+sa,SA SDAIA 个人数据保护法 (sdaia.gov.sa),ok,200,text/html,82831,sa/SA_SDAIA_个人数据保护法_sdaia.gov.sa.html,51b038b8468888110ee4678914d816dd80d6050d931669529239dd261c870a3c,https://sdaia.gov.sa/en/SDAIA/about/Pages/RegulationsAndPolicies.aspx
+se,SE Riksdagen 法律库,http_308,308,,0,,,https://www.riksdagen.se/
+se,SE 消费者局 Konsumentverket,ok,200,text/html,225519,se/SE_消费者局_Konsumentverket.html,5482c5d827d02f873be091a9d25a5d30741b52815d77f38b7135882bfbbeae03,https://www.konsumentverket.se/
+se,SE 消费者销售法 (Riksdagen),http_308,308,,0,,,https://www.riksdagen.se/
+sg,SG Consumer Protection (Fair Trading) Act (SSO),ok,200,,193613,sg/SG_Consumer_Protection_Fair_Trading_Act_SSO.html,e0522657fd2b2dfec7e4876eef9d0deda98b57a3fe28acbf095a5c78f7dacf04,https://sso.agc.gov.sg/Act/CPFTA2003
+sg,SG Enterprise Singapore 标准与认证,ok,200,text/html,128422,sg/SG_Enterprise_Singapore_标准与认证.html,5d07d06973a27fb93eef5f00b7fe099235b6dbbc0d56c99c9ba7b959703fb32a,https://www.enterprisesg.gov.sg/
+sg,SG HSA 卫生科学局,ok,200,text/html,444774,sg/SG_HSA_卫生科学局.html,4903a3246e8ebc271d854485b1d0b87cd76fd6470d017301d9ed9ceca70139df,https://www.hsa.gov.sg/
+sg,SG PDPC advisory guidelines (pdpc.gov.sg),http_404,404,,0,,,https://www.pdpc.gov.sg/guidelines-and-consultation/guidelines/overview-of-pdpa/the-legislation
+sg,SG SSO 法规数据库,ok,200,,55352,sg/SG_SSO_法规数据库.html,34c8efc157d8c9593e322fa4afec1d3cffdbb3c01eb50c1c6343b9e5acd98e39,https://sso.agc.gov.sg/
+sg,SG Sale of Goods Act (SSO),ok,200,,170590,sg/SG_Sale_of_Goods_Act_SSO.html,c73ea11a4d5603ee9fcf04b13d10db997b7cfdb51b698018ed7d7b41839acab5,https://sso.agc.gov.sg/Act/SGA1979
+sg,SG 个人数据保护法 PDPA (SSO),waf,202,,2432,,,https://sso.agc.gov.sg/Act/PDPA2012
+sg,SG 商品销售法 (SSO),waf,202,,2432,,,https://sso.agc.gov.sg/Act/SGA1979
+sg,SG 支付服务法 PSA 2019 (SSO),waf,202,,2432,,,https://sso.agc.gov.sg/Act/PSA2019
+sg,SG 消费者保护（公平交易）法,waf,202,,2432,,,https://sso.agc.gov.sg/Act/CPFTA2003
+sg,SG-PDPA 2012 Personal Data Protection Act (SSO),ok,200,,263894,sg/SG-PDPA_2012_Personal_Data_Protection_Act_SSO.html,22788d8f24e07b537c516ff33645f9dfe130cd8dc0674d2dd6f6d559e8365f07,https://sso.agc.gov.sg/Act/PDPA2012
+sg,SG-PSA 2019 Payment Services Act (SSO),ok,200,,336364,sg/SG-PSA_2019_Payment_Services_Act_SSO.html,633b4e36899fb5ad0b22013533995b9bdff5bcd0048eb8593191015e2c80ff65,https://sso.agc.gov.sg/Act/PSA2019
+si,SI PISRS 法规信息系统,ok,200,text/html,11805,si/SI_PISRS_法规信息系统.html,f2ffaf26de99c6dc337f6a636e8207e5e8251363bde4ef8cd1207db4a8268e88,https://www.pisrs.si/
+si,SI 消费者保护法 (PISRS),ok,200,text/html,11805,si/SI_消费者保护法_PISRS.html,f2ffaf26de99c6dc337f6a636e8207e5e8251363bde4ef8cd1207db4a8268e88,https://www.pisrs.si/
+sk,SK Slov-Lex 法规库,ok,200,text/html,1354,sk/SK_Slov-Lex_法规库.html,ad30cde8d9ca08d60b6713886fe8c12052164e2d4edf497a552115e543116c1e,https://www.slov-lex.sk/
+sk,SK 消费者保护法 (Slov-Lex),ok,200,text/html,1354,sk/SK_消费者保护法_Slov-Lex.html,ad30cde8d9ca08d60b6713886fe8c12052164e2d4edf497a552115e543116c1e,https://www.slov-lex.sk/
+th,TH PDPA 2019 个人数据保护法 (mdes.go.th),ok,200,text/html,3388,th/TH_PDPA_2019_个人数据保护法_mdes.go.th.html,a228dfcd04cad91e33f1b9209e7a5f2ee6d1b91804591d070778a052dbb6dae0,https://www.mdes.go.th/
+th,TH TISI 泰国工业标准院,ok,200,text/html,2600,th/TH_TISI_泰国工业标准院.html,29fd0c25258b22ad4b8744409e1cfc19da5b90466d3eb2a8e128da203ba027ce,https://www.tisi.go.th/
+th,TH 消费者保护法 (OCPB),ok,200,text/html,4516,th/TH_消费者保护法_OCPB.html,0cda2eb5aa01e0e5337c1b3099a5fdff82e7a4891b061fd6bf539c46782721b3,https://www.ocpb.go.th/
+tr,TR 6502 消费者保护法 (mevzuat.gov.tr),ok,200,text/html,64854,tr/TR_6502_消费者保护法_mevzuat.gov.tr.html,68fd06e961ff2590c6c03ddcf33bc8a5076e0b3775db77bd977052eac2a181fe,https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=6502
+tr,TR KVKK 个人数据保护法 (kvkk.gov.tr),ok,200,text/html,115306,tr/TR_KVKK_个人数据保护法_kvkk.gov.tr.html,17a5b44ec85f6010b3c0dbfa4626c35ce3dfbe91a8a805f69efda0a3722c35f6,https://www.kvkk.gov.tr/
+tr,TR 法规门户 (mevzuat.gov.tr),ok,200,text/html,549140,tr/TR_法规门户_mevzuat.gov.tr.html,d68aa942e30c185153aba223af2aa9af81bef6409f959bce358a6f1bb0953f56,https://www.mevzuat.gov.tr/
+tw,TW 个人资料保护法,ok,200,text/html,98455,tw/TW_个人资料保护法.html,f43a9d2bb32580da6049bb7a1fcf3c3f241c548602f958ffdc37c4da1563a437,https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021
+tw,TW 全国法规资料库,ok,200,text/html,52720,tw/TW_全国法规资料库.html,88dc97089d7eaac7b055f90f558b10b5156a9864b3d348053803ac004428f2c2,https://law.moj.gov.tw/
+tw,TW 公平交易法,ok,200,text/html,81612,tw/TW_公平交易法.html,a529f630429aed5020e81ce9d8caf05b317f16712703cfd4c33c3d7ab7e8a024,https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0150002
+tw,TW 化妆品卫生安全管理法,ok,200,text/html,67315,tw/TW_化妆品卫生安全管理法.html,cde3cf5c94ee1dd46d7a1f07d36db36258f3e159416b6e112a5bdced58a28429,https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=K0060031
+tw,TW 商品标示法,ok,200,text/html,361140,tw/TW_商品标示法.html,28bfeb52ceed3f69fbbdce14be51fbe4377bc8224b9d21965874a64080b73ec4,https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0080001
+tw,TW 商品检验法,ok,200,text/html,64625,tw/TW_商品检验法.html,6882620b67e64d7a33c6b0229df0d058fdaef55f9a4a72a148015f69e66660dd,https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0100004
+tw,TW 商标法,ok,200,text/html,111487,tw/TW_商标法.html,36684d2b03036332377ac4b099bed78a5b9c77601b9edfcffa8b2735a120c85d,https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=L0040001
+tw,TW 消费者保护法,ok,200,text/html,92858,tw/TW_消费者保护法.html,18cddedfc3d1f9d3abcf56b6ed879dc6a759ea13662429bc53885cc4af636015,https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0170001
+tw,TW 电子签章法,ok,200,text/html,163818,tw/TW_电子签章法.html,bd8b645aea78a7fd774d87eca9f496c5cd7ff1d72cd8861734ddefd3f7b8129f,https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0050001
+tz,TZ 公平竞争法 (FCC),ok,200,text/html,649223,tz/TZ_公平竞争法_FCC.html,22a80dfd01ce2daa6dd4c6a33f31c4d5e58de5192a9624222b58ab792db0a694,https://www.tanzania.go.tz/
+tz,TZ 坦桑尼亚政府门户,ok,200,text/html,649223,tz/TZ_坦桑尼亚政府门户.html,22a80dfd01ce2daa6dd4c6a33f31c4d5e58de5192a9624222b58ab792db0a694,https://www.tanzania.go.tz/
+tz,TZ 政府门户法规栏目,ok,200,text/html,649223,tz/TZ_政府门户法规栏目.html,22a80dfd01ce2daa6dd4c6a33f31c4d5e58de5192a9624222b58ab792db0a694,https://www.tanzania.go.tz/
+uk,UK Battery Regulations SI 2008/2164 (legislation.gov.uk),waf,202,,2020,,,https://www.legislation.gov.uk/uksi/2008/2164/contents
+uk,UK Cosmetics Regulations SI 2013/1478 (legislation.gov.uk),waf,202,,2020,,,https://www.legislation.gov.uk/uksi/2013/1478/contents
+uk,UK EPR 包装生产者责任 (gov.uk),ok,200,text/html,118347,uk/UK_EPR_包装生产者责任_gov.uk.html,1be63cd23cc44f5fe8b4e397be914fa70210c9c5f37a55c335c6ac24c5f74939,https://www.gov.uk/guidance/extended-producer-responsibility-for-packaging-who-is-affected-and-what-to-do
+uk,UK HSE SVHC 清单 (hse.gov.uk),ok,200,text/html,42855,uk/UK_HSE_SVHC_清单_hse.gov.uk.html,cab18007af1549866c7cf2f430d9a826d30c3cf75b18d08231c3f7a10765cda2,https://www.hse.gov.uk/reach/svhc-overview.htm
+uk,UK NSI Act 2021 (legislation.gov.uk),waf,202,,2020,,,https://www.legislation.gov.uk/ukpga/2021/25/contents
+uk,UK REACH 合规指南 (gov.uk),ok,200,text/html,88154,uk/UK_REACH_合规指南_gov.uk.html,f4ebb5cbfd0388d309fede257af1e4e4201e1f63611de506ba986c9b4beb39c5,https://www.gov.uk/guidance/how-to-comply-with-reach-chemical-regulations
+uk,UK Radio Equipment Regulations SI 2017/1206 (legislation.gov.uk),waf,202,,2020,,,https://www.legislation.gov.uk/uksi/2017/1206/contents
+uk,UK WEEE 法规指南 (gov.uk),ok,200,text/html,106720,uk/UK_WEEE_法规指南_gov.uk.html,9c98fbcc8a78405dd45c00e89c30a4ef4bce3b9d26d1de6478f65c63ecefd5ee,https://www.gov.uk/guidance/regulations-waste-electrical-and-electronic-equipment
+uk,UK 产品安全与计量法案指引 (gov.uk),http_404,404,,0,,,https://www.gov.uk/guidance/product-safety-and-metrology-bill
+uk,UK 家电法规 2016 (gov.uk),http_404,404,,0,,,https://www.gov.uk/government/publications/appliances-regulations-2016
+uk,UK-UKCA 通用准入要求 (gov.uk),ok,200,text/html,161157,uk/UK-UKCA_通用准入要求_gov.uk.html,1b3c525b5e5af345757f99b05d712d95efda5ba518869d957a7ca70d8422decb,https://www.gov.uk/guidance/using-the-ukca-marking
+us,US 15 USC s.1261 Federal Hazardous Substances Act,ok,200,application/pdf,167277,us/US-title15-USC-1261_Federal_Hazardous_Substances_Act.pdf,a4faa35f5a16ac67204da16599b3479a504c3d62802579b6749ff36338491b56,https://www.govinfo.gov/link/uscode/15/1261
+us,US 15 USC s.1274 FHSA banned hazardous substances,ok,200,application/pdf,152556,us/US-title15-USC-1274_FHSA_banned_hazardous_substances.pdf,c142e476fd9b51895c3608eba520e2a114408cdc796a4faccbc47429fbe9ef90,https://www.govinfo.gov/link/uscode/15/1274
+us,US 15 USC s.2051 Consumer Product Safety Act s.1,ok,200,application/pdf,138761,us/US-title15-USC-2051_Consumer_Product_Safety_Act_s.1.pdf,409aaf8cb1bd4b993aeca1eebddf571986a616fa51466f28a388157c4dd0faca,https://www.govinfo.gov/link/uscode/15/2051
+us,US 15 USC s.2056 CPSA children's products,ok,200,application/pdf,143628,us/US-title15-USC-2056_CPSA_children's_products.pdf,880613f1d6a6cd648ec537c60b89758d7bd9b5043b11d8d994ec6e5955844450,https://www.govinfo.gov/link/uscode/15/2056
+us,US 15 USC s.2056 CPSIA definitions,ok,200,application/pdf,143628,us/US-title15-USC-2056_CPSIA_definitions.pdf,880613f1d6a6cd648ec537c60b89758d7bd9b5043b11d8d994ec6e5955844450,https://www.govinfo.gov/link/uscode/15/2056
+us,US 15 USC s.2063 Substantial product hazard reporting,ok,200,application/pdf,156552,us/US-title15-USC-2063_Substantial_product_hazard_reporting.pdf,08fe1026f31f2693dda78c60360d0e60e553917f7d529059bbdbabb0bb007cbe,https://www.govinfo.gov/link/uscode/15/2063
+us,US 15 USC s.2076 CPSC enforcement,ok,200,application/pdf,157354,us/US-title15-USC-2076_CPSC_enforcement.pdf,e144e8d90c4185fd34b416e116c07dff0100c78c9a3a82d0e716b41072190240,https://www.govinfo.gov/link/uscode/15/2076
+us,US 15 USC s.45 FTC unfair or deceptive acts,ok,200,application/pdf,172748,us/US-title15-USC-45_FTC_unfair_or_deceptive_acts.pdf,d511071d1408df866bf284999d9967ed69d0127da268c3667e9e3ac6a03af3e8,https://www.govinfo.gov/link/uscode/15/45
+us,US 15 USC s.6501 COPPA,ok,200,application/pdf,137481,us/US-title15-USC-6501_COPPA.pdf,ec6b8624fabb61673a3141d0dcc4d4889dc36f48d585360f6cbff129f2f532b6,https://www.govinfo.gov/link/uscode/15/6501
+us,US 15 USC s.6502 COPPA unfair acts,ok,200,application/pdf,140398,us/US-title15-USC-6502_COPPA_unfair_acts.pdf,39eede5f2f8dffb893574526f158e1c1bb16a3cd2047a6634d770e132b11348b,https://www.govinfo.gov/link/uscode/15/6502
+us,US 15 USC s.6505 COPPA enforcement,ok,200,application/pdf,138003,us/US-title15-USC-6505_COPPA_enforcement.pdf,9dd7aef7bfe3d16641138192c58880f15e9ac3e8191ccad3ecb3abdac31bd954,https://www.govinfo.gov/link/uscode/15/6505
+us,US 15 USC s.70 TFPIA,ok,200,application/pdf,145484,us/US-title15-USC-70_TFPIA.pdf,fd93e39034969b0011a57dfcc8eca2f77f1a620430c0d1a02481f7f64abd6f2a,https://www.govinfo.gov/link/uscode/15/70
+us,US 15 USC s.70 Textile Fiber Products Identification Act,ok,200,application/pdf,145484,us/US-title15-USC-70_Textile_Fiber_Products_Identification_Act.pdf,fd93e39034969b0011a57dfcc8eca2f77f1a620430c0d1a02481f7f64abd6f2a,https://www.govinfo.gov/link/uscode/15/70
+us,US 16 CFR Part 1101,ok,200,application/xml,71500,us/US-CFR-title16-part1101.xml,6917eabbcd9090032edb8e34884cbc735d47c40c18454b8a50d7124ef6606f3c,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1101.xml
+us,US 16 CFR Part 1101,ok,200,application/pdf,221655,us/US-CFR-title16-part1101.pdf,e72c265bf2807cc002363662e1fd3262dcea3610f2aca75a4b1eb8b24740eabd,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1101.pdf
+us,US 16 CFR Part 1101,ok,200,,71500,us/US-CFR-title16-part1101.xml,6917eabbcd9090032edb8e34884cbc735d47c40c18454b8a50d7124ef6606f3c,govinfo-cfr:16:1101:xml
+us,US 16 CFR Part 1101,ok,200,,221655,us/US-CFR-title16-part1101.pdf,e72c265bf2807cc002363662e1fd3262dcea3610f2aca75a4b1eb8b24740eabd,govinfo-cfr:16:1101:pdf
+us,US 16 CFR Part 1102,ok,200,application/xml,53860,us/US-CFR-title16-part1102.xml,9071c2704e5cc346de2c18d98705b2c6758653c93ffc0cd5acd80837c1f55c71,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1102.xml
+us,US 16 CFR Part 1102,ok,200,application/pdf,212809,us/US-CFR-title16-part1102.pdf,b598e710d3a30af97b99bfcec3b089f9c9b26bfcb62e187342b41c6a76d93759,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1102.pdf
+us,US 16 CFR Part 1102,ok,200,,53860,us/US-CFR-title16-part1102.xml,9071c2704e5cc346de2c18d98705b2c6758653c93ffc0cd5acd80837c1f55c71,govinfo-cfr:16:1102:xml
+us,US 16 CFR Part 1102,ok,200,,212809,us/US-CFR-title16-part1102.pdf,b598e710d3a30af97b99bfcec3b089f9c9b26bfcb62e187342b41c6a76d93759,govinfo-cfr:16:1102:pdf
+us,US 16 CFR Part 1112,ok,200,application/xml,100581,us/US-CFR-title16-part1112.xml,9cbaefe595a8b1b49ab2be24684b79dd8cffd5113d331b8efe5e6b6afa1e14cf,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1112.xml
+us,US 16 CFR Part 1112,ok,200,application/pdf,257103,us/US-CFR-title16-part1112.pdf,8ef2fd0cbc8d16463370857db95862b76d3c90fc6c3b6a6f038c61b7154de5ac,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1112.pdf
+us,US 16 CFR Part 1112,ok,200,,100581,us/US-CFR-title16-part1112.xml,9cbaefe595a8b1b49ab2be24684b79dd8cffd5113d331b8efe5e6b6afa1e14cf,govinfo-cfr:16:1112:xml
+us,US 16 CFR Part 1112,ok,200,,257103,us/US-CFR-title16-part1112.pdf,8ef2fd0cbc8d16463370857db95862b76d3c90fc6c3b6a6f038c61b7154de5ac,govinfo-cfr:16:1112:pdf
+us,US 16 CFR Part 1115,ok,200,application/xml,104193,us/US-CFR-title16-part1115.xml,e4443fe281f44d46264d28df1a32f50e92e633e40bedd8e139013b3658001e2e,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1115.xml
+us,US 16 CFR Part 1115,ok,200,application/pdf,281981,us/US-CFR-title16-part1115.pdf,0e96039e3ab9af9198dbf1e425ae274d4016054d16272a1fa8b202f827e47e14,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1115.pdf
+us,US 16 CFR Part 1115,ok,200,,104193,us/US-CFR-title16-part1115.xml,e4443fe281f44d46264d28df1a32f50e92e633e40bedd8e139013b3658001e2e,govinfo-cfr:16:1115:xml
+us,US 16 CFR Part 1115,ok,200,,281981,us/US-CFR-title16-part1115.pdf,0e96039e3ab9af9198dbf1e425ae274d4016054d16272a1fa8b202f827e47e14,govinfo-cfr:16:1115:pdf
+us,US 16 CFR Part 1116,ok,200,application/xml,41175,us/US-CFR-title16-part1116.xml,4f4a0294c9b81c20274569c09ff37c3b893285413e3f7e03135aeca920859c29,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1116.xml
+us,US 16 CFR Part 1116,ok,200,application/pdf,208241,us/US-CFR-title16-part1116.pdf,c6013d751b59cb7d485fc945917ffa90c324abea8fa43c33f68ac7c27245cdae,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1116.pdf
+us,US 16 CFR Part 1116,ok,200,,41175,us/US-CFR-title16-part1116.xml,4f4a0294c9b81c20274569c09ff37c3b893285413e3f7e03135aeca920859c29,govinfo-cfr:16:1116:xml
+us,US 16 CFR Part 1116,ok,200,,208241,us/US-CFR-title16-part1116.pdf,c6013d751b59cb7d485fc945917ffa90c324abea8fa43c33f68ac7c27245cdae,govinfo-cfr:16:1116:pdf
+us,US 16 CFR Part 1118,ok,200,application/xml,36102,us/US-CFR-title16-part1118.xml,a1cdc349b2016f3fbcc7ef69c5f8602f10ad8637a2844470b169a3fe69716720,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1118.xml
+us,US 16 CFR Part 1118,ok,200,application/pdf,204599,us/US-CFR-title16-part1118.pdf,e13910fddb038408a105ab2e4c3ad22ffd4cfab632e005779061835a612d51b8,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1118.pdf
+us,US 16 CFR Part 1118,ok,200,,36102,us/US-CFR-title16-part1118.xml,a1cdc349b2016f3fbcc7ef69c5f8602f10ad8637a2844470b169a3fe69716720,govinfo-cfr:16:1118:xml
+us,US 16 CFR Part 1118,ok,200,,204599,us/US-CFR-title16-part1118.pdf,e13910fddb038408a105ab2e4c3ad22ffd4cfab632e005779061835a612d51b8,govinfo-cfr:16:1118:pdf
+us,US 16 CFR Part 1200,ok,200,application/xml,23826,us/US-CFR-title16-part1200.xml,fd70b3e2b331a513c29cd739d7e59cbb4cde8aaf0e34946893633eff72a4f435,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1200.xml
+us,US 16 CFR Part 1200,ok,200,application/pdf,197883,us/US-CFR-title16-part1200.pdf,f0a5b8b55e92bf57eab66608f10aa16a2be7dc3e5cc7858784f680caad1145d2,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1200.pdf
+us,US 16 CFR Part 1200,ok,200,,23826,us/US-CFR-title16-part1200.xml,fd70b3e2b331a513c29cd739d7e59cbb4cde8aaf0e34946893633eff72a4f435,govinfo-cfr:16:1200:xml
+us,US 16 CFR Part 1200,ok,200,,197883,us/US-CFR-title16-part1200.pdf,f0a5b8b55e92bf57eab66608f10aa16a2be7dc3e5cc7858784f680caad1145d2,govinfo-cfr:16:1200:pdf
+us,US 16 CFR Part 1201,ok,200,application/xml,55030,us/US-CFR-title16-part1201.xml,4757999c463e679eea14ef79e2216499b215567e0a0053064515f59030ac211e,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1201.xml
+us,US 16 CFR Part 1201,ok,200,application/pdf,233994,us/US-CFR-title16-part1201.pdf,ecb0d4ca045667a96bf0b542b98dacaab99f097362a8d5b7966de890df783952,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1201.pdf
+us,US 16 CFR Part 1201,ok,200,,55030,us/US-CFR-title16-part1201.xml,4757999c463e679eea14ef79e2216499b215567e0a0053064515f59030ac211e,govinfo-cfr:16:1201:xml
+us,US 16 CFR Part 1201,ok,200,,233994,us/US-CFR-title16-part1201.pdf,ecb0d4ca045667a96bf0b542b98dacaab99f097362a8d5b7966de890df783952,govinfo-cfr:16:1201:pdf
+us,US 16 CFR Part 1203,ok,200,application/xml,74623,us/US-CFR-title16-part1203.xml,53a1ccce98cde11910a490b6d6cab4c64ddddc874dbf1b5c37c4f41579f52eae,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1203.xml
+us,US 16 CFR Part 1203,ok,200,application/pdf,769191,us/US-CFR-title16-part1203.pdf,bb3958adca071fe312dcdfd96add58c7c4cb01cb9065fe5a73b283e9a744f827,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1203.pdf
+us,US 16 CFR Part 1203,ok,200,,74623,us/US-CFR-title16-part1203.xml,53a1ccce98cde11910a490b6d6cab4c64ddddc874dbf1b5c37c4f41579f52eae,govinfo-cfr:16:1203:xml
+us,US 16 CFR Part 1203,ok,200,,769191,us/US-CFR-title16-part1203.pdf,bb3958adca071fe312dcdfd96add58c7c4cb01cb9065fe5a73b283e9a744f827,govinfo-cfr:16:1203:pdf
+us,US 16 CFR Part 1205,ok,200,application/xml,62367,us/US-CFR-title16-part1205.xml,4ec332d67f39ede683db437f844e63a95840d2dc34edaa73a7df0a1c38c0a222,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1205.xml
+us,US 16 CFR Part 1205,ok,200,application/pdf,345615,us/US-CFR-title16-part1205.pdf,0acb16e3305676dd9df17de6fddabb3710b105851be8a936dc1de1888284acde,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1205.pdf
+us,US 16 CFR Part 1205,ok,200,,62367,us/US-CFR-title16-part1205.xml,4ec332d67f39ede683db437f844e63a95840d2dc34edaa73a7df0a1c38c0a222,govinfo-cfr:16:1205:xml
+us,US 16 CFR Part 1205,ok,200,,345615,us/US-CFR-title16-part1205.pdf,0acb16e3305676dd9df17de6fddabb3710b105851be8a936dc1de1888284acde,govinfo-cfr:16:1205:pdf
+us,US 16 CFR Part 1207,ok,200,application/xml,51789,us/US-CFR-title16-part1207.xml,28e211b09b1991029abf7118bcb9cc587dd5cd3d9ff4879bf6888d0cd9c279f9,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1207.xml
+us,US 16 CFR Part 1207,ok,200,application/pdf,431501,us/US-CFR-title16-part1207.pdf,624439a874b179c8e27a0789b999832bf61d957ab43b40209f5f5af1fe5123d2,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1207.pdf
+us,US 16 CFR Part 1207,ok,200,,51789,us/US-CFR-title16-part1207.xml,28e211b09b1991029abf7118bcb9cc587dd5cd3d9ff4879bf6888d0cd9c279f9,govinfo-cfr:16:1207:xml
+us,US 16 CFR Part 1207,ok,200,,431501,us/US-CFR-title16-part1207.pdf,624439a874b179c8e27a0789b999832bf61d957ab43b40209f5f5af1fe5123d2,govinfo-cfr:16:1207:pdf
+us,US 16 CFR Part 1209,ok,200,application/xml,95038,us/US-CFR-title16-part1209.xml,11eb2d91e5ed82c22323af5901bd9fb3cdcb4b7c2046de2513c9fb23c4ba43ec,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1209.xml
+us,US 16 CFR Part 1209,ok,200,application/pdf,537995,us/US-CFR-title16-part1209.pdf,f53ef1b31120b51acf0e4c87b71ef7871a08f470dcb3fd64ea87fd326e684c3f,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1209.pdf
+us,US 16 CFR Part 1209,ok,200,,95038,us/US-CFR-title16-part1209.xml,11eb2d91e5ed82c22323af5901bd9fb3cdcb4b7c2046de2513c9fb23c4ba43ec,govinfo-cfr:16:1209:xml
+us,US 16 CFR Part 1209,ok,200,,537995,us/US-CFR-title16-part1209.pdf,f53ef1b31120b51acf0e4c87b71ef7871a08f470dcb3fd64ea87fd326e684c3f,govinfo-cfr:16:1209:pdf
+us,US 16 CFR Part 1210,ok,200,application/xml,73221,us/US-CFR-title16-part1210.xml,49960c6c433847ce7235dcace6a66385fcb5fa48a452be77576c08c87a745889,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1210.xml
+us,US 16 CFR Part 1210,ok,200,application/pdf,262285,us/US-CFR-title16-part1210.pdf,a93a7d4c592133b45c16a9ef0501c547c51be6af09e231573bfb80dcf5c27fa1,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1210.pdf
+us,US 16 CFR Part 1210,ok,200,,73221,us/US-CFR-title16-part1210.xml,49960c6c433847ce7235dcace6a66385fcb5fa48a452be77576c08c87a745889,govinfo-cfr:16:1210:xml
+us,US 16 CFR Part 1210,ok,200,,262285,us/US-CFR-title16-part1210.pdf,a93a7d4c592133b45c16a9ef0501c547c51be6af09e231573bfb80dcf5c27fa1,govinfo-cfr:16:1210:pdf
+us,US 16 CFR Part 1211,ok,200,application/xml,142808,us/US-CFR-title16-part1211.xml,cb0d5e03f7cf4e4493435b95fe4e5439c545d3d6cee981d8dec9149489cc318b,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1211.xml
+us,US 16 CFR Part 1211,ok,200,application/pdf,6918829,us/US-CFR-title16-part1211.pdf,36aa6076a3172367a3e1ffec62832b2dbe971eb2bf2e0b6c85c1da36b9669dd7,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1211.pdf
+us,US 16 CFR Part 1211,ok,200,,142808,us/US-CFR-title16-part1211.xml,cb0d5e03f7cf4e4493435b95fe4e5439c545d3d6cee981d8dec9149489cc318b,govinfo-cfr:16:1211:xml
+us,US 16 CFR Part 1211,ok,200,,6918829,us/US-CFR-title16-part1211.pdf,36aa6076a3172367a3e1ffec62832b2dbe971eb2bf2e0b6c85c1da36b9669dd7,govinfo-cfr:16:1211:pdf
+us,US 16 CFR Part 1213,ok,200,application/xml,35984,us/US-CFR-title16-part1213.xml,e0b119ba920cd20ee29e034dc218acbab628344c81b401b6db0c3c4bea47afd4,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1213.xml
+us,US 16 CFR Part 1213,ok,200,application/pdf,380077,us/US-CFR-title16-part1213.pdf,526d939085b779617436ae1955de4fbf189a590e84907ea4f71eaf9ce5804cd9,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1213.pdf
+us,US 16 CFR Part 1213,ok,200,,35984,us/US-CFR-title16-part1213.xml,e0b119ba920cd20ee29e034dc218acbab628344c81b401b6db0c3c4bea47afd4,govinfo-cfr:16:1213:xml
+us,US 16 CFR Part 1213,ok,200,,380077,us/US-CFR-title16-part1213.pdf,526d939085b779617436ae1955de4fbf189a590e84907ea4f71eaf9ce5804cd9,govinfo-cfr:16:1213:pdf
+us,US 16 CFR Part 1219,ok,200,application/xml,6522,us/US-CFR-title16-part1219.xml,abb580a0bf78176a40c1f1257fa4e958a1bb679349a262d588a5a308c7ce929d,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1219.xml
+us,US 16 CFR Part 1219,ok,200,application/pdf,206235,us/US-CFR-title16-part1219.pdf,c47617f3204e1a23fab93e0af29f0dcbd814c4a20a34c1a3cf16b06b78380c55,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1219.pdf
+us,US 16 CFR Part 1219,ok,200,,6522,us/US-CFR-title16-part1219.xml,abb580a0bf78176a40c1f1257fa4e958a1bb679349a262d588a5a308c7ce929d,govinfo-cfr:16:1219:xml
+us,US 16 CFR Part 1219,ok,200,,206235,us/US-CFR-title16-part1219.pdf,c47617f3204e1a23fab93e0af29f0dcbd814c4a20a34c1a3cf16b06b78380c55,govinfo-cfr:16:1219:pdf
+us,US 16 CFR Part 1220,ok,200,application/xml,9799,us/US-CFR-title16-part1220.xml,e2c28b3a911e8695afb1f0b540f15050eae48d97d9138a0611c7f37fad2e0392,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1220.xml
+us,US 16 CFR Part 1220,ok,200,application/pdf,209341,us/US-CFR-title16-part1220.pdf,1f09ba990bae838fb8e8e42c8fd09229a1450569a3b5b84a406b3bf37f5c292a,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1220.pdf
+us,US 16 CFR Part 1220,ok,200,,9799,us/US-CFR-title16-part1220.xml,e2c28b3a911e8695afb1f0b540f15050eae48d97d9138a0611c7f37fad2e0392,govinfo-cfr:16:1220:xml
+us,US 16 CFR Part 1220,ok,200,,209341,us/US-CFR-title16-part1220.pdf,1f09ba990bae838fb8e8e42c8fd09229a1450569a3b5b84a406b3bf37f5c292a,govinfo-cfr:16:1220:pdf
+us,US 16 CFR Part 1221,ok,200,application/xml,4132,us/US-CFR-title16-part1221.xml,180c73d682fcbe47ab3144fe4157f6ac58d7cb8eea60aef9f87ddab7bb274d99,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1221.xml
+us,US 16 CFR Part 1221,ok,200,application/pdf,183364,us/US-CFR-title16-part1221.pdf,23dac365439836f22e866a8d91f864fda907ce29eeed3f9670665c0ca3421de8,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1221.pdf
+us,US 16 CFR Part 1221,ok,200,,4132,us/US-CFR-title16-part1221.xml,180c73d682fcbe47ab3144fe4157f6ac58d7cb8eea60aef9f87ddab7bb274d99,govinfo-cfr:16:1221:xml
+us,US 16 CFR Part 1221,ok,200,,183364,us/US-CFR-title16-part1221.pdf,23dac365439836f22e866a8d91f864fda907ce29eeed3f9670665c0ca3421de8,govinfo-cfr:16:1221:pdf
+us,US 16 CFR Part 1224,ok,200,application/xml,3673,us/US-CFR-title16-part1224.xml,74949ae6255421c89cbc7f2e242e195a377caeffab388d027394f22770f650b7,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1224.xml
+us,US 16 CFR Part 1224,ok,200,application/pdf,205202,us/US-CFR-title16-part1224.pdf,8c2cf75e4cc7efc9b301091b078043e4d6bb245d127c4031a616919cbe3695be,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1224.pdf
+us,US 16 CFR Part 1224,ok,200,,3673,us/US-CFR-title16-part1224.xml,74949ae6255421c89cbc7f2e242e195a377caeffab388d027394f22770f650b7,govinfo-cfr:16:1224:xml
+us,US 16 CFR Part 1224,ok,200,,205202,us/US-CFR-title16-part1224.pdf,8c2cf75e4cc7efc9b301091b078043e4d6bb245d127c4031a616919cbe3695be,govinfo-cfr:16:1224:pdf
+us,US 16 CFR Part 1240,not_in_govinfo,0,,0,,,govinfo-cfr:16:1240:xml
+us,US 16 CFR Part 1240,not_in_govinfo,0,,0,,,govinfo-cfr:16:1240:pdf
+us,US 16 CFR Part 1250,ok,200,application/xml,4404,us/US-CFR-title16-part1250.xml,5120073aa1d7b7856d1779ac74bdbe67cf5a6b1a50bf10a3165c3f1c667caf85,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1250.xml
+us,US 16 CFR Part 1250,ok,200,application/pdf,218090,us/US-CFR-title16-part1250.pdf,3fd4bfdabe2c372b61aa2f336ebcd3ca32c175a643eedd4db9a221c2390edae0,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1250.pdf
+us,US 16 CFR Part 1250,ok,200,,4404,us/US-CFR-title16-part1250.xml,5120073aa1d7b7856d1779ac74bdbe67cf5a6b1a50bf10a3165c3f1c667caf85,govinfo-cfr:16:1250:xml
+us,US 16 CFR Part 1250,ok,200,,218090,us/US-CFR-title16-part1250.pdf,3fd4bfdabe2c372b61aa2f336ebcd3ca32c175a643eedd4db9a221c2390edae0,govinfo-cfr:16:1250:pdf
+us,US 16 CFR Part 1263,ok,200,application/xml,17856,us/US-CFR-title16-part1263.xml,d767f764d9de019ec1ce61094636d88de9f40ced2c844b7b6190068c618fcd59,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1263.xml
+us,US 16 CFR Part 1263,ok,200,application/pdf,954977,us/US-CFR-title16-part1263.pdf,b329ae1eadd7a9eb6ea61d288f92e6f3959412df6892a0694682ada4110cd35c,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1263.pdf
+us,US 16 CFR Part 1263,ok,200,,17856,us/US-CFR-title16-part1263.xml,d767f764d9de019ec1ce61094636d88de9f40ced2c844b7b6190068c618fcd59,govinfo-cfr:16:1263:xml
+us,US 16 CFR Part 1263,ok,200,,954977,us/US-CFR-title16-part1263.pdf,b329ae1eadd7a9eb6ea61d288f92e6f3959412df6892a0694682ada4110cd35c,govinfo-cfr:16:1263:pdf
+us,US 16 CFR Part 1301,ok,200,application/xml,20129,us/US-CFR-title16-part1301.xml,b261312187c6ef2f8b7d43f30208592c703835f3cba2dc108faed030abd2520d,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1301.xml
+us,US 16 CFR Part 1301,ok,200,application/pdf,201495,us/US-CFR-title16-part1301.pdf,2861fab09c06d384ab2731527497b1d0f70aeaf16b5718e106561000225bfb29,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1301.pdf
+us,US 16 CFR Part 1301,ok,200,,20129,us/US-CFR-title16-part1301.xml,b261312187c6ef2f8b7d43f30208592c703835f3cba2dc108faed030abd2520d,govinfo-cfr:16:1301:xml
+us,US 16 CFR Part 1301,ok,200,,201495,us/US-CFR-title16-part1301.pdf,2861fab09c06d384ab2731527497b1d0f70aeaf16b5718e106561000225bfb29,govinfo-cfr:16:1301:pdf
+us,US 16 CFR Part 1303,ok,200,application/xml,22529,us/US-CFR-title16-part1303.xml,8bf85964c7ba4990b4b39588f898bf8c6ebe6c36162a03b0d8cdb8fd90eaaa56,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1303.xml
+us,US 16 CFR Part 1303,ok,200,application/pdf,215633,us/US-CFR-title16-part1303.pdf,5bc2db2c50cf655a944b30c05839402d9491e85ef4aaa93b2c5ba17d531328cb,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1303.pdf
+us,US 16 CFR Part 1303,ok,200,,22529,us/US-CFR-title16-part1303.xml,8bf85964c7ba4990b4b39588f898bf8c6ebe6c36162a03b0d8cdb8fd90eaaa56,govinfo-cfr:16:1303:xml
+us,US 16 CFR Part 1303,ok,200,,215633,us/US-CFR-title16-part1303.pdf,5bc2db2c50cf655a944b30c05839402d9491e85ef4aaa93b2c5ba17d531328cb,govinfo-cfr:16:1303:pdf
+us,US 16 CFR Part 1304,ok,200,application/xml,17820,us/US-CFR-title16-part1304.xml,7ce200a37593bdd2af13de64e65af969585f6c776b7acb3520ed72cdf097d412,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1304.xml
+us,US 16 CFR Part 1304,ok,200,application/pdf,196422,us/US-CFR-title16-part1304.pdf,c913ddf34cf9d3c4897b083f3fcaae7d025c6796d4cf75bccd5e2f0e2343cc6f,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1304.pdf
+us,US 16 CFR Part 1304,ok,200,,17820,us/US-CFR-title16-part1304.xml,7ce200a37593bdd2af13de64e65af969585f6c776b7acb3520ed72cdf097d412,govinfo-cfr:16:1304:xml
+us,US 16 CFR Part 1304,ok,200,,196422,us/US-CFR-title16-part1304.pdf,c913ddf34cf9d3c4897b083f3fcaae7d025c6796d4cf75bccd5e2f0e2343cc6f,govinfo-cfr:16:1304:pdf
+us,US 16 CFR Part 1306,ok,200,application/xml,9199,us/US-CFR-title16-part1306.xml,bae195662011fc33f96f5654a628defe3f122eb093852a1d537992efeec28b8c,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1306.xml
+us,US 16 CFR Part 1306,ok,200,application/pdf,190159,us/US-CFR-title16-part1306.pdf,1fd3581e4e874a3677221b36dd4f364515c650d1ca9ec71301718af9d5aab219,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1306.pdf
+us,US 16 CFR Part 1306,ok,200,,9199,us/US-CFR-title16-part1306.xml,bae195662011fc33f96f5654a628defe3f122eb093852a1d537992efeec28b8c,govinfo-cfr:16:1306:xml
+us,US 16 CFR Part 1306,ok,200,,190159,us/US-CFR-title16-part1306.pdf,1fd3581e4e874a3677221b36dd4f364515c650d1ca9ec71301718af9d5aab219,govinfo-cfr:16:1306:pdf
+us,US 16 CFR Part 1307,ok,200,application/xml,4881,us/US-CFR-title16-part1307.xml,e21379720409804f56996515b95261c2da6b265f5631bc64cbcd4ee74f33544b,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1307.xml
+us,US 16 CFR Part 1307,ok,200,application/pdf,186624,us/US-CFR-title16-part1307.pdf,ea4f91eac01c06c8b27a4587de93e190563a353ffab7b60ee0865e5b7d0485fb,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1307.pdf
+us,US 16 CFR Part 1307,ok,200,,4881,us/US-CFR-title16-part1307.xml,e21379720409804f56996515b95261c2da6b265f5631bc64cbcd4ee74f33544b,govinfo-cfr:16:1307:xml
+us,US 16 CFR Part 1307,ok,200,,186624,us/US-CFR-title16-part1307.pdf,ea4f91eac01c06c8b27a4587de93e190563a353ffab7b60ee0865e5b7d0485fb,govinfo-cfr:16:1307:pdf
+us,US 16 CFR Part 1401,ok,200,application/xml,8831,us/US-CFR-title16-part1401.xml,a5d4cfc6644cc4f67623711ae1434d212422ecc45e5f071c206cbeb65386c7eb,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1401.xml
+us,US 16 CFR Part 1401,ok,200,application/pdf,186678,us/US-CFR-title16-part1401.pdf,6dfc9e4f1177915d8f74ef4be2d5d476df002b04514548a6bedfb013164ef29f,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1401.pdf
+us,US 16 CFR Part 1401,ok,200,,8831,us/US-CFR-title16-part1401.xml,a5d4cfc6644cc4f67623711ae1434d212422ecc45e5f071c206cbeb65386c7eb,govinfo-cfr:16:1401:xml
+us,US 16 CFR Part 1401,ok,200,,186678,us/US-CFR-title16-part1401.pdf,6dfc9e4f1177915d8f74ef4be2d5d476df002b04514548a6bedfb013164ef29f,govinfo-cfr:16:1401:pdf
+us,US 16 CFR Part 1402,ok,200,application/xml,22400,us/US-CFR-title16-part1402.xml,b4094f08876add92995766fc3a61ed74040d586b1b3b863e48e0b98292404e2b,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1402.xml
+us,US 16 CFR Part 1402,ok,200,application/pdf,233025,us/US-CFR-title16-part1402.pdf,5519d73a2b9b38a5647a72a293770ac043e245a856289a7b65a732b863bc175b,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1402.pdf
+us,US 16 CFR Part 1402,ok,200,,22400,us/US-CFR-title16-part1402.xml,b4094f08876add92995766fc3a61ed74040d586b1b3b863e48e0b98292404e2b,govinfo-cfr:16:1402:xml
+us,US 16 CFR Part 1402,ok,200,,233025,us/US-CFR-title16-part1402.pdf,5519d73a2b9b38a5647a72a293770ac043e245a856289a7b65a732b863bc175b,govinfo-cfr:16:1402:pdf
+us,US 16 CFR Part 1500,ok,200,application/xml,555997,us/US-CFR-title16-part1500.xml,7434fc407a41605687985e4175d5264fa25344088f484817a0fdf0a90a7192c2,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1500.xml
+us,US 16 CFR Part 1500,ok,200,application/pdf,975920,us/US-CFR-title16-part1500.pdf,544f08c36f0fdaa7d1c20923b34e057be4d58a16aa83ee79f67126beceaa1f68,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1500.pdf
+us,US 16 CFR Part 1500,ok,200,,555997,us/US-CFR-title16-part1500.xml,7434fc407a41605687985e4175d5264fa25344088f484817a0fdf0a90a7192c2,govinfo-cfr:16:1500:xml
+us,US 16 CFR Part 1500,ok,200,,975920,us/US-CFR-title16-part1500.pdf,544f08c36f0fdaa7d1c20923b34e057be4d58a16aa83ee79f67126beceaa1f68,govinfo-cfr:16:1500:pdf
+us,US 16 CFR Part 1501,ok,200,application/xml,9389,us/US-CFR-title16-part1501.xml,8d89873eb98e31cc99249d80b5ef0837ea5a139a366b49682d1b727120cdfac0,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1501.xml
+us,US 16 CFR Part 1501,ok,200,application/pdf,211672,us/US-CFR-title16-part1501.pdf,8053c401a6d4ed1277236e3d53fcb092c342507c9b487e004e9fb052da4f24dc,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1501.pdf
+us,US 16 CFR Part 1501,ok,200,,9389,us/US-CFR-title16-part1501.xml,8d89873eb98e31cc99249d80b5ef0837ea5a139a366b49682d1b727120cdfac0,govinfo-cfr:16:1501:xml
+us,US 16 CFR Part 1501,ok,200,,211672,us/US-CFR-title16-part1501.pdf,8053c401a6d4ed1277236e3d53fcb092c342507c9b487e004e9fb052da4f24dc,govinfo-cfr:16:1501:pdf
+us,US 16 CFR Part 1502,ok,200,application/xml,85261,us/US-CFR-title16-part1502.xml,f80d6cad163b0d3982202ab64b15499e0e2c9ae42dcdb718162f35f3074f87a4,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1502.xml
+us,US 16 CFR Part 1502,ok,200,application/pdf,286903,us/US-CFR-title16-part1502.pdf,df1fda2e76d66018fa225b24853a4e51141ba5ae071887615585a3a6f58f15af,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1502.pdf
+us,US 16 CFR Part 1502,ok,200,,85261,us/US-CFR-title16-part1502.xml,f80d6cad163b0d3982202ab64b15499e0e2c9ae42dcdb718162f35f3074f87a4,govinfo-cfr:16:1502:xml
+us,US 16 CFR Part 1502,ok,200,,286903,us/US-CFR-title16-part1502.pdf,df1fda2e76d66018fa225b24853a4e51141ba5ae071887615585a3a6f58f15af,govinfo-cfr:16:1502:pdf
+us,US 16 CFR Part 1505,ok,200,application/xml,95410,us/US-CFR-title16-part1505.xml,0850435f392bcea8b83c21b3f1a6a9affb89a9a409ee0cc4f4b2a6b6704df69c,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1505.xml
+us,US 16 CFR Part 1505,ok,200,application/pdf,255780,us/US-CFR-title16-part1505.pdf,be4af4f16dab896a87eb924bbc98cb5ddb06ded26f521346a7a68c2f4aabd52c,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1505.pdf
+us,US 16 CFR Part 1505,ok,200,,95410,us/US-CFR-title16-part1505.xml,0850435f392bcea8b83c21b3f1a6a9affb89a9a409ee0cc4f4b2a6b6704df69c,govinfo-cfr:16:1505:xml
+us,US 16 CFR Part 1505,ok,200,,255780,us/US-CFR-title16-part1505.pdf,be4af4f16dab896a87eb924bbc98cb5ddb06ded26f521346a7a68c2f4aabd52c,govinfo-cfr:16:1505:pdf
+us,US 16 CFR Part 1508,not_in_govinfo,0,,0,,,govinfo-cfr:16:1508:xml
+us,US 16 CFR Part 1508,not_in_govinfo,0,,0,,,govinfo-cfr:16:1508:pdf
+us,US 16 CFR Part 1511,ok,200,application/xml,10668,us/US-CFR-title16-part1511.xml,6f0f880a91d7b3a606bfadad3624d4396240ef4baf6aa7cb2ee92fc962bf6029,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1511.xml
+us,US 16 CFR Part 1511,ok,200,application/pdf,251236,us/US-CFR-title16-part1511.pdf,a960f93478dbe84e63510aed5d1854dc36a447978bb569a0097a072ab81834d8,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1511.pdf
+us,US 16 CFR Part 1511,ok,200,,10668,us/US-CFR-title16-part1511.xml,6f0f880a91d7b3a606bfadad3624d4396240ef4baf6aa7cb2ee92fc962bf6029,govinfo-cfr:16:1511:xml
+us,US 16 CFR Part 1511,ok,200,,251236,us/US-CFR-title16-part1511.pdf,a960f93478dbe84e63510aed5d1854dc36a447978bb569a0097a072ab81834d8,govinfo-cfr:16:1511:pdf
+us,US 16 CFR Part 1512,ok,200,application/xml,107856,us/US-CFR-title16-part1512.xml,17e386bff23a594b29d28e0167944831a5cadd40381ed1bc32b21f23985fa809,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1512.xml
+us,US 16 CFR Part 1512,ok,200,application/pdf,481393,us/US-CFR-title16-part1512.pdf,f33b17213f138db2a5222007ae2fd086ff2b4a177dbc1cf57f8dd0476a5624bf,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1512.pdf
+us,US 16 CFR Part 1512,ok,200,,107856,us/US-CFR-title16-part1512.xml,17e386bff23a594b29d28e0167944831a5cadd40381ed1bc32b21f23985fa809,govinfo-cfr:16:1512:xml
+us,US 16 CFR Part 1512,ok,200,,481393,us/US-CFR-title16-part1512.pdf,f33b17213f138db2a5222007ae2fd086ff2b4a177dbc1cf57f8dd0476a5624bf,govinfo-cfr:16:1512:pdf
+us,US 16 CFR Part 1513,ok,200,application/xml,34127,us/US-CFR-title16-part1513.xml,0e5828471aede5cf80172b8200ca39a67aea2578bba996566a620aa85c8fccd2,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1513.xml
+us,US 16 CFR Part 1513,ok,200,application/pdf,379596,us/US-CFR-title16-part1513.pdf,108ec7d55da5d0ac85842d8f1f164478dfddd6b5ccbf41bccf1d6c07939dc3c8,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1513.pdf
+us,US 16 CFR Part 1513,ok,200,,34127,us/US-CFR-title16-part1513.xml,0e5828471aede5cf80172b8200ca39a67aea2578bba996566a620aa85c8fccd2,govinfo-cfr:16:1513:xml
+us,US 16 CFR Part 1513,ok,200,,379596,us/US-CFR-title16-part1513.pdf,108ec7d55da5d0ac85842d8f1f164478dfddd6b5ccbf41bccf1d6c07939dc3c8,govinfo-cfr:16:1513:pdf
+us,US 16 CFR Part 1610,ok,200,application/xml,144797,us/US-CFR-title16-part1610.xml,406c555bcce8cbe07bfd699e8750bea45b4055821af53b3f651f5351b4f164e4,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1610.xml
+us,US 16 CFR Part 1610,ok,200,application/pdf,805746,us/US-CFR-title16-part1610.pdf,e3d316a520b4322317a5a5c03cf4210629d1903ea844674666967ea8ac164f91,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1610.pdf
+us,US 16 CFR Part 1610,ok,200,,144797,us/US-CFR-title16-part1610.xml,406c555bcce8cbe07bfd699e8750bea45b4055821af53b3f651f5351b4f164e4,govinfo-cfr:16:1610:xml
+us,US 16 CFR Part 1610,ok,200,,805746,us/US-CFR-title16-part1610.pdf,e3d316a520b4322317a5a5c03cf4210629d1903ea844674666967ea8ac164f91,govinfo-cfr:16:1610:pdf
+us,US 16 CFR Part 1615,ok,200,application/xml,130902,us/US-CFR-title16-part1615.xml,c7d4b4f1ec53c0ed0544542f6ee69a95c0f0cdfdc89edc77ec56c0e2a7692e90,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1615.xml
+us,US 16 CFR Part 1615,ok,200,application/pdf,818326,us/US-CFR-title16-part1615.pdf,ba9b2e6ef3111e91b7e84de55a5bad440d10166d0831ef4567b7eef6a766d193,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1615.pdf
+us,US 16 CFR Part 1615,ok,200,,130902,us/US-CFR-title16-part1615.xml,c7d4b4f1ec53c0ed0544542f6ee69a95c0f0cdfdc89edc77ec56c0e2a7692e90,govinfo-cfr:16:1615:xml
+us,US 16 CFR Part 1615,ok,200,,818326,us/US-CFR-title16-part1615.pdf,ba9b2e6ef3111e91b7e84de55a5bad440d10166d0831ef4567b7eef6a766d193,govinfo-cfr:16:1615:pdf
+us,US 16 CFR Part 1616,ok,200,application/xml,148590,us/US-CFR-title16-part1616.xml,012f5c0598b98a5e19c255cc0b02a34b8ebcdbd486a95b1f29691c270d58b49a,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1616.xml
+us,US 16 CFR Part 1616,ok,200,application/pdf,892349,us/US-CFR-title16-part1616.pdf,4a3acc198765e23bf861c5511d901bd24082f38023556b6a849c42d9bb9901b1,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1616.pdf
+us,US 16 CFR Part 1616,ok,200,,148590,us/US-CFR-title16-part1616.xml,012f5c0598b98a5e19c255cc0b02a34b8ebcdbd486a95b1f29691c270d58b49a,govinfo-cfr:16:1616:xml
+us,US 16 CFR Part 1616,ok,200,,892349,us/US-CFR-title16-part1616.pdf,4a3acc198765e23bf861c5511d901bd24082f38023556b6a849c42d9bb9901b1,govinfo-cfr:16:1616:pdf
+us,US 16 CFR Part 1630,ok,200,application/xml,53996,us/US-CFR-title16-part1630.xml,4d6299d24c6804817f4a382d5802f414d91f3ee060e6b946ae23e496741937e3,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1630.xml
+us,US 16 CFR Part 1630,ok,200,application/pdf,234104,us/US-CFR-title16-part1630.pdf,fd5ba58d433254c4502ad4736f964da6539d4f387430788dd0f856962407505f,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1630.pdf
+us,US 16 CFR Part 1630,ok,200,,53996,us/US-CFR-title16-part1630.xml,4d6299d24c6804817f4a382d5802f414d91f3ee060e6b946ae23e496741937e3,govinfo-cfr:16:1630:xml
+us,US 16 CFR Part 1630,ok,200,,234104,us/US-CFR-title16-part1630.pdf,fd5ba58d433254c4502ad4736f964da6539d4f387430788dd0f856962407505f,govinfo-cfr:16:1630:pdf
+us,US 16 CFR Part 1631,ok,200,application/xml,52643,us/US-CFR-title16-part1631.xml,29592a3c4a8f806fdb19c80f0221477da3d69e20725a16c2934858cddc669b39,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1631.xml
+us,US 16 CFR Part 1631,ok,200,application/pdf,236801,us/US-CFR-title16-part1631.pdf,1d67c277a876e85a5806fcd341f7ee86b780bee8426df374818b2f74d2df9812,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1631.pdf
+us,US 16 CFR Part 1631,ok,200,,52643,us/US-CFR-title16-part1631.xml,29592a3c4a8f806fdb19c80f0221477da3d69e20725a16c2934858cddc669b39,govinfo-cfr:16:1631:xml
+us,US 16 CFR Part 1631,ok,200,,236801,us/US-CFR-title16-part1631.pdf,1d67c277a876e85a5806fcd341f7ee86b780bee8426df374818b2f74d2df9812,govinfo-cfr:16:1631:pdf
+us,US 16 CFR Part 1632,ok,200,application/xml,83137,us/US-CFR-title16-part1632.xml,d49945ae9955477a7438f2b99ab34dc7921dc6bfb33308fe0922db1a18e962cb,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1632.xml
+us,US 16 CFR Part 1632,ok,200,application/pdf,340026,us/US-CFR-title16-part1632.pdf,7b466672042b874ec233d9c2b5aee214fb74faaca9bd6005e43cd6ff4220f027,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1632.pdf
+us,US 16 CFR Part 1632,ok,200,,83137,us/US-CFR-title16-part1632.xml,d49945ae9955477a7438f2b99ab34dc7921dc6bfb33308fe0922db1a18e962cb,govinfo-cfr:16:1632:xml
+us,US 16 CFR Part 1632,ok,200,,340026,us/US-CFR-title16-part1632.pdf,7b466672042b874ec233d9c2b5aee214fb74faaca9bd6005e43cd6ff4220f027,govinfo-cfr:16:1632:pdf
+us,US 16 CFR Part 1633,ok,200,application/xml,107133,us/US-CFR-title16-part1633.xml,463463a0d924babdd5721e836671fdc03edc5c72565e051624462dc2791d0c9a,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1633.xml
+us,US 16 CFR Part 1633,ok,200,application/pdf,2464579,us/US-CFR-title16-part1633.pdf,aa4ce9f15212c9b84b78cd61c593e4b4f14cba768c90037eada4424062bc007f,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1633.pdf
+us,US 16 CFR Part 1633,ok,200,,107133,us/US-CFR-title16-part1633.xml,463463a0d924babdd5721e836671fdc03edc5c72565e051624462dc2791d0c9a,govinfo-cfr:16:1633:xml
+us,US 16 CFR Part 1633,ok,200,,2464579,us/US-CFR-title16-part1633.pdf,aa4ce9f15212c9b84b78cd61c593e4b4f14cba768c90037eada4424062bc007f,govinfo-cfr:16:1633:pdf
+us,US 16 CFR Part 1700,ok,200,application/xml,93035,us/US-CFR-title16-part1700.xml,cb858dafa01e0591173cbb1d52f4c8332210e12589da69d0c5c8e5d1887e04a1,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/xml/CFR-2024-title16-vol2-part1700.xml
+us,US 16 CFR Part 1700,ok,200,application/pdf,305948,us/US-CFR-title16-part1700.pdf,ca6ae74ad9dea52b0adfb7924382adc7c466939699f6e628f55f4f03fec388f9,https://www.govinfo.gov/content/pkg/CFR-2024-title16-vol2/pdf/CFR-2024-title16-vol2-part1700.pdf
+us,US 16 CFR Part 1700,ok,200,,93035,us/US-CFR-title16-part1700.xml,cb858dafa01e0591173cbb1d52f4c8332210e12589da69d0c5c8e5d1887e04a1,govinfo-cfr:16:1700:xml
+us,US 16 CFR Part 1700,ok,200,,305948,us/US-CFR-title16-part1700.pdf,ca6ae74ad9dea52b0adfb7924382adc7c466939699f6e628f55f4f03fec388f9,govinfo-cfr:16:1700:pdf
+us,US 19 CFR Part 102,ok,200,application/xml,578218,us/US-CFR-title19-part102.xml,fdf3124077fa12e479eaa6539770daf9b0ca4ea84c4f7ad46b0f8631ea10a487,https://www.govinfo.gov/content/pkg/CFR-2024-title19-vol1/xml/CFR-2024-title19-vol1-part102.xml
+us,US 19 CFR Part 102,ok,200,application/pdf,386004,us/US-CFR-title19-part102.pdf,54bb9a769c724d89afc244425be35ad8448ba5670a3153b28f93dce4df6ebf78,https://www.govinfo.gov/content/pkg/CFR-2024-title19-vol1/pdf/CFR-2024-title19-vol1-part102.pdf
+us,US 19 CFR Part 102,ok,200,,578218,us/US-CFR-title19-part102.xml,fdf3124077fa12e479eaa6539770daf9b0ca4ea84c4f7ad46b0f8631ea10a487,govinfo-cfr:19:102:xml
+us,US 19 CFR Part 102,ok,200,,386004,us/US-CFR-title19-part102.pdf,54bb9a769c724d89afc244425be35ad8448ba5670a3153b28f93dce4df6ebf78,govinfo-cfr:19:102:pdf
+us,US 19 CFR Part 134,ok,200,application/xml,92621,us/US-CFR-title19-part134.xml,5737f218019a057c0e65bb277696e1f6ec0f31d680ba87c2c43b761ffa50a237,https://www.govinfo.gov/content/pkg/CFR-2024-title19-vol1/xml/CFR-2024-title19-vol1-part134.xml
+us,US 19 CFR Part 134,ok,200,application/pdf,269235,us/US-CFR-title19-part134.pdf,dad22802460b2b0309de0475d22a7eb02f709fea639605a135ca58b8631376ca,https://www.govinfo.gov/content/pkg/CFR-2024-title19-vol1/pdf/CFR-2024-title19-vol1-part134.pdf
+us,US 19 CFR Part 134,ok,200,,92621,us/US-CFR-title19-part134.xml,5737f218019a057c0e65bb277696e1f6ec0f31d680ba87c2c43b761ffa50a237,govinfo-cfr:19:134:xml
+us,US 19 CFR Part 134,ok,200,,269235,us/US-CFR-title19-part134.pdf,dad22802460b2b0309de0475d22a7eb02f709fea639605a135ca58b8631376ca,govinfo-cfr:19:134:pdf
+us,US 19 CFR Part 145,ok,200,application/xml,89587,us/US-CFR-title19-part145.xml,e149f3612c4c9fe60123d1287b830406ddb14eee9d569042df5480173bfd1c3b,https://www.govinfo.gov/content/pkg/CFR-2024-title19-vol2/xml/CFR-2024-title19-vol2-part145.xml
+us,US 19 CFR Part 145,ok,200,application/pdf,231618,us/US-CFR-title19-part145.pdf,f01f6669e63afd40b788e750189cf2c3ae92b84e7ebffcb62fbfdc5514197ba5,https://www.govinfo.gov/content/pkg/CFR-2024-title19-vol2/pdf/CFR-2024-title19-vol2-part145.pdf
+us,US 19 CFR Part 145,ok,200,,89587,us/US-CFR-title19-part145.xml,e149f3612c4c9fe60123d1287b830406ddb14eee9d569042df5480173bfd1c3b,govinfo-cfr:19:145:xml
+us,US 19 CFR Part 145,ok,200,,231618,us/US-CFR-title19-part145.pdf,f01f6669e63afd40b788e750189cf2c3ae92b84e7ebffcb62fbfdc5514197ba5,govinfo-cfr:19:145:pdf
+us,US 19 USC s.1304 Country of origin marking,ok,200,application/pdf,164821,us/US-title19-USC-1304_Country_of_origin_marking.pdf,e3d8717c0f926d77239cb446f6c470377ea1cd61b70110d2c081b20cddb35f88,https://www.govinfo.gov/link/uscode/19/1304
+us,US 21 CFR Part 1,ok,200,application/xml,875594,us/US-CFR-title21-part1.xml,a9a1fd8ec4ba420a5c8af55a9ecc27ef91021ae47beed4f9611d9e418bb8bda6,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol1/xml/CFR-2024-title21-vol1-part1.xml
+us,US 21 CFR Part 1,ok,200,application/pdf,689602,us/US-CFR-title21-part1.pdf,80be54820e2f758bf4a6ed35770480f1327d281ff9944bae62d2f401c3144bce,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol1/pdf/CFR-2024-title21-vol1-part1.pdf
+us,US 21 CFR Part 1,ok,200,,875594,us/US-CFR-title21-part1.xml,a9a1fd8ec4ba420a5c8af55a9ecc27ef91021ae47beed4f9611d9e418bb8bda6,govinfo-cfr:21:1:xml
+us,US 21 CFR Part 1,ok,200,,689602,us/US-CFR-title21-part1.pdf,80be54820e2f758bf4a6ed35770480f1327d281ff9944bae62d2f401c3144bce,govinfo-cfr:21:1:pdf
+us,US 21 CFR Part 101,ok,200,application/xml,894866,us/US-CFR-title21-part101.xml,06fb7d3b4f7b680a3010a3d7134b370bc897d7600d03005e0ed8425c93664ffb,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol2/xml/CFR-2024-title21-vol2-part101.xml
+us,US 21 CFR Part 101,ok,200,application/pdf,9057438,us/US-CFR-title21-part101.pdf,a0a7e3e6df4beeb5b5d7f10427750e8d08a06f1720b3e3574b886b17c79d7df8,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol2/pdf/CFR-2024-title21-vol2-part101.pdf
+us,US 21 CFR Part 101,ok,200,,894866,us/US-CFR-title21-part101.xml,06fb7d3b4f7b680a3010a3d7134b370bc897d7600d03005e0ed8425c93664ffb,govinfo-cfr:21:101:xml
+us,US 21 CFR Part 101,ok,200,,9057438,us/US-CFR-title21-part101.pdf,a0a7e3e6df4beeb5b5d7f10427750e8d08a06f1720b3e3574b886b17c79d7df8,govinfo-cfr:21:101:pdf
+us,US 21 CFR Part 110,ok,200,application/xml,52073,us/US-CFR-title21-part110.xml,586b7d355178c1361599a883167c03c5b1841480e99cc1d1d7cd9fe68b79d95f,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol2/xml/CFR-2024-title21-vol2-part110.xml
+us,US 21 CFR Part 110,ok,200,application/pdf,172738,us/US-CFR-title21-part110.pdf,a31c3168a28c0dfbbda1b9a473260109d715905a7598681b51e7dc64402d059f,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol2/pdf/CFR-2024-title21-vol2-part110.pdf
+us,US 21 CFR Part 110,ok,200,,52073,us/US-CFR-title21-part110.xml,586b7d355178c1361599a883167c03c5b1841480e99cc1d1d7cd9fe68b79d95f,govinfo-cfr:21:110:xml
+us,US 21 CFR Part 110,ok,200,,172738,us/US-CFR-title21-part110.pdf,a31c3168a28c0dfbbda1b9a473260109d715905a7598681b51e7dc64402d059f,govinfo-cfr:21:110:pdf
+us,US 21 CFR Part 111,ok,200,application/xml,150093,us/US-CFR-title21-part111.xml,4f65ee7c7bc5782dbb2f4b54eea5b3dc38a71083ce68b81b70abe69d361ee875,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol2/xml/CFR-2024-title21-vol2-part111.xml
+us,US 21 CFR Part 111,ok,200,application/pdf,215504,us/US-CFR-title21-part111.pdf,595594beeb3b2a02fc69a0514010a2428882b4d23a0c48b183453ec5af7172d9,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol2/pdf/CFR-2024-title21-vol2-part111.pdf
+us,US 21 CFR Part 111,ok,200,,150093,us/US-CFR-title21-part111.xml,4f65ee7c7bc5782dbb2f4b54eea5b3dc38a71083ce68b81b70abe69d361ee875,govinfo-cfr:21:111:xml
+us,US 21 CFR Part 111,ok,200,,215504,us/US-CFR-title21-part111.pdf,595594beeb3b2a02fc69a0514010a2428882b4d23a0c48b183453ec5af7172d9,govinfo-cfr:21:111:pdf
+us,US 21 CFR Part 117,ok,200,application/pdf,255145,us/US-CFR-title21-part117.pdf,5648cb44ee7d51876b30c14a640e87004b4c7d739c1de7295670dadaab1b3ac6,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol2/pdf/CFR-2024-title21-vol2-part117.pdf
+us,US 21 CFR Part 117,ok,200,application/xml,214039,us/US-CFR-title21-part117.xml,d9e424407f6109fe833346d6b081b0bd66fdda3d5a5b52fd0ab8a03e10bf8a03,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol2/xml/CFR-2024-title21-vol2-part117.xml
+us,US 21 CFR Part 117,ok,200,,214039,us/US-CFR-title21-part117.xml,d9e424407f6109fe833346d6b081b0bd66fdda3d5a5b52fd0ab8a03e10bf8a03,govinfo-cfr:21:117:xml
+us,US 21 CFR Part 117,ok,200,,255145,us/US-CFR-title21-part117.pdf,5648cb44ee7d51876b30c14a640e87004b4c7d739c1de7295670dadaab1b3ac6,govinfo-cfr:21:117:pdf
+us,US 21 CFR Part 170,ok,200,application/xml,133982,us/US-CFR-title21-part170.xml,264917242d9dfc4adeb0eb25c51d10593b2db788fcb5139b34f4d3f9affa2455,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol3/xml/CFR-2024-title21-vol3-part170.xml
+us,US 21 CFR Part 170,ok,200,application/pdf,222641,us/US-CFR-title21-part170.pdf,52132498f3bae64fcd13deec4571ee9857d2296760b11f2bf87cd1dff16638b4,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol3/pdf/CFR-2024-title21-vol3-part170.pdf
+us,US 21 CFR Part 170,ok,200,,133982,us/US-CFR-title21-part170.xml,264917242d9dfc4adeb0eb25c51d10593b2db788fcb5139b34f4d3f9affa2455,govinfo-cfr:21:170:xml
+us,US 21 CFR Part 170,ok,200,,222641,us/US-CFR-title21-part170.pdf,52132498f3bae64fcd13deec4571ee9857d2296760b11f2bf87cd1dff16638b4,govinfo-cfr:21:170:pdf
+us,US 21 CFR Part 171,ok,200,application/xml,30823,us/US-CFR-title21-part171.xml,bb815b5b44643da71613a71eb08f760c77d3228f9c534d4ad182715242f38ab3,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol3/xml/CFR-2024-title21-vol3-part171.xml
+us,US 21 CFR Part 171,ok,200,application/pdf,158981,us/US-CFR-title21-part171.pdf,633bbf7ce49347968bc06b201e9d0062765dc3c2a2a86dcc06a689d7f4defbd2,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol3/pdf/CFR-2024-title21-vol3-part171.pdf
+us,US 21 CFR Part 171,ok,200,,30823,us/US-CFR-title21-part171.xml,bb815b5b44643da71613a71eb08f760c77d3228f9c534d4ad182715242f38ab3,govinfo-cfr:21:171:xml
+us,US 21 CFR Part 171,ok,200,,158981,us/US-CFR-title21-part171.pdf,633bbf7ce49347968bc06b201e9d0062765dc3c2a2a86dcc06a689d7f4defbd2,govinfo-cfr:21:171:pdf
+us,US 21 CFR Part 172,ok,200,application/pdf,485670,us/US-CFR-title21-part172.pdf,9a2c3eb0ece293a25a3e1cc300728f50a2f32c16f90d550428c7d3c071f047f0,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol3/pdf/CFR-2024-title21-vol3-part172.pdf
+us,US 21 CFR Part 172,ok,200,application/xml,636072,us/US-CFR-title21-part172.xml,70cd9c6b015376a712f7a84a0bddbf1cf3c2c7c48277a4ce56d3cb4b19b30cb7,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol3/xml/CFR-2024-title21-vol3-part172.xml
+us,US 21 CFR Part 172,ok,200,,636072,us/US-CFR-title21-part172.xml,70cd9c6b015376a712f7a84a0bddbf1cf3c2c7c48277a4ce56d3cb4b19b30cb7,govinfo-cfr:21:172:xml
+us,US 21 CFR Part 172,ok,200,,485670,us/US-CFR-title21-part172.pdf,9a2c3eb0ece293a25a3e1cc300728f50a2f32c16f90d550428c7d3c071f047f0,govinfo-cfr:21:172:pdf
+us,US 21 CFR Part 173,ok,200,application/xml,202968,us/US-CFR-title21-part173.xml,718a25068e00028e78a062293a318efb15ca1bda7b6812699af1804977b549f1,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol3/xml/CFR-2024-title21-vol3-part173.xml
+us,US 21 CFR Part 173,ok,200,application/pdf,278276,us/US-CFR-title21-part173.pdf,2392b6f338f6ae23d776494b963d555989afdd88b91ca635c65eb6c8a2aef5da,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol3/pdf/CFR-2024-title21-vol3-part173.pdf
+us,US 21 CFR Part 173,ok,200,,202968,us/US-CFR-title21-part173.xml,718a25068e00028e78a062293a318efb15ca1bda7b6812699af1804977b549f1,govinfo-cfr:21:173:xml
+us,US 21 CFR Part 173,ok,200,,278276,us/US-CFR-title21-part173.pdf,2392b6f338f6ae23d776494b963d555989afdd88b91ca635c65eb6c8a2aef5da,govinfo-cfr:21:173:pdf
+us,US 21 CFR Part 174,ok,200,application/xml,5399,us/US-CFR-title21-part174.xml,44ed958bec38fb42aa3d8b946c5548bfcc2ac99f0b4f2002811c9cdb516f4e94,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol3/xml/CFR-2024-title21-vol3-part174.xml
+us,US 21 CFR Part 174,ok,200,application/pdf,145790,us/US-CFR-title21-part174.pdf,985454dac3d77c60b40d2703903683c6f03c704163febad4e774c604c86352ec,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol3/pdf/CFR-2024-title21-vol3-part174.pdf
+us,US 21 CFR Part 174,ok,200,,5399,us/US-CFR-title21-part174.xml,44ed958bec38fb42aa3d8b946c5548bfcc2ac99f0b4f2002811c9cdb516f4e94,govinfo-cfr:21:174:xml
+us,US 21 CFR Part 174,ok,200,,145790,us/US-CFR-title21-part174.pdf,985454dac3d77c60b40d2703903683c6f03c704163febad4e774c604c86352ec,govinfo-cfr:21:174:pdf
+us,US 21 CFR Part 175,ok,200,application/xml,333173,us/US-CFR-title21-part175.xml,3a114c665144f157751ac20653a3cce085cd4b0b559279b0c2735cdf787efa9a,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol3/xml/CFR-2024-title21-vol3-part175.xml
+us,US 21 CFR Part 175,ok,200,application/pdf,296947,us/US-CFR-title21-part175.pdf,d2e736e6e24c445c23318eb2b5785ba733d2f78dd16f9ab990890312131c74cb,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol3/pdf/CFR-2024-title21-vol3-part175.pdf
+us,US 21 CFR Part 175,ok,200,,333173,us/US-CFR-title21-part175.xml,3a114c665144f157751ac20653a3cce085cd4b0b559279b0c2735cdf787efa9a,govinfo-cfr:21:175:xml
+us,US 21 CFR Part 175,ok,200,,296947,us/US-CFR-title21-part175.pdf,d2e736e6e24c445c23318eb2b5785ba733d2f78dd16f9ab990890312131c74cb,govinfo-cfr:21:175:pdf
+us,US 21 CFR Part 176,ok,200,application/xml,294204,us/US-CFR-title21-part176.xml,6c2f0bdd4238efceb590b3369ad4b1c0a710b84fb0bca4e244de1eda094793d7,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol3/xml/CFR-2024-title21-vol3-part176.xml
+us,US 21 CFR Part 176,ok,200,application/pdf,296532,us/US-CFR-title21-part176.pdf,30413176e057b6c4b4f18f7d6bcf2fdf40e4dbfe034dd933b487544c3a66c583,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol3/pdf/CFR-2024-title21-vol3-part176.pdf
+us,US 21 CFR Part 176,ok,200,,294204,us/US-CFR-title21-part176.xml,6c2f0bdd4238efceb590b3369ad4b1c0a710b84fb0bca4e244de1eda094793d7,govinfo-cfr:21:176:xml
+us,US 21 CFR Part 176,ok,200,,296532,us/US-CFR-title21-part176.pdf,30413176e057b6c4b4f18f7d6bcf2fdf40e4dbfe034dd933b487544c3a66c583,govinfo-cfr:21:176:pdf
+us,US 21 CFR Part 177,ok,200,application/xml,731530,us/US-CFR-title21-part177.xml,66214ab3f1fe6f29e185a5037c1120af395388688d88931f3bd91bbbe32732d8,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol3/xml/CFR-2024-title21-vol3-part177.xml
+us,US 21 CFR Part 177,ok,200,application/pdf,562299,us/US-CFR-title21-part177.pdf,48aa4fcdc6bbcd72f3d3b8ee0eecd4fbabb83ebc4cf971046cf7bca04ff2ce6f,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol3/pdf/CFR-2024-title21-vol3-part177.pdf
+us,US 21 CFR Part 177,ok,200,,731530,us/US-CFR-title21-part177.xml,66214ab3f1fe6f29e185a5037c1120af395388688d88931f3bd91bbbe32732d8,govinfo-cfr:21:177:xml
+us,US 21 CFR Part 177,ok,200,,562299,us/US-CFR-title21-part177.pdf,48aa4fcdc6bbcd72f3d3b8ee0eecd4fbabb83ebc4cf971046cf7bca04ff2ce6f,govinfo-cfr:21:177:pdf
+us,US 21 CFR Part 178,ok,200,application/xml,586372,us/US-CFR-title21-part178.xml,630a43bf70c3a30041d1fb6e73138a6c14875d8a4f40d7da1d0149631d4de32b,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol3/xml/CFR-2024-title21-vol3-part178.xml
+us,US 21 CFR Part 178,ok,200,application/pdf,451627,us/US-CFR-title21-part178.pdf,ab0ddf4a75c5ce6e80c76d24cf295b83548963c40ba40a8c36e2a5ab6f49e66e,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol3/pdf/CFR-2024-title21-vol3-part178.pdf
+us,US 21 CFR Part 178,ok,200,,586372,us/US-CFR-title21-part178.xml,630a43bf70c3a30041d1fb6e73138a6c14875d8a4f40d7da1d0149631d4de32b,govinfo-cfr:21:178:xml
+us,US 21 CFR Part 178,ok,200,,451627,us/US-CFR-title21-part178.pdf,ab0ddf4a75c5ce6e80c76d24cf295b83548963c40ba40a8c36e2a5ab6f49e66e,govinfo-cfr:21:178:pdf
+us,US 21 CFR Part 179,ok,200,application/xml,34566,us/US-CFR-title21-part179.xml,48d6f37aee7c46dd0f89505bee856d5e231d98666065f2dd5785667f8b9eeafd,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol3/xml/CFR-2024-title21-vol3-part179.xml
+us,US 21 CFR Part 179,ok,200,application/pdf,187143,us/US-CFR-title21-part179.pdf,120b6c214a2c8949d653846c20ad9952d3230d48c8eab4ff85e9e0186e655184,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol3/pdf/CFR-2024-title21-vol3-part179.pdf
+us,US 21 CFR Part 179,ok,200,,34566,us/US-CFR-title21-part179.xml,48d6f37aee7c46dd0f89505bee856d5e231d98666065f2dd5785667f8b9eeafd,govinfo-cfr:21:179:xml
+us,US 21 CFR Part 179,ok,200,,187143,us/US-CFR-title21-part179.pdf,120b6c214a2c8949d653846c20ad9952d3230d48c8eab4ff85e9e0186e655184,govinfo-cfr:21:179:pdf
+us,US 21 CFR Part 180,ok,200,application/xml,29739,us/US-CFR-title21-part180.xml,7164f22c4cb80f380300730b9c570b038e545cb8a1114c6e3c370a1b3252ecc0,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol3/xml/CFR-2024-title21-vol3-part180.xml
+us,US 21 CFR Part 180,ok,200,application/pdf,177793,us/US-CFR-title21-part180.pdf,a36de66e31904498adbccfe10505047fa164465d631fc6d66f734b8ca8817b21,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol3/pdf/CFR-2024-title21-vol3-part180.pdf
+us,US 21 CFR Part 180,ok,200,,29739,us/US-CFR-title21-part180.xml,7164f22c4cb80f380300730b9c570b038e545cb8a1114c6e3c370a1b3252ecc0,govinfo-cfr:21:180:xml
+us,US 21 CFR Part 180,ok,200,,177793,us/US-CFR-title21-part180.pdf,a36de66e31904498adbccfe10505047fa164465d631fc6d66f734b8ca8817b21,govinfo-cfr:21:180:pdf
+us,US 21 CFR Part 181,ok,200,application/xml,28804,us/US-CFR-title21-part181.xml,ca98a906c707b4bde10dd456ca7e8f75a8b27d8c6aa0447dd92db513a95b3d2f,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol3/xml/CFR-2024-title21-vol3-part181.xml
+us,US 21 CFR Part 181,ok,200,application/pdf,160668,us/US-CFR-title21-part181.pdf,57fb12b8e0e6fa0237ea2608e3328fe90ccb7b8bada881ffa584f80dd964cf92,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol3/pdf/CFR-2024-title21-vol3-part181.pdf
+us,US 21 CFR Part 181,ok,200,,28804,us/US-CFR-title21-part181.xml,ca98a906c707b4bde10dd456ca7e8f75a8b27d8c6aa0447dd92db513a95b3d2f,govinfo-cfr:21:181:xml
+us,US 21 CFR Part 181,ok,200,,160668,us/US-CFR-title21-part181.pdf,57fb12b8e0e6fa0237ea2608e3328fe90ccb7b8bada881ffa584f80dd964cf92,govinfo-cfr:21:181:pdf
+us,US 21 CFR Part 182,ok,200,application/xml,118132,us/US-CFR-title21-part182.xml,e6bb61d0a7fe79ee532b0774a1cce51f2cd939274e27fd89a5c63558a73af3c8,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol3/xml/CFR-2024-title21-vol3-part182.xml
+us,US 21 CFR Part 182,ok,200,application/pdf,190454,us/US-CFR-title21-part182.pdf,a7bd08e22cbe17806832561465890043e295b7e86b66975f18f7746401c4cc02,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol3/pdf/CFR-2024-title21-vol3-part182.pdf
+us,US 21 CFR Part 182,ok,200,,118132,us/US-CFR-title21-part182.xml,e6bb61d0a7fe79ee532b0774a1cce51f2cd939274e27fd89a5c63558a73af3c8,govinfo-cfr:21:182:xml
+us,US 21 CFR Part 182,ok,200,,190454,us/US-CFR-title21-part182.pdf,a7bd08e22cbe17806832561465890043e295b7e86b66975f18f7746401c4cc02,govinfo-cfr:21:182:pdf
+us,US 21 CFR Part 184,ok,200,application/xml,588519,us/US-CFR-title21-part184.xml,ddd06c5527b279ab58bb5de8a9b116d8647983c747b601fafac63d1396f81851,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol3/xml/CFR-2024-title21-vol3-part184.xml
+us,US 21 CFR Part 184,ok,200,application/pdf,478647,us/US-CFR-title21-part184.pdf,e498ce56a2e951173bb388c1c12591e0c32b11961ba8e6ca89f789bf499aa041,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol3/pdf/CFR-2024-title21-vol3-part184.pdf
+us,US 21 CFR Part 184,ok,200,,588519,us/US-CFR-title21-part184.xml,ddd06c5527b279ab58bb5de8a9b116d8647983c747b601fafac63d1396f81851,govinfo-cfr:21:184:xml
+us,US 21 CFR Part 184,ok,200,,478647,us/US-CFR-title21-part184.pdf,e498ce56a2e951173bb388c1c12591e0c32b11961ba8e6ca89f789bf499aa041,govinfo-cfr:21:184:pdf
+us,US 21 CFR Part 186,ok,200,application/xml,27359,us/US-CFR-title21-part186.xml,6ef2e9a24ca206756fdb01d4180337aca7b1ccd6d9f0e61fc2f6fd05d152a86e,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol3/xml/CFR-2024-title21-vol3-part186.xml
+us,US 21 CFR Part 186,ok,200,application/pdf,163230,us/US-CFR-title21-part186.pdf,a646fac3de4ba481535825b42146d05321dedc55df249bbbc560c21934d182f7,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol3/pdf/CFR-2024-title21-vol3-part186.pdf
+us,US 21 CFR Part 186,ok,200,,27359,us/US-CFR-title21-part186.xml,6ef2e9a24ca206756fdb01d4180337aca7b1ccd6d9f0e61fc2f6fd05d152a86e,govinfo-cfr:21:186:xml
+us,US 21 CFR Part 186,ok,200,,163230,us/US-CFR-title21-part186.pdf,a646fac3de4ba481535825b42146d05321dedc55df249bbbc560c21934d182f7,govinfo-cfr:21:186:pdf
+us,US 21 CFR Part 189,ok,200,application/xml,44601,us/US-CFR-title21-part189.xml,bf4079e93a197d42b15c3f140ce24deeffbaea7799285f16ccd64da070a83a86,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol3/xml/CFR-2024-title21-vol3-part189.xml
+us,US 21 CFR Part 189,ok,200,application/pdf,174834,us/US-CFR-title21-part189.pdf,59319c40a525d1f1c461eac5502f1f9ee2b9a6da443c497bb389f29e2b43af9b,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol3/pdf/CFR-2024-title21-vol3-part189.pdf
+us,US 21 CFR Part 189,ok,200,,44601,us/US-CFR-title21-part189.xml,bf4079e93a197d42b15c3f140ce24deeffbaea7799285f16ccd64da070a83a86,govinfo-cfr:21:189:xml
+us,US 21 CFR Part 189,ok,200,,174834,us/US-CFR-title21-part189.pdf,59319c40a525d1f1c461eac5502f1f9ee2b9a6da443c497bb389f29e2b43af9b,govinfo-cfr:21:189:pdf
+us,US 21 CFR Part 190,ok,200,application/xml,7614,us/US-CFR-title21-part190.xml,34dfd281e587e5c15d420839977d6f8a30e305d77ca354782a525bf13f3aa284,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol3/xml/CFR-2024-title21-vol3-part190.xml
+us,US 21 CFR Part 190,ok,200,application/pdf,141222,us/US-CFR-title21-part190.pdf,87e41ba8606bf74e31b12b176edf396940c89dd2e59a1d506ec71701e242cc9e,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol3/pdf/CFR-2024-title21-vol3-part190.pdf
+us,US 21 CFR Part 190,ok,200,,7614,us/US-CFR-title21-part190.xml,34dfd281e587e5c15d420839977d6f8a30e305d77ca354782a525bf13f3aa284,govinfo-cfr:21:190:xml
+us,US 21 CFR Part 190,ok,200,,141222,us/US-CFR-title21-part190.pdf,87e41ba8606bf74e31b12b176edf396940c89dd2e59a1d506ec71701e242cc9e,govinfo-cfr:21:190:pdf
+us,US 21 CFR Part 700,ok,200,application/xml,44785,us/US-CFR-title21-part700.xml,c95cf31c459f6c435d8e0c5ed85d07cce9c8288fae5f9b4459b35f3a8df78d70,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol7/xml/CFR-2024-title21-vol7-part700.xml
+us,US 21 CFR Part 700,ok,200,application/pdf,174660,us/US-CFR-title21-part700.pdf,540d4e762f1322248660c2d5160899aad011d7c08cacfb7b2965f7032f1d00bb,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol7/pdf/CFR-2024-title21-vol7-part700.pdf
+us,US 21 CFR Part 700,ok,200,,44785,us/US-CFR-title21-part700.xml,c95cf31c459f6c435d8e0c5ed85d07cce9c8288fae5f9b4459b35f3a8df78d70,govinfo-cfr:21:700:xml
+us,US 21 CFR Part 700,ok,200,,174660,us/US-CFR-title21-part700.pdf,540d4e762f1322248660c2d5160899aad011d7c08cacfb7b2965f7032f1d00bb,govinfo-cfr:21:700:pdf
+us,US 21 CFR Part 701,ok,200,application/xml,66999,us/US-CFR-title21-part701.xml,c9a128b7dae7280bf6a32a35fb56f828073178975c23ed663bd667908dd5c3cc,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol7/xml/CFR-2024-title21-vol7-part701.xml
+us,US 21 CFR Part 701,ok,200,application/pdf,191025,us/US-CFR-title21-part701.pdf,dccc3456c110ecb98edd45d4f2fb8eebc531f66e8e7231a991f870b933936dfb,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol7/pdf/CFR-2024-title21-vol7-part701.pdf
+us,US 21 CFR Part 701,ok,200,,66999,us/US-CFR-title21-part701.xml,c9a128b7dae7280bf6a32a35fb56f828073178975c23ed663bd667908dd5c3cc,govinfo-cfr:21:701:xml
+us,US 21 CFR Part 701,ok,200,,191025,us/US-CFR-title21-part701.pdf,dccc3456c110ecb98edd45d4f2fb8eebc531f66e8e7231a991f870b933936dfb,govinfo-cfr:21:701:pdf
+us,US 21 CFR Part 710,ok,200,application/xml,7673,us/US-CFR-title21-part710.xml,0a27d5c7f0a84cc401f7d09ed10d3d16153081a1e03be755dd1dd2b3fbe4a3c5,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol7/xml/CFR-2024-title21-vol7-part710.xml
+us,US 21 CFR Part 710,ok,200,application/pdf,135633,us/US-CFR-title21-part710.pdf,5522617b32229c638b98bb99281b8531537ce3bd1af24dc62375d5db7343bc7d,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol7/pdf/CFR-2024-title21-vol7-part710.pdf
+us,US 21 CFR Part 710,ok,200,,7673,us/US-CFR-title21-part710.xml,0a27d5c7f0a84cc401f7d09ed10d3d16153081a1e03be755dd1dd2b3fbe4a3c5,govinfo-cfr:21:710:xml
+us,US 21 CFR Part 710,ok,200,,135633,us/US-CFR-title21-part710.pdf,5522617b32229c638b98bb99281b8531537ce3bd1af24dc62375d5db7343bc7d,govinfo-cfr:21:710:pdf
+us,US 21 CFR Part 720,ok,200,application/xml,21349,us/US-CFR-title21-part720.xml,7a34a5e14b7e285eff509912904dd4d94786b5b3e446c97c5fab43d05c548a2e,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol7/xml/CFR-2024-title21-vol7-part720.xml
+us,US 21 CFR Part 720,ok,200,application/pdf,159747,us/US-CFR-title21-part720.pdf,29d3fb88a72cd070311209e7a038261914e3e6b2c5f189cfcc2ef50caca7bada,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol7/pdf/CFR-2024-title21-vol7-part720.pdf
+us,US 21 CFR Part 720,ok,200,,21349,us/US-CFR-title21-part720.xml,7a34a5e14b7e285eff509912904dd4d94786b5b3e446c97c5fab43d05c548a2e,govinfo-cfr:21:720:xml
+us,US 21 CFR Part 720,ok,200,,159747,us/US-CFR-title21-part720.pdf,29d3fb88a72cd070311209e7a038261914e3e6b2c5f189cfcc2ef50caca7bada,govinfo-cfr:21:720:pdf
+us,US 21 CFR Part 730,not_in_govinfo,0,,0,,,govinfo-cfr:21:730:xml
+us,US 21 CFR Part 730,not_in_govinfo,0,,0,,,govinfo-cfr:21:730:pdf
+us,US 21 CFR Part 740,ok,200,application/xml,16062,us/US-CFR-title21-part740.xml,af771fc2c09a0e73819287a1dd77f878e0a5f7bd5f509130be71ffefa9f86b4f,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol7/xml/CFR-2024-title21-vol7-part740.xml
+us,US 21 CFR Part 740,ok,200,application/pdf,154971,us/US-CFR-title21-part740.pdf,6904681932d70b663c9941fbe622b93b3d7e2f3806806b80c8bdefdfecbfb7b0,https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol7/pdf/CFR-2024-title21-vol7-part740.pdf
+us,US 21 CFR Part 740,ok,200,,16062,us/US-CFR-title21-part740.xml,af771fc2c09a0e73819287a1dd77f878e0a5f7bd5f509130be71ffefa9f86b4f,govinfo-cfr:21:740:xml
+us,US 21 CFR Part 740,ok,200,,154971,us/US-CFR-title21-part740.pdf,6904681932d70b663c9941fbe622b93b3d7e2f3806806b80c8bdefdfecbfb7b0,govinfo-cfr:21:740:pdf
+us,US 21 USC s.331 Federal Food Drug and Cosmetic Act definitions,ok,200,application/pdf,181190,us/US-title21-USC-331_Federal_Food_Drug_and_Cosmetic_Act_definitions.pdf,79b2665a29440c2f03a639fa96f85b2345a03b8ba3b370c1c9b5b1f4f81c081c,https://www.govinfo.gov/link/uscode/21/331
+us,US 21 USC s.393 FDA authority,ok,200,application/pdf,157043,us/US-title21-USC-393_FDA_authority.pdf,25ac6fffec62705cd2b4aa6f8ccd838a429db1a724563a52b64976f48368f6dc,https://www.govinfo.gov/link/uscode/21/393
+us,US 40 CFR Part 82,not_in_govinfo,0,,0,,,govinfo-cfr:40:82:xml
+us,US 40 CFR Part 82,not_in_govinfo,0,,0,,,govinfo-cfr:40:82:pdf
+us,US 40 CFR Part 98,not_in_govinfo,0,,0,,,govinfo-cfr:40:98:xml
+us,US 40 CFR Part 98,not_in_govinfo,0,,0,,,govinfo-cfr:40:98:pdf
+us,US 42 USC s.1261 Clean Air Act,http_400,400,,0,,,https://www.govinfo.gov/link/uscode/42/1261
+us,US 47 CFR Part 15,ok,200,application/xml,768912,us/US-CFR-title47-part15.xml,3ee70baebdfdf7a0a8341e766a9c1444ba8bb9e1659c11802c8e817c515798aa,https://www.govinfo.gov/content/pkg/CFR-2024-title47-vol1/xml/CFR-2024-title47-vol1-part15.xml
+us,US 47 CFR Part 15,ok,200,application/pdf,788529,us/US-CFR-title47-part15.pdf,f26e17327e7dee19dcf2019be83db10e646353be76a11a91bcb5c25f8076650a,https://www.govinfo.gov/content/pkg/CFR-2024-title47-vol1/pdf/CFR-2024-title47-vol1-part15.pdf
+us,US 47 CFR Part 15,ok,200,,768912,us/US-CFR-title47-part15.xml,3ee70baebdfdf7a0a8341e766a9c1444ba8bb9e1659c11802c8e817c515798aa,govinfo-cfr:47:15:xml
+us,US 47 CFR Part 15,ok,200,,788529,us/US-CFR-title47-part15.pdf,f26e17327e7dee19dcf2019be83db10e646353be76a11a91bcb5c25f8076650a,govinfo-cfr:47:15:pdf
+us,US 47 CFR Part 18,ok,200,application/xml,43400,us/US-CFR-title47-part18.xml,6a6a3b3af6f3a795998b24cd215f62033331e644dd67d4ec112426bcaf1ea17e,https://www.govinfo.gov/content/pkg/CFR-2024-title47-vol1/xml/CFR-2024-title47-vol1-part18.xml
+us,US 47 CFR Part 18,ok,200,application/pdf,234581,us/US-CFR-title47-part18.pdf,eb7f4d8eb51302c7da990f15ebf43795da70e836bfcb172d56b6edbfea9904aa,https://www.govinfo.gov/content/pkg/CFR-2024-title47-vol1/pdf/CFR-2024-title47-vol1-part18.pdf
+us,US 47 CFR Part 18,ok,200,,43400,us/US-CFR-title47-part18.xml,6a6a3b3af6f3a795998b24cd215f62033331e644dd67d4ec112426bcaf1ea17e,govinfo-cfr:47:18:xml
+us,US 47 CFR Part 18,ok,200,,234581,us/US-CFR-title47-part18.pdf,eb7f4d8eb51302c7da990f15ebf43795da70e836bfcb172d56b6edbfea9904aa,govinfo-cfr:47:18:pdf
+us,US 47 CFR Part 2,ok,200,application/xml,1104540,us/US-CFR-title47-part2.xml,01f73e80ffec2b43b07995df92fcb0be260f46cd1bac211cfd1f62222b920524,https://www.govinfo.gov/content/pkg/CFR-2024-title47-vol1/xml/CFR-2024-title47-vol1-part2.xml
+us,US 47 CFR Part 2,ok,200,application/pdf,14644682,us/US-CFR-title47-part2.pdf,d1c82233db3bccfa042ab128c25d024ad009578097e52390319257b57041e33b,https://www.govinfo.gov/content/pkg/CFR-2024-title47-vol1/pdf/CFR-2024-title47-vol1-part2.pdf
+us,US 47 CFR Part 2,ok,200,,1104540,us/US-CFR-title47-part2.xml,01f73e80ffec2b43b07995df92fcb0be260f46cd1bac211cfd1f62222b920524,govinfo-cfr:47:2:xml
+us,US 47 CFR Part 2,ok,200,,14644682,us/US-CFR-title47-part2.pdf,d1c82233db3bccfa042ab128c25d024ad009578097e52390319257b57041e33b,govinfo-cfr:47:2:pdf
+us,US 47 CFR Part 68,ok,200,application/xml,174998,us/US-CFR-title47-part68.xml,d489e52b52ddb87d6303a48b82fee8050cb089d0b819c6929719fa229498ec86,https://www.govinfo.gov/content/pkg/CFR-2024-title47-vol3/xml/CFR-2024-title47-vol3-part68.xml
+us,US 47 CFR Part 68,ok,200,application/pdf,429435,us/US-CFR-title47-part68.pdf,dbd3cd1de577b947793400d4ce7a6bf5adf22771b374132e7ac4df5aeb60e38b,https://www.govinfo.gov/content/pkg/CFR-2024-title47-vol3/pdf/CFR-2024-title47-vol3-part68.pdf
+us,US 47 CFR Part 68,ok,200,,174998,us/US-CFR-title47-part68.xml,d489e52b52ddb87d6303a48b82fee8050cb089d0b819c6929719fa229498ec86,govinfo-cfr:47:68:xml
+us,US 47 CFR Part 68,ok,200,,429435,us/US-CFR-title47-part68.pdf,dbd3cd1de577b947793400d4ce7a6bf5adf22771b374132e7ac4df5aeb60e38b,govinfo-cfr:47:68:pdf
+us,US 47 USC s.301 Communications Act general authority,ok,200,application/pdf,137984,us/US-title47-USC-301_Communications_Act_general_authority.pdf,8a1ab253fb188b18ddab93b260647da50cfc6c47f4b440ff8a3e3b757c7759d6,https://www.govinfo.gov/link/uscode/47/301
+us,US 47 USC s.302 FCC device authorization,ok,200,application/pdf,134142,us/US-title47-USC-302_FCC_device_authorization.pdf,890e36d5a5fec8307008a8fa9c194f93f1463cbcfbda28da4fe38740445f190e,https://www.govinfo.gov/link/uscode/47/302
+us,US 49 CFR Part 171,ok,200,application/xml,295568,us/US-CFR-title49-part171.xml,2f349397ea1a412c54634ced1915218fd82012afecce53ac7f07b8894e4cb185,https://www.govinfo.gov/content/pkg/CFR-2024-title49-vol2/xml/CFR-2024-title49-vol2-part171.xml
+us,US 49 CFR Part 171,ok,200,application/pdf,386457,us/US-CFR-title49-part171.pdf,aaca0635a2e755f55653c2aa7b7f3670c968bafc5c921db962cb6047fd274033,https://www.govinfo.gov/content/pkg/CFR-2024-title49-vol2/pdf/CFR-2024-title49-vol2-part171.pdf
+us,US 49 CFR Part 171,ok,200,,295568,us/US-CFR-title49-part171.xml,2f349397ea1a412c54634ced1915218fd82012afecce53ac7f07b8894e4cb185,govinfo-cfr:49:171:xml
+us,US 49 CFR Part 171,ok,200,,386457,us/US-CFR-title49-part171.pdf,aaca0635a2e755f55653c2aa7b7f3670c968bafc5c921db962cb6047fd274033,govinfo-cfr:49:171:pdf
+us,US 49 CFR Part 172,ok,200,application/xml,3356952,us/US-CFR-title49-part172.xml,1a9392b586b7e02dc542830d8993f419281c57eb24a165692451031487601421,https://www.govinfo.gov/content/pkg/CFR-2024-title49-vol2/xml/CFR-2024-title49-vol2-part172.xml
+us,US 49 CFR Part 172,ok,200,application/pdf,3558421,us/US-CFR-title49-part172.pdf,77a4764a22d7ab2960b973d22fcf9b1cda5a71ae02f0fe7f0db11182bc5816a6,https://www.govinfo.gov/content/pkg/CFR-2024-title49-vol2/pdf/CFR-2024-title49-vol2-part172.pdf
+us,US 49 CFR Part 172,ok,200,,3356952,us/US-CFR-title49-part172.xml,1a9392b586b7e02dc542830d8993f419281c57eb24a165692451031487601421,govinfo-cfr:49:172:xml
+us,US 49 CFR Part 172,ok,200,,3558421,us/US-CFR-title49-part172.pdf,77a4764a22d7ab2960b973d22fcf9b1cda5a71ae02f0fe7f0db11182bc5816a6,govinfo-cfr:49:172:pdf
+us,US 49 CFR Part 173,ok,200,application/xml,2615459,us/US-CFR-title49-part173.xml,6d3249bf15626e20c235bc3e7502da4322a02fd334c632ff6a0c8641928cf609,https://www.govinfo.gov/content/pkg/CFR-2024-title49-vol2/xml/CFR-2024-title49-vol2-part173.xml
+us,US 49 CFR Part 173,ok,200,application/pdf,3843339,us/US-CFR-title49-part173.pdf,46ca1c4893267c0ed34ed7516ee4eb8459292593271e6fdc34e1029035c43155,https://www.govinfo.gov/content/pkg/CFR-2024-title49-vol2/pdf/CFR-2024-title49-vol2-part173.pdf
+us,US 49 CFR Part 173,ok,200,,2615459,us/US-CFR-title49-part173.xml,6d3249bf15626e20c235bc3e7502da4322a02fd334c632ff6a0c8641928cf609,govinfo-cfr:49:173:xml
+us,US 49 CFR Part 173,ok,200,,3843339,us/US-CFR-title49-part173.pdf,46ca1c4893267c0ed34ed7516ee4eb8459292593271e6fdc34e1029035c43155,govinfo-cfr:49:173:pdf
+us,US 49 CFR Part 178,ok,200,application/xml,1398686,us/US-CFR-title49-part178.xml,aa8302548506906c40b6e1886d5c19fa43537035b95f9b2360c3eca0ab65176f,https://www.govinfo.gov/content/pkg/CFR-2024-title49-vol3/xml/CFR-2024-title49-vol3-part178.xml
+us,US 49 CFR Part 178,ok,200,application/pdf,1861120,us/US-CFR-title49-part178.pdf,8b8e99587db9e2cdad1900a9bfee639831ef204e8516f08a2c46a413fc028b28,https://www.govinfo.gov/content/pkg/CFR-2024-title49-vol3/pdf/CFR-2024-title49-vol3-part178.pdf
+us,US 49 CFR Part 178,ok,200,,1398686,us/US-CFR-title49-part178.xml,aa8302548506906c40b6e1886d5c19fa43537035b95f9b2360c3eca0ab65176f,govinfo-cfr:49:178:xml
+us,US 49 CFR Part 178,ok,200,,1861120,us/US-CFR-title49-part178.pdf,8b8e99587db9e2cdad1900a9bfee639831ef204e8516f08a2c46a413fc028b28,govinfo-cfr:49:178:pdf
+us,US 49 USC s.5101 Hazardous materials transportation,ok,200,application/pdf,150115,us/US-title49-USC-5101_Hazardous_materials_transportation.pdf,5c53599ef18c4d0639ee986451602d53637ed2b04e8de509fe8aa150ff8ab268,https://www.govinfo.gov/link/uscode/49/5101
+us,US CA AB2273 Age-Appropriate Design Code Act,ok,200,text/html,110241,us/US-CA-AB2273_ADCA.html,ed43be3ab89e095e4de0161e5460ea252658887961fcab39bd25c5fcc7c4af57,https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=202120220AB2273
+us,US CA SB 1223 neural data amendment,ok,200,text/html,155947,us/US-CA-SB1223.html,981658fea977c8d9f489bcde0836ca71dd4655187caed022ffa41e1c69f6cf88,https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=202320240SB1223
+us,US CA 州法规库 (leginfo),ok,200,text/html,111076,us/US_CA_州法规库_leginfo.html,ea65266c0656865864f38fb757ec1cacf7c5f7a528263d7fde4b420d3af62f83,https://leginfo.legislature.ca.gov/faces/codes.xhtml
+us,US CA 总检察长 CCPA 页面 (oag.ca.gov),ok,200,text/html,122428,us/US_CA_总检察长_CCPA_页面_oag.ca.gov.html,51a4c7fc7a16ee62e60542c85c815012f4481b72695b8feb3ce278d92f83d247,https://oag.ca.gov/privacy/ccpa
+us,US CA 民法典 CCPA/CPRA 正文 (leginfo),ok,200,text/html,365455,us/US_CA_民法典_CCPA_CPRA_正文_leginfo.html,c347331d9fd1d4b8b98a9069c26202b2c207f03f007796e50515d07a243a71c1,https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=CIV&division=3.&title=1.81.5.&part=4.&chapter=&article=
+us,US CPSC recalls via SaferProducts API,ok,200,application/json,27662438,us/US_cpsc_recalls.json,b91ffe0ae640ec01bfafbf0a7ed43724a7f82cdabe0831fdabc68af3280b1124,https://www.saferproducts.gov/RestWebServices/Recall?format=json
+us,"US Code title 15 chapter 2 (HTML, govinfo)",ok,200,text/html,603456,us/US_Code_title_15_chapter_2_HTML_govinfo.html,ffaded04cddf4695db59f48fee5d4ff984c28d5b58e2b19246d66feea3d140cf,https://www.govinfo.gov/content/pkg/USCODE-2023-title15/html/USCODE-2023-title15-chap2.htm
+us,"US Code title 15 chapter 41 (HTML, govinfo)",ok,200,text/html,1746061,us/US_Code_title_15_chapter_41_HTML_govinfo.html,6eecc3a8b0020f9d1a1d211bd301b93c64aa1217e0f95c5aeb8a17926f8ce386,https://www.govinfo.gov/content/pkg/USCODE-2023-title15/html/USCODE-2023-title15-chap41.htm
+us,"US Code title 15 chapter 47 (HTML, govinfo)",ok,200,text/html,626192,us/US_Code_title_15_chapter_47_HTML_govinfo.html,2a29219abcff317f16b10b7e1a7f18a744b00f5ef68f84a7ad47e37077ae1dfe,https://www.govinfo.gov/content/pkg/USCODE-2023-title15/html/USCODE-2023-title15-chap47.htm
+us,"US Code title 16 chapter 1 (HTML, govinfo)",ok,200,text/html,8332190,us/US_Code_title_16_chapter_1_HTML_govinfo.html,cf6089babf1fafa41a0f6e68c0abc1ed03263f353c3acc56c7ea28ccabe0e307,https://www.govinfo.gov/content/pkg/USCODE-2023-title16/html/USCODE-2023-title16-chap1.htm
+us,"US Code title 19 chapter 4 (HTML, govinfo)",ok,200,text/html,3141587,us/US_Code_title_19_chapter_4_HTML_govinfo.html,c4696db79d3fc6520f6c2dd87c32dc024d8bffcced10f3f9a22fac1eda84eb89,https://www.govinfo.gov/content/pkg/USCODE-2023-title19/html/USCODE-2023-title19-chap4.htm
+us,"US Code title 21 chapter 9 (HTML, govinfo)",ok,200,text/html,5366796,us/US_Code_title_21_chapter_9_HTML_govinfo.html,d50e1805d6d74d136c57976efb98eef21fba35e05b48b841e0ea4e7d816f181e,https://www.govinfo.gov/content/pkg/USCODE-2023-title21/html/USCODE-2023-title21-chap9.htm
+us,"US Code title 42 chapter 85 (HTML, govinfo)",ok,200,text/html,2446935,us/US_Code_title_42_chapter_85_HTML_govinfo.html,5821d1a83bd703c17fc3adc0de7c5c943adde208b369fa4168d54466c15548ad,https://www.govinfo.gov/content/pkg/USCODE-2023-title42/html/USCODE-2023-title42-chap85.htm
+us,"US Code title 47 chapter 5 (HTML, govinfo)",ok,200,text/html,2753764,us/US_Code_title_47_chapter_5_HTML_govinfo.html,8ef29968f7efe018765b778e4616b316e45732e791e2b07e9d355df9bc319c76,https://www.govinfo.gov/content/pkg/USCODE-2023-title47/html/USCODE-2023-title47-chap5.htm
+us,"US Code title 49 chapter 51 (HTML, govinfo)",ok,200,text/html,44165,us/US_Code_title_49_chapter_51_HTML_govinfo.html,598bb28b1295e58c38f8b9e51250a7ca047d1124411b06ec8aeff92623175525,https://www.govinfo.gov/content/pkg/USCODE-2023-title49/html/USCODE-2023-title49-chap51.htm
+us,"US Code title 7 chapter 6 (HTML, govinfo)",ok,200,text/html,902746,us/US_Code_title_7_chapter_6_HTML_govinfo.html,7edaa34012924017132517aa9e5a31a15af49b30baff1948811c2cdfb677384d,https://www.govinfo.gov/content/pkg/USCODE-2023-title7/html/USCODE-2023-title7-chap6.htm
+us,US FDA Food Contact Substances,http_404,404,,0,,,https://www.fda.gov/food/food-ingredients-packaging/food-contact-substances-fcs
+us,US FDA MoCRA cosmetics law page,http_404,404,,0,,,https://www.fda.gov/cosmetics/cosmetics-laws-regulations/modernization-cosmetics-regulation-act-2022-mocra
+us,US FDA openFDA device recalls,ok,200,application/json,2073495,us/US_openfda_device_recall.json,5119c0a2a2814d6174a43e7d3446c20acabb557ab6d8ad45f9c513eba5989d96,https://api.fda.gov/device/recall.json?limit=100&sort=event_date_initiated:desc
+us,US FDA openFDA drug enforcement recalls,ok,200,application/json,233779,us/US_openfda_drug_enforcement.json,44824bca2f7174df98557bccde49460f68173b44aa3af2f014379fbfa799bd57,https://api.fda.gov/drug/enforcement.json?limit=100&sort=recall_initiation_date:desc
+us,US FDA openFDA food enforcement recalls,ok,200,application/json,152595,us/US_openfda_food_enforcement.json,5e5e1607dae8554b5985eb176ef6ec6c241bd16a1c94230c04f9f6c92b4479c4,https://api.fda.gov/food/enforcement.json?limit=100&sort=recall_initiation_date:desc
+us,US FTC COPPA Rule 16 CFR Part 312,ok,200,text/html,1014570,us/US-FTC_COPPA_rule.html,6ce75c00475241559fd4655175f793720bf76fcc69835a866f1d48b33a6f509a,https://www.ftc.gov/legal-library/browse/rules/childrens-online-privacy-protection-rule-coppa
+us,US FTC INFORM Consumers Act guidance,http_404,404,,0,,,https://www.ftc.gov/business-guidance/resources/inform-act
+us,US FTC INFORM Consumers Act guidance,ok,200,text/html,986830,us/US-FTC_INFORM_Act.html,0ca6d606f00ee91cf55fcf73fc82bbd90a0eceed805ecdaa8e9b1dfedd603649,https://www.ftc.gov/legal-library/browse/statutes/inform-consumers-act
+us,US FTC Textile Fiber Products Identification Act,ok,200,text/html,986924,us/US-FTC_TFPIA.html,eaf524a1d1975d093fb86591a7df464855fab0825b56497d04926c841f7e8386,https://www.ftc.gov/enforcement/statutes/textile-fiber-products-identification-act
+us,US Federal Register 2026-09-14 全文 XML,ok,200,application/xml,3428279,us/US_Federal_Register_2026-09-14_全文_XML.xml,269ae7ed7b4a5c9162524b074419f6c933c7c32e3c8ff91a2ca29cd6f6ee18f7,https://www.govinfo.gov/content/pkg/FR-2026-09-14/xml/FR-2026-09-14.xml
+us,US Federal Register 2026-09-15 全文 XML,ok,200,application/xml,2168788,us/US_Federal_Register_2026-09-15_全文_XML.xml,76aff665d4477c754671de4a9a4d5eac2733e7de68c7fc32afb480374907362f,https://www.govinfo.gov/content/pkg/FR-2026-09-15/xml/FR-2026-09-15.xml
+us,US Federal Register 2026-09-16 全文 XML,ok,200,application/xml,2339652,us/US_Federal_Register_2026-09-16_全文_XML.xml,790b803721e79bb69b0ce8854dd16deb02a75f4867ad5d16da21a38f734e64a3,https://www.govinfo.gov/content/pkg/FR-2026-09-16/xml/FR-2026-09-16.xml
+us,US Federal Register 2026-09-17 全文 XML,ok,200,application/xml,2288271,us/US_Federal_Register_2026-09-17_全文_XML.xml,a9774700e8dbe454675e98924ba0a6e251e98d2b3cf88d65a19672119b2f3d3d,https://www.govinfo.gov/content/pkg/FR-2026-09-17/xml/FR-2026-09-17.xml
+us,US Federal Register 2026-09-18 全文 XML,ok,200,application/xml,6462231,us/US_Federal_Register_2026-09-18_全文_XML.xml,eb911b377a75a2a01b8902f4ad2c2a54b3ff107b1db9721e407e12c2c4ff30d4,https://www.govinfo.gov/content/pkg/FR-2026-09-18/xml/FR-2026-09-18.xml
+us,US Federal Register API (agency CPSC),ok,200,application/json,181715,us/US_federalregister_CPSC.json,b96bbedca156234dc7e45749b9fbd41fbcc51992df67891a38b42ae07a7bfd27,https://www.federalregister.gov/api/v1/documents.json?per_page=100&conditions%5Bagencies%5D%5B%5D=consumer-product-safety-commission
+us,US Federal Register API (latest documents),ok,200,application/json,146565,us/US_federalregister_latest.json,1c77698265483d692f24d7d0d4682b5320db06d33096c69e847da8c899c2eaac,https://www.federalregister.gov/api/v1/documents.json?per_page=100&order=newest
+us,US OEHHA Proposition 65,ok,200,text/html,952,us/US-CA-Prop65_OEHHA.html,5e03c420471cba526ad78abf98cf759c9de513ff704b2710e6a180dd3ecb9638,https://oehha.ca.gov/proposition-65
+us,US PLAW-109publ347 Energy Policy Act 2005,ok,200,application/pdf,320704,us/PLAW-109publ347_Energy_Policy_Act_2005.pdf,daf0c28b4856a58a5cfedf2de5e447e1aaabac1719828fdc0b375ebf1d991c5c,https://www.govinfo.gov/content/pkg/PLAW-109publ347/pdf/PLAW-109publ347.pdf
+us,US PLAW-110publ314 Consumer Product Safety Improvement Act 2008,ok,200,application/pdf,280697,us/PLAW-110publ314_Consumer_Product_Safety_Improvement_Act_2008.pdf,474fad928c2142544f3c1ad44c84cc769e651c1d7e87c2b2ab1fbff40734e927,https://www.govinfo.gov/content/pkg/PLAW-110publ314/pdf/PLAW-110publ314.pdf
+us,US PLAW-114publ125 Trade Facilitation and Trade Enforcement Act 2015,ok,200,application/pdf,581682,us/PLAW-114publ125_Trade_Facilitation_and_Trade_Enforcement_Act_2015.pdf,61d80a3a0da29d834e45597c6121857465b4103f811865adf45cb86500487e8f,https://www.govinfo.gov/content/pkg/PLAW-114publ125/pdf/PLAW-114publ125.pdf
+us,US PLAW-115publ232 FIRRMA (NDAA FY2019),ok,200,application/pdf,2204258,us/PLAW-115publ232_FIRRMA_(NDAA_FY2019).pdf,46927b5a8580d24789fde05d95a9b6b2edabda4396fe1c2d30545a7352c7563c,https://www.govinfo.gov/content/pkg/PLAW-115publ232/pdf/PLAW-115publ232.pdf
+us,US PLAW-117publ169 Inflation Reduction Act of 2022,ok,200,application/pdf,876749,us/PLAW-117publ169_Inflation_Reduction_Act_of_2022.pdf,5bd9bebe719d3d1738e751fe7978ef7bf05167ed8150471f306e010185baed4f,https://www.govinfo.gov/content/pkg/PLAW-117publ169/pdf/PLAW-117publ169.pdf
+us,US PLAW-117publ328 Consolidated Appropriations Act 2023 (INFORM Act),ok,200,application/pdf,4309394,us/PLAW-117publ328_Consolidated_Appropriations_Act_2023_(INFORM_Act).pdf,6e063f9299ced82743d8b75c64fce8c63e7746add88b115ab111357ad0fb4e60,https://www.govinfo.gov/content/pkg/PLAW-117publ328/pdf/PLAW-117publ328.pdf
+us,US PLAW-117publ9 Modernization of Cosmetics Regulation Act 2022,ok,200,application/pdf,204415,us/PLAW-117publ9_Modernization_of_Cosmetics_Regulation_Act_2022.pdf,b4995d0bf8a272753b8d1357d4c4975079050876871cbde529f42073d580f7ed,https://www.govinfo.gov/content/pkg/PLAW-117publ9/pdf/PLAW-117publ9.pdf
+uy,UY IMPO 法规库,error,0,,0,,,https://www.impo.com.uy/
+uy,UY Ley 18.331 个人数据保护法 (IMPO),error,0,,0,,,https://www.impo.com.uy/bases/leyes/18331-2008
+vn,VN 政府公报,ok,200,text/html,213374,vn/VN_政府公报.html,3fda6e753259e39bd582996be18d6d916864dbb960d83c85091fd8f97a443fff,https://congbao.chinhphu.vn/
+vn,VN 政府法律文件库,ok,200,text/html,266472,vn/VN_政府法律文件库.html,c757b16194b7729cf352fdf3bc6dcada8c8d1ac6b77636f5559b7419a04a7e2b,https://vanban.chinhphu.vn/
+vn,VN 政府法律文件详情页,ok,200,text/html,82986,vn/VN_政府法律文件详情页.html,8d1b1da0a0b03430d5ea6bd1988d0221cd21566dbdfbcf32ce5ecf1b41281995,https://vanban.chinhphu.vn/?pageid=27160&docid=206608
+vn,VN 法律数据库 (vanban.chinhphu.vn),ok,200,text/html,266472,vn/VN_法律数据库_vanban.chinhphu.vn.html,aecb1f45f0d2064e033339a8ed23e531d0253cb8512ca1448d0b6d09180b4bac,https://vanban.chinhphu.vn/
+vn,VN 消费者权益保护法 19/2023/QH15,ok,200,text/html,266472,vn/VN_消费者权益保护法_19_2023_QH15.html,c757b16194b7729cf352fdf3bc6dcada8c8d1ac6b77636f5559b7419a04a7e2b,https://vanban.chinhphu.vn/
+vn,VN 第13号个人数据保护法令 (luatvietnam),ok,200,text/html,285373,vn/VN_第13号个人数据保护法令_luatvietnam.html,706c8bdd3143f4d4a62f4b5054375ca10aec50369bc2357d0d72e2ebbbdf6dae,https://english.luatvietnam.vn/decree-no-13-2023-nd-cp-dated-april-17-2023-of-the-government-on-personal-data-protection-249791-doc1.html
+za,ZA Consumer Protection Act (gov.za),ok,200,text/html,41497,za/ZA_Consumer_Protection_Act_gov.za.html,0b67f03b68723a46d2e70831c4526c7e599432b82aebcd84bf2fea363484b0ad,https://www.gov.za/documents/consumer-protection-act
+za,ZA Consumer Protection Act 68 of 2008,http_404,404,,0,,,https://www.gov.za/sites/default/files/gcis_document/201409/32186gon467.pdf
+za,ZA POPIA 个人信息保护法 (gov.za),ok,200,text/html,41229,za/ZA_POPIA_个人信息保护法_gov.za.html,eb32b85579560f46c79f8650bda1a507580f1be7b6cb4fbe34d39e678b8170b0,https://www.gov.za/documents/protection-personal-information-act
+za,ZA Protection of Personal Information Act 4 of 2013,ok,200,application/pdf,394447,za/ZA_Protection_of_Personal_Information_Act_4_of_2013.pdf,148e8d014a41926f2c4c596074a1dd5f7b75735fcd3e8b7ae5edfadbb7f5d212,https://www.gov.za/sites/default/files/gcis_document/201409/3706726-11act4of2013popi.pdf
+za,ZA 政府公报,ok,200,text/html,77589,za/ZA_政府公报.html,aa1a840e83aa8b2fdca2498462e5097815428e13029fa31988a54098d706d7fc,https://www.gov.za/documents/acts

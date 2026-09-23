@@ -1,0 +1,221 @@
+"""Round-3 expansion: every new market portal verified reachable on 2026-09-19,
+plus the specific document pages that answered 200.
+
+Split out from catalog.py so the original 26-market snapshot stays readable.
+`all_entries()` in catalog.py appends MORE_PORTALS + SPECIFIC_DOCS.
+"""
+
+from __future__ import annotations
+
+# --------------------------------------------------------------------------
+# Official law portals / gazettes, one or more per market. Reachability was
+# measured from this machine; failures land in _SKIPPED.md rather than being
+# silently dropped, because the URL itself is still worth recording.
+# --------------------------------------------------------------------------
+MORE_PORTALS = [
+    # --- Europe ---
+    ("es", "ES BOE 国家公报", "https://www.boe.es/"),
+    ("es", "ES BOE 立法检索", "https://www.boe.es/buscar/legislacion.php"),
+    ("es", "ES BOE 开放数据 API 索引", "https://www.boe.es/datosabiertos/api/legislacion-consolidada?limit=1000"),
+    ("it", "IT Normattiva 法规库", "https://www.normattiva.it/"),
+    ("it", "IT 官方公报 Gazzetta Ufficiale", "https://www.gazzettaufficiale.it/"),
+    ("nl", "NL wetten.overheid.nl 法规库", "https://wetten.overheid.nl/"),
+    ("nl", "NL Autoriteit Consument & Markt", "https://www.acm.nl/"),
+    ("be", "BE eJustice 法规库", "https://www.ejustice.just.fgov.be/"),
+    ("lu", "LU Legilux 法规库", "https://legilux.public.lu/"),
+    ("ie", "IE Irish Statute Book", "https://www.irishstatutebook.ie/"),
+    ("ie", "IE 立法目录 (electronic Irish Statute Book)", "https://www.irishstatutebook.ie/eli/"),
+    ("ch", "CH Fedlex 联邦法规库", "https://www.fedlex.admin.ch/"),
+    ("ch", "CH Fedlex 内国法索引", "https://www.fedlex.admin.ch/en/cc/internal-law"),
+    ("pl", "PL ISAP 立法库", "https://isap.sejm.gov.pl/"),
+    ("pl", "PL Dziennik Ustaw 法律公报", "https://dziennikustaw.gov.pl/"),
+    ("se", "SE Riksdagen 法律库", "https://www.riksdagen.se/"),
+    ("se", "SE 消费者局 Konsumentverket", "https://www.konsumentverket.se/"),
+    ("no", "NO Lovdata 法规库", "https://lovdata.no/"),
+    ("dk", "DK Retsinformation 法规库", "https://www.retsinformation.dk/"),
+    ("fi", "FI Finlex 法规库", "https://www.finlex.fi/"),
+    ("pt", "PT Diario da Republica", "https://dre.pt/"),
+    ("gr", "GR 国家印刷局 et.gr", "https://www.et.gr/"),
+    ("hr", "HR zakon.hr 法规库", "https://www.zakon.hr/"),
+    ("si", "SI PISRS 法规信息系统", "https://www.pisrs.si/"),
+    ("rs", "RS 法规信息系统", "https://www.pravno-informacioni-sistem.rs/"),
+    ("sk", "SK Slov-Lex 法规库", "https://www.slov-lex.sk/"),
+    ("lv", "LV Likumi 法规库", "https://likumi.lv/"),
+    ("ee", "EE Riigi Teataja 法规库", "https://www.riigiteataja.ee/"),
+    ("mt", "MT Legislation 法规库", "https://legislation.mt/"),
+    ("cy", "CY CyLaw 法规库", "http://www.cylaw.org/"),
+    ("fr", "FR service-public 行政信息门户", "https://www.service-public.fr/"),
+    ("fr", "FR economie.gouv 经济部", "https://www.economie.gouv.fr/"),
+    # --- Asia-Pacific ---
+    ("tw", "TW 全国法规资料库", "https://law.moj.gov.tw/"),
+    ("hk", "HK 电子版香港法例", "https://www.elegislation.gov.hk/"),
+    ("kr", "KR 国家法令信息中心 (KLRI 英文)", "https://elaw.klri.re.kr/eng_service/main.do"),
+    ("pk", "PK 国民议会立法", "https://www.na.gov.pk/"),
+    ("bd", "BD 孟加拉法律库 bdlaws", "http://bdlaws.minlaw.gov.bd/"),
+    ("np", "NP 法律委员会", "https://www.lawcommission.gov.np/"),
+    ("mn", "MN legalinfo 法规库", "https://legalinfo.mn/"),
+    ("kz", "KZ Adilet 法规库", "https://adilet.zan.kz/"),
+    # --- Southeast Asia ---
+    ("ph", "PH LawPhil 法律库", "https://lawphil.net/"),
+    ("ph", "PH 贸易与工业部 DTI 消费者保护", "https://www.dti.gov.ph/"),
+    ("ph", "PH 食品药品管理局 FDA", "https://www.fda.gov.ph/"),
+    ("id", "ID JDIH 国家法规库", "https://jdih.setneg.go.id/"),
+    ("my", "MY 总检察署 AGC", "https://www.agc.gov.my/"),
+    ("my", "MY AGC 法令目录", "https://www.agc.gov.my/agcportal/pages/laws.php"),
+    ("vn", "VN 政府法律文件库", "https://vanban.chinhphu.vn/"),
+    ("vn", "VN 政府公报", "https://congbao.chinhphu.vn/"),
+    ("kh", "KH 司法部", "https://www.moj.gov.kh/"),
+    ("la", "LA 老挝贸易门户", "https://www.laotradeportal.gov.la/"),
+    ("bn", "BN 总检察署 AGC", "https://www.agc.gov.bn/"),
+    # --- Middle East / Africa ---
+    ("qa", "QA Al Meezan 法律门户", "https://almeezan.qa/"),
+    ("jo", "JO 司法部", "https://www.moj.gov.jo/"),
+    ("lb", "LB 部长会议", "http://www.pcm.gov.lb/"),
+    ("om", "OM 阿曼政府门户", "https://www.oman.om/"),
+    ("il", "IL 以色列政府法律门户", "https://www.gov.il/"),
+    ("ng", "NG 尼日利亚法律库", "https://lawsofnigeria.placng.org/"),
+    ("gh", "GH 加纳贸易与工业", "https://www.ghanaiantimes.com.gh/"),
+    ("tz", "TZ 坦桑尼亚政府门户", "https://www.tanzania.go.tz/"),
+    ("ke", "KE Kenya Law 法规库", "https://new.kenyalaw.org/"),
+    ("za", "ZA 政府公报", "https://www.gov.za/documents/acts"),
+    ("eg", "EG 埃及法律门户", "http://www.law.gov.eg/"),
+    ("ma", "MA 政府秘书处公报", "https://www.sgg.gov.ma/"),
+    # --- Latin America ---
+    ("cl", "CL LeyChile 法规库", "https://www.bcn.cl/leychile/"),
+    ("cl", "CL SERNAC 消费者服务局", "https://www.sernac.cl/"),
+    ("ar", "AR InfoLEG 法规库", "http://servicios.infoleg.gob.ar/"),
+    ("co", "CO SUIN-Juriscol 法规库", "https://www.suin-juriscol.gov.co/"),
+    ("pe", "PE 官方公报 El Peruano", "https://busquedas.elperuano.pe/"),
+    ("uy", "UY IMPO 法规库", "https://www.impo.com.uy/"),
+    ("py", "PY 官方公报", "https://www.gacetaoficial.gov.py/"),
+    ("bo", "BO 官方公报", "http://www.gacetaoficialdebolivia.gob.bo/"),
+    ("cr", "CR PGR 法规库", "https://www.pgrweb.go.cr/"),
+    ("pa", "PA 官方公报", "https://www.gacetaoficial.gob.pa/"),
+    ("mx", "MX 众议院法律库", "https://www.diputados.gob.mx/LeyesBiblio/"),
+    ("mx", "MX 联邦官方公报 DOF", "https://www.dof.gob.mx/"),
+    # --- International organisations ---
+    ("intl", "INTL ETSI 标准交付目录", "https://www.etsi.org/deliver/etsi_en/"),
+    ("intl", "INTL ETSI 标准与服务", "https://www.etsi.org/standards"),
+    ("intl", "INTL CEN-CENELEC 欧洲标准化", "https://www.cencenelec.eu/"),
+    ("intl", "INTL NIST 美国国家标准与技术研究院", "https://www.nist.gov/"),
+    ("intl", "INTL UN Treaty Collection 条约集", "https://treaties.un.org/"),
+    ("intl", "INTL WHO 世界卫生组织", "https://www.who.int/"),
+    ("intl", "INTL FAO 联合国粮农组织", "https://www.fao.org/"),
+    ("intl", "INTL WCO 世界海关组织", "http://www.wcoomd.org/"),
+    ("intl", "INTL ITU 国际电信联盟", "https://www.itu.int/"),
+    ("intl", "INTL UPU 万国邮政联盟", "https://www.upu.int/"),
+    ("intl", "INTL ICC 国际商会", "https://iccwbo.org/"),
+    ("intl", "INTL World Bank 世界银行", "https://www.worldbank.org/"),
+    ("intl", "INTL ILO 国际劳工组织", "https://www.ilo.org/"),
+    ("intl", "INTL ISO 标准目录", "https://www.iso.org/standards.html"),
+    ("intl", "INTL IEC 国际电工委员会", "https://www.iec.ch/"),
+]
+
+
+# --------------------------------------------------------------------------
+# Specific documents verified to return real content.
+# --------------------------------------------------------------------------
+SPECIFIC_DOCS = [
+    # --- Spain: the open-data API serves the full consolidated act as XML ---
+    ("es", "ES BOE-A-2007-20555  consolidated XML",
+     "https://www.boe.es/datosabiertos/api/legislacion-consolidada/id/BOE-A-2007-20555",
+     "application/xml"),
+    # --- Ireland: full act as PDF and print-ready HTML ---
+    ("ie", "IE Data Protection Act 2018 (PDF)",
+     "https://www.irishstatutebook.ie/eli/2018/act/7/enacted/en/pdf", "application/pdf"),
+    ("ie", "IE Data Protection Act 2018 (print HTML)",
+     "https://www.irishstatutebook.ie/eli/2018/act/7/enacted/en/print", "text/html"),
+    ("ie", "IE Consumer Protection Act 2007 (PDF)",
+     "https://www.irishstatutebook.ie/eli/2007/act/19/enacted/en/pdf", "application/pdf"),
+    ("ie", "IE Consumer Rights Act 2022 (PDF)",
+     "https://www.irishstatutebook.ie/eli/2022/act/37/enacted/en/pdf", "application/pdf"),
+    ("ie", "IE Product Safety standards (NSAI)",
+     "https://www.nsai.ie/", "text/html"),
+    # --- Taiwan ---
+    ("tw", "TW 个人资料保护法",
+     "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021", "text/html"),
+    ("tw", "TW 消费者保护法",
+     "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0170001", "text/html"),
+    ("tw", "TW 商品标示法",
+     "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0080001", "text/html"),
+    ("tw", "TW 公平交易法",
+     "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0150002", "text/html"),
+    ("tw", "TW 商品检验法",
+     "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0100004", "text/html"),
+    # --- Netherlands ---
+    ("nl", "NL AVG 实施法 (UAVG) BWBR0040940",
+     "https://wetten.overheid.nl/BWBR0040940/", "text/html"),
+    ("nl", "NL 消费者保护执行法 BWBR0034947",
+     "https://wetten.overheid.nl/BWBR0034947/", "text/html"),
+    # --- Switzerland ---
+    ("ch", "CH Fedlex 联邦法律汇编",
+     "https://www.fedlex.admin.ch/en/cc/internal-law", "text/html"),
+    ("ch", "CH 产品安全法 PrSG",
+     "https://www.fedlex.admin.ch/eli/cc/2010/347/en", "text/html"),
+    # --- Belgium ---
+    ("be", "BE 经济法典 (Code de droit economique)",
+     "https://www.ejustice.just.fgov.be/eli/loi/2013/02/28/2013011086/justel", "text/html"),
+    # --- Poland ---
+    ("pl", "PL 消费者权益法 ISAP",
+     "https://isap.sejm.gov.pl/isap.nsf/DocDetails.xsp?id=WDU20140000827", "text/html"),
+    # --- Bangladesh ---
+    ("bd", "BD 消费者权益保护法 2009",
+     "http://bdlaws.minlaw.gov.bd/act-1035.html", "text/html"),
+    ("bd", "BD 法律库全文检索",
+     "http://bdlaws.minlaw.gov.bd/", "text/html"),
+    # --- Vietnam ---
+    ("vn", "VN 政府法律文件详情页",
+     "https://vanban.chinhphu.vn/?pageid=27160&docid=206608", "text/html"),
+    # --- Qatar ---
+    ("qa", "QA Al Meezan 法律英文页",
+     "https://almeezan.qa/LawPage.aspx?id=2970&language=en", "text/html"),
+    # --- Laos ---
+    ("la", "LA 贸易门户法律页",
+     "https://www.laotradeportal.gov.la/index.php?r=site/display&id=1", "text/html"),
+    # --- Jordan ---
+    ("jo", "JO 司法部法规",
+     "https://www.moj.gov.jo/Default/Ar", "text/html"),
+    # --- Mongolia ---
+    ("mn", "MN legalinfo 法规库",
+     "https://legalinfo.mn/mn", "text/html"),
+    # --- Tanzania ---
+    ("tz", "TZ 政府门户法规栏目",
+     "https://www.tanzania.go.tz/", "text/html"),
+    # --- ETSI：RED / EMC 协调标准（免费 PDF） ---
+    ("intl", "ETSI EN 301 489-1 EMC 通用要求",
+     "https://www.etsi.org/deliver/etsi_en/301400_301499/30148901/02.02.03_60/en_30148901v020203p.pdf",
+     "application/pdf"),
+    ("intl", "ETSI EN 300 328 宽带传输设备",
+     "https://www.etsi.org/deliver/etsi_en/300300_300399/300328/02.02.02_60/en_300328v020202p.pdf",
+     "application/pdf"),
+    ("intl", "ETSI EN 301 893 5GHz RLAN",
+     "https://www.etsi.org/deliver/etsi_en/301800_301899/301893/02.01.01_60/en_301893v020101p.pdf",
+     "application/pdf"),
+    ("intl", "ETSI EN 300 220 短距离设备",
+     "https://www.etsi.org/deliver/etsi_en/300200_300299/30022002/03.02.01_60/en_30022002v030201p.pdf",
+     "application/pdf"),
+    ("intl", "ETSI EN 301 908 蜂窝基站",
+     "https://www.etsi.org/deliver/etsi_en/301900_301999/30190801/07.01.01_60/en_30190801v070101p.pdf",
+     "application/pdf"),
+    ("intl", "ETSI EN 303 645 消费物联网网络安全",
+     "https://www.etsi.org/deliver/etsi_en/303600_303699/303645/02.01.01_60/en_303645v020101p.pdf",
+     "application/pdf"),
+    ("intl", "ETSI EN 300 330 短距离射频设备",
+     "https://www.etsi.org/deliver/etsi_en/300300_300399/30033002/07.01.01_60/en_30033002v070101p.pdf",
+     "application/pdf"),
+    ("intl", "ETSI EN 300 440 短距离设备 1-40GHz",
+     "https://www.etsi.org/deliver/etsi_en/300400_300499/30044002/02.02.01_60/en_30044002v020201p.pdf",
+     "application/pdf"),
+    ("intl", "ETSI EN 301 489-17 EMC 宽带设备",
+     "https://www.etsi.org/deliver/etsi_en/301400_301499/30148917/03.02.01_60/en_30148917v030201p.pdf",
+     "application/pdf"),
+    ("intl", "ETSI EN 301 489-3 EMC 短距离设备",
+     "https://www.etsi.org/deliver/etsi_en/301400_301499/30148903/02.01.01_60/en_30148903v020101p.pdf",
+     "application/pdf"),
+    ("intl", "ETSI EN 55032 EMC 多媒体设备发射",
+     "https://www.etsi.org/deliver/etsi_en/55000_55999/55032/02.01.00_60/en_55032v020100p.pdf",
+     "application/pdf"),
+    ("intl", "ETSI EN 55035 EMC 多媒体设备抗扰",
+     "https://www.etsi.org/deliver/etsi_en/55000_55999/55035/02.01.00_60/en_55035v020100p.pdf",
+     "application/pdf"),
+]
